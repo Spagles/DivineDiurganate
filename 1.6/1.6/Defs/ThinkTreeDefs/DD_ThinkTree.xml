@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <!-- 机甲的思考树，里面有很重要的内容 -->
+  <!-- The thinking tree of mech, which contains very important content -->
+  <ThinkTreeDef>
+    <defName>DD_Battle_Mech_With_1_Pilot</defName>
+    <thinkRoot Class="ThinkNode_Priority">
+      <subNodes>
+        <li Class="ThinkNode_ConditionalMustKeepLyingDown">
+          <subNodes>
+            <!-- Do a queued job if possible -->
+            <li Class="ThinkNode_QueuedJob">
+              <inBedOnly>true</inBedOnly>
+            </li>
+
+            <!-- Keep lying down -->
+            <li Class="JobGiver_KeepLyingDown"/>
+          </subNodes>
+        </li>
+
+        <!-- <li Class="ThinkNode_Subtree">
+          <treeDef>Downed</treeDef>
+        </li> -->
+
+        <!-- 重点！你需要在思考树中插入此项，以规定当没有足够的驾驶员时，机甲将执行什么行动 -->
+        <li Class="DivineDiurganate.ThinkNode_ConditionalMechHasPilot">
+          <minPilotCount>1</minPilotCount>
+          <subNodes>
+            <li Class="JobGiver_Idle"/>
+          </subNodes>
+        </li>
+
+        <li Class="ThinkNode_Subtree">
+          <treeDef>BurningResponse</treeDef>
+        </li>
+        <li Class="ThinkNode_Subtree">
+          <treeDef>MentalStateCritical</treeDef>
+        </li>
+
+        <!-- React to close melee threat -->
+        <li Class="JobGiver_ReactToCloseMeleeThreat"/>
+
+        <!-- Do a queued job -->
+        <li Class="ThinkNode_QueuedJob"/>
+        
+        
+        <!-- Wait if drafted -->
+        <li Class="ThinkNode_ConditionalOfPlayerFaction">
+          <subNodes>
+            <li Class="ThinkNode_Tagger">
+              <tagToGive>DraftedOrder</tagToGive>
+              <subNodes>
+                <li Class="JobGiver_MoveToStandable" />
+                <li Class="JobGiver_Orders" />
+              </subNodes>
+            </li>
+          </subNodes>
+        </li>
+
+        <!-- Mental state non critical -->
+        <!-- <li Class="ThinkNode_Subtree">
+          <treeDef>MentalStateNonCritical</treeDef>
+        </li> -->
+
+        <!-- Forced goto -->
+        <li Class="ThinkNode_ConditionalForcedGoto">
+          <subNodes>
+            <li Class="ThinkNode_Tagger">
+              <tagToGive>Misc</tagToGive>
+              <subNodes>
+                <li Class="JobGiver_ForcedGoto"/>
+              </subNodes>
+            </li>
+          </subNodes>
+        </li>
+
+        <!-- Behavior when roped -->
+        <li Class="ThinkNode_Subtree">
+          <treeDef>RopedPawn</treeDef>
+        </li>
+
+        <!-- Lord directives -->
+        <li Class="ThinkNode_Subtree">
+          <treeDef>LordDuty</treeDef>
+        </li>
+
+        <!-- Insertion hook for modders -->
+        <li Class="ThinkNode_SubtreesByTag">
+          <insertTag>Animal_PreMain</insertTag>
+        </li>
+        <li Class="ThinkNode_SubtreesByTag">
+          <insertTag>Insect_PreMain</insertTag>
+        </li>
+
+        <li Class="ThinkNode_ConditionalHasFaction">
+          <invert>true</invert>
+          <subNodes>
+            <!-- Wild insects with no lord will fight nearby enemies -->
+            <li Class="JobGiver_AIFightEnemies">
+              <targetAcquireRadius>30</targetAcquireRadius>              <!-- Same as DefendAndExpandHive -->
+              <targetKeepRadius>35</targetKeepRadius>
+            </li>
+
+            <!-- Wild insects leave map in some conditions -->
+            <li Class="ThinkNode_Subtree">
+              <treeDef>LeaveIfWrongSeason</treeDef>
+            </li>
+            <li Class="ThinkNode_Subtree">
+              <treeDef>LeaveIfStarving</treeDef>
+            </li>
+
+            <!-- Wild insects randomly leave map -->
+            <li Class="ThinkNode_ChancePerHour_Constant">
+              <mtbDays>60</mtbDays>
+              <subNodes>
+                <li Class="ThinkNode_Tagger">
+                  <tagToGive>Misc</tagToGive>
+                  <subNodes>
+                    <li Class="JobGiver_ExitMapRandom">
+                      <defaultLocomotion>Walk</defaultLocomotion>
+                    </li>
+                  </subNodes>
+                </li>
+              </subNodes>
+            </li>
+          </subNodes>
+        </li>
+
+        <!-- Insects of a faction that's not the players without a lord leave randomly -->
+        <li Class="ThinkNode_ConditionalOfPlayerFaction">
+          <invert>true</invert>
+          <subNodes>
+            <li Class="ThinkNode_ConditionalHasFaction">
+              <subNodes>
+                <li Class="ThinkNode_ConditionalNoLord">
+                  <subNodes>
+                    <li Class="ThinkNode_ChancePerHour_Constant">
+                      <mtbDays>60</mtbDays>
+                      <subNodes>
+                        <li Class="ThinkNode_Tagger">
+                          <tagToGive>Misc</tagToGive>
+                          <subNodes>
+                            <li Class="JobGiver_ExitMapRandom">
+                              <defaultLocomotion>Walk</defaultLocomotion>
+                            </li>
+                          </subNodes>
+                        </li>
+                      </subNodes>
+                    </li>
+                  </subNodes>
+                </li>
+              </subNodes>
+            </li>
+          </subNodes>
+        </li>
+
+        <!-- Tame insects -->
+        <li Class="ThinkNode_ConditionalOfPlayerFaction">
+          <subNodes>
+            <li Class="ThinkNode_Tagger">
+              <tagToGive>TrainedAnimalBehavior</tagToGive>
+              <subNodes>
+                <!-- Trained behavior: obedience: Follow and defend master -->
+                <li Class="ThinkNode_ConditionalTrainableCompleted">
+                  <trainable>Obedience</trainable>
+                  <subNodes>
+                    <li Class="ThinkNode_ConditionalShouldFollowMaster">
+                      <subNodes>
+                        <li Class="JobGiver_AIDefendMaster">
+                          <attackMeleeThreatEvenIfNotHostile>true</attackMeleeThreatEvenIfNotHostile>
+                        </li>
+                        <li Class="JobGiver_AIFightEnemies">
+                          <targetAcquireRadius>30</targetAcquireRadius>
+                          <targetKeepRadius>35</targetKeepRadius>
+                        </li>
+                        <li Class="JobGiver_AIFollowMaster"/>
+                        <li Class="JobGiver_WanderNearMaster"/>
+                      </subNodes>
+                    </li>
+                  </subNodes>
+                </li>
+
+                <!-- Trained behavior: Rescue-->
+                <li Class="ThinkNode_ConditionalTrainableCompleted">
+                  <trainable>Rescue</trainable>
+                  <subNodes>
+                    <li Class="JobGiver_RescueNearby">
+                      <radius>500</radius>
+                    </li>
+                  </subNodes>
+                </li>
+              </subNodes>
+            </li>
+
+            <!-- Take care of critical needs (below rescue - so heroic!)-->
+
+            <li Class="ThinkNode_Tagger">
+              <tagToGive>RestingForMedicalReasons</tagToGive>
+              <subNodes>
+                <li Class="JobGiver_PatientGoToBed"/>
+              </subNodes>
+            </li>
+
+            <li Class="JobGiver_SeekAllowedArea"/>
+            <li Class="JobGiver_SeekSafeTemperature"/>
+
+          </subNodes>
+        </li>
+
+        <!-- Satisfy basic needs -->
+        <li Class="ThinkNode_Subtree">
+          <treeDef>SatisfyBasicNeeds</treeDef>
+        </li>
+
+        <!-- Tame insect: do useful things for the colony-->
+        <li Class="ThinkNode_ConditionalHasFaction">
+          <subNodes>
+
+            <!-- Try to mate -->
+            <li Class="ThinkNode_ChancePerHour_Mate">
+              <subNodes>
+                <li Class="ThinkNode_Tagger">
+                  <tagToGive>SatisfyingNeeds</tagToGive>
+                  <subNodes>
+                    <li Class="JobGiver_Mate"/>
+                  </subNodes>
+                </li>
+              </subNodes>
+            </li>
+
+            <!-- Nuzzle randoms -->
+            <li Class="ThinkNode_ChancePerHour_Nuzzle">
+              <subNodes>
+                <li Class="ThinkNode_Tagger">
+                  <tagToGive>Misc</tagToGive>
+                  <subNodes>
+                    <li Class="JobGiver_Nuzzle"/>
+                  </subNodes>
+                </li>
+              </subNodes>
+            </li>
+
+            <!-- Roamers gonna roam -->
+            <li Class="ThinkNode_ChancePerDay_Roam">
+              <subNodes>
+                <li Class="ThinkNode_Tagger">
+                  <tagToGive>Misc</tagToGive>
+                  <subNodes>
+                    <li Class="JobGiver_StartRoaming"/>
+                  </subNodes>
+                </li>
+              </subNodes>
+            </li>
+          </subNodes>
+        </li>
+
+        <!-- Tame animal: wander near colony if possible -->
+        <li Class="ThinkNode_ConditionalOfPlayerFaction">
+          <subNodes>
+            <li Class="ThinkNode_Tagger">
+              <tagToGive>Idle</tagToGive>
+              <subNodes>
+                <!-- Wander near your current position if in hostile map -->
+                <li Class="ThinkNode_ConditionalAnyEnemyInHostileMap">
+                  <subNodes>
+                    <li Class="JobGiver_WanderAnywhere">
+                      <maxDanger>None</maxDanger>
+                      <ticksBetweenWandersRange>120~240</ticksBetweenWandersRange>
+                    </li>
+                  </subNodes>
+                </li>
+
+                <li Class="ThinkNode_ConditionalRoamer">
+                  <subNodes>
+                    <li Class="JobGiver_WanderInRoofedCellsInPen">
+                      <maxDanger>None</maxDanger>
+                      <ticksBetweenWandersRange>120~240</ticksBetweenWandersRange>
+                      <expiryInterval>500</expiryInterval>
+                    </li>
+
+                    <!-- tame roamers should not wander too far, and if unenclosed wander near a suitable pen marker 10% of the time -->
+                    <li Class="ThinkNode_ConditionalRandom">
+                      <chance>0.1</chance>
+                      <subNodes>
+                        <li Class="JobGiver_WanderInPen">
+                          <maxDanger>None</maxDanger>
+                          <ticksBetweenWandersRange>120~240</ticksBetweenWandersRange>
+                          <expiryInterval>500</expiryInterval>
+                        </li>
+                      </subNodes>
+                    </li>
+
+                    <li Class="JobGiver_WanderAnywhere">
+                      <maxDanger>None</maxDanger>
+                      <ticksBetweenWandersRange>120~240</ticksBetweenWandersRange>
+                    </li>
+                  </subNodes>
+                </li>
+
+                <!-- Wander near colony -->
+                <li Class="JobGiver_WanderColony">
+                  <maxDanger>None</maxDanger>
+                  <ticksBetweenWandersRange>120~240</ticksBetweenWandersRange>
+                </li>
+              </subNodes>
+            </li>
+          </subNodes>
+        </li>
+        
+        <!-- Of neutral faction: rest and then exit the map -->
+        <li Class="ThinkNode_ConditionalNonPlayerNonHostileFaction">
+          <subNodes>
+            <li Class="ThinkNode_Tagger">
+              <tagToGive>RestingForMedicalReasons</tagToGive>
+              <subNodes>
+                <li Class="JobGiver_PatientGoToBed" />
+              </subNodes>
+            </li>
+            
+            <li Class="ThinkNode_Tagger">
+              <tagToGive>Misc</tagToGive>
+              <subNodes>
+                <li Class="JobGiver_ExitMapBest">
+                  <defaultLocomotion>Walk</defaultLocomotion>
+                </li>
+              </subNodes>
+            </li>
+          </subNodes>
+        </li>
+        
+        <!-- Wander -->
+        <li Class="ThinkNode_Tagger">
+          <tagToGive>Idle</tagToGive>
+          <subNodes>
+            <li Class="ThinkNode_ConditionalHerdAnimal">
+              <subNodes>
+                <li Class="JobGiver_WanderHerd">
+                  <maxDanger>Deadly</maxDanger>
+                  <ticksBetweenWandersRange>120~240</ticksBetweenWandersRange>
+                </li>
+              </subNodes>
+            </li>
+            
+            <li Class="JobGiver_WanderAnywhere">
+              <maxDanger>Deadly</maxDanger>
+              <ticksBetweenWandersRange>120~240</ticksBetweenWandersRange>    
+            </li>
+          </subNodes>
+        </li>
+
+        <li Class="JobGiver_IdleError"/>
+      </subNodes>
+    </thinkRoot>
+  </ThinkTreeDef>
+</Defs>

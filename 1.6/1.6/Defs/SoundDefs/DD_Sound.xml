@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <SoundDef>
+    <defName>DD_Mech_Scythe_Slash_Hit_Sound</defName>
+    <context>MapOnly</context>
+    <maxSimultaneous>2</maxSimultaneous>
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>DivineDiurganate/DD_Mech_Scythe_Slash_Hit_Sound</clipPath>
+          </li>
+        </grains>
+        <volumeRange>65</volumeRange>
+        <pitchRange>0.9~1.1</pitchRange>
+      </li>
+    </subSounds>
+  </SoundDef>
+  <SoundDef>
+    <defName>DD_SHM86_Knell_Mech_Weapon_FireSound</defName>
+    <context>MapOnly</context>
+    <maxSimultaneous>2</maxSimultaneous>
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>DivineDiurganate/DD_SHM86_Knell_Mech_Weapon_FireSound</clipPath>
+          </li>
+        </grains>
+        <volumeRange>65</volumeRange>
+        <pitchRange>0.9~1.1</pitchRange>
+      </li>
+    </subSounds>
+  </SoundDef>
+  <SoundDef>
+    <defName>DD_SHM86_Knell_Mech_Moving_Sound</defName>
+    <sustain>true</sustain>
+    <context>MapOnly</context>
+    <maxSimultaneous>2</maxSimultaneous>
+    <priorityMode>PrioritizeNearest</priorityMode>
+    <!-- <sustainStopSound>BeamGraser_Shooting_Resolve</sustainStopSound> -->
+    <subSounds>
+      <li>
+        <tempoAffectedByGameSpeed>true</tempoAffectedByGameSpeed>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>DivineDiurganate/DD_SHM86_Knell_Mech_Moving_Sound</clipPath>
+          </li>
+        </grains>
+        <pitchRange>0.99~1.01</pitchRange>
+        <volumeRange>30</volumeRange>
+        <sustainRelease>0.02</sustainRelease>
+      </li>
+    </subSounds>
+  </SoundDef>
+</Defs>

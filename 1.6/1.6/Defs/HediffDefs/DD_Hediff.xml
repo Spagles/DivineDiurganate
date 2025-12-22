@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <HediffDef>
+    <defName>DD_MechShutdown</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>Shutdown</label>
+    <description>This mech has stopped due to insufficient fuel, need to assign a colonist to refuel it to restore its operational capability.</description>
+    <descriptionShort>This mech has stopped due to insufficient fuel.</descriptionShort>
+    <!-- <initialSeverity>0.5</initialSeverity> -->
+    <minSeverity>0.01</minSeverity>
+    <maxSeverity>1</maxSeverity>
+    <alwaysShowSeverity>true</alwaysShowSeverity>
+    <isBad>true</isBad>
+    <duplicationAllowed>true</duplicationAllowed>
+    <keepOnBodyPartRestoration>true</keepOnBodyPartRestoration>    <!-- true -->
+    <!-- <defaultInstallPart>Brain</defaultInstallPart> -->
+    <stages>
+      <li>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <setMax>0.1</setMax>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+</Defs>

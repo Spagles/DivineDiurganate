@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <FleshTypeDef>
+    <defName>DD_Mech_Fleshtype</defName>
+    <corpseCategory>CorpsesMechanoid</corpseCategory>
+    <damageEffecter>Damage_HitMechanoid</damageEffecter>
+    <isOrganic>false</isOrganic>
+    <genericWounds>
+      <li>
+        <texture>Things/Pawn/Wounds/WoundMechA</texture>
+      </li>
+      <li>
+        <texture>Things/Pawn/Wounds/WoundMechB</texture>
+      </li>
+      <li>
+        <texture>Things/Pawn/Wounds/WoundMechC</texture>
+      </li>
+    </genericWounds>
+    <bandagedWounds>
+      <li>
+        <texture>Wula/Things/WulaSpecies/Wounds/WULA_Species_Wound_None</texture>
+      </li>
+      <!-- <li>
+        <texture>Things/Pawn/Wounds/BandagedB</texture>
+      </li>
+      <li>
+        <texture>Things/Pawn/Wounds/BandagedC</texture>
+      </li> -->
+    </bandagedWounds>
+    <!-- <hediffWounds>
+      <li MayRequire="Ludeon.RimWorld.Ideology">
+        <hediff>Scarification</hediff>
+        <wounds>
+          <li>
+            <texture>Things/Pawn/Wounds/ScarificationA</texture>
+            <tintWithSkinColor>true</tintWithSkinColor>
+            <displayOverApparel>false</displayOverApparel>
+            <displayPermanent>false</displayPermanent>
+            <drawOffsetSouth>(0, 0.001, -0.24)</drawOffsetSouth>
+            <drawOffsetEastWest>(-0.03, 0.001, -0.24)</drawOffsetEastWest>
+          </li>
+          <li>
+            <texture>Things/Pawn/Wounds/ScarificationB</texture>
+            <tintWithSkinColor>true</tintWithSkinColor>
+            <displayOverApparel>false</displayOverApparel>
+            <displayPermanent>false</displayPermanent>
+            <drawOffsetSouth>(0, 0.001, -0.24)</drawOffsetSouth>
+            <drawOffsetEastWest>(-0.03, 0.001, -0.24)</drawOffsetEastWest>
+          </li>
+          <li>
+            <texture>Things/Pawn/Wounds/ScarificationC</texture>
+            <tintWithSkinColor>true</tintWithSkinColor>
+            <displayOverApparel>false</displayOverApparel>
+            <displayPermanent>false</displayPermanent>
+            <drawOffsetSouth>(0, 0.001, -0.24)</drawOffsetSouth>
+            <drawOffsetEastWest>(-0.03, 0.001, -0.24)</drawOffsetEastWest>
+          </li>
+        </wounds>
+      </li>
+      <li>
+        <hediff>MissingBodyPart</hediff>
+        <wounds>
+          <li>
+            <textureSouth>Things/Pawn/Wounds/MissingEye_Scar_south</textureSouth>
+            <textureNorth>Things/Pawn/Wounds/MissingEye_Scar_south</textureNorth>
+            <textureEast>Things/Pawn/Wounds/MissingEye_Scar_east</textureEast>
+            <textureWest>Things/Pawn/Wounds/MissingEye_Scar_east</textureWest>
+            <flipWest>true</flipWest>
+            <onlyOnPart>Eye</onlyOnPart>
+            <flipOnWoundAnchorTag>LeftEye</flipOnWoundAnchorTag>
+            <flipOnRotation>South</flipOnRotation>
+            <tintWithSkinColor>true</tintWithSkinColor>
+            <missingBodyPartFresh>false</missingBodyPartFresh>
+            <scale>0.7</scale>
+            <drawOffsetSouth>(0, -0.001, -0.24)</drawOffsetSouth>
+            <drawOffsetEastWest>(0, -0.001, -0.24)</drawOffsetEastWest>
+          </li>
+          <li>
+            <textureSouth>Things/Pawn/Wounds/MissingEye_Fresh</textureSouth>
+            <textureNorth>Things/Pawn/Wounds/MissingEye_Fresh</textureNorth>
+            <textureEast>Things/Pawn/Wounds/MissingEye_Fresh</textureEast>
+            <textureWest>Things/Pawn/Wounds/MissingEye_Fresh</textureWest>
+            <flipWest>true</flipWest>
+            <onlyOnPart>Eye</onlyOnPart>
+            <flipOnWoundAnchorTag>LeftEye</flipOnWoundAnchorTag>
+            <flipOnRotation>South</flipOnRotation>
+            <missingBodyPartFresh>true</missingBodyPartFresh>
+            <scale>0.7</scale>
+            <drawOffsetSouth>(0, -0.001, -0.24)</drawOffsetSouth>
+            <drawOffsetEastWest>(0, -0.001, -0.24)</drawOffsetEastWest>
+          </li>
+        </wounds>
+      </li>
+    </hediffWounds> -->
+  </FleshTypeDef>
+  <LifeStageDef>
+    <defName>DD_Mech_LifeStage</defName>
+    <label>Mech</label>
+    <visible>true</visible>
+    <milkable>false</milkable>
+  </LifeStageDef>
+  
+  <ThingDef ParentName="MoteBase">
+    <defName>DD_Mote_MechBlackSmoke</defName>
+    <thingClass>MoteThrown</thingClass>
+    <graphicData>
+      <texPath>Things/Mote/Smoke</texPath>
+      <color>(0,0,0)</color>
+    </graphicData>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>0.25</fadeInTime>
+      <solidTime>2.75</solidTime>
+      <fadeOutTime>4.7</fadeOutTime>
+      <growthRate>0.47</growthRate>
+      <acceleration>(0,0,0.0014)</acceleration>
+    </mote>
+  </ThingDef>
+
+  <!-- 机甲pawn -->
+  <!-- Mech pawn -->
+  <ThingDef ParentName="BasePawn">
+    <defName>DD_SHM86_Knell_Mech</defName>
+    <label>SHM86-Knell</label>
+    <description>The skirmisher-type mech equipped with grenades , excels in striking groups of enemy troops at medium distances with high maneuverability.</description>
+    <!-- 重要！这个新的thingclass代表其是一台机甲，如果遗漏，接下来的内容都无法生效！ -->
+    <!-- Important! This new thingclass represents a mecha. If omitted, the following content will not take effect! -->
+    <thingClass>DivineDiurganate.DDmechunit</thingClass>
+    <uiIconScale>0.2</uiIconScale>
+    <defaultPlacingRot>North</defaultPlacingRot>
+    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+    <tradeability>None</tradeability>
+    <statBases>
+      <MoveSpeed>7</MoveSpeed>
+      <ComfyTemperatureMin>-9999</ComfyTemperatureMin>
+      <ComfyTemperatureMax>9999</ComfyTemperatureMax>
+      <MarketValue>300</MarketValue>
+      <Wildness>0</Wildness>
+      <FilthRate>0</FilthRate>
+      <CrawlSpeed>0</CrawlSpeed>
+      <MeatAmount>0</MeatAmount>
+      <MeleeHitChance>50</MeleeHitChance>
+      <MeleeDodgeChance>0</MeleeDodgeChance>
+      <ArmorRating_Blunt>0.75</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.75</ArmorRating_Sharp>
+      <ArmorRating_Heat>1.5</ArmorRating_Heat>
+      <Flammability>0</Flammability>
+    </statBases>
+    <race>
+      <trainability>None</trainability>
+      <body>DD_Race_SHM86_Knell_Body</body>
+      <fleshType>DD_Mech_Fleshtype</fleshType>
+      <thinkTreeMain>DD_Battle_Mech_With_1_Pilot</thinkTreeMain>
+      <intelligence>ToolUser</intelligence>
+      <hasCorpse>true</hasCorpse>
+      <needsRest>false</needsRest>
+      <hasGenders>false</hasGenders>
+			<baseBodySize>4</baseBodySize>
+      <baseHealthScale>5</baseHealthScale>
+      <nameGenerator MayRequire="Ludeon.RimWorld.Biotech">NamerMech</nameGenerator>
+      <lifeStageAges>
+        <li>
+          <def>DD_Mech_LifeStage</def>
+          <minAge>0</minAge>
+          <!-- <soundWounded>Pawn_Spelopede_Pain</soundWounded> -->
+          <!-- <soundDeath>Pawn_Spelopede_Death</soundDeath> -->
+          <!-- <soundCall>Pawn_Spelopede_Call</soundCall> -->
+          <!-- <soundAngry>Pawn_Spelopede_Angry</soundAngry> -->
+        </li>
+      </lifeStageAges>
+    </race>
+    <tools>
+      <li>
+        <label>hoof</label>
+        <capacities>
+          <li>Blunt</li>
+          <li>Poke</li>
+        </capacities>
+        <power>8</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>Legs</linkedBodyPartsGroup>
+      </li>
+    </tools>
+    <!-- 实际上，机甲并没有needs，不过如果你希望为其专门写一个新的needs，倒也不是不行 -->
+    <!-- Actually, mechs don't have needs, but if you want to write a new need specifically for them, it's not impossible. -->
+    <inspectorTabs Inherit="false">
+      <li>ITab_Pawn_Health</li>
+      <li>ITab_Pawn_Needs</li>
+      <li>ITab_Pawn_Gear</li>
+      <li>ITab_Pawn_Log</li>
+    </inspectorTabs>
+    <butcherProducts Inherit="False">
+      <Steel>200</Steel>
+      <Plasteel>100</Plasteel>
+      <ComponentIndustrial>4</ComponentIndustrial>
+    </butcherProducts>
+    <comps>
+      <!-- 这个comps定义了该机甲是否需要驾驶员，以及驾驶员的数量 -->
+      <!-- This comp defines whether the mech requires a driver and the number of drivers required -->
+      <li Class="DivineDiurganate.CompProperties_MechPilotHolder">
+        <!-- 这里定义了最大驾驶员数量，但是可以启动机甲的最低驾驶员数量不在这里定义，而是在thinktree -->
+        <!-- The maximum number of drivers is defined here, but the minimum number of drivers required to start the mech is not defined here, but in thinktree -->
+        <maxPilots>1</maxPilots>
+        <!-- 工作的WorkTag，按理来说不需要更改 -->
+        <!-- The WorkTag for the job, which ideally should not be changed -->
+        <pilotWorkTag>MechPilot</pilotWorkTag>
+
+        <!-- 你可以定义进入和离开图标 -->
+        <!-- You can define the entry and exit icons -->
+        <summonPilotIcon>DivineDiurganate/UI/Commands/DD_Enter_Mech</summonPilotIcon>
+        <ejectPilotIcon>DivineDiurganate/UI/Commands/DD_Exit_Mech</ejectPilotIcon>
+      </li>
+      <!-- 这个comps定义了机甲维持运转所需要的燃料 -->
+      <!-- This component defines the fuel required to maintain the operation of the mecha -->
+      <li Class="DivineDiurganate.CompProperties_MechFuel">
+        <fuelType>Chemfuel</fuelType>
+        <fuelCapacity>50</fuelCapacity>
+        <dailyFuelConsumption>5</dailyFuelConsumption>
+
+        <!-- 决定燃料的装载时间，这两个属性有点重复，不知道当时为什么我会分成两个 -->
+        <!-- Deciding the loading time of fuel, these two attributes are somewhat redundant. I don't know why I split them into two at the time -->
+        <refuelSpeedFactor>1</refuelSpeedFactor>
+        <refuelDuration>180</refuelDuration>
+
+        <!-- 燃料指示器的颜色 -->
+        <!-- Color of fuel Bar -->
+        <fuelBarColor>(0.6, 0.5, 0.4)</fuelBarColor>
+
+        <!-- 规定是否允许自动填充和自动填充阈值，即使你禁止了自动填充，机甲也有专门的手动填充燃料的按钮——自动填充只会发生在无驾驶员的机甲上 -->
+        <!-- Specify whether automatic refueling is allowed and the threshold for automatic refueling. Even if you disable automatic refueling, mechs also have a dedicated button for manual refueling - automatic refueling will only occur on mechs without a pilot. -->
+        <allowAutoRefuel>true</allowAutoRefuel>
+        <autoRefuelThreshold>1</autoRefuelThreshold>
+
+        <!-- 如果为true，则当机甲的燃料消耗完所有的燃料后将无法移动 -->
+        <!-- If true, the mech will be unable to move after all its fuel is consumed -->
+        <shutdownWhenEmpty>true</shutdownWhenEmpty>
+      </li>
+      <!-- 这个comps定义了机甲维修相关属性 -->
+      <!-- This comps defines the relevant attributes for mech repair -->
+      <li Class="DivineDiurganate.CompProperties_MechRepairable">
+        <!-- 自动维修和自动维修阈值，规则与自动填充燃料一样 -->
+        <!-- Automatic repair and automatic repair threshold, the rules are the same as automatic refueling -->
+        <allowAutoRepair>true</allowAutoRepair>
+        <healthPercentThreshold>1</healthPercentThreshold>
+
+        <!-- 规定每次维修所恢复的HP -->
+        <!-- Specify the HP restored per repair -->
+        <repairAmountPerCycle>2</repairAmountPerCycle>
+        
+        <repairSound></repairSound>
+        <repairEffect>ConstructMetal</repairEffect>
+      </li>
+      <!-- 这个comps定义了机甲固有武器（非必须） -->
+      <!-- This comps defines the inherent weapons of mech (optional) -->
+      <li Class="DivineDiurganate.CompProperties_MechInherentWeapon">
+        <!-- 此处指定的武器被视为机甲本身的武器，如果它们因为某些原因遗失或被替换，则下一个检查周期时，将重新给予机甲固有武器 -->
+         <!-- The weapons specified here are considered as the inherent weapons of the mech itself. If they are lost or replaced for some reason, the mech will be re-equipped with its inherent weapons during the next inspection cycle. -->
+        <weaponDef>DD_SHM86_Knell_Mech_Weapon</weaponDef>
+      </li>
+      <!-- 这个comps定义了机甲的默认驾驶员，通常用于希望生成机甲袭击等情况（非必须） -->
+      <!-- This component defines the default pilot for mechs, typically used when generating mech attacks or similar situations (optional) -->
+      <li Class="DivineDiurganate.CompProperties_MechDefaultPilot">
+        <!-- 定义这个系统在非玩家和玩家阵营的启用情况 -->
+        <!-- Define the activation status of this system in non-player and player faction -->
+        <enableForNonPlayerFaction>true</enableForNonPlayerFaction>
+        <enableForPlayerFaction>false</enableForPlayerFaction>
+        
+        <defaultPilotChance>1.0</defaultPilotChance>
+        <spawnOnlyIfNoPilot>true</spawnOnlyIfNoPilot>
+        <replaceExistingPilots>false</replaceExistingPilots>
+        <maxDefaultPilots>1</maxDefaultPilots>
+        
+        <!-- 这里是可供成员生成器使用的生成列表 -->
+        <!-- This is a list of options available for the member generator. -->
+        <defaultPilots>
+          <li>
+            <pawnKind>Pirate</pawnKind>
+            <weight>1</weight>
+            <!-- 如果定义为true，则该pawn必定生成 -->
+            <!-- If defined as true, the pawn will definitely be generated -->
+            <required>false</required>
+          </li>
+        </defaultPilots>
+      </li>
+      
+      <!-- 机甲的烟囱 -->
+      <li Class="DivineDiurganate.CompProperties_MoteEmitterNorthward">
+        <moteDef>DD_Mote_MechBlackSmoke</moteDef>
+        <emitIntervalTicks>30</emitIntervalTicks>
+        <moveSpeed>1.5</moveSpeed>
+        <lifetimeTicks>30</lifetimeTicks>
+        <scale>0.25</scale>
+        <offset>(0.5,0,1)</offset>
+        <requirePilot>true</requirePilot>
+      </li>
+      <li Class="DivineDiurganate.CompProperties_MoteEmitterNorthward">
+        <moteDef>DD_Mote_MechBlackSmoke</moteDef>
+        <emitIntervalTicks>30</emitIntervalTicks>
+        <moveSpeed>1.5</moveSpeed>
+        <lifetimeTicks>30</lifetimeTicks>
+        <scale>0.25</scale>
+        <offset>(-0.5,0,1)</offset>
+        <requirePilot>true</requirePilot>
+      </li>
+
+      
+      <li Class="DivineDiurganate.CompProperties_MechMovementSound">
+        <movementSound>DD_SHM86_Knell_Mech_Moving_Sound</movementSound>
+      </li>
+    </comps>
+  </ThingDef>
+  <!-- pawnkind没有什么特别的 -->
+  <!-- There is nothing special about pawnkind -->
+	<PawnKindDef>
+		<defName>DD_SHM86_Knell_Mech</defName>
+		<label>SHM86-Knell</label>
+		<race>DD_SHM86_Knell_Mech</race>
+		<defaultFactionType>PlayerColony</defaultFactionType>
+		<forceDeathOnDowned>false</forceDeathOnDowned>
+		<forceNoDeathNotification>false</forceNoDeathNotification>
+    <collidesWithPawns>false</collidesWithPawns>
+		<combatPower>200</combatPower>
+    <weaponTags>
+      <li>DD_SHM86_Knell_Mech_Weapon</li>
+    </weaponTags>
+    <weaponMoney>99999~99999</weaponMoney>
+		<lifeStages>
+			<li>
+				<bodyGraphicData>
+					<texPath>DivineDiurganate/Things/DD_SHM86_Knell/Naked_Thin</texPath>
+					<drawSize>3.5</drawSize>
+					<shadowData>
+						<volume>(0.4, 0.5, 0.37)</volume>
+						<offset>(0,0,-0.15)</offset>
+					</shadowData>
+				</bodyGraphicData>
+			</li>
+		</lifeStages>
+	</PawnKindDef>
+</Defs>

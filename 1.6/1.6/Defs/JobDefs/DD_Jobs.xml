@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <JobDef>
+    <defName>DD_EnterMech</defName>
+    <driverClass>DivineDiurganate.JobDriver_EnterMech</driverClass>
+    <reportString>Entering mech.</reportString>
+    <!-- <checkOverrideOnDamage>true</checkOverrideOnDamage> -->
+    <suspendable>false</suspendable>
+  </JobDef>
+  <JobDef>
+    <defName>DD_RefuelMech</defName>
+    <driverClass>DivineDiurganate.JobDriver_RefuelMech</driverClass>
+    <reportString>Refuleing TargetA.</reportString>
+    <suspendable>false</suspendable>
+    <!-- <canBeForcedByDuty>true</canBeForcedByDuty>
+    <makeTargetPrisoner>false</makeTargetPrisoner> -->
+  </JobDef>
+  <WorkGiverDef>
+    <defName>DD_Refuel</defName>
+    <label>refuel Mechs</label>
+    <giverClass>DivineDiurganate.WorkGiver_RefuelMech</giverClass>
+    <workType>Hauling</workType>
+    <verb>refuel</verb>
+    <gerund>refueling</gerund>
+    <priorityInType>140</priorityInType>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <prioritizeSustains>true</prioritizeSustains>
+  </WorkGiverDef>
+  <JobDef>
+    <defName>DD_RepairMech</defName>
+    <driverClass>DivineDiurganate.JobDriver_RepairMech</driverClass>
+    <reportString>Repairing TargetA.</reportString>
+    <alwaysShowWeapon>false</alwaysShowWeapon>
+    <suspendable>false</suspendable>
+  </JobDef>
+  <WorkGiverDef>
+    <defName>DD_RepairMech</defName>
+    <workType>Crafting</workType>
+    <giverClass>DivineDiurganate.WorkGiver_RepairMech</giverClass>
+    <priorityInType>50</priorityInType>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <verb>Repair</verb>
+    <gerund>Repair Mech</gerund>
+    <label>Repair Mech</label>
+  </WorkGiverDef>
+</Defs>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+  <DD_CannotDraftWithoutPilot>机甲无法在没有驾驶员的情况下活动！</DD_CannotDraftWithoutPilot>
+  <DD_NoPilot>该机甲无驾驶员</DD_NoPilot>
+  <DD_PilotEnteredMech>{0} 已经进入 {1}</DD_PilotEnteredMech>
+  <DD_PilotExitedMech>{0} 已经从 {1} 离开</DD_PilotExitedMech>
+  <DD_SummonPilot>征召驾驶员···</DD_SummonPilot>
+  <DD_SummonPilotDesc>指定一名驾驶员进入机甲</DD_SummonPilotDesc>
+  <DD_EjectAllPilots>离开机甲</DD_EjectAllPilots>
+  <DD_EjectAllPilotsDesc>让该机甲的驾驶员离开机甲</DD_EjectAllPilotsDesc>
+  <DD_NoAvailablePilots>没有可以作为机甲驾驶员的殖民者</DD_NoAvailablePilots>
+  <IHMF_Equipment_For_Other_Mech>此装备不能由此机甲使用</IHMF_Equipment_For_Other_Mech>
+  <IHMF_Equipment_Not_Allow_For_Mech>此装备不是为机甲设计的</IHMF_Equipment_Not_Allow_For_Mech>
+  <IHMF_Human_Cannot_Equip_Mech_Weapon>此装备是专为机甲设计的，非机甲单位无法装备</IHMF_Human_Cannot_Equip_Mech_Weapon>
+
+  <DD_Startup>机甲重新启动</DD_Startup>
+  <DD_NoColonistAvailable>没有可以执行操作的殖民者</DD_NoColonistAvailable>
+  <DD_NoFuelAvailable>没有可用的 {0} 用于加注燃料</DD_NoFuelAvailable>
+  <DD_OrderedRefuel>已下令 {0} 对 {1} 紧急加注燃料</DD_OrderedRefuel>
+  <DD_RefuelNow>紧急加注</DD_RefuelNow>
+  <DD_RefuelNowDesc>命令最近的殖民者为此机甲进行紧急的燃料加注</DD_RefuelNowDesc>
+  <DD_CannotRefuelNow>现在不能加注燃料</DD_CannotRefuelNow>
+  <DD_Fuel>{0}</DD_Fuel>
+  <DD_MechFuel>燃料</DD_MechFuel>
+
+  <DD_ForceRepair>紧急维修</DD_ForceRepair>
+  <DD_ForceRepairDesc>命令最近的殖民者为此机甲进行紧急的维修</DD_ForceRepairDesc>
+  <DD_CannotRepairNow>现在无法维修</DD_CannotRepairNow>
+  <DD_OrderedRepair>已下令 {0} 对 {1} 进行紧急维修</DD_OrderedRepair>
+  <DD_NeedsRepair>需要维修</DD_NeedsRepair>
+</LanguageData>

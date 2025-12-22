@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <!-- melee -->
+  <ThingDef ParentName="BaseMeleeWeapon_Sharp_Quality">
+    <defName>DD_Basic_Mech_Weapon</defName>
+    <label>Huge Scythe</label>
+    <description>A huge Scythe Made For SHM69.</description>
+	  <destroyOnDrop>true</destroyOnDrop>
+    <weaponTags Inherit="False">
+      <li>DD_Basic_Mech_Weapon</li>
+    </weaponTags>
+    <graphicData>
+      <texPath>DivineDiurganate/Weapon/DD_Mech_Weapon_Empty</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+      <drawSize>5.25</drawSize>
+    </graphicData>
+    <uiIconScale>0.2</uiIconScale>
+    <techLevel>Medieval</techLevel>
+    <costStuffCount>0</costStuffCount>
+    <stuffCategories Inherit="False" />
+    <costList Inherit="False">
+      <Steel>50</Steel>
+    </costList>
+    <statBases>
+      <MarketValue>350</MarketValue>
+      <WorkToMake>3000</WorkToMake>
+      <Mass>35</Mass>
+    </statBases>
+    <tools Inherit="False">
+      <li>
+        <label>Scythe Slash</label>
+        <capacities>
+          <li>DD_SHM69_Scythe_Slash</li>
+        </capacities>
+        <power>50</power>
+        <armorPenetration>2.25</armorPenetration>
+        <cooldownTime>2</cooldownTime>
+        <soundMeleeHit>DD_Mech_Scythe_Slash_Hit_Sound</soundMeleeHit>
+        <soundMeleeMiss>DD_Mech_Scythe_Slash_Hit_Sound</soundMeleeMiss>
+      </li>
+    </tools>
+    <recipeMaker>
+      <recipeUsers Inherit="False" />
+      <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+    </recipeMaker>
+    <generateCommonality>0.01</generateCommonality>
+    <tradeability>None</tradeability>
+    <thingSetMakerTags Inherit="False" />
+    <comps>
+      <!-- 这里规定了该武器是什么机甲的武器，其他机甲和非机甲pawn无法拿起此武器 -->
+      <!-- This specifies the mech whose weapon this is. Other mechs and non-mech pawns cannot pick up this weapon -->
+      <li Class="DivineDiurganate.CompProperties_MechOnlyWeapon">
+        <allowedMechRaces>
+          <li>DD_SHM86_Knell_Mech</li>
+        </allowedMechRaces>
+      </li>
+      <!-- 造成范围伤害的近战攻击，我只是想让镰刀攻击看起来更帅一些才写了这些东西，本身并不是机甲系统必须的 -->
+       <!-- A melee attack that deals area damage. I wrote these things just to make the scythe attack look cooler, and it's not essential to the mech system. -->
+      <li Class="DivineDiurganate.CompProperties_Cleave">
+        <cleaveAngle>90</cleaveAngle>
+        <cleaveRange>4.5</cleaveRange>
+        <cleaveDamageFactor>0.75</cleaveDamageFactor>
+        <damageDowned>false</damageDowned>
+        <explosionDamageDef>Cut</explosionDamageDef>
+        <attackEffecter>DD_SHM69_Scythe_Slash_Hit</attackEffecter>
+        <cleaveEffecter>DD_SHM69_Scythe_Slash_Hit</cleaveEffecter>
+      </li>
+    </comps>
+  </ThingDef>
+  <ToolCapacityDef>
+    <defName>DD_SHM69_Scythe_Slash</defName>
+    <label>Scythe Slash</label>
+  </ToolCapacityDef>
+  <ManeuverDef>
+    <defName>DD_SHM69_Scythe_Slash</defName>
+    <requiredCapacity>DD_SHM69_Scythe_Slash</requiredCapacity>
+    <verb>
+      <verbClass>DivineDiurganate.Verb_MeleeAttack_Cleave</verbClass>
+      <meleeDamageDef>Cut</meleeDamageDef>
+    </verb>
+    <logEntryDef>MeleeAttack</logEntryDef>
+    <combatLogRulesHit>Maneuver_Slash_MeleeHit</combatLogRulesHit>
+    <combatLogRulesDeflect>Maneuver_Slash_MeleeDeflect</combatLogRulesDeflect>
+    <combatLogRulesMiss>Maneuver_Slash_MeleeMiss</combatLogRulesMiss>
+    <combatLogRulesDodge>Maneuver_Slash_MeleeDodge</combatLogRulesDodge>
+  </ManeuverDef>
+  <EffecterDef>
+    <defName>DD_SHM69_Scythe_Slash_Hit</defName>
+    <children>
+      <li>
+        <subEffecterClass>SubEffecter_Random</subEffecterClass>
+        <children>
+          <li>
+            <subEffecterClass>SubEffecter_SprayerTriggered</subEffecterClass>
+            <fleckDef>DD_Mote_Melee_Attack_Main</fleckDef>
+            <burstCount>1</burstCount>
+            <color>(170,74,68)</color>
+            <scale>6.5~7.5</scale>
+            <speed>0.5</speed>
+            <angle>-35~35</angle>
+            <spawnLocType>OnSource</spawnLocType>
+            <fleckUsesAngleForVelocity>true</fleckUsesAngleForVelocity>
+          </li>
+          <li>
+            <subEffecterClass>SubEffecter_SprayerTriggered</subEffecterClass>
+            <fleckDef>DD_Mote_Melee_Attack_Main</fleckDef>
+            <burstCount>1</burstCount>
+            <color>(147,50,28)</color>
+            <scale>6.5~7.5</scale>
+            <speed>0.5</speed>
+            <angle>-15~15</angle>
+            <spawnLocType>OnSource</spawnLocType>
+            <fleckUsesAngleForVelocity>true</fleckUsesAngleForVelocity>
+          </li>
+        </children>
+      </li>
+      <li>
+        <subEffecterClass>SubEffecter_Random</subEffecterClass>
+        <children>
+          <li>
+            <subEffecterClass>SubEffecter_SprayerTriggered</subEffecterClass>
+            <fleckDef>DD_Mote_Melee_Attack_Main</fleckDef>
+            <burstCount>1</burstCount>
+            <color>(170,74,68)</color>
+            <scale>6.5~7.5</scale>
+            <speed>0.5</speed>
+            <angle>-25~45</angle>
+            <spawnLocType>OnSource</spawnLocType>
+            <fleckUsesAngleForVelocity>true</fleckUsesAngleForVelocity>
+          </li>
+          <li>
+            <subEffecterClass>SubEffecter_SprayerTriggered</subEffecterClass>
+            <fleckDef>DD_Mote_Melee_Attack_Main</fleckDef>
+            <burstCount>1</burstCount>
+            <color>(147,50,28)</color>
+            <scale>6.5~7.5</scale>
+            <speed>0.5</speed>
+            <angle>-35~35</angle>
+            <spawnLocType>OnSource</spawnLocType>
+            <fleckUsesAngleForVelocity>true</fleckUsesAngleForVelocity>
+          </li>
+        </children>
+      </li>
+    </children>
+    <positionRadius>0.1</positionRadius>
+  </EffecterDef>
+  <FleckDef ParentName="FleckBase_RandomGraphic_Thrown">
+    <defName>DD_Mote_Melee_Attack_Main</defName>
+    <growthRate>1.0</growthRate>
+    <altitudeLayer>MoteOverheadLow</altitudeLayer>
+    <fadeInTime>0</fadeInTime>
+    <solidTime>0</solidTime>
+    <fadeOutTime>0.6</fadeOutTime>
+    <rotateTowardsMoveDirection>true</rotateTowardsMoveDirection>
+    <randomGraphics>
+      <li>
+        <texPath>IHMF/Mote/DD_Melee_Attack</texPath>
+        <shaderType>MoteGlow</shaderType>
+        <renderInstanced>true</renderInstanced>
+        <graphicClass>Graphic_Fleck</graphicClass>
+      </li> 
+      <!-- <li>
+        <texPath>SRA/Effect/SRA_FlashSlash_Big_B</texPath>
+        <shaderType>MoteGlow</shaderType>
+        <renderInstanced>true</renderInstanced>
+        <graphicClass>Graphic_Fleck</graphicClass>
+      </li>  -->
+    </randomGraphics>
+  </FleckDef>
+
+  <!-- ranged -->
+  <ThingDef ParentName="BaseMakeableGrenade">
+    <defName>DD_SHM86_Knell_Mech_Weapon</defName>
+    <label>Winches Grenade Launcher</label>
+    <description>The weapon of SHM86 Knell , which can launch powerful grenades to a distant location through a pair of winches.</description>
+	  <destroyOnDrop>true</destroyOnDrop>
+    <tradeability>None</tradeability>
+    <recipeMaker>
+      <recipeUsers Inherit="False" />
+    </recipeMaker>
+    <tickerType>Normal</tickerType>
+    <graphicData>
+      <texPath>DivineDiurganate/Weapon/DD_Mech_Weapon_Empty</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <uiIconScale>1.3</uiIconScale>
+    <soundInteract>Interact_Grenade</soundInteract>
+    <techLevel>Industrial</techLevel>
+    <statBases>
+      <Mass>1</Mass>
+      <RangedWeapon_Cooldown>2.66</RangedWeapon_Cooldown>
+      <WorkToMake>12000</WorkToMake>
+    </statBases>
+    <costList>
+      <Steel>20</Steel>
+      <Chemfuel>80</Chemfuel>
+    </costList>
+    <weaponTags Inherit="False">
+      <li>DD_SHM86_Knell_Mech_Weapon</li>
+    </weaponTags>
+    <thingCategories Inherit="False"/>
+    <smeltable>false</smeltable>
+    <verbs>
+      <li>
+        <label>throw grenade</label>
+        <verbClass>Verb_LaunchProjectile</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <range>28</range>
+        <forcedMissRadius>0.25</forcedMissRadius>
+        <warmupTime>0.75</warmupTime>
+        <noiseRadius>4</noiseRadius>
+        <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+        <soundCast>DD_SHM86_Knell_Mech_Weapon_FireSound</soundCast>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+        <defaultProjectile>DD_SHM86_Knell_Mech_Weapon_Proj</defaultProjectile>
+        <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+      </li>
+    </verbs>
+  </ThingDef>
+  <ThingDef>
+    <defName>DD_SHM86_Knell_Mech_Weapon_Proj</defName>
+    <label>Grenade</label>
+    <thingClass>Projectile_Explosive</thingClass>
+    <graphicData>
+      <texPath>Things/Projectile/Grenade</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>Transparent</shaderType>
+    </graphicData>
+    <category>Projectile</category>
+    <altitudeLayer>Projectile</altitudeLayer>
+    <tickerType>Normal</tickerType>
+    <useHitPoints>False</useHitPoints>
+    <neverMultiSelect>True</neverMultiSelect>
+    <projectile>
+      <speed>45</speed>
+      <arcHeightFactor>2</arcHeightFactor>
+      <shadowSize>0.4</shadowSize>
+      <explosionRadius>4</explosionRadius >
+      <damageDef>Bomb</damageDef>
+      <explosionDelay>30</explosionDelay>
+    </projectile>
+  </ThingDef>
+</Defs>

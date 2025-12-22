@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: refuel Mechs -->
+  <DD_Refuel.label>为机甲补充燃料</DD_Refuel.label>
+  <!-- EN: refueling -->
+  <DD_Refuel.gerund>补充燃料</DD_Refuel.gerund>
+  <!-- EN: refuel -->
+  <DD_Refuel.verb>补充燃料</DD_Refuel.verb>
+  
+  <!-- EN: Repair Mech -->
+  <DD_RepairMech.label>维修机甲</DD_RepairMech.label>
+  <!-- EN: Repair Mech -->
+  <DD_RepairMech.gerund>维修</DD_RepairMech.gerund>
+  <!-- EN: Repair -->
+  <DD_RepairMech.verb>维修</DD_RepairMech.verb>
+  
+</LanguageData>
