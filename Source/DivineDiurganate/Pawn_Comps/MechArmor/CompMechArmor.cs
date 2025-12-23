@@ -97,7 +97,7 @@ namespace DivineDiurganate
         /// </summary>
         private void ShowBlockEffect(DamageInfo dinfo)
         {
-            MoteMaker.ThrowText(parent.DrawPos, parent.Map, "DD_BlockByMechArmor".Translate(), Color.gray, 3.5f);
+            MoteMaker.ThrowText(parent.DrawPos, parent.Map, "DD_BlockByMechArmor".Translate(), Color.white, 3.5f);
             // 创建火花或特效
             if (Props.blockEffectMote != null)
             {

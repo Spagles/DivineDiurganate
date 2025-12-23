@@ -38,7 +38,7 @@
     <context>MapOnly</context>
     <maxSimultaneous>2</maxSimultaneous>
     <priorityMode>PrioritizeNearest</priorityMode>
-    <sustainStopSound>BeamGraser_Shooting_Resolve</sustainStopSound>
+    <sustainStopSound>DD_SHM86_Knell_Mech_Moving_Stop_Sound</sustainStopSound>
     <subSounds>
       <li>
         <tempoAffectedByGameSpeed>true</tempoAffectedByGameSpeed>
@@ -50,6 +50,24 @@
         <pitchRange>0.99~1.01</pitchRange>
         <volumeRange>30</volumeRange>
         <sustainRelease>0.02</sustainRelease>
+      </li>
+    </subSounds>
+  </SoundDef>
+  <SoundDef>
+    <defName>DD_SHM86_Knell_Mech_Moving_Stop_Sound</defName>
+    <context>MapOnly</context>
+    <maxSimultaneous>2</maxSimultaneous>
+    <priorityMode>PrioritizeNearest</priorityMode>
+    <subSounds>
+      <li>
+        <tempoAffectedByGameSpeed>true</tempoAffectedByGameSpeed>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>DivineDiurganate/DD_SHM86_Knell_Mech_Moving_Stop_Sound</clipPath>
+          </li>
+        </grains>
+        <pitchRange>0.99~1.01</pitchRange>
+        <volumeRange>30</volumeRange>
       </li>
     </subSounds>
   </SoundDef>

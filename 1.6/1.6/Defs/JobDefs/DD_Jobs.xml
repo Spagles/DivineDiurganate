@@ -7,6 +7,15 @@
     <!-- <checkOverrideOnDamage>true</checkOverrideOnDamage> -->
     <suspendable>false</suspendable>
   </JobDef>
+  <!-- <WorkGiverDef>
+    <defName>DD_EnterMech</defName>
+    <workType>BasicWorker</workType>
+    <giverClass>DivineDiurganate.WorkGiver_EnterMech</giverClass>
+    <priorityInType>1</priorityInType>
+    <verb>Enter</verb>
+    <gerund>Enter Mech</gerund>
+    <label>Enter Mech</label>
+  </WorkGiverDef> -->
   <JobDef>
     <defName>DD_RefuelMech</defName>
     <driverClass>DivineDiurganate.JobDriver_RefuelMech</driverClass>
@@ -37,7 +46,7 @@
   </JobDef>
   <WorkGiverDef>
     <defName>DD_RepairMech</defName>
-    <workType>Crafting</workType>
+    <workType>Smithing</workType>
     <giverClass>DivineDiurganate.WorkGiver_RepairMech</giverClass>
     <priorityInType>50</priorityInType>
     <requiredCapacities>

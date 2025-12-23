@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
+  <DD_Mech>机甲</DD_Mech>
   <DD_CannotDraftWithoutPilot>机甲无法在没有驾驶员的情况下活动！</DD_CannotDraftWithoutPilot>
   <DD_NoPilot>该机甲无驾驶员</DD_NoPilot>
   <DD_NoPilotShort>无驾驶员</DD_NoPilotShort>
@@ -33,10 +34,14 @@
   <DD_MechSkills>属性</DD_MechSkills>
   <DD_NoMechSkillComps>此单位没有技能继承系统</DD_NoMechSkillComps>
   <DD_PilotTitle>驾驶员信息</DD_PilotTitle>
-
-  <DD_PilotInfo>当前驾驶员 ({0}): {1}</DD_PilotInfo>
+  <DD_PilotInfo>当前驾驶员 : {0}</DD_PilotInfo>
   <DD_MechInitSkill>机甲固有</DD_MechInitSkill>
   <DD_MechSkill_From>继承自: {0} ({1}级)</DD_MechSkill_From>
-
+  <DD_MechNoSkill>无技能等级</DD_MechNoSkill>
   <DD_BlockByMechArmor>伤害被圣化镀层抵挡！</DD_BlockByMechArmor>
+  <DD_Operational>正常</DD_Operational>
+  
+  <DD_EnterMech>进入 {0}</DD_EnterMech>
+  <DD_MechFull>机甲驾驶员位置已满</DD_MechFull>
+  <DD_CannotBecomePilot>不能成为该机甲的驾驶员</DD_CannotBecomePilot>
 </LanguageData>

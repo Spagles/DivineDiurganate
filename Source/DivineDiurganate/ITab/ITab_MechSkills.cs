@@ -1,4 +1,4 @@
-// File: ITab_MechSkills_GridLayout.cs
+// File: ITab_MechSkills.cs
 using RimWorld;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +9,7 @@ namespace DivineDiurganate
     /// <summary>
     /// 专业版：使用网格系统布局
     /// </summary>
-    public class ITab_MechSkills_GridLayout : ITab
+    public class ITab_MechSkills : ITab
     {
         private Vector2 scrollPosition = Vector2.zero;
         private string nameBuffer = "";
@@ -18,14 +18,14 @@ namespace DivineDiurganate
         // 网格系统参数
         private const float GridSize = 8f;
         private const float HeaderRows = 4;     // 头部占4行
-        private const float PilotRows = 3;      // 驾驶员信息占3行
-        private const float TitleRows = 1;      // 技能标题占1行
-        private const float SkillRows = 20;     // 技能区域占20行
+        private const float PilotRows = 4;      // 驾驶员信息占3行
+        private const float TitleRows = 2;      // 技能标题占1行
+        private const float SkillRows = 18;     // 技能区域占20行
         
-        public ITab_MechSkills_GridLayout()
+        public ITab_MechSkills()
         {
             this.size = new Vector2(520f, 600f);
-            this.labelKey = "Mech Skills";
+            this.labelKey = "DD_MechSkills".Translate();
         }
         
         protected override void FillTab()
@@ -36,7 +36,7 @@ namespace DivineDiurganate
                 
             if (pawn.TryGetComp<CompMechSkillInheritance>() == null)
             {
-                DrawError("No skill inheritance system");
+                DrawError("DD_NoMechSkillComps".Translate());
                 return;
             }
             
@@ -71,96 +71,184 @@ namespace DivineDiurganate
             Rect skillsRect = new Rect(0, curY, size.x, size.y - curY);
             DrawGridSkills(skillsRect, pawn, rowHeight);
         }
-        
         private void DrawGridHeader(Rect rect, Pawn pawn, float rowHeight)
         {
             Widgets.DrawMenuSection(rect);
-            
+
             // 使用网格定位
             float padding = rowHeight * 0.5f;
-            
-            // 名称行（第1-2行）
-            Rect nameRect = new Rect(
-                padding, 
-                padding, 
-                rect.width - padding * 2, 
-                rowHeight * 1.5f
-            );
-            
-            Text.Font = GameFont.Medium;
-            Text.Anchor = TextAnchor.MiddleLeft;
-            
+
             if (isRenaming)
             {
-                nameBuffer = nameBuffer ?? pawn.Name?.ToStringShort ?? pawn.LabelShort;
-                nameBuffer = Widgets.TextField(nameRect, nameBuffer);
-                
-                // 按钮（右对齐）
-                Rect buttonRect = new Rect(
-                    nameRect.xMax - 170f, 
-                    nameRect.y, 
-                    170f, 
-                    nameRect.height
-                );
-                DrawRenameButtons(buttonRect);
+                DrawRenameMode(rect, pawn, rowHeight, padding);
             }
             else
             {
-                Widgets.Label(nameRect, pawn.Name?.ToStringShort ?? pawn.LabelShort);
-                
-                // 重命名按钮（右对齐）
-                if (pawn.Faction?.IsPlayer == true)
-                {
-                    Rect renameRect = new Rect(
-                        nameRect.xMax - 100f, 
-                        nameRect.y, 
-                        100f, 
-                        nameRect.height
-                    );
-                    if (Widgets.ButtonText(renameRect, "Rename"))
-                    {
-                        isRenaming = true;
-                        nameBuffer = pawn.Name?.ToStringShort ?? pawn.LabelShort;
-                    }
-                }
+                DrawNormalMode(rect, pawn, rowHeight, padding);
             }
-            
-            // 状态行（第3-4行）
-            Rect statusRect = new Rect(
-                padding, 
-                nameRect.yMax + padding * 0.5f, 
-                rect.width - padding * 2, 
-                rowHeight * 1.5f
-            );
-            
-            Text.Font = GameFont.Small;
-            GUI.color = new Color(0.8f, 0.8f, 0.8f);
-            
-            string status = GetStatus(pawn);
-            string type = "Mech Unit";
-            Widgets.Label(statusRect, $"{type} | {status}");
-            
-            GUI.color = Color.white;
+
+            // 状态行（第3-4行）- 始终显示
+            DrawStatusLine(rect, pawn, rowHeight, padding);
+
             Text.Anchor = TextAnchor.UpperLeft;
         }
-        
+        private void DrawRenameMode(Rect rect, Pawn pawn, float rowHeight, float padding)
+        {
+            Text.Font = GameFont.Medium;
+            Text.Anchor = TextAnchor.MiddleLeft;
+
+            // 计算输入框和按钮的总宽度
+            float totalWidth = rect.width - padding * 2;
+            float buttonWidth = 85f; // 每个按钮85像素
+            float spacing = 10f; // 按钮间距
+
+            // 计算可用宽度（减去按钮宽度）
+            float availableWidth = totalWidth - (buttonWidth * 2 + spacing);
+
+            // 输入框
+            Rect inputRect = new Rect(
+                padding,
+                padding,
+                availableWidth,
+                rowHeight * 1.5f
+            );
+
+            nameBuffer = nameBuffer ?? pawn.Name?.ToStringShort ?? pawn.LabelShort;
+            nameBuffer = Widgets.TextField(inputRect, nameBuffer);
+
+            // 确认按钮
+            Rect confirmRect = new Rect(
+                inputRect.xMax + spacing,
+                inputRect.y,
+                buttonWidth,
+                inputRect.height
+            );
+
+            // 取消按钮
+            Rect cancelRect = new Rect(
+                confirmRect.xMax + spacing,
+                inputRect.y,
+                buttonWidth,
+                inputRect.height
+            );
+
+            // 绘制按钮
+            if (Widgets.ButtonText(confirmRect, "OK".Translate()))
+            {
+                if (pawn != null && !string.IsNullOrEmpty(nameBuffer))
+                {
+                    pawn.Name = new NameSingle(nameBuffer, false);
+                    isRenaming = false;
+                }
+            }
+
+            if (Widgets.ButtonText(cancelRect, "Cancel".Translate()))
+            {
+                isRenaming = false;
+            }
+
+            // 添加回车键支持
+            if (Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Return)
+            {
+                if (pawn != null && !string.IsNullOrEmpty(nameBuffer))
+                {
+                    pawn.Name = new NameSingle(nameBuffer, false);
+                    isRenaming = false;
+                    Event.current.Use();
+                }
+            }
+
+            if (Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Escape)
+            {
+                isRenaming = false;
+                Event.current.Use();
+            }
+        }
+        private void DrawNormalMode(Rect rect, Pawn pawn, float rowHeight, float padding)
+        {
+            Text.Font = GameFont.Medium;
+            Text.Anchor = TextAnchor.MiddleLeft;
+
+            // 名称行（第1-2行）
+            Rect nameRect = new Rect(
+                padding,
+                padding,
+                rect.width * 0.5f - padding * 2,
+                rowHeight * 1.5f
+            );
+
+            Widgets.Label(nameRect, pawn.Name?.ToStringShort ?? pawn.LabelShort);
+
+            // 重命名按钮（右对齐）
+            if (pawn.Faction?.IsPlayer == true)
+            {
+                // 计算按钮宽度
+                float renameButtonWidth = 100f;
+
+                Rect renameRect = new Rect(
+                    rect.width - padding - renameButtonWidth,
+                    padding,
+                    renameButtonWidth,
+                    rowHeight * 1.5f
+                );
+
+                if (Widgets.ButtonText(renameRect, "Rename".Translate()))
+                {
+                    isRenaming = true;
+                    nameBuffer = pawn.Name?.ToStringShort ?? pawn.LabelShort;
+                }
+            }
+        }
+        private void DrawStatusLine(Rect rect, Pawn pawn, float rowHeight, float padding)
+        {
+            Text.Font = GameFont.Small;
+            GUI.color = new Color(0.8f, 0.8f, 0.8f);
+
+            // 状态行的y坐标取决于是否在重命名模式
+            float statusY;
+            if (isRenaming)
+            {
+                // 重命名模式下，状态行在输入框下方
+                statusY = padding + rowHeight * 1.5f + padding * 0.5f;
+            }
+            else
+            {
+                // 正常模式下，状态行在名称标签下方
+                statusY = padding + rowHeight * 1.5f + padding * 0.5f;
+            }
+
+            // 确保状态行不会超出头部区域
+            Rect statusRect = new Rect(
+                padding,
+                statusY,
+                rect.width - padding * 2,
+                rowHeight * 1.5f
+            );
+
+            string status = GetStatus(pawn);
+            string type = "DD_Mech".Translate();
+            Widgets.Label(statusRect, $"{type} | {status}");
+
+            GUI.color = Color.white;
+        }
+
         private void DrawGridPilot(Rect rect, CompMechPilotHolder pilotComp, float rowHeight)
         {
             float padding = rowHeight * 0.5f;
             
             Widgets.DrawBox(rect);
             Widgets.DrawBoxSolid(rect, new Color(0.15f, 0.15f, 0.15f, 0.3f));
-            
+
             // 标题
             Rect titleRect = new Rect(
-                padding, 
-                rect.y + padding, 
-                rect.width - padding * 2, 
-                rowHeight
+                padding,
+                rect.y + padding,
+                rect.width - padding * 2,
+                rowHeight + 5f
             );
             
             Text.Font = GameFont.Medium;
-            Widgets.Label(titleRect, "Pilot Info");
+            Widgets.Label(titleRect, "DD_PilotTitle".Translate());
             Text.Font = GameFont.Small;
             
             // 内容
@@ -179,12 +267,13 @@ namespace DivineDiurganate
                 {
                     if (pilot != null) pilotNames.Add(pilot.LabelShort);
                 }
-                Widgets.Label(contentRect, $"Pilots: {string.Join(", ", pilotNames)}");
+                var pilotNamelist = string.Join(", ", pilotNames);
+                Widgets.Label(contentRect, $"DD_PilotInfo".Translate(pilotNamelist));
             }
             else
             {
                 GUI.color = Color.gray;
-                Widgets.Label(contentRect, "No pilot assigned");
+                Widgets.Label(contentRect, "DD_NoPilotShort".Translate());
                 GUI.color = Color.white;
             }
         }
@@ -199,12 +288,12 @@ namespace DivineDiurganate
             Rect titleRect = new Rect(
                 padding, 
                 rect.y + padding, 
-                rect.width - padding * 2, 
-                rowHeight
+                rect.width - padding * 2,
+                rowHeight + 5f
             );
             
             Text.Font = GameFont.Medium;
-            Widgets.Label(titleRect, "Skills");
+            Widgets.Label(titleRect, "Skills".Translate());
             Text.Font = GameFont.Small;
             
             // 技能列表区域
@@ -218,7 +307,7 @@ namespace DivineDiurganate
             if (pawn.skills == null || pawn.skills.skills.Count == 0)
             {
                 GUI.color = Color.gray;
-                Widgets.Label(skillsArea.ContractedBy(padding * 2), "No skills");
+                Widgets.Label(skillsArea.ContractedBy(padding * 2), "DD_MechNoSkill".Translate());
                 GUI.color = Color.white;
                 return;
             }
@@ -289,7 +378,6 @@ namespace DivineDiurganate
             {
                 TooltipHandler.TipRegion(rect, 
                     $"<b>{skill.def.LabelCap}</b>\n" +
-                    $"Level".Translate() + " : {skill.Level}/20\n\n" +
                     $"{skill.def.description}");
             }
         }
@@ -299,7 +387,7 @@ namespace DivineDiurganate
             float buttonWidth = rect.width / 2 - 2.5f;
             
             Rect confirmRect = new Rect(rect.x, rect.y, buttonWidth, rect.height);
-            if (Widgets.ButtonText(confirmRect, "OK"))
+            if (Widgets.ButtonText(confirmRect, "OK".Translate()))
             {
                 var pawn = SelPawn;
                 if (pawn != null && !string.IsNullOrEmpty(nameBuffer))
@@ -310,7 +398,7 @@ namespace DivineDiurganate
             }
             
             Rect cancelRect = new Rect(confirmRect.xMax + 5f, rect.y, buttonWidth, rect.height);
-            if (Widgets.ButtonText(cancelRect, "Cancel"))
+            if (Widgets.ButtonText(cancelRect, "Cancel".Translate()))
             {
                 isRenaming = false;
             }
@@ -318,15 +406,15 @@ namespace DivineDiurganate
         
         private string GetStatus(Pawn pawn)
         {
-            if (pawn.Downed) return "Downed";
-            if (pawn.Dead) return "Dead";
-            if (pawn.Drafted) return "Drafted";
+            if (pawn.Downed) return "Downed".Translate();
+            if (pawn.Dead) return "Dead".Translate();
+            if (pawn.Drafted) return "CommandDraftLabel".Translate();
             
             var pilotComp = pawn.TryGetComp<CompMechPilotHolder>();
             if (pilotComp == null || !pilotComp.HasPilots)
-                return "No Pilot";
+                return "DD_NoPilot".Translate();
                 
-            return "Operational";
+            return "DD_Operational".Translate();
         }
         
         private void DrawError(string message)

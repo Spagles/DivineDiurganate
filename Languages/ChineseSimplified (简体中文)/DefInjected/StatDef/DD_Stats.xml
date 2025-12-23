@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: Sanctified Armour -->
+  <DD_MechArmor.label>TODO</DD_MechArmor.label>
+  <!-- EN: Strength of the special armour of Divine Diurganate's mech. When the Armor Penetration Multiplier * Damage value of an attack is less than this value, the attack is completely counteracted by the armour. -->
+  <DD_MechArmor.description>TODO</DD_MechArmor.description>
+  
+</LanguageData>

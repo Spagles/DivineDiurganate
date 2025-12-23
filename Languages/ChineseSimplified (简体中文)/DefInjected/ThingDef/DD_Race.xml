@@ -2,12 +2,12 @@
 <LanguageData>
   
   <!-- EN: Mote -->
-  <DD_Mote_MechBlackSmoke.label>黑烟</DD_Mote_MechBlackSmoke.label>
+  <DD_Mote_MechBlackSmoke.label>TODO</DD_Mote_MechBlackSmoke.label>
   
   <!-- EN: SHM86-Knell -->
   <DD_SHM86_Knell_Mech.label>SHM86-丧钟</DD_SHM86_Knell_Mech.label>
   <!-- EN: Skirmisher mech with equipped grenade which can withstand light weapons fire, allowing pilots of Diurganate to take their time in the cockpit and strike enemy forces with high maneuverability. -->
-  <DD_SHM86_Knell_Mech.description>能够抵御轻武器射击、配备榴弹的散兵型机甲，允许圣双尾教国的机师们在驾驶舱内从容应对各种袭来的炮火，并以高机动性打击敌军。</DD_SHM86_Knell_Mech.description>
+  <DD_SHM86_Knell_Mech.description>装备榴弹的散兵型机甲，可以抵挡轻型武器的射击，让双尾教国的机师们能够在驾驶室里从容不迫地以高机动性打击敌军。</DD_SHM86_Knell_Mech.description>
   <!-- EN: hoof -->
   <DD_SHM86_Knell_Mech.tools.hoof.label>踩踏</DD_SHM86_Knell_Mech.tools.hoof.label>
   

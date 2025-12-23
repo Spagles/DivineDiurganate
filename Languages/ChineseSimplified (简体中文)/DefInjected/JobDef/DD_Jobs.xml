@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: Entering mech. -->
+  <DD_EnterMech.reportString>进入机甲</DD_EnterMech.reportString>
+  
+  <!-- EN: Refuleing TargetA. -->
+  <DD_RefuelMech.reportString>正在为TargetA补充燃料</DD_RefuelMech.reportString>
+  
+  <!-- EN: Repairing TargetA. -->
+  <DD_RepairMech.reportString>正在维修TargetA</DD_RepairMech.reportString>
+  
+</LanguageData>

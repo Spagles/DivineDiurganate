@@ -3,28 +3,25 @@ using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace DivineDiurganate.HarmonyPatches
+namespace DivineDiurganate
 {
     /// <summary>
-    /// 更简单的修复：完全跳过机甲技能的Tick系统
+    /// 针对SkillRecord.Interval()的补丁，防止在机甲上出现空引用
     /// </summary>
-    [HarmonyPatch(typeof(Pawn))]
-    [HarmonyPatch("TickInterval")]
-    public static class Pawn_TickInterval_Patch
+    [HarmonyPatch(typeof(SkillRecord))]
+    [HarmonyPatch("Interval")]
+    public static class Patch_SkillRecord_Interval
     {
         [HarmonyPrefix]
-        public static bool Prefix(Pawn __instance)
+        public static bool Prefix(SkillRecord __instance)
         {
-            // 检查是否是机甲并且有技能继承组件
-            var skillComp = __instance.TryGetComp<CompMechSkillInheritance>();
-            if (skillComp != null)
+            // 额外检查：如果pawn.story为null，也跳过
+            if (__instance?.Pawn?.story == null)
             {
-                // 完全跳过原版技能系统的Tick
-                // 我们会在组件的CompTick中处理技能更新
-                return false;
+                return false; // 跳过原方法
             }
 
-            return true;
+            return true; // 执行原方法
         }
     }
 

@@ -129,6 +129,7 @@
     <!-- <uiIconScale>0.2</uiIconScale> -->
     <defaultPlacingRot>North</defaultPlacingRot>
     <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+    <altitudeLayer>PawnState</altitudeLayer>
     <tradeability>None</tradeability>
     <statBases>
       <MoveSpeed>5.5</MoveSpeed>
@@ -259,7 +260,7 @@
       <!-- This comps defines the inherent weapons of mech (optional) -->
       <li Class="DivineDiurganate.CompProperties_MechInherentWeapon">
         <!-- 此处指定的武器被视为机甲本身的武器，如果它们因为某些原因遗失或被替换，则下一个检查周期时，将重新给予机甲固有武器 -->
-         <!-- The weapons specified here are considered as the inherent weapons of the mech itself. If they are lost or replaced for some reason, the mech will be re-equipped with its inherent weapons during the next inspection cycle. -->
+        <!-- The weapons specified here are considered as the inherent weapons of the mech itself. If they are lost or replaced for some reason, the mech will be re-equipped with its inherent weapons during the next inspection cycle. -->
         <weaponDef>DD_SHM86_Knell_Mech_Weapon</weaponDef>
       </li>
       <!-- 这个comps定义了机甲的默认驾驶员，通常用于希望生成机甲袭击等情况（非必须） -->

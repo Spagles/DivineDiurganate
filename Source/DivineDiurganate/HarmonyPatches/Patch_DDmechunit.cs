@@ -1,6 +1,7 @@
 using HarmonyLib;
 using RimWorld;
 using System;
+using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 
@@ -222,7 +223,7 @@ namespace DivineDiurganate
                 return null;
             }
         }
-    [HarmonyPatch(typeof(FloatMenuOptionProvider_Romance), "GetSingleOptionFor")]
+        [HarmonyPatch(typeof(FloatMenuOptionProvider_Romance), "GetSingleOptionFor")]
         [HarmonyPrefix]
         public static bool GetSingleOptionFor_Prefix(Pawn clickedPawn, ref FloatMenuOption __result)
         {
@@ -231,23 +232,6 @@ namespace DivineDiurganate
                 __result = null;
                 return false; // 跳过原始方法
             }
-            return true; // 继续执行原始方法
-        }
-    }
-
-    [HarmonyPatch(typeof(FloatMenuOptionProvider_Romance), "GetSingleOptionFor")]
-    public static class Patch_FloatMenuOptionProvider_Romance_GetSingleOptionFor
-    {
-        public static bool Prefix(Pawn clickedPawn, ref FloatMenuOption __result)
-        {
-            // 检查点击的Pawn是否是DDmechunit
-            if (clickedPawn is DDmechunit)
-            {
-                // 如果是机甲单位，直接返回null，不显示浪漫菜单
-                __result = null;
-                return false; // 跳过原始方法
-            }
-
             return true; // 继续执行原始方法
         }
     }

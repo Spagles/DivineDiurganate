@@ -311,11 +311,11 @@ namespace DivineDiurganate
                     case 0: // 北
                         return offset;
                     case 1: // 东
-                        return new Vector3(-offset.z, offset.y, offset.x);
+                        return new Vector3(offset.z, offset.y, offset.x);
                     case 2: // 南
                         return new Vector3(-offset.x, offset.y, -offset.z);
                     case 3: // 西
-                        return new Vector3(offset.z, offset.y, -offset.x);
+                        return new Vector3(-offset.z, offset.y, -offset.x);
                     default:
                         return offset;
                 }

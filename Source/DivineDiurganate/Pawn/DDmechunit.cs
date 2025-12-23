@@ -124,7 +124,7 @@ namespace DivineDiurganate
         {
             ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, GetDirectlyHeldThings());
         }
-        
+
         public override void ExposeData()
         {
             base.ExposeData();

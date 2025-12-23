@@ -10,9 +10,10 @@
     <size>(3,3)</size>
     <fillPercent>0.25</fillPercent>
     <pathCost>0</pathCost>
-    <uiIconScale>0.5</uiIconScale>
+    <uiIconScale>0.85</uiIconScale>
+    <tickerType>Normal</tickerType>
     <graphicData>
-      <drawSize>5.5</drawSize>
+      <drawSize>3.5</drawSize>
       <texPath>DivineDiurganate/Things/DD_SHM86_Knell/Naked_Thin_north</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>

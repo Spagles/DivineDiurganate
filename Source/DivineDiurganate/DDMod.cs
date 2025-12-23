@@ -6,9 +6,9 @@ using Verse;
 namespace DivineDiurganate
 {
     [StaticConstructorOnStartup]
-    public class IHMFMod : Mod
+    public class DDMod : Mod
     {
-        public IHMFMod(ModContentPack content) : base(content)
+        public DDMod(ModContentPack content) : base(content)
         {
             // 初始化Harmony
             var harmony = new Harmony("com.kalospacer.arachnaeswarm");

@@ -176,6 +176,8 @@
     <description>The weapon of SHM86 Knell , which can launch powerful grenades to a distant location through a pair of winches.</description>
 	  <destroyOnDrop>true</destroyOnDrop>
     <tradeability>None</tradeability>
+    <uiIconPath>DivineDiurganate/Mote/DD_SHM86_Knell_Mech_Weapon_Proj</uiIconPath>
+    <uiIconScale>0.75</uiIconScale>
     <recipeMaker>
       <recipeUsers Inherit="False" />
     </recipeMaker>
@@ -225,9 +227,10 @@
     <label>Grenade</label>
     <thingClass>Projectile_Explosive</thingClass>
     <graphicData>
-      <texPath>Things/Projectile/Grenade</texPath>
+      <texPath>DivineDiurganate/Mote/DD_SHM86_Knell_Mech_Weapon_Proj</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>Transparent</shaderType>
+      <drawSize>0.5</drawSize>
     </graphicData>
     <category>Projectile</category>
     <altitudeLayer>Projectile</altitudeLayer>
