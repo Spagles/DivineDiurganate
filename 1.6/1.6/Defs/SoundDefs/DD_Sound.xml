@@ -38,7 +38,7 @@
     <context>MapOnly</context>
     <maxSimultaneous>2</maxSimultaneous>
     <priorityMode>PrioritizeNearest</priorityMode>
-    <!-- <sustainStopSound>BeamGraser_Shooting_Resolve</sustainStopSound> -->
+    <sustainStopSound>BeamGraser_Shooting_Resolve</sustainStopSound>
     <subSounds>
       <li>
         <tempoAffectedByGameSpeed>true</tempoAffectedByGameSpeed>

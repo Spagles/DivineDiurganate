@@ -1,4 +1,4 @@
-// File: CompMoteEmitterNorthward_Integrated.cs
+// File: CompMoteEmitterNorthward.cs
 using RimWorld;
 using System;
 using UnityEngine;
@@ -10,158 +10,193 @@ namespace DivineDiurganate
 {
     /// <summary>
     /// 组件：持续产生向上（北向）移动的Mote
-    /// 整合版本：包含驾驶员条件、移动/静止不同速率、正确的位置计算时机
     /// </summary>
     public class CompMoteEmitterNorthward : ThingComp
     {
-        public CompProperties_MoteEmitterNorthward Props => 
+        private CompProperties_MoteEmitterNorthward Props =>
             (CompProperties_MoteEmitterNorthward)props;
-        
+
         private int ticksUntilNextEmit;
         
-        // 关键缓存引用
+        // 移动状态跟踪
+        private Vector3 lastPosition;
+        private bool isMoving;
+        private int positionUpdateCooldown = 0;
+
+        // 缓存引用
         private CompMechPilotHolder pilotHolder;
-        private Pawn pawnParent;
-        private Vector3 lastDrawPos;
-        private bool initialized = false;
         
+        // Pawn引用
+        private Pawn pawnParent;
+        
+        // 是否已销毁标记
+        private bool isDestroyed = false;
+
         public override void Initialize(CompProperties props)
         {
             base.Initialize(props);
-            pawnParent = parent as Pawn;
-            
-            // 等待PostSpawnSetup进行初始化，避免过早计算位置
+            // 随机化初始计时器，避免所有发射器同时发射
             ticksUntilNextEmit = Rand.Range(0, Props.emitIntervalTicks);
-            initialized = false;
+            
+            // 获取Pawn引用
+            pawnParent = parent as Pawn;
         }
-        
+
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
             
-            // 在机甲完全生成后获取组件和位置
+            // 重置销毁标记
+            isDestroyed = false;
+
+            // 获取驾驶员容器组件
             pilotHolder = parent.TryGetComp<CompMechPilotHolder>();
-            
-            if (parent.Spawned)
+
+            // 如果需要驾驶员但组件不存在，发出警告
+            if (Props.requirePilot && pilotHolder == null)
             {
-                lastDrawPos = parent.DrawPos;
-                
-                // 警告：如果需要驾驶员但组件不存在
-                if (Props.requirePilot && pilotHolder == null)
-                {
-                    Log.Warning($"[DD] CompMoteEmitterNorthward on {parent} requires pilot but no CompMechPilotHolder found");
-                }
+                Log.Warning($"[DD] CompMoteEmitterNorthward on {parent} requires pilot but no CompMechPilotHolder found");
             }
             
-            initialized = true;
+            // 初始化位置
+            if (parent.Spawned)
+            {
+                lastPosition = GetSafePosition();
+            }
         }
-        
+
         public override void CompTick()
         {
             base.CompTick();
             
-            // 检查是否已正确初始化
-            if (!initialized)
+            // 如果已标记销毁，跳过所有处理
+            if (isDestroyed || parent == null)
                 return;
-            
+
             if (!parent.Spawned || parent.Map == null)
                 return;
-            
-            // 检查是否可以发射
-            if (!CanEmit())
-                return;
-            
-            ticksUntilNextEmit--;
-            
-            if (ticksUntilNextEmit <= 0)
+
+            // 更新移动状态
+            if (positionUpdateCooldown <= 0)
             {
-                EmitMote();
-                // 根据移动状态设置下次发射间隔
-                UpdateNextEmitInterval();
-            }
-            
-            // 更新位置记录用于移动检测
-            if (pawnParent != null && parent.Spawned)
-            {
-                lastDrawPos = pawnParent.DrawPos;
-            }
-        }
-        
-        /// <summary>
-        /// 更新下次发射间隔（基于移动状态）
-        /// </summary>
-        private void UpdateNextEmitInterval()
-        {
-            bool isMoving = IsCurrentlyMoving();
-            
-            // 根据移动状态选择间隔
-            int baseInterval = isMoving ? Props.emitIntervalMovingTicks : Props.emitIntervalTicks;
-            
-            // 如果移动间隔为0，使用静止间隔
-            if (isMoving && Props.emitIntervalMovingTicks <= 0)
-            {
-                baseInterval = Props.emitIntervalTicks;
-            }
-            
-            // 添加随机性
-            if (Props.randomIntervalFactor > 0f)
-            {
-                float randomFactor = Rand.Range(1f - Props.randomIntervalFactor, 1f + Props.randomIntervalFactor);
-                ticksUntilNextEmit = Mathf.RoundToInt(baseInterval * randomFactor);
+                UpdateMovementState();
+                positionUpdateCooldown = 10; // 每10ticks更新一次位置，减少开销
             }
             else
             {
-                ticksUntilNextEmit = baseInterval;
+                positionUpdateCooldown--;
+            }
+
+            // 检查是否满足发射条件
+            if (!CanEmit())
+                return;
+
+            ticksUntilNextEmit--;
+
+            if (ticksUntilNextEmit <= 0)
+            {
+                EmitMote();
+                
+                // 根据移动状态设置下次发射间隔
+                ticksUntilNextEmit = isMoving ? 
+                    Props.emitIntervalMovingTicks : 
+                    Props.emitIntervalTicks;
             }
         }
         
         /// <summary>
-        /// 检查单位是否在移动
+        /// 安全获取当前位置
         /// </summary>
-        private bool IsCurrentlyMoving()
+        private Vector3 GetSafePosition()
         {
-            if (pawnParent == null || !parent.Spawned)
-                return false;
-            
-            // 方法1: 检查寻路器
-            if (pawnParent.pather != null && pawnParent.pather.Moving)
-                return true;
-            
-            // 方法2: 检查位置变化
-            if (lastDrawPos != Vector3.zero)
+            try
             {
-                float distanceMoved = Vector3.Distance(pawnParent.DrawPos, lastDrawPos);
-                if (distanceMoved > 0.01f)
-                    return true;
+                if (parent == null || !parent.Spawned)
+                    return parent?.Position.ToVector3Shifted() ?? Vector3.zero;
+                
+                // 如果是Pawn且绘制器可用，使用DrawPos
+                if (pawnParent != null && pawnParent.Drawer != null)
+                {
+                    return pawnParent.DrawPos;
+                }
+                
+                // 否则使用网格位置
+                return parent.Position.ToVector3Shifted();
             }
-            
-            return false;
+            catch (NullReferenceException)
+            {
+                // 发生异常时返回网格位置
+                return parent?.Position.ToVector3Shifted() ?? Vector3.zero;
+            }
         }
         
+        /// <summary>
+        /// 更新移动状态
+        /// </summary>
+        private void UpdateMovementState()
+        {
+            if (!parent.Spawned || parent.Destroyed)
+            {
+                isMoving = false;
+                return;
+            }
+            
+            try
+            {
+                Vector3 currentPos = GetSafePosition();
+                float distanceMoved = Vector3.Distance(currentPos, lastPosition);
+                
+                // 简单移动检测：如果位置有变化就算移动
+                isMoving = distanceMoved > 0.01f;
+                
+                lastPosition = currentPos;
+            }
+            catch (NullReferenceException ex)
+            {
+                // 发生异常时重置状态
+                Log.Warning($"[DD] Error updating movement state for {parent}: {ex.Message}");
+                isMoving = false;
+            }
+        }
+
         /// <summary>
         /// 检查是否可以发射Mote
         /// </summary>
         private bool CanEmit()
         {
-            // 检查驾驶员条件
+            // 基础检查
+            if (parent == null || !parent.Spawned || parent.Map == null || Props.moteDef == null)
+                return false;
+                
+            // 如果Pawn状态异常，不发射
+            if (pawnParent != null)
+            {
+                if (pawnParent.Dead || pawnParent.Downed || pawnParent.InMentalState)
+                    return false;
+                    
+                // 检查绘制器是否可用
+                if (pawnParent.Drawer == null)
+                    return false;
+            }
+
+            // 新增：检查驾驶员条件
             if (Props.requirePilot)
             {
-                if (pilotHolder == null)
+                // 需要至少一个驾驶员
+                if (pilotHolder == null || !pilotHolder.HasPilots)
                     return false;
-                    
-                if (!pilotHolder.HasPilots)
-                    return false;
-                    
+
+                // 可选：检查驾驶员是否存活
                 if (Props.requirePilotAlive)
                 {
                     foreach (var pilot in pilotHolder.GetPilots())
                     {
-                        if (pilot == null || pilot.Dead || pilot.Downed)
+                        if (pilot.Dead || pilot.Downed)
                             return false;
                     }
                 }
             }
-            
+
             // 检查电源条件
             if (Props.onlyWhenPowered)
             {
@@ -169,14 +204,7 @@ namespace DivineDiurganate
                 if (powerComp != null && !powerComp.PowerOn)
                     return false;
             }
-            
-            // 检查移动状态限制
-            if (Props.onlyWhenMoving && !IsCurrentlyMoving())
-                return false;
-            
-            if (Props.onlyWhenStanding && IsCurrentlyMoving())
-                return false;
-            
+
             // 检查天气条件
             if (!string.IsNullOrEmpty(Props.onlyInWeather))
             {
@@ -184,7 +212,7 @@ namespace DivineDiurganate
                 if (currentWeather == null || currentWeather.defName != Props.onlyInWeather)
                     return false;
             }
-            
+
             // 检查地形条件
             if (Props.onlyOnTerrain != null)
             {
@@ -192,141 +220,65 @@ namespace DivineDiurganate
                 if (terrain != Props.onlyOnTerrain)
                     return false;
             }
-            
-            // 检查时间条件
-            float currentHour = GenLocalDate.HourFloat(parent.Map);
-            if (!Props.emitDuringHours.Includes(currentHour))
-                return false;
-            
+
             return true;
         }
-        
-        /// <summary>
-        /// 根据Pawn面向方向计算偏移位置
-        /// </summary>
-        private Vector3 GetFacingAdjustedOffset()
-        {
-            Vector3 baseOffset = Props.offset;
-            
-            if (pawnParent == null || !Props.adjustOffsetWithFacing)
-                return baseOffset;
-            
-            // 确保Pawn已正确初始化
-            if (!pawnParent.Spawned)
-                return baseOffset;
-            
-            Rot4 rotation = pawnParent.Rotation;
-            
-            switch (rotation.AsInt)
-            {
-                case 0: // 北
-                    return new Vector3(baseOffset.x, baseOffset.y, baseOffset.z);
-                case 1: // 东
-                    return new Vector3(-baseOffset.z, baseOffset.y, baseOffset.x);
-                case 2: // 南
-                    return new Vector3(-baseOffset.x, baseOffset.y, -baseOffset.z);
-                case 3: // 西
-                    return new Vector3(baseOffset.z, baseOffset.y, -baseOffset.x);
-                default:
-                    return baseOffset;
-            }
-        }
-        
+
         private void EmitMote()
         {
             try
             {
-                // 确保父对象已正确生成
-                if (!parent.Spawned || parent.DrawPos == Vector3.zero)
-                    return;
+                // 计算发射位置（根据朝向调整偏移）
+                Vector3 emitPos = GetSafePosition() + GetOffsetForFacing();
                 
-                // 计算基于Pawn面向的偏移位置
-                Vector3 adjustedOffset = GetFacingAdjustedOffset();
-                Vector3 emitPos = parent.DrawPos + adjustedOffset;
-                
-                // 添加垂直偏移
-                emitPos += new Vector3(0f, Props.verticalOffset, 0f);
-                
-                // 应用随机偏移
-                if (Props.randomOffset.magnitude > 0)
+                // 如果父物体是Pawn，可以添加一些随机偏移
+                if (pawnParent != null && Props.randomOffsetRadius > 0f)
                 {
                     emitPos += new Vector3(
-                        Rand.Range(-Props.randomOffset.x, Props.randomOffset.x),
-                        Rand.Range(-Props.randomOffset.y, Props.randomOffset.y),
-                        Rand.Range(-Props.randomOffset.z, Props.randomOffset.z)
+                        Rand.Range(-Props.randomOffsetRadius, Props.randomOffsetRadius),
+                        0f,
+                        Rand.Range(-Props.randomOffsetRadius, Props.randomOffsetRadius)
                     );
                 }
-                
+
                 // 创建Mote
                 Mote mote = (Mote)ThingMaker.MakeThing(Props.moteDef);
-                
+
                 if (mote is MoteThrown moteThrown)
                 {
-                    // 设置位置
+                    // 设置初始位置
                     moteThrown.exactPosition = emitPos;
-                    
-                    // 设置Mote角度
-                    float moteAngle = Props.baseAngle;
-                    if (Props.adjustMoteAngleWithFacing && pawnParent != null)
-                    {
-                        float facingAngle = pawnParent.Rotation.AsAngle;
-                        moteAngle = Props.baseAngle + facingAngle;
-                    }
-                    
-                    // 设置Mote速度和方向
-                    float moveSpeed = IsCurrentlyMoving() && Props.moveSpeedMoving > 0 ? 
-                        Props.moveSpeedMoving : Props.moveSpeed;
-                    
-                    moteThrown.SetVelocity(moteAngle, moveSpeed);
-                    
+
+                    // 设置向北移动的速度
+                    moteThrown.SetVelocity(
+                        angle: 0f, // 0度 = 北向
+                        speed: Props.moveSpeed
+                    );
+
                     // 设置旋转
-                    if (Props.randomRotation)
-                    {
-                        moteThrown.exactRotation = Rand.Range(0f, 360f);
-                    }
-                    else
-                    {
-                        float rotation = IsCurrentlyMoving() && Props.rotationMoving != 0 ? 
-                            Props.rotationMoving : Props.rotation;
-                        moteThrown.exactRotation = rotation;
-                    }
-                    
-                    moteThrown.rotationRate = IsCurrentlyMoving() && Props.rotationRateMoving != 0 ? 
-                        Props.rotationRateMoving : Props.rotationRate;
-                    
+                    moteThrown.exactRotation = Props.rotation;
+                    moteThrown.rotationRate = Props.rotationRate;
+
                     // 设置缩放
-                    float scale = IsCurrentlyMoving() && Props.scaleMoving > 0 ? 
-                        Props.scaleMoving : Props.scale;
-                    
-                    if (Props.randomScaleRange > 0)
-                    {
-                        scale *= Rand.Range(1f - Props.randomScaleRange, 1f + Props.randomScaleRange);
-                    }
-                    moteThrown.Scale = scale;
-                    
-                    // 设置生存时间
-                    float lifetime = IsCurrentlyMoving() && Props.lifetimeMovingTicks > 0 ? 
-                        Props.lifetimeMovingTicks : Props.lifetimeTicks;
-                    moteThrown.airTimeLeft = lifetime;
-                    
+                    moteThrown.Scale = Props.scale;
+
+                    // 设置存活时间
+                    moteThrown.airTimeLeft = Props.lifetimeTicks;
+
                     // 添加到地图
                     GenSpawn.Spawn(mote, parent.Position, parent.Map);
                 }
                 else
                 {
-                    // 不是MoteThrown类型
+                    // 不是MoteThrown类型，使用基础设置
                     mote.exactPosition = emitPos;
-                    float scale = IsCurrentlyMoving() && Props.scaleMoving > 0 ? 
-                        Props.scaleMoving : Props.scale;
-                    mote.Scale = scale;
+                    mote.Scale = Props.scale;
                     GenSpawn.Spawn(mote, parent.Position, parent.Map);
                 }
-                
+
                 // 播放发射音效
                 if (Props.soundOnEmit != null)
                 {
-                    float volume = IsCurrentlyMoving() && Props.soundVolumeMoving > 0 ? 
-                        Props.soundVolumeMoving : Props.soundVolume;
                     Props.soundOnEmit.PlayOneShot(parent);
                 }
             }
@@ -336,96 +288,188 @@ namespace DivineDiurganate
             }
         }
         
+        /// <summary>
+        /// 根据朝向获取偏移位置
+        /// </summary>
+        private Vector3 GetOffsetForFacing()
+        {
+            Vector3 offset = Props.offset;
+            
+            // 如果不是Pawn，返回基础偏移
+            if (pawnParent == null)
+                return offset;
+            
+            // 检查Pawn是否可用
+            if (pawnParent.Destroyed || !pawnParent.Spawned)
+                return offset;
+            
+            try
+            {
+                // 根据朝向调整偏移
+                switch (pawnParent.Rotation.AsInt)
+                {
+                    case 0: // 北
+                        return offset;
+                    case 1: // 东
+                        return new Vector3(-offset.z, offset.y, offset.x);
+                    case 2: // 南
+                        return new Vector3(-offset.x, offset.y, -offset.z);
+                    case 3: // 西
+                        return new Vector3(offset.z, offset.y, -offset.x);
+                    default:
+                        return offset;
+                }
+            }
+            catch (NullReferenceException)
+            {
+                // 如果访问Rotation失败，返回基础偏移
+                return offset;
+            }
+        }
+
         public override void PostExposeData()
         {
             base.PostExposeData();
             Scribe_Values.Look(ref ticksUntilNextEmit, "ticksUntilNextEmit", 0);
-            Scribe_Values.Look(ref initialized, "initialized", false);
-            
-            // 注意：lastDrawPos不保存，每次加载后重新获取
+            Scribe_Values.Look(ref lastPosition, "lastPosition", Vector3.zero);
+            Scribe_Values.Look(ref isMoving, "isMoving", false);
+        }
+        
+        // 添加销毁相关的清理
+        public override void PostDestroy(DestroyMode mode, Map previousMap)
+        {
+            base.PostDestroy(mode, previousMap);
+            isDestroyed = true;
+        }
+        
+        public void PostDeSpawn(Map map)
+        {
+            base.PostDeSpawn(map);
+            isDestroyed = true;
+        }
+
+        /// <summary>
+        /// 获取组件状态信息（用于调试）
+        /// </summary>
+        public string GetStatusInfo()
+        {
+            if (parent == null || isDestroyed)
+                return "Component destroyed";
+                
+            string pilotStatus = "N/A";
+            if (pilotHolder != null)
+            {
+                pilotStatus = pilotHolder.HasPilots ?
+                    $"Has {pilotHolder.CurrentPilotCount} pilot(s)" :
+                    "No pilots";
+            }
+
+            return $"Mote Emitter Status:\n" +
+                   $"  Active: {!isDestroyed}\n" +
+                   $"  Can Emit: {CanEmit()}\n" +
+                   $"  Moving: {isMoving}\n" +
+                   $"  Pilot Status: {pilotStatus}\n" +
+                   $"  Next Emit: {ticksUntilNextEmit} ticks\n" +
+                   $"  Powered: {(Props.onlyWhenPowered ? CheckPowerStatus() : "N/A")}";
+        }
+
+        private string CheckPowerStatus()
+        {
+            var powerComp = parent.TryGetComp<CompPowerTrader>();
+            if (powerComp == null)
+                return "No power comp";
+            return powerComp.PowerOn ? "Powered" : "No power";
         }
     }
-    
+
     /// <summary>
-    /// 整合版组件属性
+    /// 组件属性（更新版）
     /// </summary>
     public class CompProperties_MoteEmitterNorthward : CompProperties
     {
-        // === 核心发射间隔 ===
-        public int emitIntervalTicks = 60;          // 静止时发射间隔
-        public int emitIntervalMovingTicks = 60;    // 移动时发射间隔（0=使用静止间隔）
-        public float randomIntervalFactor = 0f;     // 随机间隔因子
-        
-        // === 基础参数 ===
+        /// <summary>Mote定义</summary>
         public ThingDef moteDef;
+
+        /// <summary>发射间隔（ticks）- 静止时</summary>
+        public int emitIntervalTicks = 60; // 默认1秒
+        
+        /// <summary>发射间隔（ticks）- 移动时</summary>
+        public int emitIntervalMovingTicks = 30; // 移动时默认0.5秒
+
+        /// <summary>移动速度</summary>
         public float moveSpeed = 1f;
-        public float moveSpeedMoving = 0f;          // 移动时速度（0=使用基础速度）
-        public float lifetimeTicks = 120f;
-        public float lifetimeMovingTicks = 0f;      // 移动时生存时间（0=使用基础时间）
+
+        /// <summary>Mote生命周期（ticks）</summary>
+        public float lifetimeTicks = 120f; // 默认2秒
+
+        /// <summary>初始旋转角度</summary>
         public float rotation = 0f;
-        public float rotationMoving = 0f;           // 移动时旋转
+
+        /// <summary>旋转速度（度/秒）</summary>
         public float rotationRate = 0f;
-        public float rotationRateMoving = 0f;       // 移动时旋转速度
+
+        /// <summary>缩放大小</summary>
         public float scale = 1f;
-        public float scaleMoving = 0f;              // 移动时大小（0=使用基础大小）
-        
-        // === 位置设置 ===
+
+        /// <summary>偏移位置（相对于父物体）- 默认朝北时的偏移</summary>
         public Vector3 offset = Vector3.zero;
-        public float verticalOffset = 0f;
-        public Vector3 randomOffset = Vector3.zero;
-        public float randomScaleRange = 0f;
-        public bool randomRotation = false;
         
-        // === 方向设置 ===
-        public float baseAngle = 0f;
-        public bool adjustOffsetWithFacing = true;
-        public bool adjustMoteAngleWithFacing = false;
-        
-        // === 音效 ===
+        /// <summary>随机偏移半径</summary>
+        public float randomOffsetRadius = 0f;
+
+        /// <summary>发射时的音效</summary>
         public SoundDef soundOnEmit;
-        public float soundVolume = 1f;
-        public float soundVolumeMoving = 0f;        // 移动时音量（0=使用基础音量）
-        
-        // === 条件限制 ===
-        public bool requirePilot = true;
-        public bool requirePilotAlive = true;
+
+        /// <summary>是否只在启用的状态发射</summary>
         public bool onlyWhenPowered = false;
-        public bool onlyWhenMoving = false;
-        public bool onlyWhenStanding = false;
+
+        /// <summary>是否只在至少有一个驾驶员时发射</summary>
+        public bool requirePilot = true; // 新增：驾驶员条件
+
+        /// <summary>天气条件：只在指定天气发射（用逗号分隔）</summary>
         public string onlyInWeather;
+
+        /// <summary>地形条件：只在指定地形发射</summary>
         public TerrainDef onlyOnTerrain;
-        public FloatRange emitDuringHours = new FloatRange(0f, 24f);
-        
+
+        /// <summary>驾驶员条件：只在驾驶员存活时发射</summary>
+        public bool requirePilotAlive = true; // 新增：要求驾驶员存活
+
         public CompProperties_MoteEmitterNorthward()
         {
             compClass = typeof(CompMoteEmitterNorthward);
         }
-        
+
         public override IEnumerable<string> ConfigErrors(ThingDef parentDef)
         {
             foreach (string error in base.ConfigErrors(parentDef))
             {
                 yield return error;
             }
-            
+
             if (moteDef == null)
             {
                 yield return $"moteDef is not defined for {parentDef.defName}";
             }
-            
+
             if (emitIntervalTicks <= 0)
             {
                 yield return $"emitIntervalTicks must be greater than 0 for {parentDef.defName}";
             }
             
-            if (emitIntervalMovingTicks < 0)
+            if (emitIntervalMovingTicks <= 0)
             {
-                yield return $"emitIntervalMovingTicks must be >= 0 for {parentDef.defName}";
+                yield return $"emitIntervalMovingTicks must be greater than 0 for {parentDef.defName}";
             }
-            
-            if (onlyWhenMoving && onlyWhenStanding)
+
+            if (lifetimeTicks <= 0)
             {
-                yield return $"onlyWhenMoving and onlyWhenStanding cannot both be true for {parentDef.defName}";
+                yield return $"lifetimeTicks must be greater than 0 for {parentDef.defName}";
+            }
+
+            if (requirePilot && parentDef.GetCompProperties<CompProperties_MechPilotHolder>() == null)
+            {
+                yield return $"requirePilot is true but no CompProperties_MechPilotHolder found for {parentDef.defName}";
             }
         }
     }

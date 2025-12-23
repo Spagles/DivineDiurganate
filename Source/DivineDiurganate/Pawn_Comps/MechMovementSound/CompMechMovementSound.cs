@@ -25,8 +25,8 @@ namespace DivineDiurganate
         private CompMechPilotHolder pilotComp;
         
         // 状态平滑
-        private const int MOVEMENT_CHECK_INTERVAL = 10; // 每10ticks检查一次移动
-        private const int STOP_DELAY_TICKS = 30; // 停止后延迟30ticks再停止音效
+        private const int MOVEMENT_CHECK_INTERVAL = 3; // 每10ticks检查一次移动
+        private const int STOP_DELAY_TICKS = 1; // 停止后延迟30ticks再停止音效
         private const float SPEED_SMOOTHING = 0.2f; // 速度平滑系数
         
         public override void Initialize(CompProperties props)

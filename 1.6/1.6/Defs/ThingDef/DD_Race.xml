@@ -287,20 +287,20 @@
       <li Class="DivineDiurganate.CompProperties_MoteEmitterNorthward">
         <moteDef>DD_Mote_MechBlackSmoke</moteDef>
         <emitIntervalTicks>30</emitIntervalTicks>
-        <moveSpeed>1.5</moveSpeed>
-        <lifetimeTicks>30</lifetimeTicks>
         <emitIntervalMovingTicks>10</emitIntervalMovingTicks>
+        <moveSpeed>1.5</moveSpeed>
+        <lifetimeTicks>10</lifetimeTicks>
         <scale>0.25</scale>
-        <offset>(0.5,0,1)</offset>
+        <offset>(0.5,0,-1)</offset>
       </li>
       <li Class="DivineDiurganate.CompProperties_MoteEmitterNorthward">
         <moteDef>DD_Mote_MechBlackSmoke</moteDef>
         <emitIntervalTicks>30</emitIntervalTicks>
-        <moveSpeed>1.5</moveSpeed>
-        <lifetimeTicks>30</lifetimeTicks>
         <emitIntervalMovingTicks>10</emitIntervalMovingTicks>
+        <moveSpeed>1.5</moveSpeed>
+        <lifetimeTicks>10</lifetimeTicks>
         <scale>0.25</scale>
-        <offset>(-0.5,0,1)</offset>
+        <offset>(-0.5,0,-1)</offset>
       </li>
 
       <!-- 机甲移动音效 -->
@@ -310,22 +310,20 @@
 
       <li Class="DivineDiurganate.CompProperties_SkillLevelDebug"/>
 
-      <li Class="DivineDiurganate.CompMechSkillInheritanceEnhanced">
+      <!-- <li Class="DivineDiurganate.CompMechSkillInheritanceEnhanced">
         <baseSkillLevelWhenNoPilot>0</baseSkillLevelWhenNoPilot>
         <skillMultiplierForPilots>1</skillMultiplierForPilots>
         
-        <!-- 优先技能（机甲专业） -->
         <prioritizedSkills>
           <li>Shooting</li>
           <li>Melee</li>
         </prioritizedSkills>
         
-        <!-- 排除技能（机甲不需要） -->
         <excludedSkills>
           <li>Social</li>
           <li>Intellectual</li>
         </excludedSkills>
-      </li>
+      </li> -->
     </comps>
   </ThingDef>
   <!-- pawnkind没有什么特别的 -->
