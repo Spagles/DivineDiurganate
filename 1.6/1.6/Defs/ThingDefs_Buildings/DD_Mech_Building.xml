@@ -3,7 +3,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>DD_SHM86_Knell_Building</defName>
     <label>SHM86-Knell</label>
-    <description>The skirmisher-type mech equipped with grenades , excels in striking groups of enemy troops at medium distances with high maneuverability.</description>
+    <description>Skirmisher mech with equipped grenade which can withstand light weapons fire, allowing pilots of Diurganate to take their time in the cockpit and strike enemy forces with high maneuverability.</description>
     <uiOrder>2040</uiOrder>
     <altitudeLayer>Building</altitudeLayer>
     <passability>PassThroughOnly</passability>

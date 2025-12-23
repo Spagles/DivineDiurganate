@@ -11,7 +11,7 @@
   <!-- EN: Winches Grenade Launcher -->
   <DD_SHM86_Knell_Mech_Weapon.label>绞盘式榴弹发射器</DD_SHM86_Knell_Mech_Weapon.label>
   <!-- EN: The weapon of SHM86 Knell , which can launch powerful grenades to a distant location through a pair of winches. -->
-  <DD_SHM86_Knell_Mech_Weapon.description>SHM86-丧钟 的武器，可通过一对绞盘向远距离发射威力不俗的榴弹。</DD_SHM86_Knell_Mech_Weapon.description>
+  <DD_SHM86_Knell_Mech_Weapon.description>SHM86-丧钟的武器，可通过一对绞盘向远距离发射威力不俗的榴弹。</DD_SHM86_Knell_Mech_Weapon.description>
   <!-- EN: throw grenade -->
   <DD_SHM86_Knell_Mech_Weapon.verbs.throw_grenade.label>投射榴弹</DD_SHM86_Knell_Mech_Weapon.verbs.throw_grenade.label>
   

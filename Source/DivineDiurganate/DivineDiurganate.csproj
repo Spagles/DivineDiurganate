@@ -82,6 +82,7 @@
     <Compile Include="HarmonyPatches\Patch_DDmechunit.cs" />
     <Compile Include="IHMF_DefOf.cs" />
     <Compile Include="Pawn\DDmechunit.cs" />
+    <Compile Include="Pawn_Comps\CompSkillLevelDebug.cs" />
     <Compile Include="Pawn_Comps\DefaultPilotEntry\CompMechDefaultPilot.cs" />
     <Compile Include="Pawn_Comps\DefaultPilotEntry\CompProperties_MechDefaultPilot.cs" />
     <Compile Include="Pawn_Comps\MechFuel\CompMechFuel.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Pawn_Comps\MechMovementSound\CompProperties_MechMovementSound.cs" />
     <Compile Include="Pawn_Comps\MechPilotHolder\CompMechPilotHolder.cs" />
     <Compile Include="Pawn_Comps\MechRepairable\CompMechRepairable.cs" />
+    <Compile Include="Pawn_Comps\MechSkillInheritance\CompMechSkillInheritance.cs" />
     <Compile Include="Pawn_Comps\MoteEmitterNorthward\CompMoteEmitterNorthward.cs" />
     <Compile Include="Projectile\Projectile_PenetratingBullet.cs" />
     <Compile Include="Thing_Comp\BuildingSpawnPawn\CompBuildToPawn.cs" />

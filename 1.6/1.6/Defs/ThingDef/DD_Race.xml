@@ -122,7 +122,7 @@
   <ThingDef ParentName="BasePawn">
     <defName>DD_SHM86_Knell_Mech</defName>
     <label>SHM86-Knell</label>
-    <description>The skirmisher-type mech equipped with grenades , excels in striking groups of enemy troops at medium distances with high maneuverability.</description>
+    <description>Skirmisher mech with equipped grenade which can withstand light weapons fire, allowing pilots of Diurganate to take their time in the cockpit and strike enemy forces with high maneuverability.</description>
     <!-- 重要！这个新的thingclass代表其是一台机甲，如果遗漏，接下来的内容都无法生效！ -->
     <!-- Important! This new thingclass represents a mecha. If omitted, the following content will not take effect! -->
     <thingClass>DivineDiurganate.DDmechunit</thingClass>
@@ -131,10 +131,10 @@
     <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
     <tradeability>None</tradeability>
     <statBases>
-      <MoveSpeed>7</MoveSpeed>
-      <ComfyTemperatureMin>-9999</ComfyTemperatureMin>
-      <ComfyTemperatureMax>9999</ComfyTemperatureMax>
-      <MarketValue>300</MarketValue>
+      <MoveSpeed>5.5</MoveSpeed>
+      <ComfyTemperatureMin>-99999</ComfyTemperatureMin>
+      <ComfyTemperatureMax>99999</ComfyTemperatureMax>
+      <MarketValue>3000</MarketValue>
       <Wildness>0</Wildness>
       <FilthRate>0</FilthRate>
       <CrawlSpeed>0</CrawlSpeed>
@@ -289,23 +289,42 @@
         <emitIntervalTicks>30</emitIntervalTicks>
         <moveSpeed>1.5</moveSpeed>
         <lifetimeTicks>30</lifetimeTicks>
+        <emitIntervalMovingTicks>10</emitIntervalMovingTicks>
         <scale>0.25</scale>
         <offset>(0.5,0,1)</offset>
-        <requirePilot>true</requirePilot>
       </li>
       <li Class="DivineDiurganate.CompProperties_MoteEmitterNorthward">
         <moteDef>DD_Mote_MechBlackSmoke</moteDef>
         <emitIntervalTicks>30</emitIntervalTicks>
         <moveSpeed>1.5</moveSpeed>
         <lifetimeTicks>30</lifetimeTicks>
+        <emitIntervalMovingTicks>10</emitIntervalMovingTicks>
         <scale>0.25</scale>
         <offset>(-0.5,0,1)</offset>
-        <requirePilot>true</requirePilot>
       </li>
 
-      
+      <!-- 机甲移动音效 -->
       <li Class="DivineDiurganate.CompProperties_MechMovementSound">
         <movementSound>DD_SHM86_Knell_Mech_Moving_Sound</movementSound>
+      </li>
+
+      <li Class="DivineDiurganate.CompProperties_SkillLevelDebug"/>
+
+      <li Class="DivineDiurganate.CompMechSkillInheritanceEnhanced">
+        <baseSkillLevelWhenNoPilot>0</baseSkillLevelWhenNoPilot>
+        <skillMultiplierForPilots>1</skillMultiplierForPilots>
+        
+        <!-- 优先技能（机甲专业） -->
+        <prioritizedSkills>
+          <li>Shooting</li>
+          <li>Melee</li>
+        </prioritizedSkills>
+        
+        <!-- 排除技能（机甲不需要） -->
+        <excludedSkills>
+          <li>Social</li>
+          <li>Intellectual</li>
+        </excludedSkills>
       </li>
     </comps>
   </ThingDef>

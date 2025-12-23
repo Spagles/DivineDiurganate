@@ -42,20 +42,6 @@ namespace DivineDiurganate
             }
         }
     }
-    //[HarmonyPatch(typeof(FloatMenuUtility), "UseRangedAttack")]
-    //public static class Patch_FloatMenuUtility_UseRangedAttack
-    //{
-    //    [HarmonyPrefix]
-    //    public static bool Prefix(Pawn pawn, ref bool __result)
-    //    {
-    //        if (pawn.equipment == null)
-    //        {
-    //            __result = false;
-    //            return false;
-    //        }
-    //        return true;
-    //    }
-    //}
     [HarmonyPatch(typeof(FloatMenuUtility), nameof(FloatMenuUtility.GetMeleeAttackAction))]
     public static class Patch_FloatMenuUtility_GetMeleeAttackAction
     {

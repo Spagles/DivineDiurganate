@@ -1,4 +1,4 @@
-// CompMechMovementSound.cs
+// CompMechMovementSound_Fixed.cs
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -16,11 +16,18 @@ namespace DivineDiurganate
         private bool isPlaying = false;
         private Vector3 lastPosition = Vector3.zero;
         private float currentSpeed = 0f;
+        private int ticksSinceLastMovement = 0;
+        private bool wasMovingLastTick = false;
         
         // 缓存引用
         private Pawn mechPawn;
         private CompPowerTrader powerComp;
         private CompMechPilotHolder pilotComp;
+        
+        // 状态平滑
+        private const int MOVEMENT_CHECK_INTERVAL = 10; // 每10ticks检查一次移动
+        private const int STOP_DELAY_TICKS = 30; // 停止后延迟30ticks再停止音效
+        private const float SPEED_SMOOTHING = 0.2f; // 速度平滑系数
         
         public override void Initialize(CompProperties props)
         {
@@ -32,11 +39,9 @@ namespace DivineDiurganate
         {
             base.PostSpawnSetup(respawningAfterLoad);
             
-            // 获取组件引用
             powerComp = parent.TryGetComp<CompPowerTrader>();
             pilotComp = parent.TryGetComp<CompMechPilotHolder>();
             
-            // 初始化位置 - 使用安全的获取方式
             if (mechPawn != null && mechPawn.Spawned)
             {
                 lastPosition = GetCurrentPositionSafe();
@@ -47,27 +52,100 @@ namespace DivineDiurganate
         {
             base.CompTick();
             
-            // 检查基础条件
-            if (!ShouldProcess())
-                return;
+            // 每帧都更新位置，但减少移动状态检查频率
+            if (mechPawn != null && mechPawn.Spawned)
+            {
+                UpdatePosition();
+            }
             
-            // 更新移动状态
-            UpdateMovementState();
+            // 每10ticks检查一次移动状态
+            if (Find.TickManager.TicksGame % MOVEMENT_CHECK_INTERVAL == 0)
+            {
+                UpdateMovementState();
+            }
             
-            // 更新音效状态
-            UpdateSoundState();
+            // 每帧维持音效
+            MaintainSound();
         }
         
-        public override void CompTickRare()
+        // 安全的获取当前位置
+        private Vector3 GetCurrentPositionSafe()
         {
-            base.CompTickRare();
+            try
+            {
+                if (mechPawn == null || !mechPawn.Spawned)
+                    return mechPawn?.Position.ToVector3Shifted() ?? Vector3.zero;
+                
+                // 优先使用DrawPos，如果不可用则使用网格位置
+                if (mechPawn.Drawer != null)
+                {
+                    return mechPawn.DrawPos;
+                }
+                return mechPawn.Position.ToVector3Shifted();
+            }
+            catch
+            {
+                return mechPawn?.Position.ToVector3Shifted() ?? Vector3.zero;
+            }
+        }
+        
+        // 更新位置（每帧）
+        private void UpdatePosition()
+        {
+            Vector3 currentPos = GetCurrentPositionSafe();
             
-            // 稀有tick也检查，用于节省性能
+            // 计算当前帧的速度（使用真实时间）
+            float deltaTime = Time.deltaTime;
+            if (deltaTime > 0)
+            {
+                float distance = Vector3.Distance(currentPos, lastPosition);
+                float rawSpeed = distance / deltaTime;
+                
+                // 应用平滑过滤
+                currentSpeed = Mathf.Lerp(currentSpeed, rawSpeed, SPEED_SMOOTHING);
+            }
+            
+            lastPosition = currentPos;
+        }
+        
+        // 更新移动状态（低频检查）
+        private void UpdateMovementState()
+        {
             if (!ShouldProcess())
+            {
+                ticksSinceLastMovement++;
+                if (isPlaying && ticksSinceLastMovement > STOP_DELAY_TICKS)
+                {
+                    StopSound();
+                }
                 return;
+            }
             
-            UpdateMovementState();
-            UpdateSoundState();
+            // 检查是否在移动
+            bool isMoving = CheckIfMoving();
+            
+            // 更新移动状态
+            if (isMoving)
+            {
+                ticksSinceLastMovement = 0;
+                
+                if (!isPlaying)
+                {
+                    StartSound();
+                }
+            }
+            else
+            {
+                ticksSinceLastMovement++;
+                
+                // 延迟停止，避免频繁启停
+                if (isPlaying && ticksSinceLastMovement > STOP_DELAY_TICKS)
+                {
+                    StopSound();
+                }
+            }
+            
+            wasMovingLastTick = isMoving;
         }
         
         // 检查是否应该处理音效
@@ -76,96 +154,70 @@ namespace DivineDiurganate
             if (mechPawn == null || Props.movementSound == null)
                 return false;
             
-            // 检查是否已生成
-            if (!mechPawn.Spawned)
-            {
-                StopSound();
-                return false;
-            }
-            
             // 基础状态检查
-            if (mechPawn.Dead || mechPawn.Downed || mechPawn.InMentalState)
+            if (!mechPawn.Spawned || mechPawn.Dead || mechPawn.Downed || mechPawn.InMentalState)
                 return false;
             
-            // 检查绘制器是否可用
-            if (mechPawn.Drawer == null)
-                return false;
-            
-            // 检查电源需求
+            // 条件检查
             if (Props.requirePower && powerComp != null && !powerComp.PowerOn)
                 return false;
             
-            // 检查驾驶员需求
             if (Props.requirePilot && pilotComp != null && !pilotComp.HasPilots)
                 return false;
             
             return true;
         }
         
-        // 安全的获取当前位置方法
-        private Vector3 GetCurrentPositionSafe()
+        // 综合判断是否在移动
+        private bool CheckIfMoving()
         {
-            try
+            // 方法1：速度阈值
+            if (currentSpeed > Props.minMovementSpeed)
+                return true;
+            
+            // 方法2：检查寻路器
+            if (mechPawn.pather?.Moving ?? false)
+                return true;
+            
+            // 方法3：检查当前任务
+            var job = mechPawn.CurJob;
+            if (job != null)
             {
-                if (mechPawn == null || !mechPawn.Spawned || mechPawn.Drawer == null)
-                    return mechPawn?.Position.ToVector3Shifted() ?? Vector3.zero;
-                
-                return mechPawn.DrawPos;
+                if (job.def == JobDefOf.Goto ||
+                    job.def == JobDefOf.GotoWander ||
+                    job.def == JobDefOf.Flee ||
+                    job.def == JobDefOf.Follow)
+                    return true;
             }
-            catch (System.NullReferenceException)
-            {
-                // 如果DrawPos访问失败，返回网格位置
-                return mechPawn?.Position.ToVector3Shifted() ?? Vector3.zero;
-            }
+            
+            return false;
         }
         
-        // 更新移动状态
-        private void UpdateMovementState()
+        // 维持音效
+        private void MaintainSound()
         {
-            if (mechPawn == null || !mechPawn.Spawned)
-                return;
-            
-            // 安全的获取当前位置
-            Vector3 currentPos = GetCurrentPositionSafe();
-            
-            // 计算当前速度（使用帧时间或固定deltaTime）
-            float deltaTime = 1f / 60f; // 假设60fps
-            
-            // 使用Vector3.Distance计算距离
-            float distance = Vector3.Distance(currentPos, lastPosition);
-            
-            // 避免除以零和过大的值
-            currentSpeed = distance / Mathf.Max(deltaTime, 0.0001f);
-            
-            // 更新最后位置
-            lastPosition = currentPos;
-        }
-        
-        // 更新音效状态
-        private void UpdateSoundState()
-        {
-            bool shouldBeMoving = currentSpeed > Props.minMovementSpeed;
-            
-            // 状态变化
-            if (shouldBeMoving && !isPlaying)
-            {
-                StartSound();
-            }
-            else if (!shouldBeMoving && isPlaying)
-            {
-                StopSound();
-            }
-            
-            // 维持音效（如果正在播放）
-            if (soundSustainer != null)
+            if (soundSustainer != null && isPlaying)
             {
                 try
                 {
+                    // 更新音效位置
+                    if (mechPawn != null && mechPawn.Spawned)
+                    {
+                        var map = mechPawn.Map;
+                        if (map != null)
+                        {
+                            // 创建一个新的SoundInfo来更新位置
+                            SoundInfo soundInfo = SoundInfo.InMap(mechPawn, MaintenanceType.PerTick);
+                            soundSustainer?.SustainerUpdate();
+                        }
+                    }
+                    
+                    // 维持音效
                     soundSustainer.Maintain();
                 }
-                catch (System.NullReferenceException)
+                catch
                 {
-                    // 如果sustainer突然变为null，重置状态
+                    // 如果sustainer失效，重置状态
                     soundSustainer = null;
                     isPlaying = false;
                 }
@@ -183,22 +235,21 @@ namespace DivineDiurganate
                 // 创建音效信息
                 SoundInfo soundInfo = SoundInfo.InMap(mechPawn, MaintenanceType.PerTick);
                 
-                // 创建sustainer
+                // 使用TrySpawnSustainer
                 soundSustainer = Props.movementSound.TrySpawnSustainer(soundInfo);
                 
-                if (soundSustainer == null)
+                if (soundSustainer != null)
+                {
+                    isPlaying = true;
+                }
+                else
                 {
                     Log.Warning($"[DD] Failed to create sustainer for {Props.movementSound.defName}");
                     isPlaying = false;
                 }
-                else
-                {
-                    isPlaying = true;
-                }
             }
-            catch (System.Exception ex)
+            catch
             {
-                Log.Error($"[DD] Error starting movement sound: {ex}");
                 soundSustainer = null;
                 isPlaying = false;
             }
@@ -211,11 +262,11 @@ namespace DivineDiurganate
             {
                 try
                 {
-                    soundSustainer.End();
-                }
-                catch (System.NullReferenceException)
-                {
-                    // 如果sustainer已无效，忽略异常
+                    // 先检查sustainer是否有效
+                    if (!soundSustainer.Ended)
+                    {
+                        soundSustainer.End();
+                    }
                 }
                 finally
                 {
@@ -225,7 +276,7 @@ namespace DivineDiurganate
             }
         }
         
-        // 当机甲被摧毁或禁用时
+        // 事件处理
         public override void PostDestroy(DestroyMode mode, Map previousMap)
         {
             base.PostDestroy(mode, previousMap);
@@ -238,23 +289,23 @@ namespace DivineDiurganate
             StopSound();
         }
         
-        // 当机甲倒下时
         public override void Notify_Downed()
         {
             base.Notify_Downed();
             StopSound();
         }
         
-        // 序列化状态
+        // 序列化
         public override void PostExposeData()
         {
             base.PostExposeData();
             
-            // 保存基础状态
             Scribe_Values.Look(ref lastPosition, "lastPosition", Vector3.zero);
             Scribe_Values.Look(ref currentSpeed, "currentSpeed", 0f);
+            Scribe_Values.Look(ref ticksSinceLastMovement, "ticksSinceLastMovement", 0);
+            Scribe_Values.Look(ref wasMovingLastTick, "wasMovingLastTick", false);
             
-            // 重置音效状态，加载后重新判断
+            // 加载后重新初始化
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 soundSustainer = null;
@@ -262,7 +313,7 @@ namespace DivineDiurganate
             }
         }
         
-        // 调试Gizmo
+        // 调试信息
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
             foreach (Gizmo gizmo in base.CompGetGizmosExtra())
@@ -274,10 +325,11 @@ namespace DivineDiurganate
             {
                 yield return new Command_Action
                 {
-                    defaultLabel = "DEV: Toggle Sound",
-                    defaultDesc = "Toggle movement sound effect",
+                    defaultLabel = "DEV: Sound Debug",
+                    defaultDesc = GetDebugInfo(),
                     action = () =>
                     {
+                        // 切换声音状态
                         if (soundSustainer == null)
                         {
                             StartSound();
@@ -290,37 +342,18 @@ namespace DivineDiurganate
                         }
                     }
                 };
-                
-                yield return new Command_Action
-                {
-                    defaultLabel = $"Speed: {currentSpeed:F2}",
-                    defaultDesc = $"Moving: {currentSpeed > Props.minMovementSpeed}, Min: {Props.minMovementSpeed}",
-                    action = () => {}
-                };
-                
-                yield return new Command_Action
-                {
-                    defaultLabel = $"Sound: {(isPlaying ? "ON" : "OFF")}",
-                    defaultDesc = $"Spawned: {mechPawn.Spawned}, Drawer: {mechPawn.Drawer != null}",
-                    action = () => {}
-                };
             }
         }
         
-        // 获取状态信息（用于调试）
-        public string GetStatusInfo()
+        private string GetDebugInfo()
         {
-            if (mechPawn == null)
-                return "Mech pawn is null";
-                
-            return $"Movement Sound Status:\n" +
-                   $"  Active: {(isPlaying ? "Yes" : "No")}\n" +
-                   $"  Moving: {currentSpeed > Props.minMovementSpeed}\n" +
-                   $"  Speed: {currentSpeed:F2}\n" +
-                   $"  Spawned: {mechPawn.Spawned}\n" +
-                   $"  Drawer: {mechPawn.Drawer != null}\n" +
-                   $"  Has Pilot: {(pilotComp?.HasPilots ?? false ? "Yes" : "No")}\n" +
-                   $"  Has Power: {(powerComp?.PowerOn ?? true ? "Yes" : "No")}";
+            return $"Movement Sound Debug:\n" +
+                   $"  Playing: {isPlaying}\n" +
+                   $"  Speed: {currentSpeed:F2} (min: {Props.minMovementSpeed})\n" +
+                   $"  Ticks since move: {ticksSinceLastMovement}\n" +
+                   $"  Sustainer: {soundSustainer != null}\n" +
+                   $"  Was moving: {wasMovingLastTick}\n" +
+                   $"  Pawn pathing: {mechPawn.pather?.Moving ?? false}";
         }
     }
 }

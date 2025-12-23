@@ -3,8 +3,8 @@
   
   <!-- EN: SHM86-Knell -->
   <DD_SHM86_Knell_Mech.label>SHM86-丧钟</DD_SHM86_Knell_Mech.label>
-  <!-- EN: The skirmisher-type mech equipped with grenades , excels in striking groups of enemy troops at medium distances with high maneuverability. -->
-  <DD_SHM86_Knell_Mech.description>装备榴弹的散兵型机甲，擅长以高机动性在中距离打击成群的敌军。</DD_SHM86_Knell_Mech.description>
+  <!-- EN: Skirmisher mech with equipped grenade which can withstand light weapons fire, allowing pilots of Diurganate to take their time in the cockpit and strike enemy forces with high maneuverability. -->
+  <DD_SHM86_Knell_Mech.description>装备榴弹的散兵型机甲，可以抵挡轻型武器的射击，让双尾教国的机师们能够在驾驶室里从容不迫地以高机动性打击敌军。</DD_SHM86_Knell_Mech.description>
   <!-- EN: hoof -->
   <DD_SHM86_Knell_Mech.tools.hoof.label>踩踏</DD_SHM86_Knell_Mech.tools.hoof.label>
   
