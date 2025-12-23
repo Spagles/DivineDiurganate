@@ -27,6 +27,7 @@ namespace DivineDiurganate
             if (pawn is DDmechunit)
             {
                 pawn.drafter = new Pawn_DraftController(pawn);
+                pawn.skills = new Pawn_SkillTracker(pawn);
             }
         }
     }

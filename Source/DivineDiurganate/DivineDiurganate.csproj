@@ -76,15 +76,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HarmonyPatches\Patche_SkillSystem.cs" />
     <Compile Include="HarmonyPatches\Patch_ColonistBarMech.cs" />
     <Compile Include="HarmonyPatches\Patch_MechSpecificWeapon.cs" />
+    <Compile Include="HarmonyPatches\Patch_TakeDamage.cs" />
     <Compile Include="IHMFMod.cs" />
     <Compile Include="HarmonyPatches\Patch_DDmechunit.cs" />
     <Compile Include="IHMF_DefOf.cs" />
+    <Compile Include="ITab\ITab_MechSkills.cs" />
     <Compile Include="Pawn\DDmechunit.cs" />
     <Compile Include="Pawn_Comps\CompSkillLevelDebug.cs" />
     <Compile Include="Pawn_Comps\DefaultPilotEntry\CompMechDefaultPilot.cs" />
     <Compile Include="Pawn_Comps\DefaultPilotEntry\CompProperties_MechDefaultPilot.cs" />
+    <Compile Include="Pawn_Comps\MechArmor\CompMechArmor.cs" />
     <Compile Include="Pawn_Comps\MechFuel\CompMechFuel.cs" />
     <Compile Include="Pawn_Comps\MechFuel\CompProperties_MechFuel.cs" />
     <Compile Include="Pawn_Comps\MechFuel\Gizmo_MechFuelStatus.cs" />
