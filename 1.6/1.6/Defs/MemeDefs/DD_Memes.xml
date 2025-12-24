@@ -9,22 +9,22 @@
 
   <MemeDef>
     <defName>DD_Diurganate_Meme</defName>
-    <label>Commandment Of Diurganate</label>
-    <description>Commandment Of Diurganate.</description>
+    <label>双尾戒律</label>
+    <description>圣双尾教国的戒律，它规定了鼠鼠信徒们应当执行的仪式。</description>
     <iconPath>UI/Memes/PrimacyHuman</iconPath>
     <groupDef>DD_Diurganate_Memegroup</groupDef>
     <impact>3</impact>
     <renderOrder>50</renderOrder>
     <requireOne> 
       <li>
-        <li>Bonding_Disapproved</li>
+        <li>DD_Diurganate_Precept</li>
       </li>
     </requireOne>
     <consumableBuildings>
       <li>Effigy</li>
     </consumableBuildings>
     <exclusionTags>
-      <li>Primacy</li>
+      <li>DD_Diurganate_Memegroup</li>
     </exclusionTags>
     <generalRules>
       <rulesStrings>
@@ -95,7 +95,7 @@
   </IssueDef>
 
   <PreceptDef>
-    <defName>Bonding_Disapproved</defName>
+    <defName>DD_Diurganate_Precept</defName>
     <issue>Bonding</issue>
     <label>disapproved</label>
     <description>To emotionally bond with a lower being is a shameful act.</description>

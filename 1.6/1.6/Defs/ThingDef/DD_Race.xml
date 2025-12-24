@@ -210,6 +210,12 @@
         <!-- 工作的WorkTag，按理来说不需要更改 -->
         <!-- The WorkTag for the job, which ideally should not be changed -->
         <pilotWorkTag>MechPilot</pilotWorkTag>
+        
+        <!-- 低血量自动弹出配置 -->
+        <autoEjectHealthPercent>0.05</autoEjectHealthPercent> <!-- 30%血量时自动弹出 -->
+        <autoEjectEnabled>true</autoEjectEnabled> <!-- 启用自动弹出 -->
+        <blockEntryWhenLowHealth>true</blockEntryWhenLowHealth> <!-- 低血量时禁止进入 -->
+        <minHealthForEntry>0.05</minHealthForEntry> <!-- 需要50%以上血量才能进入 -->
 
         <!-- 你可以定义进入和离开图标 -->
         <!-- You can define the entry and exit icons -->
@@ -295,7 +301,11 @@
         <blockEffectMote></blockEffectMote>
         <soundOnBlock></soundOnBlock>
       </li>
-      
+      <!-- 机甲的经验系统 -->
+      <li Class="DivineDiurganate.CompProperties_MechSkillInheritance">
+        <baseSkillLevelWhenNoPilot>0</baseSkillLevelWhenNoPilot>
+        <skillMultiplierForPilots>1</skillMultiplierForPilots>
+      </li>
       
       <!-- 机甲的烟囱 -->
       <li Class="DivineDiurganate.CompProperties_MoteEmitterNorthward">
@@ -322,11 +332,14 @@
         <movementSound>DD_SHM86_Knell_Mech_Moving_Sound</movementSound>
       </li>
 
-      <li Class="DivineDiurganate.CompProperties_SkillLevelDebug"/>
-
-      <li Class="DivineDiurganate.CompProperties_MechSkillInheritance">
-        <baseSkillLevelWhenNoPilot>0</baseSkillLevelWhenNoPilot>
-        <skillMultiplierForPilots>1</skillMultiplierForPilots>
+      <li Class="CompProperties_Explosive">
+        <wickTicks>0</wickTicks>
+        <explosiveRadius>6.5</explosiveRadius>
+        <explosiveDamageType>Flame</explosiveDamageType>
+        <explodeOnKilled>true</explodeOnKilled>
+        <preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+        <preExplosionSpawnChance>1</preExplosionSpawnChance>
+        <chanceNeverExplodeFromDamage>1</chanceNeverExplodeFromDamage>
       </li>
     </comps>
   </ThingDef>
