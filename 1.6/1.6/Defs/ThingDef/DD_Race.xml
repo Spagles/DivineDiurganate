@@ -120,8 +120,8 @@
   <!-- 机甲pawn -->
   <!-- Mech pawn -->
   <ThingDef ParentName="BasePawn">
-    <defName>DD_SHM86_Knell_Mech</defName>
-    <label>SHM86-Knell</label>
+    <defName>DD_DHM86_Knell_Mech</defName>
+    <label>DHM86-Knell</label>
     <description>Skirmisher mech with equipped grenade which can withstand light weapons fire, allowing pilots of Diurganate to take their time in the cockpit and strike enemy forces with high maneuverability.</description>
     <!-- 重要！这个新的thingclass代表其是一台机甲，如果遗漏，接下来的内容都无法生效！ -->
     <!-- Important! This new thingclass represents a mecha. If omitted, the following content will not take effect! -->
@@ -146,6 +146,11 @@
       <ArmorRating_Sharp>0.75</ArmorRating_Sharp>
       <ArmorRating_Heat>1.5</ArmorRating_Heat>
       <Flammability>0</Flammability>
+      <ToxicResistance>1</ToxicResistance>
+      <PsychicSensitivity>1</PsychicSensitivity>
+      <InjuryHealingFactor>0</InjuryHealingFactor>
+      <ToxicEnvironmentResistance>1</ToxicEnvironmentResistance>
+      <VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">1</VacuumResistance>
 
       <!-- 圣化镀层的数值，伤害*穿甲率低于此数值将被直接抵挡 -->
       <!-- value of the Sanctified Armour, damage * armor piercing rate below which will be directly resisted -->
@@ -153,7 +158,7 @@
     </statBases>
     <race>
       <trainability>None</trainability>
-      <body>DD_Race_SHM86_Knell_Body</body>
+      <body>DD_Race_DHM86_Knell_Body</body>
       <fleshType>DD_Mech_Fleshtype</fleshType>
       <thinkTreeMain>DD_Battle_Mech_With_1_Pilot</thinkTreeMain>
       <intelligence>ToolUser</intelligence>
@@ -210,13 +215,9 @@
         <!-- 工作的WorkTag，按理来说不需要更改 -->
         <!-- The WorkTag for the job, which ideally should not be changed -->
         <pilotWorkTag>MechPilot</pilotWorkTag>
-        
-        <!-- 低血量自动弹出配置 -->
-        <autoEjectHealthPercent>0.05</autoEjectHealthPercent> <!-- 30%血量时自动弹出 -->
-        <autoEjectEnabled>true</autoEjectEnabled> <!-- 启用自动弹出 -->
-        <blockEntryWhenLowHealth>true</blockEntryWhenLowHealth> <!-- 低血量时禁止进入 -->
-        <minHealthForEntry>0.05</minHealthForEntry> <!-- 需要50%以上血量才能进入 -->
 
+        <ejectPilotHealthPercentThreshold>0.2</ejectPilotHealthPercentThreshold>
+        
         <!-- 你可以定义进入和离开图标 -->
         <!-- You can define the entry and exit icons -->
         <summonPilotIcon>DivineDiurganate/UI/Commands/DD_Enter_Mech</summonPilotIcon>
@@ -267,7 +268,7 @@
       <li Class="DivineDiurganate.CompProperties_MechInherentWeapon">
         <!-- 此处指定的武器被视为机甲本身的武器，如果它们因为某些原因遗失或被替换，则下一个检查周期时，将重新给予机甲固有武器 -->
         <!-- The weapons specified here are considered as the inherent weapons of the mech itself. If they are lost or replaced for some reason, the mech will be re-equipped with its inherent weapons during the next inspection cycle. -->
-        <weaponDef>DD_SHM86_Knell_Mech_Weapon</weaponDef>
+        <weaponDef>DD_DHM86_Knell_Mech_Weapon</weaponDef>
       </li>
       <!-- 这个comps定义了机甲的默认驾驶员，通常用于希望生成机甲袭击等情况（非必须） -->
       <!-- This component defines the default pilot for mechs, typically used when generating mech attacks or similar situations (optional) -->
@@ -329,39 +330,57 @@
 
       <!-- 机甲移动音效 -->
       <li Class="DivineDiurganate.CompProperties_MechMovementSound">
-        <movementSound>DD_SHM86_Knell_Mech_Moving_Sound</movementSound>
+        <movementSound>DD_DHM86_Knell_Mech_Moving_Sound</movementSound>
       </li>
 
-      <li Class="CompProperties_Explosive">
-        <wickTicks>0</wickTicks>
-        <explosiveRadius>6.5</explosiveRadius>
+      <!-- 自毁组件 -->
+      <li Class="DivineDiurganate.CompProperties_MechSelfDestruct">
+        <!-- 自毁参数 -->
+        <healthPercentThreshold>0.2</healthPercentThreshold> <!-- 15%血量时自毁 -->
+        <wickTicks>120~180</wickTicks>
+        <drawWick>true</drawWick>
+        
+        <!-- 爆炸参数 -->
+        <explosiveRadius>4.5</explosiveRadius>
         <explosiveDamageType>Flame</explosiveDamageType>
-        <explodeOnKilled>true</explodeOnKilled>
-        <preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
-        <preExplosionSpawnChance>1</preExplosionSpawnChance>
-        <chanceNeverExplodeFromDamage>1</chanceNeverExplodeFromDamage>
+        <damageAmountBase>5</damageAmountBase>
+        <armorPenetrationBase>2</armorPenetrationBase>
+        <chanceToStartFire>0.25</chanceToStartFire>
+        <damageFalloff>true</damageFalloff>
+        <doVisualEffects>true</doVisualEffects>
+        <doSoundEffects>true</doSoundEffects>
+        <propagationSpeed>1</propagationSpeed>
+        
+        <!-- 爆炸效果 -->
+        <!-- <explosionEffect>Explosion</explosionEffect> -->
+        <explosionSound>Explosion_Bomb</explosionSound>
+        
+        <!-- 触发条件 -->
+        <triggerOnDeath>true</triggerOnDeath>
+        <triggerOnHealthThreshold>true</triggerOnHealthThreshold>
+        <chanceNeverExplode>0</chanceNeverExplode> <!-- 5%几率永不爆炸 -->
       </li>
     </comps>
   </ThingDef>
   <!-- pawnkind没有什么特别的 -->
   <!-- There is nothing special about pawnkind -->
 	<PawnKindDef>
-		<defName>DD_SHM86_Knell_Mech</defName>
-		<label>SHM86-Knell</label>
-		<race>DD_SHM86_Knell_Mech</race>
+		<defName>DD_DHM86_Knell_Mech</defName>
+		<label>DHM86-Knell</label>
+		<race>DD_DHM86_Knell_Mech</race>
 		<defaultFactionType>PlayerColony</defaultFactionType>
 		<forceDeathOnDowned>false</forceDeathOnDowned>
 		<forceNoDeathNotification>false</forceNoDeathNotification>
     <collidesWithPawns>false</collidesWithPawns>
 		<combatPower>200</combatPower>
     <weaponTags>
-      <li>DD_SHM86_Knell_Mech_Weapon</li>
+      <li>DD_DHM86_Knell_Mech_Weapon</li>
     </weaponTags>
     <weaponMoney>99999~99999</weaponMoney>
 		<lifeStages>
 			<li>
 				<bodyGraphicData>
-					<texPath>DivineDiurganate/Things/DD_SHM86_Knell/Naked_Thin</texPath>
+					<texPath>DivineDiurganate/Things/DD_DHM86_Knell/Naked_Thin</texPath>
 					<drawSize>3.5</drawSize>
 					<shadowData>
 						<volume>(0.4, 0.5, 0.37)</volume>

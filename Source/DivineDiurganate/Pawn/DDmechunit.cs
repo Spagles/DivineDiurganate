@@ -120,7 +120,6 @@ namespace DivineDiurganate
             var pilotComp = this.TryGetComp<CompMechPilotHolder>();
             if (pilotComp != null && pilotComp.HasPilots)
             {
-                Log.Message($"[DD] 机甲死亡前弹出驾驶员: {this.LabelShort}");
                 pilotComp.EjectAllPilotsOnDeath();
             }
             
@@ -134,7 +133,6 @@ namespace DivineDiurganate
             var pilotComp = this.TryGetComp<CompMechPilotHolder>();
             if (pilotComp != null && pilotComp.HasPilots)
             {
-                Log.Message($"[DD] 机甲销毁前弹出驾驶员: {this.LabelShort}");
                 pilotComp.EjectAllPilotsOnDeath();
             }
             

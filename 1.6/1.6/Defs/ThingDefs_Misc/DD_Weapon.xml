@@ -52,7 +52,7 @@
       <!-- This specifies the mech whose weapon this is. Other mechs and non-mech pawns cannot pick up this weapon -->
       <li Class="DivineDiurganate.CompProperties_MechOnlyWeapon">
         <allowedMechRaces>
-          <li>DD_SHM86_Knell_Mech</li>
+          <li>DD_DHM86_Knell_Mech</li>
         </allowedMechRaces>
       </li>
       <!-- 造成范围伤害的近战攻击，我只是想让镰刀攻击看起来更帅一些才写了这些东西，本身并不是机甲系统必须的 -->
@@ -171,12 +171,12 @@
 
   <!-- ranged -->
   <ThingDef ParentName="BaseMakeableGrenade">
-    <defName>DD_SHM86_Knell_Mech_Weapon</defName>
+    <defName>DD_DHM86_Knell_Mech_Weapon</defName>
     <label>Winches Grenade Launcher</label>
-    <description>The weapon of SHM86 Knell , which can launch powerful grenades to a distant location through a pair of winches.</description>
+    <description>The weapon of DHM86 Knell , which can launch powerful grenades to a distant location through a pair of winches.</description>
 	  <destroyOnDrop>true</destroyOnDrop>
     <tradeability>None</tradeability>
-    <uiIconPath>DivineDiurganate/Mote/DD_SHM86_Knell_Mech_Weapon_Proj</uiIconPath>
+    <uiIconPath>DivineDiurganate/Mote/DD_DHM86_Knell_Mech_Weapon_Proj</uiIconPath>
     <uiIconScale>0.75</uiIconScale>
     <recipeMaker>
       <recipeUsers Inherit="False" />
@@ -199,7 +199,7 @@
       <Chemfuel>80</Chemfuel>
     </costList>
     <weaponTags Inherit="False">
-      <li>DD_SHM86_Knell_Mech_Weapon</li>
+      <li>DD_DHM86_Knell_Mech_Weapon</li>
     </weaponTags>
     <thingCategories Inherit="False"/>
     <smeltable>false</smeltable>
@@ -213,21 +213,21 @@
         <warmupTime>0.75</warmupTime>
         <noiseRadius>4</noiseRadius>
         <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
-        <soundCast>DD_SHM86_Knell_Mech_Weapon_FireSound</soundCast>
+        <soundCast>DD_DHM86_Knell_Mech_Weapon_FireSound</soundCast>
         <targetParams>
           <canTargetLocations>true</canTargetLocations>
         </targetParams>
-        <defaultProjectile>DD_SHM86_Knell_Mech_Weapon_Proj</defaultProjectile>
+        <defaultProjectile>DD_DHM86_Knell_Mech_Weapon_Proj</defaultProjectile>
         <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
       </li>
     </verbs>
   </ThingDef>
   <ThingDef>
-    <defName>DD_SHM86_Knell_Mech_Weapon_Proj</defName>
+    <defName>DD_DHM86_Knell_Mech_Weapon_Proj</defName>
     <label>Grenade</label>
     <thingClass>Projectile_Explosive</thingClass>
     <graphicData>
-      <texPath>DivineDiurganate/Mote/DD_SHM86_Knell_Mech_Weapon_Proj</texPath>
+      <texPath>DivineDiurganate/Mote/DD_DHM86_Knell_Mech_Weapon_Proj</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>Transparent</shaderType>
       <drawSize>0.5</drawSize>

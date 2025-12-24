@@ -11,9 +11,9 @@
   <DD_EjectAllPilots>离开机甲</DD_EjectAllPilots>
   <DD_EjectAllPilotsDesc>让该机甲的驾驶员离开机甲</DD_EjectAllPilotsDesc>
   <DD_NoAvailablePilots>没有可以作为机甲驾驶员的殖民者</DD_NoAvailablePilots>
-  <IHMF_Equipment_For_Other_Mech>此装备不能由此机甲使用</IHMF_Equipment_For_Other_Mech>
-  <IHMF_Equipment_Not_Allow_For_Mech>此装备不是为机甲设计的</IHMF_Equipment_Not_Allow_For_Mech>
-  <IHMF_Human_Cannot_Equip_Mech_Weapon>此装备是专为机甲设计的，非机甲单位无法装备</IHMF_Human_Cannot_Equip_Mech_Weapon>
+  <DD_Equipment_For_Other_Mech>此装备不能由此机甲使用</DD_Equipment_For_Other_Mech>
+  <DD_Equipment_Not_Allow_For_Mech>此装备不是为机甲设计的</DD_Equipment_Not_Allow_For_Mech>
+  <DD_Human_Cannot_Equip_Mech_Weapon>此装备是专为机甲设计的，非机甲单位无法装备</DD_Human_Cannot_Equip_Mech_Weapon>
 
   <DD_Startup>机甲重新启动</DD_Startup>
   <DD_NoColonistAvailable>没有可以执行操作的殖民者</DD_NoColonistAvailable>
@@ -44,4 +44,7 @@
   <DD_EnterMech>进入 {0}</DD_EnterMech>
   <DD_MechFull>机甲驾驶员位置已满</DD_MechFull>
   <DD_CannotBecomePilot>不能成为该机甲的驾驶员</DD_CannotBecomePilot>
+  <DD_MechTooDamagedForEntry>该机甲损坏严重无法进入</DD_MechTooDamagedForEntry>
+
+  <DD_PilotsEjectedDueToLowHealth>{0}的损伤过于严重，驾驶员已被保险系统弹出</DD_PilotsEjectedDueToLowHealth>
 </LanguageData>

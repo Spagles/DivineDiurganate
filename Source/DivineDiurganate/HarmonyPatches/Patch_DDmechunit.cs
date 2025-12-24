@@ -2,6 +2,7 @@ using HarmonyLib;
 using RimWorld;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Verse;
 using Verse.AI;
 
@@ -235,4 +236,50 @@ namespace DivineDiurganate
             return true; // 继续执行原始方法
         }
     }
-}
+
+
+    [HarmonyPatch]
+    public static class Patch_Pawn_MeleeVerbs_TryMeleeAttack
+    {
+        // 获取要修补的方法
+        [HarmonyTargetMethod]
+        public static MethodBase TargetMethod()
+        {
+            // 查找 Pawn_MeleeVerbs.TryMeleeAttack 方法
+            return AccessTools.Method(typeof(Pawn_MeleeVerbs), nameof(Pawn_MeleeVerbs.TryMeleeAttack));
+        }
+        // 前置补丁：在原始方法执行前检查
+        [HarmonyPrefix]
+        public static bool Prefix(ref bool __result, Pawn_MeleeVerbs __instance, Thing target, Verb verbToUse, bool surpriseAttack)
+        {
+            try
+            {
+                // 获取 Pawn
+                var pawnField = AccessTools.Field(typeof(Pawn_MeleeVerbs), "pawn");
+                if (pawnField == null)
+                    return true; // 如果找不到字段，继续执行原方法
+                Pawn pawn = pawnField.GetValue(__instance) as Pawn;
+                if (pawn == null)
+                    return true;
+                // 检查是否为机甲
+                if (pawn is DDmechunit)
+                {
+                    // 检查是否有驾驶员
+                    var pilotComp = pawn.TryGetComp<CompMechPilotHolder>();
+                    if (pilotComp != null && !pilotComp.HasPilots)
+                    {
+                        // 没有驾驶员，阻止近战攻击
+                        __result = false;
+                        return false; // 跳过原始方法
+                    }
+                }
+                return true; // 继续执行原始方法
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"[DD] Harmony patch error in TryMeleeAttack: {ex}");
+                return true; // 出错时继续执行原始方法
+            }
+        }
+    }
+ }

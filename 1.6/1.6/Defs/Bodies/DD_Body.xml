@@ -30,8 +30,8 @@
   </BodyPartDef>
 
   <BodyDef>
-    <defName>DD_Race_SHM86_Knell_Body</defName>
-    <label>SHM86-Knell</label>
+    <defName>DD_Race_DHM86_Knell_Body</defName>
+    <label>DHM86-Knell</label>
     <corePart>
       <def>Torso</def>
       <height>Middle</height>

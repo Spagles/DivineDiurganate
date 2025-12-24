@@ -14,4 +14,15 @@ namespace DivineDiurganate
             DefOfHelper.EnsureInitializedInCtor(typeof(DD_JobDefOf));
         }
     }
+
+    [DefOf]
+    public static class DD_MentalStateDefOf
+    {
+        public static MentalStateDef DD_MechNoPilot;
+
+        static DD_MentalStateDefOf()
+        {
+            DefOfHelper.EnsureInitializedInCtor(typeof(DD_MentalStateDefOf));
+        }
+    }
 }

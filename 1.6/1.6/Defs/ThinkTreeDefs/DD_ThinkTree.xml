@@ -18,15 +18,15 @@
           </subNodes>
         </li>
 
-        <!-- <li Class="ThinkNode_Subtree">
+        <li Class="ThinkNode_Subtree">
           <treeDef>Downed</treeDef>
-        </li> -->
+        </li>
 
         <!-- 重点！你需要在思考树中插入此项，以规定当没有足够的驾驶员时，机甲将执行什么行动 -->
         <li Class="DivineDiurganate.ThinkNode_ConditionalMechHasPilot">
           <minPilotCount>1</minPilotCount>
           <subNodes>
-            <li Class="JobGiver_Idle"/>
+            <li Class="DivineDiurganate.JobGiver_NoPilot"/>
           </subNodes>
         </li>
 

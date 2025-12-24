@@ -85,6 +85,7 @@
     <Compile Include="HarmonyPatches\Patch_DDmechunit.cs" />
     <Compile Include="DD_DefOf.cs" />
     <Compile Include="ITab\ITab_MechSkills.cs" />
+    <Compile Include="MentalState\MentalState_MechNoPilot.cs" />
     <Compile Include="Pawn\DDmechunit.cs" />
     <Compile Include="Pawn_Comps\CompSkillLevelDebug.cs" />
     <Compile Include="Pawn_Comps\DefaultPilotEntry\CompMechDefaultPilot.cs" />
@@ -99,6 +100,8 @@
     <Compile Include="Pawn_Comps\MechMovementSound\CompProperties_MechMovementSound.cs" />
     <Compile Include="Pawn_Comps\MechPilotHolder\CompMechPilotHolder.cs" />
     <Compile Include="Pawn_Comps\MechRepairable\CompMechRepairable.cs" />
+    <Compile Include="Pawn_Comps\MechSelfDestruct\CompMechSelfDestruct.cs" />
+    <Compile Include="Pawn_Comps\MechSelfDestruct\CompProperties_MechSelfDestruct.cs" />
     <Compile Include="Pawn_Comps\MechSkillInheritance\CompMechSkillInheritance.cs" />
     <Compile Include="Pawn_Comps\MoteEmitterNorthward\CompMoteEmitterNorthward.cs" />
     <Compile Include="Projectile\Projectile_PenetratingBullet.cs" />
@@ -114,6 +117,7 @@
     <Compile Include="Work\RefuelMech\WorkGiver_RefuelMech.cs" />
     <Compile Include="Work\RepairMech\JobDriver_RepairMech.cs" />
     <Compile Include="Work\RepairMech\WorkGiver_RepairMech.cs" />
+    <Compile Include="Work\JobGiver_NoPilot.cs" />
     <Compile Include="Work\ThinkNode_ConditionalMechHasPilot.cs" />
   </ItemGroup>
   <ItemGroup />

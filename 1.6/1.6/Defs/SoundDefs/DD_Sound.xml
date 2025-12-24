@@ -17,14 +17,14 @@
     </subSounds>
   </SoundDef>
   <SoundDef>
-    <defName>DD_SHM86_Knell_Mech_Weapon_FireSound</defName>
+    <defName>DD_DHM86_Knell_Mech_Weapon_FireSound</defName>
     <context>MapOnly</context>
     <maxSimultaneous>2</maxSimultaneous>
     <subSounds>
       <li>
         <grains>
           <li Class="AudioGrain_Clip">
-            <clipPath>DivineDiurganate/DD_SHM86_Knell_Mech_Weapon_FireSound</clipPath>
+            <clipPath>DivineDiurganate/DD_DHM86_Knell_Mech_Weapon_FireSound</clipPath>
           </li>
         </grains>
         <volumeRange>65</volumeRange>
@@ -33,18 +33,18 @@
     </subSounds>
   </SoundDef>
   <SoundDef>
-    <defName>DD_SHM86_Knell_Mech_Moving_Sound</defName>
+    <defName>DD_DHM86_Knell_Mech_Moving_Sound</defName>
     <sustain>true</sustain>
     <context>MapOnly</context>
     <maxSimultaneous>2</maxSimultaneous>
     <priorityMode>PrioritizeNearest</priorityMode>
-    <sustainStopSound>DD_SHM86_Knell_Mech_Moving_Stop_Sound</sustainStopSound>
+    <sustainStopSound>DD_DHM86_Knell_Mech_Moving_Stop_Sound</sustainStopSound>
     <subSounds>
       <li>
         <tempoAffectedByGameSpeed>true</tempoAffectedByGameSpeed>
         <grains>
           <li Class="AudioGrain_Clip">
-            <clipPath>DivineDiurganate/DD_SHM86_Knell_Mech_Moving_Sound</clipPath>
+            <clipPath>DivineDiurganate/DD_DHM86_Knell_Mech_Moving_Sound</clipPath>
           </li>
         </grains>
         <pitchRange>0.99~1.01</pitchRange>
@@ -54,7 +54,7 @@
     </subSounds>
   </SoundDef>
   <SoundDef>
-    <defName>DD_SHM86_Knell_Mech_Moving_Stop_Sound</defName>
+    <defName>DD_DHM86_Knell_Mech_Moving_Stop_Sound</defName>
     <context>MapOnly</context>
     <maxSimultaneous>2</maxSimultaneous>
     <priorityMode>PrioritizeNearest</priorityMode>
@@ -63,7 +63,7 @@
         <tempoAffectedByGameSpeed>true</tempoAffectedByGameSpeed>
         <grains>
           <li Class="AudioGrain_Clip">
-            <clipPath>DivineDiurganate/DD_SHM86_Knell_Mech_Moving_Stop_Sound</clipPath>
+            <clipPath>DivineDiurganate/DD_DHM86_Knell_Mech_Moving_Stop_Sound</clipPath>
           </li>
         </grains>
         <pitchRange>0.99~1.01</pitchRange>

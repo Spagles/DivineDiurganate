@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
   <ThingDef ParentName="BuildingBase">
-    <defName>DD_SHM86_Knell_Building</defName>
-    <label>SHM86-Knell</label>
+    <defName>DD_DHM86_Knell_Building</defName>
+    <label>DHM86-Knell</label>
     <description>Skirmisher mech with equipped grenade which can withstand light weapons fire, allowing pilots of Diurganate to take their time in the cockpit and strike enemy forces with high maneuverability.</description>
     <uiOrder>2040</uiOrder>
     <altitudeLayer>Building</altitudeLayer>
@@ -14,7 +14,7 @@
     <tickerType>Normal</tickerType>
     <graphicData>
       <drawSize>3.5</drawSize>
-      <texPath>DivineDiurganate/Things/DD_SHM86_Knell/Naked_Thin_north</texPath>
+      <texPath>DivineDiurganate/Things/DD_DHM86_Knell/Naked_Thin_north</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <statBases>
@@ -40,7 +40,7 @@
     <!-- Core comps, used to destroy the building upon completion to generate a pawn -->
     <comps>
       <li Class="DivineDiurganate.CompProperties_BuildToPawn">
-        <pawnKindDef>DD_SHM86_Knell_Mech</pawnKindDef>
+        <pawnKindDef>DD_DHM86_Knell_Mech</pawnKindDef>
         <spawnCount>1</spawnCount>
         <inheritFaction>true</inheritFaction>
       </li>
