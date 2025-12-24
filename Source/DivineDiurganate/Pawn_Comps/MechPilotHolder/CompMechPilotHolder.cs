@@ -1,9 +1,8 @@
-// CompMechPilotHolder.cs
+// File: CompMechPilotHolder_Fixed.cs
 using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.NetworkInformation;
 using UnityEngine;
 using Verse;
 using Verse.AI;
@@ -20,7 +19,7 @@ namespace DivineDiurganate
         public string ejectPilotIcon = "DivineDiurganate/UI/Commands/DD_Exit_Mech";
 
         // 新增：单个驾驶员弹出图标配置
-        public string ejectSinglePilotIcon = null; // 如果为null，则使用pawn的头像
+        public string ejectSinglePilotIcon = null;
 
         public CompProperties_MechPilotHolder()
         {
@@ -34,7 +33,6 @@ namespace DivineDiurganate
             {
                 return ContentFinder<Texture2D>.Get(summonPilotIcon);
             }
-            // 默认图标
             return ContentFinder<Texture2D>.Get("UI/Commands/SummonPilot", false) ??
                    BaseContent.BadTex;
         }
@@ -45,7 +43,6 @@ namespace DivineDiurganate
             {
                 return ContentFinder<Texture2D>.Get(ejectPilotIcon);
             }
-            // 默认图标
             return ContentFinder<Texture2D>.Get("UI/Commands/Eject", false) ??
                    BaseContent.BadTex;
         }
@@ -55,6 +52,9 @@ namespace DivineDiurganate
     {
         public ThingOwner innerContainer;
         
+        // 标记是否正在处理死亡/销毁事件，避免重复处理
+        private bool isProcessingDestruction = false;
+        
         public CompProperties_MechPilotHolder Props => (CompProperties_MechPilotHolder)props;
         
         public int CurrentPilotCount => innerContainer.Count;
@@ -62,7 +62,7 @@ namespace DivineDiurganate
         public bool HasRoom => innerContainer.Count < Props.maxPilots;
         public bool IsFull => innerContainer.Count >= Props.maxPilots;
         
-        public bool IsContentsSuspended => true; // 容器内的东西时间不会流逝
+        public bool IsContentsSuspended => true;
         
         public CompMechPilotHolder()
         {
@@ -75,7 +75,13 @@ namespace DivineDiurganate
             
             if (!(parent is DDmechunit))
             {
-                Log.Warning($"[IHFM] Not DDmechunit: {parent}");
+                Log.Warning($"[DD] CompMechPilotHolder attached to non-mech: {parent}");
+            }
+            
+            // 确保加载后恢复状态
+            if (innerContainer == null)
+            {
+                innerContainer = new ThingOwner<Pawn>(this);
             }
         }
         
@@ -146,9 +152,12 @@ namespace DivineDiurganate
             // 记录是否有驾驶员
             bool hadPilots = HasPilots;
             
-            foreach (var pilot in innerContainer.ToList())
+            // 复制列表以避免迭代时修改的问题
+            var pilotsToRemove = innerContainer.ToList();
+            
+            foreach (var thing in pilotsToRemove)
             {
-                if (pilot is Pawn pawn)
+                if (thing is Pawn pawn)
                 {
                     RemovePilot(pawn, exitPos);
                 }
@@ -161,33 +170,159 @@ namespace DivineDiurganate
             }
         }
         
-        private void TrySpawnPilotAtPosition(Pawn pawn, IntVec3 position)
+        // 新增：专门用于死亡/销毁时弹出驾驶员的方法
+        public void EjectAllPilotsOnDeath()
+        {
+            if (isProcessingDestruction)
+                return;
+                
+            try
+            {
+                isProcessingDestruction = true;
+                
+                Log.Message($"[DD] 正在弹出驾驶员 - 机甲: {parent.LabelShort}");
+                
+                if (!HasPilots)
+                {
+                    Log.Message($"[DD] 没有驾驶员需要弹出");
+                    return;
+                }
+                
+                // 获取安全位置
+                IntVec3 ejectPos = FindSafeEjectPosition();
+                
+                // 弹出所有驾驶员
+                var pilots = innerContainer.ToList();
+                foreach (var thing in pilots)
+                {
+                    if (thing is Pawn pawn)
+                    {
+                        Log.Message($"[DD] 正在弹出驾驶员: {pawn.LabelShort}");
+                        
+                        // 从容器中移除
+                        innerContainer.Remove(pawn);
+                        
+                        // 尝试生成到地图上
+                        if (TrySpawnPilotAtPosition(pawn, ejectPos))
+                        {
+                            // 给予适当的伤害（模拟紧急弹射）
+                            if (!pawn.Dead && !pawn.Downed)
+                            {
+                                DamageInfo damageInfo = new DamageInfo(
+                                    DamageDefOf.Bomb, 
+                                    10f, 
+                                    armorPenetration: 999f, 
+                                    instigator: parent,
+                                    hitPart: pawn.RaceProps.body.AllParts.FirstOrDefault()
+                                );
+                                pawn.TakeDamage(damageInfo);
+                                
+                                // 给予心情影响
+                                if (pawn.needs?.mood != null)
+                                {
+                                    pawn.needs.mood.thoughts.memories.TryGainMemory(
+                                        ThoughtDefOf.KilledMyFriend, // 或其他适当的负面心情
+                                        null
+                                    );
+                                }
+                            }
+                            
+                            Messages.Message($"DD_PilotEjectedEmergency".Translate(pawn.LabelShort, parent.LabelShort),
+                                pawn, MessageTypeDefOf.NegativeEvent);
+                        }
+                        else
+                        {
+                            Log.Error($"[DD] 无法弹出驾驶员: {pawn.LabelShort}");
+                        }
+                    }
+                }
+                
+                Log.Message($"[DD] 驾驶员弹出完成，剩余驾驶员: {innerContainer.Count}");
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"[DD] 弹出驾驶员时发生错误: {ex}");
+            }
+            finally
+            {
+                isProcessingDestruction = false;
+            }
+        }
+        
+        private IntVec3 FindSafeEjectPosition()
         {
             Map map = parent.Map;
             if (map == null)
-                return;
+                return parent.Position;
+                
+            // 优先选择机甲周围的安全位置
+            IntVec3 pos = parent.Position;
+            
+            // 如果当前位置不安全，查找周围安全位置
+            if (!pos.Walkable(map) || pos.Fogged(map))
+            {
+                for (int i = 1; i <= 5; i++)
+                {
+                    foreach (IntVec3 cell in GenRadial.RadialCellsAround(pos, i, true))
+                    {
+                        if (cell.Walkable(map) && !cell.Fogged(map))
+                        {
+                            return cell;
+                        }
+                    }
+                }
+            }
+            
+            // 如果周围没有安全位置，使用随机位置
+            if (!pos.Walkable(map) || pos.Fogged(map))
+            {
+                CellFinder.TryFindRandomCellNear(pos, map, 10, 
+                    cell => cell.Walkable(map) && !cell.Fogged(map), 
+                    out pos, 100);
+            }
+            
+            return pos;
+        }
+        
+        private bool TrySpawnPilotAtPosition(Pawn pawn, IntVec3 position)
+        {
+            Map map = parent.Map;
+            if (map == null)
+            {
+                Log.Error($"[DD] 尝试在没有地图的情况下生成驾驶员: {pawn.LabelShort}");
+                return false;
+            }
                 
             // 尝试在指定位置生成
-            if (GenSpawn.Spawn(pawn, position, map, WipeMode.Vanish) != null)
+            try
             {
-                // 生成成功
-            }
-            else
-            {
+                if (GenGrid.InBounds(position, map) && position.Walkable(map) && !position.Fogged(map))
+                {
+                    GenSpawn.Spawn(pawn, position, map, WipeMode.Vanish);
+                    return true;
+                }
+                
                 // 如果指定位置不行，找附近的位置
                 IntVec3 spawnPos;
                 if (RCellFinder.TryFindRandomCellNearWith(position, 
-                    cell => cell.Walkable(map) && !cell.Fogged(map) && 
-                           map.reachability.CanReach(cell, parent, PathEndMode.Touch, TraverseParms.For(TraverseMode.PassDoors, Danger.Deadly, false)),
-                    map, out spawnPos, 2, 10))
+                    cell => cell.Walkable(map) && !cell.Fogged(map), 
+                    map, out spawnPos, 1, 10))
                 {
                     GenSpawn.Spawn(pawn, spawnPos, map, WipeMode.Vanish);
+                    return true;
                 }
-                else
-                {
-                    // 实在找不到位置，就在任意位置生成
-                    GenSpawn.Spawn(pawn, CellFinder.RandomClosewalkCellNear(position, map, 5), map, WipeMode.Vanish);
-                }
+                
+                // 实在找不到位置，就在任意位置生成
+                CellFinder.TryFindRandomCellNear(position, map, 20, 
+                    cell => cell.Walkable(map) && !cell.Fogged(map), 
+                    out spawnPos);
+                GenSpawn.Spawn(pawn, spawnPos, map, WipeMode.Vanish);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"[DD] 生成驾驶员时发生错误: {ex}");
+                return false;
             }
         }
         
@@ -211,7 +346,8 @@ namespace DivineDiurganate
                 if (thing is Pawn pawn)
                     yield return pawn;
             }
-        }// 在 CompMechPilotHolder.cs 中添加以下方法
+        }
+        
         public void Notify_PilotAdded(Pawn pilot)
         {
             if (pilot.Faction == Faction.OfPlayer)
@@ -219,28 +355,14 @@ namespace DivineDiurganate
                 Messages.Message("DD_PilotEnteredMech".Translate(pilot.LabelShort, parent.LabelShort),
                     parent, MessageTypeDefOf.PositiveEvent);
             }
-
-            // 通知默认驾驶员组件
-            var defaultPilotComp = parent.TryGetComp<CompMechDefaultPilot>();
-            if (defaultPilotComp != null)
-            {
-                // 当添加驾驶员时，确保不会重新生成默认驾驶员
-                // 这里可以添加逻辑防止重复生成
-            }
         }
+        
         public void Notify_PilotRemoved(Pawn pilot)
         {
             if (pilot.Faction == Faction.OfPlayer)
             {
                 Messages.Message("DD_PilotExitedMech".Translate(pilot.LabelShort, parent.LabelShort),
                     parent, MessageTypeDefOf.NeutralEvent);
-            }
-
-            // 通知默认驾驶员组件
-            var defaultPilotComp = parent.TryGetComp<CompMechDefaultPilot>();
-            if (defaultPilotComp != null)
-            {
-                defaultPilotComp.Notify_PilotRemoved();
             }
         }
         
@@ -256,11 +378,10 @@ namespace DivineDiurganate
             // 停止移动
             mech.pather?.StopDead();
             
-            // 如果需要，还可以停止其他组件的工作
+            // 如果需要，取消征兆
             var drafter = mech.drafter;
             if (drafter != null && mech.Drafted)
             {
-                // 如果有机甲被征兆，取消征兆
                 mech.drafter.Drafted = false;
             }
             
@@ -268,48 +389,78 @@ namespace DivineDiurganate
             mech.jobs?.ClearQueuedJobs();
         }
         
+        // 关键修复：重写销毁相关方法
         public override void PostDestroy(DestroyMode mode, Map previousMap)
         {
-            base.PostDestroy(mode, previousMap);
+            // 先弹出所有驾驶员
+            if (HasPilots)
+            {
+                Log.Message($"[DD] PostDestroy: 机甲被销毁，弹出驾驶员");
+                EjectAllPilotsOnDeath();
+            }
             
-            // 机甲被摧毁时，所有驾驶员安全弹出
-            RemoveAllPilots();
+            base.PostDestroy(mode, previousMap);
         }
         
+        // 关键修复：检查机甲是否死亡
         public override void PostPostApplyDamage(DamageInfo dinfo, float totalDamageDealt)
         {
             base.PostPostApplyDamage(dinfo, totalDamageDealt);
             
-            // 如果机甲被摧毁，弹出所有驾驶员
-            if (parent.Destroyed)
+            // 如果机甲死亡，弹出驾驶员
+            var mech = parent as Pawn;
+            if (mech != null && mech.Dead)
             {
-                RemoveAllPilots();
+                Log.Message($"[DD] 机甲死亡，弹出驾驶员: {mech.LabelShort}");
+                EjectAllPilotsOnDeath();
             }
         }
         
+        // 关键修复：定期检查机甲状态
         public override void CompTick()
         {
             base.CompTick();
             
-            // 定期检查驾驶员状态
-            for (int i = innerContainer.Count - 1; i >= 0; i--)
+            try
             {
-                var thing = innerContainer[i];
-                if (thing is Pawn pawn && (pawn.Dead || pawn.Downed))
+                // 检查机甲是否死亡
+                var mech = parent as Pawn;
+                if (mech != null && mech.Dead && HasPilots)
+                {
+                    Log.Message($"[DD] CompTick检测到机甲死亡: {mech.LabelShort}");
+                    EjectAllPilotsOnDeath();
+                    return;
+                }
+                
+                // 定期检查驾驶员状态
+                var pilotsToRemove = new List<Pawn>();
+                foreach (var thing in innerContainer)
+                {
+                    if (thing is Pawn pawn && (pawn.Dead || pawn.Downed))
+                    {
+                        pilotsToRemove.Add(pawn);
+                    }
+                }
+                
+                foreach (var pawn in pilotsToRemove)
                 {
                     RemovePilot(pawn);
                 }
-            }
-            
-            // 确保容器内的pawn处于正确状态
-            foreach (var thing in innerContainer)
-            {
-                if (thing is Pawn pawn)
+                
+                // 确保容器内的pawn处于正确状态
+                foreach (var thing in innerContainer)
                 {
-                    // 确保pawn在容器内不执行任何工作
-                    pawn.jobs?.StopAll();
-                    pawn.pather?.StopDead();
+                    if (thing is Pawn pawn)
+                    {
+                        // 确保pawn在容器内不执行任何工作
+                        pawn.jobs?.StopAll();
+                        pawn.pather?.StopDead();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"[DD] CompTick error: {ex}");
             }
         }
         
@@ -318,6 +469,7 @@ namespace DivineDiurganate
             base.PostExposeData();
             
             Scribe_Deep.Look(ref innerContainer, "innerContainer", this);
+            Scribe_Values.Look(ref isProcessingDestruction, "isProcessingDestruction", false);
         }
         
         // IThingHolder 接口实现
@@ -337,14 +489,14 @@ namespace DivineDiurganate
             if (mech == null || mech.Faction != Faction.OfPlayer)
                 yield break;
 
-            // 召唤驾驶员Gizmo - 使用XML配置的图标
+            // 召唤驾驶员Gizmo
             if (HasRoom)
             {
                 yield return new Command_Action
                 {
                     defaultLabel = "DD_SummonPilot".Translate(),
                     defaultDesc = "DD_SummonPilotDesc".Translate(),
-                    icon = Props.GetSummonPilotIcon(),  // 使用动态加载的图标
+                    icon = Props.GetSummonPilotIcon(),
                     action = () =>
                     {
                         ShowPilotSelectionMenu();
@@ -353,14 +505,14 @@ namespace DivineDiurganate
                 };
             }
 
-            // 弹出所有驾驶员按钮 - 使用XML配置的图标
+            // 弹出所有驾驶员按钮
             if (innerContainer.Count > 0)
             {
                 yield return new Command_Action
                 {
                     defaultLabel = "DD_EjectAllPilots".Translate(),
                     defaultDesc = "DD_EjectAllPilotsDesc".Translate(),
-                    icon = Props.GetEjectPilotIcon(),  // 使用动态加载的图标
+                    icon = Props.GetEjectPilotIcon(),
                     action = () =>
                     {
                         RemoveAllPilots();
@@ -369,7 +521,6 @@ namespace DivineDiurganate
                 };
             }
         }
-
 
         private void ShowPilotSelectionMenu()
         {
@@ -392,29 +543,23 @@ namespace DivineDiurganate
             {
                 foreach (var colonist in availableColonists)
                 {
-                    // 创建FloatMenuOption，正确传递参数
                     string colonistLabel = colonist.LabelShortCap;
                     Action action = () => OrderColonistToEnterMech(colonist);
-                    //string tooltipText = TooltipForColonist(colonist);
                     
-                    // 使用接受Thing作为图标的构造函数
                     FloatMenuOption option = new FloatMenuOption(
                         colonistLabel,
                         action,
-                        colonist,  // iconThing
+                        colonist,
                         Color.white,
                         MenuOptionPriority.Default,
-                        null,      // mouseoverGuiAction
-                        null,      // revalidateClickTarget
-                        0f,        // extraPartWidth
-                        null,      // extraPartOnGUI
-                        null,      // revalidateWorldClickTarget
-                        true,      // playSelectionSound
-                        0          // orderInPriority
+                        null,
+                        null,
+                        0f,
+                        null,
+                        null,
+                        true,
+                        0
                     );
-                    
-                    // 设置tooltip
-                    //option.tooltip = new TipSignal(tooltipText);
                     
                     options.Add(option);
                 }
@@ -433,17 +578,5 @@ namespace DivineDiurganate
             Job job = JobMaker.MakeJob(DD_JobDefOf.DD_EnterMech, mech);
             colonist.jobs.TryTakeOrderedJob(job, JobTag.Misc);
         }
-        
-        //private string TooltipForColonist(Pawn colonist)
-        //{
-        //    var tooltip = colonist.LabelShortCap + "\n";
-            
-        //    // 添加技能信息
-        //    tooltip += $"射击: {colonist.skills?.GetSkill(SkillDefOf.Shooting)?.Level ?? 0}\n";
-        //    tooltip += $"近战: {colonist.skills?.GetSkill(SkillDefOf.Melee)?.Level ?? 0}\n";
-        //    tooltip += $"智力: {colonist.skills?.GetSkill(SkillDefOf.Intellectual)?.Level ?? 0}";
-            
-        //    return tooltip;
-        //}
     }
 }

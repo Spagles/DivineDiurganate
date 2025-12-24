@@ -1,4 +1,4 @@
-// DDmechunit.cs
+// File: DDmechunit_Fixed.cs
 using RimWorld;
 using System.Collections.Generic;
 using Verse;
@@ -22,7 +22,7 @@ namespace DivineDiurganate
                 yield return gizmo;
             }
             
-            // 添加驾驶员相关的Gizmo（通过CompGetGizmosExtra）
+            // 添加驾驶员相关的Gizmo
             var pilotComp = this.TryGetComp<CompMechPilotHolder>();
             if (pilotComp != null)
             {
@@ -111,6 +111,34 @@ namespace DivineDiurganate
                 }
                 yield return attackGizmo;
             }
+        }
+        
+        // 关键修复：重写死亡相关方法
+        public override void Kill(DamageInfo? dinfo = null, Hediff exactCulprit = null)
+        {
+            // 在死亡前弹出所有驾驶员
+            var pilotComp = this.TryGetComp<CompMechPilotHolder>();
+            if (pilotComp != null && pilotComp.HasPilots)
+            {
+                Log.Message($"[DD] 机甲死亡前弹出驾驶员: {this.LabelShort}");
+                pilotComp.EjectAllPilotsOnDeath();
+            }
+            
+            base.Kill(dinfo, exactCulprit);
+        }
+        
+        // 重写销毁方法
+        public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
+        {
+            // 在销毁前弹出所有驾驶员
+            var pilotComp = this.TryGetComp<CompMechPilotHolder>();
+            if (pilotComp != null && pilotComp.HasPilots)
+            {
+                Log.Message($"[DD] 机甲销毁前弹出驾驶员: {this.LabelShort}");
+                pilotComp.EjectAllPilotsOnDeath();
+            }
+            
+            base.Destroy(mode);
         }
         
         // IThingHolder 接口实现
