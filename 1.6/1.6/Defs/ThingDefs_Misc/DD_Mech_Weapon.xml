@@ -287,12 +287,12 @@
         <hasStandardCommand>true</hasStandardCommand>
         <defaultProjectile>DD_DHM69_Scythe_MG_Turret_Proj</defaultProjectile>
         <range>21.9</range>
-        <burstShotCount>999</burstShotCount>
+        <burstShotCount>24</burstShotCount>
         <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
         <soundCast>Shot_Minigun</soundCast>
         <soundCastTail>GunTail_Medium</soundCastTail>
         <muzzleFlashScale>9</muzzleFlashScale>
-        <defaultCooldownTime>4</defaultCooldownTime>
+        <defaultCooldownTime>0.1</defaultCooldownTime>
       </li>
     </verbs>
   </ThingDef>

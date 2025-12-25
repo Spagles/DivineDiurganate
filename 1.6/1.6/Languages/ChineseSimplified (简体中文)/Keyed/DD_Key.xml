@@ -38,7 +38,7 @@
   <DD_MechInitSkill>机甲固有</DD_MechInitSkill>
   <DD_MechSkill_From>继承自: {0} ({1}级)</DD_MechSkill_From>
   <DD_MechNoSkill>无技能等级</DD_MechNoSkill>
-  <DD_BlockByMechArmor>伤害被圣化镀层抵挡！</DD_BlockByMechArmor>
+  <DD_BlockByMechArmor>伤害抵挡</DD_BlockByMechArmor>
   <DD_Operational>正常</DD_Operational>
   
   <DD_EnterMech>进入 {0}</DD_EnterMech>
