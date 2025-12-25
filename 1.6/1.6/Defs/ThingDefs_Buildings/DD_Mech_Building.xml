@@ -46,4 +46,48 @@
       </li>
     </comps>
   </ThingDef>
+  <ThingDef ParentName="BuildingBase">
+    <defName>DD_DHM69_Scythe_Building</defName>
+    <label>DHM69-Scythe</label>
+    <description>Magnificent large walking mech, armed with a pair of formidable Scythes and a machine gun turret, the cult of Diurganate use this mech as a spearhead unit to break through the heretic fortified front.</description>
+    <uiOrder>2040</uiOrder>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <size>(3,3)</size>
+    <fillPercent>0.25</fillPercent>
+    <pathCost>0</pathCost>
+    <uiIconScale>0.85</uiIconScale>
+    <tickerType>Normal</tickerType>
+    <graphicData>
+      <drawSize>3.5</drawSize>
+      <texPath>DivineDiurganate/Things/DD_DHM86_Knell/Naked_Thin_north</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <MaxHitPoints>20</MaxHitPoints>
+      <WorkToBuild>750</WorkToBuild>
+      <Mass>10</Mass>
+      <Flammability>0</Flammability>
+      <Beauty>0</Beauty>
+    </statBases>
+    <costStuffCount>0</costStuffCount>
+    <stuffCategories Inherit="False"/>
+    <costList>
+      <Steel>500</Steel>
+      <Plasteel>250</Plasteel>
+      <ComponentIndustrial>16</ComponentIndustrial>
+    </costList>
+    <rotatable>false</rotatable>
+    <building>
+      <isInert>true</isInert>
+    </building>
+    <designationCategory>Misc</designationCategory>
+    <comps>
+      <li Class="DivineDiurganate.CompProperties_BuildToPawn">
+        <pawnKindDef>DD_DHM69_Scythe_Mech</pawnKindDef>
+        <spawnCount>1</spawnCount>
+        <inheritFaction>true</inheritFaction>
+      </li>
+    </comps>
+  </ThingDef>
 </Defs>

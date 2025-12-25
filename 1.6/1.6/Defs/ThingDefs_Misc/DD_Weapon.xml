@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef ParentName="BaseHumanMakeableGun">
+    <defName>DD_Axe_Pistol</defName>
+    <label>双尾斧头手枪</label>
+    <description>双尾教廷的信徒和神职人员所使用的基础防身武器，拥有多根枪管，可以一次性射出四发子弹，并且枪管前端固定了斧刃，使得全枪可以在近身战斗中当斧头使用。</description>
+    <tickerType>Normal</tickerType>
+    <techLevel>Industrial</techLevel>
+    <graphicData>
+      <texPath>Things/Item/Equipment/WeaponRanged/Revolver</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <soundInteract>Interact_Rifle</soundInteract>
+    <recipeMaker>
+      <!-- <recipeUsers Inherit="False" /> -->
+      <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+    </recipeMaker>
+    <statBases>
+      <WorkToMake>5000</WorkToMake>
+      <Mass>1.4</Mass>
+      <AccuracyTouch>0.85</AccuracyTouch>
+      <AccuracyShort>0.6</AccuracyShort>
+      <AccuracyMedium>0.45</AccuracyMedium>
+      <AccuracyLong>0.3</AccuracyLong>
+      <RangedWeapon_Cooldown>2.1</RangedWeapon_Cooldown>
+    </statBases>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+        <warmupTime>0.1</warmupTime>
+        <defaultProjectile>DD_Axe_Pistol_Bullet</defaultProjectile>
+        <range>27.9</range>
+        <burstShotCount>4</burstShotCount>
+        <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+        <soundCast>Shot_Revolver</soundCast>
+      </li>
+    </verbs>
+    <costList>
+      <Steel>30</Steel>
+      <ComponentIndustrial>2</ComponentIndustrial>
+    </costList>
+		<weaponTags Inherit="false">
+			<li>RK_2TierWeapon</li>
+			<li>RK_Rifle</li>
+			<li>RK_Weapon</li>
+			<li>RK_RangeWeapon</li>
+		</weaponTags>
+    <generateCommonality>0.01</generateCommonality>
+    <tradeability>None</tradeability>
+    <thingSetMakerTags Inherit="False" />
+    <tools Inherit="False">
+      <li>
+        <label>斧刃挥砍</label>
+        <capacities>
+          <li>Cut</li>
+        </capacities>
+        <power>12</power>
+        <armorPenetration>0.5</armorPenetration>
+        <cooldownTime>1.25</cooldownTime>
+      </li>
+    </tools>
+  </ThingDef>
+  <ThingDef ParentName="BaseBullet">
+    <defName>DD_Axe_Pistol_Bullet</defName>
+    <label>手枪子弹</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>MoteGlow</shaderType>
+      <color>(194,117,67)</color>
+    </graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>5</damageAmountBase>
+      <stoppingPower>1</stoppingPower>
+      <speed>45</speed>
+    </projectile>
+  </ThingDef>
+</Defs>
