@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Defs>
+  <AlienRace.AlienBackstoryDef ParentName="BaseRatkinBackStory">
+    <defName>DD_Ratkin_Beliver</defName>
+    <slot>Adulthood</slot>
+    <title>双尾教国信徒</title>
+    <titleShort>双尾信徒</titleShort>
+    <description>[PAWN_nameDef]是圣双尾教的一名信徒。教徒是双尾教国的基石，无论鼠鼠们怀抱怎样的目的和过去，教会都接受了她们，并平等地施以关怀。教会的修女们教会了[PAWN_pronoun]基本的生存技能，让[PAWN_pronoun]能有一技之长以在危险的边缘世界中活下去。</description>
+    <bodyTypeGlobal>Thin</bodyTypeGlobal>
+    <bodyTypeMale>Thin</bodyTypeMale>
+		<bodyTypeFemale>Thin</bodyTypeFemale>
+     <skillGains>
+			<Animals>3</Animals>
+			<Medicine>-4</Medicine>
+			<Artistic>-4</Artistic>
+			<Cooking>4</Cooking>
+			<Plants>2</Plants>
+    </skillGains>
+
+		<!-- <workDisables>
+			<li>Violent</li>
+		</workDisables> -->
+
+    <requiredWorkTags>Violent</requiredWorkTags>
+
+    <spawnCategories>
+			<li>RatkinStory</li>
+			<li>RatkinNoble</li>
+			<li>RatkinPriest</li>
+			<li>RatkinKingdom</li>
+			<li>RatkinNonViolence</li>
+			<li>RatkinFarm</li>
+			<li>RatkinThief</li>
+			<li>RatkinUneducated</li>
+			<li>RatkinEliteDefender</li>
+			<li>RatkinServant</li>
+			<li>RatkinSoldier</li>
+			<li>RatkinDefender</li>
+			<!-- <li>RatkinGuardener</li> -->
+			<!-- <li>RatkinKnight</li> -->
+			<!-- <li>RatkinKnightCommander</li> -->
+			<li>DD_RatkinDisciple</li>
+    </spawnCategories>
+    <passions>
+      <Medicine>2</Medicine>
+    </passions>
+
+  </AlienRace.AlienBackstoryDef>
+  <AlienRace.AlienBackstoryDef ParentName="BaseRatkinBackStory">
+    <defName>DD_Ratkin_Sister</defName>
+    <slot>Adulthood</slot>
+    <title>双尾教国修女</title>
+    <titleShort>双尾修女</titleShort>
+    <description>[PAWN_nameDef]是双尾教国的一名修女。比起鼠族王国的各种民间宗教信徒，圣双尾鼠的教徒更加激进，因此[PAWN_pronoun]也和活跃在其他鼠族王国的修女不一样。\n\n作为圣双尾鼠教徒小团体的领袖，[PAWN_pronoun]总是能以其饱满的情绪感染附近的教徒，并率领鼠鼠教徒们为了共同的目标而奋斗——无论是建设殖民地、聚众祷告还是审判无信者。</description>
+    <bodyTypeGlobal>Thin</bodyTypeGlobal>
+    <bodyTypeMale>Thin</bodyTypeMale>
+		<bodyTypeFemale>Thin</bodyTypeFemale>
+     <skillGains>
+      <Melee>1</Melee>
+      <Medicine>4</Medicine>
+      <Social>4</Social>
+    </skillGains>
+
+		<!-- <workDisables>
+			<li>Violent</li>
+		</workDisables> -->
+
+    <requiredWorkTags>Violent</requiredWorkTags>
+
+		<forcedTraitsChance Inherit="False">
+      <li>
+        <defName Degree="2">Beauty</defName>
+        <chance>100</chance>
+      </li>
+      <li>
+        <defName Degree="0">Faith</defName>
+        <chance>100</chance>
+      </li>
+		</forcedTraitsChance>
+
+    <spawnCategories>
+			<li>RatkinStory</li>
+			<li>RatkinNoble</li>
+			<!-- <li>RatkinPriest</li> -->
+			<li>RatkinKingdom</li>
+			<!-- <li>RatkinNonViolence</li> -->
+			<!-- <li>RatkinFarm</li>
+			<li>RatkinThief</li> -->
+			<!-- <li>RatkinUneducated</li> -->
+			<!-- <li>RatkinEliteDefender</li>
+			<li>RatkinServant</li> -->
+			<li>RatkinSoldier</li>
+			<li>RatkinDefender</li>
+			<!-- <li>RatkinGuardener</li> -->
+			<!-- <li>RatkinKnight</li> -->
+			<!-- <li>RatkinKnightCommander</li> -->
+			<li>DD_RatkinDisciple</li>
+			<li>DD_RatkinClergy</li>
+    </spawnCategories>
+    <passions>
+      <Medicine>2</Medicine>
+    </passions>
+  </AlienRace.AlienBackstoryDef>
+  <AlienRace.AlienBackstoryDef ParentName="BaseRatkinBackStory">
+    <defName>DD_Ratkin_Pastor</defName>
+    <slot>Adulthood</slot>
+    <title>双尾教国牧师</title>
+    <titleShort>双尾牧师</titleShort>
+    <description>[PAWN_nameDef]是双尾教国的一名牧师。和修女不一样，双尾教国的牧师通常不直接面对信徒，而是负责维护和祝圣教廷的庞大机械造物，定期为它们祷告、更换熏香和涂抹圣油。\n\n牧师们的神学考试比修女们要困难很多，因此能够成为牧师的[PAWN_nameDef]已是鼠中翘楚。</description>
+    <bodyTypeGlobal>Thin</bodyTypeGlobal>
+    <bodyTypeMale>Thin</bodyTypeMale>
+		<bodyTypeFemale>Thin</bodyTypeFemale>
+     <skillGains>
+      <Plants>-3</Plants>
+      <Animals>-3</Animals>
+      <Crafting>4</Crafting>
+      <Intellectual>3</Intellectual>
+    </skillGains>
+
+		<!-- <workDisables>
+			<li>Violent</li>
+		</workDisables> -->
+
+    <requiredWorkTags>Violent</requiredWorkTags>
+
+		<forcedTraitsChance Inherit="False">
+      <li>
+        <defName Degree="0">Faith</defName>
+        <chance>100</chance>
+      </li>
+		</forcedTraitsChance>
+
+    <spawnCategories>
+			<li>RatkinStory</li>
+			<li>RatkinNoble</li>
+			<!-- <li>RatkinPriest</li> -->
+			<li>RatkinKingdom</li>
+			<!-- <li>RatkinNonViolence</li> -->
+			<!-- <li>RatkinFarm</li>
+			<li>RatkinThief</li> -->
+			<!-- <li>RatkinUneducated</li> -->
+			<!-- <li>RatkinEliteDefender</li>
+			<li>RatkinServant</li> -->
+			<!-- <li>RatkinSoldier</li>
+			<li>RatkinDefender</li> -->
+			<!-- <li>RatkinGuardener</li> -->
+			<!-- <li>RatkinKnight</li> -->
+			<!-- <li>RatkinKnightCommander</li> -->
+			<li>DD_RatkinDisciple</li>
+			<li>DD_RatkinClergy</li>
+    </spawnCategories>
+    <passions>
+      <Crafting>2</Crafting>
+    </passions>
+  </AlienRace.AlienBackstoryDef>
+  <AlienRace.AlienBackstoryDef ParentName="BaseRatkinBackStory">
+    <defName>DD_Ratkin_Pilot</defName>
+    <slot>Adulthood</slot>
+    <title>双尾教国机师</title>
+    <titleShort>双尾机师</titleShort>
+    <description>[PAWN_nameDef]是双尾教国的一名牧师。和修女不一样，双尾教国的牧师通常不直接面对信徒，而是负责维护和祝圣教廷的庞大机械造物，定期为它们祷告、更换熏香和涂抹圣油。\n\n牧师们的神学考试比修女们要困难很多，因此能够成为牧师的[PAWN_nameDef]已是鼠中翘楚。</description>
+    <bodyTypeGlobal>Thin</bodyTypeGlobal>
+    <bodyTypeMale>Thin</bodyTypeMale>
+		<bodyTypeFemale>Thin</bodyTypeFemale>
+     <skillGains>
+      <Plants>-3</Plants>
+      <Animals>-3</Animals>
+      <Crafting>4</Crafting>
+      <Intellectual>3</Intellectual>
+    </skillGains>
+
+		<!-- <workDisables>
+			<li>Violent</li>
+		</workDisables> -->
+
+    <requiredWorkTags>Violent</requiredWorkTags>
+
+		<forcedTraitsChance Inherit="False">
+      <li>
+        <defName Degree="0">Faith</defName>
+        <chance>100</chance>
+      </li>
+		</forcedTraitsChance>
+
+    <spawnCategories>
+			<li>RatkinStory</li>
+			<li>RatkinNoble</li>
+			<!-- <li>RatkinPriest</li> -->
+			<li>RatkinKingdom</li>
+			<!-- <li>RatkinNonViolence</li> -->
+			<!-- <li>RatkinFarm</li>
+			<li>RatkinThief</li> -->
+			<!-- <li>RatkinUneducated</li> -->
+			<!-- <li>RatkinEliteDefender</li>
+			<li>RatkinServant</li> -->
+			<!-- <li>RatkinSoldier</li>
+			<li>RatkinDefender</li> -->
+			<!-- <li>RatkinGuardener</li> -->
+			<!-- <li>RatkinKnight</li> -->
+			<!-- <li>RatkinKnightCommander</li> -->
+			<li>DD_RatkinDisciple</li>
+			<li>DD_RatkinClergy</li>
+    </spawnCategories>
+    <passions>
+      <Crafting>2</Crafting>
+    </passions>
+  </AlienRace.AlienBackstoryDef>
+</Defs>

@@ -117,57 +117,38 @@
     </mote>
   </ThingDef>
 
-  <!-- 机甲pawn -->
-  <!-- Mech pawn -->
-  <ThingDef ParentName="BasePawn">
-    <defName>DD_DHM86_Knell_Mech</defName>
-    <label>DHM86-Knell</label>
-    <description>Skirmisher mech with equipped grenade which can withstand light weapons fire, allowing pilots of Diurganate to take their time in the cockpit and strike enemy forces with high maneuverability.</description>
+  <ThingDef ParentName="BasePawn" Name="DD_MechPawnBase" Abstract="True">
     <!-- 重要！这个新的thingclass代表其是一台机甲，如果遗漏，接下来的内容都无法生效！ -->
     <!-- Important! This new thingclass represents a mecha. If omitted, the following content will not take effect! -->
     <thingClass>DivineDiurganate.DDmechunit</thingClass>
-    <!-- <uiIconScale>0.2</uiIconScale> -->
     <defaultPlacingRot>North</defaultPlacingRot>
     <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
-    <altitudeLayer>PawnState</altitudeLayer>
+    <altitudeLayer>Pawn</altitudeLayer>
     <tradeability>None</tradeability>
     <statBases>
-      <MoveSpeed>5.5</MoveSpeed>
       <ComfyTemperatureMin>-99999</ComfyTemperatureMin>
       <ComfyTemperatureMax>99999</ComfyTemperatureMax>
-      <MarketValue>3000</MarketValue>
       <Wildness>0</Wildness>
       <FilthRate>0</FilthRate>
       <CrawlSpeed>0</CrawlSpeed>
+      <LeatherAmount>0</LeatherAmount>
       <MeatAmount>0</MeatAmount>
-      <MeleeHitChance>50</MeleeHitChance>
-      <MeleeDodgeChance>0</MeleeDodgeChance>
-      <ArmorRating_Blunt>0.75</ArmorRating_Blunt>
-      <ArmorRating_Sharp>0.75</ArmorRating_Sharp>
-      <ArmorRating_Heat>1.5</ArmorRating_Heat>
       <Flammability>0</Flammability>
       <ToxicResistance>1</ToxicResistance>
-      <PsychicSensitivity>1</PsychicSensitivity>
+      <PsychicSensitivity>0</PsychicSensitivity>
       <InjuryHealingFactor>0</InjuryHealingFactor>
       <ToxicEnvironmentResistance>1</ToxicEnvironmentResistance>
       <VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">1</VacuumResistance>
-
-      <!-- 圣化镀层的数值，伤害*穿甲率低于此数值将被直接抵挡 -->
-      <!-- value of the Sanctified Armour, damage * armor piercing rate below which will be directly resisted -->
-      <DD_MechArmor>3</DD_MechArmor>
     </statBases>
     <race>
       <trainability>None</trainability>
-      <body>DD_Race_DHM86_Knell_Body</body>
       <fleshType>DD_Mech_Fleshtype</fleshType>
-      <thinkTreeMain>DD_Battle_Mech_With_1_Pilot</thinkTreeMain>
       <intelligence>ToolUser</intelligence>
       <hasCorpse>true</hasCorpse>
       <needsRest>false</needsRest>
       <hasGenders>false</hasGenders>
-			<baseBodySize>4</baseBodySize>
-      <baseHealthScale>5</baseHealthScale>
       <nameGenerator MayRequire="Ludeon.RimWorld.Biotech">NamerMech</nameGenerator>
+      <isImmuneToInfections>true</isImmuneToInfections>
       <lifeStageAges>
         <li>
           <def>DD_Mech_LifeStage</def>
@@ -189,6 +170,7 @@
         <power>8</power>
         <cooldownTime>2</cooldownTime>
         <linkedBodyPartsGroup>Legs</linkedBodyPartsGroup>
+        <chanceFactor>0.1</chanceFactor>
       </li>
     </tools>
     <!-- 实际上，机甲并没有needs，不过如果你希望为其专门写一个新的needs，倒也不是不行 -->
@@ -200,6 +182,31 @@
       <li>ITab_Pawn_Gear</li>
       <li>ITab_Pawn_Log</li>
     </inspectorTabs>
+  </ThingDef>
+
+  <ThingDef ParentName="DD_MechPawnBase">
+    <defName>DD_DHM86_Knell_Mech</defName>
+    <label>DHM86-Knell</label>
+    <description>Skirmisher mech with equipped grenade which can withstand light weapons fire, allowing pilots of Diurganate to take their time in the cockpit and strike enemy forces with high maneuverability.</description>
+    <statBases>
+      <MoveSpeed>5.5</MoveSpeed>
+      <MarketValue>3000</MarketValue>
+      <MeleeHitChance>0.75</MeleeHitChance>
+      <MeleeDodgeChance>0.9</MeleeDodgeChance>
+      <ArmorRating_Blunt>0.75</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.75</ArmorRating_Sharp>
+      <ArmorRating_Heat>1.5</ArmorRating_Heat>
+
+      <!-- 圣化镀层的数值，伤害*穿甲率低于此数值将被直接抵挡 -->
+      <!-- value of the Sanctified Armour, damage * armor piercing rate below which will be directly resisted -->
+      <DD_MechArmor>3</DD_MechArmor>
+    </statBases>
+    <race>
+      <body>DD_Race_DHM86_Knell_Body</body>
+      <thinkTreeMain>DD_Battle_Mech_With_1_Pilot</thinkTreeMain>
+			<baseBodySize>4</baseBodySize>
+      <baseHealthScale>5</baseHealthScale>
+    </race>
     <butcherProducts Inherit="False">
       <Steel>200</Steel>
       <Plasteel>100</Plasteel>
@@ -216,7 +223,7 @@
         <!-- The WorkTag for the job, which ideally should not be changed -->
         <pilotWorkTag>MechPilot</pilotWorkTag>
 
-        <ejectPilotHealthPercentThreshold>0.2</ejectPilotHealthPercentThreshold>
+        <ejectPilotHealthPercentThreshold>0.1</ejectPilotHealthPercentThreshold>
         
         <!-- 你可以定义进入和离开图标 -->
         <!-- You can define the entry and exit icons -->
@@ -228,7 +235,7 @@
       <li Class="DivineDiurganate.CompProperties_MechFuel">
         <fuelType>Chemfuel</fuelType>
         <fuelCapacity>50</fuelCapacity>
-        <dailyFuelConsumption>5</dailyFuelConsumption>
+        <dailyFuelConsumption>15</dailyFuelConsumption>
 
         <!-- 决定燃料的装载时间，这两个属性有点重复，不知道当时为什么我会分成两个 -->
         <!-- Deciding the loading time of fuel, these two attributes are somewhat redundant. I don't know why I split them into two at the time -->
@@ -336,7 +343,7 @@
       <!-- 自毁组件 -->
       <li Class="DivineDiurganate.CompProperties_MechSelfDestruct">
         <!-- 自毁参数 -->
-        <healthPercentThreshold>0.2</healthPercentThreshold> <!-- 15%血量时自毁 -->
+        <healthPercentThreshold>0.1</healthPercentThreshold> <!-- 15%血量时自毁 -->
         <wickTicks>120~180</wickTicks>
         <drawWick>true</drawWick>
         
@@ -362,8 +369,6 @@
       </li>
     </comps>
   </ThingDef>
-  <!-- pawnkind没有什么特别的 -->
-  <!-- There is nothing special about pawnkind -->
 	<PawnKindDef>
 		<defName>DD_DHM86_Knell_Mech</defName>
 		<label>DHM86-Knell</label>
@@ -382,6 +387,190 @@
 				<bodyGraphicData>
 					<texPath>DivineDiurganate/Things/DD_DHM86_Knell/Naked_Thin</texPath>
 					<drawSize>3.5</drawSize>
+					<shadowData>
+						<volume>(0.4, 0.5, 0.37)</volume>
+						<offset>(0,0,-0.15)</offset>
+					</shadowData>
+				</bodyGraphicData>
+			</li>
+		</lifeStages>
+	</PawnKindDef>
+
+  <ThingDef ParentName="DD_MechPawnBase">
+    <defName>DD_DHM69_Scythe_Mech</defName>
+    <label>DHM69-Scythe</label>
+    <description>Magnificent large walking mech, armed with a pair of formidable Scythes and a machine gun turret, the cult of Diurganate use this mech as a spearhead unit to break through the heretic fortified front.</description>
+    <statBases>
+      <MoveSpeed>4.2</MoveSpeed>
+      <MarketValue>7500</MarketValue>
+      <MeleeHitChance>15</MeleeHitChance>
+      <MeleeDodgeChance>0.5</MeleeDodgeChance>
+      <ArmorRating_Blunt>1.5</ArmorRating_Blunt>
+      <ArmorRating_Sharp>1.5</ArmorRating_Sharp>
+      <ArmorRating_Heat>2</ArmorRating_Heat>
+
+      <!-- 圣化镀层的数值，伤害*穿甲率低于此数值将被直接抵挡 -->
+      <!-- value of the Sanctified Armour, damage * armor piercing rate below which will be directly resisted -->
+      <DD_MechArmor>12</DD_MechArmor>
+    </statBases>
+    <race>
+      <body>DD_Race_DHM69_Scythe_Body</body>
+      <thinkTreeMain>DD_Battle_Mech_With_2_Pilot</thinkTreeMain>
+			<baseBodySize>8</baseBodySize>
+      <baseHealthScale>30</baseHealthScale>
+    </race>
+    <butcherProducts Inherit="False">
+      <Steel>350</Steel>
+      <Plasteel>200</Plasteel>
+      <ComponentIndustrial>8</ComponentIndustrial>
+    </butcherProducts>
+    <comps>
+      <li Class="DivineDiurganate.CompProperties_MechPilotHolder">
+        <maxPilots>2</maxPilots>
+        <pilotWorkTag>MechPilot</pilotWorkTag>
+
+        <ejectPilotHealthPercentThreshold>0.1</ejectPilotHealthPercentThreshold>
+        
+        <summonPilotIcon>DivineDiurganate/UI/Commands/DD_Enter_Mech</summonPilotIcon>
+        <ejectPilotIcon>DivineDiurganate/UI/Commands/DD_Exit_Mech</ejectPilotIcon>
+      </li>
+      <li Class="DivineDiurganate.CompProperties_MechFuel">
+        <fuelType>Chemfuel</fuelType>
+        <fuelCapacity>100</fuelCapacity>
+        <dailyFuelConsumption>25</dailyFuelConsumption>
+
+        <refuelSpeedFactor>1</refuelSpeedFactor>
+        <refuelDuration>240</refuelDuration>
+
+        <fuelBarColor>(0.6, 0.5, 0.4)</fuelBarColor>
+
+        <allowAutoRefuel>true</allowAutoRefuel>
+        <autoRefuelThreshold>1</autoRefuelThreshold>
+
+        <shutdownWhenEmpty>true</shutdownWhenEmpty>
+      </li>
+      <li Class="DivineDiurganate.CompProperties_MechRepairable">
+        <allowAutoRepair>true</allowAutoRepair>
+        <healthPercentThreshold>1</healthPercentThreshold>
+
+        <repairAmountPerCycle>10</repairAmountPerCycle>
+        
+        <repairSound></repairSound>
+        <repairEffect>ConstructMetal</repairEffect>
+      </li>
+      <li Class="DivineDiurganate.CompProperties_MechInherentWeapon">
+        <weaponDef>DD_DHM69_Scythe_Mech_Weapon</weaponDef>
+      </li>
+      <li Class="DivineDiurganate.CompProperties_MechDefaultPilot">
+        <enableForNonPlayerFaction>true</enableForNonPlayerFaction>
+        <enableForPlayerFaction>false</enableForPlayerFaction>
+        
+        <defaultPilotChance>1.0</defaultPilotChance>
+        <spawnOnlyIfNoPilot>true</spawnOnlyIfNoPilot>
+        <replaceExistingPilots>false</replaceExistingPilots>
+        <maxDefaultPilots>2</maxDefaultPilots>
+        
+        <defaultPilots>
+          <li>
+            <pawnKind>Pirate</pawnKind>
+            <weight>1</weight>
+            <required>false</required>
+          </li>
+        </defaultPilots>
+      </li>
+      <li Class="DivineDiurganate.CompProperties_MechArmor">
+        <showBlockEffect>true</showBlockEffect>
+        <blockEffectMote></blockEffectMote>
+        <soundOnBlock></soundOnBlock>
+      </li>
+      <li Class="DivineDiurganate.CompProperties_MechSkillInheritance">
+        <baseSkillLevelWhenNoPilot>0</baseSkillLevelWhenNoPilot>
+        <skillMultiplierForPilots>1</skillMultiplierForPilots>
+      </li>
+      
+      <li Class="DivineDiurganate.CompProperties_MoteEmitterNorthward">
+        <moteDef>DD_Mote_MechBlackSmoke</moteDef>
+        <emitIntervalTicks>30</emitIntervalTicks>
+        <emitIntervalMovingTicks>10</emitIntervalMovingTicks>
+        <moveSpeed>1.5</moveSpeed>
+        <lifetimeTicks>10</lifetimeTicks>
+        <scale>0.25</scale>
+        <offset>(0.5,0,-1)</offset>
+      </li>
+      <li Class="DivineDiurganate.CompProperties_MoteEmitterNorthward">
+        <moteDef>DD_Mote_MechBlackSmoke</moteDef>
+        <emitIntervalTicks>30</emitIntervalTicks>
+        <emitIntervalMovingTicks>10</emitIntervalMovingTicks>
+        <moveSpeed>1.5</moveSpeed>
+        <lifetimeTicks>10</lifetimeTicks>
+        <scale>0.25</scale>
+        <offset>(-0.5,0,-1)</offset>
+      </li>
+
+      <li Class="DivineDiurganate.CompProperties_MechMovementSound">
+        <movementSound>DD_DHM86_Knell_Mech_Moving_Sound</movementSound>
+      </li>
+
+      <li Class="DivineDiurganate.CompProperties_MechSelfDestruct">
+        <healthPercentThreshold>0.1</healthPercentThreshold> <!-- 15%血量时自毁 -->
+        <wickTicks>120~180</wickTicks>
+        <drawWick>true</drawWick>
+        
+        <!-- 爆炸参数 -->
+        <explosiveRadius>8.5</explosiveRadius>
+        <explosiveDamageType>Flame</explosiveDamageType>
+        <damageAmountBase>5</damageAmountBase>
+        <armorPenetrationBase>2</armorPenetrationBase>
+        <chanceToStartFire>0.25</chanceToStartFire>
+        <damageFalloff>true</damageFalloff>
+        <doVisualEffects>true</doVisualEffects>
+        <doSoundEffects>true</doSoundEffects>
+        <propagationSpeed>1</propagationSpeed>
+        
+        <!-- 爆炸效果 -->
+        <!-- <explosionEffect>Explosion</explosionEffect> -->
+        <explosionSound>Explosion_Bomb</explosionSound>
+        
+        <!-- 触发条件 -->
+        <triggerOnDeath>true</triggerOnDeath>
+        <triggerOnHealthThreshold>true</triggerOnHealthThreshold>
+        <chanceNeverExplode>0</chanceNeverExplode> <!-- 5%几率永不爆炸 -->
+      </li>
+
+      <li Class="DivineDiurganate.CompProperties_MultiTurretGun">
+		    <ID>0</ID>
+        <turretDef>DD_DHM69_Scythe_MG_Turret</turretDef>
+        <renderNodeProperties>
+          <li>
+            <nodeClass>PawnRenderNode_TurretGun</nodeClass>
+            <workerClass>PawnRenderNodeWorker_TurretGun</workerClass>
+            <parentTagDef>Body</parentTagDef>
+            <overrideMeshSize>(2, 2)</overrideMeshSize>
+            <baseLayer>20</baseLayer>
+            <pawnType>Any</pawnType>
+          </li>
+        </renderNodeProperties>
+      </li>
+    </comps>
+  </ThingDef>
+	<PawnKindDef>
+		<defName>DD_DHM69_Scythe_Mech</defName>
+		<label>DHM69-Scythe</label>
+		<race>DD_DHM69_Scythe_Mech</race>
+		<defaultFactionType>PlayerColony</defaultFactionType>
+		<forceDeathOnDowned>false</forceDeathOnDowned>
+		<forceNoDeathNotification>false</forceNoDeathNotification>
+    <collidesWithPawns>false</collidesWithPawns>
+		<combatPower>400</combatPower>
+    <weaponTags>
+      <li>DD_DHM69_Scythe_Mech_Weapon</li>
+    </weaponTags>
+    <weaponMoney>99999~99999</weaponMoney>
+		<lifeStages>
+			<li>
+				<bodyGraphicData>
+					<texPath>DivineDiurganate/Things/DD_DHM86_Knell/Naked_Thin</texPath>
+					<drawSize>5.5</drawSize>
 					<shadowData>
 						<volume>(0.4, 0.5, 0.37)</volume>
 						<offset>(0,0,-0.15)</offset>

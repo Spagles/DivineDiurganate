@@ -10,5 +10,7 @@
   
   <!-- EN: Mote -->
   <DD_Mote_MechBlackSmoke.label>黑烟</DD_Mote_MechBlackSmoke.label>
-  
+
+  <DD_DHM69_Scythe_Mech.label>DHM69-镰刀</DD_DHM69_Scythe_Mech.label>
+  <DD_DHM69_Scythe_Mech.description>气势恢宏的大型步行机甲，装备了一对骇人的镰刀和一台机枪炮塔，双尾教廷会将这种坚韧的机甲作为突破异教徒坚固阵线的先头部队。</DD_DHM69_Scythe_Mech.description>
 </LanguageData>

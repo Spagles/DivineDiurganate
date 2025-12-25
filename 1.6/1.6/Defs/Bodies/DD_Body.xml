@@ -20,12 +20,23 @@
     <bleedRate>0</bleedRate>
     <tags>
       <li>BreathingSource</li>
-      <li>EatingSource</li>
+      <!-- <li>EatingSource</li> -->
       <li>Spine</li>
       <li>Pelvis</li>
       <li>ConsciousnessSource</li>
-      <!-- <li>HearingSource</li> -->
+    </tags>
+  </BodyPartDef>
+  <BodyPartDef>
+    <defName>DD_Gyroscope_Bodypart</defName>
+    <label>Gyroscope</label>
+    <hitPoints>50</hitPoints>
+    <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
+    <skinCovered>false</skinCovered>
+    <!-- <solid>true</solid> -->
+    <bleedRate>0</bleedRate>
+    <tags>
       <li>ManipulationLimbCore</li>
+      <li>ManipulationLimbSegment</li>
     </tags>
   </BodyPartDef>
 
@@ -66,35 +77,101 @@
             </li>
           </parts>
         </li>
+        <!-- 腰部 -->
+        <li>
+          <def>DD_Gyroscope_Bodypart</def>
+          <coverage>0</coverage>
+          <height>Bottom</height>
+          <groups>
+            <li>Waist</li>
+          </groups>
+        </li>
+        <!-- 腿 -->
+        <li>
+          <def>Leg</def>
+          <customLabel>Left Leg</customLabel>
+          <coverage>0.14</coverage>
+          <height>Bottom</height>
+          <groups>
+            <li>Legs</li>
+          </groups>
+          <parts>
+            <li>
+              <def>Foot</def>
+              <customLabel>Left Foot</customLabel>
+              <coverage>0.1</coverage>
+              <groups>
+                <li>Feet</li>
+              </groups>
+            </li>
+          </parts>
+        </li>
+        <li>
+          <def>Leg</def>
+          <customLabel>Right Leg</customLabel>
+          <coverage>0.14</coverage>
+          <height>Bottom</height>
+          <groups>
+            <li>Legs</li>
+          </groups>
+          <parts>
+            <li>
+              <def>Foot</def>
+              <customLabel>Right Foot</customLabel>
+              <coverage>0.1</coverage>
+              <groups>
+                <li>Feet</li>
+              </groups>
+            </li>
+          </parts>
+        </li>
+      </parts>
+    </corePart>
+  </BodyDef>
+  <BodyDef>
+    <defName>DD_Race_DHM69_Scythe_Body</defName>
+    <label>DHM69-Scythe</label>
+    <corePart>
+      <def>Torso</def>
+      <height>Middle</height>
+      <depth>Outside</depth>
+      <groups>
+        <li>Torso</li>
+      </groups>
+      <parts>
+        <!-- 脖子和头部 -->
+        <li>
+          <def>DD_Outer_Armor_Bodypart</def>
+          <coverage>0.99</coverage>
+          <height>Top</height>
+          <groups>
+            <li>Torso</li>
+          </groups>
+          <parts>
+            <li>
+              <def>DD_Core_Bodypart</def>
+              <coverage>0.025</coverage>
+              <depth>Inside</depth>
+              <groups>
+                <li>Torso</li>
+              </groups>
+            </li>
+            <li>
+              <def>SightSensor</def>
+              <coverage>0.13</coverage>
+              <groups>
+                <li>Torso</li>
+              </groups>
+            </li>
+          </parts>
+        </li>
         <!-- 肩部 -->
         <li>
-          <def>Shoulder</def>
-          <customLabel>Left Shoulder</customLabel>
+          <def>DD_Gyroscope_Bodypart</def>
           <coverage>0.12</coverage>
           <groups>
             <li>Shoulders</li>
           </groups>
-          <parts>
-            <li>
-              <def>Arm</def>
-              <customLabel>Left Arm</customLabel>
-              <coverage>0.77</coverage>
-              <groups>
-                <li>Arms</li>
-              </groups>
-              <parts>
-                <li>
-                  <def>Hand</def>
-                  <customLabel>Left Hand</customLabel>
-                  <coverage>0.14</coverage>
-                  <height>Bottom</height>
-                  <groups>
-                    <li>Hands</li>
-                  </groups>
-                </li>
-              </parts>
-            </li>
-          </parts>
         </li>
         <li>
           <def>Shoulder</def>
@@ -127,7 +204,7 @@
         </li>
         <!-- 腰部 -->
         <li>
-          <def>Waist</def>
+          <def>DD_Gyroscope_Bodypart</def>
           <coverage>0</coverage>
           <height>Bottom</height>
           <groups>

@@ -2,21 +2,27 @@
 <Defs>
   <!-- melee -->
   <ThingDef ParentName="BaseMeleeWeapon_Sharp_Quality">
-    <defName>DD_Basic_Mech_Weapon</defName>
+    <defName>DD_DHM69_Scythe_Mech_Weapon</defName>
     <label>Huge Scythe</label>
-    <description>A huge Scythe Made For SHM69.</description>
+    <description>Huge Scythe Made For DHM69.</description>
+    <uiIconPath>DivineDiurganate/Weapon/DD_DHM69_Scythe_Mech_Weapon</uiIconPath>
 	  <destroyOnDrop>true</destroyOnDrop>
+
+    <generateCommonality>0.01</generateCommonality>
+    <relicChance>0</relicChance>
+    <tradeability>None</tradeability>
+    <smeltable>false</smeltable>
+    <thingSetMakerTags Inherit="False" />
+
+    <techLevel>Industrial</techLevel>
     <weaponTags Inherit="False">
-      <li>DD_Basic_Mech_Weapon</li>
+      <li>DD_DHM69_Scythe_Mech_Weapon</li>
     </weaponTags>
     <graphicData>
       <texPath>DivineDiurganate/Weapon/DD_Mech_Weapon_Empty</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>CutoutComplex</shaderType>
-      <drawSize>5.25</drawSize>
     </graphicData>
-    <uiIconScale>0.2</uiIconScale>
-    <techLevel>Medieval</techLevel>
     <costStuffCount>0</costStuffCount>
     <stuffCategories Inherit="False" />
     <costList Inherit="False">
@@ -31,7 +37,7 @@
       <li>
         <label>Scythe Slash</label>
         <capacities>
-          <li>DD_SHM69_Scythe_Slash</li>
+          <li>DD_DHM69_Scythe_Slash</li>
         </capacities>
         <power>50</power>
         <armorPenetration>2.25</armorPenetration>
@@ -44,15 +50,12 @@
       <recipeUsers Inherit="False" />
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
     </recipeMaker>
-    <generateCommonality>0.01</generateCommonality>
-    <tradeability>None</tradeability>
-    <thingSetMakerTags Inherit="False" />
     <comps>
       <!-- 这里规定了该武器是什么机甲的武器，其他机甲和非机甲pawn无法拿起此武器 -->
       <!-- This specifies the mech whose weapon this is. Other mechs and non-mech pawns cannot pick up this weapon -->
       <li Class="DivineDiurganate.CompProperties_MechOnlyWeapon">
         <allowedMechRaces>
-          <li>DD_DHM86_Knell_Mech</li>
+          <li>DD_DHM69_Scythe_Mech</li>
         </allowedMechRaces>
       </li>
       <!-- 造成范围伤害的近战攻击，我只是想让镰刀攻击看起来更帅一些才写了这些东西，本身并不是机甲系统必须的 -->
@@ -63,18 +66,18 @@
         <cleaveDamageFactor>0.75</cleaveDamageFactor>
         <damageDowned>false</damageDowned>
         <explosionDamageDef>Cut</explosionDamageDef>
-        <attackEffecter>DD_SHM69_Scythe_Slash_Hit</attackEffecter>
-        <cleaveEffecter>DD_SHM69_Scythe_Slash_Hit</cleaveEffecter>
+        <attackEffecter>DD_DHM69_Scythe_Slash_Hit</attackEffecter>
+        <cleaveEffecter>DD_DHM69_Scythe_Slash_Hit</cleaveEffecter>
       </li>
     </comps>
   </ThingDef>
   <ToolCapacityDef>
-    <defName>DD_SHM69_Scythe_Slash</defName>
+    <defName>DD_DHM69_Scythe_Slash</defName>
     <label>Scythe Slash</label>
   </ToolCapacityDef>
   <ManeuverDef>
-    <defName>DD_SHM69_Scythe_Slash</defName>
-    <requiredCapacity>DD_SHM69_Scythe_Slash</requiredCapacity>
+    <defName>DD_DHM69_Scythe_Slash</defName>
+    <requiredCapacity>DD_DHM69_Scythe_Slash</requiredCapacity>
     <verb>
       <verbClass>DivineDiurganate.Verb_MeleeAttack_Cleave</verbClass>
       <meleeDamageDef>Cut</meleeDamageDef>
@@ -86,7 +89,7 @@
     <combatLogRulesDodge>Maneuver_Slash_MeleeDodge</combatLogRulesDodge>
   </ManeuverDef>
   <EffecterDef>
-    <defName>DD_SHM69_Scythe_Slash_Hit</defName>
+    <defName>DD_DHM69_Scythe_Slash_Hit</defName>
     <children>
       <li>
         <subEffecterClass>SubEffecter_Random</subEffecterClass>
@@ -155,7 +158,7 @@
     <rotateTowardsMoveDirection>true</rotateTowardsMoveDirection>
     <randomGraphics>
       <li>
-        <texPath>IHMF/Mote/DD_Melee_Attack</texPath>
+        <texPath>DivineDiurganate/Mote/DD_Melee_Attack</texPath>
         <shaderType>MoteGlow</shaderType>
         <renderInstanced>true</renderInstanced>
         <graphicClass>Graphic_Fleck</graphicClass>
@@ -175,7 +178,13 @@
     <label>Winches Grenade Launcher</label>
     <description>The weapon of DHM86 Knell , which can launch powerful grenades to a distant location through a pair of winches.</description>
 	  <destroyOnDrop>true</destroyOnDrop>
+    
+    <generateCommonality>0.01</generateCommonality>
+    <relicChance>0</relicChance>
     <tradeability>None</tradeability>
+    <smeltable>false</smeltable>
+    <thingSetMakerTags Inherit="False" />
+
     <uiIconPath>DivineDiurganate/Mote/DD_DHM86_Knell_Mech_Weapon_Proj</uiIconPath>
     <uiIconScale>0.75</uiIconScale>
     <recipeMaker>
@@ -202,7 +211,6 @@
       <li>DD_DHM86_Knell_Mech_Weapon</li>
     </weaponTags>
     <thingCategories Inherit="False"/>
-    <smeltable>false</smeltable>
     <verbs>
       <li>
         <label>throw grenade</label>
@@ -221,6 +229,15 @@
         <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
       </li>
     </verbs>
+    <comps>
+      <!-- 这里规定了该武器是什么机甲的武器，其他机甲和非机甲pawn无法拿起此武器 -->
+      <!-- This specifies the mech whose weapon this is. Other mechs and non-mech pawns cannot pick up this weapon -->
+      <li Class="DivineDiurganate.CompProperties_MechOnlyWeapon">
+        <allowedMechRaces>
+          <li>DD_DHM86_Knell_Mech</li>
+        </allowedMechRaces>
+      </li>
+    </comps>
   </ThingDef>
   <ThingDef>
     <defName>DD_DHM86_Knell_Mech_Weapon_Proj</defName>
@@ -244,6 +261,56 @@
       <explosionRadius>4</explosionRadius >
       <damageDef>Bomb</damageDef>
       <explosionDelay>30</explosionDelay>
+    </projectile>
+  </ThingDef>
+  
+  <!-- Turret -->
+  <ThingDef ParentName="BaseWeaponTurret">
+    <defName>DD_DHM69_Scythe_MG_Turret</defName>
+    <label>Machine Gun Turret</label>
+    <description>Heavy machine gun loaded on DHM69.</description>
+    <graphicData>
+      <texPath>DivineDiurganate/Weapon/DD_Mech_Weapon_Empty</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <Mass>10</Mass>
+      <AccuracyTouch>0.2</AccuracyTouch>
+      <AccuracyShort>0.25</AccuracyShort>
+      <AccuracyMedium>0.25</AccuracyMedium>
+      <AccuracyLong>0.18</AccuracyLong>
+      <RangedWeapon_Cooldown>0.1</RangedWeapon_Cooldown>
+    </statBases>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>DD_DHM69_Scythe_MG_Turret_Proj</defaultProjectile>
+        <range>21.9</range>
+        <burstShotCount>999</burstShotCount>
+        <ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+        <soundCast>Shot_Minigun</soundCast>
+        <soundCastTail>GunTail_Medium</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+        <defaultCooldownTime>4</defaultCooldownTime>
+      </li>
+    </verbs>
+  </ThingDef>
+  <ThingDef ParentName="BaseBullet">
+    <defName>DD_DHM69_Scythe_MG_Turret_Proj</defName>
+    <label>minigun bullet</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>MoteGlow</shaderType>
+      <color>(194,117,67)</color>
+    </graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>4</damageAmountBase>
+      <speed>70</speed>
+      <armorPenetrationBase>1</armorPenetrationBase>
+      <stoppingPower>0.2</stoppingPower>
     </projectile>
   </ThingDef>
 </Defs>

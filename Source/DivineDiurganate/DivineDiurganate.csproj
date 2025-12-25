@@ -87,7 +87,6 @@
     <Compile Include="ITab\ITab_MechSkills.cs" />
     <Compile Include="MentalState\MentalState_MechNoPilot.cs" />
     <Compile Include="Pawn\DDmechunit.cs" />
-    <Compile Include="Pawn_Comps\CompSkillLevelDebug.cs" />
     <Compile Include="Pawn_Comps\DefaultPilotEntry\CompMechDefaultPilot.cs" />
     <Compile Include="Pawn_Comps\DefaultPilotEntry\CompProperties_MechDefaultPilot.cs" />
     <Compile Include="Pawn_Comps\MechArmor\CompMechArmor.cs" />
@@ -104,6 +103,7 @@
     <Compile Include="Pawn_Comps\MechSelfDestruct\CompProperties_MechSelfDestruct.cs" />
     <Compile Include="Pawn_Comps\MechSkillInheritance\CompMechSkillInheritance.cs" />
     <Compile Include="Pawn_Comps\MoteEmitterNorthward\CompMoteEmitterNorthward.cs" />
+    <Compile Include="Pawn_Comps\MultiTurretGun\CompMultiTurretGun.cs" />
     <Compile Include="Projectile\Projectile_PenetratingBullet.cs" />
     <Compile Include="Thing_Comp\BuildingSpawnPawn\CompBuildToPawn.cs" />
     <Compile Include="Thing_Comp\BuildingSpawnPawn\CompProperties_BuildToPawn.cs" />
