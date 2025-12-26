@@ -3,7 +3,7 @@
 	<FactionDef ParentName="FactionBase">
 		<defName>DD_DivineDiurganate_Faction</defName>
 		<label>Divine Diurganate</label>
-		<description>Divine Diurganate , also named</description>
+		<description>圣双尾鼠教国——也称狄尔格内特——</description>
 		<colorSpectrum>
 			<li>(0.45, 0.50, 0.30)</li>
 			<li>(0.65, 0.60, 0.20)</li>
