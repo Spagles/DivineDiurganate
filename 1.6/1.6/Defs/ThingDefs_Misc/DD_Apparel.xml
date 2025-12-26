@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<ThingDef ParentName="RK_ApparelMakeableBase">
+		<defName>DD_Suicide_Bomb</defName>
+		<label>Ratkin Suicide Bomb</label>
+		<description>A group of Bomb.</description>
+		<graphicData>
+			<texPath>Apparel/RK_WoodenShield</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<recipeMaker>
+			<unfinishedThingDef>UnfinishedArmor</unfinishedThingDef>
+			<!-- <researchPrerequisite>RatkinClothing</researchPrerequisite> -->
+			<recipeUsers Inherit="false">
+				<li>RK_FueledSmithy</li>
+				<li>RK_ElectricSmithy</li>
+			</recipeUsers>		
+		</recipeMaker>
+		<costList>
+			<Steel>25</Steel>
+		</costList>
+		<techLevel>Industrial</techLevel>
+		<statBases>
+			<MaxHitPoints>20</MaxHitPoints>
+			<WorkToMake>12500</WorkToMake>
+			<Mass>3</Mass>
+			<Flammability>1</Flammability>
+			<EquipDelay>1</EquipDelay>
+		</statBases>
+		<equippedStatOffsets>
+		</equippedStatOffsets>
+		<apparel>
+			<bodyPartGroups>
+				<li>Torso</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Apparel/RK_WoodenShield</wornGraphicPath>
+			<layers>
+				<li>OuterClothing</li>
+			</layers>
+			<tags>
+				<li>DD_Suicide_Bomb</li>
+			</tags>
+      <canBeDesiredForIdeo>false</canBeDesiredForIdeo>
+      <canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
+      <canBeGeneratedToSatisfyToxicEnvironmentResistance>false</canBeGeneratedToSatisfyToxicEnvironmentResistance>
+      <useWornGraphicMask>true</useWornGraphicMask>
+		</apparel>
+    <colorGenerator Class="ColorGenerator_Options">
+      <options>
+        <li>
+          <weight>10</weight>
+          <only>(1,1,1,1)</only>
+        </li>
+      </options>
+    </colorGenerator>
+    <comps>
+      <li Class="CompProperties_EquippableAbilityReloadable">
+        <abilityDef>DD_Suicide_Attack</abilityDef>
+      </li>
+    </comps>
+	</ThingDef>
+</Defs>

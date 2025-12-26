@@ -76,6 +76,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ability\DestroyOwnBodyPart\CompAbilityEffect_DestroyOwnBodyPart.cs" />
+    <Compile Include="Ability\DestroyOwnBodyPart\CompProperties_AbilityDestroyOwnBodyPart.cs" />
     <Compile Include="HarmonyPatches\Patche_SkillSystem.cs" />
     <Compile Include="HarmonyPatches\Patch_ColonistBarMech.cs" />
     <Compile Include="HarmonyPatches\Patch_MechSpecificWeapon.cs" />

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <AbilityDef>
+    <defName>DD_Suicide_Attack</defName>
+    <label>Suicide Attacks</label>
+    <description>Light your explosives and send yourself and nearby enemies to the heaven.</description>
+    <iconPath>UI/Commands/LaunchEMPPulse</iconPath>
+    <aiCanUse>true</aiCanUse>
+    <targetRequired>False</targetRequired>
+    <cooldownTicksRange>1</cooldownTicksRange>
+    <verbProperties>
+      <verbClass>Verb_CastAbility</verbClass>
+      <range>3.9</range>
+      <drawAimPie>false</drawAimPie>
+      <warmupTime>0.5</warmupTime>
+      <targetParams>
+        <canTargetSelf>true</canTargetSelf>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="DivineDiurganate.CompProperties_AbilityDestroyOwnBodyPart">
+        <bodyPartsToDestroy>
+          <li>Torso</li>
+        </bodyPartsToDestroy>
+      </li>
+      <li Class="CompProperties_AbilityExplosion">
+        <damageDef>Bomb</damageDef>
+        <explosionRadius>6.9</explosionRadius>
+      </li>
+    </comps>
+  </AbilityDef>
+</Defs>

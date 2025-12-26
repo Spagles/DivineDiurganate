@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<PawnKindDef ParentName="RKBasePawnKind">
+		<defName>DD_Ratkin_Suicider</defName>
+		<label>ratkin Suicide Attacker</label>
+		<backstoryFiltersOverride>
+			<li>
+				<categories>
+					<li>RatkinStory</li>
+				</categories>
+			</li>
+		</backstoryFiltersOverride>
+		<apparelRequired>
+			<li>DD_Suicide_Bomb</li>
+		</apparelRequired>
+		<apparelMoney>120~120</apparelMoney>
+		<apparelTags>
+			<li>RK_Worker</li>
+		</apparelTags>
+	</PawnKindDef>
+</Defs>
