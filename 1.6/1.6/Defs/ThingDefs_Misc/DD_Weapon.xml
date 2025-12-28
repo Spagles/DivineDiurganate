@@ -15,6 +15,7 @@
     <uiIconScale>1.25</uiIconScale>
     <recipeMaker>
       <!-- <recipeUsers Inherit="False" /> -->
+			<researchPrerequisite>MicroOptical</researchPrerequisite>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
     </recipeMaker>
     <statBases>
@@ -104,6 +105,7 @@
     <uiIconScale>0.8</uiIconScale>
     <recipeMaker>
       <!-- <recipeUsers Inherit="False" /> -->
+			<researchPrerequisite>MicroOptical</researchPrerequisite>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
     </recipeMaker>
     <statBases>
@@ -115,19 +117,6 @@
 			<AccuracyLong>0.65</AccuracyLong>
       <RangedWeapon_Cooldown>1.1</RangedWeapon_Cooldown>
     </statBases>
-    <verbs>
-      <li>
-        <verbClass>Verb_Shoot</verbClass>
-        <hasStandardCommand>true</hasStandardCommand>
-        <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
-        <warmupTime>1.25</warmupTime>
-        <defaultProjectile>DD_Harpoon_Gun_Bullet</defaultProjectile>
-        <range>34.9</range>
-        <burstShotCount>1</burstShotCount>
-        <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
-				<soundCast>DD_Harpoon_Gun_FireSound</soundCast>
-      </li>
-    </verbs>
     <costList>
       <Steel>30</Steel>
       <ComponentIndustrial>2</ComponentIndustrial>
@@ -156,7 +145,32 @@
 				<cooldownTime>2</cooldownTime>
 			</li>
 		</tools>
+    <comps>
+      <li Class="CompProperties_EquippableAbility">
+        <abilityDef>DD_Harpoon_Gun_Launch_Harpoon</abilityDef>
+      </li>
+    </comps>
   </ThingDef>
+  <AbilityDef>
+    <defName>DD_Harpoon_Gun_Launch_Harpoon</defName>
+    <label>发射鱼叉</label>
+    <description>使用气动发射器，将威力强大的鱼叉发射出去——但是在重新装填前，鱼叉枪就只能当成近战武器使用了。</description>
+    <iconPath>UI/Abilities/PiercingSpine</iconPath>
+    <displayOrder>200</displayOrder>
+    <aiCanUse>true</aiCanUse>
+    <cooldownTicksRange>1800</cooldownTicksRange>
+    <verbProperties>
+      <verbClass>Verb_CastAbility</verbClass>
+      <range>34.9</range>
+      <warmupTime>1</warmupTime>
+      <soundCast>DD_Harpoon_Gun_FireSound</soundCast>
+    </verbProperties>
+    <comps>
+      <li Class="CompProperties_AbilityLaunchProjectile">
+        <projectileDef>DD_Harpoon_Gun_Bullet</projectileDef>
+      </li>
+    </comps>
+  </AbilityDef>
   <ThingDef ParentName="BaseBullet">
     <defName>DD_Harpoon_Gun_Bullet</defName>
     <label>Harpoon</label>
@@ -168,9 +182,9 @@
     </graphicData>
     <projectile>
 			<damageDef>Bullet</damageDef>
-			<damageAmountBase>13</damageAmountBase>
-			<stoppingPower>1</stoppingPower>
-			<armorPenetrationBase>0.45</armorPenetrationBase>
+			<damageAmountBase>35</damageAmountBase>
+			<stoppingPower>5</stoppingPower>
+			<armorPenetrationBase>0.75</armorPenetrationBase>
 			<speed>75</speed>
     </projectile>
   </ThingDef>
@@ -188,6 +202,7 @@
     <soundInteract>Interact_Rifle</soundInteract>
     <recipeMaker>
       <recipeUsers Inherit="False" />
+			<researchPrerequisite>MechanicalWeapon</researchPrerequisite>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
     </recipeMaker>
     <statBases>
@@ -213,9 +228,9 @@
         <muzzleFlashScale>9</muzzleFlashScale>
 
         <!-- Custom Properties for the modified Verb_SpewFire logic -->
-        <degrees>45</degrees>
+        <degrees>25</degrees>
         <damageDef>Flame</damageDef>
-        <damageAmount>15</damageAmount>
+        <damageAmount>12</damageAmount>
         <!-- <filthDef>Filth_SpentAcid</filthDef> -->
         <effecterDef>DD_Fire_Shotgun_Fire_Spew</effecterDef>
         <propagationSpeed>0.5</propagationSpeed>
@@ -233,6 +248,7 @@
 			<li>RK_RangeWeapon</li>
 			<li>DD_Weapon_T2</li>
 			<li>DD_RatkinClergy_Weapon</li>
+			<li>DD_RatkinCrusaders_Weapon</li>
 		</weaponTags>
     <generateCommonality>0.01</generateCommonality>
   </ThingDef>

@@ -51,7 +51,7 @@
     <maxPerGroup>1</maxPerGroup>
     <isBoss>true</isBoss>
     <fixedAdultBackstories>
-      <li>DD_Ratkin_Sister</li>
+      <li>Ratkin_Sister</li>
     </fixedAdultBackstories>
 		<backstoryFiltersOverride>
 			<li>
@@ -78,7 +78,7 @@
 		<label>Diurganate Nun</label>
 		<combatPower>125</combatPower>
     <fixedAdultBackstories>
-      <li>DD_Ratkin_Sister</li>
+      <li>Ratkin_Sister</li>
     </fixedAdultBackstories>
 		<backstoryFiltersOverride>
 			<li>

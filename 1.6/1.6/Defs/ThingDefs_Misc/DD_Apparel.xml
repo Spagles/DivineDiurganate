@@ -239,4 +239,72 @@
       </li>
     </comps>
 	</ThingDef>
+	<ThingDef ParentName="DD_ApparelMakeableBase">
+		<defName>DD_Crusaders_Uniform</defName>
+		<label>双尾护教军制服</label>
+    <description>双尾护教军的制服，内嵌了一套可以抵御射击的合金板甲，外表覆以保暖的大衣，以在双尾教廷飞空艇的高空低温环境下活动。</description>
+    <graphicData>
+			<texPath>DivineDiurganate/Apparel/DD_Crusaders_Uniform</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<costList>
+			<DevilstrandCloth>20</DevilstrandCloth>
+		</costList>
+		<costStuffCount>35</costStuffCount>
+		<stuffCategories>
+			<li>Leathery</li>
+			<li>Fabric</li>
+		</stuffCategories>
+		<techLevel>Industrial</techLevel>
+		<statBases>
+			<MaxHitPoints>150</MaxHitPoints>
+			<WorkToMake>25000</WorkToMake>
+			<Mass>3</Mass>
+			<Flammability>1</Flammability>
+			<EquipDelay>1</EquipDelay>
+      <StuffEffectMultiplierArmor>0.9</StuffEffectMultiplierArmor>
+      <StuffEffectMultiplierInsulation_Cold>1.0</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0.20</StuffEffectMultiplierInsulation_Heat>
+		</statBases>
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Woody</li>
+    </stuffCategories>
+		<equippedStatOffsets>
+      <MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<apparel>
+			<bodyPartGroups>
+				<li>Neck</li>
+				<li>Torso</li>
+				<li>Shoulders</li>
+				<li>Arms</li>
+				<li>Legs</li>
+			</bodyPartGroups>
+			<wornGraphicPath>DivineDiurganate/Apparel/DD_Crusaders_Uniform</wornGraphicPath>
+			<layers>
+				<li>OuterClothing</li>
+				<li>OnSkin</li>
+			</layers>
+			<tags>
+				<li>DD_RatkinCrusaders</li>
+			</tags>
+      <canBeDesiredForIdeo>false</canBeDesiredForIdeo>
+      <canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
+      <canBeGeneratedToSatisfyToxicEnvironmentResistance>false</canBeGeneratedToSatisfyToxicEnvironmentResistance>
+      <useWornGraphicMask>true</useWornGraphicMask>
+		</apparel>
+    <colorGenerator Class="ColorGenerator_Options">
+      <options>
+        <li>
+          <weight>10</weight>
+          <only>(1,1,1,1)</only>
+        </li>
+      </options>
+    </colorGenerator>
+		<recipeMaker>
+			<researchPrerequisite>HighClassClothing</researchPrerequisite>
+		</recipeMaker>
+	</ThingDef>
 </Defs>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <ResearchTabDef>
+    <defName>DD_ResearchTab</defName>
+    <label>双尾科技</label>
+    <generalTitle>双尾教国的科技</generalTitle>
+    <generalDescription>由双尾教国开发的一系列强大的战争机械。</generalDescription>
+  </ResearchTabDef>
+  <ResearchProjectDef Abstract="True" Name="ARA_techBase">
+    <techLevel>Industrial</techLevel>
+    <requiresMechanitor>true</requiresMechanitor>
+    <tab>DD_ResearchTab</tab>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef ParentName="ARA_techBase">
+    <defName>DD_LV1_Base_Technology</defName>
+    <label>双尾教国授权-等级1</label>
+    <description>双尾教国授权-等级1。</description>
+    <baseCost>100</baseCost>
+    <researchViewX>0.00</researchViewX>
+    <researchViewY>3.20</researchViewY>
+  </ResearchProjectDef>
+</Defs>
