@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <MemeGroupDef>
+    <defName>DD_law_MemeGroup</defName>
+    <drawOffset>(0.37, 0.23)</drawOffset>
+    <maxRows>1</maxRows>
+    <renderOrder>1900</renderOrder>
+  </MemeGroupDef>
+
+  <MemeDef>
+    <defName>DD_law_Meme</defName>
+    <label>双尾戒律</label>
+    <description>圣双尾鼠的信徒们所遵循的戒律。</description>
+    <iconPath>DivineDiurganate/UI/Memes/DD_law_Meme</iconPath>
+    <groupDef>DD_law_MemeGroup</groupDef>
+    <impact>3</impact>
+    <renderOrder>50</renderOrder>
+    <veneratedAnimalsCountOverride>0</veneratedAnimalsCountOverride>
+    <requireOne>
+      <li>
+        <li>Research_VeryFast</li>
+        <li>Research_Fast</li>
+      </li>
+      <li>
+        <li>IdeoDiversity_Abhorrent</li>
+        <li>IdeoDiversity_Horrible</li>
+      </li>
+      <li>
+        <li>Execution_DontCare</li>
+        <li>Execution_RespectedIfGuilty</li>
+        <li>Execution_Required</li>
+      </li>
+    </requireOne>
+    <consumableBuildings>
+      <li>Effigy</li>
+    </consumableBuildings>
+    <exclusionTags>
+      <li>DD_law_MemeGroup</li>
+    </exclusionTags>
+    <generalRules>
+      <rulesStrings>
+        <li>memeAdjective->神圣</li>
+        <li>memeAdjective->不朽</li>
+        <li>memeAdjective->伟大</li>
+        <li>memeHyphenPrefix->超凡</li>
+        <li>memeConcept->机械</li>
+        <li>memeConcept->圣火</li>
+        <li>memeLeaderNoun->教长</li>
+        <li>memeLeaderNoun->修女长</li>
+        <li>memeLeaderNoun->主教</li>
+        <li>memeLeaderNoun->圣徒</li>
+      </rulesStrings>
+    </generalRules>
+    <descriptionMaker>
+      <rules>
+        <rulesStrings>
+          <!-- 神创神话 -->
+          <li>creation(tag=meme_DD_law)        ->[deity0_name]从原始污秽中铸造了[memberNameSingular]一族，赐予他们圣油与硫磺火，使大地万物皆为神之机械的燃料。</li>
+          <li>episode(uses=1,tag=meme_DD_law)  ->当[memberNamePlural]的家园被野兽侵扰，[deity0_name]降下启示，教会他们铸造第一台蒸汽机机甲，用机械的巨足踏平混乱的外界。</li>
+          
+          <!-- 宗教创始 -->
+          <li>intro(tag=meme_DD_law)           ->[place_name]的首批定居者遭遇了狂暴的[Animal]群。[deity0_name]派遣神之机械降世，用圣洁的焰火净化了这片土地。</li>
+          <li>conflict(tag=meme_DD_law)        ->异端领袖[foeLeader]竟主张与[Animal]平等共享资源。[deity0_name]在铸造圣殿中怒吼，看着[memberNamePlural]被迫将珍贵的圣油浪费在“动物权利”上。</li>
+          <li>founderJoin(tag=meme_DD_law)     ->大牧师[founderName]在[place_name]建立了第一座铸造圣殿。[founder_pronoun]用圣油净化野兽的仪式，向信徒展示[deity0_name]对机械造物的祝福。</li>
+          <li>victory(tag=meme_DD_law)         ->[founderName]的火焰净化让[foeLeader]的[foeSoldiers]见证了真理。他们与[memberNamePlural]在圣油燃烧的火光中共舞，将[foeLeader]流放到未开发的荒野，任其如野兽般生存。</li>
+          
+          <!-- 意识形态创始 -->
+          <li>setup(tag=meme_DD_law)           ->[founderName]在蛮荒星球建立了殖民地，用烟囱的阴影和齿轮的节奏将工业秩序强加于每一寸土地。</li>
+          <li>story(uses=1,tag=meme_DD_law)    ->一次，[founderName]看见一只[Animal]对着圣像低吼。[founder_pronoun]当场操纵神之机械将其碾成齑粉。</li>
+          
+          <!-- 意识形态课程 -->
+          <li>lessonIntro(tag=meme_DD_law)         ->我参观了一座高效运作的燃料精炼厂，机械规律运转，黑烟直冲云霄。旁边是一片“自然保护地”，混乱肮脏。这清楚地证明：</li>
+          <li>lesson(tag=meme_DD_law)              ->唯有神之机械的意志能赋予宇宙意义与秩序</li>
+          <li>lesson(tag=meme_DD_law)              ->自然是无序浪费的肮脏集合，圣油与齿轮才是解决方案</li>
+          <li>lessonReinforcement(tag=meme_DD_law) ->若宇宙是适者生存的竞技场，那我们已经用钢铁与火焰赢得了最终胜利。</li>
+          
+          <!-- 机械族相关 -->
+          <li>archistBasis(tag=meme_DD_law)    ->机械族确实拥有强大算力，但它们的核心处理器不过是对圣双尾鼠所铸神之机械的拙劣模仿。</li>
+          <li>archistFact(tag=meme_DD_law)     ->[memberNameSingular]是机械的造物主与驾驶者，机械族只是等待被重新编程的废弃物件。</li>
+          <li>archistProphecy(tag=meme_DD_law) ->[inTheEnd]，通过观察圣双尾鼠赐福的牧师们，机械族终将理解它们存在的唯一目的：成为圣双尾鼠的忠诚齿轮。</li>
+          
+          <!-- 万物有灵论 -->
+          <li>animistFact(tag=meme_DD_law)     ->自然界中的野兽只是等待被回收利用的原始材料，渴望通过神之机械与工业炼炉获得“升华”。</li>
+        </rulesStrings>
+      </rules>
+    </descriptionMaker>
+    <symbolPacks>
+      <li>
+        <ideoName>圣双尾教</ideoName>
+        <theme>圣双尾教</theme>
+        <adjective>圣双尾教</adjective>
+        <member>双尾教徒</member>
+      </li>
+    </symbolPacks>
+    <ritualsToMake>1</ritualsToMake>
+    <replaceRitualsWithTags><li>CelebratedDate</li></replaceRitualsWithTags>
+    <replacementPatterns><li>SacrificeAnimal</li></replacementPatterns>
+  </MemeDef>
+
+  <PreceptDef ParentName="PreceptRoleSingleBase">
+    <defName>DD_IdeoRole_Clergy</defName>
+    <label>双尾教牧师</label>
+    <description>圣双尾教的牧师在教会中是一个非常重要的职位，这个职位一般不专门负责传教，而是负责维护双尾神教中的各种装备和机械造物，并主持一系列的祝圣仪式。</description>
+    <iconPath>DivineDiurganate/UI/Roles/DD_IdeoRole_Clergy</iconPath>
+    <nameMaker>NamerRoleMoralist</nameMaker>
+    <roleRequirements>
+      <li Class="RoleRequirement_MinSkillAny">
+        <skills>
+          <Crafting>8</Crafting>
+        </skills>
+      </li>
+    </roleRequirements>
+    <roleRequiredWorkTagAny>
+      <li>Crafting</li>
+    </roleRequiredWorkTagAny>
+    <roleTags>
+      <li>Moralist</li>
+    </roleTags>
+    <requiredMemes>
+      <li>DD_law_Meme</li>
+    </requiredMemes>
+    <roleEffects>
+      <!-- <li Class="RoleEffect_PawnStatOffset">
+        <statDef>ConstructionSpeed</statDef>
+        <modifier>0.5</modifier>
+      </li>
+      <li Class="RoleEffect_PawnStatOffset">
+        <statDef>GeneralLaborSpeed</statDef>
+        <modifier>0.5</modifier>
+      </li> -->
+      <li Class="RoleEffect_ProductionQualityOffset">
+        <offset>2</offset>
+      </li>
+    </roleEffects>
+    <!-- 双尾教神职的技能 -->
+    <grantedAbilities>
+      <!-- <li>Convert</li>
+      <li>Counsel</li>
+      <li>Reassure</li>
+      <li>ConversionRitual</li>
+      <li>PreachHealth</li> -->
+    </grantedAbilities>
+    <displayOrderInImpact>2</displayOrderInImpact>
+    <roleDisabledWorkTags>
+      <li>ManualDumb</li>
+      <li>Animals</li>
+      <li>Cooking</li>
+      <li>PlantWork</li>
+      <li>Mining</li>
+    </roleDisabledWorkTags>
+  </PreceptDef>
+  <PreceptDef ParentName="PreceptRoleSingleBase">
+    <defName>DD_IdeoRole_Exorcist</defName>
+    <label>双尾教驱魔人</label>
+    <description>圣双尾教的驱魔人一般由教会中最狂热的信徒担当，它不是教廷规定的标准神职，但是在民间社团依然有很高的赞誉度，她们是社区中除暴安良、维护秩序的标杆，并且因为狂热的信仰，可以在战场上短暂地听到圣言。</description>
+    <iconPath>DivineDiurganate/UI/Roles/DD_IdeoRole_Exorcist</iconPath>
+    <nameMaker>NamerRoleBrawler</nameMaker>
+    <roleRequirements>
+      <li Class="RoleRequirement_MinSkillAny">
+        <skills>
+          <Melee>6</Melee>
+          <Shooting>6</Shooting>
+        </skills>
+      </li>
+    </roleRequirements>
+    <roleRequiredWorkTags>
+      <li>Violent</li>
+    </roleRequiredWorkTags>
+    <roleTags>
+      <li>DD_IdeoRole_Exorcist</li>
+    </roleTags>
+    <requiredMemes>
+      <li>DD_law_Meme</li>
+    </requiredMemes>
+    <roleEffects>
+      <!-- <li Class="RoleEffect_PawnStatOffset">
+        <statDef>ConstructionSpeed</statDef>
+        <modifier>0.5</modifier>
+      </li>
+      <li Class="RoleEffect_PawnStatOffset">
+        <statDef>GeneralLaborSpeed</statDef>
+        <modifier>0.5</modifier>
+      </li> -->
+      <li Class="RoleEffect_PawnStatOffset">
+        <statDef>ShootingAccuracyPawn</statDef>
+        <modifier>5</modifier>
+      </li>
+      <li Class="RoleEffect_PawnStatOffset">
+        <statDef>AimingDelayFactor</statDef>
+        <modifier>-0.35</modifier>
+      </li>
+      <li Class="RoleEffect_PawnStatOffset">
+        <statDef>MeleeHitChance</statDef>
+        <modifier>5</modifier>
+      </li>
+      <li Class="RoleEffect_PawnStatOffset">
+        <statDef>MeleeDodgeChance</statDef>
+        <modifier>5</modifier>
+      </li>
+    </roleEffects>
+    <!-- 双尾教神职的技能 -->
+    <grantedAbilities>
+    </grantedAbilities>
+    <displayOrderInImpact>2</displayOrderInImpact>
+    <roleDisabledWorkTags>
+      <li>Crafting</li>
+      <li>Cooking</li>
+      <li>PlantWork</li>
+      <li>Mining</li>
+      <li>Constructing</li>
+    </roleDisabledWorkTags>
+  </PreceptDef>
+</Defs>

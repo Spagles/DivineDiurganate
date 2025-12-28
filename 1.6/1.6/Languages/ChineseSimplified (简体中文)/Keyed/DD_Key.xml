@@ -47,4 +47,10 @@
   <DD_MechTooDamagedForEntry>该机甲损坏严重无法进入</DD_MechTooDamagedForEntry>
 
   <DD_PilotsEjectedDueToLowHealth>{0}的损伤过于严重，驾驶员已被保险系统弹出</DD_PilotsEjectedDueToLowHealth>
+
+  <DD_ForceEjectPilot>撬开 {0}</DD_ForceEjectPilot>
+  <DD_AlreadyPlayerMech>不能撬开本来就属于殖民地的机甲</DD_AlreadyPlayerMech>
+  <DD_MechNotDowned>该机甲仍有行动能力</DD_MechNotDowned>
+  <DD_ForceEjectComplete_WithPilots>{0} 撬开了 {1}，里面仍活着的 {2} 个驾驶员冲出来了！</DD_ForceEjectComplete_WithPilots>
+  <DD_ForceEjectComplete>{0} 撬开了 {1}，并接管了它。</DD_ForceEjectComplete>
 </LanguageData>

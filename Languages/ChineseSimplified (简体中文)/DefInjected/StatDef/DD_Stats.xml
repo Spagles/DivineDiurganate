@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: Sanctified Armour -->
+  <DD_MechArmor.label>圣化镀层</DD_MechArmor.label>
+  <!-- EN: Strength of the special armour of Divine Diurganate's mech. When the Armor Penetration Multiplier * Damage value of an attack is less than this value, the attack is completely counteracted by the armour. -->
+  <DD_MechArmor.description>代表神圣双尾教国机甲的特殊护甲的强度。当 护甲穿透乘数 * 攻击 的最终值小于此值时，该攻击将被圣化镀层完全抵消而不造成任何伤害。</DD_MechArmor.description>
+  
+</LanguageData>

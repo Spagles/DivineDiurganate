@@ -3,11 +3,13 @@
 	<FactionDef ParentName="FactionBase">
 		<defName>DD_DivineDiurganate_Faction</defName>
 		<label>Divine Diurganate</label>
-		<description>圣双尾鼠教国——也称狄尔格内特——</description>
+		<description>The Twin-Tailed Kingdom — also known as Divine Diurganate — is a theocratic ratkin kingdom founded by followers of the Holy Twin-Tail. While the nation has industrialized, its social structure remains largely religious, resulting in a landscape of billowing diesel mechs, spark-splattering factories, and ubiquitous shrines and icons. \n\nCompared to other industrialized ratkin kingdoms, the Divine Diurganate is far ahead. The Catholic Church has spearheaded the development of a series of large-scale equipment, mechs, and aircraft powered by diesel and internal combustion engines, establishing a technological advantage over other ratkin kingdoms. Due to religious fanaticism, the ratkins of this kingdom are not as peaceful and docile as their counterparts. They possess a tradition of extreme xenophobia and hostility towards other races and are obsessed with outward expansion and the assimilation of other ratkins.</description>
 		<colorSpectrum>
-			<li>(0.45, 0.50, 0.30)</li>
-			<li>(0.65, 0.60, 0.20)</li>
+			<li>(0.6, 0.2, 0.2)</li>
+			<li>(0.6, 0.2, 0.2)</li>
 		</colorSpectrum>
+    <factionIconPath>DivineDiurganate/WorldObjects/Expanding/DD_DivineDiurganate_Faction</factionIconPath>
+		<settlementTexturePath>Icon/RK_DefaultColony</settlementTexturePath>
 		<pawnSingular>ratkin</pawnSingular>
 		<pawnsPlural>Ratkins</pawnsPlural>
 		<categoryTag>RatkinStory</categoryTag>
@@ -21,7 +23,6 @@
 		<settlementNameMaker>NamerSettlement_RatkinKingdom</settlementNameMaker>
 		<canSiege>true</canSiege>
 		<canStageAttacks>true</canStageAttacks>
-		<factionIconPath>Icon/RK_icon</factionIconPath>
 		<techLevel>Industrial</techLevel>
 		<melaninRange>0~0.3</melaninRange>
 		<backstoryCategories>
@@ -41,17 +42,18 @@
 		</baseTraderKinds>
 		<allowedArrivalTemperatureRange>-40~45</allowedArrivalTemperatureRange>
 		<forcedMemes>
+     <li>DD_law_Meme</li>
 		</forcedMemes>
-		<!-- <structureMemeWeights>
-			<Structure_TheistEmbodied MayRequire="Ludeon.RimWorld.Ideology">1</Structure_TheistEmbodied>
-			<Structure_TheistAbstract MayRequire="Ludeon.RimWorld.Ideology">2</Structure_TheistAbstract>
-			<Structure_Ideological MayRequire="Ludeon.RimWorld.Ideology">1</Structure_Ideological>
-			<Structure_Archist MayRequire="Ludeon.RimWorld.Ideology">1</Structure_Archist>
-			<Structure_OriginChristian MayRequire="Ludeon.RimWorld.Ideology">1</Structure_OriginChristian>
-			<Structure_OriginIslamic MayRequire="Ludeon.RimWorld.Ideology">1</Structure_OriginIslamic>
-			<Structure_OriginHindu MayRequire="Ludeon.RimWorld.Ideology">1</Structure_OriginHindu>
-			<Structure_OriginBuddhist MayRequire="Ludeon.RimWorld.Ideology">1</Structure_OriginBuddhist>
-		</structureMemeWeights> -->
+		<structureMemeWeights>
+			<Structure_TheistEmbodied MayRequire="Ludeon.RimWorld.Ideology">0</Structure_TheistEmbodied>
+			<Structure_TheistAbstract MayRequire="Ludeon.RimWorld.Ideology">9999</Structure_TheistAbstract>
+			<Structure_Ideological MayRequire="Ludeon.RimWorld.Ideology">0</Structure_Ideological>
+			<Structure_Archist MayRequire="Ludeon.RimWorld.Ideology">0</Structure_Archist>
+			<Structure_OriginChristian MayRequire="Ludeon.RimWorld.Ideology">0</Structure_OriginChristian>
+			<Structure_OriginIslamic MayRequire="Ludeon.RimWorld.Ideology">0</Structure_OriginIslamic>
+			<Structure_OriginHindu MayRequire="Ludeon.RimWorld.Ideology">0</Structure_OriginHindu>
+			<Structure_OriginBuddhist MayRequire="Ludeon.RimWorld.Ideology">0</Structure_OriginBuddhist>
+		</structureMemeWeights>
 		<maxPawnCostPerTotalPointsCurve>
 			<points>
 				<li>(0,35)</li>
@@ -62,62 +64,27 @@
 			</points>
 		</maxPawnCostPerTotalPointsCurve>
 		<pawnGroupMakers>
+      <!-- 0-1000 -->
 			<li>
 				<kindDef>Combat</kindDef>
-				<commonality>100</commonality>
+				<commonality>10000</commonality>
 				<maxTotalPoints>1000</maxTotalPoints>
 				<options>
-					<RatkinCombatant>20</RatkinCombatant>
-					<RatkinSoldier>5</RatkinSoldier>
+					<DD_Ratkin_Suicider>30</DD_Ratkin_Suicider>
+					<DD_Ratkin_Skirmish>5</DD_Ratkin_Skirmish>
+					<DD_S1_Ratkin_Leader_Nun>9999</DD_S1_Ratkin_Leader_Nun>
 				</options>
 			</li>
-			<!-- 초반 혼합-->
+      <!-- 1000-3000 -->
 			<li>
 				<kindDef>Combat</kindDef>
-				<commonality>100</commonality>
-				<maxTotalPoints>1000</maxTotalPoints>
+				<commonality>1000</commonality>
+				<maxTotalPoints>3000</maxTotalPoints>
 				<options>
-					<RatkinDefender>5</RatkinDefender>
-					<RatkinVanguard>10</RatkinVanguard>
-					<RatkinCombatant>15</RatkinCombatant>
-				</options>
-			</li>
-			<!-- 중후반 군인-->
-			<li>
-				<kindDef>Combat</kindDef>
-				<commonality>50</commonality>
-				<options>
-					<RatkinSoldier>30</RatkinSoldier>
-					<RatkinEliteSoldier>5</RatkinEliteSoldier>
-					<RatkinDemonMan>5</RatkinDemonMan>
-					<RatkinDefender>15</RatkinDefender>
-					<RatkinEliteGuardener>15</RatkinEliteGuardener>
-				</options>
-			</li>
-			<!-- 중후반 디펜더, 가드너,기사-->
-			<li>
-				<kindDef>Combat</kindDef>
-				<disallowedStrategies>
-					<li>Siege</li>
-				</disallowedStrategies>
-				<commonality>30</commonality>
-				<options>
-					<RatkinEliteGuardener>30</RatkinEliteGuardener>
-					<RatkinKnight>30</RatkinKnight>
-					<RatkinEliteDefender>15</RatkinEliteDefender>
-				</options>
-			</li>
-			<!-- 중후반 엘리트 디펜더, 기사, 커맨더-->
-			<li>
-				<kindDef>Combat</kindDef>
-				<disallowedStrategies>
-					<li>Siege</li>
-				</disallowedStrategies>
-				<commonality>20</commonality>
-				<options>
-					<RatkinKnight>30</RatkinKnight>
-					<RatkinEliteDefender>20</RatkinEliteDefender>
-					<RatkinKnightCommander>5</RatkinKnightCommander>
+					<DD_Ratkin_Suicider>20</DD_Ratkin_Suicider>
+					<DD_Ratkin_Skirmish>10</DD_Ratkin_Skirmish>
+					<DD_Ratkin_Nun>5</DD_Ratkin_Nun>
+					<DD_S2_DHM86_Knell_Mech>9999</DD_S2_DHM86_Knell_Mech>
 				</options>
 			</li>
 			<li>
@@ -160,7 +127,6 @@
 				</options>
 			</li>
 		</pawnGroupMakers>
-		<settlementTexturePath>Icon/RK_DefaultColony</settlementTexturePath>
 		<apparelStuffFilter>
 			<stuffCategoriesToAllow>
 				<li>WeaponMetallic</li>

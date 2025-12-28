@@ -25,4 +25,107 @@
       </li>
     </stages>
   </HediffDef>
+
+  <HediffDef>
+    <defName>DD_MechPrototype</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>Prototype</label>
+    <description>This is a prototype of a mecha from the Diurganate. Compared to the mass-produced version, it is more powerful in combat, but also more expensive.</description>
+    <!-- <initialSeverity>0.5</initialSeverity> -->
+    <minSeverity>0.01</minSeverity>
+    <maxSeverity>1</maxSeverity>
+    <alwaysShowSeverity>true</alwaysShowSeverity>
+    <isBad>true</isBad>
+    <duplicationAllowed>true</duplicationAllowed>
+    <keepOnBodyPartRestoration>true</keepOnBodyPartRestoration>    <!-- true -->
+    <!-- <defaultInstallPart>Brain</defaultInstallPart> -->
+    <stages>
+      <li>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <postFactor>1.5</postFactor>
+          </li>
+          <li>
+            <capacity>Moving</capacity>
+            <postFactor>1.5</postFactor>
+          </li>
+        </capMods>
+        <statFactors>
+          <DD_MechArmor>1.25</DD_MechArmor>
+        </statFactors>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>DD_Nun_Draw_Hediff</defName>
+    <label>Diurganate Nun Dress</label>
+    <description>The uniforms worn by the nuns who serve the Holy Two-Tail are designed with battlefield practicality in mind, compared to the uniforms of ordinary ratkin Sister Dress, and are therefore more defensive—though they are still ultimately a cloth, not armor.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.6, 0.4, 0.8)</defaultLabelColor>
+    <stages>
+      <li>
+        <becomeVisible>true</becomeVisible>
+        <minSeverity>0</minSeverity>
+      </li>
+    </stages>
+    <renderNodeProperties>
+      <li>
+        <nodeClass>PawnRenderNode_AttachmentHead</nodeClass>
+        <workerClass>PawnRenderNodeWorker_FlipWhenCrawling</workerClass>
+        <texPath>DivineDiurganate/Apparel/DD_NunVeil_Thin_south_Behind</texPath>
+        <parentTagDef>ApparelHead</parentTagDef>
+        <useSkinShader>false</useSkinShader>
+        <useRottenColor>false</useRottenColor>
+        <rotDrawMode>Fresh, Rotting</rotDrawMode>
+        <visibleFacing>
+          <li>South</li>
+        </visibleFacing>
+        <drawData>
+          <dataEast>
+            <layer>-99999</layer>
+          </dataEast>
+          <dataWest>
+            <layer>-99999</layer>
+          </dataWest>
+          <dataNorth>
+            <layer>-99999</layer>
+          </dataNorth>
+          <dataSouth>
+            <layer>10</layer>
+            <offset>(0, 0, 0)</offset>
+          </dataSouth>
+        </drawData>
+      </li>
+    </renderNodeProperties>
+    <comps>
+      <li Class="HediffCompProperties_RemoveIfApparelDropped" />
+    </comps>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>DD_Suicide_Bomb_Hediff</defName>
+    <label>Bomb</label>
+    <description>This colonist had a bomb hidden!</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <initialSeverity>1.0</initialSeverity>
+    <maxSeverity>1.0</maxSeverity>
+    <minSeverity>0.01</minSeverity>
+    <isBad>false</isBad>
+    <comps>
+      <li Class="HediffCompProperties_GiveAbility">
+        <abilityDefs>
+          <li>DD_Suicide_Attack</li>
+        </abilityDefs>
+      </li>
+      <li Class="HediffCompProperties_RemoveIfApparelDropped" />
+    </comps>
+    <stages>
+      <li>
+        <becomeVisible>false</becomeVisible>
+        <minSeverity>0</minSeverity>
+      </li>
+    </stages>
+  </HediffDef>
 </Defs>

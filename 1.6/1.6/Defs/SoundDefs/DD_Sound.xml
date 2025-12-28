@@ -33,6 +33,22 @@
     </subSounds>
   </SoundDef>
   <SoundDef>
+    <defName>DD_Harpoon_Gun_FireSound</defName>
+    <context>MapOnly</context>
+    <maxSimultaneous>2</maxSimultaneous>
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>DivineDiurganate/DD_Harpoon_Gun_FireSound</clipPath>
+          </li>
+        </grains>
+        <volumeRange>45</volumeRange>
+        <pitchRange>0.9~1.1</pitchRange>
+      </li>
+    </subSounds>
+  </SoundDef>
+  <SoundDef>
     <defName>DD_DHM86_Knell_Mech_Moving_Sound</defName>
     <sustain>true</sustain>
     <context>MapOnly</context>

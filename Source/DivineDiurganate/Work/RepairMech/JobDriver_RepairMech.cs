@@ -388,10 +388,6 @@ namespace DivineDiurganate
             if (IsDisease(hediff))
                 return false;
             
-            // 机械族特有的hediff可以修复
-            if (IsMechSpecificHediff(hediff))
-                return true;
-            
             return false;
         }
         
@@ -412,14 +408,6 @@ namespace DivineDiurganate
             }
             
             return false;
-        }
-        
-        // 检查是否是机械族特有的hediff
-        private bool IsMechSpecificHediff(Hediff hediff)
-        {
-            return hediff.def.defName.Contains("Mech") || 
-                   hediff.def.defName.Contains("Mechanical") ||
-                   hediff.def.defName.Contains("Gunshot");
         }
         
         public override void ExposeData()

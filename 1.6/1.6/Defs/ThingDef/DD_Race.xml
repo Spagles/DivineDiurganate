@@ -126,6 +126,7 @@
     <altitudeLayer>Pawn</altitudeLayer>
     <tradeability>None</tradeability>
     <statBases>
+      <StaggerDurationFactor>0</StaggerDurationFactor>
       <ComfyTemperatureMin>-99999</ComfyTemperatureMin>
       <ComfyTemperatureMax>99999</ComfyTemperatureMax>
       <Wildness>0</Wildness>
@@ -367,6 +368,30 @@
         <triggerOnHealthThreshold>true</triggerOnHealthThreshold>
         <chanceNeverExplode>0</chanceNeverExplode> <!-- 5%几率永不爆炸 -->
       </li>
+
+      <li Class="DivineDiurganate.CompProperties_HediffGiverByKind">
+        <!-- 调试模式 -->
+        <debugMode>false</debugMode>
+        
+        <!-- 默认配置（当没有特定PawnKind匹配时使用） -->
+        <defaultHediffs>
+        </defaultHediffs>
+        <defaultAddChance>1</defaultAddChance>
+        <defaultAllowDuplicates>false</defaultAllowDuplicates>
+        
+        <!-- PawnKind特定配置 -->
+        <pawnKindHediffs>
+          <!-- Soldier类型的特定hediff -->
+          <li>
+            <pawnKind>DD_DHM86_Knell_Mech_Prototype</pawnKind>
+            <hediffs>
+              <li>DD_MechPrototype</li>
+            </hediffs>
+            <addChance>1.0</addChance>
+            <allowDuplicates>false</allowDuplicates>
+          </li>
+        </pawnKindHediffs>
+      </li>
     </comps>
   </ThingDef>
 	<PawnKindDef>
@@ -395,6 +420,32 @@
 			</li>
 		</lifeStages>
 	</PawnKindDef>
+	<PawnKindDef>
+		<defName>DD_DHM86_Knell_Mech_Prototype</defName>
+		<label>DHM86-Knell Prototype</label>
+		<race>DD_DHM86_Knell_Mech</race>
+		<defaultFactionType>PlayerColony</defaultFactionType>
+		<forceDeathOnDowned>false</forceDeathOnDowned>
+		<forceNoDeathNotification>false</forceNoDeathNotification>
+    <collidesWithPawns>false</collidesWithPawns>
+		<combatPower>200</combatPower>
+    <weaponTags>
+      <li>DD_DHM86_Knell_Mech_Weapon</li>
+    </weaponTags>
+    <weaponMoney>99999~99999</weaponMoney>
+		<lifeStages>
+			<li>
+				<bodyGraphicData>
+					<texPath>DivineDiurganate/Things/DD_DHM86_Knell/Prototype</texPath>
+					<drawSize>3.5</drawSize>
+					<shadowData>
+						<volume>(0.4, 0.5, 0.37)</volume>
+						<offset>(0,0,-0.15)</offset>
+					</shadowData>
+				</bodyGraphicData>
+			</li>
+		</lifeStages>
+	</PawnKindDef>
 
   <ThingDef ParentName="DD_MechPawnBase">
     <defName>DD_DHM69_Scythe_Mech</defName>
@@ -411,13 +462,13 @@
 
       <!-- 圣化镀层的数值，伤害*穿甲率低于此数值将被直接抵挡 -->
       <!-- value of the Sanctified Armour, damage * armor piercing rate below which will be directly resisted -->
-      <DD_MechArmor>12</DD_MechArmor>
+      <DD_MechArmor>9</DD_MechArmor>
     </statBases>
     <race>
       <body>DD_Race_DHM69_Scythe_Body</body>
       <thinkTreeMain>DD_Battle_Mech_With_2_Pilot</thinkTreeMain>
 			<baseBodySize>8</baseBodySize>
-      <baseHealthScale>30</baseHealthScale>
+      <baseHealthScale>6</baseHealthScale>
     </race>
     <butcherProducts Inherit="False">
       <Steel>350</Steel>
@@ -551,6 +602,30 @@
           </li>
         </renderNodeProperties>
       </li>
+
+      <li Class="DivineDiurganate.CompProperties_HediffGiverByKind">
+        <!-- 调试模式 -->
+        <debugMode>false</debugMode>
+        
+        <!-- 默认配置（当没有特定PawnKind匹配时使用） -->
+        <defaultHediffs>
+        </defaultHediffs>
+        <defaultAddChance>1</defaultAddChance>
+        <defaultAllowDuplicates>false</defaultAllowDuplicates>
+        
+        <!-- PawnKind特定配置 -->
+        <pawnKindHediffs>
+          <!-- Soldier类型的特定hediff -->
+          <li>
+            <pawnKind>DD_DHM69_Scythe_Mech_Prototype</pawnKind>
+            <hediffs>
+              <li>DD_MechPrototype</li>
+            </hediffs>
+            <addChance>1.0</addChance>
+            <allowDuplicates>false</allowDuplicates>
+          </li>
+        </pawnKindHediffs>
+      </li>
     </comps>
   </ThingDef>
 	<PawnKindDef>
@@ -572,7 +647,33 @@
 					<texPath>DivineDiurganate/Things/DD_DHM69_Scythe/Naked_Thin</texPath>
 					<drawSize>5.5</drawSize>
 					<shadowData>
-						<volume>(0.4, 0.5, 0.37)</volume>
+						<volume>(2 ,2, 0.8)</volume>
+						<offset>(0,0,-0.15)</offset>
+					</shadowData>
+				</bodyGraphicData>
+			</li>
+		</lifeStages>
+	</PawnKindDef>
+	<PawnKindDef>
+		<defName>DD_DHM69_Scythe_Mech_Prototype</defName>
+		<label>DHM69-Scythe Prototype</label>
+		<race>DD_DHM69_Scythe_Mech</race>
+		<defaultFactionType>PlayerColony</defaultFactionType>
+		<forceDeathOnDowned>false</forceDeathOnDowned>
+		<forceNoDeathNotification>false</forceNoDeathNotification>
+    <collidesWithPawns>false</collidesWithPawns>
+		<combatPower>400</combatPower>
+    <weaponTags>
+      <li>DD_DHM69_Scythe_Mech_Weapon</li>
+    </weaponTags>
+    <weaponMoney>99999~99999</weaponMoney>
+		<lifeStages>
+			<li>
+				<bodyGraphicData>
+					<texPath>DivineDiurganate/Things/DD_DHM69_Scythe/Prototype</texPath>
+					<drawSize>5.5</drawSize>
+					<shadowData>
+						<volume>(2 ,2, 0.8)</volume>
 						<offset>(0,0,-0.15)</offset>
 					</shadowData>
 				</bodyGraphicData>

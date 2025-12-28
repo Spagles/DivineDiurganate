@@ -11,43 +11,15 @@ namespace DivineDiurganate
         // 缓存机甲定义列表
         private static List<ThingDef> cachedMechDefs = null;
         
-        // 获取所有机甲定义
-        private List<ThingDef> GetAllMechDefs()
-        {
-            if (cachedMechDefs == null)
-            {
-                cachedMechDefs = new List<ThingDef>();
-                
-                // 搜索所有ThingDef，找出继承自DDmechunit的类
-                foreach (var def in DefDatabase<ThingDef>.AllDefs)
-                {
-                    try
-                    {
-                        if (def.thingClass == typeof(DDmechunit) || 
-                            def.thingClass?.IsSubclassOf(typeof(DDmechunit)) == true)
-                        {
-                            cachedMechDefs.Add(def);
-                        }
-                    }
-                    catch
-                    {
-                        // 忽略错误
-                    }
-                }
-            }
-            
-            return cachedMechDefs;
-        }
-        
         // 检查Thing是否为机甲
         private bool IsMech(Thing thing)
         {
             return thing is DDmechunit || thing?.GetType()?.IsSubclassOf(typeof(DDmechunit)) == true;
         }
         
-        protected override bool Drafted => false; // 征召状态下不能进入机甲
+        protected override bool Drafted => true; // 征召状态下不能进入机甲
         protected override bool Undrafted => true; // 非征召状态下可以进入
-        protected override bool Multiselect => false; // 不支持多选
+        protected override bool Multiselect => true; // 不支持多选
         
         // 检查是否适用于当前上下文
         protected override bool AppliesInt(FloatMenuContext context)
@@ -184,7 +156,6 @@ namespace DivineDiurganate
             }
             
             // 检查殖民者是否可以成为驾驶员
-            // 假设CompMechPilotHolder有CanAddPilot方法
             if (!comp.CanAddPilot(pawn))
             {
                 disabledReason = "DD_CannotBecomePilot".Translate();
@@ -208,13 +179,6 @@ namespace DivineDiurganate
             if (pawn.Dead)
             {
                 disabledReason = "Dead".Translate();
-                return false;
-            }
-            
-            // 检查是否被征召
-            if (pawn.Drafted)
-            {
-                disabledReason = "Drafted".Translate();
                 return false;
             }
             

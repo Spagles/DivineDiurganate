@@ -1,4 +1,4 @@
-// File: Patches/UltraSimplePatch.cs
+// File: Patches/ColonistBarMechPatch_Minimal.cs
 using HarmonyLib;
 using RimWorld;
 using System.Collections.Generic;
@@ -8,85 +8,60 @@ using Verse;
 namespace DivineDiurganate
 {
     [HarmonyPatch(typeof(ColonistBar), "CheckRecacheEntries")]
-    public static class UltraSimplePatch
+    public static class Patch_ColonistBarMech_Minimal
     {
         [HarmonyPostfix]
         public static void Postfix(ref List<ColonistBar.Entry> ___cachedEntries)
         {
-            if (___cachedEntries == null || ___cachedEntries.Count == 0) return;
-
-            var newEntries = new List<ColonistBar.Entry>();
-            var mechEntries = new HashSet<Pawn>();
-
-            // 第一轮：找出所有机甲和驾驶员
-            var mechToPilots = new Dictionary<Pawn, List<Pawn>>();
-            var pilotToMech = new Dictionary<Pawn, Pawn>();
-
-            // 遍历所有pawn，建立映射关系
-            foreach (var map in Find.Maps)
+            // 安全检查：只在玩家派系存在时运行
+            if (Faction.OfPlayer == null)
+                return;
+            
+            try
             {
-                foreach (var pawn in map.mapPawns.AllPawnsSpawned)
+                // 只处理玩家殖民者条目
+                var playerEntries = ___cachedEntries
+                    .Where(e => e.pawn != null && 
+                           (e.pawn.Faction == Faction.OfPlayer || e.pawn.HostFaction == Faction.OfPlayer))
+                    .ToList();
+                
+                if (playerEntries.Count == 0)
+                    return;
+                
+                // 收集需要隐藏的驾驶员
+                var pilotsToHide = new HashSet<Pawn>();
+                
+                foreach (var map in Find.Maps.Where(m => m.IsPlayerHome))
                 {
-                    var comp = pawn.TryGetComp<CompMechPilotHolder>();
-                    if (comp != null && comp.HasPilots)
+                    foreach (var pawn in map.mapPawns.AllPawnsSpawned)
                     {
-                        var pilots = comp.GetPilots().ToList();
-                        mechToPilots[pawn] = pilots;
-                        foreach (var pilot in pilots)
+                        if (pawn is DDmechunit mech)
                         {
-                            pilotToMech[pilot] = pawn;
+                            var pilotComp = mech.TryGetComp<CompMechPilotHolder>();
+                            if (pilotComp != null && pilotComp.HasPilots)
+                            {
+                                foreach (var pilot in pilotComp.GetPilots())
+                                {
+                                    if (pilot.Faction == Faction.OfPlayer || pilot.HostFaction == Faction.OfPlayer)
+                                    {
+                                        pilotsToHide.Add(pilot);
+                                    }
+                                }
+                            }
                         }
                     }
                 }
+                
+                // 过滤掉需要隐藏的驾驶员
+                ___cachedEntries = ___cachedEntries
+                    .Where(e => e.pawn == null || !pilotsToHide.Contains(e.pawn))
+                    .ToList();
             }
-
-            // 第二轮：过滤条目
-            foreach (var entry in ___cachedEntries)
+            catch (System.Exception ex)
             {
-                var pawn = entry.pawn;
-                if (pawn == null)
-                {
-                    // 保留空条目
-                    newEntries.Add(entry);
-                    continue;
-                }
-
-                // 如果是驾驶员，跳过
-                if (pilotToMech.ContainsKey(pawn))
-                {
-                    continue;
-                }
-
-                // 如果是机甲
-                if (mechToPilots.ContainsKey(pawn))
-                {
-                    // 只有机甲有驾驶员时才显示
-                    if (mechToPilots[pawn].Count > 0 && !mechEntries.Contains(pawn))
-                    {
-                        newEntries.Add(entry);
-                        mechEntries.Add(pawn);
-                    }
-                }
-                else
-                {
-                    // 普通殖民者
-                    newEntries.Add(entry);
-                }
+                Log.Error($"[DD] Error in minimal ColonistBar patch: {ex}");
+                // 出错时不改变原列表
             }
-
-            // 第三轮：确保机甲被添加（如果还没有）
-            foreach (var mech in mechToPilots.Keys)
-            {
-                if (!mechEntries.Contains(mech) && mechToPilots[mech].Count > 0)
-                {
-                    // 找到一个与机甲在同一地图的条目作为参考
-                    var referenceEntry = ___cachedEntries.FirstOrDefault(e => e.map == mech.MapHeld);
-                    newEntries.Add(new ColonistBar.Entry(mech, referenceEntry.map, referenceEntry.group));
-                }
-            }
-
-            // 替换原列表
-            ___cachedEntries = newEntries;
-        }   
+        }
     }
 }

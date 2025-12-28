@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
+  <!-- 0-1000 -->
 	<PawnKindDef ParentName="RKBasePawnKind">
 		<defName>DD_Ratkin_Suicider</defName>
-		<label>ratkin Suicide Attacker</label>
+		<label>Diurganate Martyr</label>
+		<combatPower>20</combatPower>
 		<backstoryFiltersOverride>
 			<li>
 				<categories>
@@ -17,5 +19,111 @@
 		<apparelTags>
 			<li>RK_Worker</li>
 		</apparelTags>
+	</PawnKindDef>
+	<PawnKindDef ParentName="RKBasePawnKind">
+		<defName>DD_Ratkin_Skirmish</defName>
+		<label>Diurganate Skirmish</label>
+		<combatPower>75</combatPower>
+		<backstoryFiltersOverride>
+			<li>
+				<categories>
+					<li>RatkinStory</li>
+				</categories>
+			</li>
+		</backstoryFiltersOverride>
+		<apparelMoney>120~480</apparelMoney>
+		<apparelTags>
+			<li>RK_Murderer</li>
+			<li>RK_Worker</li>
+			<li>RK_Explorer</li>
+			<li>RK_Combatant</li>
+		</apparelTags>
+    <weaponMoney>300~1200</weaponMoney>
+    <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
+		<weaponTags>
+			<li>DD_Weapon_T1</li>
+		</weaponTags>
+	</PawnKindDef>
+	<PawnKindDef ParentName="RKBasePawnKind">
+		<defName>DD_S1_Ratkin_Leader_Nun</defName>
+		<label>Diurganate Nun</label>
+		<combatPower>1</combatPower>
+    <maxPerGroup>1</maxPerGroup>
+    <isBoss>true</isBoss>
+    <fixedAdultBackstories>
+      <li>DD_Ratkin_Sister</li>
+    </fixedAdultBackstories>
+		<backstoryFiltersOverride>
+			<li>
+				<categories>
+					<li>RatkinStory</li>
+				</categories>
+			</li>
+		</backstoryFiltersOverride>
+		<apparelMoney>0</apparelMoney>
+    <weaponMoney>300~1200</weaponMoney>
+		<apparelRequired>
+			<li>DD_Nun_Dress</li>
+			<li>DD_NunVeil</li>
+		</apparelRequired>
+    <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
+		<weaponTags>
+			<li>DD_RatkinClergy_Weapon</li>
+		</weaponTags>
+	</PawnKindDef>
+  
+  <!-- 1000-3000 -->
+	<PawnKindDef ParentName="RKBasePawnKind">
+		<defName>DD_Ratkin_Nun</defName>
+		<label>Diurganate Nun</label>
+		<combatPower>125</combatPower>
+    <fixedAdultBackstories>
+      <li>DD_Ratkin_Sister</li>
+    </fixedAdultBackstories>
+		<backstoryFiltersOverride>
+			<li>
+				<categories>
+					<li>RatkinStory</li>
+				</categories>
+			</li>
+		</backstoryFiltersOverride>
+		<apparelMoney>0</apparelMoney>
+    <weaponMoney>600~1500</weaponMoney>
+		<apparelRequired>
+			<li>DD_Nun_Dress</li>
+			<li>DD_NunVeil</li>
+		</apparelRequired>
+    <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
+		<weaponTags>
+			<li>DD_Weapon_T1</li>
+			<li>DD_RatkinClergy_Weapon</li>
+		</weaponTags>
+	</PawnKindDef>
+	<PawnKindDef>
+		<defName>DD_S2_DHM86_Knell_Mech</defName>
+		<label>DHM86-Knell</label>
+		<race>DD_DHM86_Knell_Mech</race>
+		<forceDeathOnDowned>false</forceDeathOnDowned>
+		<forceNoDeathNotification>false</forceNoDeathNotification>
+    <collidesWithPawns>false</collidesWithPawns>
+		<combatPower>1</combatPower>
+    <maxPerGroup>1</maxPerGroup>
+    <isBoss>true</isBoss>
+    <weaponTags>
+      <li>DD_DHM86_Knell_Mech_Weapon</li>
+    </weaponTags>
+    <weaponMoney>99999~99999</weaponMoney>
+		<lifeStages>
+			<li>
+				<bodyGraphicData>
+					<texPath>DivineDiurganate/Things/DD_DHM86_Knell/Naked_Thin</texPath>
+					<drawSize>3.5</drawSize>
+					<shadowData>
+						<volume>(0.4, 0.5, 0.37)</volume>
+						<offset>(0,0,-0.15)</offset>
+					</shadowData>
+				</bodyGraphicData>
+			</li>
+		</lifeStages>
 	</PawnKindDef>
 </Defs>

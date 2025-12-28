@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: Diurganate Nun Dress -->
+  <DD_Nun_Dress.label>双尾修女服</DD_Nun_Dress.label>
+  <!-- EN: The uniforms worn by the nuns who serve the Holy Two-Tail are designed with battlefield practicality in mind, compared to the uniforms of ordinary ratkin Sister Dress, and are therefore more defensive—though they are still ultimately a cloth, not armor. -->
+  <DD_Nun_Dress.description>侍奉圣双尾鼠的修女们所着的制服，比起普通的鼠族修女制服，它更多地考虑到在战场上的实用性，因此防御力更高——尽管如此，它们最终仍是一件衣服，而不是盔甲。</DD_Nun_Dress.description>
+  
+  <!-- EN: Diurganate Nun Veil -->
+  <DD_NunVeil.label>双尾修女头巾</DD_NunVeil.label>
+  <!-- EN: The uniforms worn by the nuns who serve the Holy Two-Tail are designed with battlefield practicality in mind, compared to the uniforms of ordinary ratkin Sister Dress, and are therefore more defensive—though they are still ultimately a cloth, not armor. -->
+  <DD_NunVeil.description>侍奉圣双尾鼠的修女们所着的头巾，比起普通的鼠族修女头巾，它更多地考虑到在战场上的实用性，因此防御力更高——尽管如此，它们最终仍是一件衣服，而不是盔甲。</DD_NunVeil.description>
+  
+  <!-- EN: Martyr -->
+  <DD_Suicide_Bomb.label>殉道者</DD_Suicide_Bomb.label>
+  <!-- EN: A bomb strapped to the body, worn close to the skin, can trigger a massive explosion with the slightest press.\n\n The Ratkin believers, hoping to die for their faith, must press the bomb themselves—not be ignited by enemy fire; this bomb will not explode upon impact. -->
+  <DD_Suicide_Bomb.description>一枚绑在身上的炸弹，可以贴身穿戴，只要轻轻一按就会引发大规模的爆炸。\n\n希望以身殉道的鼠鼠教徒们必须亲手按下炸弹——而不是被敌人的枪火点燃，这种炸弹是不会因为受击而爆炸的。</DD_Suicide_Bomb.description>
+  
+</LanguageData>

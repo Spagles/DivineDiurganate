@@ -91,6 +91,8 @@
     <Compile Include="Pawn\DDmechunit.cs" />
     <Compile Include="Pawn_Comps\DefaultPilotEntry\CompMechDefaultPilot.cs" />
     <Compile Include="Pawn_Comps\DefaultPilotEntry\CompProperties_MechDefaultPilot.cs" />
+    <Compile Include="Pawn_Comps\HediffGiverByKind\CompHediffGiverByKind.cs" />
+    <Compile Include="Pawn_Comps\HediffGiverByKind\CompProperties_HediffGiverByKind.cs" />
     <Compile Include="Pawn_Comps\MechArmor\CompMechArmor.cs" />
     <Compile Include="Pawn_Comps\MechFuel\CompMechFuel.cs" />
     <Compile Include="Pawn_Comps\MechFuel\CompProperties_MechFuel.cs" />
@@ -112,9 +114,13 @@
     <Compile Include="Thing_Comp\MechSpecificWeapon\CompMechSpecificWeapon.cs" />
     <Compile Include="Verb\MeleeAttack_Cleave\CompCleave.cs" />
     <Compile Include="Verb\MeleeAttack_Cleave\Verb_MeleeAttack_Cleave.cs" />
+    <Compile Include="Verb\ShootFireSpew\VerbProperties_FireSpew.cs" />
+    <Compile Include="Verb\ShootFireSpew\Verb_ShootFireSpew.cs" />
     <Compile Include="Work\EnterMech\FloatMenuOptionProvider_EnterMech.cs" />
     <Compile Include="Work\EnterMech\JobDriver_EnterMech.cs" />
     <Compile Include="Work\EnterMech\WorkGiver_EnterMech.cs" />
+    <Compile Include="Work\ForceEjectPilot\FloatMenuOptionProvider_ForceEjectPilot.cs" />
+    <Compile Include="Work\ForceEjectPilot\JobDriver_ForceEjectPilot.cs" />
     <Compile Include="Work\RefuelMech\JobDriver_RefuelMech.cs" />
     <Compile Include="Work\RefuelMech\WorkGiver_RefuelMech.cs" />
     <Compile Include="Work\RepairMech\JobDriver_RepairMech.cs" />

@@ -56,4 +56,12 @@
     <gerund>Repair Mech</gerund>
     <label>Repair Mech</label>
   </WorkGiverDef>
+  <JobDef>
+    <defName>DD_ForceEjectPilot</defName>
+    <driverClass>DivineDiurganate.JobDriver_ForceEjectPilot</driverClass>
+    <reportString>Prise TargetA.</reportString>
+    <suspendable>false</suspendable>
+    <!-- <canBeForcedByDuty>true</canBeForcedByDuty>
+    <makeTargetPrisoner>false</makeTargetPrisoner> -->
+  </JobDef>
 </Defs>

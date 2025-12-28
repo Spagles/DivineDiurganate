@@ -12,6 +12,8 @@ namespace DivineDiurganate
 
         protected override bool Satisfied(Pawn pawn)
         {
+            if (pawn.Faction != Faction.OfPlayer)
+                return false; // 仅适用于玩家派系的机甲
             var pilotComp = pawn.TryGetComp<CompMechPilotHolder>();
             if (pilotComp == null)
                 return false; // 如果没有驾驶员组件，条件满足（允许执行）

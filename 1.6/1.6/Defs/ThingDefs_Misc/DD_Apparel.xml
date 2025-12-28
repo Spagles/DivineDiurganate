@@ -1,11 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-	<ThingDef ParentName="RK_ApparelMakeableBase">
+  <ThingDef Name="DD_ApparelMakeableBase" ParentName="ApparelMakeableBase" Abstract="True">
+    <stuffCategories>
+      <li>Fabric</li>
+    </stuffCategories>
+		<tradeTags>
+			<li>RK_Apparel</li>
+		</tradeTags>
+		<thingCategories>
+			<li>RK_Apparel</li>
+		</thingCategories>
+    <graphicData>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+    </graphicData>
+    <apparel>
+      <tags>
+			  <li>RK_Apparel</li>
+      </tags>
+      <canBeDesiredForIdeo>false</canBeDesiredForIdeo>
+      <canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
+      <canBeGeneratedToSatisfyToxicEnvironmentResistance>false</canBeGeneratedToSatisfyToxicEnvironmentResistance>
+      <useWornGraphicMask>true</useWornGraphicMask>
+    </apparel>
+    <colorGenerator Class="ColorGenerator_Options">
+      <options>
+        <li>
+          <weight>10</weight>
+          <only>(1,1,1,1)</only>
+        </li>
+      </options>
+    </colorGenerator>
+    <recipeMaker>
+			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+      <unfinishedThingDef>UnfinishedApparel</unfinishedThingDef>
+      <useIngredientsForColor>false</useIngredientsForColor>
+			<workSkill>Crafting</workSkill>
+			<effectWorking>Tailor</effectWorking>
+			<soundWorking>Recipe_Tailor</soundWorking>
+			<recipeUsers Inherit="false">
+				<li>RK_ElectricTailoringBench</li>
+				<li>RK_HandTailoringBench</li>
+			</recipeUsers>
+    </recipeMaker>
+    <statBases>
+      <Mass>1</Mass>
+      <WorkToMake>7000</WorkToMake>
+      <StuffEffectMultiplierArmor>0.35</StuffEffectMultiplierArmor>
+      <StuffEffectMultiplierInsulation_Cold>1</StuffEffectMultiplierInsulation_Cold>
+      <StuffEffectMultiplierInsulation_Heat>1</StuffEffectMultiplierInsulation_Heat>
+    </statBases>
+  </ThingDef>
+	<ThingDef Name="DD_HatMakeableBase" ParentName="DD_ApparelMakeableBase" Abstract="True">
+		<thingCategories>
+			<li>RK_Headgear</li>
+		</thingCategories>
+	</ThingDef>
+
+
+	<ThingDef ParentName="DD_ApparelMakeableBase">
 		<defName>DD_Suicide_Bomb</defName>
-		<label>Ratkin Suicide Bomb</label>
-		<description>A group of Bomb.</description>
+		<label>Martyr</label>
+		<description>A bomb strapped to the body, worn close to the skin, can trigger a massive explosion with the slightest press.\n\n The Ratkin believers, hoping to die for their faith, must press the bomb themselves—not be ignited by enemy fire; this bomb will not explode upon impact.</description>
 		<graphicData>
-			<texPath>Apparel/RK_WoodenShield</texPath>
+			<texPath>DivineDiurganate/Apparel/DD_Suicide_Bomb</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
@@ -18,12 +76,12 @@
 			</recipeUsers>		
 		</recipeMaker>
 		<costList>
-			<Steel>25</Steel>
+			<Steel>10</Steel>
 		</costList>
 		<techLevel>Industrial</techLevel>
 		<statBases>
 			<MaxHitPoints>20</MaxHitPoints>
-			<WorkToMake>12500</WorkToMake>
+			<WorkToMake>2500</WorkToMake>
 			<Mass>3</Mass>
 			<Flammability>1</Flammability>
 			<EquipDelay>1</EquipDelay>
@@ -34,9 +92,9 @@
 			<bodyPartGroups>
 				<li>Torso</li>
 			</bodyPartGroups>
-			<wornGraphicPath>Apparel/RK_WoodenShield</wornGraphicPath>
+			<wornGraphicPath>DivineDiurganate/Apparel/DD_Suicide_Bomb</wornGraphicPath>
 			<layers>
-				<li>OuterClothing</li>
+        <li>Shell</li>
 			</layers>
 			<tags>
 				<li>DD_Suicide_Bomb</li>
@@ -55,8 +113,129 @@
       </options>
     </colorGenerator>
     <comps>
-      <li Class="CompProperties_EquippableAbilityReloadable">
-        <abilityDef>DD_Suicide_Attack</abilityDef>
+      <li Class="CompProperties_CauseHediff_Apparel">
+        <hediff>DD_Suicide_Bomb_Hediff</hediff>
+      </li>
+    </comps>
+	</ThingDef>
+  
+	<ThingDef ParentName="DD_ApparelMakeableBase">
+		<defName>DD_Nun_Dress</defName>
+		<label>Diurganate Nun Dress</label>
+    <description>The uniforms worn by the nuns who serve the Holy Two-Tail are designed with battlefield practicality in mind, compared to the uniforms of ordinary ratkin Sister Dress, and are therefore more defensive—though they are still ultimately a cloth, not armor.</description>
+    <graphicData>
+			<texPath>DivineDiurganate/Apparel/DD_Nun_Dress</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<costList>
+			<DevilstrandCloth>20</DevilstrandCloth>
+		</costList>
+		<costStuffCount>35</costStuffCount>
+		<stuffCategories>
+			<li>Leathery</li>
+			<li>Fabric</li>
+		</stuffCategories>
+		<techLevel>Industrial</techLevel>
+		<statBases>
+			<MaxHitPoints>150</MaxHitPoints>
+			<WorkToMake>25000</WorkToMake>
+			<Mass>3</Mass>
+			<Flammability>1</Flammability>
+			<EquipDelay>1</EquipDelay>
+      <StuffEffectMultiplierArmor>0.25</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0.40</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0.40</StuffEffectMultiplierInsulation_Heat>
+		</statBases>
+		<equippedStatOffsets>
+			<MedicalTendQuality>0.25</MedicalTendQuality>
+		</equippedStatOffsets>
+		<apparel>
+			<bodyPartGroups>
+				<li>Neck</li>
+				<li>Torso</li>
+				<li>Shoulders</li>
+				<li>Arms</li>
+				<li>Legs</li>
+			</bodyPartGroups>
+			<wornGraphicPath>DivineDiurganate/Apparel/DD_Nun_Dress</wornGraphicPath>
+			<layers>
+				<li>OuterClothing</li>
+				<li>OnSkin</li>
+			</layers>
+			<tags>
+				<li>DD_RatkinClergy</li>
+			</tags>
+      <canBeDesiredForIdeo>false</canBeDesiredForIdeo>
+      <canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
+      <canBeGeneratedToSatisfyToxicEnvironmentResistance>false</canBeGeneratedToSatisfyToxicEnvironmentResistance>
+      <useWornGraphicMask>true</useWornGraphicMask>
+		</apparel>
+    <colorGenerator Class="ColorGenerator_Options">
+      <options>
+        <li>
+          <weight>10</weight>
+          <only>(1,1,1,1)</only>
+        </li>
+      </options>
+    </colorGenerator>
+		<recipeMaker>
+			<researchPrerequisite>HighClassClothing</researchPrerequisite>
+		</recipeMaker>
+	</ThingDef>
+	<ThingDef ParentName="DD_HatMakeableBase">
+		<defName>DD_NunVeil</defName>
+		<label>Diurganate Nun Veil</label>
+    <description>The uniforms worn by the nuns who serve the Holy Two-Tail are designed with battlefield practicality in mind, compared to the uniforms of ordinary ratkin Sister Dress, and are therefore more defensive—though they are still ultimately a cloth, not armor.</description>
+    <graphicData>
+			<texPath>DivineDiurganate/Apparel/DD_NunVeil</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<costList>
+			<DevilstrandCloth>20</DevilstrandCloth>
+		</costList>
+		<costStuffCount>35</costStuffCount>
+		<stuffCategories>
+			<li>Leathery</li>
+			<li>Fabric</li>
+		</stuffCategories>
+		<statBases>
+			<MaxHitPoints>150</MaxHitPoints>
+			<WorkToMake>15000</WorkToMake>
+			<Mass>0.1</Mass>
+			<EquipDelay>0.5</EquipDelay>
+      <StuffEffectMultiplierArmor>0.2</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0.30</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0.30</StuffEffectMultiplierInsulation_Heat>
+		</statBases>
+		<equippedStatOffsets>
+			<MedicalTendQuality>0.15</MedicalTendQuality>
+		</equippedStatOffsets>
+		<apparel>
+      <renderSkipFlags>
+        <li>None</li>
+      </renderSkipFlags>
+      <parentTagDef>ApparelHead</parentTagDef>
+      <useDeflectMetalEffect>true</useDeflectMetalEffect>
+      <countsAsClothingForNudity>false</countsAsClothingForNudity>
+			<bodyPartGroups>
+				<li>UpperHead</li>
+			</bodyPartGroups>
+			<wornGraphicPath>DivineDiurganate/Apparel/DD_NunVeil</wornGraphicPath>
+			<layers>
+				<li>Overhead</li>
+			</layers>
+			<tags>
+				<li>DD_RatkinClergy</li>
+			</tags>
+		</apparel>
+		<recipeMaker>
+			<researchPrerequisite>HighClassClothing</researchPrerequisite>
+		</recipeMaker>
+    <comps>
+      <li Class="CompProperties_CauseHediff_Apparel">
+        <hediff>DD_Nun_Draw_Hediff</hediff>
       </li>
     </comps>
 	</ThingDef>

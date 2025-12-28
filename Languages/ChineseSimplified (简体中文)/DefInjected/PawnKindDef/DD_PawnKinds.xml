@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: Diurganate Nun -->
+  <DD_Ratkin_Nun.label>双尾修女</DD_Ratkin_Nun.label>
+  
+  <!-- EN: Diurganate Skirmish -->
+  <DD_Ratkin_Skirmish.label>双尾散兵</DD_Ratkin_Skirmish.label>
+  
+  <!-- EN: Diurganate Martyr -->
+  <DD_Ratkin_Suicider.label>双尾殉道者</DD_Ratkin_Suicider.label>
+  
+  <!-- EN: Diurganate Nun -->
+  <DD_S1_Ratkin_Leader_Nun.label>双尾修女</DD_S1_Ratkin_Leader_Nun.label>
+  
+  <!-- EN: DHM86-Knell -->
+  <DD_S2_DHM86_Knell_Mech.label>DHM86-丧钟</DD_S2_DHM86_Knell_Mech.label>
+  
+</LanguageData>
