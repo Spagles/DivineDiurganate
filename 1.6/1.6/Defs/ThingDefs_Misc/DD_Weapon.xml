@@ -2,7 +2,7 @@
 <Defs>
   <ThingDef ParentName="BaseHumanMakeableGun">
     <defName>DD_Axe_Pistol</defName>
-    <label>Diurganate Axe pistol</label>
+    <label>Diurganate Axe Pistol</label>
     <description>The basic self-defense weapon used by the followers and clergy of the Diurganate has an axe blade fixed to the front of the barrel, allowing it to be used as an axe in close combat.</description>
     <tickerType>Normal</tickerType>
     <techLevel>Industrial</techLevel>
@@ -13,6 +13,10 @@
     </graphicData>
     <soundInteract>Interact_Rifle</soundInteract>
     <uiIconScale>1.25</uiIconScale>
+    <costStuffCount>25</costStuffCount>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
     <recipeMaker>
       <!-- <recipeUsers Inherit="False" /> -->
 			<researchPrerequisite>MicroOptical</researchPrerequisite>
@@ -99,10 +103,10 @@
     <graphicData>
       <texPath>DivineDiurganate/Weapon/DD_Harpoon_Gun</texPath>
       <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>1.25</drawSize>
+      <drawSize>1.5</drawSize>
     </graphicData>
     <soundInteract>Interact_Rifle</soundInteract>
-    <uiIconScale>0.8</uiIconScale>
+    <uiIconScale>0.7</uiIconScale>
     <recipeMaker>
       <!-- <recipeUsers Inherit="False" /> -->
 			<researchPrerequisite>MicroOptical</researchPrerequisite>
@@ -117,6 +121,10 @@
 			<AccuracyLong>0.65</AccuracyLong>
       <RangedWeapon_Cooldown>1.1</RangedWeapon_Cooldown>
     </statBases>
+    <costStuffCount>30</costStuffCount>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
     <costList>
       <Steel>30</Steel>
       <ComponentIndustrial>2</ComponentIndustrial>
@@ -149,44 +157,14 @@
       <li Class="CompProperties_EquippableAbility">
         <abilityDef>DD_Harpoon_Gun_Launch_Harpoon</abilityDef>
       </li>
+			<li Class="RatkinWeapons.CompProperties_Bayonet" MayRequire="bbb.ratkinweapon.morefailure">
+				<cooldown>1800</cooldown>
+				<radius>14.9</radius>
+				<label>RK.BayonetLabel</label>
+				<description>RK.BayonetDescription</description>
+				<icon>UI/Abilities/RK_Bayonet</icon>
+			</li>
     </comps>
-  </ThingDef>
-  <AbilityDef>
-    <defName>DD_Harpoon_Gun_Launch_Harpoon</defName>
-    <label>发射鱼叉</label>
-    <description>使用气动发射器，将威力强大的鱼叉发射出去——但是在重新装填前，鱼叉枪就只能当成近战武器使用了。</description>
-    <iconPath>UI/Abilities/PiercingSpine</iconPath>
-    <displayOrder>200</displayOrder>
-    <aiCanUse>true</aiCanUse>
-    <cooldownTicksRange>1800</cooldownTicksRange>
-    <verbProperties>
-      <verbClass>Verb_CastAbility</verbClass>
-      <range>34.9</range>
-      <warmupTime>1</warmupTime>
-      <soundCast>DD_Harpoon_Gun_FireSound</soundCast>
-    </verbProperties>
-    <comps>
-      <li Class="CompProperties_AbilityLaunchProjectile">
-        <projectileDef>DD_Harpoon_Gun_Bullet</projectileDef>
-      </li>
-    </comps>
-  </AbilityDef>
-  <ThingDef ParentName="BaseBullet">
-    <defName>DD_Harpoon_Gun_Bullet</defName>
-    <label>Harpoon</label>
-    <graphicData>
-      <texPath>DivineDiurganate/Mote/DD_Harpoon_Gun_Proj</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <!-- <shaderType>MoteGlow</shaderType>
-      <color>(194,117,67)</color> -->
-    </graphicData>
-    <projectile>
-			<damageDef>Bullet</damageDef>
-			<damageAmountBase>35</damageAmountBase>
-			<stoppingPower>5</stoppingPower>
-			<armorPenetrationBase>0.75</armorPenetrationBase>
-			<speed>75</speed>
-    </projectile>
   </ThingDef>
   <ThingDef ParentName="BaseHumanMakeableGun">
     <defName>DD_Fire_Shotgun</defName>
@@ -298,4 +276,90 @@
       </li>
     </children>
   </EffecterDef>
+  <ThingDef ParentName="BaseHumanMakeableGun">
+    <defName>DD_Spear_Rifle</defName>
+    <label>新月斧鱼叉步枪</label>
+    <description>双尾教国护教军的制式武器，拥有完整的装填机构以实现在远距离上持续发射高伤害的鱼叉。它同时还下挂了新月斧刃，足以将近身的对手劈成两段。</description>
+    <tickerType>Normal</tickerType>
+    <techLevel>Industrial</techLevel>
+    <graphicData>
+      <texPath>DivineDiurganate/Weapon/DD_Harpoon_Gun</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>1</drawSize>
+    </graphicData>
+    <soundInteract>Interact_Rifle</soundInteract>
+    <uiIconScale>1</uiIconScale>
+    <costStuffCount>50</costStuffCount>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <recipeMaker>
+      <!-- <recipeUsers Inherit="False" /> -->
+			<researchPrerequisite>MicroOptical</researchPrerequisite>
+      <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+    </recipeMaker>
+    <statBases>
+      <WorkToMake>5000</WorkToMake>
+      <Mass>1.4</Mass>
+      <AccuracyTouch>0.65</AccuracyTouch>
+      <AccuracyShort>0.8</AccuracyShort>
+      <AccuracyMedium>0.5</AccuracyMedium>
+      <AccuracyLong>0.4</AccuracyLong>
+      <RangedWeapon_Cooldown>3</RangedWeapon_Cooldown>
+    </statBases>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+        <warmupTime>0.1</warmupTime>
+        <defaultProjectile>DD_Spear_Rifle_Bullet</defaultProjectile>
+        <range>27.9</range>
+        <burstShotCount>1</burstShotCount>
+        <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+        <soundCast>DD_Harpoon_Gun_FireSound</soundCast>
+      </li>
+    </verbs>
+    <costList>
+      <Steel>30</Steel>
+      <ComponentIndustrial>2</ComponentIndustrial>
+    </costList>
+		<weaponTags Inherit="false">
+			<li>RK_3TierWeapon</li>
+			<li>RK_Weapon</li>
+			<li>RK_RangeWeapon</li>
+			<li>DD_RatkinCrusader_Weapon</li>
+			<li>DD_RatkinClergy_Weapon</li>
+		</weaponTags>
+    <generateCommonality>0.01</generateCommonality>
+    <tradeability>None</tradeability>
+    <thingSetMakerTags Inherit="False" />
+    <tools Inherit="False">
+      <li>
+        <label>Axe Blade</label>
+        <capacities>
+          <li>Cut</li>
+        </capacities>
+        <power>21</power>
+        <cooldownTime>2.25</cooldownTime>
+      </li>
+    </tools>
+  </ThingDef>
+  <ThingDef ParentName="BaseBullet">
+    <defName>DD_Spear_Rifle_Bullet</defName>
+    <label>Spear</label>
+    <graphicData>
+      <texPath>DivineDiurganate/Mote/DD_Harpoon_Gun_Proj</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <!-- <shaderType>MoteGlow</shaderType>
+      <color>(194,117,67)</color> -->
+    </graphicData>
+    <projectile>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>25</damageAmountBase>
+			<stoppingPower>5</stoppingPower>
+			<armorPenetrationBase>0.75</armorPenetrationBase>
+			<speed>75</speed>
+    </projectile>
+  </ThingDef>
 </Defs>

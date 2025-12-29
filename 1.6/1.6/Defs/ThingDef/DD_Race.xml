@@ -200,7 +200,7 @@
 
       <!-- 圣化镀层的数值，伤害*穿甲率低于此数值将被直接抵挡 -->
       <!-- value of the Sanctified Armour, damage * armor piercing rate below which will be directly resisted -->
-      <DD_MechArmor>3</DD_MechArmor>
+      <DD_MechArmor>1</DD_MechArmor>
     </statBases>
     <race>
       <body>DD_Race_DHM86_Knell_Body</body>
@@ -462,7 +462,7 @@
 
       <!-- 圣化镀层的数值，伤害*穿甲率低于此数值将被直接抵挡 -->
       <!-- value of the Sanctified Armour, damage * armor piercing rate below which will be directly resisted -->
-      <DD_MechArmor>9</DD_MechArmor>
+      <DD_MechArmor>3</DD_MechArmor>
     </statBases>
     <race>
       <body>DD_Race_DHM69_Scythe_Body</body>

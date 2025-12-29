@@ -87,42 +87,66 @@
 					<DD_S2_DHM86_Knell_Mech>9999</DD_S2_DHM86_Knell_Mech>
 				</options>
 			</li>
+      <!-- 3000-6000 -->
+			<li>
+				<kindDef>Combat</kindDef>
+				<commonality>100</commonality>
+				<maxTotalPoints>6000</maxTotalPoints>
+				<options>
+					<DD_Ratkin_Suicider>20</DD_Ratkin_Suicider>
+					<DD_Ratkin_Skirmish>10</DD_Ratkin_Skirmish>
+					<DD_Ratkin_Crusader>10</DD_Ratkin_Crusader>
+					<DD_Ratkin_Nun>5</DD_Ratkin_Nun>
+					<DD_S3_DHM86_Knell_Mech>5</DD_S3_DHM86_Knell_Mech>
+				</options>
+			</li>
+      <!-- 6000-8000 -->
+			<li>
+				<kindDef>Combat</kindDef>
+				<commonality>10</commonality>
+				<maxTotalPoints>8000</maxTotalPoints>
+				<options>
+					<DD_Ratkin_Crusader>20</DD_Ratkin_Crusader>
+					<DD_Ratkin_Nun>5</DD_Ratkin_Nun>
+					<DD_S3_DHM86_Knell_Mech>10</DD_S3_DHM86_Knell_Mech>
+          <DD_S4_DHM69_Scythe_Mech>9999</DD_S4_DHM69_Scythe_Mech>
+				</options>
+			</li>
+      
 			<li>
 				<kindDef>Peaceful</kindDef>
 				<options>
-					<RatkinNoble>10</RatkinNoble>
+					<DD_Ratkin_Crusader>10</DD_Ratkin_Crusader>
 					<RatkinColonist>20</RatkinColonist>
 					<RatkinServant>15</RatkinServant>
-					<RatkinEliteGuardener>10</RatkinEliteGuardener>
-					<RatkinKnight>10</RatkinKnight>
+					<DD_Ratkin_Skirmish>10</DD_Ratkin_Skirmish>
+					<DD_Ratkin_Nun>10</DD_Ratkin_Nun>
 					<RatkinPriest>10</RatkinPriest>
 				</options>
 			</li>
 			<li>
 				<kindDef>Trader</kindDef>
 				<traders>
-					<RatkinMerchant>15</RatkinMerchant>
-					<RatkinNoble>8</RatkinNoble>
+					<DD_Ratkin_Nun>15</DD_Ratkin_Nun>
 				</traders>
-				<carriers>
-					<Ratkin_KingHamster>6</Ratkin_KingHamster>
+				<carriers>					
+          <DD_Ratkin_Suicider>20</DD_Ratkin_Suicider>
 				</carriers>
 				<guards>
-					<RatkinCombatant>10</RatkinCombatant>
+					<DD_Ratkin_Skirmish>10</DD_Ratkin_Skirmish>
 					<RatkinMercenaryLight>15</RatkinMercenaryLight>
-					<RatkinSoldier>20</RatkinSoldier>
-					<RatkinEliteGuardener>10</RatkinEliteGuardener>
-					<RatkinDefender>10</RatkinDefender>
+					<DD_S2_DHM86_Knell_Mech>9999</DD_S2_DHM86_Knell_Mech>
 				</guards>
 			</li>
 			<li>
 				<kindDef>Settlement</kindDef>
 				<options>
-					<RatkinNoble>3</RatkinNoble>
+					<DD_S1_Ratkin_Leader_Nun>9999</DD_S1_Ratkin_Leader_Nun>
+					<DD_S2_DHM86_Knell_Mech>9999</DD_S2_DHM86_Knell_Mech>
 					<RatkinColonist>6</RatkinColonist>
 					<RatkinServant>8</RatkinServant>
-					<RatkinCombatant>5</RatkinCombatant>
-					<RatkinEliteGuardener>8</RatkinEliteGuardener>
+					<DD_Ratkin_Skirmish>5</DD_Ratkin_Skirmish>
+					<DD_Ratkin_Crusader>8</DD_Ratkin_Crusader>
 					<RatkinPriest>3</RatkinPriest>
 				</options>
 			</li>

@@ -5,5 +5,9 @@
   <DD_Suicide_Attack.label>殉道</DD_Suicide_Attack.label>
   <!-- EN: Ah, what a wonderful day, what a wonderful day! Witness me, live, die, live again, until I am embraced by HIM, witness!!! -->
   <DD_Suicide_Attack.description>啊，多么美好的一天，多么美好的一天！见证我，生存，死亡，重生，直到投入祂的怀抱，见证！！！</DD_Suicide_Attack.description>
-  
+  <!-- EN: 发射鱼叉 -->
+  <DD_Harpoon_Gun_Launch_Harpoon.label>发射鱼叉</DD_Harpoon_Gun_Launch_Harpoon.label>
+  <!-- EN: 使用气动发射器，将威力强大的鱼叉发射出去——但是在重新装填前，鱼叉枪就只能当成近战武器使用了。 -->
+  <DD_Harpoon_Gun_Launch_Harpoon.description>使用气动发射器，发射一发威力强大的鱼叉——但是在重新装填前，这把武器就只能当成近战武器使用了。</DD_Harpoon_Gun_Launch_Harpoon.description>
+
 </LanguageData>

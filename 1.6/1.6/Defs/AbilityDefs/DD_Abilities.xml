@@ -34,4 +34,42 @@
       </li>
     </comps>
   </AbilityDef>
+
+  <AbilityDef>
+    <defName>DD_Harpoon_Gun_Launch_Harpoon</defName>
+    <label>Launch Harpoon</label>
+    <description>Using the pneumatic launcher, launch a powerful Harpoon – but before reloading, the weapon can only be used as a close combat weapon.</description>
+    <iconPath>UI/Abilities/PiercingSpine</iconPath>
+    <displayOrder>200</displayOrder>
+    <aiCanUse>true</aiCanUse>
+    <cooldownTicksRange>1800</cooldownTicksRange>
+    <verbProperties>
+      <verbClass>Verb_CastAbility</verbClass>
+      <range>34.9</range>
+      <warmupTime>1</warmupTime>
+      <soundCast>DD_Harpoon_Gun_FireSound</soundCast>
+    </verbProperties>
+    <comps>
+      <li Class="CompProperties_AbilityLaunchProjectile">
+        <projectileDef>DD_Harpoon_Gun_Bullet</projectileDef>
+      </li>
+    </comps>
+  </AbilityDef>
+  <ThingDef ParentName="BaseBullet">
+    <defName>DD_Harpoon_Gun_Bullet</defName>
+    <label>Harpoon</label>
+    <graphicData>
+      <texPath>DivineDiurganate/Mote/DD_Harpoon_Gun_Proj</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <!-- <shaderType>MoteGlow</shaderType>
+      <color>(194,117,67)</color> -->
+    </graphicData>
+    <projectile>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>25</damageAmountBase>
+			<stoppingPower>5</stoppingPower>
+			<armorPenetrationBase>0.75</armorPenetrationBase>
+			<speed>75</speed>
+    </projectile>
+  </ThingDef>
 </Defs>

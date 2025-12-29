@@ -49,7 +49,6 @@
 		<label>Diurganate Nun</label>
 		<combatPower>1</combatPower>
     <maxPerGroup>1</maxPerGroup>
-    <isBoss>true</isBoss>
     <fixedAdultBackstories>
       <li>Ratkin_Sister</li>
     </fixedAdultBackstories>
@@ -77,6 +76,7 @@
 		<defName>DD_Ratkin_Nun</defName>
 		<label>Diurganate Nun</label>
 		<combatPower>125</combatPower>
+    <maxPerGroup>3</maxPerGroup>
     <fixedAdultBackstories>
       <li>Ratkin_Sister</li>
     </fixedAdultBackstories>
@@ -95,7 +95,6 @@
 		</apparelRequired>
     <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
 		<weaponTags>
-			<li>DD_Weapon_T1</li>
 			<li>DD_RatkinClergy_Weapon</li>
 		</weaponTags>
 	</PawnKindDef>
@@ -108,7 +107,6 @@
     <collidesWithPawns>false</collidesWithPawns>
 		<combatPower>1</combatPower>
     <maxPerGroup>1</maxPerGroup>
-    <isBoss>true</isBoss>
     <weaponTags>
       <li>DD_DHM86_Knell_Mech_Weapon</li>
     </weaponTags>
@@ -120,6 +118,83 @@
 					<drawSize>3.5</drawSize>
 					<shadowData>
 						<volume>(0.4, 0.5, 0.37)</volume>
+						<offset>(0,0,-0.15)</offset>
+					</shadowData>
+				</bodyGraphicData>
+			</li>
+		</lifeStages>
+	</PawnKindDef>
+  
+  <!-- 3000-6000 -->
+	<PawnKindDef ParentName="RKBasePawnKind">
+		<defName>DD_Ratkin_Crusader</defName>
+		<label>Diurganate Crusader</label>
+		<combatPower>185</combatPower>
+		<backstoryFiltersOverride>
+			<li>
+				<categories>
+					<li>RatkinStory</li>
+				</categories>
+			</li>
+		</backstoryFiltersOverride>
+		<apparelMoney>0</apparelMoney>
+    <weaponMoney>1500~2500</weaponMoney>
+		<apparelRequired>
+			<li>DD_Crusaders_Uniform</li>
+		</apparelRequired>
+    <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
+		<weaponTags>
+			<li>DD_RatkinCrusader_Weapon</li>
+		</weaponTags>
+	</PawnKindDef>
+	<PawnKindDef>
+		<defName>DD_S3_DHM86_Knell_Mech</defName>
+		<label>DHM86-Knell</label>
+		<race>DD_DHM86_Knell_Mech</race>
+		<forceDeathOnDowned>false</forceDeathOnDowned>
+		<forceNoDeathNotification>false</forceNoDeathNotification>
+    <collidesWithPawns>false</collidesWithPawns>
+		<combatPower>350</combatPower>
+    <weaponTags>
+      <li>DD_DHM86_Knell_Mech_Weapon</li>
+    </weaponTags>
+    <weaponMoney>99999~99999</weaponMoney>
+		<lifeStages>
+			<li>
+				<bodyGraphicData>
+					<texPath>DivineDiurganate/Things/DD_DHM86_Knell/Naked_Thin</texPath>
+					<drawSize>3.5</drawSize>
+					<shadowData>
+						<volume>(0.4, 0.5, 0.37)</volume>
+						<offset>(0,0,-0.15)</offset>
+					</shadowData>
+				</bodyGraphicData>
+			</li>
+		</lifeStages>
+	</PawnKindDef>
+  
+  <!-- 6000-8000 -->
+	<PawnKindDef>
+		<defName>DD_S4_DHM69_Scythe_Mech</defName>
+		<label>DHM69-Scythe</label>
+		<race>DD_DHM69_Scythe_Mech</race>
+		<defaultFactionType>PlayerColony</defaultFactionType>
+		<forceDeathOnDowned>false</forceDeathOnDowned>
+		<forceNoDeathNotification>false</forceNoDeathNotification>
+    <collidesWithPawns>false</collidesWithPawns>
+		<combatPower>1</combatPower>
+    <maxPerGroup>1</maxPerGroup>
+    <weaponTags>
+      <li>DD_DHM69_Scythe_Mech_Weapon</li>
+    </weaponTags>
+    <weaponMoney>99999~99999</weaponMoney>
+		<lifeStages>
+			<li>
+				<bodyGraphicData>
+					<texPath>DivineDiurganate/Things/DD_DHM69_Scythe/Naked_Thin</texPath>
+					<drawSize>5.5</drawSize>
+					<shadowData>
+						<volume>(2 ,2, 0.8)</volume>
 						<offset>(0,0,-0.15)</offset>
 					</shadowData>
 				</bodyGraphicData>

@@ -241,8 +241,8 @@
 	</ThingDef>
 	<ThingDef ParentName="DD_ApparelMakeableBase">
 		<defName>DD_Crusaders_Uniform</defName>
-		<label>双尾护教军制服</label>
-    <description>双尾护教军的制服，内嵌了一套可以抵御射击的合金板甲，外表覆以保暖的大衣，以在双尾教廷飞空艇的高空低温环境下活动。</description>
+		<label>Diurganate Crusader Uniform</label>
+    <description>The uniform of the Diurganate Crusader, with a built-in set of alloy plate armour that would resist firing, and a warm coat on the outside to move in the high-altitude, cold environment of Diurganate Airship.</description>
     <graphicData>
 			<texPath>DivineDiurganate/Apparel/DD_Crusaders_Uniform</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -307,4 +307,4 @@
 			<researchPrerequisite>HighClassClothing</researchPrerequisite>
 		</recipeMaker>
 	</ThingDef>
-</Defs>
+</Defs> 
