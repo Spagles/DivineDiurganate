@@ -99,23 +99,6 @@
     <visible>true</visible>
     <milkable>false</milkable>
   </LifeStageDef>
-  
-  <ThingDef ParentName="MoteBase">
-    <defName>DD_Mote_MechBlackSmoke</defName>
-    <thingClass>MoteThrown</thingClass>
-    <graphicData>
-      <texPath>Things/Mote/Smoke</texPath>
-      <color>(0,0,0)</color>
-    </graphicData>
-    <altitudeLayer>MoteOverhead</altitudeLayer>
-    <mote>
-      <fadeInTime>0.25</fadeInTime>
-      <solidTime>1</solidTime>
-      <fadeOutTime>2.7</fadeOutTime>
-      <growthRate>0.47</growthRate>
-      <acceleration>(0,0,0.0014)</acceleration>
-    </mote>
-  </ThingDef>
 
   <ThingDef ParentName="BasePawn" Name="DD_MechPawnBase" Abstract="True">
     <!-- 重要！这个新的thingclass代表其是一台机甲，如果遗漏，接下来的内容都无法生效！ -->
@@ -320,7 +303,7 @@
       <li Class="DivineDiurganate.CompProperties_MoteEmitterNorthward">
         <moteDef>DD_Mote_MechBlackSmoke</moteDef>
         <emitIntervalTicks>30</emitIntervalTicks>
-        <emitIntervalMovingTicks>10</emitIntervalMovingTicks>
+        <emitIntervalMovingTicks>20</emitIntervalMovingTicks>
         <moveSpeed>1.5</moveSpeed>
         <lifetimeTicks>10</lifetimeTicks>
         <scale>0.25</scale>
@@ -329,7 +312,7 @@
       <li Class="DivineDiurganate.CompProperties_MoteEmitterNorthward">
         <moteDef>DD_Mote_MechBlackSmoke</moteDef>
         <emitIntervalTicks>30</emitIntervalTicks>
-        <emitIntervalMovingTicks>10</emitIntervalMovingTicks>
+        <emitIntervalMovingTicks>20</emitIntervalMovingTicks>
         <moveSpeed>1.5</moveSpeed>
         <lifetimeTicks>10</lifetimeTicks>
         <scale>0.25</scale>
@@ -542,7 +525,7 @@
       <li Class="DivineDiurganate.CompProperties_MoteEmitterNorthward">
         <moteDef>DD_Mote_MechBlackSmoke</moteDef>
         <emitIntervalTicks>30</emitIntervalTicks>
-        <emitIntervalMovingTicks>10</emitIntervalMovingTicks>
+        <emitIntervalMovingTicks>20</emitIntervalMovingTicks>
         <moveSpeed>1.5</moveSpeed>
         <lifetimeTicks>10</lifetimeTicks>
         <scale>0.25</scale>
@@ -551,7 +534,7 @@
       <li Class="DivineDiurganate.CompProperties_MoteEmitterNorthward">
         <moteDef>DD_Mote_MechBlackSmoke</moteDef>
         <emitIntervalTicks>30</emitIntervalTicks>
-        <emitIntervalMovingTicks>10</emitIntervalMovingTicks>
+        <emitIntervalMovingTicks>20</emitIntervalMovingTicks>
         <moveSpeed>1.5</moveSpeed>
         <lifetimeTicks>10</lifetimeTicks>
         <scale>0.25</scale>

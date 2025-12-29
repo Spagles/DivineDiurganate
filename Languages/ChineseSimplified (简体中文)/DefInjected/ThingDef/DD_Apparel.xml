@@ -1,9 +1,14 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
   
-  <!-- EN: 双尾护教军制服 -->
+  <!-- EN: Diurganate Crusaders Helmet -->
+  <DD_Crusaders_Helmet.label>双尾护教军头盔</DD_Crusaders_Helmet.label>
+  <!-- EN: The helmet of the Diurganate Crusader is made of alloy that can withstand light weapon fire. -->
+  <DD_Crusaders_Helmet.description>双尾教国护教军的头盔，以可以抵御轻武器射击的合金铸成。</DD_Crusaders_Helmet.description>
+  
+  <!-- EN: Diurganate Crusader Uniform -->
   <DD_Crusaders_Uniform.label>双尾护教军制服</DD_Crusaders_Uniform.label>
-  <!-- EN: 双尾护教军的制服，内嵌了一套可以抵御射击的合金板甲，外表覆以保暖的大衣，以在双尾教廷飞空艇的高空低温环境下活动。 -->
+  <!-- EN: The uniform of the Diurganate Crusader, with a built-in set of alloy plate armour that would resist firing, and a warm coat on the outside to move in the high-altitude, cold environment of Diurganate Airship. -->
   <DD_Crusaders_Uniform.description>双尾护教军的制服，内嵌了一套可以抵御射击的合金板甲，外表覆以保暖的大衣，以在双尾教廷飞空艇的高空低温环境下活动。</DD_Crusaders_Uniform.description>
   
   <!-- EN: Diurganate Nun Dress -->

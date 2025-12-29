@@ -251,11 +251,10 @@
 		<costList>
 			<DevilstrandCloth>20</DevilstrandCloth>
 		</costList>
-		<costStuffCount>35</costStuffCount>
-		<stuffCategories>
-			<li>Leathery</li>
-			<li>Fabric</li>
-		</stuffCategories>
+		<costStuffCount>120</costStuffCount>
+    <stuffCategories Inherit="False">
+      <li>Metallic</li>
+    </stuffCategories>
 		<techLevel>Industrial</techLevel>
 		<statBases>
 			<MaxHitPoints>150</MaxHitPoints>
@@ -267,10 +266,6 @@
       <StuffEffectMultiplierInsulation_Cold>1.0</StuffEffectMultiplierInsulation_Cold>
 			<StuffEffectMultiplierInsulation_Heat>0.20</StuffEffectMultiplierInsulation_Heat>
 		</statBases>
-    <stuffCategories>
-      <li>Metallic</li>
-      <li>Woody</li>
-    </stuffCategories>
 		<equippedStatOffsets>
       <MoveSpeed>-0.25</MoveSpeed>
 		</equippedStatOffsets>
@@ -303,6 +298,54 @@
         </li>
       </options>
     </colorGenerator>
+		<recipeMaker>
+			<researchPrerequisite>HighClassClothing</researchPrerequisite>
+		</recipeMaker>
+	</ThingDef>
+	<ThingDef ParentName="DD_HatMakeableBase">
+		<defName>DD_Crusaders_Helmet</defName>
+		<label>Diurganate Crusaders Helmet</label>
+		<description>The helmet of the Diurganate Crusader is made of alloy that can withstand light weapon fire.</description>
+		<graphicData>
+			<texPath>DivineDiurganate/Apparel/DD_Crusaders_Helmet</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<costList>
+			<DevilstrandCloth>10</DevilstrandCloth>
+		</costList>
+		<costStuffCount>40</costStuffCount>
+    <stuffCategories Inherit="False">
+      <li>Metallic</li>
+    </stuffCategories>
+		<statBases>
+			<MaxHitPoints>150</MaxHitPoints>
+			<WorkToMake>18000</WorkToMake>
+			<Mass>1</Mass>			
+			<StuffEffectMultiplierArmor>0.75</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0.75</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0.15</StuffEffectMultiplierInsulation_Heat>			
+			<EquipDelay>0.5</EquipDelay>
+		</statBases>
+		<apparel>
+      <renderSkipFlags>
+        <li>None</li>
+      </renderSkipFlags>
+      <parentTagDef>ApparelHead</parentTagDef>
+      <useDeflectMetalEffect>true</useDeflectMetalEffect>
+      <countsAsClothingForNudity>false</countsAsClothingForNudity>
+			<bodyPartGroups>
+				<li>FullHead</li>
+				<!-- <li>Eyes</li> -->
+			</bodyPartGroups>
+			<wornGraphicPath>DivineDiurganate/Apparel/DD_Crusaders_Helmet</wornGraphicPath>
+			<layers>
+				<li>Overhead</li>
+			</layers>
+			<tags>
+				<li>DD_RatkinCrusaders</li>
+			</tags>
+		</apparel>
 		<recipeMaker>
 			<researchPrerequisite>HighClassClothing</researchPrerequisite>
 		</recipeMaker>

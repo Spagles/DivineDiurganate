@@ -25,6 +25,7 @@
 		<canStageAttacks>true</canStageAttacks>
 		<techLevel>Industrial</techLevel>
 		<melaninRange>0~0.3</melaninRange>
+    <autoFlee>false</autoFlee>
 		<backstoryCategories>
 			<li>Offworld</li>
 		</backstoryCategories>
@@ -64,52 +65,66 @@
 			</points>
 		</maxPawnCostPerTotalPointsCurve>
 		<pawnGroupMakers>
-      <!-- 0-1000 -->
+      <!-- 0-2000，只有自杀鼠，散兵鼠和固定一个修女 -->
 			<li>
 				<kindDef>Combat</kindDef>
 				<commonality>10000</commonality>
-				<maxTotalPoints>1000</maxTotalPoints>
+				<maxTotalPoints>2000</maxTotalPoints>
 				<options>
 					<DD_Ratkin_Suicider>30</DD_Ratkin_Suicider>
 					<DD_Ratkin_Skirmish>5</DD_Ratkin_Skirmish>
 					<DD_S1_Ratkin_Leader_Nun>9999</DD_S1_Ratkin_Leader_Nun>
 				</options>
 			</li>
-      <!-- 1000-3000 -->
+      <!-- 2000-4000，自杀鼠，散兵鼠，少量护教军和固定3个修女 -->
+			<li>
+				<kindDef>Combat</kindDef>
+				<commonality>10000</commonality>
+				<maxTotalPoints>4000</maxTotalPoints>
+				<options>
+					<DD_Ratkin_Suicider>30</DD_Ratkin_Suicider>
+					<DD_Ratkin_Skirmish>10</DD_Ratkin_Skirmish>
+					<DD_Ratkin_Crusader>5</DD_Ratkin_Crusader>
+					<DD_S2_Ratkin_Leader_Nun>9999</DD_S2_Ratkin_Leader_Nun>
+				</options>
+			</li>
+      <!-- 4000-7000，自杀鼠，散兵鼠，护教军，固定3个修女和1机甲 -->
 			<li>
 				<kindDef>Combat</kindDef>
 				<commonality>1000</commonality>
-				<maxTotalPoints>3000</maxTotalPoints>
+				<maxTotalPoints>7000</maxTotalPoints>
 				<options>
-					<DD_Ratkin_Suicider>20</DD_Ratkin_Suicider>
-					<DD_Ratkin_Skirmish>10</DD_Ratkin_Skirmish>
-					<DD_Ratkin_Nun>5</DD_Ratkin_Nun>
-					<DD_S2_DHM86_Knell_Mech>9999</DD_S2_DHM86_Knell_Mech>
+					<DD_Ratkin_Suicider>30</DD_Ratkin_Suicider>
+					<DD_Ratkin_Skirmish>20</DD_Ratkin_Skirmish>
+					<DD_Ratkin_Crusader>10</DD_Ratkin_Crusader>
+					<DD_S2_Ratkin_Leader_Nun>9999</DD_S2_Ratkin_Leader_Nun>
+					<DD_S3_DHM86_Knell_Mech>9999</DD_S3_DHM86_Knell_Mech>
 				</options>
 			</li>
-      <!-- 3000-6000 -->
+      <!-- 7000-10000，自杀鼠，护教军，机甲，固定3个修女  -->
 			<li>
 				<kindDef>Combat</kindDef>
 				<commonality>100</commonality>
-				<maxTotalPoints>6000</maxTotalPoints>
+				<maxTotalPoints>10000</maxTotalPoints>
 				<options>
 					<DD_Ratkin_Suicider>20</DD_Ratkin_Suicider>
 					<DD_Ratkin_Skirmish>10</DD_Ratkin_Skirmish>
 					<DD_Ratkin_Crusader>10</DD_Ratkin_Crusader>
-					<DD_Ratkin_Nun>5</DD_Ratkin_Nun>
-					<DD_S3_DHM86_Knell_Mech>5</DD_S3_DHM86_Knell_Mech>
+					<DD_S2_Ratkin_Leader_Nun>9999</DD_S2_Ratkin_Leader_Nun>
+					<DD_S4_DHM86_Knell_Mech>2</DD_S4_DHM86_Knell_Mech>
 				</options>
 			</li>
-      <!-- 6000-8000 -->
+      <!-- 10000-15000，护教军，机甲，固定3个修女，固定重型机甲  -->
 			<li>
 				<kindDef>Combat</kindDef>
 				<commonality>10</commonality>
-				<maxTotalPoints>8000</maxTotalPoints>
+				<maxTotalPoints>15000</maxTotalPoints>
 				<options>
+					<DD_Ratkin_Skirmish>30</DD_Ratkin_Skirmish>
 					<DD_Ratkin_Crusader>20</DD_Ratkin_Crusader>
-					<DD_Ratkin_Nun>5</DD_Ratkin_Nun>
-					<DD_S3_DHM86_Knell_Mech>10</DD_S3_DHM86_Knell_Mech>
-          <DD_S4_DHM69_Scythe_Mech>9999</DD_S4_DHM69_Scythe_Mech>
+					<DD_S2_Ratkin_Leader_Nun>9999</DD_S2_Ratkin_Leader_Nun>
+					<DD_S4_DHM86_Knell_Mech>5</DD_S4_DHM86_Knell_Mech>
+					<DD_S5_DHM69_Scythe_Mech>9999</DD_S5_DHM69_Scythe_Mech>
 				</options>
 			</li>
       
@@ -120,14 +135,14 @@
 					<RatkinColonist>20</RatkinColonist>
 					<RatkinServant>15</RatkinServant>
 					<DD_Ratkin_Skirmish>10</DD_Ratkin_Skirmish>
-					<DD_Ratkin_Nun>10</DD_Ratkin_Nun>
 					<RatkinPriest>10</RatkinPriest>
+					<DD_S1_Ratkin_Leader_Nun>9999</DD_S1_Ratkin_Leader_Nun>
 				</options>
 			</li>
 			<li>
 				<kindDef>Trader</kindDef>
 				<traders>
-					<DD_Ratkin_Nun>15</DD_Ratkin_Nun>
+					<DD_S1_Ratkin_Leader_Nun>15</DD_S1_Ratkin_Leader_Nun>
 				</traders>
 				<carriers>					
           <DD_Ratkin_Suicider>20</DD_Ratkin_Suicider>
@@ -135,14 +150,14 @@
 				<guards>
 					<DD_Ratkin_Skirmish>10</DD_Ratkin_Skirmish>
 					<RatkinMercenaryLight>15</RatkinMercenaryLight>
-					<DD_S2_DHM86_Knell_Mech>9999</DD_S2_DHM86_Knell_Mech>
+					<DD_S3_DHM86_Knell_Mech>9999</DD_S3_DHM86_Knell_Mech>
 				</guards>
 			</li>
 			<li>
 				<kindDef>Settlement</kindDef>
 				<options>
 					<DD_S1_Ratkin_Leader_Nun>9999</DD_S1_Ratkin_Leader_Nun>
-					<DD_S2_DHM86_Knell_Mech>9999</DD_S2_DHM86_Knell_Mech>
+					<DD_S3_DHM86_Knell_Mech>9999</DD_S3_DHM86_Knell_Mech>
 					<RatkinColonist>6</RatkinColonist>
 					<RatkinServant>8</RatkinServant>
 					<DD_Ratkin_Skirmish>5</DD_Ratkin_Skirmish>

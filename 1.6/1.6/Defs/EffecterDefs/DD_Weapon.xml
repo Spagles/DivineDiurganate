@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <EffecterDef>
+    <defName>DD_Harpoon_Bullet_Hit_Effecter</defName>
+    <children>
+      <!-- <li>
+        <subEffecterClass>SubEffecter_SprayerTriggered</subEffecterClass>
+        <positionRadius>0.1</positionRadius>
+        <moteDef>DD_Mote_halo</moteDef>
+        <burstCount>1~1</burstCount>
+        <speed>0.4~0.8</speed>
+        <scale>0.05~0.05</scale>
+        <spawnLocType>OnSource</spawnLocType>
+        <color>(255,255,255)</color>
+      </li>
+      <li>
+        <subEffecterClass>SubEffecter_SprayerTriggered</subEffecterClass>
+        <positionRadius>0.02</positionRadius>
+        <moteDef>DD_Mote_halo</moteDef>
+        <burstCount>1~1</burstCount>
+        <speed>0.3~0.4</speed>
+        <rotationRate>5~10</rotationRate>
+        <scale>0.1~0.2</scale>
+        <spawnLocType>OnSource</spawnLocType>
+        <color>(255,255,255)</color>
+      </li> -->
+      <li>
+        <subEffecterClass>SubEffecter_SprayerTriggered</subEffecterClass>
+        <moteDef>DD_Spark_Mote</moteDef>
+        <burstCount>6~12</burstCount>
+        <scale>0.4~0.8</scale>
+        <speed>20~40</speed>
+        <angle>135~225</angle>
+        <positionRadius>0.01</positionRadius>
+        <spawnLocType>OnSource</spawnLocType>
+      </li>
+      <li>
+        <subEffecterClass>SubEffecter_SprayerTriggered</subEffecterClass>
+        <moteDef>DD_Spark_Mote</moteDef>
+        <burstCount>5~9</burstCount>
+        <scale>0.4~0.8</scale>
+        <speed>10~20</speed>
+        <angle>135~225</angle>
+        <positionRadius>0.01</positionRadius>
+        <spawnLocType>OnSource</spawnLocType>
+      </li>
+    </children>
+    <offsetTowardsTarget>0.25~0.25</offsetTowardsTarget>
+    <positionRadius>0.1</positionRadius>
+  </EffecterDef>
+  <ThingDef ParentName="MoteBase">
+    <defName>DD_Spark_Mote</defName>
+    <graphicData>
+      <texPath>Things/Projectile/ChargeLanceShot</texPath>
+      <drawSize>(0.75,1.5)</drawSize>
+      <shaderType>MoteGlow</shaderType>
+      <color>(0.3,0.5,0.7,1)</color>
+    </graphicData>
+    <altitudeLayer>Projectile</altitudeLayer>
+    <mote>
+      <fadeInTime>0.2</fadeInTime>
+      <solidTime>0.4</solidTime>
+      <fadeOutTime>0.2</fadeOutTime>
+      <growthRate>-0.8</growthRate>
+      <rotateTowardsMoveDirection>true</rotateTowardsMoveDirection>
+    </mote>
+  </ThingDef>
+  <ThingDef ParentName="MoteBase">
+    <defName>DD_Mote_halo</defName>
+    <graphicData>
+      <texPath>DivineDiurganate/Mote/halo</texPath>
+      <shaderType>MoteGlow</shaderType>
+    </graphicData>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>0</fadeInTime>
+      <solidTime>0</solidTime>
+      <fadeOutTime>0.1</fadeOutTime>
+      <growthRate>40</growthRate>
+      <rotateTowardsMoveDirection>true</rotateTowardsMoveDirection>
+    </mote>
+  </ThingDef>
+  <FleckDef ParentName="FleckBase">
+    <defName>DD_GunTail_Lighting</defName>
+    <altitudeLayer>Projectile</altitudeLayer>
+    <fadeOutTime>0.05</fadeOutTime>
+    <graphicData>
+      <texPath>DivineDiurganate/Mote/Lighting_Beam</texPath>
+      <shaderType>MoteGlow</shaderType>
+      <color>(255,255,255,155)</color>
+      <drawSize>(0.3,1)</drawSize>
+    </graphicData>
+  </FleckDef>
+  
+  
+  <ThingDef ParentName="MoteBase">
+    <defName>DD_Mote_MechBlackSmoke</defName>
+    <thingClass>MoteThrown</thingClass>
+    <graphicData>
+      <texPath>Things/Mote/Smoke</texPath>
+      <color>(0,0,0)</color>
+    </graphicData>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>0.25</fadeInTime>
+      <solidTime>1</solidTime>
+      <fadeOutTime>2.7</fadeOutTime>
+      <growthRate>0.47</growthRate>
+      <acceleration>(0,0,0.0014)</acceleration>
+    </mote>
+  </ThingDef>
+</Defs>

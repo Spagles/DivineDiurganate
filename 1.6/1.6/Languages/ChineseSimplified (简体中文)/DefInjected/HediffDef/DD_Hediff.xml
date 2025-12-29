@@ -23,4 +23,11 @@
   <!-- EN: This colonist had a bomb hidden! -->
   <DD_Suicide_Bomb_Hediff.description>这位殖民者的身上藏了一枚炸弹！</DD_Suicide_Bomb_Hediff.description>
   
+  <!-- EN: Weapon Deployed -->
+  <DD_Weapon_Deployed.label>武器部署</DD_Weapon_Deployed.label>
+  <!-- EN: Part of the weapons in Diurganate Army cannot fire before being deployed -->
+  <DD_Weapon_Deployed.description>某些双尾教国的武器需要部署后才能开火</DD_Weapon_Deployed.description>
+  <!-- EN: Finish -->
+  <DD_Weapon_Deployed.stages.Finish.label>完成</DD_Weapon_Deployed.stages.Finish.label>
+  
 </LanguageData>

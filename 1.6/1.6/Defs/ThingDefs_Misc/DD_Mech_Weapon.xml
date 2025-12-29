@@ -200,7 +200,7 @@
     <techLevel>Industrial</techLevel>
     <statBases>
       <Mass>1</Mass>
-      <RangedWeapon_Cooldown>2.66</RangedWeapon_Cooldown>
+      <RangedWeapon_Cooldown>3</RangedWeapon_Cooldown>
       <WorkToMake>12000</WorkToMake>
     </statBases>
     <costList>
@@ -217,7 +217,7 @@
         <verbClass>Verb_LaunchProjectile</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <range>28</range>
-        <forcedMissRadius>0.25</forcedMissRadius>
+        <forcedMissRadius>4</forcedMissRadius>
         <warmupTime>0.75</warmupTime>
         <noiseRadius>4</noiseRadius>
         <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
@@ -258,9 +258,10 @@
       <speed>45</speed>
       <arcHeightFactor>2</arcHeightFactor>
       <shadowSize>0.4</shadowSize>
-      <explosionRadius>4</explosionRadius >
+      <explosionRadius>2.9</explosionRadius >
       <damageDef>Bomb</damageDef>
       <explosionDelay>30</explosionDelay>
+      <damageAmountBase>25</damageAmountBase>
     </projectile>
   </ThingDef>
   

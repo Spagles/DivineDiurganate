@@ -43,6 +43,22 @@
             <clipPath>DivineDiurganate/DD_Harpoon_Gun_FireSound</clipPath>
           </li>
         </grains>
+        <volumeRange>55</volumeRange>
+        <pitchRange>0.9~1.1</pitchRange>
+      </li>
+    </subSounds>
+  </SoundDef>
+  <SoundDef>
+    <defName>DD_Spear_Machinegun_FireSound</defName>
+    <context>MapOnly</context>
+    <maxSimultaneous>2</maxSimultaneous>
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>DivineDiurganate/DD_Spear_Machinegun_FireSound</clipPath>
+          </li>
+        </grains>
         <volumeRange>45</volumeRange>
         <pitchRange>0.9~1.1</pitchRange>
       </li>

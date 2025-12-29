@@ -111,6 +111,7 @@
     <Compile Include="Projectile\Projectile_PenetratingBullet.cs" />
     <Compile Include="Thing_Comp\BuildingSpawnPawn\CompBuildToPawn.cs" />
     <Compile Include="Thing_Comp\BuildingSpawnPawn\CompProperties_BuildToPawn.cs" />
+    <Compile Include="Thing_Comp\GiveHediffOnShot\CompAndPatch_GiveHediffOnShot.cs" />
     <Compile Include="Thing_Comp\MechSpecificWeapon\CompMechSpecificWeapon.cs" />
     <Compile Include="Verb\MeleeAttack_Cleave\CompCleave.cs" />
     <Compile Include="Verb\MeleeAttack_Cleave\Verb_MeleeAttack_Cleave.cs" />

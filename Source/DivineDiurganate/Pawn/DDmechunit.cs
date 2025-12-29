@@ -82,7 +82,12 @@ namespace DivineDiurganate
                 groupKeyIgnoreContent = 81729172,
                 defaultLabel = (base.Drafted ? "CommandUndraftLabel" : "CommandDraftLabel").Translate()
             };
-            
+
+            if (base.Faction != Faction.OfPlayer)
+            {
+                command_Toggle.Disable("CannotOrderNonControlledLower".Translate());
+            }
+
             if (base.Downed)
             {
                 command_Toggle.Disable("IsIncapped".Translate(LabelShort, this));
