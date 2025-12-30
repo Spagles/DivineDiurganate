@@ -218,7 +218,7 @@
       <!-- This component defines the fuel required to maintain the operation of the mecha -->
       <li Class="DivineDiurganate.CompProperties_MechFuel">
         <fuelType>Chemfuel</fuelType>
-        <fuelCapacity>50</fuelCapacity>
+        <fuelCapacity>20</fuelCapacity>
         <dailyFuelConsumption>15</dailyFuelConsumption>
 
         <!-- 决定燃料的装载时间，这两个属性有点重复，不知道当时为什么我会分成两个 -->
@@ -436,7 +436,7 @@
     <description>Magnificent large walking mech, armed with a pair of formidable Scythes and a machine gun turret, the cult of Diurganate use this mech as a spearhead unit to break through the heretic fortified front.</description>
     <statBases>
       <MoveSpeed>3.75</MoveSpeed>
-      <MarketValue>7500</MarketValue>
+      <MarketValue>12500</MarketValue>
       <MeleeHitChance>15</MeleeHitChance>
       <MeleeDodgeChance>0.5</MeleeDodgeChance>
       <ArmorRating_Blunt>1.5</ArmorRating_Blunt>
@@ -445,7 +445,7 @@
 
       <!-- 圣化镀层的数值，伤害*穿甲率低于此数值将被直接抵挡 -->
       <!-- value of the Sanctified Armour, damage * armor piercing rate below which will be directly resisted -->
-      <DD_MechArmor>3</DD_MechArmor>
+      <DD_MechArmor>4</DD_MechArmor>
     </statBases>
     <race>
       <body>DD_Race_DHM69_Scythe_Body</body>

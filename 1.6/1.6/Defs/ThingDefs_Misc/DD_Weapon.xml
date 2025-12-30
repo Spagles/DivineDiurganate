@@ -1,99 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <ThingDef ParentName="BaseHumanMakeableGun">
-    <defName>DD_Axe_Pistol</defName>
-    <label>Diurganate Axe Pistol</label>
-    <description>The basic self-defense weapon used by the followers and clergy of the Diurganate has an axe blade fixed to the front of the barrel, allowing it to be used as an axe in close combat.</description>
-    <tickerType>Normal</tickerType>
-    <techLevel>Industrial</techLevel>
-    <graphicData>
-      <texPath>DivineDiurganate/Weapon/DD_Axe_Pistol</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>0.75</drawSize>
-    </graphicData>
-    <soundInteract>Interact_Rifle</soundInteract>
-    <uiIconScale>1.25</uiIconScale>
-    <costStuffCount>25</costStuffCount>
-    <stuffCategories>
-      <li>Metallic</li>
-    </stuffCategories>
-    <recipeMaker>
-      <!-- <recipeUsers Inherit="False" /> -->
-			<researchPrerequisite>MicroOptical</researchPrerequisite>
-      <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
-    </recipeMaker>
-    <statBases>
-      <WorkToMake>5000</WorkToMake>
-      <Mass>1.4</Mass>
-      <AccuracyTouch>0.85</AccuracyTouch>
-      <AccuracyShort>0.6</AccuracyShort>
-      <AccuracyMedium>0.45</AccuracyMedium>
-      <AccuracyLong>0.3</AccuracyLong>
-      <RangedWeapon_Cooldown>2.1</RangedWeapon_Cooldown>
-    </statBases>
-    <verbs>
-      <li>
-        <verbClass>Verb_Shoot</verbClass>
-        <hasStandardCommand>true</hasStandardCommand>
-        <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
-        <warmupTime>0.1</warmupTime>
-        <defaultProjectile>DD_Axe_Pistol_Bullet</defaultProjectile>
-        <range>27.9</range>
-        <burstShotCount>1</burstShotCount>
-        <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
-        <soundCast>Shot_Revolver</soundCast>
-      </li>
-    </verbs>
-    <costList>
-      <Steel>30</Steel>
-      <ComponentIndustrial>2</ComponentIndustrial>
-    </costList>
-		<weaponTags Inherit="false">
-			<li>RK_2TierWeapon</li>
-			<li>RK_Weapon</li>
-			<li>RK_RangeWeapon</li>
-			<li>RK_Murderer</li>
-			<!-- <li>DD_Weapon_T1</li> -->
-			<li>DD_RatkinClergy_Weapon</li>
-		</weaponTags>
-    <generateCommonality>0.01</generateCommonality>
-    <tradeability>None</tradeability>
-    <thingSetMakerTags Inherit="False" />
-    <tools Inherit="False">
-      <li>
-        <label>Gunstock</label>
-        <capacities>
-          <li>Poke</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>2</cooldownTime>
-      </li>
-      <li>
-        <label>Axe Blade</label>
-        <capacities>
-          <li>Cut</li>
-        </capacities>
-        <power>15</power>
-        <cooldownTime>2</cooldownTime>
-      </li>
-    </tools>
-  </ThingDef>
-  <ThingDef ParentName="BaseBullet">
-    <defName>DD_Axe_Pistol_Bullet</defName>
-    <label>Pistol Bullet</label>
-    <graphicData>
-      <texPath>Things/Projectile/Bullet_Small</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <shaderType>MoteGlow</shaderType>
-      <color>(194,117,67)</color>
-    </graphicData>
-    <projectile>
-      <damageDef>Bullet</damageDef>
-      <damageAmountBase>10</damageAmountBase>
-      <stoppingPower>2</stoppingPower>
-      <speed>45</speed>
-    </projectile>
-  </ThingDef>
+  <!-- basic -->
   <ThingDef ParentName="BaseHumanMakeableGun">
     <defName>DD_Harpoon_Gun</defName>
     <label>Diurganate Harpoon Gun</label>
@@ -130,14 +37,12 @@
       <ComponentIndustrial>2</ComponentIndustrial>
     </costList>
 		<weaponTags Inherit="false">
-			<li>RK_2TierWeapon</li>
+			<li>RK_1TierWeapon</li>
 			<li>RK_Rifle</li>
 			<li>RK_Weapon</li>
-			<li>RK_RangeWeapon</li>
+			<li>RK_MeleeWeapon_Lance</li>
 			<li>RK_LightWeapon</li>
-			<li>RK_Combatant</li>
-			<li>RK_Murderer</li>
-			<li>DD_Weapon_T1</li>
+			<li>DD_Skirmish_Weapon</li>
 		</weaponTags>
     <generateCommonality>0.01</generateCommonality>
     <tradeability>None</tradeability>
@@ -166,116 +71,6 @@
 			</li>
     </comps>
   </ThingDef>
-  <ThingDef ParentName="BaseHumanMakeableGun">
-    <defName>DD_Fire_Shotgun</defName>
-    <label>Holy Shotgun</label>
-    <description>Although it's called a shotgun, don't be fooled - this thing is a real shotgun filled with brass cast blessed dragon pellets, enough for close range enemies to experience what "physical exorcism" is.</description>
-    <tickerType>Normal</tickerType>
-    <techLevel>Industrial</techLevel>
-    <graphicData>
-      <texPath>DivineDiurganate/Weapon/DD_Fire_Shotgun</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>1</drawSize>
-    </graphicData>
-    <soundInteract>Interact_Rifle</soundInteract>
-    <recipeMaker>
-      <recipeUsers Inherit="False" />
-			<researchPrerequisite>MechanicalWeapon</researchPrerequisite>
-      <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
-    </recipeMaker>
-    <statBases>
-      <WorkToMake>7500</WorkToMake>
-      <Mass>2</Mass>
-			<AccuracyTouch>0.65</AccuracyTouch>
-			<AccuracyShort>0.85</AccuracyShort>
-			<AccuracyMedium>0.75</AccuracyMedium>
-			<AccuracyLong>0.65</AccuracyLong>
-      <RangedWeapon_Cooldown>1.1</RangedWeapon_Cooldown>
-    </statBases>
-    <verbs>
-      <li Class="DivineDiurganate.VerbProperties_FireSpew">
-        <verbClass>DivineDiurganate.Verb_ShootFireSpew</verbClass>
-        <hasStandardCommand>true</hasStandardCommand>
-        <warmupTime>0.5</warmupTime>
-        <range>15</range>        <!-- Standard range property -->
-        <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
-        <burstShotCount>3</burstShotCount>
-        <!-- <soundCast>Shot_MiniFlameblaster</soundCast> -->
-        <soundCast>Shot_Shotgun</soundCast>
-        <soundCastTail>GunTail_Medium</soundCastTail>
-        <muzzleFlashScale>9</muzzleFlashScale>
-
-        <!-- Custom Properties for the modified Verb_SpewFire logic -->
-        <degrees>25</degrees>
-        <damageDef>Flame</damageDef>
-        <damageAmount>12</damageAmount>
-        <!-- <filthDef>Filth_SpentAcid</filthDef> -->
-        <effecterDef>DD_Fire_Shotgun_Fire_Spew</effecterDef>
-        <propagationSpeed>0.5</propagationSpeed>
-        <chanceToStartFire>1</chanceToStartFire>
-        <avoidFriendlyFire>false</avoidFriendlyFire>
-      </li>
-    </verbs>
-    <costList>
-      <Steel>50</Steel>
-      <ComponentIndustrial>4</ComponentIndustrial>
-    </costList>
-		<weaponTags Inherit="false">
-			<li>RK_3TierWeapon</li>
-			<li>RK_Weapon</li>
-			<li>RK_RangeWeapon</li>
-			<li>DD_Weapon_T2</li>
-			<li>DD_RatkinClergy_Weapon</li>
-			<li>DD_RatkinCrusaders_Weapon</li>
-		</weaponTags>
-    <generateCommonality>0.01</generateCommonality>
-  </ThingDef>
-  <EffecterDef>
-    <defName>DD_Fire_Shotgun_Fire_Spew</defName>
-    <children>
-      <li>
-        <subEffecterClass>SubEffecter_SprayerChance</subEffecterClass>
-        <positionRadius>0.15</positionRadius>
-        <fleckDef>FireSpew_A</fleckDef>
-        <chancePerTick>0.9</chancePerTick>
-        <burstCount>5~10</burstCount>
-        <speed>15.5</speed>
-        <scale>0.8~1.2</scale>
-        <angle>-20~20</angle>
-        <positionLerpFactor>0.85</positionLerpFactor>
-        <fleckUsesAngleForVelocity>true</fleckUsesAngleForVelocity>
-      </li>
-      <li>
-        <subEffecterClass>SubEffecter_SprayerChance</subEffecterClass>
-        <positionRadius>0.1</positionRadius>
-        <fleckDef>FireSpew_Base</fleckDef>
-        <chancePerTick>0.1</chancePerTick>
-        <speed>0.6</speed>
-        <scale>0.8</scale>
-        <angle>-7~7</angle>
-        <positionLerpFactor>0.75</positionLerpFactor>
-        <fleckUsesAngleForVelocity>true</fleckUsesAngleForVelocity>
-      </li>
-      <li>
-        <subEffecterClass>SubEffecter_SprayerChance</subEffecterClass>
-        <positionRadius>0.1</positionRadius>
-        <moteDef>Mote_SparkThrownFast</moteDef>
-        <chancePerTick>0.5</chancePerTick>
-        <speed>3.3~5</speed>
-        <scale>0.1~0.2</scale>
-        <angle>-12~12</angle>
-        <positionLerpFactor>0.8</positionLerpFactor>
-        <fleckUsesAngleForVelocity>true</fleckUsesAngleForVelocity>
-      </li>
-      <li>
-        <subEffecterClass>SubEffecter_SprayerChance</subEffecterClass>
-        <positionRadius>0.2</positionRadius>
-        <fleckDef>FireSpew_Glow</fleckDef>
-        <chancePerTick>0.16</chancePerTick>
-        <positionLerpFactor>0.65</positionLerpFactor>
-      </li>
-    </children>
-  </EffecterDef>
   <ThingDef ParentName="BaseHumanMakeableGun">
     <defName>DD_Spear_Rifle</defName>
     <label>Crescent Axe Spear Rifle</label>
@@ -422,8 +217,7 @@
 			<li>RK_3TierWeapon</li>
 			<li>RK_Weapon</li>
 			<li>RK_RangeWeapon</li>
-			<li>DD_RatkinCrusader_Weapon</li>
-			<li>DD_RatkinClergy_Weapon</li>
+			<li>DD_RatkinCrusader_Heavy_Weapon</li>
 		</weaponTags>
     <generateCommonality>0.1</generateCommonality>
     <tradeability>None</tradeability>
@@ -463,6 +257,270 @@
 			<stoppingPower>10</stoppingPower>
 			<armorPenetrationBase>0.65</armorPenetrationBase>
 			<speed>75</speed>
+    </projectile>
+  </ThingDef>
+
+  <!-- holy -->
+  <ThingDef ParentName="BaseHumanMakeableGun">
+    <defName>DD_Axe_Pistol</defName>
+    <label>Diurganate Axe Pistol</label>
+    <description>The basic self-defense weapon used by the followers and clergy of the Diurganate has an axe blade fixed to the front of the barrel, allowing it to be used as an axe in close combat.</description>
+    <tickerType>Normal</tickerType>
+    <techLevel>Industrial</techLevel>
+    <graphicData>
+      <texPath>DivineDiurganate/Weapon/DD_Axe_Pistol</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>0.75</drawSize>
+    </graphicData>
+    <soundInteract>Interact_Rifle</soundInteract>
+    <uiIconScale>1.25</uiIconScale>
+    <costStuffCount>25</costStuffCount>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <recipeMaker>
+      <!-- <recipeUsers Inherit="False" /> -->
+			<researchPrerequisite>MicroOptical</researchPrerequisite>
+      <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+    </recipeMaker>
+    <statBases>
+      <WorkToMake>5000</WorkToMake>
+      <Mass>1.4</Mass>
+      <AccuracyTouch>0.85</AccuracyTouch>
+      <AccuracyShort>0.6</AccuracyShort>
+      <AccuracyMedium>0.45</AccuracyMedium>
+      <AccuracyLong>0.3</AccuracyLong>
+      <RangedWeapon_Cooldown>2.1</RangedWeapon_Cooldown>
+    </statBases>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+        <warmupTime>0.1</warmupTime>
+        <defaultProjectile>DD_Axe_Pistol_Bullet</defaultProjectile>
+        <range>27.9</range>
+        <burstShotCount>1</burstShotCount>
+        <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+        <soundCast>Shot_Revolver</soundCast>
+      </li>
+    </verbs>
+    <costList>
+      <Steel>30</Steel>
+      <ComponentIndustrial>2</ComponentIndustrial>
+    </costList>
+		<weaponTags Inherit="false">
+			<li>RK_2TierWeapon</li>
+			<li>RK_Weapon</li>
+			<li>RK_RangeWeapon</li>
+			<li>RK_Murderer</li>
+			<li>DD_RatkinClergy_Weapon</li>
+		</weaponTags>
+    <generateCommonality>0.01</generateCommonality>
+    <tradeability>None</tradeability>
+    <thingSetMakerTags Inherit="False" />
+    <tools Inherit="False">
+      <li>
+        <label>Gunstock</label>
+        <capacities>
+          <li>Poke</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>2</cooldownTime>
+      </li>
+      <li>
+        <label>Axe Blade</label>
+        <capacities>
+          <li>Cut</li>
+        </capacities>
+        <power>15</power>
+        <cooldownTime>2</cooldownTime>
+      </li>
+    </tools>
+  </ThingDef>
+  <ThingDef ParentName="BaseBullet">
+    <defName>DD_Axe_Pistol_Bullet</defName>
+    <label>Pistol Bullet</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>MoteGlow</shaderType>
+      <color>(194,117,67)</color>
+    </graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>10</damageAmountBase>
+      <stoppingPower>2</stoppingPower>
+      <speed>45</speed>
+    </projectile>
+  </ThingDef>
+  <ThingDef ParentName="BaseHumanMakeableGun">
+    <defName>DD_Fire_Shotgun</defName>
+    <label>Exorcism Burner</label>
+    <description>A shotgun filled with brass cast blessed incendiary bullet, enough for close range enemies to experience what "physical exorcism" is.</description>
+    <tickerType>Normal</tickerType>
+    <techLevel>Industrial</techLevel>
+    <graphicData>
+      <texPath>DivineDiurganate/Weapon/DD_Fire_Shotgun</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>1</drawSize>
+    </graphicData>
+    <soundInteract>Interact_Rifle</soundInteract>
+    <recipeMaker>
+      <recipeUsers Inherit="False" />
+			<researchPrerequisite>MechanicalWeapon</researchPrerequisite>
+      <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+    </recipeMaker>
+    <statBases>
+      <WorkToMake>7500</WorkToMake>
+      <Mass>2</Mass>
+			<AccuracyTouch>0.65</AccuracyTouch>
+			<AccuracyShort>0.85</AccuracyShort>
+			<AccuracyMedium>0.75</AccuracyMedium>
+			<AccuracyLong>0.65</AccuracyLong>
+      <RangedWeapon_Cooldown>1.1</RangedWeapon_Cooldown>
+    </statBases>
+    <verbs>
+      <li Class="DivineDiurganate.VerbProperties_FireSpew">
+        <verbClass>DivineDiurganate.Verb_ShootFireSpew</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <warmupTime>0.5</warmupTime>
+        <range>15</range>        <!-- Standard range property -->
+        <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+        <burstShotCount>3</burstShotCount>
+        <!-- <soundCast>Shot_MiniFlameblaster</soundCast> -->
+        <soundCast>Shot_Shotgun</soundCast>
+        <soundCastTail>GunTail_Medium</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+
+        <!-- Custom Properties for the modified Verb_SpewFire logic -->
+        <degrees>25</degrees>
+        <damageDef>Flame</damageDef>
+        <damageAmount>12</damageAmount>
+        <!-- <filthDef>Filth_SpentAcid</filthDef> -->
+        <effecterDef>DD_Fire_Shotgun_Fire_Spew</effecterDef>
+        <propagationSpeed>0.5</propagationSpeed>
+        <chanceToStartFire>1</chanceToStartFire>
+        <avoidFriendlyFire>false</avoidFriendlyFire>
+      </li>
+    </verbs>
+    <costList>
+      <Steel>50</Steel>
+      <ComponentIndustrial>4</ComponentIndustrial>
+    </costList>
+		<weaponTags Inherit="false">
+			<li>RK_3TierWeapon</li>
+			<li>RK_Weapon</li>
+			<li>RK_RangeWeapon</li>
+			<li>DD_Weapon_T2</li>
+			<li>DD_RatkinClergy_Weapon</li>
+			<li>DD_RatkinCrusaders_Weapon</li>
+		</weaponTags>
+    <generateCommonality>0.01</generateCommonality>
+  </ThingDef>
+  <ThingDef ParentName="BaseHumanMakeableGun">
+    <defName>DD_AM_Heavy_Lance</defName>
+    <label>Anti-Mech Heavy Lance</label>
+    <description>结合了反机甲火炮和骑枪为一体的重型武器，无论在哪个距离上都能有效打击重甲目标，不过它开火前需要架设，并且对使用者的要求比较高。</description>
+    <tickerType>Normal</tickerType>
+    <techLevel>Industrial</techLevel>
+    <graphicData>
+      <texPath>DivineDiurganate/Weapon/DD_Spear_Rifle</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>1.2</drawSize>
+    </graphicData>
+    <soundInteract>Interact_Rifle</soundInteract>
+    <uiIconScale>0.9</uiIconScale>
+    <costStuffCount>80</costStuffCount>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <recipeMaker>
+      <!-- <recipeUsers Inherit="False" /> -->
+			<researchPrerequisite>MicroOptical</researchPrerequisite>
+      <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+    </recipeMaker>
+    <statBases>
+      <WorkToMake>5000</WorkToMake>
+      <Mass>1.4</Mass>
+      <AccuracyTouch>0.45</AccuracyTouch>
+      <AccuracyShort>0.75</AccuracyShort>
+      <AccuracyMedium>0.8</AccuracyMedium>
+      <AccuracyLong>0.7</AccuracyLong>
+      <RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
+    </statBases>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+        <warmupTime>3</warmupTime>
+        <defaultProjectile>DD_AM_Heavy_Lance_Bullet</defaultProjectile>
+        <range>38.9</range>
+        <burstShotCount>1</burstShotCount>
+        <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+        <soundCast>DD_Spear_Machinegun_FireSound</soundCast>
+      </li>
+    </verbs>
+    <costList>
+      <Steel>30</Steel>
+      <ComponentIndustrial>2</ComponentIndustrial>
+    </costList>
+		<weaponTags Inherit="false">
+			<li>RK_3TierWeapon</li>
+			<li>RK_Weapon</li>
+			<li>RK_RangeWeapon</li>
+			<li>DD_RatkinCrusader_Heavy_Weapon</li>
+			<li>DD_RatkinClergy_Weapon</li>
+		</weaponTags>
+    <generateCommonality>0.01</generateCommonality>
+    <tradeability>None</tradeability>
+    <thingSetMakerTags Inherit="False" />
+    <tools Inherit="False">
+      <li>
+        <label>Lance Stab</label>
+        <capacities>
+          <li>Stab</li>
+        </capacities>
+        <power>35</power>
+        <cooldownTime>2.75</cooldownTime>
+        <armorPenetration>1.2</armorPenetration>
+      </li>
+    </tools>
+    <comps>
+      <li Class="DivineDiurganate.CompProperties_GiveHediffOnShot">
+        <hediffDef>DD_Weapon_Deployed_Long</hediffDef>
+        <severityToAdd>1</severityToAdd>
+      </li>
+    </comps>
+  </ThingDef>
+  <ThingDef ParentName="BaseBullet">
+    <defName>DD_AM_Heavy_Lance_Bullet</defName>
+    <label>Anti-Mech Shell</label>
+    <thingClass>DivineDiurganate.Projectile_PenetratingBullet</thingClass>
+    <modExtensions>
+      <li Class="DivineDiurganate.PenetratingBullet_Extension">
+        <maxHits>3</maxHits>        <!-- 无限穿透 -->
+        <damageFalloff>0.5</damageFalloff>        <!-- 无伤害衰减 -->
+        <preventFriendlyFire>true</preventFriendlyFire>        <!-- 是否阻止友方火力 -->
+        <tailFleckDef>DD_Black_Smoke_Tail</tailFleckDef>
+        <fleckDelayTicks>4</fleckDelayTicks>
+
+        <impactEffecter>DD_Harpoon_Bullet_Hit_Effecter</impactEffecter>
+      </li>
+    </modExtensions>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Big</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>MoteGlow</shaderType>
+      <color>(194,117,67)</color>
+    </graphicData>
+    <projectile>
+			<damageDef>Crush</damageDef>
+			<damageAmountBase>25</damageAmountBase>
+			<stoppingPower>5</stoppingPower>
+			<armorPenetrationBase>1.25</armorPenetrationBase>
+			<speed>65</speed>
     </projectile>
   </ThingDef>
 </Defs>

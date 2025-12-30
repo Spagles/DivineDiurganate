@@ -91,8 +91,68 @@
       <drawSize>(0.3,1)</drawSize>
     </graphicData>
   </FleckDef>
+
+  <FleckDef ParentName="FleckBase_Thrown">
+    <defName>DD_Black_Smoke_Tail</defName>
+    <graphicData>
+      <texPath>Things/Mote/Smoke</texPath>
+      <renderInstanced>true</renderInstanced>
+      <color>(0,0,0,155)</color>
+      <drawSize>(1,1)</drawSize>
+    </graphicData>
+    <fadeInTime>0.50</fadeInTime>
+    <solidTime>0</solidTime>
+    <fadeOutTime>0.2</fadeOutTime>
+    <growthRate>0.005</growthRate>
+  </FleckDef>
   
-  
+  <EffecterDef>
+    <defName>DD_Fire_Shotgun_Fire_Spew</defName>
+    <children>
+      <li>
+        <subEffecterClass>SubEffecter_SprayerChance</subEffecterClass>
+        <positionRadius>0.15</positionRadius>
+        <fleckDef>FireSpew_A</fleckDef>
+        <chancePerTick>0.9</chancePerTick>
+        <burstCount>5~10</burstCount>
+        <speed>15.5</speed>
+        <scale>0.8~1.2</scale>
+        <angle>-20~20</angle>
+        <positionLerpFactor>0.85</positionLerpFactor>
+        <fleckUsesAngleForVelocity>true</fleckUsesAngleForVelocity>
+      </li>
+      <li>
+        <subEffecterClass>SubEffecter_SprayerChance</subEffecterClass>
+        <positionRadius>0.1</positionRadius>
+        <fleckDef>FireSpew_Base</fleckDef>
+        <chancePerTick>0.1</chancePerTick>
+        <speed>0.6</speed>
+        <scale>0.8</scale>
+        <angle>-7~7</angle>
+        <positionLerpFactor>0.75</positionLerpFactor>
+        <fleckUsesAngleForVelocity>true</fleckUsesAngleForVelocity>
+      </li>
+      <li>
+        <subEffecterClass>SubEffecter_SprayerChance</subEffecterClass>
+        <positionRadius>0.1</positionRadius>
+        <moteDef>Mote_SparkThrownFast</moteDef>
+        <chancePerTick>0.5</chancePerTick>
+        <speed>3.3~5</speed>
+        <scale>0.1~0.2</scale>
+        <angle>-12~12</angle>
+        <positionLerpFactor>0.8</positionLerpFactor>
+        <fleckUsesAngleForVelocity>true</fleckUsesAngleForVelocity>
+      </li>
+      <li>
+        <subEffecterClass>SubEffecter_SprayerChance</subEffecterClass>
+        <positionRadius>0.2</positionRadius>
+        <fleckDef>FireSpew_Glow</fleckDef>
+        <chancePerTick>0.16</chancePerTick>
+        <positionLerpFactor>0.65</positionLerpFactor>
+      </li>
+    </children>
+  </EffecterDef>
+
   <ThingDef ParentName="MoteBase">
     <defName>DD_Mote_MechBlackSmoke</defName>
     <thingClass>MoteThrown</thingClass>

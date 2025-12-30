@@ -469,8 +469,6 @@ namespace DivineDiurganate
                         // 尝试生成到地图上
                         if (TrySpawnPilotAtPosition(pawn, ejectPos))
                         {
-                            Messages.Message($"DD_PilotEjectedEmergency".Translate(pawn.LabelShort, parent.LabelShort),
-                                pawn, MessageTypeDefOf.NegativeEvent);
                         }
                         else
                         {

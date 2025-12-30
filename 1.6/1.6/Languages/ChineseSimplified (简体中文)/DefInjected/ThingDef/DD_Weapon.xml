@@ -16,11 +16,11 @@
   <DD_Axe_Pistol_Bullet.label>手枪子弹</DD_Axe_Pistol_Bullet.label>
   
   <!-- EN: Holy Shotgun -->
-  <DD_Fire_Shotgun.label>神圣猎枪</DD_Fire_Shotgun.label>
+  <DD_Fire_Shotgun.label>退魔圣焰</DD_Fire_Shotgun.label>
   <!-- EN: Although it's called a shotgun, don't be fooled - this thing is a real shotgun filled with brass cast blessed dragon pellets, enough for close range enemies to experience what "physical exorcism" is. -->
-  <DD_Fire_Shotgun.description>虽然名字是猎枪，但是可千万不要被迷惑了——这玩意是实打实的霰弹枪，里面装填了以黄铜浇筑的受祝龙息弹，足以让近距离的敌人体验一下什么叫“物理驱魔”。</DD_Fire_Shotgun.description>
+  <DD_Fire_Shotgun.description>一把霰弹枪，里面装填了以黄铜浇筑的受祝龙息弹，足以让近距离的敌人体验一下什么叫“物理驱魔”。</DD_Fire_Shotgun.description>
   <!-- EN: Holy Shotgun -->
-  <DD_Fire_Shotgun.verbs.Verb_ShootFireSpew.label>神圣猎枪</DD_Fire_Shotgun.verbs.Verb_ShootFireSpew.label>
+  <DD_Fire_Shotgun.verbs.Verb_ShootFireSpew.label>退魔圣焰</DD_Fire_Shotgun.verbs.Verb_ShootFireSpew.label>
   
   <!-- EN: Diurganate Harpoon Gun -->
   <DD_Harpoon_Gun.label>气动鱼叉枪</DD_Harpoon_Gun.label>
@@ -49,7 +49,7 @@
   <DD_Spear_Machinegun.verbs.Verb_Shoot.label>鱼叉机枪</DD_Spear_Machinegun.verbs.Verb_Shoot.label>
   
   <!-- EN: Spear -->
-  <DD_Spear_Machinegun_Bullet.label>TODO</DD_Spear_Machinegun_Bullet.label>
+  <DD_Spear_Machinegun_Bullet.label>鱼叉</DD_Spear_Machinegun_Bullet.label>
   
   <!-- EN: Crescent Axe Spear Rifle -->
   <DD_Spear_Rifle.label>新月斧鱼叉步枪</DD_Spear_Rifle.label>

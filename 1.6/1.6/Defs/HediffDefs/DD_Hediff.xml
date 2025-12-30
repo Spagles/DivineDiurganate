@@ -155,4 +155,28 @@
       </li>
     </stages>
   </HediffDef>
+
+  <HediffDef>
+    <defName>DD_Weapon_Deployed_Long</defName>
+    <label>Weapon Deployed</label>
+    <description>Part of the weapons in Diurganate Army cannot fire before being deployed</description>
+    <defaultLabelColor>(0.52, 1, 0.95)</defaultLabelColor>
+    <hediffClass>HediffWithComps</hediffClass>
+    <comps>
+      <li Class="HediffCompProperties_DisappearsOnDeath" />
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>180</disappearsAfterTicks>        <!-- 10 seconds -->
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>Finish</label>
+        <becomeVisible>true</becomeVisible>
+        <statFactors>
+          <AimingDelayFactor>0</AimingDelayFactor>
+        </statFactors>
+      </li>
+    </stages>
+  </HediffDef>
 </Defs>

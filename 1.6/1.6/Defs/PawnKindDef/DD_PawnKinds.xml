@@ -38,10 +38,10 @@
 			<li>RK_Explorer</li>
 			<li>RK_Combatant</li>
 		</apparelTags>
-    <weaponMoney>300~1200</weaponMoney>
+    <weaponMoney>600~1200</weaponMoney>
     <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
 		<weaponTags>
-			<li>DD_Weapon_T1</li>
+			<li>DD_Skirmish_Weapon</li>
 		</weaponTags>
 	</PawnKindDef>
 	<PawnKindDef ParentName="RKBasePawnKind">
@@ -147,6 +147,29 @@
 				</bodyGraphicData>
 			</li>
 		</lifeStages>
+	</PawnKindDef>
+	<PawnKindDef ParentName="RKBasePawnKind">
+		<defName>DD_Ratkin_Heavy_Crusader</defName>
+		<label>Diurganate Heavy Crusader</label>
+		<combatPower>340</combatPower>
+		<backstoryFiltersOverride>
+			<li>
+				<categories>
+					<li>RatkinStory</li>
+				</categories>
+			</li>
+		</backstoryFiltersOverride>
+		<apparelMoney>0</apparelMoney>
+    <weaponMoney>1500~2500</weaponMoney>
+		<apparelRequired>
+			<li>DD_Crusaders_Uniform</li>
+			<li>DD_Crusaders_Helmet</li>
+			<li>DD_Crusaders_Shield</li>
+		</apparelRequired>
+    <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
+		<weaponTags>
+			<li>DD_RatkinCrusader_Heavy_Weapon</li>
+		</weaponTags>
 	</PawnKindDef>
 
   <!-- 5000-7000 -->

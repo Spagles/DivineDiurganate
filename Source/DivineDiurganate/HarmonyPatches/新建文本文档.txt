@@ -1,0 +1,91 @@
+// 旧代码
+using HarmonyLib;
+using RimWorld;
+using System.Collections.Generic;
+
+@@ -8,85 +8,60 @@ using Verse;
+namespace DivineDiurganate
+{
+    [HarmonyPatch(typeof(ColonistBar), "CheckRecacheEntries")]
+    public static class UltraSimplePatch
+    {
+        [HarmonyPostfix]
+        public static void Postfix(ref List<ColonistBar.Entry> ___cachedEntries)
+        {
+            if (___cachedEntries == null || ___cachedEntries.Count == 0) return;
+
+            var newEntries = new List<ColonistBar.Entry>();
+            var mechEntries = new HashSet<Pawn>();
+
+            // 第一轮：找出所有机甲和驾驶员
+            var mechToPilots = new Dictionary<Pawn, List<Pawn>>();
+            var pilotToMech = new Dictionary<Pawn, Pawn>();
+
+            // 遍历所有pawn，建立映射关系
+            foreach (var map in Find.Maps)
+            {
+                foreach (var pawn in map.mapPawns.AllPawnsSpawned)
+                {
+                    var comp = pawn.TryGetComp<CompMechPilotHolder>();
+                    if (comp != null && comp.HasPilots)
+                    {
+                        var pilots = comp.GetPilots().ToList();
+                        mechToPilots[pawn] = pilots;
+                        foreach (var pilot in pilots)
+                        {
+                            pilotToMech[pilot] = pawn;
+                        }
+                    }
+                }
+            }
+
+            // 第二轮：过滤条目
+            foreach (var entry in ___cachedEntries)
+            {
+                var pawn = entry.pawn;
+                if (pawn == null)
+                {
+                    // 保留空条目
+                    newEntries.Add(entry);
+                    continue;
+                }
+
+                // 如果是驾驶员，跳过
+                if (pilotToMech.ContainsKey(pawn))
+                {
+                    continue;
+                }
+
+                // 如果是机甲
+                if (mechToPilots.ContainsKey(pawn))
+                {
+                    // 只有机甲有驾驶员时才显示
+                    if (mechToPilots[pawn].Count > 0 && !mechEntries.Contains(pawn))
+                    {
+                        newEntries.Add(entry);
+                        mechEntries.Add(pawn);
+                    }
+                }
+                else
+                {
+                    // 普通殖民者
+                    newEntries.Add(entry);
+                }
+            }
+
+            // 第三轮：确保机甲被添加（如果还没有）
+            foreach (var mech in mechToPilots.Keys)
+            {
+                if (!mechEntries.Contains(mech) && mechToPilots[mech].Count > 0)
+                {
+                    // 找到一个与机甲在同一地图的条目作为参考
+                    var referenceEntry = ___cachedEntries.FirstOrDefault(e => e.map == mech.MapHeld);
+                    newEntries.Add(new ColonistBar.Entry(mech, referenceEntry.map, referenceEntry.group));
+                }
+            }
+
+            // 替换原列表
+            ___cachedEntries = newEntries;
+        }   
+    }
+}

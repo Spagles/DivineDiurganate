@@ -67,6 +67,8 @@
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
+		<costStuffCount>0</costStuffCount>
+    <stuffCategories Inherit="False"/>
 		<recipeMaker>
 			<unfinishedThingDef>UnfinishedArmor</unfinishedThingDef>
 			<!-- <researchPrerequisite>RatkinClothing</researchPrerequisite> -->
@@ -160,7 +162,6 @@
 			</bodyPartGroups>
 			<wornGraphicPath>DivineDiurganate/Apparel/DD_Nun_Dress</wornGraphicPath>
 			<layers>
-				<li>OuterClothing</li>
 				<li>OnSkin</li>
 			</layers>
 			<tags>
@@ -279,7 +280,6 @@
 			</bodyPartGroups>
 			<wornGraphicPath>DivineDiurganate/Apparel/DD_Crusaders_Uniform</wornGraphicPath>
 			<layers>
-				<li>OuterClothing</li>
 				<li>OnSkin</li>
 			</layers>
 			<tags>
@@ -350,4 +350,51 @@
 			<researchPrerequisite>HighClassClothing</researchPrerequisite>
 		</recipeMaker>
 	</ThingDef>
+
+  <ThingDef ParentName="DD_ApparelMakeableBase">
+    <defName>DD_Crusaders_Shield</defName>
+    <label>护教军盾牌</label>
+    <description>一面中型盾牌，专为双尾教国的护教军设计，在基本不丢失防御力的同时比巨盾要轻便一些。</description>
+    <recipeMaker>
+      <researchPrerequisite>HighClassClothing</researchPrerequisite>
+    </recipeMaker>
+    <graphicData>
+      <texPath>Apparel/RK_HeavyShield_Big</texPath>
+    </graphicData>
+    <statBases>
+      <WorkToMake>5000</WorkToMake>
+      <MaxHitPoints>500</MaxHitPoints>
+      <Mass>7</Mass>
+      <Flammability>0</Flammability>
+			<StuffEffectMultiplierArmor>0.9</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0.0</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0.0</StuffEffectMultiplierInsulation_Heat>
+      <EquipDelay>0.1</EquipDelay>
+    </statBases>
+		<equippedStatOffsets>
+			<MeleeDodgeChance>-0.2</MeleeDodgeChance>
+			<MoveSpeed>-0.5</MoveSpeed>
+		</equippedStatOffsets>
+		<costStuffCount>120</costStuffCount>
+    <stuffCategories Inherit="False">
+      <li>Metallic</li>
+    </stuffCategories>
+    <apparel>
+      <tags>
+        <li>DD_RatkinCrusaders</li>
+      </tags>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Neck</li>
+				<li>Shoulders</li>
+				<li>Arms</li>
+				<li>Legs</li>
+				<li>FullHead</li>
+			</bodyPartGroups>
+      <wornGraphicPath>Apparel/RK_HeavyShield_Big</wornGraphicPath>
+			<layers>
+				<li>OuterClothing</li>
+			</layers>
+    </apparel>
+  </ThingDef>
 </Defs> 
