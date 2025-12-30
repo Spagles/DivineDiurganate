@@ -207,7 +207,7 @@
   <!-- 技能组，包含共同冷却 -->
   <AbilityGroupDef>
     <defName>ExorcistAbilityGroup</defName>
-    <cooldownTicks>600000</cooldownTicks>
+    <cooldownTicks>10000</cooldownTicks>
     <sendMessageOnCooldownComplete>true</sendMessageOnCooldownComplete>
     <ritualRoleIds>
       <li>speaker</li>
@@ -216,7 +216,7 @@
   <AbilityDef>
     <defName>DD_Exorcist_PrewarSpeech</defName>
     <label>战前布道</label>
-    <description>圣双尾教的驱魔人对即将到来的大战进行战前布道，每位与会者将根据演讲的质量获得神佑，使得她们在战场上更加勇猛、更加难以被击杀。</description>
+    <description>圣双尾教的驱魔人对即将到来的大战进行战前布道，每位与会者将根据演讲的质量获得神佑，使得她们在战场上更加勇猛、更加难以被击杀。演讲的质量和驱魔人的社交属性相关。</description>
     <groupDef>ExorcistAbilityGroup</groupDef>
     <iconPath>UI/Abilities/LeaderSpeech</iconPath>
     <showWhenDrafted>false</showWhenDrafted>
@@ -244,7 +244,7 @@
   <PreceptDef>
     <defName>DD_Exorcist_PrewarSpeech</defName>
     <label>战前布道</label>
-    <description>对即将到来的大战进行战前布道，每位与会者将根据演讲的质量获得庇护，庇护将直接地增强与会者的战斗能力。</description>
+    <description>对即将到来的大战进行战前布道，每位与会者将根据演讲的质量获得庇护，庇护将直接地增强与会者的战斗能力。演讲的质量和驱魔人的社交属性相关。</description>
     <issue>Ritual</issue>
     <preceptClass>Precept_Ritual</preceptClass>
     <visible>false</visible>
@@ -273,10 +273,9 @@
   <RitualBehaviorDef>
     <defName>DD_Exorcist_PrewarSpeech</defName>
     <workerClass>DivineDiurganate.RitualBehaviorWorker_PrewarSpeech</workerClass>
-    <durationTicks>5000</durationTicks>
+    <durationTicks>600</durationTicks>
     <letterTitle>{RITUAL_labelCap}</letterTitle>
-    <letterText>{SPEAKER_labelShort} is giving {RITUAL_labelIndef}.
-      \nIf all goes well, listeners will feel inspired, and gain respect for {SPEAKER_labelShort}. If it goes poorly, the speech will do social damage. Positive effects are reduced for non-{IDEOMEMBERS}.</letterText>
+    <letterText>{SPEAKER_labelShort} 正在进行 {RITUAL_labelIndef}。\n如果一切顺利，{IDEOMEMBERS} 将从 {SPEAKER_labelShort} 的布道中获得激励，以在一段时间内获得更强大的战斗能力。仪式更好的结果有助于 {IDEOMEMBERS} 提升更多的能力，并给予其额外的心情。</letterText>
     <roles>
       <li Class="RitualRoleTag">
         <label>speaker</label>
@@ -317,12 +316,12 @@
   </RitualBehaviorDef>
   <RitualOutcomeEffectDef>
     <defName>DD_Exorcist_PrewarSpeech_EndEffect</defName>
-    <description>Depending on ritual quality, participants will get between {MINMOOD} and {MAXMOOD} mood for {MOODDAYS} days.</description>
-    <workerClass>DivineDiurganate.RitualOutcomeEffectWorker_Extended</workerClass>
+    <description>根据仪式质量，参加者将获得 {MOODDAYS} 天的额外心情和战斗能力增强。</description>
+    <workerClass>RitualOutcomeEffectWorker_Speech</workerClass>
     <comps>
       <li Class="RitualOutcomeComp_PawnStatScaled">
-        <label>{PAWN_labelShort}'s social impact</label>
-        <labelAbstract>speaker's social impact</labelAbstract>
+        <label>{PAWN_labelShort} 的社交等级</label>
+        <labelAbstract>驱魔人的社交等级</labelAbstract>
         <roleId>speaker</roleId>
         <statDef>SocialImpact</statDef>
         <curve>
@@ -335,7 +334,7 @@
         </curve>
       </li>
       <li Class="RitualOutcomeComp_ParticipantCount">
-        <label>participant count</label>
+        <label>与会者数量</label>
         <curve>
           <points>
             <li>(1,  0.07)</li>
@@ -346,7 +345,7 @@
         </curve>
       </li>
       <li Class="RitualOutcomeComp_RoomStat">
-        <label>room impressiveness</label>
+        <label>房间观感</label>
         <statDef>Impressiveness</statDef>
         <curve>
           <points>
@@ -358,33 +357,33 @@
       </li>
       <li Class="DivineDiurganate.RitualOutcomeComp_ApplyHediffToParticipants">
         <hediffToApply>DD_MechPrototype</hediffToApply>
-        <severityPerQuality>0.2</severityPerQuality>
+        <severityPerQuality>1</severityPerQuality>
         <applyToAllParticipants>true</applyToAllParticipants>
         <requirePositiveQuality>true</requirePositiveQuality>
       </li>
     </comps>
     <outcomeChances>
-      <!-- <li>
-        <label>Terrible</label>
+      <li>
+        <label>糟糕的</label>
         <chance>0.05</chance>
         <memory>TerribleSpeech</memory>
         <positivityIndex>-2</positivityIndex>
       </li>
       <li>
-        <label>Uninspiring</label>
+        <label>平平无奇的</label>
         <chance>0.15</chance>
         <memory>UninspiringSpeech</memory>
         <positivityIndex>-1</positivityIndex>
-      </li> -->
+      </li>
       <li>
-        <label>Encouraging</label>
+        <label>鼓舞人心的</label>
         <chance>0.6</chance>
         <memory>EncouragingSpeech</memory>
         <positivityIndex>1</positivityIndex>
       </li>
       <li>
-        <label>Inspirational</label>
-        <chance>0.4</chance>
+        <label>令人兴奋的</label>
+        <chance>0.2</chance>
         <memory>InspirationalSpeech</memory>
         <positivityIndex>2</positivityIndex>
       </li>

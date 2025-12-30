@@ -50,7 +50,7 @@ namespace DivineDiurganate
                 float severity = quality * severityPerQuality;
                 
                 // 确保严重性在合理范围内
-                severity = Mathf.Clamp(severity, 0.1f, 1f);
+                severity = Mathf.Clamp(severity, 0.01f, 1f);
                 
                 // 获取参与者
                 var participants = GetEligibleParticipants(ritual);
