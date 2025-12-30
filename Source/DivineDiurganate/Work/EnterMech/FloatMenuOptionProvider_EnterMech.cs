@@ -8,8 +8,6 @@ namespace DivineDiurganate
 {
     public class FloatMenuOptionProvider_EnterMech : FloatMenuOptionProvider
     {
-        // 缓存机甲定义列表
-        private static List<ThingDef> cachedMechDefs = null;
         
         // 检查Thing是否为机甲
         private bool IsMech(Thing thing)

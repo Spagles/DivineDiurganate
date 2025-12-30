@@ -26,4 +26,14 @@ namespace DivineDiurganate
             DefOfHelper.EnsureInitializedInCtor(typeof(DD_MentalStateDefOf));
         }
     }
+
+    [DefOf]
+    public static class DD_PreceptDefOf
+    {
+        public static PreceptDef DD_IdeoRole_Exorcist;
+        static DD_PreceptDefOf()
+        {
+            DefOfHelper.EnsureInitializedInCtor(typeof(DD_PreceptDefOf));
+        }
+    }
 }

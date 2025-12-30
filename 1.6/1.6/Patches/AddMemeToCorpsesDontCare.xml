@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- 操作：向 Corpses_DontCare 的 requiredMemes 列表添加 DD_law_Meme -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/PreceptDef[defName="Corpses_DontCare"]/requiredMemes</xpath>
+    <value>
+      <li>DD_law_Meme</li>
+    </value>
+  </Operation>
+</Patch>

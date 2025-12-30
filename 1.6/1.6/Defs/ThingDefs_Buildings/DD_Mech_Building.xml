@@ -90,4 +90,52 @@
       </li>
     </comps>
   </ThingDef>
+  
+  <ThingDef ParentName="IdeoBuildingBase">
+    <defName>DD_RitualSpot</defName>
+    <label>RitualSpot</label>
+    <description>A large image drawn on the ground and reinforced with metal edges. It is used as a focus for rituals.</description>
+    <graphicData>
+      <graphicClass>Graphic_Single</graphicClass>
+      <!-- <color>(105,105,105)</color> -->
+      <texPath>DivineDiurganate/Building/DD_RitualSpot</texPath>
+      <drawSize>(3,3)</drawSize>
+      <shadowData>
+        <volume>(0.8, 1, 0.8)</volume>
+      </shadowData>
+    </graphicData>
+    <size>(3,3)</size>
+    <costList>
+      <Steel>50</Steel>
+    </costList>
+    <statBases>
+      <MaxHitPoints>50</MaxHitPoints>
+      <WorkToBuild>25000</WorkToBuild>
+      <Beauty>10</Beauty>
+      <StyleDominance>20</StyleDominance>
+    </statBases>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <ideoBuildingNamerBase>NamerIdeogram</ideoBuildingNamerBase>
+    <passability>Standable</passability>
+    <selectable>true</selectable>
+    <useHitPoints>true</useHitPoints>
+    <isAltar>true</isAltar>
+    <hasInteractionCell>True</hasInteractionCell>
+    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+    <canEditAnyStyle>true</canEditAnyStyle>
+    <building>
+      <buildingTags>
+        <li>RitualFocus</li>
+      </buildingTags>
+      <relatedBuildCommands>
+        <li>Lectern</li>
+        <li>KneelPillow</li>
+      </relatedBuildCommands>
+    </building>
+    <placeWorkers Inherit="False">
+      <li>PlaceWorker_RitualFocusNoArrow</li>
+      <li>PlaceWorker_PreventInteractionSpotOverlap</li>
+    </placeWorkers>
+    <drawPlaceWorkersWhileSelected>True</drawPlaceWorkersWhileSelected>
+  </ThingDef>
 </Defs>
