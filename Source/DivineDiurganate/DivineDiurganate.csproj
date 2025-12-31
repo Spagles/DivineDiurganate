@@ -86,7 +86,11 @@
     <Compile Include="DDMod.cs" />
     <Compile Include="HarmonyPatches\Patch_DDmechunit.cs" />
     <Compile Include="DD_DefOf.cs" />
-    <Compile Include="Hediff_Comp\HediffCompProperties_SyncedWithMech.cs" />
+    <Compile Include="Hediff_Comp\IdeoRoleHediff\CompProperties_IdeoRoleHediff.cs" />
+    <Compile Include="Hediff_Comp\IdeoRoleHediff\Comp_IdeoRoleHediff.cs" />
+    <Compile Include="Hediff_Comp\IdeoRoleHediff\GameComponent_IdeoRoleHediffUpdater.cs" />
+    <Compile Include="Hediff_Comp\IdeoRoleHediff\IdeoRoleHediffManager.cs" />
+    <Compile Include="Hediff_Comp\SyncedWithMech\HediffCompProperties_SyncedWithMech.cs" />
     <Compile Include="ITab\ITab_MechSkills.cs" />
     <Compile Include="MentalState\MentalState_MechNoPilot.cs" />
     <Compile Include="Pawn\DDmechunit.cs" />
@@ -94,7 +98,6 @@
     <Compile Include="Pawn_Comps\DefaultPilotEntry\CompProperties_MechDefaultPilot.cs" />
     <Compile Include="Pawn_Comps\HediffGiverByKind\CompHediffGiverByKind.cs" />
     <Compile Include="Pawn_Comps\HediffGiverByKind\CompProperties_HediffGiverByKind.cs" />
-    <Compile Include="Pawn_Comps\MechArmor\CompMechArmor.cs" />
     <Compile Include="Pawn_Comps\MechFuel\CompMechFuel.cs" />
     <Compile Include="Pawn_Comps\MechFuel\CompProperties_MechFuel.cs" />
     <Compile Include="Pawn_Comps\MechFuel\Gizmo_MechFuelStatus.cs" />
@@ -132,7 +135,9 @@
     <Compile Include="Work\JobGiver_NoPilot.cs" />
     <Compile Include="Work\ThinkNode_ConditionalMechHasPilot.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Pawn_Comps\MechArmor\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- 自定义清理任务，删除obj文件夹中的临时文件 -->
   <Target Name="CleanDebugFiles" AfterTargets="Build">

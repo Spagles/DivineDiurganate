@@ -1,4 +1,4 @@
-// File: RitualBehaviorWorker_PrewarSpeech_Fixed.cs
+// File: RitualBehaviorWorker_ExorcistSpeech_Fixed.cs
 using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
@@ -8,13 +8,14 @@ using Verse.AI.Group;
 
 namespace DivineDiurganate
 {
-    public class RitualBehaviorWorker_PrewarSpeech : RitualBehaviorWorker
+    
+    public class RitualBehaviorWorker_ExorcistSpeech : RitualBehaviorWorker
     {
-        public RitualBehaviorWorker_PrewarSpeech()
+        public RitualBehaviorWorker_ExorcistSpeech()
         {
         }
 
-        public RitualBehaviorWorker_PrewarSpeech(RitualBehaviorDef def)
+        public RitualBehaviorWorker_ExorcistSpeech(RitualBehaviorDef def)
             : base(def)
         {
         }

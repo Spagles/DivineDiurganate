@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <HediffDef>
+    <defName>DD_IdeoRole_Clergy_Base_Hediff</defName>
+    <label>随军牧师</label>
+    <description>双尾教国的随军牧师会登上机甲，并在这些铁罐头作战时持续维护它们，以确保其在战场上正常运转。</description>
+    <defaultLabelColor>(0.52, 1, 0.95)</defaultLabelColor>
+    <hediffClass>HediffWithComps</hediffClass>
+    <stages>
+      <li>
+        <becomeVisible>true</becomeVisible>
+        <statFactors>
+          <AimingDelayFactor>0</AimingDelayFactor>
+        </statFactors>
+      </li>
+    </stages>
+    <comps>
+      <li Class="DivineDiurganate.HediffCompProperties_IdeoRoleHediff">
+        <requiredRole>DD_IdeoRole_Clergy</requiredRole>
+        <requiredMeme>
+          <li>DD_law_Meme</li>
+        </requiredMeme>
+        <requireMeme>true</requireMeme>
+        <severityLevel>0.5</severityLevel>
+      </li>
+      <li Class="DivineDiurganate.HediffCompProperties_SyncedWithMech">
+        <severityOnPawn>0.5</severityOnPawn>
+        <severityOnMech>1.5</severityOnMech>
+        <transferToMech>true</transferToMech>
+        <removeWhenLeaving>true</removeWhenLeaving>
+      </li>
+    </comps>
+  </HediffDef>
+</Defs>

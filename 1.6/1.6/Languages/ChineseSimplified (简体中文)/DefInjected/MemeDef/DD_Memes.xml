@@ -60,10 +60,10 @@
     <li>memeHyphenPrefix->超凡</li>
     <li>memeConcept->机械</li>
     <li>memeConcept->圣火</li>
-    <li>memeLeaderNoun->教长</li>
-    <li>memeLeaderNoun->修女长</li>
     <li>memeLeaderNoun->主教</li>
-    <li>memeLeaderNoun->圣徒</li>
+    <li>memeMoralist->修女长</li>
+    <li>memeClergy->牧师</li>
+    <li>memeExorcist->狂信徒</li>
   </DD_law_Meme.generalRules.rulesStrings>
   <!-- EN: Diurganate -->
   <DD_law_Meme.symbolPacks.0.adjective>圣双尾教</DD_law_Meme.symbolPacks.0.adjective>

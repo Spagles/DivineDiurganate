@@ -1,69 +1,127 @@
-// File: HarmonyPatches/ArmorSystemPatch.cs
 using HarmonyLib;
 using RimWorld;
+using System.Collections.Generic;
+using UnityEngine;
 using Verse;
+using Verse.Sound;
 
 namespace DivineDiurganate.HarmonyPatches
 {
     /// <summary>
-    /// Harmony补丁：在TakeDamage前检查装甲系统
+    /// 简化的机甲装甲系统补丁
+    /// 直接检查DD_MechArmor stat，大于0则启动装甲系统
     /// </summary>
     [HarmonyPatch(typeof(Thing))]
     [HarmonyPatch("TakeDamage")]
     public static class Thing_TakeDamage_Patch
     {
+        // 缓存装甲值StatDef
+        private static readonly StatDef ArmorStatDef = StatDef.Named("DD_MechArmor");
+        
+        // 阻挡效果的MoteDef
+        private static readonly ThingDef BlockMoteDef = DefDatabase<ThingDef>.GetNamedSilentFail("Mote_Spark");
+        
+        // 阻挡音效
+        private static readonly SoundDef BlockSoundDef = DefDatabase<SoundDef>.GetNamedSilentFail("ArmorBlock");
+        
+        // 调试统计
+        private static readonly Dictionary<Thing, ArmorStats> DebugStats = new Dictionary<Thing, ArmorStats>();
+        
+        private class ArmorStats
+        {
+            public int blockedHits = 0;
+            public int totalHits = 0;
+        }
+        
         /// <summary>
         /// 前置补丁：在TakeDamage执行前检查装甲
         /// </summary>
         [HarmonyPrefix]
         public static bool Prefix(Thing __instance, ref DamageInfo dinfo, ref DamageWorker.DamageResult __result)
         {
-            // 检查是否有基础装甲组件
-            var basicArmorComp = __instance.TryGetComp<CompMechArmor>();
-            if (basicArmorComp != null)
+            float armorValue = __instance.GetStatValue(ArmorStatDef);
+            
+            // 如果装甲值 <= 0，不启动装甲系统
+            if (armorValue <= 0)
+                return true;
+            
+            // 更新调试统计
+            if (!DebugStats.ContainsKey(__instance))
+                DebugStats[__instance] = new ArmorStats();
+            DebugStats[__instance].totalHits++;
+            
+            // 计算穿甲伤害
+            float armorPenetration = dinfo.ArmorPenetrationInt;
+            float piercingDamage = dinfo.Amount * armorPenetration;
+            
+            // 判断是否应该阻挡
+            bool shouldBlock = piercingDamage < armorValue;
+            
+            if (shouldBlock)
             {
-                // 复制dinfo以便修改
-                DamageInfo dinfoCopy = dinfo;
+                // 阻挡成功
+                DebugStats[__instance].blockedHits++;
                 
-                // 尝试阻挡伤害
-                if (basicArmorComp.TryBlockDamage(ref dinfoCopy))
+                // 显示阻挡效果
+                ShowBlockEffect(__instance, dinfo);
+                
+                // 播放阻挡音效
+                PlayBlockSound(__instance);
+                
+                // 返回空结果，跳过原方法
+                __result = new DamageWorker.DamageResult();
+                
+                // 可选：在开发模式下显示日志
+                if (Prefs.DevMode)
                 {
-                    // 伤害被完全抵消，返回空结果
-                    __result = new DamageWorker.DamageResult();
-                    return false; // 跳过原方法
+                    Log.Message($"[DD Armor] {__instance.LabelCap} blocked attack: " +
+                        $"Damage={dinfo.Amount}, Penetration={armorPenetration:P0}, " +
+                        $"PierceDamage={piercingDamage:F1}, Armor={armorValue:F1}");
                 }
                 
-                // 更新dinfo（如果有部分阻挡）
-                dinfo = dinfoCopy;
-                return true; // 继续执行原方法
+                return false; // 跳过原TakeDamage方法
             }
             
-            // 没有装甲组件，正常执行
+            // 阻挡失败，继续执行原方法
+            if (Prefs.DevMode)
+            {
+                Log.Message($"[DD Armor] {__instance.LabelCap} failed to block: " +
+                    $"Damage={dinfo.Amount}, Penetration={armorPenetration:P0}, " +
+                    $"PierceDamage={piercingDamage:F1}, Armor={armorValue:F1}");
+            }
+            
             return true;
         }
-    }
-    
-    /// <summary>
-    /// 可选的：在PreApplyDamage中也添加检查
-    /// </summary>
-    [HarmonyPatch(typeof(Thing))]
-    [HarmonyPatch("PreApplyDamage")]
-    public static class Thing_PreApplyDamage_Patch
-    {
-        [HarmonyPostfix]
-        public static void Postfix(Thing __instance, ref DamageInfo dinfo, ref bool absorbed)
+        
+        /// <summary>
+        /// 显示阻挡效果
+        /// </summary>
+        private static void ShowBlockEffect(Thing target, DamageInfo dinfo)
         {
-            // 如果已经被其他系统吸收了，跳过
-            if (absorbed)
+            if (!target.Spawned)
                 return;
-            
-            // 检查是否有装甲组件
-            var armorComp = __instance.TryGetComp<CompMechArmor>();
-            
-            if (armorComp != null)
+                
+            // 显示文字效果
+            Vector3 textPos = target.DrawPos + new Vector3(0, 0, 1f);
+            MoteMaker.ThrowText(textPos, target.Map, "DD_BlockByMechArmor".Translate(), Color.yellow, 2.5f);
+        }
+        
+        /// <summary>
+        /// 播放阻挡音效
+        /// </summary>
+        private static void PlayBlockSound(Thing target)
+        {
+            if (!target.Spawned)
+                return;
+                
+            if (BlockSoundDef != null)
             {
-                // 这里可以进行额外的检查
-                // 例如：检查装甲是否在冷却中、是否有特殊状态等
+                BlockSoundDef.PlayOneShot(new TargetInfo(target.Position, target.Map));
+            }
+            else
+            {
+                // 备用音效
+                SoundDefOf.MetalHitImportant.PlayOneShot(new TargetInfo(target.Position, target.Map));
             }
         }
     }

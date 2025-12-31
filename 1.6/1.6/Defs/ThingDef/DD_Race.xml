@@ -286,13 +286,6 @@
           </li>
         </defaultPilots>
       </li>
-      <!-- 这个comps定义了圣化镀层系统的启用，需要配合stat一起使用 -->
-      <!-- This comps defines the activation of the Sanctified Armour system, which needs to be used with the stat -->
-      <li Class="DivineDiurganate.CompProperties_MechArmor">
-        <showBlockEffect>true</showBlockEffect>
-        <blockEffectMote></blockEffectMote>
-        <soundOnBlock></soundOnBlock>
-      </li>
       <!-- 机甲的经验系统 -->
       <li Class="DivineDiurganate.CompProperties_MechSkillInheritance">
         <baseSkillLevelWhenNoPilot>0</baseSkillLevelWhenNoPilot>
@@ -511,11 +504,6 @@
             <required>false</required>
           </li>
         </defaultPilots>
-      </li>
-      <li Class="DivineDiurganate.CompProperties_MechArmor">
-        <showBlockEffect>true</showBlockEffect>
-        <blockEffectMote></blockEffectMote>
-        <soundOnBlock></soundOnBlock>
       </li>
       <li Class="DivineDiurganate.CompProperties_MechSkillInheritance">
         <baseSkillLevelWhenNoPilot>0</baseSkillLevelWhenNoPilot>
