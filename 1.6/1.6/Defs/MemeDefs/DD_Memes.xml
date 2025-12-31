@@ -278,7 +278,7 @@
     <letterText>{SPEAKER_labelShort} 正在进行 {RITUAL_labelIndef}。\n如果一切顺利，{IDEOMEMBERS} 将从 {SPEAKER_labelShort} 的布道中获得激励，以在一段时间内获得更强大的战斗能力。仪式更好的结果有助于 {IDEOMEMBERS} 提升更多的能力，并给予其额外的心情。</letterText>
     <roles>
       <li Class="RitualRoleTag">
-        <label>speaker</label>
+        <label>演讲者</label>
         <tag>DD_Exorcist</tag>
         <id>speaker</id>
         <precept>DD_IdeoRole_Exorcist</precept>
@@ -316,7 +316,7 @@
   </RitualBehaviorDef>
   <RitualOutcomeEffectDef>
     <defName>DD_Exorcist_PrewarSpeech_EndEffect</defName>
-    <description>根据仪式质量，参加者将获得 {MOODDAYS} 天的额外心情和战斗能力增强。</description>
+    <description>根据仪式质量，参加者将获得4天的额外心情和战斗能力增强。</description>
     <workerClass>RitualOutcomeEffectWorker_Speech</workerClass>
     <comps>
       <li Class="RitualOutcomeComp_PawnStatScaled">
@@ -356,7 +356,7 @@
         </curve>
       </li>
       <li Class="DivineDiurganate.RitualOutcomeComp_ApplyHediffToParticipants">
-        <hediffToApply>DD_MechPrototype</hediffToApply>
+        <hediffToApply>DD_Exorcist_PrewarSpeech_Hediff</hediffToApply>
         <severityPerQuality>1</severityPerQuality>
         <applyToAllParticipants>true</applyToAllParticipants>
         <requirePositiveQuality>true</requirePositiveQuality>
@@ -366,27 +366,109 @@
       <li>
         <label>糟糕的</label>
         <chance>0.05</chance>
-        <memory>TerribleSpeech</memory>
+        <memory>DD_TerriblePreach</memory>
         <positivityIndex>-2</positivityIndex>
       </li>
       <li>
         <label>平平无奇的</label>
         <chance>0.15</chance>
-        <memory>UninspiringSpeech</memory>
+        <memory>DD_UninspiringPreach</memory>
         <positivityIndex>-1</positivityIndex>
       </li>
       <li>
         <label>鼓舞人心的</label>
         <chance>0.6</chance>
-        <memory>EncouragingSpeech</memory>
+        <memory>DD_EncouragingPreach</memory>
         <positivityIndex>1</positivityIndex>
       </li>
       <li>
         <label>令人兴奋的</label>
         <chance>0.2</chance>
-        <memory>InspirationalSpeech</memory>
+        <memory>DD_InspirationalPreach</memory>
         <positivityIndex>2</positivityIndex>
       </li>
     </outcomeChances>
   </RitualOutcomeEffectDef>
+  <HediffDef>
+    <defName>DD_Exorcist_PrewarSpeech_Hediff</defName>
+    <label>战斗激励</label>
+    <description>在天上，地上，地底下，沧海里，和天地间一切所有被造之物，都说，但愿颂赞，尊贵，荣耀，权势，都归给圣双尾鼠，直到永永远远。</description>
+    <defaultLabelColor>(0.52, 1, 0.95)</defaultLabelColor>
+    <hediffClass>HediffWithComps</hediffClass>
+    <minSeverity>0.01</minSeverity>
+    <maxSeverity>1</maxSeverity>
+    <duplicationAllowed>false</duplicationAllowed>
+    <comps>
+      <li Class="HediffCompProperties_DisappearsOnDeath" />
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>240000</disappearsAfterTicks>        <!-- 4 days -->
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>Finish</label>
+        <becomeVisible>true</becomeVisible>
+        <statFactors>
+          <AimingDelayFactor>0</AimingDelayFactor>
+        </statFactors>
+      </li>
+    </stages>
+  </HediffDef>
+  <ThoughtDef>
+    <defName>DD_TerriblePreach</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>10</stackLimit>
+    <stages>
+      <li>
+        <label>糟糕的布道</label>
+        <description>那个布道讲的实在太糟糕了，简直就像是异端一样玷污信仰！</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+        <baseOpinionOffset>-30</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef>
+    <defName>DD_UninspiringPreach</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>10</stackLimit>
+    <stages>
+      <li>
+        <label>无聊的布道</label>
+        <description>圣双尾鼠在上！为什么我们要浪费时间去听一只呆头鼠讲话？</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+        <baseOpinionOffset>-15</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef>
+    <defName>DD_EncouragingPreach</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>10</stackLimit>
+    <stages>
+      <li>
+        <label>受到布道的鼓舞</label>
+        <description>我虽然行过死荫的幽谷，也不怕遭害。因为你与我同在。你的杖，你的竿，都安慰我。</description>
+        <baseMoodEffect>3</baseMoodEffect>
+        <baseOpinionOffset>20</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef>
+    <defName>DD_InspirationalPreach</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>10</stackLimit>
+    <stages>
+      <li>
+        <label>醍醐灌顶的布道</label>
+        <description>愿平安，仁爱，信心，从主圣双尾鼠，归与鼠众！</description>
+        <baseMoodEffect>5</baseMoodEffect>
+        <baseOpinionOffset>40</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
 </Defs>

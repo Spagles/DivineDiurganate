@@ -34,11 +34,9 @@
     <!-- <initialSeverity>0.5</initialSeverity> -->
     <minSeverity>0.01</minSeverity>
     <maxSeverity>1</maxSeverity>
-    <alwaysShowSeverity>true</alwaysShowSeverity>
+    <alwaysShowSeverity>false</alwaysShowSeverity>
     <isBad>true</isBad>
     <duplicationAllowed>true</duplicationAllowed>
-    <keepOnBodyPartRestoration>true</keepOnBodyPartRestoration>    <!-- true -->
-    <!-- <defaultInstallPart>Brain</defaultInstallPart> -->
     <stages>
       <li>
         <capMods>

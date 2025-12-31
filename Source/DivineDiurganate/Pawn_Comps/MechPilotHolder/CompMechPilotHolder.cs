@@ -22,8 +22,12 @@ namespace DivineDiurganate
         public float ejectPilotHealthPercentThreshold = 0.1f; // 默认30%血量
         public bool allowEntryBelowThreshold = false; // 血量低于阈值时是否允许进入
 
-        // 新增：单个驾驶员弹出图标配置
-        public string ejectSinglePilotIcon = null;
+        // 新增：Hediff同步配置
+        public bool syncPilotHediffs = true;              // 是否同步驾驶员的Hediff
+        public List<string> syncedHediffDefs = null;      // 需要同步的Hediff列表（null表示全部）
+        public bool autoApplyHediffOnEntry = false;       // 进入时自动添加指定的Hediff
+        public HediffDef autoHediffDef = null;            // 自动添加的Hediff
+        public float autoHediffSeverity = 0.5f;           // 自动添加的Hediff严重性
 
         public CompProperties_MechPilotHolder()
         {
@@ -59,6 +63,12 @@ namespace DivineDiurganate
         // 标记是否正在处理死亡/销毁事件，避免重复处理
         private bool isProcessingDestruction = false;
 
+        // 新增：记录是否已经因为低血量弹出过驾驶员
+        private bool hasEjectedDueToLowHealth = false;
+
+        // 新增：存储驾驶员同步的Hediff
+        private Dictionary<Pawn, List<Hediff>> syncedHediffs = new Dictionary<Pawn, List<Hediff>>();
+
         public CompProperties_MechPilotHolder Props => (CompProperties_MechPilotHolder)props;
 
         public int CurrentPilotCount => innerContainer.Count;
@@ -67,9 +77,6 @@ namespace DivineDiurganate
         public bool IsFull => innerContainer.Count >= Props.maxPilots;
 
         public bool IsContentsSuspended => true;
-
-        // 新增：记录是否已经因为低血量弹出过驾驶员
-        private bool hasEjectedDueToLowHealth = false;
 
         // 新增：获取精神状态定义
         private MentalStateDef MechNoPilotStateDef => DD_MentalStateDefOf.DD_MechNoPilot;
@@ -99,7 +106,7 @@ namespace DivineDiurganate
             }
         }
 
-        // 修改：在添加和移除驾驶员时更新精神状态
+        // 修改：添加驾驶员 - 添加Hediff同步功能
         public void AddPilot(Pawn pawn)
         {
             if (!CanAddPilot(pawn))
@@ -120,10 +127,29 @@ namespace DivineDiurganate
 
             // 更新机甲的精神状态
             CheckAndUpdateMentalState();
+
+            // 新增：同步驾驶员的Hediff
+            if (Props.syncPilotHediffs)
+            {
+                SyncPilotHediffs(pawn);
+            }
+
+            // 新增：自动添加Hediff
+            if (Props.autoApplyHediffOnEntry && Props.autoHediffDef != null)
+            {
+                AddAutoHediff(pawn);
+            }
         }
 
+        // 修改：移除驾驶员 - 添加Hediff取消同步功能
         public void RemovePilot(Pawn pawn, IntVec3? exitPos = null)
         {
+            // 新增：移除前，清理同步的Hediff
+            if (Props.syncPilotHediffs)
+            {
+                UnsyncPilotHediffs(pawn);
+            }
+
             if (innerContainer.Contains(pawn))
             {
                 // 从容器中移除
@@ -143,7 +169,125 @@ namespace DivineDiurganate
             }
         }
 
-        // 修改：在CompTick中添加精神状态检查
+        // 新增：同步驾驶员的Hediff
+        private void SyncPilotHediffs(Pawn pawn)
+        {
+            // 修复：确保parent是DDmechunit类型
+            if (pawn == null || !(parent is DDmechunit mech))
+                return;
+
+            try
+            {
+                var hediffsToSync = new List<Hediff>();
+
+                // 收集需要同步的Hediff
+                foreach (var hediff in pawn.health.hediffSet.hediffs)
+                {
+                    if (ShouldSyncHediff(hediff))
+                    {
+                        hediffsToSync.Add(hediff);
+
+                        // 激活Hediff的同步组件
+                        var syncComp = hediff.TryGetComp<HediffComp_SyncedWithMech>();
+                        if (syncComp != null)
+                        {
+                            syncComp.OnPilotEnteredMech(mech); // 这里现在应该可以了
+                        }
+                    }
+                }
+
+                // 存储同步的Hediff
+                if (hediffsToSync.Count > 0)
+                {
+                    syncedHediffs[pawn] = hediffsToSync;
+                }
+
+                if (Prefs.DevMode && hediffsToSync.Count > 0)
+                {
+                    Log.Message($"[DD] 为{pawn.LabelShort}同步了{hediffsToSync.Count}个Hediff到机甲{mech.LabelShort}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"[DD] 同步Hediff时出错: {ex}");
+            }
+        }
+
+        // 新增：取消同步驾驶员的Hediff
+        private void UnsyncPilotHediffs(Pawn pawn)
+        {
+            if (pawn == null || !syncedHediffs.ContainsKey(pawn))
+                return;
+
+            try
+            {
+                // 通知所有同步的Hediff断开连接
+                foreach (var hediff in syncedHediffs[pawn])
+                {
+                    var syncComp = hediff.TryGetComp<HediffComp_SyncedWithMech>();
+                    if (syncComp != null)
+                    {
+                        syncComp.OnPilotExitedMech();
+                    }
+                }
+
+                // 从记录中移除
+                syncedHediffs.Remove(pawn);
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"[DD] 取消同步Hediff时出错: {ex}");
+            }
+        }
+
+        // 新增：判断Hediff是否需要同步
+        private bool ShouldSyncHediff(Hediff hediff)
+        {
+            if (hediff == null)
+                return false;
+
+            // 检查是否有同步组件
+            var syncComp = hediff.TryGetComp<HediffComp_SyncedWithMech>();
+            if (syncComp == null)
+                return false;
+
+            // 检查是否在指定的同步列表中
+            if (Props.syncedHediffDefs != null &&
+                Props.syncedHediffDefs.Count > 0)
+            {
+                return Props.syncedHediffDefs.Contains(hediff.def.defName);
+            }
+
+            // 默认同步所有有同步组件的Hediff
+            return true;
+        }
+
+        // 新增：自动添加Hediff
+        private void AddAutoHediff(Pawn pawn)
+        {
+            try
+            {
+                // 检查是否已经有相同的Hediff
+                var existingHediff = pawn.health.hediffSet.GetFirstHediffOfDef(Props.autoHediffDef);
+                if (existingHediff == null)
+                {
+                    var hediff = HediffMaker.MakeHediff(Props.autoHediffDef, pawn);
+                    hediff.Severity = Props.autoHediffSeverity;
+                    pawn.health.AddHediff(hediff);
+
+                    if (Prefs.DevMode)
+                    {
+                        Log.Message($"[DD] 为进入的{pawn.LabelShort}自动添加了{Props.autoHediffDef.label}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"[DD] 自动添加Hediff时出错: {ex}");
+            }
+        }
+
+        // 修改：在CompTick中添加Hediff同步检查
         public override void CompTick()
         {
             base.CompTick();
@@ -155,6 +299,12 @@ namespace DivineDiurganate
                 {
                     CheckLowHealth();
                     CheckAndUpdateMentalState();
+                }
+
+                // 每120帧检查一次Hediff同步状态
+                if (Find.TickManager.TicksGame % 120 == 0)
+                {
+                    CheckHediffSync();
                 }
 
                 // 检查机甲是否死亡
@@ -197,6 +347,57 @@ namespace DivineDiurganate
             }
         }
 
+        // 新增：检查Hediff同步状态
+        private void CheckHediffSync()
+        {
+            // 修复：确保parent是DDmechunit类型
+            if (!Props.syncPilotHediffs || !(parent is DDmechunit))
+                return;
+
+            try
+            {
+                // 检查每个驾驶员的同步状态
+                foreach (var pilot in GetPilots())
+                {
+                    if (pilot == null || pilot.Dead || pilot.Destroyed)
+                        continue;
+
+                    // 检查是否有新的需要同步的Hediff
+                    SyncPilotHediffs(pilot);
+
+                    // 检查是否有需要移除的Hediff
+                    if (syncedHediffs.ContainsKey(pilot))
+                    {
+                        var currentHediffs = pilot.health.hediffSet.hediffs
+                            .Where(ShouldSyncHediff)
+                            .ToList();
+
+                        // 找出不再存在的Hediff
+                        var removedHediffs = syncedHediffs[pilot]
+                            .Where(h => !currentHediffs.Contains(h))
+                            .ToList();
+
+                        // 清理不再存在的Hediff
+                        foreach (var hediff in removedHediffs)
+                        {
+                            var syncComp = hediff.TryGetComp<HediffComp_SyncedWithMech>();
+                            if (syncComp != null)
+                            {
+                                syncComp.OnPilotExitedMech();
+                            }
+                        }
+
+                        // 更新记录
+                        syncedHediffs[pilot] = currentHediffs;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"[DD] 检查Hediff同步状态时出错: {ex}");
+            }
+        }
+
         // 修改：在生成后初始化精神状态
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
@@ -215,9 +416,18 @@ namespace DivineDiurganate
 
             // 初始化精神状态
             CheckAndUpdateMentalState();
+
+            // 新增：加载后重新同步Hediff
+            if (Props.syncPilotHediffs)
+            {
+                foreach (var pilot in GetPilots())
+                {
+                    SyncPilotHediffs(pilot);
+                }
+            }
         }
 
-        // 修改：在数据保存和加载时处理精神状态
+        // 修改：在数据保存和加载时处理Hediff同步
         public override void PostExposeData()
         {
             base.PostExposeData();
@@ -225,11 +435,22 @@ namespace DivineDiurganate
             Scribe_Deep.Look(ref innerContainer, "innerContainer", this);
             Scribe_Values.Look(ref isProcessingDestruction, "isProcessingDestruction", false);
             Scribe_Values.Look(ref hasEjectedDueToLowHealth, "hasEjectedDueToLowHealth", false);
+            Scribe_Collections.Look(ref syncedHediffs, "syncedHediffs",
+                LookMode.Reference, LookMode.Deep);
 
-            // 加载后检查精神状态
+            // 加载后检查精神状态和Hediff同步
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 CheckAndUpdateMentalState();
+                
+                if (Props.syncPilotHediffs)
+                {
+                    // 重新同步所有驾驶员的Hediff
+                    foreach (var pilot in GetPilots())
+                    {
+                        SyncPilotHediffs(pilot);
+                    }
+                }
             }
         }
 
@@ -364,12 +585,13 @@ namespace DivineDiurganate
             }
         }
 
-        // 修改 Gizmo 显示，添加血量信息
+        // 修改 Gizmo 显示，添加血量信息和Hediff同步状态
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
-            var mech = parent as DDmechunit;
-            if (mech == null || mech.Faction != Faction.OfPlayer)
+            // 修复：确保parent是DDmechunit类型
+            if (!(parent is DDmechunit mech) || mech.Faction != Faction.OfPlayer)
                 yield break;
+
             // 召唤驾驶员Gizmo
             if (HasRoom)
             {
@@ -393,6 +615,7 @@ namespace DivineDiurganate
 
                 yield return summonCommand;
             }
+
             // 弹出所有驾驶员按钮
             if (innerContainer.Count > 0)
             {
@@ -407,7 +630,23 @@ namespace DivineDiurganate
                     },
                     hotKey = KeyBindingDefOf.Misc1
                 };
-            };
+
+                // 新增：显示Hediff同步状态
+                if (Props.syncPilotHediffs && Prefs.DevMode)
+                {
+                    yield return new Command_Action
+                    {
+                        defaultLabel = "DD_CheckHediffSync".Translate(),
+                        defaultDesc = "DD_CheckHediffSyncDesc".Translate(),
+                        icon = ContentFinder<Texture2D>.Get("UI/Commands/Debug", false),
+                        action = () =>
+                        {
+                            CheckHediffSync();
+                            Messages.Message("Hediff同步状态已检查", mech, MessageTypeDefOf.SilentInput);
+                        }
+                    };
+                }
+            }
         }
 
         public CompMechPilotHolder()
@@ -415,6 +654,7 @@ namespace DivineDiurganate
             innerContainer = new ThingOwner<Pawn>(this);
         }
 
+        // 修改：弹出所有驾驶员时取消Hediff同步
         public void RemoveAllPilots(IntVec3? exitPos = null)
         {
             // 记录是否有驾驶员
@@ -423,6 +663,16 @@ namespace DivineDiurganate
             // 复制列表以避免迭代时修改的问题
             var pilotsToRemove = innerContainer.ToList();
 
+            // 先取消所有Hediff同步
+            foreach (var thing in pilotsToRemove)
+            {
+                if (thing is Pawn pawn)
+                {
+                    UnsyncPilotHediffs(pawn);
+                }
+            }
+
+            // 然后移除所有驾驶员
             foreach (var thing in pilotsToRemove)
             {
                 if (thing is Pawn pawn)
@@ -435,11 +685,10 @@ namespace DivineDiurganate
             if (hadPilots && parent is Pawn mech)
             {
                 StopMechJobs();
-
             }
         }
 
-        // 新增：专门用于死亡/销毁时弹出驾驶员的方法
+        // 修改：专门用于死亡/销毁时弹出驾驶员的方法，取消Hediff同步
         public void EjectAllPilotsOnDeath()
         {
             if (isProcessingDestruction)
@@ -454,11 +703,20 @@ namespace DivineDiurganate
                     return;
                 }
 
+                // 先取消所有Hediff同步
+                var pilots = innerContainer.ToList();
+                foreach (var thing in pilots)
+                {
+                    if (thing is Pawn pawn)
+                    {
+                        UnsyncPilotHediffs(pawn);
+                    }
+                }
+
                 // 获取安全位置
                 IntVec3 ejectPos = FindSafeEjectPosition();
 
                 // 弹出所有驾驶员
-                var pilots = innerContainer.ToList();
                 foreach (var thing in pilots)
                 {
                     if (thing is Pawn pawn)
@@ -469,6 +727,7 @@ namespace DivineDiurganate
                         // 尝试生成到地图上
                         if (TrySpawnPilotAtPosition(pawn, ejectPos))
                         {
+                            // 驾驶员成功弹出
                         }
                         else
                         {
@@ -513,7 +772,6 @@ namespace DivineDiurganate
 
             // 如果周围没有安全位置，使用随机位置
             if (!pos.Walkable(map) || pos.Fogged(map))
-
             {
                 CellFinder.TryFindRandomCellNear(pos, map, 10,
                     cell => cell.Walkable(map) && !cell.Fogged(map),
@@ -524,7 +782,6 @@ namespace DivineDiurganate
         }
 
         private bool TrySpawnPilotAtPosition(Pawn pawn, IntVec3 position)
-
         {
             Map map = parent.Map;
             if (map == null)
@@ -577,7 +834,6 @@ namespace DivineDiurganate
                 }
             }
             return null;
-
         }
 
         public IEnumerable<Pawn> GetPilots()
@@ -596,7 +852,6 @@ namespace DivineDiurganate
                 Messages.Message("DD_PilotEnteredMech".Translate(pilot.LabelShort, parent.LabelShort),
                     parent, MessageTypeDefOf.PositiveEvent);
             }
-
         }
 
         public void Notify_PilotRemoved(Pawn pilot)
@@ -611,7 +866,7 @@ namespace DivineDiurganate
         // 关键修复：重写销毁相关方法
         public override void PostDestroy(DestroyMode mode, Map previousMap)
         {
-            // 先弹出所有驾驶员
+            // 先弹出所有驾驶员并取消Hediff同步
             if (HasPilots)
             {
                 EjectAllPilotsOnDeath();
@@ -633,8 +888,8 @@ namespace DivineDiurganate
 
         private void ShowPilotSelectionMenu()
         {
-            var mech = parent as DDmechunit;
-            if (mech == null)
+            // 修复：确保parent是DDmechunit类型
+            if (!(parent is DDmechunit mech))
                 return;
 
             List<FloatMenuOption> options = new List<FloatMenuOption>();
@@ -671,7 +926,6 @@ namespace DivineDiurganate
                     );
 
                     options.Add(option);
-
                 }
             }
 
@@ -680,14 +934,13 @@ namespace DivineDiurganate
 
         private void OrderColonistToEnterMech(Pawn colonist)
         {
-            var mech = parent as DDmechunit;
-            if (mech == null || colonist == null)
+            // 修复：确保parent是DDmechunit类型
+            if (!(parent is DDmechunit mech) || colonist == null)
                 return;
 
             // 为殖民者安排进入机甲的工作
             Job job = JobMaker.MakeJob(DD_JobDefOf.DD_EnterMech, mech);
             colonist.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-
         }
     }
 }

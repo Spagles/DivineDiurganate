@@ -86,6 +86,7 @@
     <Compile Include="DDMod.cs" />
     <Compile Include="HarmonyPatches\Patch_DDmechunit.cs" />
     <Compile Include="DD_DefOf.cs" />
+    <Compile Include="Hediff_Comp\HediffCompProperties_SyncedWithMech.cs" />
     <Compile Include="ITab\ITab_MechSkills.cs" />
     <Compile Include="MentalState\MentalState_MechNoPilot.cs" />
     <Compile Include="Pawn\DDmechunit.cs" />
