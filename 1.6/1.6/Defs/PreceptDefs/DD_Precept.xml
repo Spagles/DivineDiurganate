@@ -106,7 +106,6 @@
     <!-- 双尾教神职的技能 -->
     <grantedAbilities>
       <li>DD_Exorcist_PrewarSpeech</li>
-      <li>DD_Exorcist_ProduceSpeech</li>
     </grantedAbilities>
     <displayOrderInImpact>2</displayOrderInImpact>
     <roleDisabledWorkTags>
@@ -158,8 +157,8 @@
   </AbilityGroupDef>
   <AbilityDef>
     <defName>DD_Exorcist_PrewarSpeech</defName>
-    <label>战前布道</label>
-    <description>圣双尾教的驱魔人对即将到来的大战进行战前布道，每位与会者将根据演讲的质量获得神佑，使得她们在战场上更加勇猛、更加难以被击杀。演讲的质量和驱魔人的社交属性相关。</description>
+    <label>Pre-battle Sermon</label>
+    <description>The exorcists of DivineDiurganate deliver a pre-battle sermon for the upcoming battle, and each participant will receive a divine blessing based on the quality of the speech, making them braver and more difficult to kill on the battlefield. The quality of the speech is related to the social attributes of the exorcist.</description>
     <groupDef>ExorcistAbilityGroup</groupDef>
     <iconPath>UI/Abilities/LeaderSpeech</iconPath>
     <showWhenDrafted>false</showWhenDrafted>
@@ -186,8 +185,8 @@
   </AbilityDef>
   <PreceptDef>
     <defName>DD_Exorcist_PrewarSpeech</defName>
-    <label>战前布道</label>
-    <description>对即将到来的大战进行战前布道，每位与会者将根据演讲的质量获得庇护，庇护将直接地增强与会者的战斗能力。演讲的质量和驱魔人的社交属性相关。</description>
+    <label>Pre-battle Sermon</label>
+    <description>The exorcists of DivineDiurganate deliver a pre-battle sermon for the upcoming battle, and each participant will receive a divine blessing based on the quality of the speech, making them braver and more difficult to kill on the battlefield. The quality of the speech is related to the social attributes of the exorcist.</description>
     <issue>Ritual</issue>
     <preceptClass>Precept_Ritual</preceptClass>
     <visible>false</visible>
@@ -215,13 +214,13 @@
   </RitualPatternDef>
   <RitualBehaviorDef>
     <defName>DD_Exorcist_PrewarSpeech</defName>
-    <workerClass>DivineDiurganate.RitualBehaviorWorker_PrewarSpeech</workerClass>
+    <workerClass>DivineDiurganate.RitualBehaviorWorker_ExorcistSpeech</workerClass>
     <durationTicks>600</durationTicks>
     <letterTitle>{RITUAL_labelCap}</letterTitle>
-    <letterText>{SPEAKER_labelShort} 正在进行 {RITUAL_labelIndef}。\n如果一切顺利，{IDEOMEMBERS} 将从 {SPEAKER_labelShort} 的布道中获得激励，以在一段时间内获得更强大的战斗能力。仪式更好的结果有助于 {IDEOMEMBERS} 提升更多的能力，并给予其额外的心情。</letterText>
+    <letterText>{SPEAKER_labelShort} is currently performing {RITUAL_labelIndef}. If all goes well, {IDEOMEMBERS} will be inspired by {SPEAKER_labelShort}'s sermon to gain greater combat abilities for a period of time. Better results from the ritual will help {IDEOMEMBERS} gain even more abilities and grant them additional mood.</letterText>
     <roles>
       <li Class="RitualRoleTag">
-        <label>演讲者</label>
+        <label>Speaker</label>
         <tag>DD_Exorcist</tag>
         <id>speaker</id>
         <precept>DD_IdeoRole_Exorcist</precept>
@@ -259,12 +258,12 @@
   </RitualBehaviorDef>
   <RitualOutcomeEffectDef>
     <defName>DD_Exorcist_PrewarSpeech_EndEffect</defName>
-    <description>根据仪式质量，参加者将获得4天的额外心情和战斗能力增强。</description>
+    <description>Depending on the quality of the ritual, participants will receive an additional 4 days of mood and combat ability boosts.</description>
     <workerClass>RitualOutcomeEffectWorker_Speech</workerClass>
     <comps>
       <li Class="RitualOutcomeComp_PawnStatScaled">
-        <label>{PAWN_labelShort} 的社交等级</label>
-        <labelAbstract>驱魔人的社交等级</labelAbstract>
+        <label>Social level of {PAWN_labelShort}</label>
+        <labelAbstract>Social level of Exorcists</labelAbstract>
         <roleId>speaker</roleId>
         <statDef>SocialImpact</statDef>
         <curve>
@@ -277,7 +276,7 @@
         </curve>
       </li>
       <li Class="RitualOutcomeComp_ParticipantCount">
-        <label>与会者数量</label>
+        <label>Number of Participant</label>
         <curve>
           <points>
             <li>(1,  0.07)</li>
@@ -288,7 +287,7 @@
         </curve>
       </li>
       <li Class="RitualOutcomeComp_RoomStat">
-        <label>房间观感</label>
+        <label>Room appearance</label>
         <statDef>Impressiveness</statDef>
         <curve>
           <points>
@@ -307,25 +306,25 @@
     </comps>
     <outcomeChances>
       <li>
-        <label>糟糕的</label>
+        <label>Terrible</label>
         <chance>0.05</chance>
         <memory>DD_TerriblePreach</memory>
         <positivityIndex>-2</positivityIndex>
       </li>
       <li>
-        <label>平平无奇的</label>
+        <label>Uninspiring</label>
         <chance>0.15</chance>
         <memory>DD_UninspiringPreach</memory>
         <positivityIndex>-1</positivityIndex>
       </li>
       <li>
-        <label>鼓舞人心的</label>
+        <label>Encouraging</label>
         <chance>0.6</chance>
         <memory>DD_EncouragingPreach</memory>
         <positivityIndex>1</positivityIndex>
       </li>
       <li>
-        <label>令人兴奋的</label>
+        <label>Inspirational</label>
         <chance>0.2</chance>
         <memory>DD_InspirationalPreach</memory>
         <positivityIndex>2</positivityIndex>
@@ -334,8 +333,8 @@
   </RitualOutcomeEffectDef>
   <HediffDef>
     <defName>DD_Exorcist_PrewarSpeech_Hediff</defName>
-    <label>战斗激励</label>
-    <description>在天上，地上，地底下，沧海里，和天地间一切所有被造之物，都说，但愿颂赞，尊贵，荣耀，权势，都归给圣双尾鼠，直到永永远远。</description>
+    <label>Combat Motivation</label>
+    <description>All creatures created, in heaven, on earth, beneath the earth, in the depths of the sea, and between heaven and earth, say, "May praise, honor, glory, and power be given to the holy double-tail forever and ever."</description>
     <defaultLabelColor>(0.52, 1, 0.95)</defaultLabelColor>
     <hediffClass>HediffWithComps</hediffClass>
     <minSeverity>0.01</minSeverity>
@@ -389,244 +388,6 @@
 
           <IncomingDamageFactor>0.8</IncomingDamageFactor>
           <StaggerDurationFactor>0.25</StaggerDurationFactor>
-        </statFactors>
-      </li>
-    </stages>
-  </HediffDef>
-
-  <AbilityDef>
-    <defName>DD_Exorcist_ProduceSpeech</defName>
-    <label>生产布道</label>
-    <description>圣双尾教的驱魔人进行一场，每位与会者将根据演讲的质量获得神佑，使得她们在战场上更加勇猛、更加难以被击杀。演讲的质量和驱魔人的社交属性相关。</description>
-    <groupDef>ExorcistAbilityGroup</groupDef>
-    <iconPath>UI/Abilities/LeaderSpeech</iconPath>
-    <showWhenDrafted>false</showWhenDrafted>
-    <hotKey>Misc12</hotKey>
-    <gizmoClass>Command_AbilitySpeech</gizmoClass>
-    <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
-    <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
-    <targetRequired>False</targetRequired>
-    <hostile>false</hostile>
-    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
-    <verbProperties>
-      <verbClass>Verb_CastAbility</verbClass>
-      <range>-1</range>
-    </verbProperties>
-    <comps>
-      <li Class="CompProperties_AbilityRequiresCapacity">
-        <capacity>Talking</capacity>
-      </li>
-      <li Class="CompProperties_AbilityStartRitual">
-        <ritualDef>DD_Exorcist_ProduceSpeech</ritualDef>
-        <allowedForChild>false</allowedForChild>
-      </li>
-    </comps>
-  </AbilityDef>
-  <PreceptDef>
-    <defName>DD_Exorcist_ProduceSpeech</defName>
-    <label>战前布道</label>
-    <description>对即将到来的大战进行战前布道，每位与会者将根据演讲的质量获得庇护，庇护将直接地增强与会者的战斗能力。演讲的质量和驱魔人的社交属性相关。</description>
-    <issue>Ritual</issue>
-    <preceptClass>Precept_Ritual</preceptClass>
-    <visible>false</visible>
-    <countsTowardsPreceptLimit>false</countsTowardsPreceptLimit>
-    <selectionWeight>1.0</selectionWeight>
-    <ritualPatternBase>DD_Exorcist_ProduceSpeech</ritualPatternBase>
-    <iconPath>UI/Abilities/LeaderSpeech</iconPath>
-    <ignoreNameUniqueness>true</ignoreNameUniqueness>
-    <useCooldownFromAbilityGroupDef>ExorcistAbilityGroup</useCooldownFromAbilityGroupDef>
-    <iconIgnoresIdeoColor>true</iconIgnoresIdeoColor>
-    <sourcePawnRoleDef>DD_IdeoRole_Exorcist</sourcePawnRoleDef>
-    <sourceAbilityDef>DD_Exorcist_ProduceSpeech</sourceAbilityDef>
-    <classicExtra>true</classicExtra>
-    <classic>true</classic>
-  </PreceptDef>
-  <RitualPatternDef>
-    <defName>DD_Exorcist_ProduceSpeech</defName>
-    <ritualBehavior>DD_Exorcist_ProduceSpeech</ritualBehavior>
-    <ritualObligationTargetFilter>AnyIdeoBuildingOrRitualSpot</ritualObligationTargetFilter>
-    <ritualTargetFilter>IdeoBuildingOrRitualSpot</ritualTargetFilter>
-    <alwaysStartAnytime>true</alwaysStartAnytime>
-    <ritualOnlyForIdeoMembers>true</ritualOnlyForIdeoMembers>
-    <canMergeGizmosFromDifferentIdeos>false</canMergeGizmosFromDifferentIdeos>
-    <ritualOutcomeEffect>DD_Exorcist_ProduceSpeech_EndEffect</ritualOutcomeEffect>
-  </RitualPatternDef>
-  <RitualBehaviorDef>
-    <defName>DD_Exorcist_ProduceSpeech</defName>
-    <workerClass>DivineDiurganate.RitualBehaviorWorker_ExorcistSpeech</workerClass>
-    <durationTicks>600</durationTicks>
-    <letterTitle>{RITUAL_labelCap}</letterTitle>
-    <letterText>{SPEAKER_labelShort} 正在进行 {RITUAL_labelIndef}。\n如果一切顺利，{IDEOMEMBERS} 将从 {SPEAKER_labelShort} 的布道中获得激励，以在一段时间内获得更强大的战斗能力。仪式更好的结果有助于 {IDEOMEMBERS} 提升更多的能力，并给予其额外的心情。</letterText>
-    <roles>
-      <li Class="RitualRoleTag">
-        <label>演讲者</label>
-        <tag>DD_Exorcist</tag>
-        <id>speaker</id>
-        <precept>DD_IdeoRole_Exorcist</precept>
-        <required>True</required>
-        <maxCount>1</maxCount>
-        <countsAsParticipant>False</countsAsParticipant>
-        <allowChild>false</allowChild>
-        <mustBeAbleToReachTarget>True</mustBeAbleToReachTarget>
-      </li>
-    </roles>
-    <stages>
-      <li>
-        <defaultDuty>Spectate</defaultDuty>
-        <allowedSpectateSidesOverride>Vertical</allowedSpectateSidesOverride>
-        <spectateDistanceOverride>1</spectateDistanceOverride>
-        <spectatorsRequired>true</spectatorsRequired>
-        <endTriggers>
-          <li Class="StageEndTrigger_DurationPercentage">
-            <percentage>1</percentage>
-          </li>
-        </endTriggers>
-        <roleBehaviors>
-          <li>
-            <roleId>speaker</roleId>
-            <dutyDef>SpeakOnCell_Leader</dutyDef>
-            <speakerInteraction>Speech_Leader</speakerInteraction>
-            <customPositions>
-              <li Class="RitualPosition_BesideThing" />
-            </customPositions>
-          </li>
-        </roleBehaviors>
-        <visualEffectDef>Speech</visualEffectDef>
-      </li>
-    </stages>
-  </RitualBehaviorDef>
-  <RitualOutcomeEffectDef>
-    <defName>DD_Exorcist_ProduceSpeech_EndEffect</defName>
-    <description>根据仪式质量，参加者将获得4天的额外心情和战斗能力增强。</description>
-    <workerClass>RitualOutcomeEffectWorker_Speech</workerClass>
-    <comps>
-      <li Class="RitualOutcomeComp_PawnStatScaled">
-        <label>{PAWN_labelShort} 的社交等级</label>
-        <labelAbstract>驱魔人的社交等级</labelAbstract>
-        <roleId>speaker</roleId>
-        <statDef>SocialImpact</statDef>
-        <curve>
-          <points>
-            <li>(0.2, 0.0)</li>
-            <li>(0.6, 0.2)</li>
-            <li>(1.0, 0.3)</li>
-            <li>(1.5, 0.4)</li>
-          </points>
-        </curve>
-      </li>
-      <li Class="RitualOutcomeComp_ParticipantCount">
-        <label>与会者数量</label>
-        <curve>
-          <points>
-            <li>(1,  0.07)</li>
-            <li>(4,  0.22)</li>
-            <li>(7,  0.33)</li>
-            <li>(10, 0.4)</li>
-          </points>
-        </curve>
-      </li>
-      <li Class="RitualOutcomeComp_RoomStat">
-        <label>房间观感</label>
-        <statDef>Impressiveness</statDef>
-        <curve>
-          <points>
-            <li>0,  0</li>
-            <li>50,  0.1</li>
-            <li>120, 0.2</li>
-          </points>
-        </curve>
-      </li>
-      <li Class="DivineDiurganate.RitualOutcomeComp_ApplyHediffToParticipants">
-        <hediffToApply>DD_Exorcist_ProduceSpeech_Hediff</hediffToApply>
-        <severityPerQuality>1</severityPerQuality>
-        <applyToAllParticipants>true</applyToAllParticipants>
-        <requirePositiveQuality>true</requirePositiveQuality>
-      </li>
-    </comps>
-    <outcomeChances>
-      <li>
-        <label>糟糕的</label>
-        <chance>0.05</chance>
-        <memory>DD_TerriblePreach</memory>
-        <positivityIndex>-2</positivityIndex>
-      </li>
-      <li>
-        <label>平平无奇的</label>
-        <chance>0.15</chance>
-        <memory>DD_UninspiringPreach</memory>
-        <positivityIndex>-1</positivityIndex>
-      </li>
-      <li>
-        <label>鼓舞人心的</label>
-        <chance>0.6</chance>
-        <memory>DD_EncouragingPreach</memory>
-        <positivityIndex>1</positivityIndex>
-      </li>
-      <li>
-        <label>令人兴奋的</label>
-        <chance>0.2</chance>
-        <memory>DD_InspirationalPreach</memory>
-        <positivityIndex>2</positivityIndex>
-      </li>
-    </outcomeChances>
-  </RitualOutcomeEffectDef>
-  <HediffDef>
-    <defName>DD_Exorcist_ProduceSpeech_Hediff</defName>
-    <label>战斗激励</label>
-    <description>在天上，地上，地底下，沧海里，和天地间一切所有被造之物，都说，但愿颂赞，尊贵，荣耀，权势，都归给圣双尾鼠，直到永永远远。</description>
-    <defaultLabelColor>(0.52, 1, 0.95)</defaultLabelColor>
-    <hediffClass>HediffWithComps</hediffClass>
-    <minSeverity>0.01</minSeverity>
-    <maxSeverity>1</maxSeverity>
-    <duplicationAllowed>false</duplicationAllowed>
-    <comps>
-      <li Class="HediffCompProperties_DisappearsOnDeath" />
-      <li Class="HediffCompProperties_Disappears">
-        <disappearsAfterTicks>240000</disappearsAfterTicks>        <!-- 4 days -->
-        <showRemainingTime>true</showRemainingTime>
-      </li>
-    </comps>
-    <stages>
-      <li>
-        <minSeverity>0</minSeverity>
-        <statFactors>
-          <WorkSpeedGlobal>1.05</WorkSpeedGlobal>
-        </statFactors>
-      </li>
-      <li>
-        <minSeverity>0.05</minSeverity>
-        <statFactors>
-          <WorkSpeedGlobal>1.1</WorkSpeedGlobal>
-
-          <MiningYield>1.2</MiningYield>
-          <PlantHarvestYield>1.2</PlantHarvestYield>
-        </statFactors>
-      </li>
-      <li>
-        <minSeverity>0.2</minSeverity>
-        <statFactors>
-          <WorkSpeedGlobal>1.15</WorkSpeedGlobal>
-
-          <MiningYield>1.2</MiningYield>
-          <PlantHarvestYield>1.2</PlantHarvestYield>
-
-          <ConstructSuccessChance>2</ConstructSuccessChance>
-          <ConstructionSpeed>2</ConstructionSpeed>
-          <CleaningSpeed>2</CleaningSpeed>
-        </statFactors>
-      </li>
-      <li>
-        <minSeverity>0.8</minSeverity>
-        <statFactors>
-          <WorkSpeedGlobal>1.25</WorkSpeedGlobal>
-
-          <MiningYield>1.5</MiningYield>
-          <PlantHarvestYield>1.5</PlantHarvestYield>
-
-          <ConstructSuccessChance>2</ConstructSuccessChance>
-          <CleaningSpeed>2</CleaningSpeed>
-
-          <ResearchSpeed>1.5</ResearchSpeed>
         </statFactors>
       </li>
     </stages>

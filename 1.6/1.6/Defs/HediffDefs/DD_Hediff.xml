@@ -96,6 +96,33 @@
           </dataSouth>
         </drawData>
       </li>
+      <li>
+        <nodeClass>PawnRenderNode_AttachmentHead</nodeClass>
+        <workerClass>PawnRenderNodeWorker_FlipWhenCrawling</workerClass>
+        <texPath>DivineDiurganate/Apparel/DD_NunVeil_north</texPath>
+        <parentTagDef>ApparelHead</parentTagDef>
+        <useSkinShader>false</useSkinShader>
+        <useRottenColor>false</useRottenColor>
+        <rotDrawMode>Fresh, Rotting</rotDrawMode>
+        <visibleFacing>
+          <li>North</li>
+        </visibleFacing>
+        <drawData>
+          <dataEast>
+            <layer>-99999</layer>
+          </dataEast>
+          <dataWest>
+            <layer>-99999</layer>
+          </dataWest>
+          <dataNorth>
+            <layer>1000</layer>
+            <offset>(0, 0, 0)</offset>
+          </dataNorth>
+          <dataSouth>
+            <layer>-99999</layer>
+          </dataSouth>
+        </drawData>
+      </li>
     </renderNodeProperties>
     <comps>
       <li Class="HediffCompProperties_RemoveIfApparelDropped" />
@@ -163,7 +190,7 @@
     <comps>
       <li Class="HediffCompProperties_DisappearsOnDeath" />
       <li Class="HediffCompProperties_Disappears">
-        <disappearsAfterTicks>180</disappearsAfterTicks>        <!-- 10 seconds -->
+        <disappearsAfterTicks>150</disappearsAfterTicks>        <!-- 10 seconds -->
         <showRemainingTime>true</showRemainingTime>
       </li>
     </comps>

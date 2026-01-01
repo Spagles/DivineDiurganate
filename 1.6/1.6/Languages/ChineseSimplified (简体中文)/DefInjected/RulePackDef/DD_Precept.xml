@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN:
+    <li>r_roleName(p=4)->[memeClergy]</li>
+    <li>r_roleName(p=2)->[memeAdjective] [memeClergy]</li>
+    <li>r_roleName->[memeClergy] of [chosenTheme]</li>
+    <li>r_roleName->[memeClergy] of [keyDeity]</li>
+    <li>r_roleName->[memeClergy] of [memeConcept]</li>
+    <li>r_roleName->[memeClergy] of [chosenIdeoName]</li>
+    <li>r_roleName->[chosenAdjective] [memeClergy]</li>
+    <li>r_roleName->[keyDeity]'s [memeClergy]</li>
+  -->
+  <DD_NamerRoleClergy.rulePack.rulesStrings>
+    <li>r_roleName(p=4)->[memeClergy]</li>
+    <li>r_roleName(p=2)->[memeAdjective][memeClergy]</li>
+    <li>r_roleName-> [chosenTheme][memeClergy]</li>
+    <li>r_roleName-> [keyDeity][memeClergy]</li>
+    <li>r_roleName->[memeConcept][memeClergy]</li>
+    <li>r_roleName-> [chosenIdeoName][memeClergy]</li>
+    <li>r_roleName->[chosenAdjective][memeClergy]</li>
+    <li>r_roleName->[keyDeity][memeClergy]</li>
+  </DD_NamerRoleClergy.rulePack.rulesStrings>
+  
+  <!-- EN:
+    <li>r_roleName(p=4)->[memeExorcist]</li>
+    <li>r_roleName(p=2)->[memeAdjective] [memeExorcist]</li>
+    <li>r_roleName->[memeExorcist] of [chosenTheme]</li>
+    <li>r_roleName->[memeExorcist] of [keyDeity]</li>
+    <li>r_roleName->[memeExorcist] of [memeConcept]</li>
+    <li>r_roleName->[memeExorcist] of [chosenIdeoName]</li>
+    <li>r_roleName->[chosenAdjective] [memeExorcist]</li>
+    <li>r_roleName->[keyDeity]'s [memeExorcist]</li>
+  -->
+  <DD_NamerRoleExorcist.rulePack.rulesStrings>
+    <li>r_roleName(p=4)->[memeExorcist]</li>
+    <li>r_roleName(p=2)->[memeAdjective][memeExorcist]</li>
+    <li>r_roleName-> [chosenTheme][memeExorcist]</li>
+    <li>r_roleName-> [keyDeity][memeExorcist]</li>
+    <li>r_roleName->[memeConcept][memeExorcist]</li>
+    <li>r_roleName-> [chosenIdeoName][memeExorcist]</li>
+    <li>r_roleName->[chosenAdjective][memeExorcist]</li>
+    <li>r_roleName->[keyDeity][memeExorcist]</li>
+  </DD_NamerRoleExorcist.rulePack.rulesStrings>
+  
+</LanguageData>

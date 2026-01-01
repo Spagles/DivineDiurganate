@@ -2,15 +2,19 @@
 <Defs>
   <HediffDef>
     <defName>DD_IdeoRole_Clergy_Base_Hediff</defName>
-    <label>随军牧师</label>
-    <description>双尾教国的随军牧师会登上机甲，并在这些铁罐头作战时持续维护它们，以确保其在战场上正常运转。</description>
+    <label>Chaplain</label>
+    <description>The chaplains accompanying the army of Diurganate will board the mech and continuously maintain them during combat, ensuring their normal operation on the battlefield.</description>
     <defaultLabelColor>(0.52, 1, 0.95)</defaultLabelColor>
     <hediffClass>HediffWithComps</hediffClass>
     <stages>
       <li>
         <becomeVisible>true</becomeVisible>
+      </li>
+      <li>
+        <becomeVisible>true</becomeVisible>
+        <minSeverity>1</minSeverity>
         <statFactors>
-          <AimingDelayFactor>0</AimingDelayFactor>
+          <AimingDelayFactor>0.5</AimingDelayFactor>
         </statFactors>
       </li>
     </stages>

@@ -7,8 +7,8 @@
     <stackLimit>10</stackLimit>
     <stages>
       <li>
-        <label>糟糕的布道</label>
-        <description>那个布道讲的实在太糟糕了，简直就像是异端一样玷污信仰！</description>
+        <label>Terrible Preach</label>
+        <description>That preaching was absolutely terrible; it was like heresy, a defilement of faith!</description>
         <baseMoodEffect>-3</baseMoodEffect>
         <baseOpinionOffset>-30</baseOpinionOffset>
       </li>
@@ -21,8 +21,8 @@
     <stackLimit>10</stackLimit>
     <stages>
       <li>
-        <label>无聊的布道</label>
-        <description>圣双尾鼠在上！为什么我们要浪费时间去听一只呆头鼠讲话？</description>
+        <label>Uninspiring Preach</label>
+        <description>By the Holy Twin-Tail! Why should we waste our time listening to a silly preach?</description>
         <baseMoodEffect>-1</baseMoodEffect>
         <baseOpinionOffset>-15</baseOpinionOffset>
       </li>
@@ -35,8 +35,8 @@
     <stackLimit>10</stackLimit>
     <stages>
       <li>
-        <label>受到布道的鼓舞</label>
-        <description>我虽然行过死荫的幽谷，也不怕遭害。因为你与我同在。你的杖，你的竿，都安慰我。</description>
+        <label>Encouraging Preach</label>
+        <description>Even though I walk through the valley of the shadow of death, I will fear no evil, for you are with me; your rod and your staff, they comfort me.</description>
         <baseMoodEffect>3</baseMoodEffect>
         <baseOpinionOffset>20</baseOpinionOffset>
       </li>
@@ -49,8 +49,8 @@
     <stackLimit>10</stackLimit>
     <stages>
       <li>
-        <label>醍醐灌顶的布道</label>
-        <description>愿平安，仁爱，信心，从主圣双尾鼠，归与鼠众！</description>
+        <label>Inspirational Preach</label>
+        <description>Peace, love, and faith from the Lord the two-tailed rat to all the Ratkins!</description>
         <baseMoodEffect>5</baseMoodEffect>
         <baseOpinionOffset>40</baseOpinionOffset>
       </li>

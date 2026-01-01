@@ -58,5 +58,26 @@ namespace DivineDiurganate
             var disappearsComp = hediff.TryGetComp<HediffComp_Disappears>();
             disappearsComp?.ResetElapsedTicks();
         }
+
+
+        // Patch 2: Specifically for Verb_ShootWithOffset.
+        [HarmonyPatch(typeof(Verb_ShootWithOffset), "TryCastShot")]
+        public static class Patch_ShootWithOffset_TryCastShot
+        {
+            public static void Postfix(Verb_ShootWithOffset __instance, bool __result)
+            {
+                if (!__result) return;
+                if (__instance.CasterPawn == null || __instance.EquipmentSource == null) return;
+
+                CompGiveHediffOnShot comp = __instance.EquipmentSource.GetComp<CompGiveHediffOnShot>();
+                if (comp == null || comp.Props.hediffDef == null) return;
+
+                Hediff hediff = __instance.CasterPawn.health.GetOrAddHediff(comp.Props.hediffDef);
+                hediff.Severity += comp.Props.severityToAdd;
+
+                var disappearsComp = hediff.TryGetComp<HediffComp_Disappears>();
+                disappearsComp?.ResetElapsedTicks();
+            }
+        }
     }
 }

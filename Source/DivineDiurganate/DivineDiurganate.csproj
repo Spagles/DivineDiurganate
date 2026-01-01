@@ -113,7 +113,7 @@
     <Compile Include="Pawn_Comps\MoteEmitterNorthward\CompMoteEmitterNorthward.cs" />
     <Compile Include="Pawn_Comps\MultiTurretGun\CompMultiTurretGun.cs" />
     <Compile Include="Projectile\Projectile_PenetratingBullet.cs" />
-    <Compile Include="Ritual\RitualBehaviorWorker_PrewarSpeech.cs" />
+    <Compile Include="Ritual\RitualBehaviorWorker_ExorcistSpeech.cs" />
     <Compile Include="Ritual\RitualOutcomeComp_ApplyHediffToParticipants.cs" />
     <Compile Include="Thing_Comp\BuildingSpawnPawn\CompBuildToPawn.cs" />
     <Compile Include="Thing_Comp\BuildingSpawnPawn\CompProperties_BuildToPawn.cs" />
@@ -123,6 +123,7 @@
     <Compile Include="Verb\MeleeAttack_Cleave\Verb_MeleeAttack_Cleave.cs" />
     <Compile Include="Verb\ShootFireSpew\VerbProperties_FireSpew.cs" />
     <Compile Include="Verb\ShootFireSpew\Verb_ShootFireSpew.cs" />
+    <Compile Include="Verb\Verb_ShootWithOffset.cs" />
     <Compile Include="Work\EnterMech\FloatMenuOptionProvider_EnterMech.cs" />
     <Compile Include="Work\EnterMech\JobDriver_EnterMech.cs" />
     <Compile Include="Work\EnterMech\WorkGiver_EnterMech.cs" />

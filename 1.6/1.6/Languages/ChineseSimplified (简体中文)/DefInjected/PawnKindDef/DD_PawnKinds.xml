@@ -4,14 +4,17 @@
   <!-- EN: Diurganate Crusader -->
   <DD_Ratkin_Crusader.label>双尾护教军</DD_Ratkin_Crusader.label>
   
-  <!-- EN: Diurganate Nun -->
-  <DD_Ratkin_Nun.label>双尾修女</DD_Ratkin_Nun.label>
+  <!-- EN: Diurganate Heavy Crusader -->
+  <DD_Ratkin_Heavy_Crusader.label>双尾重装护教军</DD_Ratkin_Heavy_Crusader.label>
   
   <!-- EN: Diurganate Skirmish -->
   <DD_Ratkin_Skirmish.label>双尾散兵</DD_Ratkin_Skirmish.label>
   
   <!-- EN: Diurganate Martyr -->
   <DD_Ratkin_Suicider.label>双尾殉道者</DD_Ratkin_Suicider.label>
+  
+  <!-- EN: Diurganate Nun -->
+  <DD_S1_Ratkin_Leader_Nun.label>双尾修女</DD_S1_Ratkin_Leader_Nun.label>
   
   <!-- EN: Diurganate Nun -->
   <DD_S2_Ratkin_Leader_Nun.label>双尾修女</DD_S2_Ratkin_Leader_Nun.label>

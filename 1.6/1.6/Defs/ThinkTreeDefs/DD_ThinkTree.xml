@@ -6,18 +6,19 @@
     <defName>DD_Battle_Mech_With_1_Pilot</defName>
     <thinkRoot Class="ThinkNode_Priority">
       <subNodes>
-        <li Class="ThinkNode_ConditionalMustKeepLyingDown">
-          <subNodes>
-            <!-- Do a queued job if possible -->
-            <li Class="ThinkNode_QueuedJob">
-              <inBedOnly>true</inBedOnly>
-            </li>
+        <!-- Despawned -->
+        <li Class="ThinkNode_Subtree">
+          <treeDef>Despawned</treeDef>
+        </li>
 
-            <!-- Keep lying down -->
-            <li Class="JobGiver_KeepLyingDown"/>
+        <!-- Deactivated -->
+        <li Class="ThinkNode_ConditionalDeactivated" MayRequire="Ludeon.RimWorld.Odyssey">
+          <subNodes>
+            <li Class="JobGiver_Deactivated" />
           </subNodes>
         </li>
 
+        <!-- Downed -->
         <li Class="ThinkNode_Subtree">
           <treeDef>Downed</treeDef>
         </li>
@@ -30,20 +31,24 @@
           </subNodes>
         </li>
 
-        <li Class="ThinkNode_Subtree">
-          <treeDef>BurningResponse</treeDef>
+        <!-- Mental state -->
+        <li Class="ThinkNode_ConditionalMentalState">
+          <state>BerserkMechanoid</state>
+          <subNodes>
+            <li Class="ThinkNode_Priority">
+              <subNodes>
+                <li Class="JobGiver_Berserk" />
+                <li Class="JobGiver_WanderAnywhere">
+                  <maxDanger>Deadly</maxDanger>
+                </li>
+                </subNodes>
+            </li>
+          </subNodes>
         </li>
-        <li Class="ThinkNode_Subtree">
-          <treeDef>MentalStateCritical</treeDef>
-        </li>
-
-        <!-- React to close melee threat -->
-        <li Class="JobGiver_ReactToCloseMeleeThreat"/>
-
+        
         <!-- Do a queued job -->
-        <li Class="ThinkNode_QueuedJob"/>
-        
-        
+        <li Class="ThinkNode_QueuedJob" />
+
         <!-- Wait if drafted -->
         <li Class="ThinkNode_ConditionalOfPlayerFaction">
           <subNodes>
@@ -57,149 +62,36 @@
           </subNodes>
         </li>
 
-        <!-- Mental state non critical -->
-        <!-- <li Class="ThinkNode_Subtree">
-          <treeDef>MentalStateNonCritical</treeDef>
-        </li> -->
-
-        <!-- Forced goto -->
-        <li Class="ThinkNode_ConditionalForcedGoto">
-          <subNodes>
-            <li Class="ThinkNode_Tagger">
-              <tagToGive>Misc</tagToGive>
-              <subNodes>
-                <li Class="JobGiver_ForcedGoto"/>
-              </subNodes>
-            </li>
-          </subNodes>
-        </li>
-
-        <!-- Behavior when roped -->
-        <li Class="ThinkNode_Subtree">
-          <treeDef>RopedPawn</treeDef>
-        </li>
-
-        <!-- Lord directives -->
+        <!-- Lord -->
         <li Class="ThinkNode_Subtree">
           <treeDef>LordDuty</treeDef>
         </li>
 
-        <!-- Insertion hook for modders -->
-        <li Class="ThinkNode_SubtreesByTag">
-          <insertTag>Animal_PreMain</insertTag>
-        </li>
-        <li Class="ThinkNode_SubtreesByTag">
-          <insertTag>Insect_PreMain</insertTag>
-        </li>
-
-        <li Class="ThinkNode_ConditionalHasFaction">
-          <invert>true</invert>
-          <subNodes>
-            <!-- Wild insects with no lord will fight nearby enemies -->
-            <li Class="JobGiver_AIFightEnemies">
-              <targetAcquireRadius>30</targetAcquireRadius>              <!-- Same as DefendAndExpandHive -->
-              <targetKeepRadius>35</targetKeepRadius>
-            </li>
-
-            <!-- Wild insects leave map in some conditions -->
-            <li Class="ThinkNode_Subtree">
-              <treeDef>LeaveIfWrongSeason</treeDef>
-            </li>
-            <li Class="ThinkNode_Subtree">
-              <treeDef>LeaveIfStarving</treeDef>
-            </li>
-
-            <!-- Wild insects randomly leave map -->
-            <li Class="ThinkNode_ChancePerHour_Constant">
-              <mtbDays>60</mtbDays>
-              <subNodes>
-                <li Class="ThinkNode_Tagger">
-                  <tagToGive>Misc</tagToGive>
-                  <subNodes>
-                    <li Class="JobGiver_ExitMapRandom">
-                      <defaultLocomotion>Walk</defaultLocomotion>
-                    </li>
-                  </subNodes>
-                </li>
-              </subNodes>
-            </li>
-          </subNodes>
-        </li>
-
-        <!-- Insects of a faction that's not the players without a lord leave randomly -->
+        <!-- Idle player mech -->
         <li Class="ThinkNode_ConditionalOfPlayerFaction">
-          <invert>true</invert>
           <subNodes>
-            <li Class="ThinkNode_ConditionalHasFaction">
+            <li Class="ThinkNode_Tagger">
+              <tagToGive>Idle</tagToGive>
               <subNodes>
-                <li Class="ThinkNode_ConditionalNoLord">
-                  <subNodes>
-                    <li Class="ThinkNode_ChancePerHour_Constant">
-                      <mtbDays>60</mtbDays>
-                      <subNodes>
-                        <li Class="ThinkNode_Tagger">
-                          <tagToGive>Misc</tagToGive>
-                          <subNodes>
-                            <li Class="JobGiver_ExitMapRandom">
-                              <defaultLocomotion>Walk</defaultLocomotion>
-                            </li>
-                          </subNodes>
-                        </li>
-                      </subNodes>
-                    </li>
-                  </subNodes>
+                <li Class="JobGiver_WanderColony">
+                  <maxDanger>None</maxDanger>
                 </li>
               </subNodes>
             </li>
           </subNodes>
         </li>
 
-        <!-- Satisfy basic needs -->
-        <li Class="ThinkNode_Subtree">
-          <treeDef>SatisfyBasicNeeds</treeDef>
-        </li>
-
-        <!-- Of neutral faction: rest and then exit the map -->
-        <li Class="ThinkNode_ConditionalNonPlayerNonHostileFaction">
+        <!-- Idle -->
+        <li Class="ThinkNode_Tagger">
+          <tagToGive>Idle</tagToGive>
           <subNodes>
-            <li Class="ThinkNode_Tagger">
-              <tagToGive>RestingForMedicalReasons</tagToGive>
-              <subNodes>
-                <li Class="JobGiver_PatientGoToBed" />
-              </subNodes>
-            </li>
-            
-            <li Class="ThinkNode_Tagger">
-              <tagToGive>Misc</tagToGive>
-              <subNodes>
-                <li Class="JobGiver_ExitMapBest">
-                  <defaultLocomotion>Walk</defaultLocomotion>
-                </li>
-              </subNodes>
+            <li Class="JobGiver_WanderAnywhere">
+              <maxDanger>Deadly</maxDanger>
             </li>
           </subNodes>
         </li>
         
-        <!-- Wander -->
-        <li Class="ThinkNode_Tagger">
-          <tagToGive>Idle</tagToGive>
-          <subNodes>
-            <li Class="ThinkNode_ConditionalHerdAnimal">
-              <subNodes>
-                <li Class="JobGiver_WanderHerd">
-                  <maxDanger>Deadly</maxDanger>
-                  <ticksBetweenWandersRange>120~240</ticksBetweenWandersRange>
-                </li>
-              </subNodes>
-            </li>
-            
-            <li Class="JobGiver_WanderAnywhere">
-              <maxDanger>Deadly</maxDanger>
-              <ticksBetweenWandersRange>120~240</ticksBetweenWandersRange>    
-            </li>
-          </subNodes>
-        </li>
-
+        <!-- Idle error -->
         <li Class="JobGiver_IdleError"/>
       </subNodes>
     </thinkRoot>
@@ -208,18 +100,19 @@
     <defName>DD_Battle_Mech_With_2_Pilot</defName>
     <thinkRoot Class="ThinkNode_Priority">
       <subNodes>
-        <li Class="ThinkNode_ConditionalMustKeepLyingDown">
-          <subNodes>
-            <!-- Do a queued job if possible -->
-            <li Class="ThinkNode_QueuedJob">
-              <inBedOnly>true</inBedOnly>
-            </li>
+        <!-- Despawned -->
+        <li Class="ThinkNode_Subtree">
+          <treeDef>Despawned</treeDef>
+        </li>
 
-            <!-- Keep lying down -->
-            <li Class="JobGiver_KeepLyingDown"/>
+        <!-- Deactivated -->
+        <li Class="ThinkNode_ConditionalDeactivated" MayRequire="Ludeon.RimWorld.Odyssey">
+          <subNodes>
+            <li Class="JobGiver_Deactivated" />
           </subNodes>
         </li>
 
+        <!-- Downed -->
         <li Class="ThinkNode_Subtree">
           <treeDef>Downed</treeDef>
         </li>
@@ -232,20 +125,24 @@
           </subNodes>
         </li>
 
-        <li Class="ThinkNode_Subtree">
-          <treeDef>BurningResponse</treeDef>
+        <!-- Mental state -->
+        <li Class="ThinkNode_ConditionalMentalState">
+          <state>BerserkMechanoid</state>
+          <subNodes>
+            <li Class="ThinkNode_Priority">
+              <subNodes>
+                <li Class="JobGiver_Berserk" />
+                <li Class="JobGiver_WanderAnywhere">
+                  <maxDanger>Deadly</maxDanger>
+                </li>
+                </subNodes>
+            </li>
+          </subNodes>
         </li>
-        <li Class="ThinkNode_Subtree">
-          <treeDef>MentalStateCritical</treeDef>
-        </li>
-
-        <!-- React to close melee threat -->
-        <li Class="JobGiver_ReactToCloseMeleeThreat"/>
-
+        
         <!-- Do a queued job -->
-        <li Class="ThinkNode_QueuedJob"/>
-        
-        
+        <li Class="ThinkNode_QueuedJob" />
+
         <!-- Wait if drafted -->
         <li Class="ThinkNode_ConditionalOfPlayerFaction">
           <subNodes>
@@ -259,149 +156,130 @@
           </subNodes>
         </li>
 
-        <!-- Mental state non critical -->
-        <!-- <li Class="ThinkNode_Subtree">
-          <treeDef>MentalStateNonCritical</treeDef>
-        </li> -->
-
-        <!-- Forced goto -->
-        <li Class="ThinkNode_ConditionalForcedGoto">
-          <subNodes>
-            <li Class="ThinkNode_Tagger">
-              <tagToGive>Misc</tagToGive>
-              <subNodes>
-                <li Class="JobGiver_ForcedGoto"/>
-              </subNodes>
-            </li>
-          </subNodes>
-        </li>
-
-        <!-- Behavior when roped -->
-        <li Class="ThinkNode_Subtree">
-          <treeDef>RopedPawn</treeDef>
-        </li>
-
-        <!-- Lord directives -->
+        <!-- Lord -->
         <li Class="ThinkNode_Subtree">
           <treeDef>LordDuty</treeDef>
         </li>
 
-        <!-- Insertion hook for modders -->
-        <li Class="ThinkNode_SubtreesByTag">
-          <insertTag>Animal_PreMain</insertTag>
-        </li>
-        <li Class="ThinkNode_SubtreesByTag">
-          <insertTag>Insect_PreMain</insertTag>
-        </li>
-
-        <li Class="ThinkNode_ConditionalHasFaction">
-          <invert>true</invert>
-          <subNodes>
-            <!-- Wild insects with no lord will fight nearby enemies -->
-            <li Class="JobGiver_AIFightEnemies">
-              <targetAcquireRadius>30</targetAcquireRadius>              <!-- Same as DefendAndExpandHive -->
-              <targetKeepRadius>35</targetKeepRadius>
-            </li>
-
-            <!-- Wild insects leave map in some conditions -->
-            <li Class="ThinkNode_Subtree">
-              <treeDef>LeaveIfWrongSeason</treeDef>
-            </li>
-            <li Class="ThinkNode_Subtree">
-              <treeDef>LeaveIfStarving</treeDef>
-            </li>
-
-            <!-- Wild insects randomly leave map -->
-            <li Class="ThinkNode_ChancePerHour_Constant">
-              <mtbDays>60</mtbDays>
-              <subNodes>
-                <li Class="ThinkNode_Tagger">
-                  <tagToGive>Misc</tagToGive>
-                  <subNodes>
-                    <li Class="JobGiver_ExitMapRandom">
-                      <defaultLocomotion>Walk</defaultLocomotion>
-                    </li>
-                  </subNodes>
-                </li>
-              </subNodes>
-            </li>
-          </subNodes>
-        </li>
-
-        <!-- Insects of a faction that's not the players without a lord leave randomly -->
+        <!-- Idle player mech -->
         <li Class="ThinkNode_ConditionalOfPlayerFaction">
-          <invert>true</invert>
           <subNodes>
-            <li Class="ThinkNode_ConditionalHasFaction">
+            <li Class="ThinkNode_Tagger">
+              <tagToGive>Idle</tagToGive>
               <subNodes>
-                <li Class="ThinkNode_ConditionalNoLord">
-                  <subNodes>
-                    <li Class="ThinkNode_ChancePerHour_Constant">
-                      <mtbDays>60</mtbDays>
-                      <subNodes>
-                        <li Class="ThinkNode_Tagger">
-                          <tagToGive>Misc</tagToGive>
-                          <subNodes>
-                            <li Class="JobGiver_ExitMapRandom">
-                              <defaultLocomotion>Walk</defaultLocomotion>
-                            </li>
-                          </subNodes>
-                        </li>
-                      </subNodes>
-                    </li>
-                  </subNodes>
+                <li Class="JobGiver_WanderColony">
+                  <maxDanger>None</maxDanger>
                 </li>
               </subNodes>
             </li>
           </subNodes>
         </li>
 
-        <!-- Satisfy basic needs -->
-        <li Class="ThinkNode_Subtree">
-          <treeDef>SatisfyBasicNeeds</treeDef>
-        </li>
-
-        <!-- Of neutral faction: rest and then exit the map -->
-        <li Class="ThinkNode_ConditionalNonPlayerNonHostileFaction">
+        <!-- Idle -->
+        <li Class="ThinkNode_Tagger">
+          <tagToGive>Idle</tagToGive>
           <subNodes>
-            <li Class="ThinkNode_Tagger">
-              <tagToGive>RestingForMedicalReasons</tagToGive>
-              <subNodes>
-                <li Class="JobGiver_PatientGoToBed" />
-              </subNodes>
-            </li>
-            
-            <li Class="ThinkNode_Tagger">
-              <tagToGive>Misc</tagToGive>
-              <subNodes>
-                <li Class="JobGiver_ExitMapBest">
-                  <defaultLocomotion>Walk</defaultLocomotion>
-                </li>
-              </subNodes>
+            <li Class="JobGiver_WanderAnywhere">
+              <maxDanger>Deadly</maxDanger>
             </li>
           </subNodes>
         </li>
         
-        <!-- Wander -->
-        <li Class="ThinkNode_Tagger">
-          <tagToGive>Idle</tagToGive>
+        <!-- Idle error -->
+        <li Class="JobGiver_IdleError"/>
+      </subNodes>
+    </thinkRoot>
+  </ThinkTreeDef>
+  <ThinkTreeDef>
+    <defName>DD_Battle_Mech_With_3_Pilot</defName>
+    <thinkRoot Class="ThinkNode_Priority">
+      <subNodes>
+        <!-- Despawned -->
+        <li Class="ThinkNode_Subtree">
+          <treeDef>Despawned</treeDef>
+        </li>
+
+        <!-- Deactivated -->
+        <li Class="ThinkNode_ConditionalDeactivated" MayRequire="Ludeon.RimWorld.Odyssey">
           <subNodes>
-            <li Class="ThinkNode_ConditionalHerdAnimal">
+            <li Class="JobGiver_Deactivated" />
+          </subNodes>
+        </li>
+
+        <!-- Downed -->
+        <li Class="ThinkNode_Subtree">
+          <treeDef>Downed</treeDef>
+        </li>
+
+        <!-- 重点！你需要在思考树中插入此项，以规定当没有足够的驾驶员时，机甲将执行什么行动 -->
+        <li Class="DivineDiurganate.ThinkNode_ConditionalMechHasPilot">
+          <minPilotCount>3</minPilotCount>
+          <subNodes>
+            <li Class="DivineDiurganate.JobGiver_NoPilot"/>
+          </subNodes>
+        </li>
+
+        <!-- Mental state -->
+        <li Class="ThinkNode_ConditionalMentalState">
+          <state>BerserkMechanoid</state>
+          <subNodes>
+            <li Class="ThinkNode_Priority">
               <subNodes>
-                <li Class="JobGiver_WanderHerd">
+                <li Class="JobGiver_Berserk" />
+                <li Class="JobGiver_WanderAnywhere">
                   <maxDanger>Deadly</maxDanger>
-                  <ticksBetweenWandersRange>120~240</ticksBetweenWandersRange>
                 </li>
-              </subNodes>
+                </subNodes>
             </li>
-            
-            <li Class="JobGiver_WanderAnywhere">
-              <maxDanger>Deadly</maxDanger>
-              <ticksBetweenWandersRange>120~240</ticksBetweenWandersRange>    
+          </subNodes>
+        </li>
+        
+        <!-- Do a queued job -->
+        <li Class="ThinkNode_QueuedJob" />
+
+        <!-- Wait if drafted -->
+        <li Class="ThinkNode_ConditionalOfPlayerFaction">
+          <subNodes>
+            <li Class="ThinkNode_Tagger">
+              <tagToGive>DraftedOrder</tagToGive>
+              <subNodes>
+                <li Class="JobGiver_MoveToStandable" />
+                <li Class="JobGiver_Orders" />
+              </subNodes>
             </li>
           </subNodes>
         </li>
 
+        <!-- Lord -->
+        <li Class="ThinkNode_Subtree">
+          <treeDef>LordDuty</treeDef>
+        </li>
+
+        <!-- Idle player mech -->
+        <li Class="ThinkNode_ConditionalOfPlayerFaction">
+          <subNodes>
+            <li Class="ThinkNode_Tagger">
+              <tagToGive>Idle</tagToGive>
+              <subNodes>
+                <li Class="JobGiver_WanderColony">
+                  <maxDanger>None</maxDanger>
+                </li>
+              </subNodes>
+            </li>
+          </subNodes>
+        </li>
+
+        <!-- Idle -->
+        <li Class="ThinkNode_Tagger">
+          <tagToGive>Idle</tagToGive>
+          <subNodes>
+            <li Class="JobGiver_WanderAnywhere">
+              <maxDanger>Deadly</maxDanger>
+            </li>
+          </subNodes>
+        </li>
+        
+        <!-- Idle error -->
         <li Class="JobGiver_IdleError"/>
       </subNodes>
     </thinkRoot>

@@ -97,6 +97,7 @@
 					<DD_Ratkin_Suicider>30</DD_Ratkin_Suicider>
 					<DD_Ratkin_Skirmish>20</DD_Ratkin_Skirmish>
 					<DD_Ratkin_Crusader>10</DD_Ratkin_Crusader>
+					<DD_Ratkin_Heavy_Crusader>1</DD_Ratkin_Heavy_Crusader>
 					<DD_S2_Ratkin_Leader_Nun>9999</DD_S2_Ratkin_Leader_Nun>
 					<DD_S3_DHM86_Knell_Mech>9999</DD_S3_DHM86_Knell_Mech>
 				</options>
@@ -105,11 +106,12 @@
 			<li>
 				<kindDef>Combat</kindDef>
 				<commonality>100</commonality>
-				<maxTotalPoints>10000</maxTotalPoints>
+				<maxTotalPoints>9999</maxTotalPoints>
 				<options>
 					<DD_Ratkin_Suicider>20</DD_Ratkin_Suicider>
 					<DD_Ratkin_Skirmish>10</DD_Ratkin_Skirmish>
 					<DD_Ratkin_Crusader>10</DD_Ratkin_Crusader>
+					<DD_Ratkin_Heavy_Crusader>2</DD_Ratkin_Heavy_Crusader>
 					<DD_S2_Ratkin_Leader_Nun>9999</DD_S2_Ratkin_Leader_Nun>
 					<DD_S4_DHM86_Knell_Mech>2</DD_S4_DHM86_Knell_Mech>
 				</options>
@@ -122,9 +124,23 @@
 				<options>
 					<DD_Ratkin_Skirmish>30</DD_Ratkin_Skirmish>
 					<DD_Ratkin_Crusader>20</DD_Ratkin_Crusader>
+					<DD_Ratkin_Heavy_Crusader>5</DD_Ratkin_Heavy_Crusader>
 					<DD_S2_Ratkin_Leader_Nun>9999</DD_S2_Ratkin_Leader_Nun>
 					<DD_S4_DHM86_Knell_Mech>5</DD_S4_DHM86_Knell_Mech>
 					<DD_S5_DHM69_Scythe_Mech>9999</DD_S5_DHM69_Scythe_Mech>
+				</options>
+			</li>
+      <!-- 15000以上，护教军，机甲，固定3个修女，固定重型机甲  -->
+			<li>
+				<kindDef>Combat</kindDef>
+				<commonality>1</commonality>
+				<options>
+					<DD_Ratkin_Crusader>10</DD_Ratkin_Crusader>
+					<DD_Ratkin_Heavy_Crusader>5</DD_Ratkin_Heavy_Crusader>
+					<DD_S2_Ratkin_Leader_Nun>9999</DD_S2_Ratkin_Leader_Nun>
+					<DD_S4_DHM86_Knell_Mech>5</DD_S4_DHM86_Knell_Mech>
+					<DD_S6_DHM69_Scythe_Mech>2</DD_S6_DHM69_Scythe_Mech>
+					<DD_S6_DHM70_Rampart_Mech>9999</DD_S6_DHM70_Rampart_Mech>
 				</options>
 			</li>
       

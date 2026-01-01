@@ -64,6 +64,7 @@
 		<apparelRequired>
 			<li>DD_Nun_Dress</li>
 			<li>DD_NunVeil</li>
+			<li>DD_Crusaders_Shield</li>
 		</apparelRequired>
     <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
 		<weaponTags>
@@ -114,6 +115,7 @@
 		<apparelRequired>
 			<li>DD_Nun_Dress</li>
 			<li>DD_NunVeil</li>
+			<li>DD_Crusaders_Shield</li>
 		</apparelRequired>
     <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
 		<weaponTags>
@@ -219,6 +221,61 @@
 				<bodyGraphicData>
 					<texPath>DivineDiurganate/Things/DD_DHM69_Scythe/Naked_Thin</texPath>
 					<drawSize>5.5</drawSize>
+					<shadowData>
+						<volume>(2 ,2, 0.8)</volume>
+						<offset>(0,0,-0.15)</offset>
+					</shadowData>
+				</bodyGraphicData>
+			</li>
+		</lifeStages>
+	</PawnKindDef>
+  
+  <!-- 6000-8000 -->
+	<PawnKindDef>
+		<defName>DD_S6_DHM69_Scythe_Mech</defName>
+		<label>DHM69-Scythe</label>
+		<race>DD_DHM69_Scythe_Mech</race>
+		<defaultFactionType>PlayerColony</defaultFactionType>
+		<forceDeathOnDowned>false</forceDeathOnDowned>
+		<forceNoDeathNotification>false</forceNoDeathNotification>
+    <collidesWithPawns>false</collidesWithPawns>
+		<combatPower>1000</combatPower>
+    <weaponTags>
+      <li>DD_DHM69_Scythe_Mech_Weapon</li>
+    </weaponTags>
+    <weaponMoney>99999~99999</weaponMoney>
+		<lifeStages>
+			<li>
+				<bodyGraphicData>
+					<texPath>DivineDiurganate/Things/DD_DHM69_Scythe/Naked_Thin</texPath>
+					<drawSize>5.5</drawSize>
+					<shadowData>
+						<volume>(2 ,2, 0.8)</volume>
+						<offset>(0,0,-0.15)</offset>
+					</shadowData>
+				</bodyGraphicData>
+			</li>
+		</lifeStages>
+	</PawnKindDef>
+	<PawnKindDef>
+		<defName>DD_S6_DHM70_Rampart_Mech</defName>
+		<label>DHM70-Rampart</label>
+		<race>DD_DHM70_Rampart_Mech</race>
+		<defaultFactionType>PlayerColony</defaultFactionType>
+		<forceDeathOnDowned>false</forceDeathOnDowned>
+		<forceNoDeathNotification>false</forceNoDeathNotification>
+    <collidesWithPawns>false</collidesWithPawns>
+		<combatPower>1</combatPower>
+    <maxPerGroup>1</maxPerGroup>
+    <weaponTags>
+      <li>DD_DHM70_Rampart_Mech_Weapon</li>
+    </weaponTags>
+    <weaponMoney>99999~99999</weaponMoney>
+		<lifeStages>
+			<li>
+				<bodyGraphicData>
+					<texPath>DivineDiurganate/Things/DD_DHM70_Rampart/Naked_Thin</texPath>
+					<drawSize>6.5</drawSize>
 					<shadowData>
 						<volume>(2 ,2, 0.8)</volume>
 						<offset>(0,0,-0.15)</offset>

@@ -1,3 +1,4 @@
+// File: Comp_IdeoRoleHediff_Fixed.cs
 using RimWorld;
 using Verse;
 using System.Linq;
@@ -14,12 +15,24 @@ namespace DivineDiurganate
         {
             base.CompPostTick(ref severityAdjustment);
             
+            // 如果是DDmechunit，跳过检查
+            if (IsDDmechunit(this.Pawn))
+            {
+                return; // DDmechunit的Hediff由另一个组件负责，我们不处理
+            }
+            
             // 定期检查
             if (Find.TickManager.TicksGame >= lastCheckTick + Props.checkIntervalTicks)
             {
                 lastCheckTick = Find.TickManager.TicksGame;
                 CheckRoleRequirement();
             }
+        }
+        
+        // 检查Pawn是否为DDmechunit
+        private bool IsDDmechunit(Pawn pawn)
+        {
+            return pawn is DDmechunit;
         }
         
         private void CheckRoleRequirement()

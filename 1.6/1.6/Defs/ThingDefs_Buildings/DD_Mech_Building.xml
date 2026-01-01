@@ -60,7 +60,7 @@
     <tickerType>Normal</tickerType>
     <graphicData>
       <drawSize>3.5</drawSize>
-      <texPath>DivineDiurganate/Things/DD_DHM86_Knell/Naked_Thin_north</texPath>
+      <texPath>DivineDiurganate/Things/DD_DHM69_Scythe/Naked_Thin_north</texPath>
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <statBases>
@@ -90,52 +90,48 @@
       </li>
     </comps>
   </ThingDef>
-  
-  <ThingDef ParentName="IdeoBuildingBase">
-    <defName>DD_RitualSpot</defName>
-    <label>RitualSpot</label>
-    <description>A large image drawn on the ground and reinforced with metal edges. It is used as a focus for rituals.</description>
-    <graphicData>
-      <graphicClass>Graphic_Single</graphicClass>
-      <!-- <color>(105,105,105)</color> -->
-      <texPath>DivineDiurganate/Building/DD_RitualSpot</texPath>
-      <drawSize>(3,3)</drawSize>
-      <shadowData>
-        <volume>(0.8, 1, 0.8)</volume>
-      </shadowData>
-    </graphicData>
+  <ThingDef ParentName="BuildingBase">
+    <defName>DD_DHM70_Scythe_Building</defName>
+    <label>DHM70-Rampart</label>
+    <description>The Divine Diurganate's terrifying giant mechs possess incredibly thick armor and are equipped with a pair of rapid-fire cannons that require standing still to fire, as well as multiple self-defense machine guns, enabling them to engage enemies at various distances.</description>
+    <uiOrder>2040</uiOrder>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
     <size>(3,3)</size>
-    <costList>
-      <Steel>50</Steel>
-    </costList>
+    <fillPercent>0.25</fillPercent>
+    <pathCost>0</pathCost>
+    <uiIconScale>0.85</uiIconScale>
+    <tickerType>Normal</tickerType>
+    <graphicData>
+      <drawSize>3.5</drawSize>
+      <texPath>DivineDiurganate/Things/DD_DHM70_Rampart/Naked_Thin_north</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
     <statBases>
-      <MaxHitPoints>50</MaxHitPoints>
-      <WorkToBuild>25000</WorkToBuild>
-      <Beauty>10</Beauty>
-      <StyleDominance>20</StyleDominance>
+      <MaxHitPoints>20</MaxHitPoints>
+      <WorkToBuild>750</WorkToBuild>
+      <Mass>10</Mass>
+      <Flammability>0</Flammability>
+      <Beauty>0</Beauty>
     </statBases>
-    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
-    <ideoBuildingNamerBase>NamerIdeogram</ideoBuildingNamerBase>
-    <passability>Standable</passability>
-    <selectable>true</selectable>
-    <useHitPoints>true</useHitPoints>
-    <isAltar>true</isAltar>
-    <hasInteractionCell>True</hasInteractionCell>
-    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
-    <canEditAnyStyle>true</canEditAnyStyle>
+    <costStuffCount>0</costStuffCount>
+    <stuffCategories Inherit="False"/>
+    <costList>
+      <Steel>700</Steel>
+      <Plasteel>450</Plasteel>
+      <ComponentIndustrial>16</ComponentIndustrial>
+    </costList>
+    <rotatable>false</rotatable>
     <building>
-      <buildingTags>
-        <li>RitualFocus</li>
-      </buildingTags>
-      <relatedBuildCommands>
-        <li>Lectern</li>
-        <li>KneelPillow</li>
-      </relatedBuildCommands>
+      <isInert>true</isInert>
     </building>
-    <placeWorkers Inherit="False">
-      <li>PlaceWorker_RitualFocusNoArrow</li>
-      <li>PlaceWorker_PreventInteractionSpotOverlap</li>
-    </placeWorkers>
-    <drawPlaceWorkersWhileSelected>True</drawPlaceWorkersWhileSelected>
+    <designationCategory>Misc</designationCategory>
+    <comps>
+      <li Class="DivineDiurganate.CompProperties_BuildToPawn">
+        <pawnKindDef>DD_DHM70_Rampart_Mech</pawnKindDef>
+        <spawnCount>1</spawnCount>
+        <inheritFaction>true</inheritFaction>
+      </li>
+    </comps>
   </ThingDef>
 </Defs>

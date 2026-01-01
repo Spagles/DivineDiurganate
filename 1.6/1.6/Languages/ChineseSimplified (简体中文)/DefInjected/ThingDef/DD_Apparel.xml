@@ -6,6 +6,11 @@
   <!-- EN: The helmet of the Diurganate Crusader is made of alloy that can withstand light weapon fire. -->
   <DD_Crusaders_Helmet.description>双尾教国护教军的头盔，以可以抵御轻武器射击的合金铸成。</DD_Crusaders_Helmet.description>
   
+  <!-- EN: 护教军盾牌 -->
+  <DD_Crusaders_Shield.label>护教军盾牌</DD_Crusaders_Shield.label>
+  <!-- EN: 一面中型盾牌，专为双尾教国的护教军设计，在基本不丢失防御力的同时比巨盾要轻便一些。 -->
+  <DD_Crusaders_Shield.description>一面中型盾牌，专为双尾教国的护教军设计，在基本不丢失防御力的同时比巨盾要轻便一些。</DD_Crusaders_Shield.description>
+  
   <!-- EN: Diurganate Crusader Uniform -->
   <DD_Crusaders_Uniform.label>双尾护教军制服</DD_Crusaders_Uniform.label>
   <!-- EN: The uniform of the Diurganate Crusader, with a built-in set of alloy plate armour that would resist firing, and a warm coat on the outside to move in the high-altitude, cold environment of Diurganate Airship. -->

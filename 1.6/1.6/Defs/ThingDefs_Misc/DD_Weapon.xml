@@ -90,7 +90,7 @@
     </stuffCategories>
     <recipeMaker>
       <!-- <recipeUsers Inherit="False" /> -->
-			<researchPrerequisite>MicroOptical</researchPrerequisite>
+			<researchPrerequisite>FlechetteBullet</researchPrerequisite>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
     </recipeMaker>
     <statBases>
@@ -184,7 +184,7 @@
     <uiIconScale>0.7</uiIconScale>
     <recipeMaker>
       <!-- <recipeUsers Inherit="False" /> -->
-			<researchPrerequisite>MicroOptical</researchPrerequisite>
+			<researchPrerequisite>FlechetteBullet</researchPrerequisite>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
     </recipeMaker>
     <statBases>
@@ -421,23 +421,24 @@
   <ThingDef ParentName="BaseHumanMakeableGun">
     <defName>DD_AM_Heavy_Lance</defName>
     <label>Anti-Mech Heavy Lance</label>
-    <description>结合了反机甲火炮和骑枪为一体的重型武器，无论在哪个距离上都能有效打击重甲目标，不过它开火前需要架设，并且对使用者的要求比较高。</description>
+    <description>This heavy weapon combines an anti-mech cannon and a lance, and can effectively strike heavily armored targets at any distance. However, it needs to be set up before firing and requires a high level of skill from the user.</description>
     <tickerType>Normal</tickerType>
     <techLevel>Industrial</techLevel>
     <graphicData>
-      <texPath>DivineDiurganate/Weapon/DD_Spear_Rifle</texPath>
+      <texPath>DivineDiurganate/Weapon/DD_AM_Heavy_Lance</texPath>
       <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>1.2</drawSize>
+      <shaderType>CutoutComplex</shaderType>
+      <drawSize>1.75</drawSize>
     </graphicData>
     <soundInteract>Interact_Rifle</soundInteract>
-    <uiIconScale>0.9</uiIconScale>
+    <uiIconScale>0.7</uiIconScale>
     <costStuffCount>80</costStuffCount>
     <stuffCategories>
       <li>Metallic</li>
     </stuffCategories>
     <recipeMaker>
       <!-- <recipeUsers Inherit="False" /> -->
-			<researchPrerequisite>MicroOptical</researchPrerequisite>
+			<researchPrerequisite>FlechetteBullet</researchPrerequisite>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
     </recipeMaker>
     <statBases>
@@ -457,9 +458,10 @@
         <warmupTime>3</warmupTime>
         <defaultProjectile>DD_AM_Heavy_Lance_Bullet</defaultProjectile>
         <range>38.9</range>
+        <minRange>2.9</minRange>
         <burstShotCount>1</burstShotCount>
         <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
-        <soundCast>DD_Spear_Machinegun_FireSound</soundCast>
+        <soundCast>DD_AM_Heavy_Lance_FireSound</soundCast>
       </li>
     </verbs>
     <costList>
@@ -500,13 +502,19 @@
     <thingClass>DivineDiurganate.Projectile_PenetratingBullet</thingClass>
     <modExtensions>
       <li Class="DivineDiurganate.PenetratingBullet_Extension">
-        <maxHits>3</maxHits>        <!-- 无限穿透 -->
-        <damageFalloff>0.5</damageFalloff>        <!-- 无伤害衰减 -->
+        <maxHits>1</maxHits>        <!-- 无限穿透 -->
+        <damageFalloff>0</damageFalloff>        <!-- 无伤害衰减 -->
         <preventFriendlyFire>true</preventFriendlyFire>        <!-- 是否阻止友方火力 -->
         <tailFleckDef>DD_Black_Smoke_Tail</tailFleckDef>
         <fleckDelayTicks>4</fleckDelayTicks>
 
         <impactEffecter>DD_Harpoon_Bullet_Hit_Effecter</impactEffecter>
+
+        <!-- 爆炸参数 -->
+        <enableExplosion>true</enableExplosion>
+        <explodeOnGroundHit>true</explodeOnGroundHit>
+        <explodeOnMaxPenetration>true</explodeOnMaxPenetration>
+        <explodeOnFirstImpact>true</explodeOnFirstImpact>
       </li>
     </modExtensions>
     <graphicData>
@@ -516,11 +524,13 @@
       <color>(194,117,67)</color>
     </graphicData>
     <projectile>
-			<damageDef>Crush</damageDef>
-			<damageAmountBase>25</damageAmountBase>
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>30</damageAmountBase>
 			<stoppingPower>5</stoppingPower>
-			<armorPenetrationBase>1.25</armorPenetrationBase>
+			<armorPenetrationBase>1.75</armorPenetrationBase>
 			<speed>65</speed>
+      <explosionRadius>1.9</explosionRadius>
+      <screenShakeFactor>0.5</screenShakeFactor>
     </projectile>
   </ThingDef>
 </Defs>

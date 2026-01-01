@@ -264,6 +264,134 @@
       <damageAmountBase>25</damageAmountBase>
     </projectile>
   </ThingDef>
+  <ThingDef ParentName="BaseMakeableGrenade">
+    <defName>DD_DHM70_Rampart_Mech_Weapon</defName>
+    <label>Anti-Mech Rapid Fire Cannon</label>
+    <description>A pair of anti-mech rapid-fire cannons, designed specifically for the DHM70-Rampart, require the user to stand still before firing, but their offensive power is so fierce that they can tear apart even the most powerful enemy armored targets.</description>
+	  <destroyOnDrop>true</destroyOnDrop>
+    
+    <generateCommonality>0.01</generateCommonality>
+    <relicChance>0</relicChance>
+    <tradeability>None</tradeability>
+    <smeltable>false</smeltable>
+    <thingSetMakerTags Inherit="False" />
+
+    <!-- <uiIconPath>DivineDiurganate/Mote/DD_DHM86_Knell_Mech_Weapon_Proj</uiIconPath>
+    <uiIconScale>0.75</uiIconScale> -->
+    <recipeMaker>
+      <recipeUsers Inherit="False" />
+    </recipeMaker>
+    <tickerType>Normal</tickerType>
+    <graphicData>
+      <texPath>DivineDiurganate/Weapon/DD_Mech_Weapon_Empty</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <uiIconScale>1.3</uiIconScale>
+    <soundInteract>Interact_Grenade</soundInteract>
+    <techLevel>Industrial</techLevel>
+    <statBases>
+      <Mass>1</Mass>
+      <WorkToMake>12000</WorkToMake>
+      <AccuracyTouch>0.45</AccuracyTouch>
+      <AccuracyShort>0.75</AccuracyShort>
+      <AccuracyMedium>0.8</AccuracyMedium>
+      <AccuracyLong>0.7</AccuracyLong>
+      <RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown>
+    </statBases>
+    <costList>
+      <Steel>20</Steel>
+      <Chemfuel>80</Chemfuel>
+    </costList>
+    <weaponTags Inherit="False">
+      <li>DD_DHM70_Rampart_Mech_Weapon</li>
+    </weaponTags>
+    <thingCategories Inherit="False"/>
+    <verbs>
+      <li>
+        <verbClass>DivineDiurganate.Verb_ShootWithOffset</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+        <warmupTime>3</warmupTime>
+        <defaultProjectile>DD_DHM70_Rampart_Mech_Weapon_Bullet</defaultProjectile>
+        <range>38.9</range>
+        <burstShotCount>1</burstShotCount>
+        <minRange>3.9</minRange>
+        <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+        <soundCast>DD_DHM70_Rampart_Mech_Weapon_FireSound</soundCast>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+      </li>
+    </verbs>
+    <modExtensions>
+      <li Class="DivineDiurganate.ModExtension_ShootWithOffset">
+        <offsets>
+          <li>(1.5, 0)</li>
+          <li>(-1.5, 0)</li>
+        </offsets>
+      </li>
+    </modExtensions>
+    <comps>
+      <!-- 这里规定了该武器是什么机甲的武器，其他机甲和非机甲pawn无法拿起此武器 -->
+      <!-- This specifies the mech whose weapon this is. Other mechs and non-mech pawns cannot pick up this weapon -->
+      <li Class="DivineDiurganate.CompProperties_MechOnlyWeapon">
+        <allowedMechRaces>
+          <li>DD_DHM86_Knell_Mech</li>
+        </allowedMechRaces>
+      </li>
+      <li Class="DivineDiurganate.CompProperties_GiveHediffOnShot">
+        <hediffDef>DD_Weapon_Deployed_Long</hediffDef>
+        <severityToAdd>1</severityToAdd>
+      </li>
+      <li Class="DivineDiurganate.CompProperties_ShootOffsetCounter"/>
+    </comps>
+  </ThingDef>
+  <ThingDef ParentName="BaseBullet">
+    <defName>DD_DHM70_Rampart_Mech_Weapon_Bullet</defName>
+    <label>Anti-Mech Shell</label>
+    <thingClass>DivineDiurganate.Projectile_PenetratingBullet</thingClass>
+    <modExtensions>
+      <li Class="DivineDiurganate.PenetratingBullet_Extension">
+        <maxHits>1</maxHits>        <!-- 无限穿透 -->
+        <damageFalloff>0</damageFalloff>        <!-- 无伤害衰减 -->
+        <preventFriendlyFire>true</preventFriendlyFire>        <!-- 是否阻止友方火力 -->
+        <tailFleckDef>DD_Black_Smoke_Tail</tailFleckDef>
+        <fleckDelayTicks>4</fleckDelayTicks>
+
+        <impactEffecter>DD_Harpoon_Bullet_Hit_Effecter</impactEffecter>
+
+        <!-- 爆炸参数 -->
+        <enableExplosion>true</enableExplosion>
+        <explodeOnGroundHit>true</explodeOnGroundHit>
+        <explodeOnMaxPenetration>true</explodeOnMaxPenetration>
+        <explodeOnFirstImpact>true</explodeOnFirstImpact>
+      </li>
+    </modExtensions>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Big</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>MoteGlow</shaderType>
+      <drawSize>2</drawSize>
+      <color>(194,117,67)</color>
+    </graphicData>
+    <projectile>
+      <damageDef>DD_GiantBomb</damageDef>
+			<damageAmountBase>50</damageAmountBase>
+			<stoppingPower>5</stoppingPower>
+			<armorPenetrationBase>2</armorPenetrationBase>
+			<speed>65</speed>
+      <explosionRadius>2.9</explosionRadius>
+      <soundExplode>DD_DHM70_Rampart_Mech_Weapon_ExplosiveSound</soundExplode>
+    </projectile>
+  </ThingDef>
+  <DamageDef ParentName="Bomb">
+    <defName>DD_GiantBomb</defName>
+    <label>Giant Explosive</label>
+    <defaultDamage>150</defaultDamage>
+    <defaultStoppingPower>2.0</defaultStoppingPower>
+    <defaultArmorPenetration>1.30</defaultArmorPenetration>
+    <explosionCenterEffecter>DD_GiantBomb_Explosion</explosionCenterEffecter>
+  </DamageDef>
   
   <!-- Turret -->
   <ThingDef ParentName="BaseWeaponTurret">

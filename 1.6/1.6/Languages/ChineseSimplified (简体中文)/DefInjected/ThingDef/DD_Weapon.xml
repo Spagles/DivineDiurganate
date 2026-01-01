@@ -1,6 +1,18 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
   
+  <!-- EN: Anti-Mech Heavy Lance -->
+  <DD_AM_Heavy_Lance.label>反机甲长枪</DD_AM_Heavy_Lance.label>
+  <!-- EN: 结合了反机甲火炮和骑枪为一体的重型武器，无论在哪个距离上都能有效打击重甲目标，不过它开火前需要架设，并且对使用者的要求比较高。 -->
+  <DD_AM_Heavy_Lance.description>结合了反机甲火炮和骑枪为一体的重型武器，无论在哪个距离上都能有效打击重甲目标，不过它开火前需要架设，并且对使用者的要求比较高。</DD_AM_Heavy_Lance.description>
+  <!-- EN: Lance Stab -->
+  <DD_AM_Heavy_Lance.tools.Lance_Stab.label>长枪穿刺</DD_AM_Heavy_Lance.tools.Lance_Stab.label>
+  <!-- EN: Anti-Mech Heavy Lance -->
+  <DD_AM_Heavy_Lance.verbs.Verb_Shoot.label>反机甲长枪</DD_AM_Heavy_Lance.verbs.Verb_Shoot.label>
+  
+  <!-- EN: Anti-Mech Shell -->
+  <DD_AM_Heavy_Lance_Bullet.label>反机甲炮弹</DD_AM_Heavy_Lance_Bullet.label>
+  
   <!-- EN: Diurganate Axe Pistol -->
   <DD_Axe_Pistol.label>双尾斧头手枪</DD_Axe_Pistol.label>
   <!-- EN: The basic self-defense weapon used by the followers and clergy of the Diurganate has an axe blade fixed to the front of the barrel, allowing it to be used as an axe in close combat. -->
@@ -15,11 +27,11 @@
   <!-- EN: Pistol Bullet -->
   <DD_Axe_Pistol_Bullet.label>手枪子弹</DD_Axe_Pistol_Bullet.label>
   
-  <!-- EN: Holy Shotgun -->
+  <!-- EN: Exorcism Burner -->
   <DD_Fire_Shotgun.label>退魔圣焰</DD_Fire_Shotgun.label>
-  <!-- EN: Although it's called a shotgun, don't be fooled - this thing is a real shotgun filled with brass cast blessed dragon pellets, enough for close range enemies to experience what "physical exorcism" is. -->
+  <!-- EN: A shotgun filled with brass cast blessed incendiary bullet, enough for close range enemies to experience what "physical exorcism" is. -->
   <DD_Fire_Shotgun.description>一把霰弹枪，里面装填了以黄铜浇筑的受祝龙息弹，足以让近距离的敌人体验一下什么叫“物理驱魔”。</DD_Fire_Shotgun.description>
-  <!-- EN: Holy Shotgun -->
+  <!-- EN: Exorcism Burner -->
   <DD_Fire_Shotgun.verbs.Verb_ShootFireSpew.label>退魔圣焰</DD_Fire_Shotgun.verbs.Verb_ShootFireSpew.label>
   
   <!-- EN: Diurganate Harpoon Gun -->
@@ -32,18 +44,9 @@
   <!-- UNUSED -->
   <DD_Harpoon_Gun.verbs.Verb_Shoot.label>气动鱼叉枪</DD_Harpoon_Gun.verbs.Verb_Shoot.label>
   
-  <!-- EN: Mote -->
-  <DD_Mote_halo.label>TODO</DD_Mote_halo.label>
-  
-  <!-- EN: Mote -->
-  <DD_Mote_MechBlackSmoke.label>黑烟</DD_Mote_MechBlackSmoke.label>
-  
-  <!-- EN: Mote -->
-  <DD_Spark_Mote.label>TODO</DD_Spark_Mote.label>
-  
   <!-- EN: Crusader Spear Machinegun -->
   <DD_Spear_Machinegun.label>鱼叉机枪</DD_Spear_Machinegun.label>
-  <!-- EN: 双尾教国护教军的班级支援火力，在开火前需要一点时间进行架设，但是在完成架设后可以连续开火，将大量的鱼叉投射到敌人脸上。 -->
+  <!-- EN: The class support firepower of Diurganate Crusader requires some time to set up before firing, but after completing the setup, it can fire continuously, projecting a large number of harpoons onto the enemy's face. -->
   <DD_Spear_Machinegun.description>双尾教国护教军的班级支援火力，在开火前需要一点时间进行架设，但是在完成架设后可以连续开火，将大量的鱼叉投射到敌人脸上。</DD_Spear_Machinegun.description>
   <!-- EN: Crusader Spear Machinegun -->
   <DD_Spear_Machinegun.verbs.Verb_Shoot.label>鱼叉机枪</DD_Spear_Machinegun.verbs.Verb_Shoot.label>

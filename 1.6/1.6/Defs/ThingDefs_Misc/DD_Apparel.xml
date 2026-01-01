@@ -162,7 +162,8 @@
 			</bodyPartGroups>
 			<wornGraphicPath>DivineDiurganate/Apparel/DD_Nun_Dress</wornGraphicPath>
 			<layers>
-				<li>OnSkin</li>
+        <li>Middle</li>
+        <li>Shell</li>
 			</layers>
 			<tags>
 				<li>DD_RatkinClergy</li>
@@ -280,7 +281,8 @@
 			</bodyPartGroups>
 			<wornGraphicPath>DivineDiurganate/Apparel/DD_Crusaders_Uniform</wornGraphicPath>
 			<layers>
-				<li>OnSkin</li>
+        <li>Middle</li>
+        <li>Shell</li>
 			</layers>
 			<tags>
 				<li>DD_RatkinCrusaders</li>
@@ -353,13 +355,13 @@
 
   <ThingDef ParentName="DD_ApparelMakeableBase">
     <defName>DD_Crusaders_Shield</defName>
-    <label>护教军盾牌</label>
-    <description>一面中型盾牌，专为双尾教国的护教军设计，在基本不丢失防御力的同时比巨盾要轻便一些。</description>
+    <label>Crusader shield</label>
+    <description>A medium-sized shield, designed specifically for the Crusaders of Divine Diurganate, which is lighter than a giant shield while maintaining almost no defensive capabilities.</description>
     <recipeMaker>
       <researchPrerequisite>HighClassClothing</researchPrerequisite>
     </recipeMaker>
     <graphicData>
-      <texPath>Apparel/RK_HeavyShield_Big</texPath>
+      <texPath>DivineDiurganate/Apparel/DD_Crusaders_Shield</texPath>
     </graphicData>
     <statBases>
       <WorkToMake>5000</WorkToMake>
@@ -380,6 +382,9 @@
       <li>Metallic</li>
     </stuffCategories>
     <apparel>
+      <renderSkipFlags>
+        <li>None</li>
+      </renderSkipFlags>
       <tags>
         <li>DD_RatkinCrusaders</li>
       </tags>
@@ -391,10 +396,30 @@
 				<li>Legs</li>
 				<li>FullHead</li>
 			</bodyPartGroups>
-      <wornGraphicPath>Apparel/RK_HeavyShield_Big</wornGraphicPath>
+      <wornGraphicPath>DivineDiurganate/Apparel/DD_Crusaders_Shield</wornGraphicPath>
 			<layers>
 				<li>OuterClothing</li>
 			</layers>
+      <wornGraphicData>
+        <renderUtilityAsPack>true</renderUtilityAsPack>
+        <north>
+          <!-- <scale>(0.7,0.7)</scale> -->
+        </north>
+        <south>
+          <offset>(0,0)</offset>
+        </south>
+        <east>
+          <offset>(-0.1,0)</offset>
+        </east>
+        <west>
+          <offset>(0.1,0)</offset>
+        </west>
+      </wornGraphicData>
+      <useDeflectMetalEffect>true</useDeflectMetalEffect>
+      <canBeDesiredForIdeo>false</canBeDesiredForIdeo>
+      <canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
+      <canBeGeneratedToSatisfyToxicEnvironmentResistance>false</canBeGeneratedToSatisfyToxicEnvironmentResistance>
+      <useWornGraphicMask>true</useWornGraphicMask>
     </apparel>
   </ThingDef>
 </Defs> 

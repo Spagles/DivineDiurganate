@@ -1,7 +1,8 @@
+// File: IdeoRoleHediffManager_Fixed.cs
 using RimWorld;
 using System.Collections.Generic;
-using Verse;
 using System.Linq;
+using Verse;
 
 namespace DivineDiurganate
 {
@@ -19,9 +20,6 @@ namespace DivineDiurganate
         
         // Hediff到Meme的映射
         private static readonly Dictionary<HediffDef, List<MemeDef>> hediffToMemes = new Dictionary<HediffDef, List<MemeDef>>();
-        
-        // 检查间隔（游戏刻）
-        private const int CheckIntervalTicks = 2500; // 1游戏天
         
         static IdeoRoleHediffManager()
         {
@@ -63,6 +61,10 @@ namespace DivineDiurganate
         // 检查单个Pawn是否满足所有要求
         private static bool PawnMeetsAllRequirements(Pawn pawn, HediffDef hediffDef)
         {
+            // 检查是否为排除的Pawn类型（DDmechunit）
+            if (IsExcludedPawnType(pawn))
+                return false; // 对于DDmechunit，始终返回false，让管理器不干预
+            
             var props = hediffDef.comps?.OfType<HediffCompProperties_IdeoRoleHediff>().FirstOrDefault();
             if (props == null)
                 return false;
@@ -82,6 +84,12 @@ namespace DivineDiurganate
             }
             
             return true;
+        }
+        
+        // 检查Pawn是否为需要排除的类型（DDmechunit）
+        private static bool IsExcludedPawnType(Pawn pawn)
+        {
+            return pawn is DDmechunit;
         }
         
         private static bool PawnMeetsRoleRequirement(Pawn pawn, HediffCompProperties_IdeoRoleHediff props)
@@ -123,6 +131,16 @@ namespace DivineDiurganate
         // 检查单个Pawn的Hediff状态
         public static void CheckPawn(Pawn pawn)
         {
+            // 如果pawn是DDmechunit，跳过检查
+            if (IsExcludedPawnType(pawn))
+            {
+                if (Prefs.DevMode)
+                {
+                    Log.Message($"[DD] 跳过DDmechunit的IdeoRoleHediff检查: {pawn.LabelShort}");
+                }
+                return;
+            }
+            
             if (pawn == null || !pawn.Spawned || pawn.Dead || !pawn.IsColonist)
                 return;
                 
@@ -134,6 +152,10 @@ namespace DivineDiurganate
         
         private static void CheckPawnForHediff(Pawn pawn, HediffDef hediffDef)
         {
+            // 再次检查是否为排除的Pawn类型
+            if (IsExcludedPawnType(pawn))
+                return;
+            
             // 检查pawn是否满足所有要求
             bool shouldHaveHediff = PawnMeetsAllRequirements(pawn, hediffDef);
             
@@ -169,6 +191,11 @@ namespace DivineDiurganate
             }
             
             pawn.health.AddHediff(hediff);
+            
+            if (Prefs.DevMode)
+            {
+                Log.Message($"[DD] 为 {pawn.LabelShort} 添加IdeoRoleHediff: {hediffDef.defName}");
+            }
         }
         
         private static void RemoveHediffIfExists(Pawn pawn, HediffDef hediffDef)
@@ -180,6 +207,11 @@ namespace DivineDiurganate
             if (hediff != null)
             {
                 pawn.health.RemoveHediff(hediff);
+                
+                if (Prefs.DevMode)
+                {
+                    Log.Message($"[DD] 从 {pawn.LabelShort} 移除IdeoRoleHediff: {hediffDef.defName}");
+                }
             }
         }
         
@@ -207,7 +239,7 @@ namespace DivineDiurganate
             return hediffToMemes.TryGetValue(hediffDef, out var memes) ? memes : new List<MemeDef>();
         }
         
-        // 强制刷新所有殖民者的Hediff状态
+        // 强制刷新所有殖民者的Hediff状态（排除DDmechunit）
         public static void RefreshAllColonists()
         {
             if (Current.Game == null || Current.Game.CurrentMap == null)
@@ -217,16 +249,35 @@ namespace DivineDiurganate
             if (map == null)
                 return;
                 
+            int checkedCount = 0;
+            int skippedCount = 0;
+                
             foreach (var pawn in map.mapPawns.FreeColonists)
             {
+                // 跳过DDmechunit
+                if (IsExcludedPawnType(pawn))
+                {
+                    skippedCount++;
+                    continue;
+                }
+                
                 CheckPawn(pawn);
+                checkedCount++;
             }
             
+            if (Prefs.DevMode)
+            {
+                Log.Message($"[DD] IdeoRoleHediff刷新完成: 检查{checkedCount}个殖民者，跳过{skippedCount}个DDmechunit");
+            }
         }
         
         // 当角色变化时调用
         public static void OnPawnRoleChanged(Pawn pawn)
         {
+            // 跳过DDmechunit
+            if (IsExcludedPawnType(pawn))
+                return;
+            
             if (pawn == null || !pawn.IsColonist)
                 return;
                 
@@ -236,10 +287,20 @@ namespace DivineDiurganate
         // 当Meme变化时调用
         public static void OnPawnMemeChanged(Pawn pawn)
         {
+            // 跳过DDmechunit
+            if (IsExcludedPawnType(pawn))
+                return;
+            
             if (pawn == null || !pawn.IsColonist)
                 return;
                 
             CheckPawn(pawn);
+        }
+        
+        // 检查某个Pawn是否被排除
+        public static bool IsPawnExcluded(Pawn pawn)
+        {
+            return IsExcludedPawnType(pawn);
         }
     }
 }

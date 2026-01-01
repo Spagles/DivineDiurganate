@@ -630,22 +630,6 @@ namespace DivineDiurganate
                     },
                     hotKey = KeyBindingDefOf.Misc1
                 };
-
-                // 新增：显示Hediff同步状态
-                if (Props.syncPilotHediffs && Prefs.DevMode)
-                {
-                    yield return new Command_Action
-                    {
-                        defaultLabel = "DD_CheckHediffSync".Translate(),
-                        defaultDesc = "DD_CheckHediffSyncDesc".Translate(),
-                        icon = ContentFinder<Texture2D>.Get("UI/Commands/Debug", false),
-                        action = () =>
-                        {
-                            CheckHediffSync();
-                            Messages.Message("Hediff同步状态已检查", mech, MessageTypeDefOf.SilentInput);
-                        }
-                    };
-                }
             }
         }
 

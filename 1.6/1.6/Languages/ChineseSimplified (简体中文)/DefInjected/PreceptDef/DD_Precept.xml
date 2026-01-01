@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: 战前布道 -->
+  <DD_Exorcist_PrewarSpeech.label>战前布道</DD_Exorcist_PrewarSpeech.label>
+  <!-- EN: 对即将到来的大战进行战前布道，每位与会者将根据演讲的质量获得庇护，庇护将直接地增强与会者的战斗能力。演讲的质量和驱魔人的社交属性相关。 -->
+  <DD_Exorcist_PrewarSpeech.description>对即将到来的大战进行战前布道，每位与会者将根据演讲的质量获得庇护，庇护将直接地增强与会者的战斗能力。演讲的质量和驱魔人的社交属性相关。</DD_Exorcist_PrewarSpeech.description>
+  
+  <!-- EN: Diurganate Clergy -->
+  <DD_IdeoRole_Clergy.label>双尾教牧师</DD_IdeoRole_Clergy.label>
+  <!-- EN: The Clergy of Diurganate is a very important position in the church, which is not generally devoted to missionary duties, but to the maintenance of various equipment and mechanical artifacts in the Diurganate and to the conduct of a series of consecration ceremonies. -->
+  <DD_IdeoRole_Clergy.description>圣双尾教的牧师在教会中是一个非常重要的职位，这个职位一般不专门负责传教，而是负责维护双尾神教中的各种装备和机械造物，并主持一系列的祝圣仪式。</DD_IdeoRole_Clergy.description>
+  
+  <!-- EN: Diurganate Exorcist -->
+  <DD_IdeoRole_Exorcist.label>双尾教驱魔人</DD_IdeoRole_Exorcist.label>
+  <!-- EN: The exorcists of Diurganate were generally taken on by the most fervent believers in the church, and it was not the standard cleric established by the Catholic Church, but still had a high degree of praise in civil societies, where they served as a benchmark for the removal of atrocities and the maintenance of order in the community, and because of the fervent faith, the holy word could be heard briefly on the battlefield. -->
+  <DD_IdeoRole_Exorcist.description>圣双尾教的驱魔人一般由教会中最狂热的信徒担当，它不是教廷规定的标准神职，但是在民间社团依然有很高的赞誉度，她们是社区中除暴安良、维护秩序的标杆，并且因为狂热的信仰，可以在战场上短暂地听到圣言。</DD_IdeoRole_Exorcist.description>
+  
+</LanguageData>

@@ -30,4 +30,11 @@
   <!-- EN: Finish -->
   <DD_Weapon_Deployed.stages.Finish.label>完成</DD_Weapon_Deployed.stages.Finish.label>
   
+  <!-- EN: Weapon Deployed -->
+  <DD_Weapon_Deployed_Long.label>武器部署</DD_Weapon_Deployed_Long.label>
+  <!-- EN: Part of the weapons in Diurganate Army cannot fire before being deployed -->
+  <DD_Weapon_Deployed_Long.description>某些双尾教国的武器需要部署后才能开火</DD_Weapon_Deployed_Long.description>
+  <!-- EN: Finish -->
+  <DD_Weapon_Deployed_Long.stages.Finish.label>完成</DD_Weapon_Deployed_Long.stages.Finish.label>
+  
 </LanguageData>

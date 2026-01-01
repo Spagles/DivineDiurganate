@@ -289,18 +289,5 @@ namespace DivineDiurganate
             Scribe_Values.Look(ref isOnMech, "isOnMech", false);
             Scribe_Values.Look(ref initialized, "initialized", false);
         }
-        
-        // 获取状态描述
-        public override string CompDescriptionExtra
-        {
-            get
-            {
-                if (isOnMech && linkedMech != null)
-                {
-                    return $"已同步到机甲{linkedMech.LabelShort}（机甲上的严重性: {Props.severityOnMech}）";
-                }
-                return $"未同步（Pawn上的严重性: {Props.severityOnPawn}）";
-            }
-        }
     }
 }

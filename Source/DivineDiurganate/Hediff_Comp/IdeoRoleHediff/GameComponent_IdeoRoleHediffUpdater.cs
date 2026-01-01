@@ -1,3 +1,4 @@
+// File: GameComponent_IdeoRoleHediffUpdater_Fixed.cs
 using System.Collections.Generic;
 using Verse;
 
@@ -6,7 +7,7 @@ namespace DivineDiurganate
     public class GameComponent_IdeoRoleHediffUpdater : GameComponent
     {
         private int lastUpdateTick = 0;
-        private const int UpdateIntervalTicks = 2500; // 1游戏天
+        private const int UpdateIntervalTicks = 300; // 1游戏天
         
         public GameComponent_IdeoRoleHediffUpdater(Game game)
         {
@@ -30,6 +31,7 @@ namespace DivineDiurganate
                 return;
                 
             int updatedCount = 0;
+            int skippedCount = 0;
             
             foreach (var map in Current.Game.Maps)
             {
@@ -38,12 +40,24 @@ namespace DivineDiurganate
                     
                 foreach (var pawn in map.mapPawns.FreeColonists)
                 {
+                    // 检查是否为DDmechunit
+                    if (IdeoRoleHediffManager.IsPawnExcluded(pawn))
+                    {
+                        skippedCount++;
+                        continue;
+                    }
+                    
                     if (pawn != null && pawn.Spawned && !pawn.Dead)
                     {
                         IdeoRoleHediffManager.CheckPawn(pawn);
                         updatedCount++;
                     }
                 }
+            }
+            
+            if (Prefs.DevMode && (updatedCount > 0 || skippedCount > 0))
+            {
+                Log.Message($"[DD] IdeoRoleHediff更新: 检查{updatedCount}个殖民者，跳过{skippedCount}个DDmechunit");
             }
         }
         
