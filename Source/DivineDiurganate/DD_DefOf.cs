@@ -31,7 +31,7 @@ namespace DivineDiurganate
     [DefOf]
     public static class DD_PreceptDefOf
     {
-        public static PreceptDef DD_IdeoRole_Exorcist;
+        public static PreceptDef DD_IdeoRole_Clergy;
         static DD_PreceptDefOf()
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(DD_PreceptDefOf));

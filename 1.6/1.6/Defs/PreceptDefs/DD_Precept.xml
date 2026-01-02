@@ -53,69 +53,6 @@
       <li>Mining</li>
     </roleDisabledWorkTags>
   </PreceptDef>
-  <PreceptDef ParentName="PreceptRoleSingleBase">
-    <defName>DD_IdeoRole_Exorcist</defName>
-    <label>Diurganate Exorcist</label>
-    <description>The exorcists of Diurganate were generally taken on by the most fervent believers in the church, and it was not the standard cleric established by the Catholic Church, but still had a high degree of praise in civil societies, where they served as a benchmark for the removal of atrocities and the maintenance of order in the community, and because of the fervent faith, the holy word could be heard briefly on the battlefield.</description>
-    <iconPath>DivineDiurganate/UI/Roles/DD_IdeoRole_Exorcist</iconPath>
-    <nameMaker>DD_NamerRoleExorcist</nameMaker>
-    <canRemoveInUI>false</canRemoveInUI>
-    <roleRequirements>
-      <li Class="RoleRequirement_MinSkillAny">
-        <skills>
-          <Melee>6</Melee>
-          <Shooting>6</Shooting>
-        </skills>
-      </li>
-    </roleRequirements>
-    <roleRequiredWorkTags>
-      <li>Violent</li>
-    </roleRequiredWorkTags>
-    <roleTags>
-      <li>DD_Exorcist</li>
-    </roleTags>
-    <requiredMemes>
-      <li>DD_law_Meme</li>
-    </requiredMemes>
-    <roleEffects>
-      <!-- <li Class="RoleEffect_PawnStatOffset">
-        <statDef>ConstructionSpeed</statDef>
-        <modifier>0.5</modifier>
-      </li>
-      <li Class="RoleEffect_PawnStatOffset">
-        <statDef>WorkSpeedGlobal</statDef>
-        <modifier>0.5</modifier>
-      </li> -->
-      <li Class="RoleEffect_PawnStatOffset">
-        <statDef>ShootingAccuracyPawn</statDef>
-        <modifier>5</modifier>
-      </li>
-      <li Class="RoleEffect_PawnStatOffset">
-        <statDef>AimingDelayFactor</statDef>
-        <modifier>-0.35</modifier>
-      </li>
-      <li Class="RoleEffect_PawnStatOffset">
-        <statDef>MeleeHitChance</statDef>
-        <modifier>5</modifier>
-      </li>
-      <li Class="RoleEffect_PawnStatOffset">
-        <statDef>MeleeDodgeChance</statDef>
-        <modifier>5</modifier>
-      </li>
-    </roleEffects>
-    <!-- 双尾教神职的技能 -->
-    <grantedAbilities>
-      <li>DD_Exorcist_PrewarSpeech</li>
-    </grantedAbilities>
-    <displayOrderInImpact>2</displayOrderInImpact>
-    <roleDisabledWorkTags>
-      <li>Crafting</li>
-      <li>Cooking</li>
-      <li>PlantWork</li>
-      <li>Mining</li>
-      <li>Constructing</li>
-    </roleDisabledWorkTags>
-  </PreceptDef>
   <RulePackDef>
     <defName>DD_NamerRoleClergy</defName>
     <rulePack>
@@ -131,21 +68,6 @@
       </rulesStrings>
     </rulePack>
   </RulePackDef>
-  <RulePackDef>
-    <defName>DD_NamerRoleExorcist</defName>
-    <rulePack>
-      <rulesStrings>
-        <li>r_roleName(p=4)->[memeExorcist]</li>
-        <li>r_roleName(p=2)->[memeAdjective] [memeExorcist]</li>
-        <li>r_roleName->[memeExorcist] of [chosenTheme]</li>
-        <li>r_roleName->[memeExorcist] of [keyDeity]</li>
-        <li>r_roleName->[memeExorcist] of [memeConcept]</li>
-        <li>r_roleName->[memeExorcist] of [chosenIdeoName]</li>
-        <li>r_roleName->[chosenAdjective] [memeExorcist]</li>
-        <li>r_roleName->[keyDeity]'s [memeExorcist]</li>
-      </rulesStrings>
-    </rulePack>
-  </RulePackDef>
 
   <AbilityGroupDef>
     <defName>ExorcistAbilityGroup</defName>
@@ -156,9 +78,9 @@
     </ritualRoleIds>
   </AbilityGroupDef>
   <AbilityDef>
-    <defName>DD_Exorcist_PrewarSpeech</defName>
+    <defName>DD_Moralist_PrewarSpeech</defName>
     <label>Pre-battle Sermon</label>
-    <description>The exorcists of DivineDiurganate deliver a pre-battle sermon for the upcoming battle, and each participant will receive a divine blessing based on the quality of the speech, making them braver and more difficult to kill on the battlefield. The quality of the speech is related to the social attributes of the exorcist.</description>
+    <description>The Moralist of DivineDiurganate deliver a pre-battle sermon for the upcoming battle, and each participant will receive a divine blessing based on the quality of the speech, making them braver and more difficult to kill on the battlefield. The quality of the speech is related to the social attributes of the exorcist.</description>
     <groupDef>ExorcistAbilityGroup</groupDef>
     <iconPath>UI/Abilities/LeaderSpeech</iconPath>
     <showWhenDrafted>false</showWhenDrafted>
@@ -178,43 +100,43 @@
         <capacity>Talking</capacity>
       </li>
       <li Class="CompProperties_AbilityStartRitual">
-        <ritualDef>DD_Exorcist_PrewarSpeech</ritualDef>
+        <ritualDef>DD_Moralist_PrewarSpeech</ritualDef>
         <allowedForChild>false</allowedForChild>
       </li>
     </comps>
   </AbilityDef>
   <PreceptDef>
-    <defName>DD_Exorcist_PrewarSpeech</defName>
+    <defName>DD_Moralist_PrewarSpeech</defName>
     <label>Pre-battle Sermon</label>
-    <description>The exorcists of DivineDiurganate deliver a pre-battle sermon for the upcoming battle, and each participant will receive a divine blessing based on the quality of the speech, making them braver and more difficult to kill on the battlefield. The quality of the speech is related to the social attributes of the exorcist.</description>
+    <description>The Moralist of DivineDiurganate deliver a pre-battle sermon for the upcoming battle, and each participant will receive a divine blessing based on the quality of the speech, making them braver and more difficult to kill on the battlefield. The quality of the speech is related to the social attributes of the exorcist.</description>
     <issue>Ritual</issue>
     <preceptClass>Precept_Ritual</preceptClass>
     <visible>false</visible>
     <countsTowardsPreceptLimit>false</countsTowardsPreceptLimit>
     <selectionWeight>1.0</selectionWeight>
-    <ritualPatternBase>DD_Exorcist_PrewarSpeech</ritualPatternBase>
+    <ritualPatternBase>DD_Moralist_PrewarSpeech</ritualPatternBase>
     <iconPath>UI/Abilities/LeaderSpeech</iconPath>
     <ignoreNameUniqueness>true</ignoreNameUniqueness>
     <useCooldownFromAbilityGroupDef>ExorcistAbilityGroup</useCooldownFromAbilityGroupDef>
     <iconIgnoresIdeoColor>true</iconIgnoresIdeoColor>
-    <sourcePawnRoleDef>DD_IdeoRole_Exorcist</sourcePawnRoleDef>
-    <sourceAbilityDef>DD_Exorcist_PrewarSpeech</sourceAbilityDef>
+    <sourcePawnRoleDef>IdeoRole_Moralist</sourcePawnRoleDef>
+    <sourceAbilityDef>DD_Moralist_PrewarSpeech</sourceAbilityDef>
     <classicExtra>true</classicExtra>
     <classic>true</classic>
   </PreceptDef>
   <RitualPatternDef>
-    <defName>DD_Exorcist_PrewarSpeech</defName>
-    <ritualBehavior>DD_Exorcist_PrewarSpeech</ritualBehavior>
+    <defName>DD_Moralist_PrewarSpeech</defName>
+    <ritualBehavior>DD_Moralist_PrewarSpeech</ritualBehavior>
     <ritualObligationTargetFilter>AnyIdeoBuildingOrRitualSpot</ritualObligationTargetFilter>
     <ritualTargetFilter>IdeoBuildingOrRitualSpot</ritualTargetFilter>
     <alwaysStartAnytime>true</alwaysStartAnytime>
     <ritualOnlyForIdeoMembers>true</ritualOnlyForIdeoMembers>
     <canMergeGizmosFromDifferentIdeos>false</canMergeGizmosFromDifferentIdeos>
-    <ritualOutcomeEffect>DD_Exorcist_PrewarSpeech_EndEffect</ritualOutcomeEffect>
+    <ritualOutcomeEffect>DD_Moralist_PrewarSpeech_EndEffect</ritualOutcomeEffect>
   </RitualPatternDef>
   <RitualBehaviorDef>
-    <defName>DD_Exorcist_PrewarSpeech</defName>
-    <workerClass>DivineDiurganate.RitualBehaviorWorker_ExorcistSpeech</workerClass>
+    <defName>DD_Moralist_PrewarSpeech</defName>
+    <workerClass>RitualBehaviorWorker_Speech</workerClass>
     <durationTicks>600</durationTicks>
     <letterTitle>{RITUAL_labelCap}</letterTitle>
     <letterText>{SPEAKER_labelShort} is currently performing {RITUAL_labelIndef}. If all goes well, {IDEOMEMBERS} will be inspired by {SPEAKER_labelShort}'s sermon to gain greater combat abilities for a period of time. Better results from the ritual will help {IDEOMEMBERS} gain even more abilities and grant them additional mood.</letterText>
@@ -223,7 +145,7 @@
         <label>Speaker</label>
         <tag>DD_Exorcist</tag>
         <id>speaker</id>
-        <precept>DD_IdeoRole_Exorcist</precept>
+        <precept>IdeoRole_Moralist</precept>
         <required>True</required>
         <maxCount>1</maxCount>
         <countsAsParticipant>False</countsAsParticipant>
@@ -257,13 +179,13 @@
     </stages>
   </RitualBehaviorDef>
   <RitualOutcomeEffectDef>
-    <defName>DD_Exorcist_PrewarSpeech_EndEffect</defName>
+    <defName>DD_Moralist_PrewarSpeech_EndEffect</defName>
     <description>Depending on the quality of the ritual, participants will receive an additional 4 days of mood and combat ability boosts.</description>
     <workerClass>RitualOutcomeEffectWorker_Speech</workerClass>
     <comps>
       <li Class="RitualOutcomeComp_PawnStatScaled">
         <label>Social level of {PAWN_labelShort}</label>
-        <labelAbstract>Social level of Exorcists</labelAbstract>
+        <labelAbstract>Social level of Moralist</labelAbstract>
         <roleId>speaker</roleId>
         <statDef>SocialImpact</statDef>
         <curve>
@@ -298,7 +220,7 @@
         </curve>
       </li>
       <li Class="DivineDiurganate.RitualOutcomeComp_ApplyHediffToParticipants">
-        <hediffToApply>DD_Exorcist_PrewarSpeech_Hediff</hediffToApply>
+        <hediffToApply>DD_Moralist_PrewarSpeech_Hediff</hediffToApply>
         <severityPerQuality>1</severityPerQuality>
         <applyToAllParticipants>true</applyToAllParticipants>
         <requirePositiveQuality>true</requirePositiveQuality>
@@ -332,7 +254,7 @@
     </outcomeChances>
   </RitualOutcomeEffectDef>
   <HediffDef>
-    <defName>DD_Exorcist_PrewarSpeech_Hediff</defName>
+    <defName>DD_Moralist_PrewarSpeech_Hediff</defName>
     <label>Combat Motivation</label>
     <description>All creatures created, in heaven, on earth, beneath the earth, in the depths of the sea, and between heaven and earth, say, "May praise, honor, glory, and power be given to the holy double-tail forever and ever."</description>
     <defaultLabelColor>(0.52, 1, 0.95)</defaultLabelColor>

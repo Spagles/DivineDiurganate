@@ -2,22 +2,22 @@
 <LanguageData>
   
   <!-- EN: 根据仪式质量，参加者将获得4天的额外心情和战斗能力增强。 -->
-  <DD_Exorcist_PrewarSpeech_EndEffect.description>根据仪式质量，参加者将获得4天的额外心情和战斗能力增强。</DD_Exorcist_PrewarSpeech_EndEffect.description>
+  <DD_Moralist_PrewarSpeech_EndEffect.description>根据仪式质量，参加者将获得4天的额外心情和战斗能力增强。</DD_Moralist_PrewarSpeech_EndEffect.description>
   <!-- EN: {PAWN_labelShort} 的社交等级 -->
-  <DD_Exorcist_PrewarSpeech_EndEffect.comps.0.label>{PAWN_labelShort} 的社交等级</DD_Exorcist_PrewarSpeech_EndEffect.comps.0.label>
+  <DD_Moralist_PrewarSpeech_EndEffect.comps.0.label>{PAWN_labelShort} 的社交等级</DD_Moralist_PrewarSpeech_EndEffect.comps.0.label>
   <!-- EN: 驱魔人的社交等级 -->
-  <DD_Exorcist_PrewarSpeech_EndEffect.comps.0.labelAbstract>驱魔人的社交等级</DD_Exorcist_PrewarSpeech_EndEffect.comps.0.labelAbstract>
+  <DD_Moralist_PrewarSpeech_EndEffect.comps.0.labelAbstract>传教士的社交等级</DD_Moralist_PrewarSpeech_EndEffect.comps.0.labelAbstract>
   <!-- EN: 与会者数量 -->
-  <DD_Exorcist_PrewarSpeech_EndEffect.comps.1.label>与会者数量</DD_Exorcist_PrewarSpeech_EndEffect.comps.1.label>
+  <DD_Moralist_PrewarSpeech_EndEffect.comps.1.label>与会者数量</DD_Moralist_PrewarSpeech_EndEffect.comps.1.label>
   <!-- EN: 房间观感 -->
-  <DD_Exorcist_PrewarSpeech_EndEffect.comps.2.label>房间观感</DD_Exorcist_PrewarSpeech_EndEffect.comps.2.label>
+  <DD_Moralist_PrewarSpeech_EndEffect.comps.2.label>房间观感</DD_Moralist_PrewarSpeech_EndEffect.comps.2.label>
   <!-- EN: 糟糕的 -->
-  <DD_Exorcist_PrewarSpeech_EndEffect.outcomeChances.0.label>糟糕的</DD_Exorcist_PrewarSpeech_EndEffect.outcomeChances.0.label>
+  <DD_Moralist_PrewarSpeech_EndEffect.outcomeChances.0.label>糟糕的</DD_Moralist_PrewarSpeech_EndEffect.outcomeChances.0.label>
   <!-- EN: 平平无奇的 -->
-  <DD_Exorcist_PrewarSpeech_EndEffect.outcomeChances.1.label>平平无奇的</DD_Exorcist_PrewarSpeech_EndEffect.outcomeChances.1.label>
+  <DD_Moralist_PrewarSpeech_EndEffect.outcomeChances.1.label>平平无奇的</DD_Moralist_PrewarSpeech_EndEffect.outcomeChances.1.label>
   <!-- EN: 鼓舞人心的 -->
-  <DD_Exorcist_PrewarSpeech_EndEffect.outcomeChances.2.label>鼓舞人心的</DD_Exorcist_PrewarSpeech_EndEffect.outcomeChances.2.label>
+  <DD_Moralist_PrewarSpeech_EndEffect.outcomeChances.2.label>鼓舞人心的</DD_Moralist_PrewarSpeech_EndEffect.outcomeChances.2.label>
   <!-- EN: 令人兴奋的 -->
-  <DD_Exorcist_PrewarSpeech_EndEffect.outcomeChances.3.label>令人兴奋的</DD_Exorcist_PrewarSpeech_EndEffect.outcomeChances.3.label>
+  <DD_Moralist_PrewarSpeech_EndEffect.outcomeChances.3.label>令人兴奋的</DD_Moralist_PrewarSpeech_EndEffect.outcomeChances.3.label>
   
 </LanguageData>
