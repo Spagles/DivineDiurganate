@@ -71,23 +71,8 @@ namespace DivineDiurganate.HarmonyPatches
                 // 返回空结果，跳过原方法
                 __result = new DamageWorker.DamageResult();
                 
-                // 可选：在开发模式下显示日志
-                if (Prefs.DevMode)
-                {
-                    Log.Message($"[DD Armor] {__instance.LabelCap} blocked attack: " +
-                        $"Damage={dinfo.Amount}, Penetration={armorPenetration:P0}, " +
-                        $"PierceDamage={piercingDamage:F1}, Armor={armorValue:F1}");
-                }
                 
                 return false; // 跳过原TakeDamage方法
-            }
-            
-            // 阻挡失败，继续执行原方法
-            if (Prefs.DevMode)
-            {
-                Log.Message($"[DD Armor] {__instance.LabelCap} failed to block: " +
-                    $"Damage={dinfo.Amount}, Penetration={armorPenetration:P0}, " +
-                    $"PierceDamage={piercingDamage:F1}, Armor={armorValue:F1}");
             }
             
             return true;

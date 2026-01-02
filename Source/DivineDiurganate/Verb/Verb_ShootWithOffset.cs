@@ -284,11 +284,6 @@ namespace DivineDiurganate
                 
                 // 增加射击计数
                 counter.IncrementShotCount();
-                
-                if (Prefs.DevMode)
-                {
-                    Log.Message($"[DD] 武器 {equipmentSource.Label} 射击计数: {counter.ShotCount}");
-                }
             }
         }
 
@@ -319,12 +314,6 @@ namespace DivineDiurganate
 
                     // 将2D偏移转换为3D并应用到绘制位置
                     originalDrawPos += new Vector3(rotatedOffset.x, 0f, rotatedOffset.y);
-                    
-                    // 在开发模式下显示偏移信息
-                    if (Prefs.DevMode)
-                    {
-                        Log.Message($"[DD] 射击偏移: 武器 {equipmentSource.Label}, 计数 {shotIndex}, 偏移量 {offset}, 旋转后 {rotatedOffset}");
-                    }
                 }
             }
 

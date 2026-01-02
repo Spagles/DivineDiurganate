@@ -364,11 +364,6 @@ namespace DivineDiurganate
             {
                 FilthMaker.TryMakeFilth(base.Position, map, def.projectile.filth, def.projectile.filthCount.RandomInRange);
             }
-            
-            if (Prefs.DevMode)
-            {
-                Log.Message($"[DD] 穿透子弹爆炸: 位置 {Position}, 半径 {def.projectile.explosionRadius}");
-            }
         }
     }
 }

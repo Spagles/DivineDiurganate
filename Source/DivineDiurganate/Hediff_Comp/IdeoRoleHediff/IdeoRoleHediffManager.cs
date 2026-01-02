@@ -134,10 +134,6 @@ namespace DivineDiurganate
             // 如果pawn是DDmechunit，跳过检查
             if (IsExcludedPawnType(pawn))
             {
-                if (Prefs.DevMode)
-                {
-                    Log.Message($"[DD] 跳过DDmechunit的IdeoRoleHediff检查: {pawn.LabelShort}");
-                }
                 return;
             }
             
@@ -191,11 +187,6 @@ namespace DivineDiurganate
             }
             
             pawn.health.AddHediff(hediff);
-            
-            if (Prefs.DevMode)
-            {
-                Log.Message($"[DD] 为 {pawn.LabelShort} 添加IdeoRoleHediff: {hediffDef.defName}");
-            }
         }
         
         private static void RemoveHediffIfExists(Pawn pawn, HediffDef hediffDef)
@@ -207,11 +198,6 @@ namespace DivineDiurganate
             if (hediff != null)
             {
                 pawn.health.RemoveHediff(hediff);
-                
-                if (Prefs.DevMode)
-                {
-                    Log.Message($"[DD] 从 {pawn.LabelShort} 移除IdeoRoleHediff: {hediffDef.defName}");
-                }
             }
         }
         
@@ -263,11 +249,6 @@ namespace DivineDiurganate
                 
                 CheckPawn(pawn);
                 checkedCount++;
-            }
-            
-            if (Prefs.DevMode)
-            {
-                Log.Message($"[DD] IdeoRoleHediff刷新完成: 检查{checkedCount}个殖民者，跳过{skippedCount}个DDmechunit");
             }
         }
         

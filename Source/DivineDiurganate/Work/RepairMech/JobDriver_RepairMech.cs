@@ -337,9 +337,6 @@ namespace DivineDiurganate
                 
                 Mech.health.AddHediff(injury);
                 
-                // 记录修复日志
-                Log.Message($"[DD] 将缺失部位 {missingPart.Part.def.defName} 转换为伤害 {injuryDef.defName}，严重性: {injurySeverity}");
-                
                 return true;
             }
             catch (System.Exception ex)

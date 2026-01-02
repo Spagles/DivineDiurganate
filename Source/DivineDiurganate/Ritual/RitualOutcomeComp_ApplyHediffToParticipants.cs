@@ -66,12 +66,6 @@ namespace DivineDiurganate
                 
                 // 标记为已应用
                 ritualData.hediffApplied = true;
-                
-                // 记录日志
-                if (Prefs.DevMode)
-                {
-                    Log.Message($"[DD] 为 {participants.Count} 名参与者应用Hediff {hediffToApply.defName}，质量: {quality:F2}，严重性: {severity:F2}");
-                }
             }
             catch (System.Exception ex)
             {

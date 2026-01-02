@@ -1,3 +1,4 @@
+// File: JobDriver_EnterMech.cs (不再保留机甲)
 using RimWorld;
 using System.Collections.Generic;
 using Verse;
@@ -13,8 +14,14 @@ namespace DivineDiurganate
             Pawn pawn = this.pawn;
             LocalTargetInfo target = this.job.GetTarget(MechIndex);
 
-            // 尝试保留机甲
-            return pawn.Reserve(target, job, 1, -1, null, errorOnFailed);
+            // 不再保留机甲，这样多个殖民者可以同时被命令进入同一个机甲
+            // 只需要检查殖民者是否可以到达机甲
+            if (!pawn.CanReach(target, PathEndMode.Touch, Danger.Deadly))
+            {
+                return false;
+            }
+            
+            return true;
         }
 
         protected override IEnumerable<Toil> MakeNewToils()
@@ -25,14 +32,12 @@ namespace DivineDiurganate
                 var mech = TargetThingA as DDmechunit;
                 if (mech == null || mech.Destroyed)
                 {
-                    Messages.Message("DD_MechDestroyed".Translate(), MessageTypeDefOf.RejectInput, false);
                     return true;
                 }
 
                 var comp = mech.GetComp<CompMechPilotHolder>();
                 if (comp == null || comp.IsFull || !comp.CanAddPilot(pawn))
                 {
-                    Messages.Message("DD_MechCannotEnter".Translate(), MessageTypeDefOf.RejectInput, false);
                     return true;
                 }
 
@@ -62,10 +67,6 @@ namespace DivineDiurganate
                     comp.AddPilot(pawn);
                     Messages.Message("DD_PilotEnteredMech".Translate(pawn.LabelShort, mech.LabelShort),
                         MessageTypeDefOf.PositiveEvent, false);
-                }
-                else
-                {
-                    Messages.Message("DD_MechCannotEnter".Translate(), MessageTypeDefOf.RejectInput, false);
                 }
             };
             enterToil.defaultCompleteMode = ToilCompleteMode.Instant;

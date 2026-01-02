@@ -318,6 +318,7 @@
         <minRange>3.9</minRange>
         <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
         <soundCast>DD_DHM70_Rampart_Mech_Weapon_FireSound</soundCast>
+        <canGoWild>false</canGoWild>
         <targetParams>
           <canTargetLocations>true</canTargetLocations>
         </targetParams>
@@ -380,7 +381,7 @@
 			<stoppingPower>5</stoppingPower>
 			<armorPenetrationBase>2</armorPenetrationBase>
 			<speed>65</speed>
-      <explosionRadius>2.9</explosionRadius>
+      <explosionRadius>1.9</explosionRadius>
       <soundExplode>DD_DHM70_Rampart_Mech_Weapon_ExplosiveSound</soundExplode>
     </projectile>
   </ThingDef>

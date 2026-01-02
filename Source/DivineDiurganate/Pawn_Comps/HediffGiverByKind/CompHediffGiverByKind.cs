@@ -38,9 +38,6 @@ namespace DivineDiurganate
         {
             try
             {
-                if (Props.debugMode)
-                    Log.Message($"[WFE] Applying hediffs to {pawn.LabelCap}, PawnKind: {pawn.kindDef?.defName}");
-                
                 // 获取对应PawnKind的hediff配置
                 float addChance;
                 bool allowDuplicates;
@@ -48,16 +45,12 @@ namespace DivineDiurganate
                 
                 if (hediffs == null || hediffs.Count == 0)
                 {
-                    if (Props.debugMode)
-                        Log.Message($"[WFE] No hediffs configured for {pawn.kindDef?.defName}");
                     return;
                 }
                 
                 // 检查概率
                 if (addChance < 1.0f && Rand.Value > addChance)
                 {
-                    if (Props.debugMode)
-                        Log.Message($"[WFE] Chance check failed for {pawn.LabelCap}");
                     return;
                 }
                 
@@ -73,20 +66,12 @@ namespace DivineDiurganate
                 {
                     if (!allowDuplicates && pawn.health.hediffSet.HasHediff(hediffDef))
                     {
-                        if (Props.debugMode)
-                            Log.Message($"[WFE] Skipping duplicate hediff: {hediffDef.defName}");
                         continue;
                     }
                     
                     pawn.health.AddHediff(hediffDef);
                     addedCount++;
-                    
-                    if (Props.debugMode)
-                        Log.Message($"[WFE] Added hediff: {hediffDef.defName} to {pawn.LabelCap}");
                 }
-                
-                if (Props.debugMode && addedCount > 0)
-                    Log.Message($"[WFE] Added {addedCount} hediffs to {pawn.LabelCap}");
             }
             catch (Exception ex)
             {
@@ -102,8 +87,6 @@ namespace DivineDiurganate
                 if (existingHediff != null)
                 {
                     pawn.health.RemoveHediff(existingHediff);
-                    if (Props.debugMode)
-                        Log.Message($"[WFE] Removed existing hediff: {hediffDef.defName}");
                 }
             }
         }
@@ -123,8 +106,6 @@ namespace DivineDiurganate
                 ApplyHediffsToPawn(pawn);
                 hediffsApplied = true;
                 appliedPawnKind = pawn.kindDef;
-                
-                Log.Message($"[WFE Debug] Applied hediffs to {pawn.LabelCap}");
             }
         }
         

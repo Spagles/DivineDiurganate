@@ -38,8 +38,6 @@ namespace DivineDiurganate
                         Log.Warning($"[DD] Error checking ThingDef {def.defName}: {ex.Message}");
                     }
                 }
-
-                Log.Message($"[DD] Found {cachedMechDefs.Count} mech definitions");
             }
 
             return cachedMechDefs;

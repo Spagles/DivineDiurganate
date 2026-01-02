@@ -10,6 +10,7 @@ namespace DivineDiurganate
         public static JobDef DD_RefuelMech;
         public static JobDef DD_RepairMech;
         public static JobDef DD_ForceEjectPilot;
+        public static JobDef DD_CarryToMech;
         static DD_JobDefOf()
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(DD_JobDefOf));

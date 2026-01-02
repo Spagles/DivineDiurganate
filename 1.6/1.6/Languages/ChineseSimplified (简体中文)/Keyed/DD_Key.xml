@@ -45,6 +45,9 @@
   <DD_MechFull>机甲驾驶员位置已满</DD_MechFull>
   <DD_CannotBecomePilot>不能成为该机甲的驾驶员</DD_CannotBecomePilot>
   <DD_MechTooDamagedForEntry>该机甲损坏严重无法进入</DD_MechTooDamagedForEntry>
+  <DD_DisabledColonistRequiresCarry>（需要协助）</DD_DisabledColonistRequiresCarry>
+  <DD_NoAvailableCarrier>没有可用的协助者</DD_NoAvailableCarrier>
+  <DD_CarrierAssigned>已指派 {0} 协助 {1} 进入机甲</DD_CarrierAssigned>
 
   <DD_PilotsEjectedDueToLowHealth>{0}的损伤过于严重，驾驶员已被保险系统弹出</DD_PilotsEjectedDueToLowHealth>
 

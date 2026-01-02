@@ -149,10 +149,6 @@ namespace DivineDiurganate
             // 触发同步效果
             TriggerSyncEffect();
             
-            if (Prefs.DevMode)
-            {
-                Log.Message($"[DD] {parent.pawn.LabelShort}的{parent.def.label}同步到机甲{mech.LabelShort}");
-            }
         }
         
         // 从机甲断开
@@ -174,11 +170,6 @@ namespace DivineDiurganate
             
             // 恢复Pawn的严重性
             parent.Severity = Props.severityOnPawn;
-            
-            if (Prefs.DevMode)
-            {
-                Log.Message($"[DD] {parent.pawn.LabelShort}的{parent.def.label}从机甲{oldMech.LabelShort}断开");
-            }
         }
         
         // 在机甲上添加Hediff

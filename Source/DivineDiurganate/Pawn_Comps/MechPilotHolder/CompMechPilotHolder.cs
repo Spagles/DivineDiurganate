@@ -1,4 +1,4 @@
-// File: CompMechPilotHolder_Fixed.cs
+// File: CompMechPilotHolder.cs (添加残疾殖民者搬运逻辑)
 using DivineDiurganate;
 using RimWorld;
 using System;
@@ -201,11 +201,6 @@ namespace DivineDiurganate
                 {
                     syncedHediffs[pawn] = hediffsToSync;
                 }
-
-                if (Prefs.DevMode && hediffsToSync.Count > 0)
-                {
-                    Log.Message($"[DD] 为{pawn.LabelShort}同步了{hediffsToSync.Count}个Hediff到机甲{mech.LabelShort}");
-                }
             }
             catch (Exception ex)
             {
@@ -274,11 +269,6 @@ namespace DivineDiurganate
                     var hediff = HediffMaker.MakeHediff(Props.autoHediffDef, pawn);
                     hediff.Severity = Props.autoHediffSeverity;
                     pawn.health.AddHediff(hediff);
-
-                    if (Prefs.DevMode)
-                    {
-                        Log.Message($"[DD] 为进入的{pawn.LabelShort}自动添加了{Props.autoHediffDef.label}");
-                    }
                 }
             }
             catch (Exception ex)
@@ -319,7 +309,7 @@ namespace DivineDiurganate
                 var pilotsToRemove = new List<Pawn>();
                 foreach (var thing in innerContainer)
                 {
-                    if (thing is Pawn pawn && (pawn.Dead || pawn.Downed))
+                    if (thing is Pawn pawn && (pawn.Dead))
                     {
                         pilotsToRemove.Add(pawn);
                     }
@@ -506,8 +496,13 @@ namespace DivineDiurganate
         // 修改 CanAddPilot 方法，添加血量检查
         public bool CanAddPilot(Pawn pawn)
         {
-            if (pawn == null || pawn.Dead || pawn.Downed)
+            if (pawn == null || pawn.Dead)
                 return false;
+            
+            // 允许无法行动但还活着的殖民者
+            if (pawn.Downed)
+                return true; // 这是新增的关键修改
+            
             if (!HasRoom)
                 return false;
             if (innerContainer.Contains(pawn))
@@ -531,12 +526,25 @@ namespace DivineDiurganate
             return true;
         }
 
+        // 修改：检查殖民者是否能够自行移动到机甲
+        private bool CanPawnMoveToMech(Pawn pawn, DDmechunit mech)
+        {
+            if (pawn == null || mech == null)
+                return false;
+            
+            // 如果殖民者无法行动，需要搬运
+            if (pawn.Downed)
+                return false;
+            
+            // 检查殖民者是否能到达机甲
+            return pawn.CanReach(mech, PathEndMode.Touch, Danger.Deadly);
+        }
+
         // 修改 CompMechPilotHolder 的 CheckLowHealth 方法
         private void CheckLowHealth()
         {
             if (IsBelowHealthThreshold && HasPilots)
             {
-                Log.Message($"[DD] CompMechPilotHolder - 检测到低血量，弹出驾驶员");
                 // 如果低于阈值且有驾驶员，弹出所有驾驶员
                 EjectPilotsDueToLowHealth();
             }
@@ -870,6 +878,7 @@ namespace DivineDiurganate
             ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, GetDirectlyHeldThings());
         }
 
+        // 修改：显示驾驶员选择菜单，包含无法行动的殖民者
         private void ShowPilotSelectionMenu()
         {
             // 修复：确保parent是DDmechunit类型
@@ -878,18 +887,24 @@ namespace DivineDiurganate
 
             List<FloatMenuOption> options = new List<FloatMenuOption>();
 
-            // 获取所有可用的殖民者
-            var availableColonists = mech.Map.mapPawns.FreeColonists
-                .Where(p => CanAddPilot(p) && p.CanReach(mech, PathEndMode.Touch, Danger.Deadly))
+            // 获取所有可用的殖民者（包括无法行动的）
+            var allColonists = mech.Map.mapPawns.FreeColonists
+                .Where(p => CanAddPilot(p))
                 .ToList();
 
-            if (availableColonists.Count == 0)
+            // 分类：能够行动和无法行动的
+            var ableColonists = allColonists.Where(p => CanPawnMoveToMech(p, mech)).ToList();
+            var disabledColonists = allColonists.Where(p => !CanPawnMoveToMech(p, mech)).ToList();
+
+            // 为能够行动的殖民者创建选项
+            if (ableColonists.Count == 0 && disabledColonists.Count == 0)
             {
                 options.Add(new FloatMenuOption("DD_NoAvailablePilots".Translate(), null));
             }
             else
             {
-                foreach (var colonist in availableColonists)
+                // 能够行动的殖民者：直接进入
+                foreach (var colonist in ableColonists)
                 {
                     string colonistLabel = colonist.LabelShortCap;
                     Action action = () => OrderColonistToEnterMech(colonist);
@@ -899,6 +914,30 @@ namespace DivineDiurganate
                         action,
                         colonist,
                         Color.white,
+                        MenuOptionPriority.Default,
+                        null,
+                        null,
+                        0f,
+                        null,
+                        null,
+                        true,
+                        0
+                    );
+
+                    options.Add(option);
+                }
+
+                // 无法行动的殖民者：需要搬运
+                foreach (var colonist in disabledColonists)
+                {
+                    string colonistLabel = colonist.LabelShortCap + " " + "DD_DisabledColonistRequiresCarry".Translate();
+                    Action action = () => OrderCarryDisabledColonistToMech(colonist);
+
+                    FloatMenuOption option = new FloatMenuOption(
+                        colonistLabel,
+                        action,
+                        colonist,
+                        Color.yellow,
                         MenuOptionPriority.Default,
                         null,
                         null,
@@ -925,6 +964,52 @@ namespace DivineDiurganate
             // 为殖民者安排进入机甲的工作
             Job job = JobMaker.MakeJob(DD_JobDefOf.DD_EnterMech, mech);
             colonist.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+        }
+
+        // 新增：为残疾殖民者安排搬运工作
+        private void OrderCarryDisabledColonistToMech(Pawn disabledColonist)
+        {
+            if (!(parent is DDmechunit mech) || disabledColonist == null)
+                return;
+
+            // 寻找最近的、能够搬运的殖民者
+            Pawn carrier = FindClosestAvailableCarrier(disabledColonist, mech);
+            
+            if (carrier == null)
+            {
+                Messages.Message("DD_NoAvailableCarrier".Translate(disabledColonist.LabelShortCap), 
+                    parent, MessageTypeDefOf.RejectInput);
+                return;
+            }
+
+            // 为搬运者安排搬运工作
+            Job job = JobMaker.MakeJob(DD_JobDefOf.DD_CarryToMech, disabledColonist, mech);
+            carrier.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+            
+            Messages.Message("DD_CarrierAssigned".Translate(carrier.LabelShortCap, disabledColonist.LabelShortCap), 
+                parent, MessageTypeDefOf.PositiveEvent);
+        }
+
+        // 新增：寻找最近的可用搬运者
+        private Pawn FindClosestAvailableCarrier(Pawn disabledColonist, DDmechunit mech)
+        {
+            if (disabledColonist.Map == null)
+                return null;
+
+            // 寻找能够行动的殖民者，并且能够搬运
+            var potentialCarriers = disabledColonist.Map.mapPawns.FreeColonists
+                .Where(p => p != disabledColonist && !p.Downed && 
+                           p.CanReserveAndReach(disabledColonist, PathEndMode.OnCell, Danger.Deadly, 1, -1, null, false) &&
+                           p.CanReserveAndReach(mech, PathEndMode.Touch, Danger.Deadly, 1, -1, null, false))
+                .ToList();
+
+            if (potentialCarriers.Count == 0)
+                return null;
+
+            // 选择最近的殖民者
+            return potentialCarriers
+                .OrderBy(p => p.Position.DistanceTo(disabledColonist.Position))
+                .FirstOrDefault();
         }
     }
 }

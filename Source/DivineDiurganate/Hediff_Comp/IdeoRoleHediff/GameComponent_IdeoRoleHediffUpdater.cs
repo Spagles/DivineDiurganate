@@ -54,11 +54,6 @@ namespace DivineDiurganate
                     }
                 }
             }
-            
-            if (Prefs.DevMode && (updatedCount > 0 || skippedCount > 0))
-            {
-                Log.Message($"[DD] IdeoRoleHediff更新: 检查{updatedCount}个殖民者，跳过{skippedCount}个DDmechunit");
-            }
         }
         
         public override void ExposeData()

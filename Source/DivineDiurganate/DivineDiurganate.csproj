@@ -129,6 +129,7 @@
     <Compile Include="Work\EnterMech\WorkGiver_EnterMech.cs" />
     <Compile Include="Work\ForceEjectPilot\FloatMenuOptionProvider_ForceEjectPilot.cs" />
     <Compile Include="Work\ForceEjectPilot\JobDriver_ForceEjectPilot.cs" />
+    <Compile Include="Work\JobDriver_CarryToMech.cs" />
     <Compile Include="Work\RefuelMech\JobDriver_RefuelMech.cs" />
     <Compile Include="Work\RefuelMech\WorkGiver_RefuelMech.cs" />
     <Compile Include="Work\RepairMech\JobDriver_RepairMech.cs" />

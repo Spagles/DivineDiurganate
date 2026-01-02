@@ -64,4 +64,10 @@
     <!-- <canBeForcedByDuty>true</canBeForcedByDuty>
     <makeTargetPrisoner>false</makeTargetPrisoner> -->
   </JobDef>
+  <JobDef>
+    <defName>DD_CarryToMech</defName>
+    <driverClass>DivineDiurganate.JobDriver_CarryToMech</driverClass>
+    <reportString>carrying TargetA to TargetB.</reportString>
+    <suspendable>false</suspendable>
+  </JobDef>
 </Defs>
