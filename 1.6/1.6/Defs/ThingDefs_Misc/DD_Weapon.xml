@@ -374,7 +374,7 @@
     </recipeMaker>
     <statBases>
       <WorkToMake>7500</WorkToMake>
-      <Mass>2</Mass>
+      <Mass>5</Mass>
 			<AccuracyTouch>0.65</AccuracyTouch>
 			<AccuracyShort>0.85</AccuracyShort>
 			<AccuracyMedium>0.75</AccuracyMedium>
@@ -444,7 +444,7 @@
     </recipeMaker>
     <statBases>
       <WorkToMake>5000</WorkToMake>
-      <Mass>1.4</Mass>
+      <Mass>10</Mass>
       <AccuracyTouch>0.45</AccuracyTouch>
       <AccuracyShort>0.75</AccuracyShort>
       <AccuracyMedium>0.8</AccuracyMedium>
@@ -476,6 +476,7 @@
 			<li>RK_RangeWeapon</li>
 			<li>DD_RatkinCrusader_Heavy_Weapon</li>
 			<li>DD_RatkinClergy_Weapon</li>
+			<li>DD_Maple_Sugar_Weapon</li>
 		</weaponTags>
     <generateCommonality>0.01</generateCommonality>
     <tradeability>None</tradeability>

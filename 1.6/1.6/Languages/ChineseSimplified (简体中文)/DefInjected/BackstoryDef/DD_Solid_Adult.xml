@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: [PAWN_nameDef] is a nun from the Divine Diurganate. Compared to the followers of various folk religions in the Ratkin Kingdom, the followers of the Diurganate are more radical, thus [PAWN_pronoun] is different from the nuns active in other Rat Kingdoms. As the leader of the Diurganate's small group of followers, [PAWN_pronoun] always inspires nearby followers with her passionate spirit and leads them in striving for common goals—whether it's building colonies, holding prayer gatherings, or judging the unbelievers. -->
+  <DD_Ratkin_Sister.description>[PAWN_nameDef] 是双尾教国的一名修女。与鼠族王国中各种民间宗教的信徒相比，圣双尾教的信徒更为激进，因此 [PAWN_pronoun] 与其他鼠族王国的修女有所不同。作为神圣双尾教信徒的领袖，[PAWN_pronoun] 总是以她充满激情的精神激励着周围的信徒，并带领他们为共同的目标而奋斗——无论是建立殖民地、聚众祈祷，还是审判异端。</DD_Ratkin_Sister.description>
+  <!-- EN: Diurganate Sister -->
+  <DD_Ratkin_Sister.title>圣双尾教修女</DD_Ratkin_Sister.title>
+  <!-- EN: Sister -->
+  <DD_Ratkin_Sister.titleShort>双尾修女</DD_Ratkin_Sister.titleShort>
+  
+</LanguageData>

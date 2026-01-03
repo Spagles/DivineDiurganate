@@ -94,8 +94,10 @@
     <Compile Include="EventSystem\QuestNode\QuestNode_EventLetter.cs" />
     <Compile Include="EventSystem\QuestNode\QuestNode_Root_EventLetter.cs" />
     <Compile Include="EventSystem\QuestNode\QuestNode_WriteToEventVariablesWithAdd.cs" />
+    <Compile Include="HarmonyPatches\FixedIdentityExtension.cs" />
     <Compile Include="HarmonyPatches\Patche_SkillSystem.cs" />
     <Compile Include="HarmonyPatches\Patch_ColonistBarMech.cs" />
+    <Compile Include="HarmonyPatches\Patch_GeneratePawn_FixedIdentity.cs" />
     <Compile Include="HarmonyPatches\Patch_MechSpecificWeapon.cs" />
     <Compile Include="HarmonyPatches\Patch_RomanceFix.cs" />
     <Compile Include="HarmonyPatches\Patch_TakeDamage.cs" />

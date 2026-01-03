@@ -53,7 +53,7 @@
 		<combatPower>1</combatPower>
     <maxPerGroup>1</maxPerGroup>
     <fixedAdultBackstories>
-      <li>Ratkin_Sister</li>
+      <li>DD_Ratkin_Sister</li>
     </fixedAdultBackstories>
 		<backstoryFiltersOverride>
 			<li>
@@ -104,7 +104,7 @@
 		<combatPower>1</combatPower>
     <maxPerGroup>3</maxPerGroup>
     <fixedAdultBackstories>
-      <li>Ratkin_Sister</li>
+      <li>DD_Ratkin_Sister</li>
     </fixedAdultBackstories>
 		<backstoryFiltersOverride>
 			<li>
@@ -287,4 +287,100 @@
 			</li>
 		</lifeStages>
 	</PawnKindDef>
+
+  <!-- sp -->
+  <PawnKindDef ParentName="RKBasePawnKind">
+    <defName>DD_Maple_Sugar</defName>
+    <label>Maple Sugar</label>
+    <fixedGender>Female</fixedGender>
+    <defaultFactionDef>PlayerColony</defaultFactionDef>
+    <combatPower>55</combatPower>
+    <minGenerationAge>20</minGenerationAge>
+    <maxGenerationAge>22</maxGenerationAge>
+    <isFighter>true</isFighter>
+    <chemicalAddictionChance>0</chemicalAddictionChance>
+    <!-- <backstoryCryptosleepCommonality>0.05</backstoryCryptosleepCommonality> -->
+    <nameMaker>DD_Maple_Sugar_NameMaker</nameMaker>
+    <fixedChildBackstories>
+      <li>Ratkin_Orphan</li>
+    </fixedChildBackstories>
+    <fixedAdultBackstories>
+      <li>DD_Ratkin_Sister</li>
+    </fixedAdultBackstories>
+    <xenotypeSet>
+      <xenotypeChances>
+        <Baseliner>1</Baseliner>
+        <Ratkin_HouseMouse MayRequire="EoralMilk.RatkinGeneExpanded">9999</Ratkin_HouseMouse>
+      </xenotypeChances>
+    </xenotypeSet>
+    <forcedHair>DD_Maple_Sugar_Hair</forcedHair>
+    <forcedHairColor>(1,1,1,1)</forcedHairColor>
+    <requiredWorkTags>
+      <li>Violent</li>
+      <li>Caring</li>
+    </requiredWorkTags>
+    <invNutrition>10.0</invNutrition>
+    <inventoryOptions>
+      <subOptionsChooseOne>
+        <li>
+          <thingDef>MedicineIndustrial</thingDef>
+          <countRange>5</countRange>
+        </li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <gearHealthRange>1~1</gearHealthRange>
+    <itemQuality>Good</itemQuality>
+    <weaponMoney>99999~99999</weaponMoney>
+		<apparelRequired>
+			<li>DD_Nun_Dress</li>
+			<li>DD_NunVeil</li>
+		</apparelRequired>
+    <weaponTags>
+      <li>DD_Maple_Sugar_Weapon</li>
+    </weaponTags>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li>IndustrialAdvanced</li>
+    </apparelTags>
+    <forcedTraits>
+      <Bloodlust>0</Bloodlust>
+      <Gay>0</Gay>
+    </forcedTraits>
+    <weaponStuffOverride>Plasteel</weaponStuffOverride>
+    <ignoreIdeoApparelColors>true</ignoreIdeoApparelColors>
+    <initialWillRange>0~0</initialWillRange>
+    <initialResistanceRange>0~2</initialResistanceRange>
+    <humanPregnancyChance>0</humanPregnancyChance>
+
+    <modExtensions>
+      <li Class="DivineDiurganate.FixedIdentityExtension">
+        <!-- 设置头部类型 -->
+        <forcedHeadTypeDef>DD_Maple_Sugar_Head</forcedHeadTypeDef>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+	<HairDef>
+		<defName>DD_Maple_Sugar_Hair</defName>
+		<label>Hair of Maple Sugar</label>
+		<hairGender>Female</hairGender>
+		<texPath>DivineDiurganate/Hair/DD_Maple_Sugar_Hair</texPath>
+		<!-- <category>RK_Style</category>
+		<styleTags>
+			<li>RK_Style</li>
+		</styleTags> -->
+	</HairDef>
+  <RulePackDef>
+    <defName>DD_Maple_Sugar_NameMaker</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name->MapleSugar</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+  <HeadTypeDef ParentName="AverageBase">
+    <defName>DD_Maple_Sugar_Head</defName>
+    <graphicPath>DivineDiurganate/Head/DD_Maple_Sugar_Head</graphicPath>
+    <gender>None</gender>
+    <randomChosen>false</randomChosen>
+  </HeadTypeDef>
 </Defs>
