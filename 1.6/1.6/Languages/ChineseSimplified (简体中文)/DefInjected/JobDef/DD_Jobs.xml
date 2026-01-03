@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
   
+  <!-- EN: carrying TargetA to TargetB. -->
+  <DD_CarryToMech.reportString>携带 TargetA 到 TargetB</DD_CarryToMech.reportString>
+  
   <!-- EN: Entering mech. -->
   <DD_EnterMech.reportString>进入机甲</DD_EnterMech.reportString>
   

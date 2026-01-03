@@ -1,9 +1,14 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
   
-  <!-- EN: 随军牧师 -->
+  <!-- EN: Chaplain -->
   <DD_IdeoRole_Clergy_Base_Hediff.label>随军牧师</DD_IdeoRole_Clergy_Base_Hediff.label>
-  <!-- EN: 双尾教国的随军牧师会登上机甲，并在这些铁罐头作战时持续维护它们，以确保其在战场上正常运转。 -->
-  <DD_IdeoRole_Clergy_Base_Hediff.description>双尾教国的随军牧师会登上机甲，并在这些铁罐头作战时持续维护它们，以确保其在战场上正常运转。</DD_IdeoRole_Clergy_Base_Hediff.description>
+  <!-- EN: The chaplains accompanying the army of Diurganate will board the mech and continuously maintain them during combat, ensuring their normal operation on the battlefield.\n\nWhen the Chaplain boards the mech as a pilot, the mech will receive additional bonuses. -->
+  <DD_IdeoRole_Clergy_Base_Hediff.description>双尾教国的随军牧师会登上机甲，并在这些铁罐头作战时持续维护它们，以确保其在战场上正常运转。\n\n当牧师作为驾驶员登上机甲时，机甲会获得额外的加成。</DD_IdeoRole_Clergy_Base_Hediff.description>
+  
+  <!-- EN: Zealot -->
+  <DD_IdeoRole_Moralist_Base_Hediff.label>狂信徒</DD_IdeoRole_Moralist_Base_Hediff.label>
+  <!-- EN: 双尾教国中负责传道的修女们通常都是最双尾鼠最忠实的信徒，她们得受双尾鼠的宠爱，获得了一些无法以常规科学解释的神力加身。 -->
+  <DD_IdeoRole_Moralist_Base_Hediff.description>双尾教国中负责传道的修女们通常都是最双尾鼠最忠实的信徒，她们得受双尾鼠的宠爱，获得了一些无法以常规科学解释的神力加身。</DD_IdeoRole_Moralist_Base_Hediff.description>
   
 </LanguageData>

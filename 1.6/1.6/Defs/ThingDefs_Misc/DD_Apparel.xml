@@ -71,7 +71,7 @@
     <stuffCategories Inherit="False"/>
 		<recipeMaker>
 			<unfinishedThingDef>UnfinishedArmor</unfinishedThingDef>
-			<!-- <researchPrerequisite>RatkinClothing</researchPrerequisite> -->
+			<researchPrerequisite>RatkinClothing</researchPrerequisite>
 			<recipeUsers Inherit="false">
 				<li>RK_FueledSmithy</li>
 				<li>RK_ElectricSmithy</li>
@@ -122,6 +122,67 @@
 	</ThingDef>
   
 	<ThingDef ParentName="DD_ApparelMakeableBase">
+		<defName>DD_Beliver_Dress</defName>
+		<label>Diurganate Beliver Dress</label>
+    <description>The attire worn by the followers of Diurganate, predominantly black in color, serves to suppress their natural impulses.</description>
+    <graphicData>
+			<texPath>DivineDiurganate/Apparel/DD_Beliver_Dress</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<costStuffCount>35</costStuffCount>
+		<stuffCategories>
+			<li>Leathery</li>
+			<li>Fabric</li>
+		</stuffCategories>
+		<techLevel>Industrial</techLevel>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<WorkToMake>15000</WorkToMake>
+			<Mass>1</Mass>
+			<Flammability>1</Flammability>
+			<EquipDelay>1</EquipDelay>
+      <StuffEffectMultiplierArmor>0.2</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0.30</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0.30</StuffEffectMultiplierInsulation_Heat>
+		</statBases>
+		<equippedStatOffsets>
+      <MentalBreakThreshold>-0.05</MentalBreakThreshold>
+		</equippedStatOffsets>
+		<apparel>
+			<bodyPartGroups>
+				<li>Neck</li>
+				<li>Torso</li>
+				<li>Shoulders</li>
+				<li>Arms</li>
+				<li>Legs</li>
+			</bodyPartGroups>
+			<wornGraphicPath>DivineDiurganate/Apparel/DD_Beliver_Dress</wornGraphicPath>
+			<layers>
+        <li>Middle</li>
+        <li>Shell</li>
+			</layers>
+			<tags>
+				<li>DD_RatkinBeliver</li>
+			</tags>
+      <canBeDesiredForIdeo>false</canBeDesiredForIdeo>
+      <canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
+      <canBeGeneratedToSatisfyToxicEnvironmentResistance>false</canBeGeneratedToSatisfyToxicEnvironmentResistance>
+      <useWornGraphicMask>true</useWornGraphicMask>
+		</apparel>
+    <colorGenerator Class="ColorGenerator_Options">
+      <options>
+        <li>
+          <weight>10</weight>
+          <only>(1,1,1,1)</only>
+        </li>
+      </options>
+    </colorGenerator>
+		<recipeMaker>
+			<researchPrerequisite>RatkinClothing</researchPrerequisite>
+		</recipeMaker>
+	</ThingDef>
+	<ThingDef ParentName="DD_ApparelMakeableBase">
 		<defName>DD_Nun_Dress</defName>
 		<label>Diurganate Nun Dress</label>
     <description>The uniforms worn by the nuns who serve the Holy Two-Tail are designed with battlefield practicality in mind, compared to the uniforms of ordinary ratkin Sister Dress, and are therefore more defensive—though they are still ultimately a cloth, not armor.</description>
@@ -130,10 +191,7 @@
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
-		<costList>
-			<DevilstrandCloth>20</DevilstrandCloth>
-		</costList>
-		<costStuffCount>35</costStuffCount>
+		<costStuffCount>60</costStuffCount>
 		<stuffCategories>
 			<li>Leathery</li>
 			<li>Fabric</li>
@@ -151,6 +209,7 @@
 		</statBases>
 		<equippedStatOffsets>
 			<MedicalTendQuality>0.25</MedicalTendQuality>
+      <MentalBreakThreshold>-0.1</MentalBreakThreshold>
 		</equippedStatOffsets>
 		<apparel>
 			<bodyPartGroups>
@@ -194,9 +253,6 @@
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
-		<costList>
-			<DevilstrandCloth>20</DevilstrandCloth>
-		</costList>
 		<costStuffCount>35</costStuffCount>
 		<stuffCategories>
 			<li>Leathery</li>
@@ -213,6 +269,7 @@
 		</statBases>
 		<equippedStatOffsets>
 			<MedicalTendQuality>0.15</MedicalTendQuality>
+      <MentalBreakThreshold>-0.05</MentalBreakThreshold>
 		</equippedStatOffsets>
 		<apparel>
       <renderSkipFlags>
@@ -250,9 +307,6 @@
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
-		<costList>
-			<DevilstrandCloth>20</DevilstrandCloth>
-		</costList>
 		<costStuffCount>120</costStuffCount>
     <stuffCategories Inherit="False">
       <li>Metallic</li>
@@ -313,10 +367,7 @@
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
-		<costList>
-			<DevilstrandCloth>10</DevilstrandCloth>
-		</costList>
-		<costStuffCount>40</costStuffCount>
+		<costStuffCount>60</costStuffCount>
     <stuffCategories Inherit="False">
       <li>Metallic</li>
     </stuffCategories>
@@ -422,4 +473,4 @@
       <useWornGraphicMask>true</useWornGraphicMask>
     </apparel>
   </ThingDef>
-</Defs> 
+</Defs>

@@ -3,7 +3,7 @@
   <HediffDef>
     <defName>DD_IdeoRole_Clergy_Base_Hediff</defName>
     <label>Chaplain</label>
-    <description>The chaplains accompanying the army of Diurganate will board the mech and continuously maintain them during combat, ensuring their normal operation on the battlefield.</description>
+    <description>The chaplains accompanying the army of Diurganate will board the mech and continuously maintain them during combat, ensuring their normal operation on the battlefield.\n\nWhen the Chaplain boards the mech as a pilot, the mech will receive additional bonuses.</description>
     <defaultLabelColor>(0.52, 1, 0.95)</defaultLabelColor>
     <hediffClass>HediffWithComps</hediffClass>
     <stages>
@@ -13,8 +13,13 @@
       <li>
         <becomeVisible>true</becomeVisible>
         <minSeverity>1</minSeverity>
+        <statOffsets>
+          <DD_MechArmor>0.5</DD_MechArmor>
+        </statOffsets>
         <statFactors>
-          <AimingDelayFactor>0.5</AimingDelayFactor>
+          <MoveSpeed>1.25</MoveSpeed>
+          <MeleeCooldownFactor>0.85</MeleeCooldownFactor>
+          <RangedCooldownFactor>0.85</RangedCooldownFactor>
         </statFactors>
       </li>
     </stages>
@@ -32,6 +37,36 @@
         <severityOnMech>1.5</severityOnMech>
         <transferToMech>true</transferToMech>
         <removeWhenLeaving>true</removeWhenLeaving>
+      </li>
+    </comps>
+  </HediffDef>
+  <HediffDef>
+    <defName>DD_IdeoRole_Moralist_Base_Hediff</defName>
+    <label>Zealot</label>
+    <description>The nuns responsible for preaching in Diurganate are usually the most loyal followers of the Two-Tail. They are favored by the Holy Two-Tail and have acquired some supernatural powers that cannot be explained by conventional science.</description>
+    <defaultLabelColor>(0.52, 1, 0.95)</defaultLabelColor>
+    <hediffClass>HediffWithComps</hediffClass>
+    <stages>
+      <li>
+        <becomeVisible>true</becomeVisible>
+        <statOffsets>
+          <DD_MechArmor>1</DD_MechArmor>
+        </statOffsets>
+        <statFactors>
+          <MoveSpeed>1.1</MoveSpeed>
+          <MeleeCooldownFactor>0.8</MeleeCooldownFactor>
+          <RangedCooldownFactor>0.8</RangedCooldownFactor>
+        </statFactors>
+      </li>
+    </stages>
+    <comps>
+      <li Class="DivineDiurganate.HediffCompProperties_IdeoRoleHediff">
+        <requiredRole>IdeoRole_Moralist</requiredRole>
+        <requiredMeme>
+          <li>DD_law_Meme</li>
+        </requiredMeme>
+        <requireMeme>true</requireMeme>
+        <severityLevel>1</severityLevel>
       </li>
     </comps>
   </HediffDef>

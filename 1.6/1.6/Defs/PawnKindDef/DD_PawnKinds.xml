@@ -31,7 +31,7 @@
 				</categories>
 			</li>
 		</backstoryFiltersOverride>
-		<apparelMoney>120~480</apparelMoney>
+		<apparelMoney>0</apparelMoney>
 		<apparelTags>
 			<li>RK_Murderer</li>
 			<li>RK_Worker</li>
@@ -40,6 +40,9 @@
 		</apparelTags>
     <weaponMoney>600~1200</weaponMoney>
     <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
+		<apparelRequired>
+			<li>DD_Beliver_Dress</li>
+		</apparelRequired>
 		<weaponTags>
 			<li>DD_Skirmish_Weapon</li>
 		</weaponTags>

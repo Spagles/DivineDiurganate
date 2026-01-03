@@ -303,6 +303,7 @@
         <burstShotCount>1</burstShotCount>
         <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
         <soundCast>Shot_Revolver</soundCast>
+        <canGoWild>false</canGoWild>
       </li>
     </verbs>
     <costList>
@@ -462,6 +463,7 @@
         <burstShotCount>1</burstShotCount>
         <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
         <soundCast>DD_AM_Heavy_Lance_FireSound</soundCast>
+        <canGoWild>false</canGoWild>
       </li>
     </verbs>
     <costList>

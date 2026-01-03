@@ -20,7 +20,7 @@
   
   <!-- EN: Anti-Mech Rapid Fire Cannon -->
   <DD_DHM70_Rampart_Mech_Weapon.label>反机甲速射炮</DD_DHM70_Rampart_Mech_Weapon.label>
-  <!-- EN: 一对速射炮 -->
+  <!-- EN: A pair of anti-mech rapid-fire cannons, designed specifically for the DHM70-Rampart, require the user to stand still before firing, but their offensive power is so fierce that they can tear apart even the most powerful enemy armored targets. -->
   <DD_DHM70_Rampart_Mech_Weapon.description>一对反机甲速射炮，专为DHM70-城墙设计，需要站定才能开火，但是攻势凶猛，足以将最强大的敌方装甲目标撕碎。</DD_DHM70_Rampart_Mech_Weapon.description>
   <!-- EN: Anti-Mech Rapid Fire Cannon -->
   <DD_DHM70_Rampart_Mech_Weapon.verbs.Verb_ShootWithOffset.label>反机甲炮弹</DD_DHM70_Rampart_Mech_Weapon.verbs.Verb_ShootWithOffset.label>

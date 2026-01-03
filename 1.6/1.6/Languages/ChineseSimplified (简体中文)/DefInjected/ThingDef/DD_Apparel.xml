@@ -1,14 +1,19 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
   
+  <!-- EN: Diurganate Beliver Dress -->
+  <DD_Beliver_Dress.label>双尾信徒连衣裙</DD_Beliver_Dress.label>
+  <!-- EN: The uniforms worn by the nuns who serve the Holy Two-Tail are designed with battlefield practicality in mind, compared to the uniforms of ordinary ratkin Sister Dress, and are therefore more defensive—though they are still ultimately a cloth, not armor. -->
+  <DD_Beliver_Dress.description>由双尾教国的信徒们所穿的服装，黑色的主色调可以压抑她们对本能的冲动</DD_Beliver_Dress.description>
+  
   <!-- EN: Diurganate Crusaders Helmet -->
   <DD_Crusaders_Helmet.label>双尾护教军头盔</DD_Crusaders_Helmet.label>
   <!-- EN: The helmet of the Diurganate Crusader is made of alloy that can withstand light weapon fire. -->
   <DD_Crusaders_Helmet.description>双尾教国护教军的头盔，以可以抵御轻武器射击的合金铸成。</DD_Crusaders_Helmet.description>
   
-  <!-- EN: 护教军盾牌 -->
+  <!-- EN: Crusader shield -->
   <DD_Crusaders_Shield.label>护教军盾牌</DD_Crusaders_Shield.label>
-  <!-- EN: 一面中型盾牌，专为双尾教国的护教军设计，在基本不丢失防御力的同时比巨盾要轻便一些。 -->
+  <!-- EN: A medium-sized shield, designed specifically for the Crusaders of Divine Diurganate, which is lighter than a giant shield while maintaining almost no defensive capabilities. -->
   <DD_Crusaders_Shield.description>一面中型盾牌，专为双尾教国的护教军设计，在基本不丢失防御力的同时比巨盾要轻便一些。</DD_Crusaders_Shield.description>
   
   <!-- EN: Diurganate Crusader Uniform -->

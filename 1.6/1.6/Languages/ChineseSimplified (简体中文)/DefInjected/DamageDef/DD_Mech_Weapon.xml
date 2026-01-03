@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
   
-  <!-- EN: 大型爆炸 -->
+  <!-- EN: Giant Explosive -->
   <DD_GiantBomb.label>大型爆炸</DD_GiantBomb.label>
   <!-- EN: {0} has died in an explosion. -->
   <DD_GiantBomb.deathMessage>{0} 死于爆炸。</DD_GiantBomb.deathMessage>

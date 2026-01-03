@@ -22,25 +22,4 @@
     <li>r_roleName->[keyDeity][memeClergy]</li>
   </DD_NamerRoleClergy.rulePack.rulesStrings>
   
-  <!-- EN:
-    <li>r_roleName(p=4)->[memeExorcist]</li>
-    <li>r_roleName(p=2)->[memeAdjective] [memeExorcist]</li>
-    <li>r_roleName->[memeExorcist] of [chosenTheme]</li>
-    <li>r_roleName->[memeExorcist] of [keyDeity]</li>
-    <li>r_roleName->[memeExorcist] of [memeConcept]</li>
-    <li>r_roleName->[memeExorcist] of [chosenIdeoName]</li>
-    <li>r_roleName->[chosenAdjective] [memeExorcist]</li>
-    <li>r_roleName->[keyDeity]'s [memeExorcist]</li>
-  -->
-  <DD_NamerRoleExorcist.rulePack.rulesStrings>
-    <li>r_roleName(p=4)->[memeExorcist]</li>
-    <li>r_roleName(p=2)->[memeAdjective][memeExorcist]</li>
-    <li>r_roleName-> [chosenTheme][memeExorcist]</li>
-    <li>r_roleName-> [keyDeity][memeExorcist]</li>
-    <li>r_roleName->[memeConcept][memeExorcist]</li>
-    <li>r_roleName-> [chosenIdeoName][memeExorcist]</li>
-    <li>r_roleName->[chosenAdjective][memeExorcist]</li>
-    <li>r_roleName->[keyDeity][memeExorcist]</li>
-  </DD_NamerRoleExorcist.rulePack.rulesStrings>
-  
 </LanguageData>

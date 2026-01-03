@@ -1,0 +1,236 @@
+﻿using Verse;
+using RimWorld;
+
+namespace DivineDiurganate
+{
+    public abstract class ConditionBase
+    {
+        public abstract bool IsMet(out string reason);
+    }
+
+    public class Condition_VariableEquals : ConditionBase
+    {
+        public string name;
+        public string value;
+        public string valueVariableName;
+
+        public override bool IsMet(out string reason)
+        {
+            var eventVarManager = Find.World.GetComponent<EventVariableManager>();
+            if (!eventVarManager.HasVariable(name))
+            {
+                reason = $"Variable '{name}' not found.";
+                return false;
+            }
+
+            object variable = eventVarManager.GetVariable<object>(name);
+            string compareValueStr = value;
+
+            if (!string.IsNullOrEmpty(valueVariableName))
+            {
+                compareValueStr = eventVarManager.GetVariable<object>(valueVariableName)?.ToString();
+                if (compareValueStr == null)
+                {
+                    reason = $"Comparison variable '{valueVariableName}' not set.";
+                    return false;
+                }
+            }
+
+            bool met = false;
+            try
+            {
+                if (variable is int)
+                {
+                    met = (int)variable == int.Parse(compareValueStr);
+                }
+                else if (variable is float)
+                {
+                    met = (float)variable == float.Parse(compareValueStr);
+                }
+                else if (variable is bool)
+                {
+                    met = (bool)variable == bool.Parse(compareValueStr);
+                }
+                else
+                {
+                    met = variable?.ToString() == compareValueStr;
+                }
+            }
+            catch (System.Exception)
+            {
+                reason = "Type mismatch or parsing error during comparison.";
+                return false;
+            }
+
+            if (!met)
+            {
+                reason = $"Requires {name} = {compareValueStr} (Current: {variable})";
+            }
+            else
+            {
+                reason = "";
+            }
+            return met;
+        }
+    }
+
+    public abstract class Condition_CompareVariable : ConditionBase
+    {
+        public string name;
+        public float value;
+        public string valueVariableName;
+
+        protected abstract bool Compare(float var1, float var2);
+        protected abstract string GetOperatorString();
+
+        public override bool IsMet(out string reason)
+        {
+            var eventVarManager = Find.World.GetComponent<EventVariableManager>();
+            if (!eventVarManager.HasVariable(name))
+            {
+                eventVarManager.SetVariable(name, 0f);
+            }
+            
+            float variable = eventVarManager.GetVariable<float>(name);
+
+            float compareValue = value;
+            if (!string.IsNullOrEmpty(valueVariableName))
+            {
+                compareValue = eventVarManager.GetVariable<float>(valueVariableName, float.NaN);
+                if (float.IsNaN(compareValue))
+                {
+                    reason = $"Comparison variable '{valueVariableName}' not set or not a number.";
+                    return false;
+                }
+            }
+
+            bool met = Compare(variable, compareValue);
+            if (!met)
+            {
+                reason = $"Requires {name} {GetOperatorString()} {compareValue} (Current: {variable})";
+            }
+            else
+            {
+                reason = "";
+            }
+            return met;
+        }
+    }
+
+    public class Condition_VariableGreaterThan : Condition_CompareVariable
+    {
+        protected override bool Compare(float var1, float var2) => var1 > var2;
+        protected override string GetOperatorString() => ">";
+    }
+
+    public class Condition_VariableLessThan : Condition_CompareVariable
+    {
+        protected override bool Compare(float var1, float var2) => var1 < var2;
+        protected override string GetOperatorString() => "<";
+    }
+
+    public class Condition_VariableGreaterThanOrEqual : Condition_CompareVariable
+    {
+        protected override bool Compare(float var1, float var2) => var1 >= var2;
+        protected override string GetOperatorString() => ">=";
+    }
+
+    public class Condition_VariableLessThanOrEqual : Condition_CompareVariable
+    {
+        protected override bool Compare(float var1, float var2) => var1 <= var2;
+        protected override string GetOperatorString() => "<=";
+    }
+
+    public class Condition_VariableNotEqual : ConditionBase
+    {
+        public string name;
+        public string value;
+        public string valueVariableName;
+
+        public override bool IsMet(out string reason)
+        {
+            var eventVarManager = Find.World.GetComponent<EventVariableManager>();
+            if (!eventVarManager.HasVariable(name))
+            {
+                reason = $"Variable '{name}' not found.";
+                return false;
+            }
+
+            object variable = eventVarManager.GetVariable<object>(name);
+            string compareValueStr = value;
+
+            if (!string.IsNullOrEmpty(valueVariableName))
+            {
+                compareValueStr = eventVarManager.GetVariable<object>(valueVariableName)?.ToString();
+                if (compareValueStr == null)
+                {
+                    reason = $"Comparison variable '{valueVariableName}' not set.";
+                    return false;
+                }
+            }
+
+            bool met = false;
+            try
+            {
+                if (variable is int)
+                {
+                    met = (int)variable != int.Parse(compareValueStr);
+                }
+                else if (variable is float)
+                {
+                    met = (float)variable != float.Parse(compareValueStr);
+                }
+                else if (variable is bool)
+                {
+                    met = (bool)variable != bool.Parse(compareValueStr);
+                }
+                else
+                {
+                    met = variable?.ToString() != compareValueStr;
+                }
+            }
+            catch (System.Exception e)
+            {
+                Log.Message($"[EventSystem] Condition_VariableNotEqual: Could not compare '{variable}' and '{compareValueStr}'. Error: {e.Message}");
+                reason = "Type mismatch or parsing error during comparison.";
+                return false;
+            }
+            
+            Log.Message($"[EventSystem] Condition_VariableNotEqual check: Name='{name}', Type='{variable?.GetType().Name ?? "null"}', CurrentValue='{variable}', CompareValue='{compareValueStr}', Met={met}");
+            if (!met)
+            {
+                reason = $"Requires {name} != {compareValueStr} (Current: {variable})";
+            }
+            else
+            {
+                reason = "";
+            }
+            return met;
+        }
+    }
+    
+    public class Condition_FactionExists : ConditionBase
+    {
+        public FactionDef factionDef;
+
+        public override bool IsMet(out string reason)
+        {
+            if (factionDef == null)
+            {
+                reason = "FactionDef not specified in Condition_FactionExists.";
+                return false;
+            }
+
+            bool exists = Find.FactionManager.FirstFactionOfDef(factionDef) != null;
+            if (!exists)
+            {
+                reason = $"Faction '{factionDef.label}' does not exist in the world.";
+            }
+            else
+            {
+                reason = "";
+            }
+            return exists;
+        }
+    }
+}

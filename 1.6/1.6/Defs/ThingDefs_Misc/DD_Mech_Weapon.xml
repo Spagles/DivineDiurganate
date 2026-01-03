@@ -39,9 +39,9 @@
         <capacities>
           <li>DD_DHM69_Scythe_Slash</li>
         </capacities>
-        <power>50</power>
-        <armorPenetration>2.25</armorPenetration>
-        <cooldownTime>2</cooldownTime>
+        <power>40</power>
+        <armorPenetration>2</armorPenetration>
+        <cooldownTime>2.2</cooldownTime>
         <soundMeleeHit>DD_Mech_Scythe_Slash_Hit_Sound</soundMeleeHit>
         <soundMeleeMiss>DD_Mech_Scythe_Slash_Hit_Sound</soundMeleeMiss>
       </li>
@@ -217,7 +217,7 @@
         <verbClass>Verb_LaunchProjectile</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <range>28</range>
-        <forcedMissRadius>4</forcedMissRadius>
+        <forcedMissRadius>0.25</forcedMissRadius>
         <warmupTime>0.75</warmupTime>
         <noiseRadius>4</noiseRadius>
         <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
@@ -260,7 +260,6 @@
       <shadowSize>0.4</shadowSize>
       <explosionRadius>2.9</explosionRadius >
       <damageDef>Bomb</damageDef>
-      <explosionDelay>30</explosionDelay>
       <damageAmountBase>25</damageAmountBase>
     </projectile>
   </ThingDef>
@@ -296,7 +295,7 @@
       <AccuracyShort>0.75</AccuracyShort>
       <AccuracyMedium>0.8</AccuracyMedium>
       <AccuracyLong>0.7</AccuracyLong>
-      <RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown>
+      <RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
     </statBases>
     <costList>
       <Steel>20</Steel>
@@ -377,12 +376,13 @@
     </graphicData>
     <projectile>
       <damageDef>DD_GiantBomb</damageDef>
-			<damageAmountBase>50</damageAmountBase>
+			<damageAmountBase>30</damageAmountBase>
 			<stoppingPower>5</stoppingPower>
 			<armorPenetrationBase>2</armorPenetrationBase>
 			<speed>65</speed>
       <explosionRadius>1.9</explosionRadius>
       <soundExplode>DD_DHM70_Rampart_Mech_Weapon_ExplosiveSound</soundExplode>
+      <preExplosionSpawnSingleThingDef>Filth_BlastMark</preExplosionSpawnSingleThingDef>
     </projectile>
   </ThingDef>
   <DamageDef ParentName="Bomb">
