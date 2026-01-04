@@ -38,4 +38,14 @@ namespace DivineDiurganate
             DefOfHelper.EnsureInitializedInCtor(typeof(DD_PreceptDefOf));
         }
     }
+    [DefOf]
+    public static class DD_SoundDefOf
+    {
+        public static SoundDef DD_Holy_Heal_Sustainer;
+
+        static DD_SoundDefOf()
+        {
+            DefOfHelper.EnsureInitializedInCtor(typeof(DD_SoundDefOf));
+        }
+    }
 }

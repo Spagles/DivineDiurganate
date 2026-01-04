@@ -9,7 +9,7 @@
   <!-- EN: Holy Heal -->
   <DD_Maple_Sugar_Heal.label>神圣治愈</DD_Maple_Sugar_Heal.label>
   <!-- EN: Move to target , pray to the holy Twin-Tail to heal their wounds. -->
-  <DD_Maple_Sugar_Heal.description>跟随目标，向圣双尾鼠祈祷并治愈目标的伤势。</DD_Maple_Sugar_Heal.description>
+  <DD_Maple_Sugar_Heal.description>跟随目标，向圣双尾鼠祈祷并治愈目标的伤势，应该没什么副作用。</DD_Maple_Sugar_Heal.description>
   
   <!-- EN: Sacrifice -->
   <DD_Suicide_Attack.label>殉道</DD_Suicide_Attack.label>

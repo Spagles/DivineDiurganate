@@ -480,15 +480,17 @@
       <drawSize>(1,1)</drawSize>
     </graphicData>
     <useHitPoints>false</useHitPoints>
+    <thingCategories>
+      <li>ApparelUtility</li>
+    </thingCategories>
+		<costStuffCount>0</costStuffCount>
+    <stuffCategories Inherit="False"/>
     <statBases>
       <WorkToMake>5000</WorkToMake>
       <MaxHitPoints>500</MaxHitPoints>
       <Mass>1</Mass>
       <Flammability>0</Flammability>
       <DeteriorationRate>0</DeteriorationRate>
-			<StuffEffectMultiplierArmor>0.9</StuffEffectMultiplierArmor>
-			<StuffEffectMultiplierInsulation_Cold>0.0</StuffEffectMultiplierInsulation_Cold>
-			<StuffEffectMultiplierInsulation_Heat>0.0</StuffEffectMultiplierInsulation_Heat>
       <EquipDelay>2</EquipDelay>
     </statBases>
     <recipeMaker Inherit="False"/>
@@ -499,9 +501,6 @@
       <NegotiationAbility>1</NegotiationAbility>
       <TradePriceImprovement>1</TradePriceImprovement>
 		</equippedStatOffsets>
-    <thingCategories>
-      <li>ApparelUtility</li>
-    </thingCategories>
     <costList>
       <Steel>10</Steel>
       <ComponentIndustrial>1</ComponentIndustrial>

@@ -5,25 +5,24 @@ using RimWorld;
 using Verse;
 using System.Linq;
 using FacialAnimation;
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace DivineDiurganate
 {
     /// <summary>
-    /// 修复版 - 添加更多调试信息
+    /// 修复版 - 强制设置眼球颜色为白色
     /// </summary>
     [StaticConstructorOnStartup]
     public static class EyeballPatchManager
     {
         static EyeballPatchManager()
         {
-            Log.Message("[DD] EyeballPatchManager initializing...");
-            
             bool faLoaded = ModLister.GetActiveModWithIdentifier("nals.facialanimation") != null;
-            Log.Message($"[DD] FacialAnimation loaded: {faLoaded}");
             
             if (!faLoaded)
             {
-                Log.Message("[DD] FacialAnimation not found. Eyeball override disabled.");
                 return;
             }
             
@@ -32,14 +31,11 @@ namespace DivineDiurganate
                 var harmony = new Harmony("DivineDiurganate.EyeballPatch");
                 
                 // 方法1：补丁GatherPawnParam方法
-                Log.Message("[DD] Looking for GatherPawnParam method...");
                 var gatherMethod = AccessTools.Method("FacialAnimation.FacialAnimationControllerComp:GatherPawnParam");
                 if (gatherMethod != null)
                 {
-                    Log.Message("[DD] Found GatherPawnParam method, patching...");
                     var prefix = new HarmonyMethod(typeof(EyeballPatches).GetMethod("GatherPawnParam_Prefix"));
                     harmony.Patch(gatherMethod, prefix: prefix);
-                    Log.Message("[DD] GatherPawnParam patched.");
                 }
                 else
                 {
@@ -47,43 +43,44 @@ namespace DivineDiurganate
                 }
                 
                 // 方法2：补丁Pawn.SpawnSetup作为备用
-                Log.Message("[DD] Patching Pawn.SpawnSetup...");
                 var spawnMethod = typeof(Pawn).GetMethod("SpawnSetup");
                 if (spawnMethod != null)
                 {
                     var postfix = new HarmonyMethod(typeof(EyeballPatches).GetMethod("SpawnSetup_Postfix"));
                     harmony.Patch(spawnMethod, postfix: postfix);
-                    Log.Message("[DD] Pawn.SpawnSetup patched.");
                 }
                 
-                Log.Message("[DD] All patches applied successfully.");
+                // 方法3：补丁ControllerBaseComp的Color属性getter
+                var controllerBaseType = AccessTools.TypeByName("FacialAnimation.ControllerBaseComp`2");
+                if (controllerBaseType != null)
+                {
+                    var colorProperty = AccessTools.Property(controllerBaseType, "Color");
+                    if (colorProperty != null)
+                    {
+                        var getter = colorProperty.GetGetMethod();
+                        if (getter != null)
+                        {
+                            var postfix = new HarmonyMethod(typeof(EyeballPatches).GetMethod("ColorGetter_Postfix"));
+                            harmony.Patch(getter, postfix: postfix);
+                        }
+                    }
+                }
                 
                 // 调试：列出所有FaceTypeDef
-                Log.Message("[DD] List of FaceTypeDefs:");
                 int count = 0;
                 foreach (var def in DefDatabase<FaceTypeDef>.AllDefs)
                 {
-                    Log.Message($"  - {def.defName} (race: {def.raceName})");
                     count++;
                 }
-                Log.Message($"[DD] Total FaceTypeDefs: {count}");
                 
                 // 检查我们的Def是否存在
                 var ourDef = DefDatabase<FaceTypeDef>.GetNamedSilentFail("DD_Maple_Sugar_Eyeball");
                 if (ourDef != null)
                 {
-                    Log.Message($"[DD] Found DD_Maple_Sugar_Eyeball! Race: {ourDef.raceName}");
                 }
                 else
                 {
                     Log.Warning("[DD] DD_Maple_Sugar_Eyeball not found in FaceTypeDef database.");
-                    
-                    // 尝试在所有Def中查找
-                    var allDef = DefDatabase<Def>.AllDefs.FirstOrDefault(d => d.defName == "DD_Maple_Sugar_Eyeball");
-                    if (allDef != null)
-                    {
-                        Log.Message($"[DD] Found in Def database, type: {allDef.GetType().FullName}");
-                    }
                 }
             }
             catch (Exception ex)
@@ -98,6 +95,9 @@ namespace DivineDiurganate
     /// </summary>
     public static class EyeballPatches
     {
+        // 避免递归调用的标志
+        private static bool isInForceWhiteColor = false;
+        
         /// <summary>
         /// GatherPawnParam前缀补丁
         /// </summary>
@@ -105,8 +105,6 @@ namespace DivineDiurganate
         {
             try
             {
-                Log.Message("[DD] GatherPawnParam_Prefix called!");
-                
                 // 获取Pawn
                 Pawn pawn = null;
                 var pawnField = __instance.GetType().GetField("pawn", 
@@ -115,7 +113,6 @@ namespace DivineDiurganate
                 if (pawnField != null)
                 {
                     pawn = pawnField.GetValue(__instance) as Pawn;
-                    Log.Message($"[DD] Found pawn via pawn field: {pawn?.Label}");
                 }
                 
                 if (pawn == null)
@@ -128,13 +125,11 @@ namespace DivineDiurganate
                     {
                         var parent = parentField.GetValue(__instance) as ThingComp;
                         pawn = parent?.parent as Pawn;
-                        Log.Message($"[DD] Found pawn via parent field: {pawn?.Label}");
                     }
                 }
                 
                 if (pawn == null)
                 {
-                    Log.Message("[DD] Could not get pawn from controller.");
                     return;
                 }
                 
@@ -157,8 +152,6 @@ namespace DivineDiurganate
                 if (!__instance.Spawned || __instance.Dead)
                     return;
                     
-                Log.Message($"[DD] SpawnSetup_Postfix called for {__instance.Label}");
-                
                 // 延迟执行，确保所有组件已加载
                 LongEventHandler.ExecuteWhenFinished(() =>
                 {
@@ -172,32 +165,43 @@ namespace DivineDiurganate
         }
         
         /// <summary>
+        /// Color属性getter后置补丁，强制眼球控制器返回白色
+        /// </summary>
+        public static void ColorGetter_Postfix(object __instance, ref Color __result)
+        {
+            try
+            {
+                // 只有在是眼球控制器时才强制返回白色
+                if (IsEyeballController(__instance))
+                {
+                    __result = Color.white;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"[DD] Error in ColorGetter_Postfix: {ex}");
+            }
+        }
+        
+        /// <summary>
         /// 尝试为Pawn设置眼球类型
         /// </summary>
         private static void TrySetEyeballForPawn(Pawn pawn)
         {
             try
             {
-                Log.Message($"[DD] TrySetEyeballForPawn called for {pawn.Label}");
-                
                 // 检查是否有我们的扩展
                 var extension = PawnKindExtension_EyeballOverride.GetExtension(pawn);
                 if (extension == null)
                 {
-                    Log.Message($"[DD] No eyeball extension for {pawn.Label}");
                     return;
                 }
-                
-                Log.Message($"[DD] Found extension for {pawn.Label}");
                 
                 string eyeballDefName = extension.GetRandomEyeballTypeDefName();
                 if (string.IsNullOrEmpty(eyeballDefName))
                 {
-                    Log.Message($"[DD] No eyeball def name specified");
                     return;
                 }
-                
-                Log.Message($"[DD] Target eyeball def: {eyeballDefName}");
                 
                 // 查找眼球类型Def
                 var eyeballDef = FindEyeballTypeDef(eyeballDefName);
@@ -207,8 +211,6 @@ namespace DivineDiurganate
                     return;
                 }
                 
-                Log.Message($"[DD] Found eyeball def: {eyeballDef.defName}");
-                
                 // 查找眼球控制器
                 var eyeballController = FindEyeballController(pawn);
                 if (eyeballController == null)
@@ -216,8 +218,6 @@ namespace DivineDiurganate
                     Log.Warning($"[DD] No eyeball controller found for {pawn.Label}");
                     return;
                 }
-                
-                Log.Message($"[DD] Found eyeball controller");
                 
                 // 设置faceType字段
                 var faceTypeField = GetFaceTypeField(eyeballController);
@@ -227,13 +227,230 @@ namespace DivineDiurganate
                     return;
                 }
                 
-                Log.Message($"[DD] Setting faceType to {eyeballDef.defName}");
                 faceTypeField.SetValue(eyeballController, eyeballDef);
-                Log.Message($"[DD] Eyeball set successfully for {pawn.Label}");
+                
+                // 强制设置颜色为白色
+                ForceWhiteColor(eyeballController);
             }
             catch (Exception ex)
             {
                 Log.Error($"[DD] Error in TrySetEyeballForPawn: {ex}");
+            }
+        }
+        
+        /// <summary>
+        /// 强制设置颜色为白色
+        /// </summary>
+        private static void ForceWhiteColor(object controller)
+        {
+            try
+            {
+                if (isInForceWhiteColor)
+                    return;
+                    
+                isInForceWhiteColor = true;
+                
+                // 1. 设置Color属性为白色
+                var colorProperty = controller.GetType().GetProperty("Color",
+                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                if (colorProperty != null && colorProperty.CanWrite)
+                {
+                    colorProperty.SetValue(controller, Color.white);
+                }
+                else
+                {
+                    // 尝试直接设置color字段
+                    var colorField = controller.GetType().GetField("color",
+                        BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+                    if (colorField != null)
+                    {
+                        colorField.SetValue(controller, Color.white);
+                    }
+                    else
+                    {
+                        Log.Warning("[DD] Could not find Color property or color field");
+                    }
+                }
+                
+                // 2. 设置OffsetColor为透明
+                var offsetColorProperty = controller.GetType().GetProperty("OffsetColor",
+                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                if (offsetColorProperty != null && offsetColorProperty.CanWrite)
+                {
+                    offsetColorProperty.SetValue(controller, Color.clear);
+                }
+                else
+                {
+                    var offsetColorField = controller.GetType().GetField("offsetColor",
+                        BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+                    if (offsetColorField != null)
+                    {
+                        offsetColorField.SetValue(controller, Color.clear);
+                    }
+                }
+                
+                // 3. 尝试直接修改材质颜色，而不是重新加载纹理
+                TryUpdateMaterialColors(controller);
+                
+                isInForceWhiteColor = false;
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"[DD] Error in ForceWhiteColor: {ex}");
+                isInForceWhiteColor = false;
+            }
+        }
+        
+        /// <summary>
+        /// 尝试直接更新材质颜色
+        /// </summary>
+        private static void TryUpdateMaterialColors(object controller)
+        {
+            try
+            {
+                // 获取shapeGraphicList字典
+                var shapeGraphicListField = controller.GetType().GetField("shapeGraphicList",
+                    BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+                
+                var shapeRottingGraphicListField = controller.GetType().GetField("shapeRottingGraphicList",
+                    BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+                
+                if (shapeGraphicListField == null || shapeRottingGraphicListField == null)
+                {
+                    return;
+                }
+                
+                // 获取默认形状
+                var defaultFaceShapeField = controller.GetType().GetField("defaultFaceShape",
+                    BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
+                
+                object defaultShape = null;
+                if (defaultFaceShapeField != null)
+                {
+                    defaultShape = defaultFaceShapeField.GetValue(null);
+                }
+                
+                // 更新shapeGraphicList中的材质颜色
+                UpdateGraphicListColors(shapeGraphicListField.GetValue(controller), defaultShape, Color.white);
+            }
+            catch (Exception ex)
+            {
+                Log.Warning($"[DD] Could not update material colors: {ex.Message}");
+            }
+        }
+        
+        /// <summary>
+        /// 更新图形列表中的材质颜色
+        /// </summary>
+        private static void UpdateGraphicListColors(object graphicList, object defaultShape, Color targetColor)
+        {
+            try
+            {
+                if (graphicList is IDictionary dictionary)
+                {
+                    // 如果字典为空，跳过
+                    if (dictionary.Count == 0)
+                    {
+                        return;
+                    }
+                    
+                    // 尝试获取默认形状的图形
+                    if (defaultShape != null && dictionary.Contains(defaultShape))
+                    {
+                        UpdateGraphicColors(dictionary[defaultShape], targetColor);
+                    }
+                    else
+                    {
+                        // 否则更新所有图形
+                        foreach (var key in dictionary.Keys)
+                        {
+                            try
+                            {
+                                UpdateGraphicColors(dictionary[key], targetColor);
+                            }
+                            catch (Exception ex)
+                            {
+                                Log.Warning($"[DD] Failed to update graphic for key {key}: {ex.Message}");
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    Log.Warning("[DD] Graphic list is not a dictionary");
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Warning($"[DD] Error in UpdateGraphicListColors: {ex.Message}");
+            }
+        }
+        
+        /// <summary>
+        /// 更新单个图形的材质颜色
+        /// </summary>
+        private static void UpdateGraphicColors(object graphic, Color color)
+        {
+            try
+            {
+                var graphicType = graphic.GetType();
+                
+                // 检查是否是Graphic_SepLR类型
+                if (graphicType.Name == "Graphic_SepLR")
+                {
+                    // 尝试获取左右材质
+                    var matLeftProperty = graphicType.GetProperty("MatLeft", 
+                        BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+                    var matRightProperty = graphicType.GetProperty("MatRight", 
+                        BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+                    
+                    // 方法1：通过属性设置
+                    if (matLeftProperty != null)
+                    {
+                        var matLeft = matLeftProperty.GetValue(graphic) as Material;
+                        if (matLeft != null)
+                        {
+                            matLeft.color = color;
+                        }
+                    }
+                    
+                    if (matRightProperty != null)
+                    {
+                        var matRight = matRightProperty.GetValue(graphic) as Material;
+                        if (matRight != null)
+                        {
+                            matRight.color = color;
+                        }
+                    }
+                    
+                    // 方法2：尝试通过字段设置
+                    var matLeftField = graphicType.GetField("matLeft",
+                        BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+                    var matRightField = graphicType.GetField("matRight",
+                        BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+                    
+                    if (matLeftField != null)
+                    {
+                        var matLeft = matLeftField.GetValue(graphic) as Material;
+                        if (matLeft != null)
+                        {
+                            matLeft.color = color;
+                        }
+                    }
+                    
+                    if (matRightField != null)
+                    {
+                        var matRight = matRightField.GetValue(graphic) as Material;
+                        if (matRight != null)
+                        {
+                            matRight.color = color;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Warning($"[DD] Could not update graphic colors: {ex.Message}");
             }
         }
         
@@ -274,17 +491,13 @@ namespace DivineDiurganate
         {
             try
             {
-                Log.Message($"[DD] Looking for eyeball controller in {pawn.Label}'s components...");
-                
                 foreach (var comp in pawn.AllComps)
                 {
                     var compType = comp.GetType();
-                    Log.Message($"[DD] Checking component type: {compType.FullName}");
                     
                     // 检查是否是眼球控制器
                     if (IsEyeballController(comp))
                     {
-                        Log.Message($"[DD] Found eyeball controller: {compType.Name}");
                         return comp;
                     }
                 }

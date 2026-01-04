@@ -8,7 +8,7 @@ using Verse.AI;
 namespace DivineDiurganate
 {
     /// <summary>
-    /// 治疗工作 - 支持跟随移动目标
+    /// 治疗工作 - 支持跟随移动目标，面向目标
     /// </summary>
     public class JobDriver_TendTargetFollow : JobDriver
     {
@@ -73,14 +73,56 @@ namespace DivineDiurganate
                         {
                             StopFollowing();
                         }
-                        
+
                         PerformHealingCycle();
                     }
                 },
                 
                 defaultCompleteMode = ToilCompleteMode.Never
             };
-            
+
+            // 参考JobDriver_RepairMech：设置handlingFacing为true并面向目标
+            followAndHealToil.handlingFacing = true;
+
+            followAndHealToil.tickAction = () =>
+            {
+                // 检查距离
+                float distance = Target.Position.DistanceTo(pawn.Position);
+                float healDistance = 1.9f; // 治疗距离
+                float followDistance = 10f; // 最大跟随距离
+                
+                if (distance > followDistance)
+                {
+                    // 目标太远，结束工作
+                    pawn.jobs.EndCurrentJob(JobCondition.Incompletable);
+                    return;
+                }
+                
+                if (distance > healDistance)
+                {
+                    // 需要跟随目标
+                    if (!isFollowing || !pawn.pather.Moving || pawn.pather.Destination != Target)
+                    {
+                        StartFollowing();
+                    }
+                }
+                else
+                {
+                    // 在治疗距离内，可以治疗
+                    if (isFollowing)
+                    {
+                        StopFollowing();
+                    }
+
+                    // 参考JobDriver_RepairMech：在治疗距离内时面向目标
+                    pawn.rotationTracker.FaceTarget(Target);
+
+                    PerformHealingCycle();
+                }
+            };
+
+            followAndHealToil.PlaySustainerOrSound(DD_SoundDefOf.DD_Holy_Heal_Sustainer);
+
             followAndHealToil.AddEndCondition(() => 
             {
                 if (!TargetNeedsHealing())
@@ -131,7 +173,7 @@ namespace DivineDiurganate
         /// </summary>
         private void PerformHealingCycle()
         {
-            pawn.rotationTracker.FaceTarget(Target);
+            // 注意：现在面向目标在tickAction中处理
             
             ticksUntilNextHeal--;
             if (ticksUntilNextHeal <= 0)

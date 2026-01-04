@@ -402,11 +402,11 @@
   <FacialAnimation.EyeballTypeDef MayRequire="Nals.FacialAnimation">
 	  <defName>DD_Maple_Sugar_Eyeball</defName>
 	  <texPath>DivineDiurganate/Eyes/Maple_Sugar</texPath>
-	  <!-- <altMaskPath>Things/Pawn/Ratkin/Eyes/Common</altMaskPath> -->
+	  <altMaskPath>Things/Pawn/FA-Experimentals/Eyes/Common</altMaskPath>
     <raceName>Ratkin</raceName>
 	  <shader>Map/CutoutSkinOverlay</shader>
-    <minColor>RGB(1,1,1)</minColor>
-    <maxColor>RGB(1,1,1)</maxColor>
+    <minColor>(0.99,0.99,0.99,1)</minColor>
+    <maxColor>(1,1,1,1)</maxColor>
     <probability>0.0001</probability>
   </FacialAnimation.EyeballTypeDef>
 

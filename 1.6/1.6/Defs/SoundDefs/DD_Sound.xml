@@ -229,4 +229,24 @@
       </li>
     </subSounds>
   </SoundDef>
+  <SoundDef>
+    <defName>DD_Holy_Heal_Sustainer</defName>
+    <sustain>True</sustain>
+    <context>MapOnly</context>
+    <priorityMode>PrioritizeNearest</priorityMode>
+    <sustainFadeoutTime>2.5</sustainFadeoutTime>
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>Ambience/RitualSustainers/Ritual_Sustainer_Christian_Loop_01a</clipPath>
+          </li>
+        </grains>
+        <volumeRange>21</volumeRange>
+        <distRange>10~20</distRange>
+        <sustainAttack>3</sustainAttack>
+        <sustainSkipFirstAttack>False</sustainSkipFirstAttack>
+      </li>
+    </subSounds>
+  </SoundDef>
 </Defs>

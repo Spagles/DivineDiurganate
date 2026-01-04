@@ -75,5 +75,6 @@
     <driverClass>DivineDiurganate.JobDriver_TendTargetFollow</driverClass>
     <reportString>Tending TargetA.</reportString>
     <suspendable>false</suspendable>
+    <neverShowWeapon>true</neverShowWeapon>
   </JobDef>
 </Defs>
