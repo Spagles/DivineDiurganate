@@ -334,6 +334,7 @@
 		<apparelRequired>
 			<li>DD_Nun_Dress</li>
 			<li>DD_NunVeil</li>
+			<li>DD_Maple_Sugar_PackLoudspeaker</li>
 		</apparelRequired>
     <weaponTags>
       <li>DD_Maple_Sugar_Weapon</li>
@@ -345,12 +346,16 @@
     <forcedTraits>
       <Bloodlust>0</Bloodlust>
       <Gay>0</Gay>
+      <Beauty>1</Beauty>
     </forcedTraits>
     <weaponStuffOverride>Plasteel</weaponStuffOverride>
     <ignoreIdeoApparelColors>true</ignoreIdeoApparelColors>
     <initialWillRange>0~0</initialWillRange>
     <initialResistanceRange>0~2</initialResistanceRange>
     <humanPregnancyChance>0</humanPregnancyChance>
+    <abilities>
+      <li>DD_Maple_Sugar_Heal</li>
+    </abilities>
 
     <modExtensions>
       <li Class="DivineDiurganate.HeadTypeExtension">
@@ -404,4 +409,29 @@
     <maxColor>RGB(1,1,1)</maxColor>
     <probability>0.0001</probability>
   </FacialAnimation.EyeballTypeDef>
+
+	<PawnKindDef ParentName="RKBasePawnKind">
+		<defName>DD_Ratkin_Pilot</defName>
+		<label>Diurganate Pilot</label>
+		<combatPower>100</combatPower>
+		<backstoryFiltersOverride>
+			<li>
+				<categories>
+					<li>RatkinStory</li>
+				</categories>
+			</li>
+		</backstoryFiltersOverride>
+		<apparelRequired>
+			<li>DD_Beliver_Dress</li>
+		</apparelRequired>
+		<apparelMoney>0~0</apparelMoney>
+		<apparelTags>
+			<li>RK_Worker</li>
+		</apparelTags>
+    <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
+    <weaponMoney>300~600</weaponMoney>
+		<weaponTags>
+			<li>DD_RatkinClergy_Weapon</li>
+		</weaponTags>
+	</PawnKindDef>
 </Defs>

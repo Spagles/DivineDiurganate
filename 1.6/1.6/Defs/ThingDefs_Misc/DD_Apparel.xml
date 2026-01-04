@@ -473,4 +473,83 @@
       <useWornGraphicMask>true</useWornGraphicMask>
     </apparel>
   </ThingDef>
+  <ThingDef ParentName="DD_ApparelMakeableBase">
+    <defName>DD_Maple_Sugar_PackLoudspeaker</defName>
+    <label>Loudspeaker pack</label>
+    <description>The small audio device that Maple Sugar carries, resembling a schoolbag, covered with scriptures.</description>
+    <graphicData>
+      <texPath>Things/Pawn/Humanlike/Apparel/ToxPack/ToxPack</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(0.7,0.7)</drawSize>
+    </graphicData>
+    <useHitPoint>false</useHitPoint>
+    <statBases>
+      <WorkToMake>5000</WorkToMake>
+      <MaxHitPoints>500</MaxHitPoints>
+      <Mass>1</Mass>
+      <Flammability>0</Flammability>
+			<StuffEffectMultiplierArmor>0.9</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0.0</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0.0</StuffEffectMultiplierInsulation_Heat>
+      <EquipDelay>2</EquipDelay>
+    </statBases>
+    <recipeMaker Inherit="False"/>
+    <tickerType>Normal</tickerType>
+    <techLevel>Industrial</techLevel>
+		<equippedStatOffsets>
+      <SocialImpact>0.5</SocialImpact>
+      <NegotiationAbility>1</NegotiationAbility>
+      <TradePriceImprovement>1</TradePriceImprovement>
+		</equippedStatOffsets>
+    <thingCategories>
+      <li>ApparelUtility</li>
+    </thingCategories>
+    <costList>
+      <Steel>10</Steel>
+      <ComponentIndustrial>1</ComponentIndustrial>
+    </costList>
+    <apparel>
+      <countsAsClothingForNudity>false</countsAsClothingForNudity>
+      <scoreOffset>4</scoreOffset>
+      <careIfWornByCorpse>false</careIfWornByCorpse>
+      <careIfDamaged>false</careIfDamaged>
+      <wearPerDay>0</wearPerDay>
+      <tags Inherit="False"/>
+      <bodyPartGroups>
+        <li>Waist</li>
+      </bodyPartGroups>
+      <layers>
+        <li>Belt</li>
+      </layers>
+      <wornGraphicPath>Things/Pawn/Humanlike/Apparel/ToxPack/ToxPack</wornGraphicPath>
+      <wornGraphicData>
+        <renderUtilityAsPack>true</renderUtilityAsPack>
+        <north>
+          <offset>(0,-0.15)</offset>
+        </north>
+        <south>
+          <offset>(0,-0.15)</offset>
+        </south>
+        <east>
+          <offset>(-0.35,-0.1)</offset>
+          <thin><offset>(0.05,0)</offset></thin>
+          <hulk><offset>(-0.15,0)</offset></hulk>
+          <fat> <offset>(-0.20,0)</offset></fat>
+        </east>
+        <west>
+          <offset>(0.35,-0.1)</offset>
+          <thin><offset>(-0.05,0)</offset></thin>
+          <hulk><offset>(0.15,0)</offset></hulk>
+          <fat> <offset>(0.20,0)</offset></fat>
+        </west>
+
+        <male>  <scale>(0.6,0.6)</scale></male>
+        <female><scale>(0.6,0.6)</scale></female>
+        <thin>  <scale>(0.6,0.6)</scale></thin>
+        <hulk>  <scale>(0.75,0.75)</scale></hulk>
+        <fat>   <scale>(0.75,0.75)</scale></fat>
+      </wornGraphicData>
+    </apparel>
+    <tradeTags Inherit="False"/>
+  </ThingDef>
 </Defs>

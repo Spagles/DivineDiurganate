@@ -76,8 +76,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ability\CompAbilityEffect_StartHealingJob.cs" />
     <Compile Include="Ability\DestroyOwnBodyPart\CompAbilityEffect_DestroyOwnBodyPart.cs" />
     <Compile Include="Ability\DestroyOwnBodyPart\CompProperties_AbilityDestroyOwnBodyPart.cs" />
+    <Compile Include="BuildingComps\CompFlyOverGenerator.cs" />
+    <Compile Include="BuildingComps\CompProperties_FlyOverGenerator.cs" />
     <Compile Include="EventSystem\CompOpenCustomUI.cs" />
     <Compile Include="EventSystem\Condition\ConditionBase.cs" />
     <Compile Include="EventSystem\Condition\Condition_FlagExists.cs" />
@@ -94,6 +97,7 @@
     <Compile Include="EventSystem\QuestNode\QuestNode_EventLetter.cs" />
     <Compile Include="EventSystem\QuestNode\QuestNode_Root_EventLetter.cs" />
     <Compile Include="EventSystem\QuestNode\QuestNode_WriteToEventVariablesWithAdd.cs" />
+    <Compile Include="Flyover\ThingclassFlyOver.cs" />
     <Compile Include="HarmonyPatches\Extension\FixedIdentityExtension.cs" />
     <Compile Include="HarmonyPatches\Extension\PawnKindExtension_EyeballOverride.cs" />
     <Compile Include="HarmonyPatches\Patche_SkillSystem.cs" />
@@ -149,6 +153,7 @@
     <Compile Include="Work\ForceEjectPilot\FloatMenuOptionProvider_ForceEjectPilot.cs" />
     <Compile Include="Work\ForceEjectPilot\JobDriver_ForceEjectPilot.cs" />
     <Compile Include="Work\JobDriver_CarryToMech.cs" />
+    <Compile Include="Work\JobDriver_TendTarget.cs" />
     <Compile Include="Work\RefuelMech\JobDriver_RefuelMech.cs" />
     <Compile Include="Work\RefuelMech\WorkGiver_RefuelMech.cs" />
     <Compile Include="Work\RepairMech\JobDriver_RepairMech.cs" />

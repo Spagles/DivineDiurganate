@@ -278,7 +278,7 @@
         <!-- This is a list of options available for the member generator. -->
         <defaultPilots>
           <li>
-            <pawnKind>Pirate</pawnKind>
+            <pawnKind>DD_Ratkin_Pilot</pawnKind>
             <weight>1</weight>
             <!-- 如果定义为true，则该pawn必定生成 -->
             <!-- If defined as true, the pawn will definitely be generated -->
@@ -499,7 +499,7 @@
         
         <defaultPilots>
           <li>
-            <pawnKind>Pirate</pawnKind>
+            <pawnKind>DD_Ratkin_Pilot</pawnKind>
             <weight>1</weight>
             <required>false</required>
           </li>
@@ -727,7 +727,7 @@
         
         <defaultPilots>
           <li>
-            <pawnKind>Pirate</pawnKind>
+            <pawnKind>DD_Ratkin_Pilot</pawnKind>
             <weight>1</weight>
             <required>false</required>
           </li>

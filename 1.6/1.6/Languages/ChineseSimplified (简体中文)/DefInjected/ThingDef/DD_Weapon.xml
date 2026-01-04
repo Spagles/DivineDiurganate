@@ -4,7 +4,7 @@
   <!-- EN: Anti-Mech Heavy Lance -->
   <DD_AM_Heavy_Lance.label>反机甲长枪</DD_AM_Heavy_Lance.label>
   <!-- EN: This heavy weapon combines an anti-mech cannon and a lance, and can effectively strike heavily armored targets at any distance. However, it needs to be set up before firing and requires a high level of skill from the user. -->
-  <DD_AM_Heavy_Lance.description>结合了反机甲火炮和骑枪为一体的重型武器，无论在哪个距离上都能有效打击重甲目标，不过它开火前需要架设，并且对使用者的要求比较高。</DD_AM_Heavy_Lance.description>
+  <DD_AM_Heavy_Lance.description>这款重型武器集反机甲炮和长矛于一体，能够有效地打击任何距离内的重甲目标。然而，在发射前需要对其进行部署，并且使用者需要具备高超的技巧。\n\n它的近战能力不俗，但是每一次发起戳刺时都会引爆装填的弹药，造成扇形的爆炸。</DD_AM_Heavy_Lance.description>
   <!-- EN: Lance Stab -->
   <DD_AM_Heavy_Lance.tools.Lance_Stab.label>长枪穿刺</DD_AM_Heavy_Lance.tools.Lance_Stab.label>
   <!-- EN: Anti-Mech Heavy Lance -->

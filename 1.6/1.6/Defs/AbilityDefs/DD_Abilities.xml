@@ -72,4 +72,30 @@
 			<speed>75</speed>
     </projectile>
   </ThingDef>
+  
+  <AbilityDef>
+    <defName>DD_Maple_Sugar_Heal</defName>
+    <label>Holy Heal</label>
+    <description>Move to target , pray to the holy Twin-Tail to heal their wounds.</description>
+    <iconPath>UI/Abilities/PiercingSpine</iconPath>
+    <displayOrder>200</displayOrder>
+    <aiCanUse>true</aiCanUse>
+    <cooldownTicksRange>1</cooldownTicksRange>
+    <verbProperties>
+      <range>30</range>
+      <targetParams>
+        <canTargetPawns>true</canTargetPawns>
+        <canTargetSelf>false</canTargetSelf>
+        <canTargetBuildings>false</canTargetBuildings>
+        <canTargetMechs>false</canTargetMechs>
+        <canTargetSubhumans>false</canTargetSubhumans>
+        <canTargetEntities>false</canTargetEntities>
+        <onlyTargetColonistsOrPrisonersOrSlaves>true</onlyTargetColonistsOrPrisonersOrSlaves>
+      </targetParams>
+    </verbProperties>
+    
+    <comps>
+      <li Class="DivineDiurganate.CompProperties_AbilityStartHealingJob"/>
+    </comps>
+  </AbilityDef>
 </Defs>

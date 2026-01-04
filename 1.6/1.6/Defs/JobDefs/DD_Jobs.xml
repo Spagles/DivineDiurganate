@@ -70,4 +70,10 @@
     <reportString>carrying TargetA to TargetB.</reportString>
     <suspendable>false</suspendable>
   </JobDef>
+  <JobDef>
+    <defName>DD_Holy_TendTarget</defName>
+    <driverClass>DivineDiurganate.JobDriver_TendTarget</driverClass>
+    <reportString>Tending TargetA.</reportString>
+    <suspendable>false</suspendable>
+  </JobDef>
 </Defs>

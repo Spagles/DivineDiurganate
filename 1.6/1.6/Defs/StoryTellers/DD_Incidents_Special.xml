@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+    <defName>DD_Maple_Sugar_Join</defName>
+    <label>Maple Sugar Join</label>
+    <category>Special</category>
+    <targetTags>
+      <li>Map_PlayerHome</li>
+    </targetTags>
+    <workerClass>IncidentWorker_WandererJoin</workerClass>
+    <letterLabel>Maple Sugar Join</letterLabel>
+    <letterText>Sensing trouble, a mysterious [PAWN_kind] has arrived.\n\nWill [PAWN_pronoun] be able to set things right in these parts?</letterText>
+    <baseChance>0</baseChance>
+    <minRefireDays>99999</minRefireDays>
+    <minGreatestPopulation>3</minGreatestPopulation>
+    <pawnKind>DD_Maple_Sugar</pawnKind>
+    <pawnMustBeCapableOfViolence>true</pawnMustBeCapableOfViolence>
+  </IncidentDef>
+</Defs>
