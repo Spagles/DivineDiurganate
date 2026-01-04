@@ -97,6 +97,8 @@
     <Compile Include="EventSystem\QuestNode\QuestNode_EventLetter.cs" />
     <Compile Include="EventSystem\QuestNode\QuestNode_Root_EventLetter.cs" />
     <Compile Include="EventSystem\QuestNode\QuestNode_WriteToEventVariablesWithAdd.cs" />
+    <Compile Include="Flyover\SendLetterAfterTicks\CompProperties_SendLetterAfterTicks.cs" />
+    <Compile Include="Flyover\SendLetterAfterTicks\CompSendLetterAfterTicks.cs" />
     <Compile Include="Flyover\ThingclassFlyOver.cs" />
     <Compile Include="HarmonyPatches\Extension\FixedIdentityExtension.cs" />
     <Compile Include="HarmonyPatches\Extension\PawnKindExtension_EyeballOverride.cs" />
@@ -142,6 +144,8 @@
     <Compile Include="Thing_Comp\BuildingSpawnPawn\CompProperties_BuildToPawn.cs" />
     <Compile Include="Thing_Comp\GiveHediffOnShot\CompAndPatch_GiveHediffOnShot.cs" />
     <Compile Include="Thing_Comp\MechSpecificWeapon\CompMechSpecificWeapon.cs" />
+    <Compile Include="Thing_Comp\PlaySoundOnSpawn\CompPlaySoundOnSpawn.cs" />
+    <Compile Include="Thing_Comp\PlaySoundOnSpawn\CompProperties_PlaySoundOnSpawn.cs" />
     <Compile Include="Verb\MeleeAttack_Cleave\CompCleave.cs" />
     <Compile Include="Verb\MeleeAttack_Cleave\Verb_MeleeAttack_Cleave.cs" />
     <Compile Include="Verb\ShootFireSpew\VerbProperties_FireSpew.cs" />

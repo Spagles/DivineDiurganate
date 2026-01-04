@@ -113,6 +113,45 @@
     </subSounds>
   </SoundDef>
   <SoundDef>
+    <defName>DD_Airship_IncomingSound</defName>
+    <context>MapOnly</context>
+    <maxSimultaneous>1</maxSimultaneous>
+    <subSounds>
+      <li>
+        <onCamera>True</onCamera>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>DivineDiurganate/DD_Airship_IncomingSound</clipPath>
+          </li>
+        </grains>
+        <volumeRange>65</volumeRange>
+        <pitchRange>0.9~1.1</pitchRange>
+      </li>
+    </subSounds>
+  </SoundDef>
+  <SoundDef>
+    <defName>DD_Airship_MovingSound</defName>
+    <sustain>true</sustain>
+    <context>MapOnly</context>
+    <maxSimultaneous>2</maxSimultaneous>
+    <priorityMode>PrioritizeNearest</priorityMode>
+    <subSounds>
+      <li>
+        <tempoAffectedByGameSpeed>false</tempoAffectedByGameSpeed>
+        <gameSpeedRange>1~1</gameSpeedRange>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>DivineDiurganate/DD_Airship_MovingSound</clipPath>
+          </li>
+        </grains>
+        <pitchRange>0.99~1.01</pitchRange>
+        <volumeRange>5</volumeRange>
+        <sustainRelease>0.02</sustainRelease>
+        <distRange>80~130</distRange>
+      </li>
+    </subSounds>
+  </SoundDef>
+  <SoundDef>
     <defName>DD_DHM86_Knell_Mech_Moving_Sound</defName>
     <sustain>true</sustain>
     <context>MapOnly</context>

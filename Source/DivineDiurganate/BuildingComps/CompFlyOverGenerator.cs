@@ -217,13 +217,6 @@ namespace DivineDiurganate
             {
                 // 记录使用
                 RecordUse();
-                
-                // 显示成功消息
-                Messages.Message($"Fly over created from {startPoint} to {endPoint}", 
-                    MessageTypeDefOf.PositiveEvent);
-                
-                // 播放设备激活音效
-                SoundDefOf.PsychicPulseGlobal.PlayOneShotOnCamera(map);
             }
             
             ResetSelection();

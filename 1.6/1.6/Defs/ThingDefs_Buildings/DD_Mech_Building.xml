@@ -189,9 +189,9 @@
       <li Class="CompProperties_Flickable"/>
       <li Class="CompProperties_Breakdownable"/>
       <li Class="DivineDiurganate.CompProperties_FlyOverGenerator">
-        <flyOverDef>DD_FlyOver_Basic</flyOverDef>
+        <flyOverDef>DD_Flyover_AirShip</flyOverDef>
         
-        <defaultSpeed>1.5</defaultSpeed>
+        <defaultSpeed>0.001</defaultSpeed>
         <defaultAltitude>15</defaultAltitude>
         
         <spawnContents>false</spawnContents>

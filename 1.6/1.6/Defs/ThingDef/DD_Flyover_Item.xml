@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- 母舰 -->
+  <ThingDef ParentName="EtherealThingBase">
+    <defName>DD_Flyover_AirShip</defName>
+    <label>双尾教廷飞空艇</label>
+    <thingClass>DivineDiurganate.FlyOver</thingClass>
+    <tickerType>Normal</tickerType>
+    <drawerType>RealtimeOnly</drawerType>
+    <graphicData>
+      <texPath>DivineDiurganate/Flyover/DD_AirShip_Shadow</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+      <drawSize>(120,250)</drawSize>
+      <color>(195,195,195,45)</color>
+    </graphicData>
+    <skyfaller>
+      <shadow>DivineDiurganate/Weapon/DD_Mech_Weapon_Empty</shadow>
+      <shadowSize>(0, 0)</shadowSize>
+      <motesPerCell>0</motesPerCell>
+      <floatingSound>DD_Airship_MovingSound</floatingSound>
+      <!-- <impactSound>FlyOver/Landing</impactSound> -->
+    </skyfaller>
+    <modExtensions>
+      <li Class="DivineDiurganate.FlyOverShadowExtension">
+        <customShadowPath>DivineDiurganate/Weapon/DD_Mech_Weapon_Empty</customShadowPath>
+        <useCustomShadow>true</useCustomShadow>
+        <shadowIntensity>0.8</shadowIntensity>
+        <minShadowAlpha>0</minShadowAlpha>
+        <maxShadowAlpha>0</maxShadowAlpha>
+        <minShadowScale>0</minShadowScale>
+        <maxShadowScale>0</maxShadowScale>
+
+        <!-- 淡入淡出开关 -->
+        <useFadeEffects>false</useFadeEffects>      <!-- 完全禁用淡入淡出 -->
+        <useFadeIn>false</useFadeIn>                <!-- 仅禁用淡入 -->
+        <useFadeOut>false</useFadeOut>              <!-- 仅禁用淡出 -->
+        <useApproachAnimation>true</useApproachAnimation>
+        <approachDuration>1</approachDuration>
+        <approachOffsetDistance>50</approachOffsetDistance>
+      </li>
+    </modExtensions>
+    <seeThroughFog>true</seeThroughFog>
+    <useHitPoints>false</useHitPoints>
+    <selectable>false</selectable>
+    <alwaysHaulable>false</alwaysHaulable>
+    <altitudeLayer>MetaOverlays</altitudeLayer>
+    <comps>
+      <li Class="DivineDiurganate.CompProperties_PlaySoundOnSpawn">
+        <sound>DD_Airship_IncomingSound</sound>
+      </li>
+    </comps>
+  </ThingDef>
+</Defs>
