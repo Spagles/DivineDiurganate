@@ -10,6 +10,9 @@
   <!-- EN: Prise TargetA. -->
   <DD_ForceEjectPilot.reportString>撬开 TargetA</DD_ForceEjectPilot.reportString>
   
+  <!-- EN: Tending TargetA. -->
+  <DD_Holy_TendTarget.reportString>以祈愿治疗 TargetA</DD_Holy_TendTarget.reportString>
+  
   <!-- EN: Refuleing TargetA. -->
   <DD_RefuelMech.reportString>正在为TargetA补充燃料</DD_RefuelMech.reportString>
   

@@ -422,7 +422,7 @@
   <ThingDef ParentName="BaseHumanMakeableGun">
     <defName>DD_AM_Heavy_Lance</defName>
     <label>Anti-Mech Heavy Lance</label>
-    <description>This heavy weapon combines an anti-mecha cannon and a spear, enabling it to effectively engage heavy armor targets at any range. However, it requires deployment before firing and demands exceptional skill from the user.\n\nIts melee capabilities are impressive, but each jab it delivers detonates the ammunition it has loaded, causing a fan-shaped explosion.</description>
+    <description>This heavy weapon combines an anti-mecha cannon and a spear, enabling it to effectively engage heavy armor targets at any range. However, it requires deployment before firing and demands exceptional skill from the user.</description>
     <tickerType>Normal</tickerType>
     <techLevel>Industrial</techLevel>
     <graphicData>
@@ -484,7 +484,7 @@
       <li>
         <label>Lance Stab</label>
         <capacities>
-          <li>DD_AM_Heavy_Lance_Stab</li>
+          <li>Stab</li>
         </capacities>
         <power>35</power>
         <cooldownTime>2.75</cooldownTime>
@@ -495,15 +495,6 @@
       <li Class="DivineDiurganate.CompProperties_GiveHediffOnShot">
         <hediffDef>DD_Weapon_Deployed_Long</hediffDef>
         <severityToAdd>1</severityToAdd>
-      </li>
-      <li Class="DivineDiurganate.CompProperties_Cleave">
-        <cleaveAngle>60</cleaveAngle>
-        <cleaveRange>2.5</cleaveRange>
-        <cleaveDamageFactor>0.5</cleaveDamageFactor>
-        <damageDowned>false</damageDowned>
-        <explosionDamageDef>Bomb</explosionDamageDef>
-        <attackEffecter>DD_DHM69_Scythe_Slash_Hit</attackEffecter>
-        <cleaveEffecter>DD_DHM69_Scythe_Slash_Hit</cleaveEffecter>
       </li>
     </comps>
   </ThingDef>
@@ -544,23 +535,6 @@
       <screenShakeFactor>0.5</screenShakeFactor>
     </projectile>
   </ThingDef>
-  <ToolCapacityDef>
-    <defName>DD_AM_Heavy_Lance_Stab</defName>
-    <label>Lance Stab</label>
-  </ToolCapacityDef>
-  <ManeuverDef>
-    <defName>DD_AM_Heavy_Lance_Stab</defName>
-    <requiredCapacity>DD_AM_Heavy_Lance_Stab</requiredCapacity>
-    <verb>
-      <verbClass>DivineDiurganate.Verb_MeleeAttack_Cleave</verbClass>
-      <meleeDamageDef>Stab</meleeDamageDef>
-    </verb>
-    <logEntryDef>MeleeAttack</logEntryDef>
-    <combatLogRulesHit>Maneuver_Slash_MeleeHit</combatLogRulesHit>
-    <combatLogRulesDeflect>Maneuver_Slash_MeleeDeflect</combatLogRulesDeflect>
-    <combatLogRulesMiss>Maneuver_Slash_MeleeMiss</combatLogRulesMiss>
-    <combatLogRulesDodge>Maneuver_Slash_MeleeDodge</combatLogRulesDodge>
-  </ManeuverDef>
 
   <!-- sp -->
   <ThingDef ParentName="BaseHumanMakeableGun">

@@ -8,8 +8,8 @@
       <li>Map_PlayerHome</li>
     </targetTags>
     <workerClass>IncidentWorker_WandererJoin</workerClass>
-    <letterLabel>Maple Sugar Join</letterLabel>
-    <letterText>Sensing trouble, a mysterious [PAWN_kind] has arrived.\n\nWill [PAWN_pronoun] be able to set things right in these parts?</letterText>
+    <letterLabel>Maple Sugar's here!</letterLabel>
+    <letterText>It seems that the colony is falling into crisis, and a petite figure appears on the horizon - just as the followers of the Two-Tail have always said, the angelic idol Sister [PAWN_kind] will always appear in the ratkin colony that is about to fall, bringing salvation from the Two-Tail to all beings!</letterText>
     <baseChance>0</baseChance>
     <minRefireDays>99999</minRefireDays>
     <minGreatestPopulation>3</minGreatestPopulation>

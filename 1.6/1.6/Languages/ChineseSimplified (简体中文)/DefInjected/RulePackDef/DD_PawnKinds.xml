@@ -2,7 +2,10 @@
 <LanguageData>
   
   <!-- EN:
-    <li>r_name->MapleSugar</li>
+    <li>r_name->[DD_Maple_Sugar_FirstName] '[DD_Maple_Sugar_nickName]' [DD_Maple_Sugar_LastName]</li>
+    <li>DD_Maple_Sugar_nickName->MapleSugar</li>
+    <li>DD_Maple_Sugar_FirstName->Flavia</li>
+    <li>DD_Maple_Sugar_LastName->Whitemane</li>
   -->
   <DD_Maple_Sugar_NameMaker.rulePack.rulesStrings>
     <li>r_name->[DD_Maple_Sugar_FirstName] '[DD_Maple_Sugar_nickName]' [DD_Maple_Sugar_LastName]</li>
