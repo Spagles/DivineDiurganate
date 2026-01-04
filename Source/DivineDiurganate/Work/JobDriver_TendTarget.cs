@@ -21,6 +21,9 @@ namespace DivineDiurganate
         
         protected Pawn Target => (Pawn)job.GetTarget(TargetInd).Thing;
         
+        // 同性恋特性几率（1%）
+        private const float GayTraitChance = 0.01f;
+        
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
             return pawn.Reserve(Target, job, 1, -1, null, errorOnFailed);
@@ -45,7 +48,7 @@ namespace DivineDiurganate
                 {
                     // 检查距离
                     float distance = Target.Position.DistanceTo(pawn.Position);
-                    float healDistance = 2.5f; // 治疗距离
+                    float healDistance = 1.9f; // 治疗距离
                     float followDistance = 10f; // 最大跟随距离
                     
                     if (distance > followDistance)
@@ -162,6 +165,9 @@ namespace DivineDiurganate
             
             // 治疗伤害
             HealInjuries(ref amount);
+            
+            // 检查并尝试添加同性恋特性
+            TryAddGayTrait();
         }
         
         /// <summary>
@@ -191,6 +197,49 @@ namespace DivineDiurganate
             }
         }
         
+        /// <summary>
+        /// 尝试添加同性恋特性
+        /// </summary>
+        private void TryAddGayTrait()
+        {
+            // 1. 检查目标是否为女性
+            if (Target.gender != Gender.Female)
+                return;
+            
+            // 2. 检查目标是否已经有同性恋特性
+            if (Target.story?.traits == null)
+                return;
+                
+            // 检查是否已经有同性恋特性
+            var gayTraitDef = DefDatabase<TraitDef>.GetNamedSilentFail("Gay");
+            if (gayTraitDef == null)
+            {
+                // 如果找不到"Gay"特性，尝试使用TraitDefOf中的定义（如果有）
+                gayTraitDef = TraitDefOf.Gay;
+            }
+            
+            if (gayTraitDef == null)
+                return; // 游戏中没有定义同性恋特性
+            
+            if (Target.story.traits.HasTrait(gayTraitDef))
+                return; // 目标已经有这个特性
+            
+            // 3. 1%的概率检查
+            if (Rand.Value > GayTraitChance)
+                return;
+            
+            // 4. 添加同性恋特性
+            Trait gayTrait = new Trait(gayTraitDef, 0, true);
+            Target.story.traits.GainTrait(gayTrait);
+            
+            // 5. 可选：添加一个消息通知
+            Messages.Message(
+                "DD_HolyHealing_GayRevelation".Translate(Target.NameShortColored), 
+                Target, 
+                MessageTypeDefOf.PositiveEvent
+            );
+        }
+        
         public bool TargetNeedsHealing()
         {
             if (Target == null || Target.health == null || Target.Dead)
@@ -198,8 +247,6 @@ namespace DivineDiurganate
 
             return Target.health.summaryHealth.SummaryHealthPercent < 1;
         }
-
-
 
         public override void ExposeData()
         {

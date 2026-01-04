@@ -502,8 +502,8 @@
         <cleaveDamageFactor>0.5</cleaveDamageFactor>
         <damageDowned>false</damageDowned>
         <explosionDamageDef>Bomb</explosionDamageDef>
-        <!-- <attackEffecter>DD_DHM69_Scythe_Slash_Hit</attackEffecter>
-        <cleaveEffecter>DD_DHM69_Scythe_Slash_Hit</cleaveEffecter> -->
+        <attackEffecter>DD_DHM69_Scythe_Slash_Hit</attackEffecter>
+        <cleaveEffecter>DD_DHM69_Scythe_Slash_Hit</cleaveEffecter>
       </li>
     </comps>
   </ThingDef>
@@ -570,7 +570,7 @@
     <tickerType>Normal</tickerType>
     <techLevel>Industrial</techLevel>
     <graphicData>
-      <texPath>DivineDiurganate/Weapon/DD_AM_Heavy_Lance</texPath>
+      <texPath>DivineDiurganate/Weapon/DD_Maple_Sugar_Heavy_Lance</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>CutoutComplex</shaderType>
       <drawSize>1.75</drawSize>

@@ -72,7 +72,7 @@
   </JobDef>
   <JobDef>
     <defName>DD_Holy_TendTarget</defName>
-    <driverClass>DivineDiurganate.JobDriver_TendTarget</driverClass>
+    <driverClass>DivineDiurganate.JobDriver_TendTargetFollow</driverClass>
     <reportString>Tending TargetA.</reportString>
     <suspendable>false</suspendable>
   </JobDef>

@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
+  <IncidentDef>
     <defName>DD_Maple_Sugar_Join</defName>
     <label>Maple Sugar Join</label>
     <category>Special</category>

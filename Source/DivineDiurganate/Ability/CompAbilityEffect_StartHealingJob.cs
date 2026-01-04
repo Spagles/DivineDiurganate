@@ -1,8 +1,6 @@
 using RimWorld;
-using System.Linq;
 using Verse;
 using Verse.AI;
-using static UnityEngine.GraphicsBuffer;
 
 namespace DivineDiurganate
 {
@@ -11,17 +9,18 @@ namespace DivineDiurganate
     /// </summary>
     public class CompAbilityEffect_StartHealingJob : CompAbilityEffect
     {
+        public new CompProperties_AbilityStartHealingJob Props => 
+            (CompProperties_AbilityStartHealingJob)props;
+        
         public override void Apply(LocalTargetInfo target, LocalTargetInfo dest)
         {
             base.Apply(target, dest);
             
             // 验证目标
-            if (target == null || !target.IsValid)
+            if (!target.IsValid || target.Pawn == null)
                 return;
                 
             Pawn targetPawn = target.Pawn;
-            if (targetPawn == null)
-                return;
             
             // 简单检查：目标需要治疗
             if (!NeedsHealing(targetPawn))
@@ -29,6 +28,12 @@ namespace DivineDiurganate
             
             // 启动治疗工作
             StartHealingJob(targetPawn);
+            
+            // 播放特效（如果有）
+            if (Props.fleckDef != null)
+            {
+                FleckMaker.Static(targetPawn.Position, targetPawn.Map, Props.fleckDef);
+            }
         }
         
         /// <summary>
@@ -51,7 +56,9 @@ namespace DivineDiurganate
             if (pawn == null || pawn.health == null || pawn.Dead)
                 return false;
 
-            return pawn.health.summaryHealth.SummaryHealthPercent < 1;
+            // 使用更稳定的检查方式
+            return pawn.health.HasHediffsNeedingTend(false) || 
+                   pawn.health.summaryHealth.SummaryHealthPercent < 1.0f;
         }
 
         public override bool Valid(LocalTargetInfo target, bool throwMessages = false)
@@ -60,11 +67,23 @@ namespace DivineDiurganate
                 return false;
                 
             Pawn targetPawn = target.Pawn;
-            if (targetPawn == null)
-                return false;
                 
             // 简单验证：目标需要治疗
-            return NeedsHealing(targetPawn);
+            if (!NeedsHealing(targetPawn))
+            {
+                if (throwMessages)
+                    Messages.Message("DD_TargetDoesNotNeedHealing".Translate(targetPawn.LabelShortCap), 
+                                    MessageTypeDefOf.RejectInput);
+                return false;
+            }
+            
+            return true;
+        }
+        
+        public override bool CanApplyOn(LocalTargetInfo target, LocalTargetInfo dest)
+        {
+            // 简化版本，只检查最基本条件
+            return target.Pawn != null && NeedsHealing(target.Pawn);
         }
     }
     
@@ -76,9 +95,16 @@ namespace DivineDiurganate
         // 可选：一个简单的特效
         public FleckDef fleckDef;
         
+        // 可选：是否允许治疗敌对单位
+        public bool allowHealEnemy = false;
+        
+        // 可选：治疗范围
+        public float range = 30f;
+        
         public CompProperties_AbilityStartHealingJob()
         {
             compClass = typeof(CompAbilityEffect_StartHealingJob);
+            this.range = 30f; // 默认范围
         }
     }
 }

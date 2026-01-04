@@ -56,4 +56,7 @@
   <DD_MechNotDowned>该机甲仍有行动能力</DD_MechNotDowned>
   <DD_ForceEjectComplete_WithPilots>{0} 撬开了 {1}，里面仍活着的 {2} 个驾驶员冲出来了！</DD_ForceEjectComplete_WithPilots>
   <DD_ForceEjectComplete>{0} 撬开了 {1}，并接管了它。</DD_ForceEjectComplete>
+
+  <DD_TargetDoesNotNeedHealing>目标不需要治疗</DD_TargetDoesNotNeedHealing>
+  <DD_HolyHealing_GayRevelation>{0} 变成女同了！</DD_HolyHealing_GayRevelation>
 </LanguageData>

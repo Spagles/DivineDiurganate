@@ -82,18 +82,13 @@
     <aiCanUse>true</aiCanUse>
     <cooldownTicksRange>1</cooldownTicksRange>
     <verbProperties>
-      <range>30</range>
+      <verbClass>Verb_CastAbility</verbClass>
+      <range>34.9</range>
+      <warmupTime>0</warmupTime>
       <targetParams>
-        <canTargetPawns>true</canTargetPawns>
-        <canTargetSelf>false</canTargetSelf>
-        <canTargetBuildings>false</canTargetBuildings>
-        <canTargetMechs>false</canTargetMechs>
-        <canTargetSubhumans>false</canTargetSubhumans>
-        <canTargetEntities>false</canTargetEntities>
         <onlyTargetColonistsOrPrisonersOrSlaves>true</onlyTargetColonistsOrPrisonersOrSlaves>
       </targetParams>
     </verbProperties>
-    
     <comps>
       <li Class="DivineDiurganate.CompProperties_AbilityStartHealingJob"/>
     </comps>

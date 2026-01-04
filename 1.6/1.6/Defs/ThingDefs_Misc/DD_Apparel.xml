@@ -482,12 +482,13 @@
       <graphicClass>Graphic_Single</graphicClass>
       <drawSize>(0.7,0.7)</drawSize>
     </graphicData>
-    <useHitPoint>false</useHitPoint>
+    <useHitPoints>false</useHitPoints>
     <statBases>
       <WorkToMake>5000</WorkToMake>
       <MaxHitPoints>500</MaxHitPoints>
       <Mass>1</Mass>
       <Flammability>0</Flammability>
+      <DeteriorationRate>0</DeteriorationRate>
 			<StuffEffectMultiplierArmor>0.9</StuffEffectMultiplierArmor>
 			<StuffEffectMultiplierInsulation_Cold>0.0</StuffEffectMultiplierInsulation_Cold>
 			<StuffEffectMultiplierInsulation_Heat>0.0</StuffEffectMultiplierInsulation_Heat>
