@@ -476,7 +476,6 @@
 			<li>RK_RangeWeapon</li>
 			<li>DD_RatkinCrusader_Heavy_Weapon</li>
 			<li>DD_RatkinClergy_Weapon</li>
-			<li>DD_Maple_Sugar_Weapon</li>
 		</weaponTags>
     <generateCommonality>0.01</generateCommonality>
     <tradeability>None</tradeability>
@@ -535,5 +534,85 @@
       <explosionRadius>1.9</explosionRadius>
       <screenShakeFactor>0.5</screenShakeFactor>
     </projectile>
+  </ThingDef>
+
+  <!-- sp -->
+  <ThingDef ParentName="BaseHumanMakeableGun">
+    <defName>DD_Maple_Sugar_Heavy_Lance</defName>
+    <label>Maple Sugar's Heavy Lance</label>
+    <description>一把被枫糖自行修改过的反机甲长枪，她拆除了反机甲炮弹的发射结构，安装了一门圣焰喷射器，因此这把武器比制式的反机甲长枪要轻的同时也更适合对付人群。</description>
+    <tickerType>Normal</tickerType>
+    <techLevel>Industrial</techLevel>
+    <graphicData>
+      <texPath>DivineDiurganate/Weapon/DD_AM_Heavy_Lance</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+      <drawSize>1.75</drawSize>
+    </graphicData>
+    <soundInteract>Interact_Rifle</soundInteract>
+    <uiIconScale>0.7</uiIconScale>
+    <costStuffCount>80</costStuffCount>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <recipeMaker>
+      <!-- <recipeUsers Inherit="False" /> -->
+			<researchPrerequisite>FlechetteBullet</researchPrerequisite>
+      <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+    </recipeMaker>
+    <statBases>
+      <WorkToMake>5000</WorkToMake>
+      <Mass>6</Mass>
+      <AccuracyTouch>0.45</AccuracyTouch>
+      <AccuracyShort>0.75</AccuracyShort>
+      <AccuracyMedium>0.8</AccuracyMedium>
+      <AccuracyLong>0.7</AccuracyLong>
+      <RangedWeapon_Cooldown>0.25</RangedWeapon_Cooldown>
+    </statBases>
+    <verbs>
+      <li Class="DivineDiurganate.VerbProperties_FireSpew">
+        <verbClass>DivineDiurganate.Verb_ShootFireSpew</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <warmupTime>1</warmupTime>
+        <range>15</range>        <!-- Standard range property -->
+        <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+        <burstShotCount>6</burstShotCount>
+        <soundCast>Shot_MiniFlameblaster</soundCast>
+        <!-- <soundCast>Shot_Shotgun</soundCast> -->
+        <soundCastTail>GunTail_Medium</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+
+        <!-- Custom Properties for the modified Verb_SpewFire logic -->
+        <degrees>30</degrees>
+        <damageDef>Flame</damageDef>
+        <damageAmount>8</damageAmount>
+        <!-- <filthDef>Filth_SpentAcid</filthDef> -->
+        <effecterDef>DD_Fire_Shotgun_Fire_Spew</effecterDef>
+        <propagationSpeed>0.5</propagationSpeed>
+        <chanceToStartFire>1</chanceToStartFire>
+        <avoidFriendlyFire>false</avoidFriendlyFire>
+      </li>
+    </verbs>
+    <costList>
+      <Steel>30</Steel>
+      <ComponentIndustrial>2</ComponentIndustrial>
+    </costList>
+		<weaponTags Inherit="false">
+			<li>DD_Maple_Sugar_Weapon</li>
+		</weaponTags>
+    <generateCommonality>0.01</generateCommonality>
+    <tradeability>None</tradeability>
+    <thingSetMakerTags Inherit="False" />
+    <tools Inherit="False">
+      <li>
+        <label>Lance Stab</label>
+        <capacities>
+          <li>Stab</li>
+        </capacities>
+        <power>35</power>
+        <cooldownTime>2.75</cooldownTime>
+        <armorPenetration>1.2</armorPenetration>
+      </li>
+    </tools>
   </ThingDef>
 </Defs>

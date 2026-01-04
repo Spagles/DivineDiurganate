@@ -353,9 +353,14 @@
     <humanPregnancyChance>0</humanPregnancyChance>
 
     <modExtensions>
-      <li Class="DivineDiurganate.FixedIdentityExtension">
+      <li Class="DivineDiurganate.HeadTypeExtension">
         <!-- 设置头部类型 -->
         <forcedHeadTypeDef>DD_Maple_Sugar_Head</forcedHeadTypeDef>
+      </li>
+      <li Class="DivineDiurganate.PawnKindExtension_EyeballOverride">
+        <eyeballTypeDefNames>
+          <li>DD_Maple_Sugar_Eyeball</li> <!-- 直接指定Def名称 -->
+        </eyeballTypeDefNames>
       </li>
     </modExtensions>
   </PawnKindDef>
@@ -369,18 +374,34 @@
 			<li>RK_Style</li>
 		</styleTags> -->
 	</HairDef>
-  <RulePackDef>
-    <defName>DD_Maple_Sugar_NameMaker</defName>
-    <rulePack>
-      <rulesStrings>
-        <li>r_name->MapleSugar</li>
-      </rulesStrings>
-    </rulePack>
-  </RulePackDef>
+	<RulePackDef>
+		<defName>DD_Maple_Sugar_NameMaker</defName>
+		<include>
+			<li>RatkinKingdomNameUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+        <li>r_name->[DD_Maple_Sugar_FirstName] '[DD_Maple_Sugar_nickName]' [DD_Maple_Sugar_LastName]</li>
+        <li>DD_Maple_Sugar_nickName->MapleSugar</li>
+        <li>DD_Maple_Sugar_FirstName->Flavia</li>
+        <li>DD_Maple_Sugar_LastName->Whitemane</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
   <HeadTypeDef ParentName="AverageBase">
     <defName>DD_Maple_Sugar_Head</defName>
     <graphicPath>DivineDiurganate/Head/DD_Maple_Sugar_Head</graphicPath>
     <gender>None</gender>
     <randomChosen>false</randomChosen>
   </HeadTypeDef>
+  <FacialAnimation.EyeballTypeDef MayRequire="Nals.FacialAnimation">
+	  <defName>DD_Maple_Sugar_Eyeball</defName>
+	  <texPath>DivineDiurganate/Eyes/Maple_Sugar</texPath>
+	  <!-- <altMaskPath>Things/Pawn/Ratkin/Eyes/Common</altMaskPath> -->
+    <raceName>Ratkin</raceName>
+	  <shader>Map/CutoutSkinOverlay</shader>
+    <minColor>RGB(1,1,1)</minColor>
+    <maxColor>RGB(1,1,1)</maxColor>
+    <probability>0.0001</probability>
+  </FacialAnimation.EyeballTypeDef>
 </Defs>

@@ -5,7 +5,10 @@
     <li>r_name->MapleSugar</li>
   -->
   <DD_Maple_Sugar_NameMaker.rulePack.rulesStrings>
-    <li>r_name->枫糖</li>
+    <li>r_name->[DD_Maple_Sugar_FirstName] '[DD_Maple_Sugar_nickName]' [DD_Maple_Sugar_LastName]</li>
+    <li>DD_Maple_Sugar_nickName->枫糖</li>
+    <li>DD_Maple_Sugar_FirstName->芙拉薇娅</li>
+    <li>DD_Maple_Sugar_LastName->白鬃</li>
   </DD_Maple_Sugar_NameMaker.rulePack.rulesStrings>
   
 </LanguageData>

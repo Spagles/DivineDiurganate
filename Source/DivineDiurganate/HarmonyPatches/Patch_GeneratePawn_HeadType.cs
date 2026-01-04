@@ -6,7 +6,7 @@ namespace DivineDiurganate
 {
     [HarmonyPatch(typeof(PawnGenerator))]
     [HarmonyPatch("GeneratePawn", typeof(PawnGenerationRequest))]
-    public static class Patch_GeneratePawn_FixedIdentity
+    public static class Patch_GeneratePawn_HeadType
     {
         [HarmonyPostfix]
         public static void Postfix(ref Pawn __result, PawnGenerationRequest request)
@@ -16,9 +16,9 @@ namespace DivineDiurganate
             
             // 只处理人类
             if (!pawn.RaceProps.Humanlike) return;
-            
+
             // 检查 FixedIdentityExtension
-            FixedIdentityExtension fixedIdentityExt = request.KindDef?.GetModExtension<FixedIdentityExtension>();
+            HeadTypeExtension fixedIdentityExt = request.KindDef?.GetModExtension<HeadTypeExtension>();
             if (fixedIdentityExt == null) return;
             
             // 只保留头部类型修改的部分
