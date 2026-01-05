@@ -49,6 +49,18 @@
       <li Class="DivineDiurganate.CompProperties_PlaySoundOnSpawn">
         <sound>DD_Airship_IncomingSound</sound>
       </li>
+      <li Class="DivineDiurganate.CompProperties_FlyoverManaged">
+        <destroyDataWithFlyover>false</destroyDataWithFlyover>  
+      </li>
+      <li Class="DivineDiurganate.CompProperties_FlyOverSkill_Reenter">
+        <skillName>Re-enter Battlefield</skillName>
+        <description>Return to the battlefield along a new flight path.</description>
+        <iconPath>UI/Icons/Skills/Reenter</iconPath>
+        <slotIndex>0</slotIndex>
+        <defaultSpeed>1</defaultSpeed>
+        <twoPointsFirstPointMessage>选择入场方向</twoPointsFirstPointMessage>
+        <twoPointsSecondPointMessage>选择离场方向</twoPointsSecondPointMessage>
+      </li>
     </comps>
   </ThingDef>
 </Defs>
