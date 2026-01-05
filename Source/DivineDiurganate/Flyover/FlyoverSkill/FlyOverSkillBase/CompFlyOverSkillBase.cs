@@ -1,3 +1,4 @@
+
 using RimWorld;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +16,12 @@ namespace DivineDiurganate
         public int lastUseTick = -99999;
         public int useCount = 0;
         public bool isAvailable = true;
-        
+
         // 选择状态
         protected SkillTargetType currentTargetType;
         protected IntVec3 firstTargetPoint;
         protected IntVec3 secondTargetPoint;
-        
+
         /// <summary>
         /// 获取技能属性
         /// </summary>
@@ -31,7 +32,7 @@ namespace DivineDiurganate
                 return props as CompProperties_FlyOverSkillBase;
             }
         }
-        
+
         /// <summary>
         /// 获取关联的战机数据
         /// </summary>
@@ -43,7 +44,7 @@ namespace DivineDiurganate
                 return managedComp?.FlyoverData;
             }
         }
-        
+
         /// <summary>
         /// 获取技能冷却百分比（0-1，0表示冷却完毕）
         /// </summary>
@@ -52,35 +53,35 @@ namespace DivineDiurganate
             get
             {
                 if (SkillProps.cooldownTicks <= 0) return 0f;
-                
+
                 int ticksSinceUse = Find.TickManager.TicksGame - lastUseTick;
                 if (ticksSinceUse >= SkillProps.cooldownTicks) return 0f;
-                
+
                 return 1f - (float)ticksSinceUse / SkillProps.cooldownTicks;
             }
         }
-        
+
         /// <summary>
         /// 检查技能是否可用
         /// </summary>
         public virtual bool CanUseNow(out string reason)
         {
             reason = null;
-            
+
             // 检查基本可用性
             if (!isAvailable)
             {
                 reason = "Skill is unavailable";
                 return false;
             }
-            
+
             // 检查使用次数限制
             if (SkillProps.maxUses > 0 && useCount >= SkillProps.maxUses)
             {
                 reason = $"Use limit reached ({useCount}/{SkillProps.maxUses})";
                 return false;
             }
-            
+
             // 检查冷却时间
             if (Find.TickManager.TicksGame < lastUseTick + SkillProps.cooldownTicks)
             {
@@ -88,7 +89,7 @@ namespace DivineDiurganate
                 reason = $"On cooldown for {remainingTicks.ToStringSecondsFromTicks()}";
                 return false;
             }
-            
+
             // 检查战机状态
             var flyoverData = LinkedFlyoverData;
             if (flyoverData == null)
@@ -96,28 +97,28 @@ namespace DivineDiurganate
                 reason = "No aircraft data found";
                 return false;
             }
-            
+
             if (flyoverData.status == FlyoverStatus.Destroyed && !SkillProps.canUseWhenDestroyed)
             {
                 reason = "Aircraft is destroyed";
                 return false;
             }
-            
+
             if (flyoverData.status == FlyoverStatus.OnMap && !SkillProps.canUseWhenOnMap)
             {
                 reason = "Cannot use while aircraft is on map";
                 return false;
             }
-            
+
             if (flyoverData.status == FlyoverStatus.Standby && !SkillProps.canUseWhenStandby)
             {
                 reason = "Cannot use while aircraft is in standby";
                 return false;
             }
-            
+
             return true;
         }
-        
+
         /// <summary>
         /// 激活技能（开始目标选择）
         /// </summary>
@@ -128,22 +129,22 @@ namespace DivineDiurganate
                 Messages.Message(reason, MessageTypeDefOf.RejectInput);
                 return;
             }
-            
+
             currentTargetType = SkillProps.targetType;
-            
+
             // 根据目标类型开始选择
             switch (currentTargetType)
             {
                 case SkillTargetType.SinglePoint:
                     StartSinglePointSelection();
                     break;
-                    
+
                 case SkillTargetType.TwoPoints:
                     StartTwoPointsSelection();
                     break;
             }
         }
-        
+
         /// <summary>
         /// 单点选择
         /// </summary>
@@ -158,17 +159,17 @@ namespace DivineDiurganate
                     canTargetBuildings = false,
                     mapObjectTargetsMustBeAutoAttackable = false
                 },
-                delegate(LocalTargetInfo target)
+                delegate (LocalTargetInfo target)
                 {
                     OnSinglePointSelected(target);
                 }
             );
-            
+
             // 使用XML定义的消息，支持字符串格式化
             string message = GetFormattedMessage(SkillProps.singlePointSelectMessage, SkillProps.skillName);
             Messages.Message(message, MessageTypeDefOf.SilentInput);
         }
-        
+
         /// <summary>
         /// 双点选择（第一步）
         /// </summary>
@@ -183,18 +184,18 @@ namespace DivineDiurganate
                     canTargetBuildings = false,
                     mapObjectTargetsMustBeAutoAttackable = false
                 },
-                delegate(LocalTargetInfo target)
+                delegate (LocalTargetInfo target)
                 {
                     firstTargetPoint = target.Cell;
                     OnSecondPointSelection();
                 }
             );
-            
+
             // 使用XML定义的消息，支持字符串格式化
             string message = GetFormattedMessage(SkillProps.twoPointsFirstPointMessage, SkillProps.skillName);
             Messages.Message(message, MessageTypeDefOf.SilentInput);
         }
-        
+
         /// <summary>
         /// 双点选择（第二步）
         /// </summary>
@@ -209,18 +210,18 @@ namespace DivineDiurganate
                     canTargetBuildings = false,
                     mapObjectTargetsMustBeAutoAttackable = false
                 },
-                delegate(LocalTargetInfo target)
+                delegate (LocalTargetInfo target)
                 {
                     secondTargetPoint = target.Cell;
                     OnTwoPointsSelected(firstTargetPoint, secondTargetPoint);
                 }
             );
-            
+
             // 使用XML定义的消息，支持字符串格式化
             string message = GetFormattedMessage(SkillProps.twoPointsSecondPointMessage, SkillProps.skillName);
             Messages.Message(message, MessageTypeDefOf.SilentInput);
         }
-        
+
         /// <summary>
         /// 获取格式化消息（支持{0}占位符）
         /// </summary>
@@ -236,7 +237,7 @@ namespace DivineDiurganate
                 else
                     return $"Select for {SkillProps.skillName}";
             }
-            
+
             try
             {
                 return string.Format(messageTemplate, args);
@@ -248,7 +249,7 @@ namespace DivineDiurganate
                 return messageTemplate;
             }
         }
-        
+
         /// <summary>
         /// 单点选择完成回调
         /// </summary>
@@ -256,7 +257,7 @@ namespace DivineDiurganate
         {
             // 由子类实现具体逻辑
         }
-        
+
         /// <summary>
         /// 双点选择完成回调
         /// </summary>
@@ -264,7 +265,7 @@ namespace DivineDiurganate
         {
             // 由子类实现具体逻辑
         }
-        
+
         /// <summary>
         /// 单位选择完成回调
         /// </summary>
@@ -272,7 +273,7 @@ namespace DivineDiurganate
         {
             // 由子类实现具体逻辑
         }
-        
+
         /// <summary>
         /// 建筑选择完成回调
         /// </summary>
@@ -280,7 +281,7 @@ namespace DivineDiurganate
         {
             // 由子类实现具体逻辑
         }
-        
+
         /// <summary>
         /// 执行技能逻辑
         /// </summary>
@@ -290,7 +291,7 @@ namespace DivineDiurganate
             lastUseTick = Find.TickManager.TicksGame;
             useCount++;
         }
-        
+
         /// <summary>
         /// 获取技能图标
         /// </summary>
@@ -301,24 +302,24 @@ namespace DivineDiurganate
                 var icon = ContentFinder<Texture2D>.Get(SkillProps.iconPath, false);
                 if (icon != null) return icon;
             }
-            
+
             // 默认图标
             return ContentFinder<Texture2D>.Get("UI/Icons/DefaultSkill", false) ?? BaseContent.BadTex;
         }
-        
+
         /// <summary>
         /// 获取技能冷却时间描述
         /// </summary>
         public virtual string GetCooldownDescription()
         {
             if (SkillProps.cooldownTicks <= 0) return "No cooldown";
-            
+
             int remainingTicks = lastUseTick + SkillProps.cooldownTicks - Find.TickManager.TicksGame;
             if (remainingTicks <= 0) return "Ready";
-            
+
             return $"Cooldown: {remainingTicks.ToStringSecondsFromTicks()}";
         }
-        
+
         /// <summary>
         /// 获取技能状态描述
         /// </summary>
@@ -330,7 +331,7 @@ namespace DivineDiurganate
             }
             return "Ready";
         }
-        
+
         public override void PostExposeData()
         {
             base.PostExposeData();

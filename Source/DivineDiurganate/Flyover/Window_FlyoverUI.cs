@@ -15,23 +15,23 @@ namespace DivineDiurganate
         private float windowHeight = 500f;
         private float itemHeight = 100f;
         private float margin = 10f;
-        
+
         // 新增：窗口缩小状态
         private bool isMinimized = false;
         private Rect minimizedRect;
         private Vector2 minimizedSize = new Vector2(60f, 60f);
         private float minimizedOpacity = 0.7f;
-        
+
         // 新增：缩放动画相关
         private float animationProgress = 1f;
         private bool isAnimating = false;
         private float animationSpeed = 8f;
-        
+
         // 新增：技能图标尺寸
         private const float SKILL_ICON_SIZE = 32f;
         private const float SKILL_SPACING = 8f;
         private const int MAX_SKILLS_PER_ROW = 4;
-        
+
         public Window_FlyoverUI(WorldComp_FlyoverManager manager)
         {
             this.manager = manager;
@@ -40,27 +40,27 @@ namespace DivineDiurganate
             this.doWindowBackground = true;
             this.absorbInputAroundWindow = false;
             this.preventCameraMotion = false;
-            
+
             // 设置窗口层级
             this.layer = WindowLayer.SubSuper;
-            
+
             // 初始化窗口位置和大小
             this.windowRect = new Rect(
-                UI.screenWidth - 450f - 20f, 
-                100f, 
-                450f, 
+                UI.screenWidth - 450f - 20f,
+                100f,
+                450f,
                 windowHeight
             );
-            
+
             // 初始化缩小后的矩形
             minimizedRect = new Rect(
-                windowRect.x, 
-                windowRect.y, 
-                minimizedSize.x, 
+                windowRect.x,
+                windowRect.y,
+                minimizedSize.x,
                 minimizedSize.y
             );
         }
-        
+
         public override void DoWindowContents(Rect inRect)
         {
             try
@@ -74,7 +74,7 @@ namespace DivineDiurganate
                 {
                     DrawExpandedWindow(inRect);
                 }
-                
+
                 // 处理缩放动画
                 if (isAnimating)
                 {
@@ -86,7 +86,7 @@ namespace DivineDiurganate
                 Log.Error($"Error in FlyoverUI: {ex}");
             }
         }
-        
+
         /// <summary>
         /// 绘制展开状态的窗口
         /// </summary>
@@ -94,17 +94,17 @@ namespace DivineDiurganate
         {
             // 绘制背景
             Widgets.DrawWindowBackground(inRect);
-            
+
             // 标题栏区域
             Rect titleArea = new Rect(inRect.x, inRect.y, inRect.width, 30f);
             DrawTitleBar(titleArea);
-            
+
             // 内容区域（减去标题栏高度）
             Rect contentRect = new Rect(inRect.x, titleArea.yMax, inRect.width, inRect.height - titleArea.height);
-            
+
             // 获取要显示的战机数据
             List<FlyoverData> activeFlyovers = manager.ActiveFlyoverData;
-            
+
             if (activeFlyovers.Count == 0)
             {
                 // 显示无战机的提示
@@ -114,28 +114,28 @@ namespace DivineDiurganate
                 Text.Anchor = TextAnchor.UpperLeft;
                 return;
             }
-            
+
             // 计算总内容高度
             float totalItemHeight = (itemHeight + margin) * activeFlyovers.Count;
             float contentHeight = Mathf.Max(contentRect.height, totalItemHeight);
-            
+
             // 滚动区域
             Rect scrollRect = new Rect(contentRect.x, contentRect.y, contentRect.width, contentRect.height);
             Rect viewRect = new Rect(0f, 0f, scrollRect.width - 20f, totalItemHeight);
-            
+
             // 开始滚动视图
             scrollPosition = GUI.BeginScrollView(scrollRect, scrollPosition, viewRect);
-            
+
             float yPos = 0f;
             foreach (var flyover in activeFlyovers)
             {
                 DrawFlyoverItemDetailed(new Rect(0f, yPos, viewRect.width, itemHeight), flyover);
                 yPos += itemHeight + margin;
             }
-            
+
             GUI.EndScrollView();
         }
-        
+
         /// <summary>
         /// 绘制详细的战机项
         /// </summary>
@@ -144,23 +144,23 @@ namespace DivineDiurganate
             // 背景
             Widgets.DrawBoxSolid(rect, new Color(0.1f, 0.1f, 0.1f, 0.8f));
             Widgets.DrawBox(rect);
-            
+
             // 内边距
             rect = rect.ContractedBy(5f);
-            
+
             // 左侧：状态指示器和图标区域
             Rect leftSection = new Rect(rect.x, rect.y, 80f, rect.height);
             DrawLeftSection(leftSection, flyover);
-            
+
             // 中间：信息区域
             Rect middleSection = new Rect(leftSection.xMax + 5f, rect.y, rect.width - leftSection.width - 85f, rect.height);
             DrawMiddleSection(middleSection, flyover);
-            
+
             // 右侧：操作按钮区域
             Rect rightSection = new Rect(middleSection.xMax + 5f, rect.y, 70f, rect.height);
             DrawRightSection(rightSection, flyover);
         }
-        
+
         /// <summary>
         /// 绘制左侧区域（状态和图标）
         /// </summary>
@@ -169,7 +169,7 @@ namespace DivineDiurganate
             // 状态指示器（顶部小条）
             Rect statusRect = new Rect(rect.x, rect.y, rect.width, 5f);
             Widgets.DrawBoxSolid(statusRect, GetStatusColor(flyover.status));
-            
+
             // 战机图标
             Texture2D icon = flyover.DisplayIcon;
             if (icon != null)
@@ -181,12 +181,12 @@ namespace DivineDiurganate
                     iconSize,
                     iconSize
                 );
-                
+
                 GUI.DrawTexture(iconRect, icon);
-                
+
                 // 图标边框
                 Widgets.DrawBox(iconRect, 1);
-                
+
                 // 状态文本（图标下方）
                 Rect statusTextRect = new Rect(
                     rect.x,
@@ -194,7 +194,7 @@ namespace DivineDiurganate
                     rect.width,
                     20f
                 );
-                
+
                 Text.Font = GameFont.Tiny;
                 Text.Anchor = TextAnchor.MiddleCenter;
                 GUI.color = GetStatusColor(flyover.status);
@@ -204,7 +204,7 @@ namespace DivineDiurganate
                 Text.Font = GameFont.Small;
             }
         }
-        
+
         /// <summary>
         /// 绘制中间区域（信息和技能）
         /// </summary>
@@ -214,7 +214,7 @@ namespace DivineDiurganate
             Rect nameRect = new Rect(rect.x, rect.y, rect.width, 25f);
             Text.Font = GameFont.Small;
             Widgets.Label(nameRect, flyover.DisplayName);
-            
+
             // 技能区域
             Rect skillAreaRect = new Rect(
                 rect.x,
@@ -222,7 +222,7 @@ namespace DivineDiurganate
                 rect.width,
                 rect.height - nameRect.height - 10f
             );
-            
+
             DrawSkillSlots(skillAreaRect, flyover);
         }
 
@@ -402,24 +402,24 @@ namespace DivineDiurganate
                 rect.width,
                 30f
             );
-            
+
             string buttonLabel = "Deploy";
-            Color buttonColor = flyover.CanDeploy() ? 
-                new Color(0.2f, 0.6f, 0.2f, 0.9f) : 
+            Color buttonColor = flyover.CanDeploy() ?
+                new Color(0.2f, 0.6f, 0.2f, 0.9f) :
                 new Color(0.5f, 0.5f, 0.5f, 0.5f);
-            
+
             if (Widgets.ButtonText(deployButtonRect, buttonLabel))
             {
                 OnDeployClicked(flyover);
             }
-            
+
             // 按钮提示
             if (!flyover.CanDeploy() && Mouse.IsOver(deployButtonRect))
             {
                 TooltipHandler.TipRegion(deployButtonRect, $"Cannot deploy: {flyover.StatusDescription}");
             }
         }
-        
+
         /// <summary>
         /// 绘制缩小状态的窗口
         /// </summary>
@@ -427,17 +427,17 @@ namespace DivineDiurganate
         {
             // 绘制背景
             Widgets.DrawWindowBackground(inRect);
-            
+
             // 绘制图标
             Texture2D icon = null;
             var flyovers = manager.ActiveFlyoverData;
-            
+
             if (flyovers.Count > 0)
             {
                 // 使用第一个战机的图标
                 icon = flyovers[0].DisplayIcon;
             }
-            
+
             if (icon != null)
             {
                 Rect iconRect = new Rect(
@@ -446,11 +446,11 @@ namespace DivineDiurganate
                     inRect.width - 10f,
                     inRect.height - 10f
                 );
-                
+
                 GUI.color = new Color(1f, 1f, 1f, minimizedOpacity);
                 GUI.DrawTexture(iconRect, icon);
                 GUI.color = Color.white;
-                
+
                 // 显示战机数量（如果有多架）
                 if (flyovers.Count > 1)
                 {
@@ -460,9 +460,9 @@ namespace DivineDiurganate
                         18f,
                         12f
                     );
-                    
+
                     Widgets.DrawBoxSolid(countRect, new Color(0f, 0f, 0f, 0.7f));
-                    
+
                     Text.Font = GameFont.Tiny;
                     Text.Anchor = TextAnchor.MiddleCenter;
                     GUI.color = Color.white;
@@ -480,14 +480,14 @@ namespace DivineDiurganate
                 GUI.color = Color.white;
                 Text.Anchor = TextAnchor.UpperLeft;
             }
-            
+
             // 点击图标展开窗口
             if (Widgets.ButtonInvisible(inRect))
             {
                 ToggleMinimize();
             }
         }
-        
+
         /// <summary>
         /// 绘制标题栏
         /// </summary>
@@ -499,7 +499,7 @@ namespace DivineDiurganate
             GUI.color = new Color(1f, 1f, 1f, 0.9f);
             Widgets.Label(titleRect, "Aircraft Manager");
             GUI.color = Color.white;
-            
+
             // 数量显示
             int count = manager.ActiveFlyoverData.Count;
             Rect countRect = new Rect(titleRect.xMax + 5f, rect.y + 5f, 40f, 20f);
@@ -508,39 +508,39 @@ namespace DivineDiurganate
             Widgets.Label(countRect, $"({count})");
             GUI.color = Color.white;
             Text.Font = GameFont.Small;
-            
+
             // 缩小按钮
             Rect minimizeButtonRect = new Rect(rect.xMax - 25f, rect.y + 5f, 20f, 20f);
             string minimizeLabel = isMinimized ? "+" : "_";
-            
+
             if (Widgets.ButtonText(minimizeButtonRect, minimizeLabel))
             {
                 ToggleMinimize();
             }
-            
+
             // 分隔线
             Widgets.DrawLineHorizontal(rect.x, rect.yMax - 1f, rect.width);
         }
-        
+
         /// <summary>
         /// 切换缩小/展开状态
         /// </summary>
         private void ToggleMinimize()
         {
             if (isAnimating) return;
-            
+
             isAnimating = true;
             animationProgress = 0f;
-            
+
             // 切换状态
             isMinimized = !isMinimized;
-            
+
             // 更新窗口属性
             if (isMinimized)
             {
                 // 保存当前位置和大小
                 minimizedRect.position = windowRect.position;
-                
+
                 // 缩小窗口
                 windowRect.size = minimizedSize;
                 absorbInputAroundWindow = true;
@@ -555,21 +555,21 @@ namespace DivineDiurganate
                 absorbInputAroundWindow = false;
             }
         }
-        
+
         /// <summary>
         /// 更新动画
         /// </summary>
         private void UpdateAnimation()
         {
             animationProgress += Time.deltaTime * animationSpeed;
-            
+
             if (animationProgress >= 1f)
             {
                 animationProgress = 1f;
                 isAnimating = false;
             }
         }
-        
+
         /// <summary>
         /// 获取状态颜色
         /// </summary>
@@ -589,7 +589,7 @@ namespace DivineDiurganate
                     return Color.gray;
             }
         }
-        
+
         /// <summary>
         /// 部署按钮点击事件
         /// </summary>
@@ -597,29 +597,29 @@ namespace DivineDiurganate
         {
             if (flyover.CanDeploy())
             {
-                Messages.Message($"Deploying {flyover.DisplayName}...", 
+                Messages.Message($"Deploying {flyover.DisplayName}...",
                     MessageTypeDefOf.NeutralEvent);
             }
             else
             {
-                Messages.Message($"Cannot deploy {flyover.DisplayName}", 
+                Messages.Message($"Cannot deploy {flyover.DisplayName}",
                     MessageTypeDefOf.RejectInput);
             }
         }
-        
+
         /// <summary>
         /// 窗口更新，确保在屏幕内
         /// </summary>
         public override void WindowUpdate()
         {
             base.WindowUpdate();
-            
+
             // 确保窗口在屏幕内
             Rect rect = windowRect;
             rect.x = Mathf.Clamp(rect.x, 0f, UI.screenWidth - rect.width);
             rect.y = Mathf.Clamp(rect.y, 0f, UI.screenHeight - rect.height);
             windowRect = rect;
-            
+
             // 更新缩小窗口位置
             if (isMinimized)
             {

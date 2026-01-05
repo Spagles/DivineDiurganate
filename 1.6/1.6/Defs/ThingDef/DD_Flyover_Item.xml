@@ -3,7 +3,7 @@
   <!-- 母舰 -->
   <ThingDef ParentName="EtherealThingBase">
     <defName>DD_Flyover_AirShip</defName>
-    <label>双尾教廷飞空艇</label>
+    <label>Oberon Airship</label>
     <thingClass>DivineDiurganate.FlyOver</thingClass>
     <tickerType>Normal</tickerType>
     <drawerType>RealtimeOnly</drawerType>

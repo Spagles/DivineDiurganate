@@ -96,7 +96,7 @@ namespace DivineDiurganate
                 {
                     basePos = ApplyApproachAnimation(basePos);
                 }
-                
+
                 // 应用离场动画偏移
                 if (useDepartureAnimation && departureStarted && !departureCompleted)
                 {
@@ -111,39 +111,39 @@ namespace DivineDiurganate
         private Vector3 ApplyApproachAnimation(Vector3 basePos)
         {
             float approachProgress = currentApproachTime / approachDuration;
-            
+
             // 使用缓动函数让移动更自然
             float easedProgress = EasingFunction(approachProgress, EasingType.OutCubic);
-            
+
             // 计算偏移方向（飞行方向的反方向）
             Vector3 approachDirection = -MovementDirection.normalized;
-            
+
             // 计算偏移量：从最大偏移逐渐减少到0
             float currentOffset = approachOffsetDistance * (1f - easedProgress);
-            
+
             // 应用偏移
             Vector3 offsetPos = basePos + approachDirection * currentOffset;
-            
+
             return offsetPos;
         }
-        
+
         // 离场动画位置计算 - 新增
         private Vector3 ApplyDepartureAnimation(Vector3 basePos)
         {
             float departureProgress = currentDepartureTime / departureDuration;
-            
+
             // 使用缓动函数让移动更自然
             float easedProgress = EasingFunction(departureProgress, EasingType.OutCubic);
-            
+
             // 计算偏移方向（飞行方向的正方向）
             Vector3 departureDirection = MovementDirection.normalized;
-            
+
             // 计算偏移量：从0逐渐增加到最大偏移
             float currentOffset = departureOffsetDistance * easedProgress;
-            
+
             // 应用偏移
             Vector3 offsetPos = basePos + departureDirection * currentOffset;
-            
+
             return offsetPos;
         }
 
@@ -181,7 +181,7 @@ namespace DivineDiurganate
                 return Mathf.Clamp01(currentApproachTime / approachDuration);
             }
         }
-        
+
         // 离场动画进度（0-1）- 新增
         public float DepartureProgress
         {
@@ -253,7 +253,7 @@ namespace DivineDiurganate
             {
                 // 离场动画时不使用淡出
                 if (departureStarted) return 1f;
-                
+
                 if (!fadeOutStarted) return 1f;
                 if (fadeOutCompleted) return 0f;
                 return Mathf.Clamp01(1f - (currentFadeOutTime / fadeOutDuration));
@@ -316,7 +316,7 @@ namespace DivineDiurganate
             }
 
             // 检查是否应该开始淡出（仅在启用时且未开始离场动画）
-            if (useFadeOut && !fadeOutStarted && !departureStarted && 
+            if (useFadeOut && !fadeOutStarted && !departureStarted &&
                 !timeLimitExceeded && currentProgress >= fadeOutStartProgress)
             {
                 StartFadeOut();
@@ -372,7 +372,7 @@ namespace DivineDiurganate
         private void OnTimeLimitExceeded()
         {
             timeLimitExceeded = true;
-            
+
             // 判断使用哪种方式销毁
             if (useDepartureAnimation)
             {
@@ -395,7 +395,7 @@ namespace DivineDiurganate
         private void StartDepartureAnimation()
         {
             departureStarted = true;
-            
+
             // 停止淡出效果（如果已经开始）
             if (fadeOutStarted)
             {
@@ -403,17 +403,17 @@ namespace DivineDiurganate
                 fadeOutCompleted = false;
                 currentFadeOutTime = 0f;
             }
-            
+
             // 停止淡入效果（如果还没完成）
             if (!fadeInCompleted)
             {
                 fadeInCompleted = true;
                 currentFadeInTime = fadeInDuration;
             }
-            
+
             // 设置离场动画持续时间
             departureDuration = GetDepartureDuration();
-            
+
             // 播放离场音效（如果有）
             PlayDepartureSound();
         }
@@ -445,7 +445,7 @@ namespace DivineDiurganate
         {
             if (hasCompleted) return;
             hasCompleted = true;
-            
+
             // 如果是正常到达终点，设置进度为1
             if (!timeLimitExceeded)
             {
@@ -520,26 +520,26 @@ namespace DivineDiurganate
             Scribe_Values.Look(ref fadeInDuration, "fadeInDuration", 1.5f);
             Scribe_Values.Look(ref currentFadeInTime, "currentFadeInTime", 0f);
             Scribe_Values.Look(ref fadeInCompleted, "fadeInCompleted", false);
-            
+
             // 淡出效果数据保存
             Scribe_Values.Look(ref fadeOutDuration, "fadeOutDuration", 0.5f);
             Scribe_Values.Look(ref currentFadeOutTime, "currentFadeOutTime", 0f);
             Scribe_Values.Look(ref fadeOutStarted, "fadeOutStarted", false);
             Scribe_Values.Look(ref fadeOutCompleted, "fadeOutCompleted", false);
             Scribe_Values.Look(ref fadeOutStartProgress, "fadeOutStartProgress", 0.7f);
-            
+
             // 时间限制数据保存 - 新增
             Scribe_Values.Look(ref maxStayTime, "maxStayTime", 0f);
             Scribe_Values.Look(ref currentStayTime, "currentStayTime", 0f);
             Scribe_Values.Look(ref timeLimitExceeded, "timeLimitExceeded", false);
-            
+
             // 进场动画数据保存
             Scribe_Values.Look(ref approachDuration, "approachDuration", 1.0f);
             Scribe_Values.Look(ref currentApproachTime, "currentApproachTime", 0f);
             Scribe_Values.Look(ref approachCompleted, "approachCompleted", false);
             Scribe_Values.Look(ref approachOffsetDistance, "approachOffsetDistance", 3f);
             Scribe_Values.Look(ref useApproachAnimation, "useApproachAnimation", true);
-            
+
             // 离场动画数据保存 - 新增
             Scribe_Values.Look(ref departureDuration, "departureDuration", 1.0f);
             Scribe_Values.Look(ref currentDepartureTime, "currentDepartureTime", 0f);
@@ -547,7 +547,7 @@ namespace DivineDiurganate
             Scribe_Values.Look(ref departureCompleted, "departureCompleted", false);
             Scribe_Values.Look(ref departureOffsetDistance, "departureOffsetDistance", 3f);
             Scribe_Values.Look(ref useDepartureAnimation, "useDepartureAnimation", true);
-            
+
             // 淡入淡出开关保存
             Scribe_Values.Look(ref useFadeEffects, "useFadeEffects", true);
             Scribe_Values.Look(ref useFadeIn, "useFadeIn", true);
@@ -559,13 +559,13 @@ namespace DivineDiurganate
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
-            
+
             if (!respawningAfterLoad)
             {
                 // 设置初始位置
                 base.Position = startPosition;
                 hasStarted = true;
-                
+
                 // 从 ModExtension 加载配置
                 var extension = def.GetModExtension<FlyOverShadowExtension>();
                 if (extension != null)
@@ -573,15 +573,15 @@ namespace DivineDiurganate
                     useApproachAnimation = extension.useApproachAnimation;
                     approachDuration = extension.approachDuration;
                     approachOffsetDistance = extension.approachOffsetDistance;
-                    
+
                     // 加载离场动画配置 - 新增
                     useDepartureAnimation = extension.useDepartureAnimation;
                     departureDuration = extension.departureDuration;
                     departureOffsetDistance = extension.departureOffsetDistance;
-                    
+
                     // 加载时间限制配置 - 新增
                     maxStayTime = extension.maxStayTime;
-                    
+
                     // 加载淡入淡出配置
                     useFadeEffects = extension.useFadeEffects;
                     useFadeIn = extension.useFadeIn;
@@ -591,25 +591,25 @@ namespace DivineDiurganate
                     fadeInDuration = extension.defaultFadeInDuration;
                     fadeOutStartProgress = extension.fadeOutStartProgress;
                 }
-                
+
                 // 重置淡入状态
                 currentFadeInTime = 0f;
                 fadeInCompleted = !useFadeIn;
-                                              
+
                 // 重置淡出状态
                 currentFadeOutTime = 0f;
                 fadeOutStarted = false;
                 fadeOutCompleted = false;
-                
+
                 // 重置进场动画状态
                 currentApproachTime = 0f;
                 approachCompleted = !useApproachAnimation;
-                
+
                 // 重置离场动画状态 - 新增
                 currentDepartureTime = 0f;
                 departureStarted = false;
                 departureCompleted = false;
-                
+
                 // 重置时间限制状态 - 新增
                 currentStayTime = 0f;
                 timeLimitExceeded = false;
@@ -661,13 +661,13 @@ namespace DivineDiurganate
                 effectPos.y = AltitudeLayer.MoteOverhead.AltitudeFor();
 
                 float effectIntensity = 1f;
-                
+
                 // 离场动画时减少粒子效果
                 if (departureStarted)
                 {
                     effectIntensity = 1f - (currentDepartureTime / departureDuration);
                 }
-                
+
                 FleckMaker.ThrowSmoke(effectPos, base.Map, 1f * effectIntensity);
             }
         }
@@ -720,7 +720,7 @@ namespace DivineDiurganate
             }
             fadePropertyBlock.SetColor(ShaderPropertyIDs.Color,
                 new Color(graphic.Color.r, graphic.Color.g, graphic.Color.b, graphic.Color.a * alpha));
-            
+
             // 应用伴飞缩放
             Vector3 scale = Vector3.one;
             if (def.graphicData != null)
@@ -731,7 +731,7 @@ namespace DivineDiurganate
             {
                 scale = new Vector3(escortScale, 1f, escortScale);
             }
-            
+
             Vector3 highPos = drawPos;
             highPos.y = AltitudeLayer.MetaOverlays.AltitudeFor();
             Matrix4x4 matrix2 = Matrix4x4.TRS(highPos, ExactRotation, scale);
@@ -819,20 +819,20 @@ namespace DivineDiurganate
             flyOver.useApproachAnimation = useApproachAnimation;
             flyOver.approachDuration = approachDuration;
             flyOver.approachOffsetDistance = approachOffsetDistance;
-            
+
             // 离场动画参数 - 新增
             flyOver.useDepartureAnimation = useDepartureAnimation;
             flyOver.departureDuration = departureDuration;
             flyOver.departureOffsetDistance = departureOffsetDistance;
-            
+
             // 时间限制参数 - 新增
             flyOver.maxStayTime = maxStayTime;
-            
+
             // 淡入淡出参数
             if (useFadeEffects.HasValue) flyOver.useFadeEffects = useFadeEffects.Value;
             if (useFadeIn.HasValue) flyOver.useFadeIn = useFadeIn.Value;
             if (useFadeOut.HasValue) flyOver.useFadeOut = useFadeOut.Value;
-            
+
             // 简化派系设置
             if (casterPawn != null && casterPawn.Faction != null)
             {
@@ -843,8 +843,178 @@ namespace DivineDiurganate
             {
                 flyOver.innerContainer.TryAddRangeOrTransfer(contents);
             }
-            
+
             GenSpawn.Spawn(flyOver, start, map);
+            return flyOver;
+        }
+
+        /// <summary>
+        /// 计算直线与地图边界的交点（公开静态方法）
+        /// </summary>
+        public static bool CalculateMapIntersections(IntVec3 point1, IntVec3 point2, Map map,
+            out IntVec3 intersection1, out IntVec3 intersection2)
+        {
+            intersection1 = IntVec3.Invalid;
+            intersection2 = IntVec3.Invalid;
+
+            if (map == null)
+            {
+                Log.Warning("Map is null in CalculateMapIntersections");
+                return false;
+            }
+
+            // 将点转换为Vector3以便计算
+            Vector3 p1 = point1.ToVector3();
+            Vector3 p2 = point2.ToVector3();
+
+            // 计算方向向量
+            Vector3 dir = (p2 - p1).normalized;
+
+            // 地图边界
+            float minX = 0f;
+            float maxX = map.Size.x - 1;
+            float minZ = 0f;
+            float maxZ = map.Size.z - 1;
+
+            List<Vector3> intersections = new List<Vector3>();
+
+            // 计算与四条边界的交点
+            // 1. 左边界 (x = minX)
+            if (Mathf.Abs(dir.x) > 0.001f)
+            {
+                float tLeft = (minX - p1.x) / dir.x;
+                Vector3 intersectLeft = p1 + dir * tLeft;
+                if (intersectLeft.z >= minZ && intersectLeft.z <= maxZ)
+                    intersections.Add(intersectLeft);
+            }
+
+            // 2. 右边界 (x = maxX)
+            if (Mathf.Abs(dir.x) > 0.001f)
+            {
+                float tRight = (maxX - p1.x) / dir.x;
+                Vector3 intersectRight = p1 + dir * tRight;
+                if (intersectRight.z >= minZ && intersectRight.z <= maxZ)
+                    intersections.Add(intersectRight);
+            }
+
+            // 3. 下边界 (z = minZ)
+            if (Mathf.Abs(dir.z) > 0.001f)
+            {
+                float tBottom = (minZ - p1.z) / dir.z;
+                Vector3 intersectBottom = p1 + dir * tBottom;
+                if (intersectBottom.x >= minX && intersectBottom.x <= maxX)
+                    intersections.Add(intersectBottom);
+            }
+
+            // 4. 上边界 (z = maxZ)
+            if (Mathf.Abs(dir.z) > 0.001f)
+            {
+                float tTop = (maxZ - p1.z) / dir.z;
+                Vector3 intersectTop = p1 + dir * tTop;
+                if (intersectTop.x >= minX && intersectTop.x <= maxX)
+                    intersections.Add(intersectTop);
+            }
+
+            // 我们需要两个交点（一个在p1之前，一个在p1之后）
+            if (intersections.Count < 2)
+                return false;
+
+            // 计算每个交点到p1的距离（带符号，表示方向）
+            List<(Vector3 point, float distance)> signedDistances = new List<(Vector3, float)>();
+            foreach (Vector3 intersection in intersections)
+            {
+                Vector3 toIntersection = intersection - p1;
+                float distance = toIntersection.magnitude;
+
+                // 判断方向：如果点积为正，则是相同方向；如果为负，则是相反方向
+                float dot = Vector3.Dot(toIntersection.normalized, dir);
+                float signedDistance = dot > 0 ? distance : -distance;
+
+                signedDistances.Add((intersection, signedDistance));
+            }
+
+            // 排序并找到最远的负距离和最远的正距离
+            signedDistances.Sort((a, b) => a.distance.CompareTo(b.distance));
+
+            // 找到最远的负距离（p1之前最远的点）
+            Vector3? farNegative = null;
+            foreach (var (point, distance) in signedDistances)
+            {
+                if (distance < 0)
+                {
+                    farNegative = point;
+                    break;
+                }
+            }
+
+            // 找到最远的正距离（p1之后最远的点）
+            Vector3? farPositive = null;
+            for (int i = signedDistances.Count - 1; i >= 0; i--)
+            {
+                if (signedDistances[i].distance > 0)
+                {
+                    farPositive = signedDistances[i].point;
+                    break;
+                }
+            }
+
+            if (!farNegative.HasValue || !farPositive.HasValue)
+                return false;
+
+            intersection1 = farNegative.Value.ToIntVec3();
+            intersection2 = farPositive.Value.ToIntVec3();
+
+            return true;
+        }
+        /// <summary>
+        /// 根据航线信息创建 FlyOver
+        /// </summary>
+        public static FlyOver MakeFlyOverWithPathInfo(ThingDef flyOverDef, FlightPathInfo pathInfo, Map map,
+            float speed = 1f, float height = 10f, ThingOwner contents = null,
+            float fadeInDuration = 1.5f, float defaultFadeOutDuration = 0.5f, Pawn casterPawn = null,
+            bool useApproachAnimation = true, float approachDuration = 1.0f, float approachOffsetDistance = 3f,
+            bool? useFadeEffects = null, bool? useFadeIn = null, bool? useFadeOut = null,
+            bool useDepartureAnimation = true, float departureDuration = 1.0f, float departureOffsetDistance = 3f,
+            float maxStayTime = 0f)
+        {
+            // 验证路径信息
+            if (!pathInfo.Validate(out string validationError))
+            {
+                Log.Error($"Invalid flight path: {validationError}");
+                return null;
+            }
+
+            // 生成路径
+            if (!pathInfo.GeneratePath(map, out IntVec3 startPoint, out IntVec3 endPoint))
+            {
+                Log.Error("Failed to generate flight path");
+                return null;
+            }
+
+            // 创建 FlyOver
+            FlyOver flyOver = MakeFlyOver(
+                flyOverDef,
+                startPoint,
+                endPoint,
+                map,
+                speed,
+                height,
+                contents,
+                fadeInDuration,
+                defaultFadeOutDuration,
+                casterPawn,
+                useApproachAnimation,
+                approachDuration,
+                approachOffsetDistance,
+                useFadeEffects,
+                useFadeIn,
+                useFadeOut,
+                useDepartureAnimation,
+                departureDuration,
+                departureOffsetDistance,
+                maxStayTime
+            );
+
             return flyOver;
         }
     }
@@ -867,16 +1037,16 @@ namespace DivineDiurganate
         public bool useApproachAnimation = true;
         public float approachDuration = 1.0f;
         public float approachOffsetDistance = 3f;
-        
+
         // 离场动画配置 - 新增
         public bool useDepartureAnimation = true;
         public float departureDuration = 1.0f;
         public float departureOffsetDistance = 3f;
         public SoundDef departureSound; // 离场音效
-        
+
         // 时间限制配置 - 新增
         public float maxStayTime = 0f; // 0表示无限制
-        
+
         // 淡入淡出开关
         public bool useFadeEffects = true; // 是否启用淡入淡出效果
         public bool useFadeIn = true;      // 是否启用淡入效果

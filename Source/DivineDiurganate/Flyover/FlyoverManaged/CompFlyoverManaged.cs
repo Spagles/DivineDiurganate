@@ -14,11 +14,11 @@ namespace DivineDiurganate
         private string flyoverDataGuid;
         private FlyoverData cachedFlyoverData;
         private bool hasRegistered = false;
-        
+
         // 缓存的技能列表
         private List<CompFlyOverSkillBase> cachedSkills = new List<CompFlyOverSkillBase>();
         private bool skillsScanned = false;
-        
+
         /// <summary>
         /// 关联的战机数据
         /// </summary>
@@ -37,7 +37,7 @@ namespace DivineDiurganate
                 return cachedFlyoverData;
             }
         }
-        
+
         /// <summary>
         /// 获取配置属性
         /// </summary>
@@ -48,7 +48,7 @@ namespace DivineDiurganate
                 return props as CompProperties_FlyoverManaged;
             }
         }
-        
+
         /// <summary>
         /// 获取所有技能组件
         /// </summary>
@@ -63,17 +63,89 @@ namespace DivineDiurganate
                 return cachedSkills;
             }
         }
-        
+
+        /// <summary>
+        /// 根据存储的航线信息重新部署战机
+        /// </summary>
+        public bool TryRedeploy(Map map)
+        {
+            if (FlyoverData == null)
+            {
+                Log.Warning("No flyover data found for redeployment");
+                return false;
+            }
+
+            if (map == null)
+            {
+                Log.Warning("Map is null for redeployment");
+                return false;
+            }
+
+            // 验证战机状态
+            if (FlyoverData.status == FlyoverStatus.Destroyed)
+            {
+                Log.Warning("Cannot redeploy destroyed aircraft");
+                return false;
+            }
+
+            // 获取航线信息
+            var pathInfo = FlyoverData.flightPathInfo;
+            if (pathInfo == null)
+            {
+                Log.Warning("No flight path info stored for redeployment");
+                return false;
+            }
+
+            try
+            {
+                // 使用航线信息创建新的FlyOver
+                FlyOver newFlyOver = FlyOver.MakeFlyOverWithPathInfo(
+                    FlyoverData.flyoverDef,
+                    pathInfo,
+                    map,
+                    FlyoverData.flightSpeed,
+                    FlyoverData.altitude,
+                    null, // 内容物，可以根据需要调整
+                    casterPawn: null
+                );
+
+                if (newFlyOver != null)
+                {
+                    // 更新FlyoverData
+                    FlyoverData.linkedFlyover = newFlyOver;
+                    FlyoverData.status = FlyoverStatus.OnMap;
+                    FlyoverData.currentMapIndex = map.Index;
+                    FlyoverData.currentPosition = newFlyOver.Position;
+                    FlyoverData.startPosition = newFlyOver.startPosition;
+                    FlyoverData.endPosition = newFlyOver.endPosition;
+                    FlyoverData.flightProgress = 0f;
+
+                    Log.Message($"Successfully redeployed {FlyoverData.DisplayName}");
+                    return true;
+                }
+                else
+                {
+                    Log.Warning("Failed to create flyover for redeployment");
+                    return false;
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Log.Error($"Error during redeployment: {ex}");
+                return false;
+            }
+        }
+
         /// <summary>
         /// 扫描战机上的所有技能组件
         /// </summary>
         private void ScanSkills()
         {
             cachedSkills.Clear();
-            
+
             if (parent == null || parent.AllComps == null)
                 return;
-            
+
             foreach (var comp in parent.AllComps)
             {
                 if (comp is CompFlyOverSkillBase skillComp)
@@ -81,13 +153,13 @@ namespace DivineDiurganate
                     cachedSkills.Add(skillComp);
                 }
             }
-            
+
             // 更新技能到FlyoverData中
             UpdateSkillsToFlyoverData();
-            
+
             skillsScanned = true;
         }
-        
+
         /// <summary>
         /// 更新技能信息到FlyoverData
         /// </summary>
@@ -96,14 +168,14 @@ namespace DivineDiurganate
             var flyoverData = FlyoverData;
             if (flyoverData == null || flyoverData.skillSlots == null)
                 return;
-            
+
             // 清空技能槽
             foreach (var slot in flyoverData.skillSlots)
             {
                 slot.isEmpty = true;
                 slot.skillDefName = null;
             }
-            
+
             // 重新填充技能槽
             foreach (var skillComp in cachedSkills)
             {
@@ -111,24 +183,24 @@ namespace DivineDiurganate
                 if (skillProps != null)
                 {
                     int slotIndex = skillProps.slotIndex;
-                    
+
                     if (slotIndex >= 0 && slotIndex < flyoverData.skillSlots.Count)
                     {
                         var slot = flyoverData.skillSlots[slotIndex];
                         slot.isEmpty = false;
                         slot.skillDefName = skillProps.skillName;
-                        
-                        // 可以在SkillSlot中存储更多信息
-                        // slot.skillComp = skillComp; // 如果需要的话
+
+                        // 更新技能状态
+                        slot.UpdateFromSkillComp(skillComp);
                     }
                 }
             }
         }
-        
+
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
-            
+
             if (!respawningAfterLoad)
             {
                 RegisterWithManager();
@@ -140,7 +212,7 @@ namespace DivineDiurganate
                 ScanSkills();
             }
         }
-        
+
         /// <summary>
         /// 注册到管理器
         /// </summary>
@@ -157,7 +229,7 @@ namespace DivineDiurganate
                         flyoverDataGuid = data.guid;
                         cachedFlyoverData = data;
                         hasRegistered = true;
-                        
+
                         // 扫描技能并更新数据
                         ScanSkills();
                     }
@@ -170,14 +242,14 @@ namespace DivineDiurganate
                         data.UpdateFromFlyover(flyover);
                         cachedFlyoverData = data;
                         hasRegistered = true;
-                        
+
                         // 扫描技能并更新数据
                         ScanSkills();
                     }
                 }
             }
         }
-        
+
         /// <summary>
         /// 重新关联到管理器
         /// </summary>
@@ -193,7 +265,7 @@ namespace DivineDiurganate
                     data.UpdateFromFlyover(flyover);
                     cachedFlyoverData = data;
                     hasRegistered = true;
-                    
+
                     // 扫描技能并更新数据
                     ScanSkills();
                 }
@@ -205,11 +277,9 @@ namespace DivineDiurganate
                 }
             }
         }
-        
+
         public void PostDeSpawn(Map map)
         {
-            base.PostDeSpawn(map);
-            
             if (FlyoverData != null && parent is FlyOver)
             {
                 if (!parent.Destroyed)
@@ -220,20 +290,20 @@ namespace DivineDiurganate
                 {
                     HandleFlyoverDestroyed();
                 }
-                
+
                 FlyoverData.linkedFlyover = null;
             }
         }
-        
+
         /// <summary>
         /// 处理战机销毁
         /// </summary>
         private void HandleFlyoverDestroyed()
         {
             if (FlyoverData == null) return;
-            
+
             var manager = Find.World.GetComponent<WorldComp_FlyoverManager>();
-            
+
             if (Config != null && !Config.destroyDataWithFlyover)
             {
                 // 配置为不销毁数据，转为待命状态
@@ -245,18 +315,18 @@ namespace DivineDiurganate
                 // 配置为销毁数据，或没有配置时默认销毁
                 FlyoverData.status = FlyoverStatus.Destroyed;
                 FlyoverData.linkedFlyover = null;
-                
+
                 manager?.MarkFlyoverAsDestroyed(flyoverDataGuid);
             }
         }
-        
+
         public override void PostDestroy(DestroyMode mode, Map previousMap)
         {
             base.PostDestroy(mode, previousMap);
-            
+
             HandleFlyoverDestroyed();
         }
-        
+
         public override void PostExposeData()
         {
             base.PostExposeData();
