@@ -1,11 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
+  <ScenPartDef>
+    <defName>DD_InstantHediffOnGameStart</defName>
+    <label>start with Hediff</label>
+    <scenPartClass>DivineDiurganate.ScenPart_InstantHediffOnGameStart</scenPartClass>
+    <category>PlayerPawnModifier</category>
+    <selectionWeight>0</selectionWeight>
+    <summaryPriority>100</summaryPriority>
+  </ScenPartDef>
+  <ScenPartDef>
+    <defName>DD_SpawnCorpsesNearStart</defName>
+    <label>Spawn Corpses Near Start Location</label>
+    <scenPartClass>DivineDiurganate.ScenPart_SpawnCorpsesNearStart</scenPartClass>
+    <category>Misc</category>
+    <selectionWeight>0</selectionWeight>
+    <summaryPriority>101</summaryPriority>
+  </ScenPartDef>
+  <ScenPartDef>
+    <defName>DD_RandomFireAtStart</defName>
+    <label>Random Fire</label>
+    <scenPartClass>DivineDiurganate.ScenPart_RandomFireAtStart</scenPartClass>
+    <category>Misc</category>
+    <selectionWeight>0</selectionWeight>
+    <summaryPriority>102</summaryPriority>
+  </ScenPartDef>
   <ScenarioDef ParentName="ScenarioBase">
     <defName>DD_Maple_Sugar_Scenario</defName>
-    <label>枫糖</label>
-    <description>枫糖</description>
+    <label>被伏击的双尾教国运输队</label>
+    <description>一支双尾教国的物资运输队被敌对势力袭击了，敌人抢走了这些可怜家伙的大部分物资并杀害了其中的多数人，留下几只可怜的鼠鼠在原地等死。万幸的是，冲天的火光吸引了恰巧路过的一名鼠族修女的注意···</description>
     <scenario>
-      <summary>枫糖</summary>
+      <summary>以特殊的鼠族修女枫糖和3名受伤的鼠族一起开始游戏</summary>
       <playerFaction>
 				<def>PlayerFaction</def>
 				<factionDef>RK_PlayerFaction</factionDef>
@@ -13,64 +37,89 @@
       <parts>
 				<li Class="ScenPart_ConfigPage_ConfigureStartingPawns">
 					<def>ConfigPage_ConfigureStartingPawns</def>
-					<pawnCount>2</pawnCount>
+					<pawnCount>3</pawnCount>
 				</li>
 				<li Class="ScenPart_PlayerPawnsArriveMethod">
 					<def>PlayerPawnsArriveMethod</def>
 					<method>Standing</method>
 				</li>
-				<li Class="ScenPart_StartingThing_Defined">
-					<def>StartingThing_Defined</def>
-					<thingDef>Silver</thingDef>
-					<count>500</count>
-				</li>
-				<li Class="ScenPart_StartingThing_Defined">
-					<def>StartingThing_Defined</def>
-					<thingDef>MealSurvivalPack</thingDef>
-					<count>30</count>
-				</li>
-				<li Class="ScenPart_StartingThing_Defined">
-					<def>StartingThing_Defined</def>
-					<thingDef>RK_Crossbow</thingDef>
-				</li>
-				<li Class="ScenPart_StartingThing_Defined">
-					<def>StartingThing_Defined</def>
-					<thingDef>RK_Rifle</thingDef>
-				</li>
-				<li Class="ScenPart_StartingThing_Defined">
-					<def>StartingThing_Defined</def>
-					<thingDef>MedicineIndustrial</thingDef>
-					<count>10</count>
-				</li>
-				<li Class="ScenPart_StartingThing_Defined">
-					<def>StartingThing_Defined</def>
-					<thingDef>ComponentIndustrial</thingDef>
-					<count>30</count>
-				</li>
-				<li Class="ScenPart_ScatterThingsNearPlayerStart">
-					<def>ScatterThingsNearPlayerStart</def>
-					<thingDef>Steel</thingDef>
-					<count>400</count>
-				</li>
-				<li Class="ScenPart_StartingThing_Defined">
-					<def>StartingThing_Defined</def>
-					<thingDef>RK_Axe</thingDef>
-					<stuff>Steel</stuff>
-				</li>
-				<li Class="ScenPart_ScatterThingsNearPlayerStart">
-					<def>ScatterThingsNearPlayerStart</def>
-					<thingDef>WoodLog</thingDef>
-					<count>300</count>
-				</li>
+        <!-- Player pawns start with no possessions eg. extra drugs. -->
+        <li Class="ScenPart_NoPossessions">
+          <def>NoPossessions</def>
+        </li>
+
+        <li Class="DivineDiurganate.ScenPart_InstantHediffOnGameStart">
+          <def>DD_InstantHediffOnGameStart</def>
+          <visible>false</visible>
+          <chance>1</chance>
+          <hediff>Gunshot</hediff>
+          <severityRange>2~5</severityRange>
+        </li>
+        <li Class="DivineDiurganate.ScenPart_InstantHediffOnGameStart">
+          <def>DD_InstantHediffOnGameStart</def>
+          <visible>false</visible>
+          <chance>1</chance>
+          <hediff>ExecutionCut</hediff>
+          <severityRange>3~5</severityRange>
+        </li>
+        <li Class="DivineDiurganate.ScenPart_InstantHediffOnGameStart">
+          <def>DD_InstantHediffOnGameStart</def>
+          <visible>false</visible>
+          <chance>1</chance>
+          <hediff>Crack</hediff>
+          <severityRange>3~5</severityRange>
+        </li>
+
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>WoodLog</thingDef>
+          <count>100</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Chemfuel</thingDef>
+          <count>20</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>MealSurvivalPack</thingDef>
+          <count>10</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>MedicineHerbal</thingDef>
+          <count>5</count>
+        </li>
+
+        
+        <li Class="DivineDiurganate.ScenPart_SpawnCorpsesNearStart">
+          <def>DD_SpawnCorpsesNearStart</def>
+          <visible>false</visible>
+          <pawnKind>DD_S1_Ratkin_Leader_Nun</pawnKind>
+          <corpseCountRange>1~1</corpseCountRange>
+        </li>
+        <li Class="DivineDiurganate.ScenPart_SpawnCorpsesNearStart">
+          <def>DD_SpawnCorpsesNearStart</def>
+          <visible>false</visible>
+          <pawnKind>DD_Ratkin_Skirmish</pawnKind>
+          <corpseCountRange>3~3</corpseCountRange>
+        </li>
+        <li Class="DivineDiurganate.ScenPart_SpawnCorpsesNearStart">
+          <def>DD_SpawnCorpsesNearStart</def>
+          <visible>false</visible>
+          <pawnKind>DD_S3_DHM86_Knell_Mech</pawnKind>
+          <corpseCountRange>1~1</corpseCountRange>
+        </li>
+
+        <li Class="DivineDiurganate.ScenPart_RandomFireAtStart">
+          <def>DD_RandomFireAtStart</def>
+          <visible>false</visible>
+          <fireCountRange>25~35</fireCountRange>
+        </li>
 				<li Class="ScenPart_ScatterThingsAnywhere">
 					<def>ScatterThingsAnywhere</def>
 					<thingDef>ShipChunk</thingDef>
 					<count>5</count>
-				</li>
-				<li Class="ScenPart_ScatterThingsAnywhere">
-					<def>ScatterThingsAnywhere</def>
-					<thingDef>Steel</thingDef>
-					<count>720</count>
 				</li>
 
         <!-- 开局介绍事件 -->

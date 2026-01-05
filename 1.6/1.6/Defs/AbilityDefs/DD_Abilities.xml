@@ -85,7 +85,7 @@
     <disableGizmoWhileUndrafted>false</disableGizmoWhileUndrafted>
     <verbProperties>
       <verbClass>Verb_CastAbility</verbClass>
-      <range>34.9</range>
+      <range>4.9</range>
       <warmupTime>0</warmupTime>
       <targetParams>
         <onlyTargetColonistsOrPrisonersOrSlaves>true</onlyTargetColonistsOrPrisonersOrSlaves>
