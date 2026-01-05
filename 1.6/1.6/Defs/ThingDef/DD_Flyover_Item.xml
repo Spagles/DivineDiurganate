@@ -3,7 +3,7 @@
   <!-- 母舰 -->
   <ThingDef ParentName="EtherealThingBase">
     <defName>DD_Flyover_AirShip</defName>
-    <label>Oberon Airship</label>
+    <label>欧伯龙号重型飞空艇</label>
     <thingClass>DivineDiurganate.FlyOver</thingClass>
     <tickerType>Normal</tickerType>
     <drawerType>RealtimeOnly</drawerType>
@@ -51,15 +51,7 @@
       </li>
       <li Class="DivineDiurganate.CompProperties_FlyoverManaged">
         <destroyDataWithFlyover>false</destroyDataWithFlyover>  
-      </li>
-      <li Class="DivineDiurganate.CompProperties_FlyOverSkill_Reenter">
-        <skillName>Re-enter Battlefield</skillName>
-        <description>Return to the battlefield along a new flight path.</description>
-        <iconPath>UI/Icons/Skills/Reenter</iconPath>
-        <slotIndex>0</slotIndex>
-        <defaultSpeed>1</defaultSpeed>
-        <twoPointsFirstPointMessage>选择入场方向</twoPointsFirstPointMessage>
-        <twoPointsSecondPointMessage>选择离场方向</twoPointsSecondPointMessage>
+        <iconPath>DivineDiurganate/UI/Commands/DD_Oberon_Airship_Icon</iconPath>
       </li>
     </comps>
   </ThingDef>

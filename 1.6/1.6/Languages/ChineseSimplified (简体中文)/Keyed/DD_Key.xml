@@ -59,4 +59,22 @@
 
   <DD_TargetDoesNotNeedHealing>目标不需要治疗</DD_TargetDoesNotNeedHealing>
   <DD_HolyHealing_GayRevelation>{0} 变成女同了！</DD_HolyHealing_GayRevelation>
+
+  <DD_Flyover_NoAircraft>无待命的飞行器</DD_Flyover_NoAircraft>
+  <DD_Flyover_Icon>图标</DD_Flyover_Icon>
+  <DD_Flyover_SkillSlot>{0}</DD_Flyover_SkillSlot>
+  <DD_Flyover_Dock>停靠</DD_Flyover_Dock>
+  <DD_Flyover_Deploy>部署</DD_Flyover_Deploy>
+  <DD_Flyover_Dock_Tooltip>停靠tooltip</DD_Flyover_Dock_Tooltip>
+  <DD_Flyover_Deploy_Tooltip>部署tooltip</DD_Flyover_Deploy_Tooltip>
+  <DD_Flyover_Title>双尾教国飞行器</DD_Flyover_Title>
+  <DD_Flyover_Status_OnMap>已部署</DD_Flyover_Status_OnMap>
+  <DD_Flyover_Status_Standby>就绪</DD_Flyover_Status_Standby>
+  <DD_Flyover_Status_Deploying>部署中</DD_Flyover_Status_Deploying>
+  <DD_Flyover_Status_Destroyed>销毁</DD_Flyover_Status_Destroyed>
+  <DD_Flyover_Status_Unknown>未知</DD_Flyover_Status_Unknown>
+  <DD_Flyover_SkillSlotEmpty>无行动</DD_Flyover_SkillSlotEmpty>
+  <DD_Flyover_SkillSlot>行动</DD_Flyover_SkillSlot>
+  <DD_Flyover_Cooldown>冷却中</DD_Flyover_Cooldown>
+  <DD_Flyover_Uses>弹药使用</DD_Flyover_Uses>
 </LanguageData>

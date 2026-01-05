@@ -348,7 +348,6 @@
       <Gay>0</Gay>
       <Beauty>1</Beauty>
     </forcedTraits>
-    <weaponStuffOverride>Plasteel</weaponStuffOverride>
     <ignoreIdeoApparelColors>true</ignoreIdeoApparelColors>
     <initialWillRange>0~0</initialWillRange>
     <initialResistanceRange>0~2</initialResistanceRange>

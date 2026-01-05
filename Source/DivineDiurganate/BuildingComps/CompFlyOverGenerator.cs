@@ -55,9 +55,9 @@ namespace DivineDiurganate
         {
             Command_Action gizmo = new Command_Action
             {
-                defaultLabel = "Generate Fly Over",
-                defaultDesc = "Create a flying object that passes over the map.",
-                icon = ContentFinder<Texture2D>.Get("UI/Icons/FlyOver"),
+                defaultLabel = Props.label.Translate(),
+                defaultDesc = Props.description.Translate(),
+                icon = ContentFinder<Texture2D>.Get(Props.iconPath, false),
                 action = () => StartSelectionProcess()
             };
             return gizmo;

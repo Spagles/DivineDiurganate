@@ -14,6 +14,9 @@ namespace DivineDiurganate
         private string flyoverDataGuid;
         private FlyoverData cachedFlyoverData;
         private bool hasRegistered = false;
+        
+        // 新增：标记是否正在重新入场流程中
+        private bool isReEntering = false;
 
         // 缓存的技能列表
         private List<CompFlyOverSkillBase> cachedSkills = new List<CompFlyOverSkillBase>();
@@ -61,6 +64,41 @@ namespace DivineDiurganate
                     ScanSkills();
                 }
                 return cachedSkills;
+            }
+        }
+
+        /// <summary>
+        /// 设置FlyoverData GUID（用于重新入场时重用现有数据）
+        /// </summary>
+        public void SetFlyoverDataGuid(string guid, bool isReEnter = false)
+        {
+            if (string.IsNullOrEmpty(guid))
+            {
+                Log.Error("CompFlyoverManaged.SetFlyoverDataGuid: guid不能为空");
+                return;
+            }
+            
+            Log.Message($"CompFlyoverManaged.SetFlyoverDataGuid: 设置guid={guid}, isReEnter={isReEnter}");
+            flyoverDataGuid = guid;
+            isReEntering = isReEnter; // 标记为重新入场流程
+            hasRegistered = true; // 标记为已注册，避免重复注册
+            
+            // 立即获取并关联FlyoverData
+            var manager = Find.World.GetComponent<WorldComp_FlyoverManager>();
+            if (manager != null)
+            {
+                cachedFlyoverData = manager.GetFlyoverData(guid);
+                if (cachedFlyoverData != null)
+                {
+                    Log.Message($"CompFlyoverManaged.SetFlyoverDataGuid: 成功关联到FlyoverData {cachedFlyoverData.DisplayName}");
+                    
+                    // 如果是重新入场，立即更新FlyoverData的链接
+                    if (isReEnter && parent is FlyOver flyover)
+                    {
+                        cachedFlyoverData.linkedFlyover = flyover;
+                        cachedFlyoverData.UpdateFromFlyover(flyover);
+                    }
+                }
             }
         }
 
@@ -201,6 +239,18 @@ namespace DivineDiurganate
         {
             base.PostSpawnSetup(respawningAfterLoad);
 
+            Log.Message($"CompFlyoverManaged.PostSpawnSetup: called, isReEntering={isReEntering}, hasRegistered={hasRegistered}, flyoverDataGuid={flyoverDataGuid}");
+
+            // 如果是重新入场流程，并且已经有flyoverDataGuid，则跳过注册
+            if (isReEntering && !string.IsNullOrEmpty(flyoverDataGuid) && hasRegistered)
+            {
+                Log.Message($"CompFlyoverManaged.PostSpawnSetup: 重新入场流程，跳过注册，直接关联现有FlyoverData");
+                ReassociateWithManager();
+                ScanSkills();
+                isReEntering = false; // 重置标志
+                return;
+            }
+
             if (!respawningAfterLoad)
             {
                 RegisterWithManager();
@@ -218,9 +268,28 @@ namespace DivineDiurganate
         /// </summary>
         private void RegisterWithManager()
         {
-            var manager = Find.World.GetComponent<WorldComp_FlyoverManager>();
-            if (manager != null && parent is FlyOver flyover && !hasRegistered)
+            // 如果已经注册过，则跳过
+            if (hasRegistered && !string.IsNullOrEmpty(flyoverDataGuid))
             {
+                Log.Message($"CompFlyoverManaged.RegisterWithManager: 已经注册过，跳过");
+                return;
+            }
+            
+            var manager = Find.World.GetComponent<WorldComp_FlyoverManager>();
+            if (manager != null && parent is FlyOver flyover)
+            {
+                // 检查是否已存在关联此Flyover的FlyoverData
+                var existingData = manager.AllFlyoverData.FirstOrDefault(d => d.linkedFlyover == flyover);
+                if (existingData != null)
+                {
+                    Log.Message($"CompFlyoverManaged.RegisterWithManager: 找到已存在的FlyoverData {existingData.DisplayName}，重用");
+                    flyoverDataGuid = existingData.guid;
+                    cachedFlyoverData = existingData;
+                    hasRegistered = true;
+                    ScanSkills();
+                    return;
+                }
+
                 if (string.IsNullOrEmpty(flyoverDataGuid))
                 {
                     var data = manager.RegisterFlyover(flyover, Config);
@@ -232,6 +301,7 @@ namespace DivineDiurganate
 
                         // 扫描技能并更新数据
                         ScanSkills();
+                        Log.Message($"CompFlyoverManaged.RegisterWithManager: 注册新的FlyoverData {data.DisplayName}");
                     }
                 }
                 else
@@ -245,6 +315,13 @@ namespace DivineDiurganate
 
                         // 扫描技能并更新数据
                         ScanSkills();
+                        Log.Message($"CompFlyoverManaged.RegisterWithManager: 更新现有FlyoverData {data.DisplayName}");
+                    }
+                    else
+                    {
+                        Log.Warning($"CompFlyoverManaged.RegisterWithManager: 找不到flyoverDataGuid={flyoverDataGuid}对应的FlyoverData");
+                        flyoverDataGuid = null;
+                        RegisterWithManager();
                     }
                 }
             }
@@ -268,30 +345,39 @@ namespace DivineDiurganate
 
                     // 扫描技能并更新数据
                     ScanSkills();
+                    Log.Message($"CompFlyoverManaged.ReassociateWithManager: 重新关联到FlyoverData {data.DisplayName}");
                 }
                 else
                 {
+                    Log.Warning($"CompFlyoverManaged.ReassociateWithManager: 找不到flyoverDataGuid={flyoverDataGuid}对应的FlyoverData");
                     flyoverDataGuid = null;
                     hasRegistered = false;
                     RegisterWithManager();
                 }
             }
+            else if (manager != null && parent is FlyOver flyover2)
+            {
+                // 如果没有guid，尝试注册
+                RegisterWithManager();
+            }
         }
 
         public void PostDeSpawn(Map map)
         {
+            Log.Message($"CompFlyoverManaged.PostDeSpawn: called, parent.Destroyed={parent.Destroyed}");
+            
             if (FlyoverData != null && parent is FlyOver)
             {
                 if (!parent.Destroyed)
                 {
                     FlyoverData.status = FlyoverStatus.Standby;
+                    FlyoverData.linkedFlyover = null;
+                    Log.Message($"CompFlyoverManaged.PostDeSpawn: {FlyoverData.DisplayName} 转为待命状态");
                 }
                 else
                 {
                     HandleFlyoverDestroyed();
                 }
-
-                FlyoverData.linkedFlyover = null;
             }
         }
 
@@ -309,6 +395,7 @@ namespace DivineDiurganate
                 // 配置为不销毁数据，转为待命状态
                 FlyoverData.status = FlyoverStatus.Standby;
                 FlyoverData.linkedFlyover = null;
+                Log.Message($"CompFlyoverManaged.HandleFlyoverDestroyed: {FlyoverData.DisplayName} 转为待命状态");
             }
             else
             {
@@ -317,6 +404,7 @@ namespace DivineDiurganate
                 FlyoverData.linkedFlyover = null;
 
                 manager?.MarkFlyoverAsDestroyed(flyoverDataGuid);
+                Log.Message($"CompFlyoverManaged.HandleFlyoverDestroyed: {FlyoverData.DisplayName} 标记为已销毁");
             }
         }
 
@@ -333,6 +421,7 @@ namespace DivineDiurganate
             Scribe_Values.Look(ref flyoverDataGuid, "flyoverDataGuid");
             Scribe_Values.Look(ref hasRegistered, "hasRegistered", false);
             Scribe_Values.Look(ref skillsScanned, "skillsScanned", false);
+            Scribe_Values.Look(ref isReEntering, "isReEntering", false);
         }
     }
 }

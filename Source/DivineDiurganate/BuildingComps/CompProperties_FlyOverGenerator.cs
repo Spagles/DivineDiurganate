@@ -24,15 +24,16 @@ namespace DivineDiurganate
         public ThingDef contentThingDef;
         public int contentCount = 1;
         
-        // 能量消耗（如果需要）
-        public float energyCost = 0f;
-        
         // 冷却时间（ticks）
         public int cooldownTicks = 600;
         
         // 使用次数限制（-1为无限）
         public int useLimit = -1;
-        
+
+        public string label = "FlyOverGeneratorLabel";
+        public string description = "FlyOverGeneratorDescription";
+        public string iconPath = "DivineDiurganate/UI/Commands/DD_Oberon_Airship_Icon";
+
         public CompProperties_FlyOverGenerator()
         {
             compClass = typeof(CompFlyOverGenerator);
