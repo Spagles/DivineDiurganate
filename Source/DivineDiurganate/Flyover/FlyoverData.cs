@@ -14,62 +14,60 @@ namespace DivineDiurganate
         public string guid;
         public ThingDef flyoverDef;
         public string customName;
+        // 新增：存储配置信息
+        private CompProperties_FlyoverManaged cachedConfig;
 
+        // 新增：是否在销毁时保留数据
+        public bool destroyDataWithFlyover = true;
         public FlyoverStatus status = FlyoverStatus.OnMap;
         public int currentMapIndex = -1;
         public IntVec3 currentPosition;
         public IntVec3 startPosition;
         public IntVec3 endPosition;
-
         // 新增：航线生成信息
         public FlightPathInfo flightPathInfo;
-
         public float flightProgress = 0f;
         public float flightSpeed = 1f;
         public float altitude = 10f;
-
         public int spawnTick = -1;
         public int lastUpdateTick = -1;
-
         public FlyOver linkedFlyover;
-
         // 新增：图标路径
         public string iconPath;
-
         // 技能槽
         public List<SkillSlot> skillSlots = new List<SkillSlot>();
-
         public FlyoverData()
         {
             guid = System.Guid.NewGuid().ToString();
-
             for (int i = 0; i < 4; i++)
             {
                 skillSlots.Add(new SkillSlot { slotIndex = i, isEmpty = true });
             }
-
-            // 修改：不要初始化抽象类，设为null
-            // flightPathInfo会在需要时创建
         }
-
         public FlyoverData(FlyOver flyover, CompProperties_FlyoverManaged config = null) : this()
         {
             UpdateFromFlyover(flyover);
 
-            // 从配置获取图标路径
-            if (config != null && !string.IsNullOrEmpty(config.iconPath))
+            // 关键修改：存储配置信息
+            cachedConfig = config;
+            if (config != null)
             {
-                iconPath = config.iconPath;
-            }
-        }
+                destroyDataWithFlyover = config.destroyDataWithFlyover;
 
+                // 从配置获取图标路径
+                if (!string.IsNullOrEmpty(config.iconPath))
+                {
+                    iconPath = config.iconPath;
+                }
+            }
+
+            Log.Message($"FlyoverData: 创建新数据，guid={guid}, destroyDataWithFlyover={destroyDataWithFlyover}");
+        }
         public void UpdateFromFlyover(FlyOver flyover)
         {
             if (flyover == null) return;
-
             linkedFlyover = flyover;
             flyoverDef = flyover.def;
-
             if (flyover.Spawned)
             {
                 status = FlyoverStatus.OnMap;
@@ -80,13 +78,11 @@ namespace DivineDiurganate
             {
                 status = FlyoverStatus.Standby;
             }
-
             startPosition = flyover.startPosition;
             endPosition = flyover.endPosition;
             flightProgress = flyover.currentProgress;
             flightSpeed = flyover.flightSpeed;
             altitude = flyover.altitude;
-
             lastUpdateTick = Find.TickManager.TicksGame;
         }
 
@@ -196,13 +192,14 @@ namespace DivineDiurganate
         {
             flightPathInfo = new TwoPointsExtendedPathInfo(point1, point2);
         }
-
+        
         public void ExposeData()
         {
             Scribe_Values.Look(ref guid, "guid");
             Scribe_Defs.Look(ref flyoverDef, "flyoverDef");
             Scribe_Values.Look(ref customName, "customName");
             Scribe_Values.Look(ref iconPath, "iconPath");
+            Scribe_Values.Look(ref destroyDataWithFlyover, "destroyDataWithFlyover", true); // 保存配置
             Scribe_Values.Look(ref status, "status", FlyoverStatus.OnMap);
             Scribe_Values.Look(ref currentMapIndex, "currentMapIndex", -1);
             Scribe_Values.Look(ref currentPosition, "currentPosition");
@@ -213,7 +210,6 @@ namespace DivineDiurganate
             Scribe_Values.Look(ref altitude, "altitude", 10f);
             Scribe_Values.Look(ref spawnTick, "spawnTick", -1);
             Scribe_Values.Look(ref lastUpdateTick, "lastUpdateTick", -1);
-
             // 修改：使用自定义序列化方法处理抽象类
             ScribeFlightPathInfo(ref flightPathInfo);
             Scribe_Collections.Look(ref skillSlots, "skillSlots", LookMode.Deep);

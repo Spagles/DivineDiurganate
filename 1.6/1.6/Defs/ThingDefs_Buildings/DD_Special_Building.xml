@@ -55,7 +55,7 @@
       <li Class="DivineDiurganate.CompProperties_FlyOverGenerator">
         <flyOverDef>DD_Flyover_AirShip</flyOverDef>
         
-        <defaultSpeed>1</defaultSpeed>
+        <defaultSpeed>0.01</defaultSpeed>
         <defaultAltitude>15</defaultAltitude>
         
         <spawnContents>false</spawnContents>

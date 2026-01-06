@@ -14,24 +14,18 @@ namespace DivineDiurganate
     {
         private List<FlyoverData> allFlyoverData = new List<FlyoverData>();
         private bool uiIsOpen = false;
-
         public WorldComp_FlyoverManager(World world) : base(world) { }
-
         public List<FlyoverData> AllFlyoverData => allFlyoverData;
-
         public List<FlyoverData> ActiveFlyoverData =>
             allFlyoverData.Where(d => d.status != FlyoverStatus.Destroyed).ToList();
-
         /// <summary>
         /// 获取在UI中可见的战机数据
         /// </summary>
         public List<FlyoverData> UIVisibleFlyoverData =>
             allFlyoverData.Where(d => d.status != FlyoverStatus.Destroyed).ToList();
-
         public int ActiveFlyoverCount => ActiveFlyoverData.Count;
-
         /// <summary>
-        /// 注册新战机
+        /// 注册新战机 - 修改：确保配置被正确传递
         /// </summary>
         public FlyoverData RegisterFlyover(FlyOver flyover, CompProperties_FlyoverManaged config = null)
         {
@@ -39,32 +33,26 @@ namespace DivineDiurganate
             var existingData = allFlyoverData.FirstOrDefault(d =>
                 d.linkedFlyover == flyover ||
                 (d.linkedFlyover != null && d.linkedFlyover == flyover));
-
             if (existingData != null)
             {
                 existingData.UpdateFromFlyover(flyover);
                 return existingData;
             }
-
-            // 创建新数据
+            // 创建新数据 - 关键修改：确保配置被正确传递
             var newData = new FlyoverData(flyover, config)
             {
                 spawnTick = Find.TickManager.TicksGame
             };
-
             allFlyoverData.Add(newData);
-
             // 检查是否应该打开UI
             CheckAndUpdateUIState();
-
+            Log.Message($"WorldComp_FlyoverManager: 注册新战机 {newData.DisplayName}, guid={newData.guid}, 配置={config?.destroyDataWithFlyover}");
             return newData;
         }
-
         public FlyoverData GetFlyoverData(string guid)
         {
             return allFlyoverData.FirstOrDefault(d => d.guid == guid);
         }
-
         public bool RemoveFlyoverData(string guid)
         {
             var data = GetFlyoverData(guid);
@@ -76,7 +64,6 @@ namespace DivineDiurganate
             }
             return false;
         }
-
         /// <summary>
         /// 标记战机为销毁
         /// </summary>
@@ -87,12 +74,14 @@ namespace DivineDiurganate
             {
                 data.status = FlyoverStatus.Destroyed;
                 data.linkedFlyover = null;
-                
+
                 // 延迟检查UI状态，避免在销毁过程中操作窗口
-                LongEventHandler.QueueLongEvent(() => 
+                LongEventHandler.QueueLongEvent(() =>
                 {
                     CheckAndUpdateUIState();
                 }, "UpdateFlyoverUI", false, null);
+
+                Log.Message($"WorldComp_FlyoverManager: 标记战机为销毁 {data.DisplayName}, guid={guid}");
             }
         }
 
@@ -118,14 +107,14 @@ namespace DivineDiurganate
                         UpdateOpenUI();
                     }
                 }
-                else
-                {
-                    // 没有活跃战机，关闭UI
-                    if (uiIsOpen)
-                    {
-                        CloseUI();
-                    }
-                }
+                //else
+                //{
+                //    // 没有活跃战机，关闭UI
+                //    if (uiIsOpen)
+                //    {
+                //        CloseUI();
+                //    }
+                //}
             }
             catch (System.Exception ex)
             {
@@ -141,7 +130,7 @@ namespace DivineDiurganate
             try
             {
                 if (uiIsOpen) return;
-                
+
                 // 检查是否已经有窗口打开
                 if (Find.WindowStack.IsOpen(typeof(Window_FlyoverUI_Expanded)) ||
                     Find.WindowStack.IsOpen(typeof(Window_FlyoverUI_Minimized)))
@@ -149,8 +138,8 @@ namespace DivineDiurganate
                     uiIsOpen = true;
                     return;
                 }
-                
-                // 直接打开展开的窗口
+
+                // 直接打开展开的窗口，不指定位置（使用默认或上次记录的位置）
                 Window_FlyoverUI_Expanded expandedWindow = new Window_FlyoverUI_Expanded(this);
                 Find.WindowStack.Add(expandedWindow);
                 uiIsOpen = true;

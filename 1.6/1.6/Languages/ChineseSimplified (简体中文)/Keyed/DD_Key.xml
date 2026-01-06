@@ -152,4 +152,5 @@
   <DD_CallFlyOver>呼叫飞行器</DD_CallFlyOver>
   <DD_Flyover_FailedAssignJob>分配呼叫工作失败</DD_Flyover_FailedAssignJob>
   <DD_Flyover_PawnAssigned>{0} 开始呼叫</DD_Flyover_PawnAssigned>
+  <DD_Flyover_OnCooldown>正在冷却，剩余{0}秒</DD_Flyover_OnCooldown>
 </LanguageData>
