@@ -440,33 +440,59 @@ namespace DivineDiurganate
             }
         }
 
-        // 修改后的 CompleteFlyOver 方法
+        /// <summary>
+        /// 完成飞行并销毁
+        /// </summary>
         private void CompleteFlyOver(bool useFadeOut = true)
         {
             if (hasCompleted) return;
             hasCompleted = true;
-
-            // 如果是正常到达终点，设置进度为1
-            if (!timeLimitExceeded)
+            try
             {
-                currentProgress = 1f;
-            }
+                // 如果是正常到达终点，设置进度为1
+                if (!timeLimitExceeded)
+                {
+                    currentProgress = 1f;
+                }
+                // 生成内容物（如果需要）
+                if (spawnContentsOnImpact && innerContainer.Any)
+                {
+                    SpawnContents();
+                }
+                // 播放完成音效（仅在正常到达终点时播放）
+                if (!timeLimitExceeded && def.skyfaller?.impactSound != null)
+                {
+                    def.skyfaller.impactSound.PlayOneShot(
+                        SoundInfo.InMap(new TargetInfo(endPosition, base.Map)));
+                }
+                // 停止音效
+                flightSoundPlaying?.End();
 
-            // 生成内容物（如果需要）
-            if (spawnContentsOnImpact && innerContainer.Any)
+                // 延迟销毁，避免在当前tick中触发其他事件
+                LongEventHandler.QueueLongEvent(() =>
+                {
+                    try
+                    {
+                        if (!this.Destroyed)
+                        {
+                            this.Destroy();
+                        }
+                    }
+                    catch (System.Exception ex)
+                    {
+                        Log.Error($"Error destroying flyover: {ex}");
+                    }
+                }, "DestroyFlyover", false, null);
+            }
+            catch (System.Exception ex)
             {
-                SpawnContents();
+                Log.Error($"Error in CompleteFlyOver: {ex}");
+                // 出错时立即销毁
+                if (!this.Destroyed)
+                {
+                    this.Destroy();
+                }
             }
-
-            // 播放完成音效（仅在正常到达终点时播放）
-            if (!timeLimitExceeded && def.skyfaller?.impactSound != null)
-            {
-                def.skyfaller.impactSound.PlayOneShot(
-                    SoundInfo.InMap(new TargetInfo(endPosition, base.Map)));
-            }
-
-            // 立即销毁
-            Destroy();
         }
 
         // 修改后的 UpdatePosition 方法

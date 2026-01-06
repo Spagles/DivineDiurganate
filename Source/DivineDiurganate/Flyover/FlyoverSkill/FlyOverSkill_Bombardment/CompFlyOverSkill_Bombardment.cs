@@ -21,10 +21,10 @@ namespace DivineDiurganate
         private int currentCellIndex = 0;
         private int warmupTicksRemaining = 0;
         private int nextBombardmentTick = 0;
-        
+
         // 视觉效果
         private Effecter areaEffecter;
-        
+
         // 预览状态
         private List<IntVec3> currentPreviewCells = new List<IntVec3>();
 
@@ -70,16 +70,16 @@ namespace DivineDiurganate
             {
                 // 计算轰炸区域和方向（基于两个目标点）
                 CalculateBombardmentArea(point1, point2);
-                
+
                 // 选择目标格子
                 SelectTargetCells();
-                
+
                 // 组织成排
                 OrganizeTargetCellsIntoRows();
-                
+
                 // 开始前摇
                 StartWarmup();
-                
+
                 // 记录技能使用
                 base.Execute();
             }
@@ -95,7 +95,7 @@ namespace DivineDiurganate
         private bool ValidatePoints(IntVec3 point1, IntVec3 point2, out string error)
         {
             error = null;
-            
+
             // 检查是否在地图内
             Map map = Find.CurrentMap;
             if (map == null)
@@ -103,20 +103,20 @@ namespace DivineDiurganate
                 error = "DD_FlyoverSkillNoMap".Translate();
                 return false;
             }
-            
+
             if (!point1.InBounds(map) || !point2.InBounds(map))
             {
                 error = "DD_FlyoverSkilPointNotInBounds".Translate();
                 return false;
             }
-            
+
             // 检查是否相同点
             if (point1 == point2)
             {
                 error = "DD_FlyoverSkilPointsDifferent".Translate();
                 return false;
             }
-            
+
             return true;
         }
 
@@ -126,16 +126,16 @@ namespace DivineDiurganate
         private void CalculateBombardmentArea(IntVec3 startCell, IntVec3 directionCell)
         {
             bombardmentCenter = startCell;
-            
+
             // 计算轰炸方向（从起点指向方向点）
             Vector3 direction = (directionCell.ToVector3() - startCell.ToVector3()).normalized;
-            
+
             // 如果方向为零向量，使用默认方向
             if (direction == Vector3.zero)
             {
                 direction = Vector3.forward;
             }
-            
+
             bombardmentDirection = direction;
         }
 
@@ -146,10 +146,10 @@ namespace DivineDiurganate
         {
             // 计算轰炸区域的所有单元格
             var areaCells = CalculateBombardmentAreaCells(bombardmentCenter, bombardmentDirection);
-            
+
             var selectedCells = new List<IntVec3>();
             var missedCells = new List<IntVec3>();
-            
+
             // 根据概率选择目标格子
             foreach (var cell in areaCells)
             {
@@ -162,7 +162,7 @@ namespace DivineDiurganate
                     missedCells.Add(cell);
                 }
             }
-            
+
             // 应用最小/最大限制
             if (selectedCells.Count < BombardmentProps.minTargetCells)
             {
@@ -178,7 +178,7 @@ namespace DivineDiurganate
                 // 随机移除多余的格子
                 selectedCells = selectedCells.InRandomOrder().Take(BombardmentProps.maxTargetCells).ToList();
             }
-            
+
             targetCells = selectedCells;
         }
 
@@ -189,45 +189,45 @@ namespace DivineDiurganate
         {
             var areaCells = new List<IntVec3>();
             Map map = Find.CurrentMap;
-            
+
             Vector3 start = startCell.ToVector3();
-            
+
             // 计算垂直于轰炸方向的方向（宽度方向）
             Vector3 perpendicularDirection = new Vector3(-direction.z, 0, direction.x).normalized;
-            
+
             float halfWidth = BombardmentProps.bombardmentWidth * 0.5f;
             float totalLength = BombardmentProps.bombardmentLength;
-            
+
             // 使用浮点步进计算所有单元格
             int widthSteps = Mathf.Max(1, BombardmentProps.bombardmentWidth);
             int lengthSteps = Mathf.Max(1, BombardmentProps.bombardmentLength);
-            
+
             for (int l = 0; l <= lengthSteps; l++)
             {
                 float lengthProgress = (float)l / lengthSteps;
                 float lengthOffset = Mathf.Lerp(0, totalLength, lengthProgress);
-                
+
                 for (int w = 0; w <= widthSteps; w++)
                 {
                     float widthProgress = (float)w / widthSteps;
                     float widthOffset = Mathf.Lerp(-halfWidth, halfWidth, widthProgress);
-                    
+
                     // 计算单元格位置
                     Vector3 cellPos = start + direction * lengthOffset + perpendicularDirection * widthOffset;
-                    
+
                     IntVec3 cell = new IntVec3(
                         Mathf.RoundToInt(cellPos.x),
                         Mathf.RoundToInt(cellPos.y),
                         Mathf.RoundToInt(cellPos.z)
                     );
-                    
+
                     if (cell.InBounds(map) && !areaCells.Contains(cell))
                     {
                         areaCells.Add(cell);
                     }
                 }
             }
-            
+
             return areaCells;
         }
 
@@ -237,41 +237,41 @@ namespace DivineDiurganate
         private void OrganizeTargetCellsIntoRows()
         {
             bombardmentRows.Clear();
-            
+
             // 计算垂直于轰炸方向的方向（宽度方向）
             Vector3 perpendicularDirection = new Vector3(-bombardmentDirection.z, 0, bombardmentDirection.x).normalized;
-            
+
             // 根据轰炸前进方向将格子分组到不同的排
             var rows = new Dictionary<int, List<IntVec3>>();
-            
+
             foreach (var cell in targetCells)
             {
                 // 计算格子相对于轰炸起点的"行索引"（在轰炸前进方向上的投影）
                 Vector3 cellVector = cell.ToVector3() - bombardmentCenter.ToVector3();
                 float dotProduct = Vector3.Dot(cellVector, bombardmentDirection);
                 int rowIndex = Mathf.RoundToInt(dotProduct);
-                
+
                 if (!rows.ContainsKey(rowIndex))
                 {
                     rows[rowIndex] = new List<IntVec3>();
                 }
                 rows[rowIndex].Add(cell);
             }
-            
+
             // 按照轰炸方向正确排序行索引
             // 从起点（行索引=0）开始，向轰炸方向前进
             var sortedRowIndices = rows.Keys.OrderBy(x => x).ToList();
-            
+
             foreach (var rowIndex in sortedRowIndices)
             {
                 // 在每排内按照宽度方向正确排序
                 // 从轰炸区域的一侧到另一侧
-                var sortedCells = rows[rowIndex].OrderBy(cell => 
+                var sortedCells = rows[rowIndex].OrderBy(cell =>
                 {
                     Vector3 cellVector = cell.ToVector3() - bombardmentCenter.ToVector3();
                     return Vector3.Dot(cellVector, perpendicularDirection);
                 }).ToList();
-                
+
                 bombardmentRows.Add(new BombardmentRow
                 {
                     rowIndex = rowIndex,
@@ -297,7 +297,7 @@ namespace DivineDiurganate
         private void UpdateWarmup()
         {
             warmupTicksRemaining--;
-            
+
             if (warmupTicksRemaining <= 0)
             {
                 // 前摇结束，开始轰炸
@@ -313,16 +313,16 @@ namespace DivineDiurganate
         {
             if (Find.TickManager.TicksGame < nextBombardmentTick)
                 return;
-            
+
             if (currentRowIndex >= bombardmentRows.Count)
             {
                 // 所有排都轰炸完毕
                 currentState = BombardmentState.Completed;
                 return;
             }
-            
+
             var currentRow = bombardmentRows[currentRowIndex];
-            
+
             if (currentCellIndex >= currentRow.cells.Count)
             {
                 // 当前排轰炸完毕，移动到下一排
@@ -331,11 +331,11 @@ namespace DivineDiurganate
                 nextBombardmentTick = Find.TickManager.TicksGame + BombardmentProps.rowDelayTicks;
                 return;
             }
-            
+
             // 轰炸当前格子
             var targetCell = currentRow.cells[currentCellIndex];
             LaunchBombardment(targetCell);
-            
+
             currentCellIndex++;
             nextBombardmentTick = Find.TickManager.TicksGame + BombardmentProps.impactDelayTicks;
         }
@@ -348,15 +348,15 @@ namespace DivineDiurganate
             try
             {
                 Map map = Find.CurrentMap;
-                
+
                 if (BombardmentProps.skyfallerDef != null)
                 {
                     // 使用 Skyfaller
                     Skyfaller skyfaller = SkyfallerMaker.MakeSkyfaller(BombardmentProps.skyfallerDef);
-                    
+
                     // 设置适当的起始位置（从空中落下）
                     IntVec3 spawnCell = new IntVec3(targetCell.x, 0, targetCell.z);
-                    
+
                     // 生成 Skyfaller
                     GenSpawn.Spawn(skyfaller, spawnCell, map);
                 }
@@ -382,11 +382,11 @@ namespace DivineDiurganate
         private void LaunchProjectileAt(IntVec3 targetCell)
         {
             Map map = Find.CurrentMap;
-            
+
             // 从上方发射抛射体
             IntVec3 spawnCell = new IntVec3(targetCell.x, 0, targetCell.z);
             Vector3 spawnPos = spawnCell.ToVector3() + new Vector3(0, 20f, 0); // 从高空发射
-            
+
             Projectile projectile = (Projectile)GenSpawn.Spawn(BombardmentProps.projectileDef, spawnCell, map);
             if (projectile != null)
             {
@@ -409,7 +409,7 @@ namespace DivineDiurganate
             // 清理效果器
             areaEffecter?.Cleanup();
             areaEffecter = null;
-            
+
             // 重置状态
             currentState = BombardmentState.Idle;
             targetCells.Clear();
@@ -423,10 +423,10 @@ namespace DivineDiurganate
         private IntVec3 GetSafeMapPosition(IntVec3 pos, Map map)
         {
             if (map == null) return pos;
-            
+
             pos.x = Mathf.Clamp(pos.x, 0, map.Size.x - 1);
             pos.z = Mathf.Clamp(pos.z, 0, map.Size.z - 1);
-            
+
             return pos;
         }
 
@@ -436,7 +436,7 @@ namespace DivineDiurganate
         public override void CompTick()
         {
             base.CompTick();
-            
+
             if (currentState == BombardmentState.Idle)
                 return;
 
@@ -445,11 +445,11 @@ namespace DivineDiurganate
                 case BombardmentState.Warmup:
                     UpdateWarmup();
                     break;
-                    
+
                 case BombardmentState.Bombarding:
                     UpdateBombardment();
                     break;
-                    
+
                 case BombardmentState.Completed:
                     Cleanup();
                     break;
@@ -485,16 +485,16 @@ namespace DivineDiurganate
         private void CalculateDynamicBombardmentArea(IntVec3 startCell, IntVec3 directionCell)
         {
             Map map = Find.CurrentMap;
-            
+
             // 计算轰炸方向（从起点指向方向点）
             Vector3 direction = (directionCell.ToVector3() - startCell.ToVector3()).normalized;
-            
+
             // 如果方向为零向量，使用默认方向
             if (direction == Vector3.zero)
             {
                 direction = Vector3.forward;
             }
-            
+
             // 计算轰炸区域的所有单元格
             currentPreviewCells = CalculateBombardmentAreaCells(startCell, direction);
         }
@@ -505,10 +505,10 @@ namespace DivineDiurganate
         public override string GetStatusDescription()
         {
             var baseDesc = base.GetStatusDescription();
-            
+
             if (baseDesc != "Ready")
                 return baseDesc;
-            
+
             return "Select two points to define bombardment area and direction";
         }
 
@@ -518,11 +518,11 @@ namespace DivineDiurganate
         public override string GetCooldownDescription()
         {
             string desc = base.GetCooldownDescription();
-            
+
             // 添加轰炸参数信息
             desc += $"\nArea: {BombardmentProps.bombardmentWidth}x{BombardmentProps.bombardmentLength} cells";
             desc += $"\nTargets: {BombardmentProps.minTargetCells}-{BombardmentProps.maxTargetCells} cells";
-            
+
             return desc;
         }
 
@@ -532,7 +532,7 @@ namespace DivineDiurganate
         public override void PostExposeData()
         {
             base.PostExposeData();
-            
+
             Scribe_Values.Look(ref currentState, "currentState", BombardmentState.Idle);
             Scribe_Collections.Look(ref targetCells, "targetCells", LookMode.Value);
             Scribe_Values.Look(ref currentRowIndex, "currentRowIndex", 0);

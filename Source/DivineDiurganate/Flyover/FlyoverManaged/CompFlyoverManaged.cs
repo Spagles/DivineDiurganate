@@ -340,29 +340,36 @@ namespace DivineDiurganate
                 }
             }
         }
-
         /// <summary>
-        /// 处理战机销毁
+        /// 战机销毁时的处理
         /// </summary>
-        private void HandleFlyoverDestroyed()
+        public void HandleFlyoverDestroyed()
         {
-            if (FlyoverData == null) return;
-
-            var manager = Find.World.GetComponent<WorldComp_FlyoverManager>();
-
-            if (Config != null && !Config.destroyDataWithFlyover)
+            try
             {
-                // 配置为不销毁数据，转为待命状态
-                FlyoverData.status = FlyoverStatus.Standby;
-                FlyoverData.linkedFlyover = null;
+                if (!flyoverDataGuid.NullOrEmpty())
+                {
+                    // 延迟通知管理器，避免立即修改集合
+                    LongEventHandler.QueueLongEvent(() =>
+                    {
+                        try
+                        {
+                            var manager = Find.World.GetComponent<WorldComp_FlyoverManager>();
+                            if (manager != null)
+                            {
+                                manager.MarkFlyoverAsDestroyed(flyoverDataGuid);
+                            }
+                        }
+                        catch (System.Exception ex)
+                        {
+                            Log.Error($"Error handling flyover destroyed: {ex}");
+                        }
+                    }, "HandleFlyoverDestroyed", false, null);
+                }
             }
-            else
+            catch (System.Exception ex)
             {
-                // 配置为销毁数据，或没有配置时默认销毁
-                FlyoverData.status = FlyoverStatus.Destroyed;
-                FlyoverData.linkedFlyover = null;
-
-                manager?.MarkFlyoverAsDestroyed(flyoverDataGuid);
+                Log.Error($"Error in HandleFlyoverDestroyed: {ex}");
             }
         }
 

@@ -154,7 +154,7 @@ namespace DivineDiurganate
                     break;
             }
         }
-        
+
         /// <summary>
         /// 立即激活技能（不选择目标）
         /// </summary>
@@ -164,25 +164,27 @@ namespace DivineDiurganate
             {
                 // 获取Flyover当前位置
                 IntVec3 targetPosition = GetFlyoverCurrentPosition();
-                
+
                 if (targetPosition == IntVec3.Invalid)
                 {
                     Messages.Message("Cannot determine aircraft position", MessageTypeDefOf.RejectInput);
                     return;
                 }
-                
+
                 // 显示立即释放消息
                 if (!string.IsNullOrEmpty(SkillProps.instantCastMessage))
                 {
                     string message = GetFormattedMessage(SkillProps.instantCastMessage, SkillProps.skillName);
                     Messages.Message(message, MessageTypeDefOf.SilentInput);
                 }
-                
-                // 执行技能逻辑
+
+                // 执行技能逻辑（注意：这里不调用Execute()）
+                // Execute() 应该由子类在适当的时候调用
                 OnInstantCast(targetPosition);
-                
-                // 记录技能使用
-                Execute();
+
+                // 注意：不再这里调用 Execute()！
+                // 冷却和使用次数应该由子类在技能实际生效时记录
+                // 这样可以让有前摇的技能在前摇结束后才记录冷却
             }
             catch (System.Exception ex)
             {
@@ -190,7 +192,7 @@ namespace DivineDiurganate
                 Messages.Message("Failed to activate skill", MessageTypeDefOf.RejectInput);
             }
         }
-        
+
         /// <summary>
         /// 获取Flyover当前位置
         /// </summary>

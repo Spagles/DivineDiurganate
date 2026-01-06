@@ -30,7 +30,7 @@
       <WorkToBuild>2200</WorkToBuild>
       <Flammability>0.6</Flammability>
     </statBases>
-    <size>(3,2)</size>
+    <size>(2,2)</size>
     <building>
       <destroySound>BuildingDestroyed_Metal_Big</destroySound>
     </building>

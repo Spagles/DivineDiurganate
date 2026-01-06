@@ -13,7 +13,6 @@ namespace DivineDiurganate
     public class WorldComp_FlyoverManager : WorldComponent
     {
         private List<FlyoverData> allFlyoverData = new List<FlyoverData>();
-        private Window_FlyoverUI flyoverWindow;
         private bool uiIsOpen = false;
 
         public WorldComp_FlyoverManager(World world) : base(world) { }
@@ -88,7 +87,12 @@ namespace DivineDiurganate
             {
                 data.status = FlyoverStatus.Destroyed;
                 data.linkedFlyover = null;
-                CheckAndUpdateUIState();
+                
+                // 延迟检查UI状态，避免在销毁过程中操作窗口
+                LongEventHandler.QueueLongEvent(() => 
+                {
+                    CheckAndUpdateUIState();
+                }, "UpdateFlyoverUI", false, null);
             }
         }
 
@@ -97,23 +101,35 @@ namespace DivineDiurganate
         /// </summary>
         private void CheckAndUpdateUIState()
         {
-            int activeCount = ActiveFlyoverCount;
-
-            if (activeCount > 0)
+            try
             {
-                // 有活跃战机，打开UI
-                if (!uiIsOpen)
+                int activeCount = ActiveFlyoverCount;
+
+                if (activeCount > 0)
                 {
-                    OpenUI();
+                    // 有活跃战机，打开UI
+                    if (!uiIsOpen)
+                    {
+                        OpenUI();
+                    }
+                    else
+                    {
+                        // UI已经打开，确保它是最新的
+                        UpdateOpenUI();
+                    }
+                }
+                else
+                {
+                    // 没有活跃战机，关闭UI
+                    if (uiIsOpen)
+                    {
+                        CloseUI();
+                    }
                 }
             }
-            else
+            catch (System.Exception ex)
             {
-                // 没有活跃战机，关闭UI
-                if (uiIsOpen)
-                {
-                    CloseUI();
-                }
+                Log.Error($"Error in CheckAndUpdateUIState: {ex}");
             }
         }
 
@@ -122,21 +138,27 @@ namespace DivineDiurganate
         /// </summary>
         private void OpenUI()
         {
-            if (uiIsOpen) return;
-
-            if (flyoverWindow == null)
+            try
             {
-                flyoverWindow = new Window_FlyoverUI(this);
-            }
-
-            if (!Find.WindowStack.IsOpen(typeof(Window_FlyoverUI)))
-            {
-                Find.WindowStack.Add(flyoverWindow);
+                if (uiIsOpen) return;
+                
+                // 检查是否已经有窗口打开
+                if (Find.WindowStack.IsOpen(typeof(Window_FlyoverUI_Expanded)) ||
+                    Find.WindowStack.IsOpen(typeof(Window_FlyoverUI_Minimized)))
+                {
+                    uiIsOpen = true;
+                    return;
+                }
+                
+                // 直接打开展开的窗口
+                Window_FlyoverUI_Expanded expandedWindow = new Window_FlyoverUI_Expanded(this);
+                Find.WindowStack.Add(expandedWindow);
                 uiIsOpen = true;
             }
-            else
+            catch (System.Exception ex)
             {
-                uiIsOpen = true;
+                Log.Error($"Error in OpenUI: {ex}");
+                uiIsOpen = false;
             }
         }
 
@@ -145,28 +167,109 @@ namespace DivineDiurganate
         /// </summary>
         private void CloseUI()
         {
-            if (!uiIsOpen) return;
-
-            if (flyoverWindow != null && flyoverWindow.IsOpen)
+            try
             {
-                flyoverWindow.Close();
-            }
+                if (!uiIsOpen) return;
 
-            uiIsOpen = false;
+                // 使用列表副本，避免修改正在遍历的集合
+                List<Window> windowsToClose = new List<Window>();
+
+                // 收集需要关闭的窗口
+                foreach (Window window in Find.WindowStack.Windows)
+                {
+                    if (window is Window_FlyoverUI_Expanded || window is Window_FlyoverUI_Minimized)
+                    {
+                        windowsToClose.Add(window);
+                    }
+                }
+
+                // 关闭收集到的窗口
+                foreach (Window window in windowsToClose)
+                {
+                    try
+                    {
+                        window.Close();
+                    }
+                    catch (System.Exception ex)
+                    {
+                        Log.Error($"Error closing flyover window: {ex}");
+                    }
+                }
+
+                uiIsOpen = false;
+            }
+            catch (System.Exception ex)
+            {
+                Log.Error($"Error in CloseUI: {ex}");
+                uiIsOpen = false;
+            }
+        }
+
+        /// <summary>
+        /// 更新已打开的UI
+        /// </summary>
+        private void UpdateOpenUI()
+        {
+            try
+            {
+                // 检查是否有展开的窗口，如果没有但UI状态为打开，则纠正状态
+                bool hasExpandedWindow = false;
+                bool hasMinimizedWindow = false;
+
+                foreach (Window window in Find.WindowStack.Windows)
+                {
+                    if (window is Window_FlyoverUI_Expanded)
+                        hasExpandedWindow = true;
+                    if (window is Window_FlyoverUI_Minimized)
+                        hasMinimizedWindow = true;
+                }
+
+                // 如果UI状态为打开但没有对应窗口，纠正状态
+                if (uiIsOpen && !hasExpandedWindow && !hasMinimizedWindow)
+                {
+                    uiIsOpen = false;
+                }
+                // 如果UI状态为关闭但有窗口，纠正状态
+                else if (!uiIsOpen && (hasExpandedWindow || hasMinimizedWindow))
+                {
+                    uiIsOpen = true;
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Log.Error($"Error in UpdateOpenUI: {ex}");
+            }
         }
 
         public override void WorldComponentTick()
         {
             base.WorldComponentTick();
 
+            // 每60ticks（1秒）更新一次
             if (Find.TickManager.TicksGame % 60 == 0)
             {
-                foreach (var data in allFlyoverData)
+                try
                 {
-                    data.Tick();
-                }
+                    // 更新所有战机数据
+                    foreach (var data in allFlyoverData)
+                    {
+                        try
+                        {
+                            data.Tick();
+                        }
+                        catch (System.Exception ex)
+                        {
+                            Log.Error($"Error ticking flyover data {data.guid}: {ex}");
+                        }
+                    }
 
-                CheckAndUpdateUIState();
+                    // 检查并更新UI状态
+                    CheckAndUpdateUIState();
+                }
+                catch (System.Exception ex)
+                {
+                    Log.Error($"Error in WorldComponentTick: {ex}");
+                }
             }
         }
 
@@ -181,7 +284,14 @@ namespace DivineDiurganate
         {
             LongEventHandler.ExecuteWhenFinished(() =>
             {
-                CheckAndUpdateUIState();
+                try
+                {
+                    CheckAndUpdateUIState();
+                }
+                catch (System.Exception ex)
+                {
+                    Log.Error($"Error in FinalizeInit: {ex}");
+                }
             });
         }
     }

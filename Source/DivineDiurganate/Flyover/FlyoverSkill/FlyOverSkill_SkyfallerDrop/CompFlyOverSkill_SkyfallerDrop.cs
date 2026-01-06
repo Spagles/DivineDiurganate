@@ -14,6 +14,7 @@ namespace DivineDiurganate
         private int warmupTicksRemaining = 0;
         private IntVec3 targetPosition = IntVec3.Invalid;
         private bool isWarmingUp = false;
+        private bool hasExecuted = false; // 标记技能是否已经执行
         
         /// <summary>
         /// 获取技能属性
@@ -47,6 +48,9 @@ namespace DivineDiurganate
                     return;
                 }
                 
+                // 重置执行标记
+                hasExecuted = false;
+                
                 // 如果有前摇时间，开始准备
                 if (SkyfallerProps.warmupTicks > 0)
                 {
@@ -57,8 +61,9 @@ namespace DivineDiurganate
                     // 直接生成Skyfaller
                     SpawnSkyfaller(targetPosition, map);
                     
-                    // 记录技能使用
-                    Execute();
+                    // 记录技能使用（仅在此时记录）
+                    base.Execute();
+                    hasExecuted = true;
                 }
             }
             catch (System.Exception ex)
@@ -76,10 +81,11 @@ namespace DivineDiurganate
             warmupTicksRemaining = SkyfallerProps.warmupTicks;
             targetPosition = position;
             isWarmingUp = true;
+            hasExecuted = false; // 确保标记为未执行
 
-            
             // 显示消息
-            Messages.Message("DD_FlyoverSkillSkyfallerWarmup".Translate(SkyfallerProps.skillName), 
+            Messages.Message("DD_FlyoverSkillSkyfallerWarmup".Translate(SkyfallerProps.skillName, 
+                warmupTicksRemaining.ToStringSecondsFromTicks()), 
                 MessageTypeDefOf.SilentInput);
         }
         
@@ -103,6 +109,7 @@ namespace DivineDiurganate
                     {
                         AddContentsToSkyfaller(skyfaller, SkyfallerProps.contentThingDef, SkyfallerProps.contentCount);
                     }
+                    
                     // 生成Skyfaller
                     GenSpawn.Spawn(skyfaller, finalPosition, map);
                     
@@ -225,8 +232,12 @@ namespace DivineDiurganate
                         // 生成Skyfaller
                         SpawnSkyfaller(targetPosition, map);
                         
-                        // 记录技能使用
-                        Execute();
+                        // 仅在此时记录技能使用（避免重复记录）
+                        if (!hasExecuted)
+                        {
+                            base.Execute();
+                            hasExecuted = true;
+                        }
                     }
                     
                     // 重置状态
@@ -234,6 +245,17 @@ namespace DivineDiurganate
                     targetPosition = IntVec3.Invalid;
                 }
             }
+        }
+        
+        /// <summary>
+        /// 重写Execute方法，防止外部直接调用
+        /// </summary>
+        public override void Execute()
+        {
+            // 重写此方法，防止外部错误调用
+            // 实际执行逻辑在CompTick中控制
+            Log.Warning($"CompFlyOverSkill_SkyfallerDrop.Execute() was called externally. " +
+                       $"This should be handled by internal logic.");
         }
         
         /// <summary>
@@ -312,6 +334,7 @@ namespace DivineDiurganate
             Scribe_Values.Look(ref warmupTicksRemaining, "warmupTicksRemaining", 0);
             Scribe_Values.Look(ref targetPosition, "targetPosition", IntVec3.Invalid);
             Scribe_Values.Look(ref isWarmingUp, "isWarmingUp", false);
+            Scribe_Values.Look(ref hasExecuted, "hasExecuted", false);
         }
     }
 }

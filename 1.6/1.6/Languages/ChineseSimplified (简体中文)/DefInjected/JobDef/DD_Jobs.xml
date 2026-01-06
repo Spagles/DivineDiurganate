@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
   
+  <!-- EN: Calling Aircraft. -->
+  <DD_CallFlyOver.reportString>TODO</DD_CallFlyOver.reportString>
+  
   <!-- EN: carrying TargetA to TargetB. -->
   <DD_CarryToMech.reportString>携带 TargetA 到 TargetB</DD_CarryToMech.reportString>
   

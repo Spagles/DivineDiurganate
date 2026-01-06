@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <!-- 母舰 -->
   <ThingDef ParentName="EtherealThingBase">
     <defName>DD_Flyover_AirShip</defName>
     <label>Oberon</label>
@@ -50,7 +49,8 @@
         <sound>DD_Airship_IncomingSound</sound>
       </li>
       <li Class="DivineDiurganate.CompProperties_FlyoverManaged">
-        <destroyDataWithFlyover>false</destroyDataWithFlyover>  
+        <!-- <destroyDataWithFlyover>false</destroyDataWithFlyover>   -->
+        <destroyDataWithFlyover>true</destroyDataWithFlyover>
         <iconPath>DivineDiurganate/UI/Commands/DD_Oberon_Airship_Icon</iconPath>
       </li>
       <li Class="DivineDiurganate.CompProperties_FlyOverSkill_Bombardment">
@@ -138,7 +138,7 @@
   </ThingDef>
   <ThingDef ParentName="SkyfallerBase">
     <defName>DD_Automatic_Cannon_Skyfaller</defName>
-    <label>机炮子弹</label>
+    <label>Automatic Cannon Bullet</label>
     <size>(1, 1)</size>
     <graphicData>
       <texPath>Things/Projectile/Bullet_Big</texPath>
@@ -170,18 +170,10 @@
         </points>
       </angleCurve>
       <explosionRadius>4</explosionRadius>
-      <explosionDamage>WULA_Firepower_Minigun_Strafe_Damage</explosionDamage>
+      <explosionDamage>Bullet</explosionDamage>
       <explosionDamageFactor>2</explosionDamageFactor>
     </skyfaller>
     <comps>
-      <li Class="DivineDiurganate.CompProperties_MoteEmitterNorthward">
-        <moteDef>DD_Mote_MechBlackSmoke</moteDef>
-        <emitIntervalTicks>10</emitIntervalTicks>
-        <moveSpeed>0</moveSpeed>
-        <lifetimeTicks>10</lifetimeTicks>
-        <scale>0.25</scale>
-        <offset>(0,0,0)</offset>
-      </li>
       <li Class="DivineDiurganate.CompProperties_PlaySoundOnSpawn">
         <sound>WULA_Firepower_Minigun_Fire_sound</sound>
       </li>
@@ -189,7 +181,7 @@
   </ThingDef>
   <ThingDef ParentName="SkyfallerBase">
     <defName>DD_70MM_Cannon_Skyfaller</defName>
-    <label>轻型副炮炮弹</label>
+    <label>70mm Shell</label>
     <size>(1, 1)</size>
     <graphicData>
       <texPath>Things/Projectile/Bullet_Big</texPath>
@@ -225,13 +217,9 @@
       <explosionDamageFactor>0.1</explosionDamageFactor>
     </skyfaller>
     <comps>
-      <li Class="DivineDiurganate.CompProperties_MoteEmitterNorthward">
-        <moteDef>DD_Mote_MechBlackSmoke</moteDef>
-        <emitIntervalTicks>10</emitIntervalTicks>
-        <moveSpeed>0</moveSpeed>
-        <lifetimeTicks>10</lifetimeTicks>
-        <scale>0.25</scale>
-        <offset>(0,0,0)</offset>
+      <li Class="CompProperties_MoteEmitter">
+        <mote>DD_Mote_MechBlackSmoke</mote>
+        <emissionInterval>20</emissionInterval>
       </li>
       <li Class="DivineDiurganate.CompProperties_PlaySoundOnSpawn">
         <sound>WULA_Firepower_Minigun_Fire_sound</sound>
@@ -240,7 +228,7 @@
   </ThingDef>
   <ThingDef ParentName="SkyfallerBase">
     <defName>DD_Heavy_Air_bomb_Skyfaller</defName>
-    <label>航弹</label>
+    <label>Heavy Air bomb</label>
     <size>(1, 1)</size>
     <graphicData>
       <texPath>Things/Projectile/Bullet_Big</texPath>

@@ -79,8 +79,8 @@
     <Compile Include="Ability\CompAbilityEffect_StartHealingJob.cs" />
     <Compile Include="Ability\DestroyOwnBodyPart\CompAbilityEffect_DestroyOwnBodyPart.cs" />
     <Compile Include="Ability\DestroyOwnBodyPart\CompProperties_AbilityDestroyOwnBodyPart.cs" />
-    <Compile Include="BuildingComps\CompFlyOverGenerator.cs" />
-    <Compile Include="BuildingComps\CompProperties_FlyOverGenerator.cs" />
+    <Compile Include="BuildingComps\FlyOverGenerator\CompFlyOverGenerator.cs" />
+    <Compile Include="BuildingComps\FlyOverGenerator\CompProperties_FlyOverGenerator.cs" />
     <Compile Include="EventSystem\CompOpenCustomUI.cs" />
     <Compile Include="EventSystem\Condition\ConditionBase.cs" />
     <Compile Include="EventSystem\Condition\Condition_FlagExists.cs" />
@@ -172,6 +172,7 @@
     <Compile Include="Work\EnterMech\WorkGiver_EnterMech.cs" />
     <Compile Include="Work\ForceEjectPilot\FloatMenuOptionProvider_ForceEjectPilot.cs" />
     <Compile Include="Work\ForceEjectPilot\JobDriver_ForceEjectPilot.cs" />
+    <Compile Include="Work\JobDriver_CallFlyOver.cs" />
     <Compile Include="Work\JobDriver_CarryToMech.cs" />
     <Compile Include="Work\JobDriver_TendTarget.cs" />
     <Compile Include="Work\RefuelMech\JobDriver_RefuelMech.cs" />
