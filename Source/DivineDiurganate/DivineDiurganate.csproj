@@ -104,8 +104,10 @@
     <Compile Include="Flyover\FlyoverManaged\CompProperties_FlyoverManaged.cs" />
     <Compile Include="Flyover\FlyoverSkill\FlyOverSkillBase\CompFlyOverSkillBase.cs" />
     <Compile Include="Flyover\FlyoverSkill\FlyOverSkillBase\CompProperties_FlyOverSkillBase.cs" />
-    <Compile Include="Flyover\FlyoverSkill\FlyOverSkill_Reenter\CompFlyOverSkill_Reenter.cs" />
-    <Compile Include="Flyover\FlyoverSkill\FlyOverSkill_Reenter\CompProperties_FlyOverSkill_Reenter.cs" />
+    <Compile Include="Flyover\FlyoverSkill\FlyOverSkill_Bombardment\CompFlyOverSkill_Bombardment.cs" />
+    <Compile Include="Flyover\FlyoverSkill\FlyOverSkill_Bombardment\CompProperties_FlyOverSkill_Bombardment.cs" />
+    <Compile Include="Flyover\FlyoverSkill\FlyOverSkill_SkyfallerDrop\CompFlyOverSkill_SkyfallerDrop.cs" />
+    <Compile Include="Flyover\FlyoverSkill\FlyOverSkill_SkyfallerDrop\CompProperties_FlyOverSkill_SkyfallerDrop.cs" />
     <Compile Include="Flyover\SendLetterAfterTicks\CompProperties_SendLetterAfterTicks.cs" />
     <Compile Include="Flyover\SendLetterAfterTicks\CompSendLetterAfterTicks.cs" />
     <Compile Include="Flyover\ThingclassFlyOver.cs" />

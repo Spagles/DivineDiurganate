@@ -13,79 +13,143 @@ namespace DivineDiurganate
 {
     /// <summary>
     /// 修复版 - 强制设置眼球颜色为白色
+    /// 注意：仅在游戏进行中时启动补丁
     /// </summary>
     [StaticConstructorOnStartup]
     public static class EyeballPatchManager
     {
+        // 添加一个静态字段来跟踪补丁是否已应用
+        private static bool patchesApplied = false;
+        
+        // 添加一个静态字段来跟踪游戏是否已开始
+        public static bool gameStarted = false;
+        
         static EyeballPatchManager()
         {
-            bool faLoaded = ModLister.GetActiveModWithIdentifier("nals.facialanimation") != null;
-            
-            if (!faLoaded)
+            // 等待游戏初始化完成
+            LongEventHandler.ExecuteWhenFinished(() =>
             {
-                return;
-            }
-            
-            try
-            {
-                var harmony = new Harmony("DivineDiurganate.EyeballPatch");
-                
-                // 方法1：补丁GatherPawnParam方法
-                var gatherMethod = AccessTools.Method("FacialAnimation.FacialAnimationControllerComp:GatherPawnParam");
-                if (gatherMethod != null)
+                // 检查是否在游戏中（不在主菜单或选人界面）
+                if (!IsInGame())
                 {
-                    var prefix = new HarmonyMethod(typeof(EyeballPatches).GetMethod("GatherPawnParam_Prefix"));
-                    harmony.Patch(gatherMethod, prefix: prefix);
-                }
-                else
-                {
-                    Log.Warning("[DD] Could not find GatherPawnParam method.");
+                    Log.Message("[DD] 游戏未开始，眼球补丁不启动");
+                    return;
                 }
                 
-                // 方法2：补丁Pawn.SpawnSetup作为备用
-                var spawnMethod = typeof(Pawn).GetMethod("SpawnSetup");
-                if (spawnMethod != null)
+                // 标记游戏已开始
+                gameStarted = true;
+                
+                bool faLoaded = ModLister.GetActiveModWithIdentifier("nals.facialanimation") != null;
+                
+                if (!faLoaded)
                 {
-                    var postfix = new HarmonyMethod(typeof(EyeballPatches).GetMethod("SpawnSetup_Postfix"));
-                    harmony.Patch(spawnMethod, postfix: postfix);
+                    Log.Message("[DD] FacialAnimation未加载，眼球补丁不启动");
+                    return;
                 }
                 
-                // 方法3：补丁ControllerBaseComp的Color属性getter
-                var controllerBaseType = AccessTools.TypeByName("FacialAnimation.ControllerBaseComp`2");
-                if (controllerBaseType != null)
+                try
                 {
-                    var colorProperty = AccessTools.Property(controllerBaseType, "Color");
-                    if (colorProperty != null)
+                    // 避免重复应用补丁
+                    if (patchesApplied)
                     {
-                        var getter = colorProperty.GetGetMethod();
-                        if (getter != null)
+                        Log.Message("[DD] 眼球补丁已应用，跳过");
+                        return;
+                    }
+                    
+                    var harmony = new Harmony("DivineDiurganate.EyeballPatch");
+                    
+                    // 方法1：补丁GatherPawnParam方法
+                    var gatherMethod = AccessTools.Method("FacialAnimation.FacialAnimationControllerComp:GatherPawnParam");
+                    if (gatherMethod != null)
+                    {
+                        var prefix = new HarmonyMethod(typeof(EyeballPatches).GetMethod("GatherPawnParam_Prefix"));
+                        harmony.Patch(gatherMethod, prefix: prefix);
+                        Log.Message("[DD] 已应用GatherPawnParam补丁");
+                    }
+                    else
+                    {
+                        Log.Warning("[DD] Could not find GatherPawnParam method.");
+                    }
+                    
+                    // 方法2：补丁Pawn.SpawnSetup作为备用
+                    var spawnMethod = typeof(Pawn).GetMethod("SpawnSetup");
+                    if (spawnMethod != null)
+                    {
+                        var postfix = new HarmonyMethod(typeof(EyeballPatches).GetMethod("SpawnSetup_Postfix"));
+                        harmony.Patch(spawnMethod, postfix: postfix);
+                        Log.Message("[DD] 已应用SpawnSetup补丁");
+                    }
+                    
+                    // 方法3：补丁ControllerBaseComp的Color属性getter
+                    var controllerBaseType = AccessTools.TypeByName("FacialAnimation.ControllerBaseComp`2");
+                    if (controllerBaseType != null)
+                    {
+                        var colorProperty = AccessTools.Property(controllerBaseType, "Color");
+                        if (colorProperty != null)
                         {
-                            var postfix = new HarmonyMethod(typeof(EyeballPatches).GetMethod("ColorGetter_Postfix"));
-                            harmony.Patch(getter, postfix: postfix);
+                            var getter = colorProperty.GetGetMethod();
+                            if (getter != null)
+                            {
+                                var postfix = new HarmonyMethod(typeof(EyeballPatches).GetMethod("ColorGetter_Postfix"));
+                                harmony.Patch(getter, postfix: postfix);
+                                Log.Message("[DD] 已应用ColorGetter补丁");
+                            }
                         }
                     }
+                    
+                    patchesApplied = true;
+                    Log.Message("[DD] 眼球补丁应用完成");
+                    
+                    // 调试：列出所有FaceTypeDef
+                    int count = 0;
+                    foreach (var def in DefDatabase<FaceTypeDef>.AllDefs)
+                    {
+                        count++;
+                    }
+                    
+                    // 检查我们的Def是否存在
+                    var ourDef = DefDatabase<FaceTypeDef>.GetNamedSilentFail("DD_Maple_Sugar_Eyeball");
+                    if (ourDef != null)
+                    {
+                        Log.Message($"[DD] 找到自定义眼球定义: {ourDef.defName}");
+                    }
+                    else
+                    {
+                        Log.Warning("[DD] DD_Maple_Sugar_Eyeball not found in FaceTypeDef database.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Error($"[DD] ERROR during patching: {ex}");
+                }
+            });
+        }
+        
+        /// <summary>
+        /// 检查是否在游戏中（不在主菜单或选人界面）
+        /// </summary>
+        private static bool IsInGame()
+        {
+            try
+            {
+                // 检查游戏是否在播放状态
+                if (Current.ProgramState != ProgramState.Playing)
+                {
+                    return false;
                 }
                 
-                // 调试：列出所有FaceTypeDef
-                int count = 0;
-                foreach (var def in DefDatabase<FaceTypeDef>.AllDefs)
+                // 检查是否有世界地图
+                if (Find.World == null)
                 {
-                    count++;
+                    return false;
                 }
                 
-                // 检查我们的Def是否存在
-                var ourDef = DefDatabase<FaceTypeDef>.GetNamedSilentFail("DD_Maple_Sugar_Eyeball");
-                if (ourDef != null)
-                {
-                }
-                else
-                {
-                    Log.Warning("[DD] DD_Maple_Sugar_Eyeball not found in FaceTypeDef database.");
-                }
+                return true;
             }
             catch (Exception ex)
             {
-                Log.Error($"[DD] ERROR during patching: {ex}");
+                Log.Warning($"[DD] Error checking game state: {ex.Message}");
+                return false;
             }
         }
     }

@@ -806,12 +806,12 @@ namespace DivineDiurganate
             }
             else
             {
-                tooltip += $"<color=green>{"DD_Flyover_SkillReady".Translate()}</color>\n";
+                tooltip += $"<color=green>{"DD_FlyoverSkillReady".Translate()}</color>\n";
             }
 
             if (props.cooldownTicks > 0)
             {
-                tooltip += $"{"DD_Flyover_Cooldown".Translate()}: {(props.cooldownTicks / 60f):F1}秒\n";
+                tooltip += $"{"DD_FlyoverSkillCooldown".Translate(props.cooldownTicks / 60f)}\n";
             }
 
             tooltip += $"{"DD_Flyover_Uses".Translate()}: {skillComp.useCount}";
@@ -997,77 +997,68 @@ namespace DivineDiurganate
         private void CalculateAndCreateFlyOver(IntVec3 point1, IntVec3 point2)
         {
             Log.Message($"Window_FlyoverUI: 开始计算和创建FlyOver，point1={point1}, point2={point2}");
-
             if (currentReEnterMap == null || currentReEnterFlyover == null)
             {
                 Log.Error($"Window_FlyoverUI: 重新入场数据无效 - currentReEnterMap: {currentReEnterMap}, currentReEnterFlyover: {currentReEnterFlyover}");
                 ResetReEnterSelection();
                 return;
             }
+
             // 计算延长线与地图边界的交点
             IntVec3 entryPoint, exitPoint;
-
             if (!FlyOver.CalculateMapIntersections(point1, point2, currentReEnterMap, out entryPoint, out exitPoint))
             {
                 Messages.Message("DD_Flyover_FailedCalculatePath".Translate(), MessageTypeDefOf.RejectInput);
                 ResetReEnterSelection();
                 return;
             }
+
             // 确定起始点和终点（更靠近第一个点的为起始点）
             float distance1 = point1.DistanceTo(entryPoint);
             float distance2 = point1.DistanceTo(exitPoint);
-
             IntVec3 startPoint = distance1 < distance2 ? entryPoint : exitPoint;
             IntVec3 endPoint = distance1 < distance2 ? exitPoint : entryPoint;
+
             // 从FlyoverData中获取飞行速度和高度
             float flightSpeed = currentReEnterFlyover.flightSpeed > 0 ? currentReEnterFlyover.flightSpeed : 1f;
             float altitude = currentReEnterFlyover.altitude > 0 ? currentReEnterFlyover.altitude : 10f;
+
             Log.Message($"Window_FlyoverUI: 创建FlyOver - 速度={flightSpeed}, 高度={altitude}, 起点={startPoint}, 终点={endPoint}");
-            // 创建FlyOver - 使用FlyoverData中保存的飞行速度和高度
-            FlyOver newFlyOver = FlyOver.MakeFlyOver(
+            // 使用新的重新入场专用方法创建FlyOver
+            FlyOver newFlyOver = FlyOver.MakeFlyOverForReEnter(
                 currentReEnterFlyover.flyoverDef,
+                currentReEnterFlyover.guid,  // 传递现有FlyoverData的guid
                 startPoint,
                 endPoint,
                 currentReEnterMap,
-                speed: flightSpeed, // 使用保存的飞行速度
-                height: altitude,   // 使用保存的飞行高度
-                contents: null,
-                casterPawn: null
+                flightSpeed,
+                altitude
             );
             if (newFlyOver != null)
             {
                 Log.Message($"Window_FlyoverUI: FlyOver创建成功，ID={newFlyOver.ThingID}");
-
-                // 获取新FlyOver的CompFlyoverManaged组件
-                var managedComp = newFlyOver.GetComp<CompFlyoverManaged>();
-                if (managedComp != null)
+                // 更新FlyoverData的状态（现在应该已经通过CompFlyoverManaged自动关联）
+                if (currentReEnterFlyover != null)
                 {
-                    Log.Message($"Window_FlyoverUI: 找到CompFlyoverManaged组件，设置flyoverDataGuid={currentReEnterFlyover.guid}, isReEnter=true");
-                    // 关键修复：设置flyoverDataGuid并标记为重新入场流程
-                    managedComp.SetFlyoverDataGuid(currentReEnterFlyover.guid, true);
-                }
-                else
-                {
-                    Log.Error("Window_FlyoverUI: 新创建的FlyOver没有CompFlyoverManaged组件！");
-                }
+                    currentReEnterFlyover.status = FlyoverStatus.OnMap;
+                    currentReEnterFlyover.currentMapIndex = currentReEnterMap.Index;
+                    currentReEnterFlyover.startPosition = startPoint;
+                    currentReEnterFlyover.endPosition = endPoint;
+                    currentReEnterFlyover.flightProgress = 0f;
 
-                // 更新FlyoverData的状态
-                currentReEnterFlyover.status = FlyoverStatus.OnMap;
-                currentReEnterFlyover.linkedFlyover = newFlyOver;
-                currentReEnterFlyover.currentMapIndex = currentReEnterMap.Index;
-                currentReEnterFlyover.startPosition = startPoint;
-                currentReEnterFlyover.endPosition = endPoint;
-                currentReEnterFlyover.flightProgress = 0f;
-                // 创建航线信息
-                currentReEnterFlyover.CreateDefaultPathInfo(point1, point2);
-                Messages.Message($"DD_Flyover_ReEnterSuccess".Translate(currentReEnterFlyover.DisplayName),
-                    MessageTypeDefOf.PositiveEvent);
+                    // 创建航线信息
+                    currentReEnterFlyover.CreateDefaultPathInfo(point1, point2);
+
+                    Messages.Message($"DD_Flyover_ReEnterSuccess".Translate(currentReEnterFlyover.DisplayName),
+                        MessageTypeDefOf.PositiveEvent);
+                }
             }
             else
             {
                 Log.Error("Window_FlyoverUI: FlyOver创建失败");
                 Messages.Message("DD_Flyover_FailedCreate".Translate(), MessageTypeDefOf.NegativeEvent);
             }
+
             ResetReEnterSelection();
         }
 

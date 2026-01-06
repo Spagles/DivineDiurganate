@@ -288,4 +288,21 @@
       </li>
     </subSounds>
   </SoundDef>
+  <SoundDef>
+    <defName>DD_Automatic_Cannon_Fire_sound</defName>
+    <context>MapOnly</context>
+    <maxSimultaneous>1</maxSimultaneous>
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>DivineDiurganate/DD_Automatic_Cannon_Fire_sound</clipPath>
+          </li>
+        </grains>
+        <volumeRange>35</volumeRange>
+        <pitchRange>0.9~1.1</pitchRange>
+        <onCamera>True</onCamera>
+      </li>
+    </subSounds>
+  </SoundDef>
 </Defs>

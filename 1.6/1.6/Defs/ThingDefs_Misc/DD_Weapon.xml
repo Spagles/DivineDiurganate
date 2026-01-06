@@ -303,7 +303,6 @@
         <burstShotCount>1</burstShotCount>
         <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
         <soundCast>Shot_Revolver</soundCast>
-        <canGoWild>false</canGoWild>
       </li>
     </verbs>
     <costList>
@@ -456,14 +455,13 @@
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
-        <warmupTime>3</warmupTime>
+        <warmupTime>5</warmupTime>
         <defaultProjectile>DD_AM_Heavy_Lance_Bullet</defaultProjectile>
         <range>38.9</range>
         <minRange>2.9</minRange>
         <burstShotCount>1</burstShotCount>
         <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
         <soundCast>DD_AM_Heavy_Lance_FireSound</soundCast>
-        <canGoWild>false</canGoWild>
       </li>
     </verbs>
     <costList>

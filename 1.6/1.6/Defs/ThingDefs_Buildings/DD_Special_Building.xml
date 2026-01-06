@@ -2,8 +2,8 @@
 <Defs>
   <ThingDef ParentName="BuildingBase">
     <defName>DD_Airship_CommsConsole</defName>
-    <label>飞空艇通讯台</label>
-    <description>一台用于联系双尾教廷的重型飞空艇——欧伯龙号的通讯台。</description>
+    <label>Airship Communication Station</label>
+    <description>The communication station, used for communicate with the Oberon, a heavy airship owned by Diurganate.</description>
     <!-- <thingClass>Building_CommsConsole</thingClass> -->
     <graphicData>
       <texPath>Things/Building/Misc/CommsConsole</texPath>
@@ -65,8 +65,8 @@
         <cooldownTicks>1800</cooldownTicks>
         <useLimit>-1</useLimit>
 
-        <label>呼叫欧伯龙号飞空艇</label>
-        <description>向途径附近的欧伯龙号飞艇发出讯号，让其前往殖民地上空</description>
+        <label>Call Oberon Airship</label>
+        <description>Send a signal to the Oberon Airship near the route, instructing it to proceed to the orbit above the colony.</description>
       </li>
     </comps>
     <placeWorkers>

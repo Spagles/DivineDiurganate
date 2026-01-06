@@ -3,7 +3,7 @@
   <!-- 母舰 -->
   <ThingDef ParentName="EtherealThingBase">
     <defName>DD_Flyover_AirShip</defName>
-    <label>欧伯龙号重型飞空艇</label>
+    <label>Oberon</label>
     <thingClass>DivineDiurganate.FlyOver</thingClass>
     <tickerType>Normal</tickerType>
     <drawerType>RealtimeOnly</drawerType>
@@ -52,6 +52,232 @@
       <li Class="DivineDiurganate.CompProperties_FlyoverManaged">
         <destroyDataWithFlyover>false</destroyDataWithFlyover>  
         <iconPath>DivineDiurganate/UI/Commands/DD_Oberon_Airship_Icon</iconPath>
+      </li>
+      <li Class="DivineDiurganate.CompProperties_FlyOverSkill_Bombardment">
+        <skillName>机炮扫射</skillName>
+        <description>欧伯龙号调动其下挂的各个炮艇舱室，以渐近火力扫射殖民地所选的区域。</description>
+        <iconPath>UI/Icons/Skills/Bombardment</iconPath>
+        <cooldownTicks>600</cooldownTicks>
+        <maxUses>3</maxUses>
+        <canUseWhenOnMap>true</canUseWhenOnMap>
+        <canUseWhenStandby>true</canUseWhenStandby>
+        <slotIndex>0</slotIndex>
+        
+        <!-- 轰炸参数 -->
+        <bombardmentWidth>5</bombardmentWidth>
+        <bombardmentLength>35</bombardmentLength>
+        <targetSelectionChance>0.6</targetSelectionChance>
+        <minTargetCells>25</minTargetCells>
+        <maxTargetCells>30</maxTargetCells>
+        
+        <!-- 时间参数 -->
+        <warmupTicks>120</warmupTicks>
+        <rowDelayTicks>5</rowDelayTicks>
+        <impactDelayTicks>2</impactDelayTicks>
+        
+        <!-- Skyfaller 配置 -->
+        <skyfallerDef>DD_Automatic_Cannon_Skyfaller</skyfallerDef>
+      
+        <twoPointsFirstPointMessage>选择扫射起始点</twoPointsFirstPointMessage>
+        <twoPointsSecondPointMessage>选择扫射方向</twoPointsSecondPointMessage>
+      </li>
+      <li Class="DivineDiurganate.CompProperties_FlyOverSkill_Bombardment">
+        <skillName>70mm火炮弹幕</skillName>
+        <description>欧伯龙号调动主舱室的三门70mm火炮，以渐近火力轰炸殖民地所选的区域。</description>
+        <iconPath>UI/Icons/Skills/Bombardment</iconPath>
+        <cooldownTicks>12000</cooldownTicks>
+        <maxUses>-1</maxUses>
+        <canUseWhenOnMap>true</canUseWhenOnMap>
+        <canUseWhenStandby>true</canUseWhenStandby>
+        <slotIndex>1</slotIndex>
+        
+        <!-- 轰炸参数 -->
+        <bombardmentWidth>5</bombardmentWidth>
+        <bombardmentLength>35</bombardmentLength>
+        <targetSelectionChance>0.6</targetSelectionChance>
+        <minTargetCells>25</minTargetCells>
+        <maxTargetCells>30</maxTargetCells>
+        
+        <!-- 时间参数 -->
+        <warmupTicks>120</warmupTicks>
+        <rowDelayTicks>5</rowDelayTicks>
+        <impactDelayTicks>2</impactDelayTicks>
+        
+        <!-- Skyfaller 配置 -->
+        <skyfallerDef>DD_70MM_Cannon_Skyfaller</skyfallerDef>
+      
+        <twoPointsFirstPointMessage>选择轰炸起始点</twoPointsFirstPointMessage>
+        <twoPointsSecondPointMessage>选择轰炸方向</twoPointsSecondPointMessage>
+      </li>
+      <li Class="DivineDiurganate.CompProperties_FlyOverSkill_SkyfallerDrop">
+        <skillName>航弹投掷</skillName>
+        <description>从欧伯龙号的航弹发射架上投掷一枚航弹</description>
+        <iconPath>UI/Icons/Skills/SupplyDrop</iconPath>
+        <cooldownTicks>120</cooldownTicks>
+        <maxUses>6</maxUses>
+        <canUseWhenOnMap>true</canUseWhenOnMap>
+        <canUseWhenStandby>false</canUseWhenStandby>
+        <slotIndex>2</slotIndex>
+        
+        <!-- 立即释放配置 -->
+        <instantCast>true</instantCast>
+        <instantCastMessage>一枚航弹已经投放！</instantCastMessage>
+        
+        <!-- Skyfaller配置 -->
+        <skyfallerDef>DD_Heavy_Air_bomb_Skyfaller</skyfallerDef>
+        
+        <!-- 坠落参数 -->
+        <dropRadius>0</dropRadius>
+        <!-- <minDistanceFromFlyover>1</minDistanceFromFlyover>
+        <maxDistanceFromFlyover>3</maxDistanceFromFlyover> -->
+        
+        <!-- 时间参数 -->
+        <warmupTicks>30</warmupTicks>
+      </li>
+    </comps>
+  </ThingDef>
+  <ThingDef ParentName="SkyfallerBase">
+    <defName>DD_Automatic_Cannon_Skyfaller</defName>
+    <label>机炮子弹</label>
+    <size>(1, 1)</size>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Big</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>MoteGlow</shaderType>
+      <color>(194,117,67)</color>
+      <drawSize>5</drawSize>
+    </graphicData>
+    <skyfaller>
+      <movementType>Accelerate</movementType>
+      <shadow>Things/Skyfaller/SkyfallerShadowDropPod</shadow>
+      <shadowSize>(1, 1)</shadowSize>
+      <anticipationSound>DropPod_Fall</anticipationSound>
+      <anticipationSoundTicks>100</anticipationSoundTicks>
+      <impactSound>Explosion_Bomb</impactSound>
+      <moteSpawnTime>0.05</moteSpawnTime>
+      <motesPerCell>1</motesPerCell>
+      <cameraShake>1</cameraShake>
+      <rotationCurve>
+        <points>
+          <li>(0,150)</li>
+          <li>(1, 151)</li>
+        </points>
+      </rotationCurve>
+      <angleCurve>
+        <points>
+          <li>(0,-30)</li>
+          <li>(1, -31)</li>
+        </points>
+      </angleCurve>
+      <explosionRadius>4</explosionRadius>
+      <explosionDamage>WULA_Firepower_Minigun_Strafe_Damage</explosionDamage>
+      <explosionDamageFactor>2</explosionDamageFactor>
+    </skyfaller>
+    <comps>
+      <li Class="DivineDiurganate.CompProperties_MoteEmitterNorthward">
+        <moteDef>DD_Mote_MechBlackSmoke</moteDef>
+        <emitIntervalTicks>10</emitIntervalTicks>
+        <moveSpeed>0</moveSpeed>
+        <lifetimeTicks>10</lifetimeTicks>
+        <scale>0.25</scale>
+        <offset>(0,0,0)</offset>
+      </li>
+      <li Class="DivineDiurganate.CompProperties_PlaySoundOnSpawn">
+        <sound>WULA_Firepower_Minigun_Fire_sound</sound>
+      </li>
+    </comps>
+  </ThingDef>
+  <ThingDef ParentName="SkyfallerBase">
+    <defName>DD_70MM_Cannon_Skyfaller</defName>
+    <label>轻型副炮炮弹</label>
+    <size>(1, 1)</size>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Big</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>MoteGlow</shaderType>
+      <color>(194,117,67)</color>
+      <drawSize>8</drawSize>
+    </graphicData>
+    <skyfaller>
+      <movementType>Accelerate</movementType>
+      <shadow>Things/Skyfaller/SkyfallerShadowDropPod</shadow>
+      <shadowSize>(1, 1)</shadowSize>
+      <anticipationSound>DropPod_Fall</anticipationSound>
+      <anticipationSoundTicks>100</anticipationSoundTicks>
+      <impactSound>Explosion_Bomb</impactSound>
+      <moteSpawnTime>0.05</moteSpawnTime>
+      <motesPerCell>1</motesPerCell>
+      <cameraShake>1</cameraShake>
+      <rotationCurve>
+        <points>
+          <li>(0,150)</li>
+          <li>(1, 151)</li>
+        </points>
+      </rotationCurve>
+      <angleCurve>
+        <points>
+          <li>(0,-30)</li>
+          <li>(1, -31)</li>
+        </points>
+      </angleCurve>
+      <explosionRadius>4</explosionRadius>
+      <explosionDamage>DD_GiantBomb</explosionDamage>
+      <explosionDamageFactor>0.1</explosionDamageFactor>
+    </skyfaller>
+    <comps>
+      <li Class="DivineDiurganate.CompProperties_MoteEmitterNorthward">
+        <moteDef>DD_Mote_MechBlackSmoke</moteDef>
+        <emitIntervalTicks>10</emitIntervalTicks>
+        <moveSpeed>0</moveSpeed>
+        <lifetimeTicks>10</lifetimeTicks>
+        <scale>0.25</scale>
+        <offset>(0,0,0)</offset>
+      </li>
+      <li Class="DivineDiurganate.CompProperties_PlaySoundOnSpawn">
+        <sound>WULA_Firepower_Minigun_Fire_sound</sound>
+      </li>
+    </comps>
+  </ThingDef>
+  <ThingDef ParentName="SkyfallerBase">
+    <defName>DD_Heavy_Air_bomb_Skyfaller</defName>
+    <label>航弹</label>
+    <size>(1, 1)</size>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Big</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>MoteGlow</shaderType>
+      <color>(194,117,67)</color>
+      <drawSize>8</drawSize>
+    </graphicData>
+    <skyfaller>
+      <movementType>Accelerate</movementType>
+      <shadow>Things/Skyfaller/SkyfallerShadowDropPod</shadow>
+      <shadowSize>(1, 1)</shadowSize>
+      <anticipationSound>DropPod_Fall</anticipationSound>
+      <anticipationSoundTicks>100</anticipationSoundTicks>
+      <impactSound>Explosion_Bomb</impactSound>
+      <moteSpawnTime>0.05</moteSpawnTime>
+      <motesPerCell>1</motesPerCell>
+      <cameraShake>1</cameraShake>
+      <rotationCurve>
+        <points>
+          <li>(0,150)</li>
+          <li>(1, 151)</li>
+        </points>
+      </rotationCurve>
+      <angleCurve>
+        <points>
+          <li>(0,-30)</li>
+          <li>(1, -31)</li>
+        </points>
+      </angleCurve>
+      <explosionRadius>15</explosionRadius>
+      <explosionDamage>DD_GiantBomb</explosionDamage>
+      <explosionDamageFactor>1</explosionDamageFactor>
+    </skyfaller>
+    <comps>
+      <li Class="DivineDiurganate.CompProperties_PlaySoundOnSpawn">
+        <sound>WULA_Firepower_Minigun_Fire_sound</sound>
       </li>
     </comps>
   </ThingDef>

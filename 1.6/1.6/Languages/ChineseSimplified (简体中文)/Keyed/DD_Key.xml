@@ -77,4 +77,15 @@
   <DD_Flyover_SkillSlot>行动</DD_Flyover_SkillSlot>
   <DD_Flyover_Cooldown>冷却中</DD_Flyover_Cooldown>
   <DD_Flyover_Uses>弹药使用</DD_Flyover_Uses>
+
+  <DD_FlyoverSkillUnavailable>行动不可用</DD_FlyoverSkillUnavailable>
+  <DD_FlyoverSkillMaxLimit>行动已经达到使用上限（{0} / {1}）</DD_FlyoverSkillMaxLimit>
+  <DD_FlyoverSkillCooldown>行动仍在冷却（{0}秒）</DD_FlyoverSkillCooldown>
+  <DD_FlyoverSkillZeroCooldown>该行动无冷却时间</DD_FlyoverSkillZeroCooldown>
+  <DD_FlyoverSkillReady>准备就绪</DD_FlyoverSkillReady>
+  <DD_FlyoverSkillCooldown>行动冷却时间：{0}秒</DD_FlyoverSkillCooldown>
+  <DD_FlyoverSkillNoMap>不位于地图内</DD_FlyoverSkillNoMap>
+  <DD_FlyoverSkilPointNotInBounds>选择的点必须位于地图边界内</DD_FlyoverSkilPointNotInBounds>
+  <DD_FlyoverSkilPointsDifferent>两个点必须不在同一单元格</DD_FlyoverSkilPointsDifferent>
+
 </LanguageData>

@@ -848,6 +848,28 @@ namespace DivineDiurganate
             return flyOver;
         }
 
+        public static FlyOver MakeFlyOverForReEnter(ThingDef flyOverDef, string existingFlyoverDataGuid,
+    IntVec3 start, IntVec3 end, Map map, float speed = 1f, float height = 10f)
+        {
+            FlyOver flyOver = (FlyOver)ThingMaker.MakeThing(flyOverDef);
+            flyOver.startPosition = start;
+            flyOver.endPosition = end;
+            flyOver.flightSpeed = speed;
+            flyOver.altitude = height;
+
+            // 设置重新入场标志
+            var managedComp = flyOver.GetComp<CompFlyoverManaged>();
+            if (managedComp != null)
+            {
+                // 在Spawn之前设置guid，确保PostSpawnSetup能识别这是重新入场
+                managedComp.SetFlyoverDataGuidForReEnter(existingFlyoverDataGuid);
+            }
+
+            // 生成到地图
+            GenSpawn.Spawn(flyOver, start, map);
+            return flyOver;
+        }
+
         /// <summary>
         /// 计算直线与地图边界的交点（公开静态方法）
         /// </summary>

@@ -95,7 +95,7 @@
         <li Class="DivineDiurganate.ScenPart_SpawnCorpsesNearStart">
           <def>DD_SpawnCorpsesNearStart</def>
           <visible>false</visible>
-          <pawnKind>DD_S1_Ratkin_Leader_Nun</pawnKind>
+          <pawnKind>DD_Ratkin_Nun_Without_Weapon</pawnKind>
           <corpseCountRange>1~1</corpseCountRange>
         </li>
         <li Class="DivineDiurganate.ScenPart_SpawnCorpsesNearStart">
