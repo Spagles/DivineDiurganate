@@ -62,6 +62,8 @@
   <DD_SelectTradeFlyover>选择飞跃商人</DD_SelectTradeFlyover>
   <DD_Select>选择</DD_Select>
   <DD_FlyoverProgress>进度：{0}%</DD_FlyoverProgress>
+  <DD_GizmoTradeWithFlyoverLabel>与飞跃商人交易</DD_GizmoTradeWithFlyoverLabel>
+  <DD_GizmoTradeWithFlyoverDesc>选择一个飞跃商人开始交易。</DD_GizmoTradeWithFlyoverDesc>
   <DD_NoTradeFlyoversAvailable>没有可交易的飞跃</DD_NoTradeFlyoversAvailable>
   <DD_NoNegotiatorAvailable>没有可用的谈判者</DD_NoNegotiatorAvailable>
   <DD_FlyoverNoLongerAvailable>飞跃已无法交易</DD_FlyoverNoLongerAvailable>

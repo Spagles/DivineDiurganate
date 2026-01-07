@@ -19,22 +19,18 @@ namespace DivineDiurganate
 
             Command_Action tradeGizmo = new Command_Action
             {
-                defaultLabel = Props.gizmoLabel,
-                defaultDesc = Props.gizmoDesc,
+                defaultLabel = Props.gizmoLabel.Translate(),
+                defaultDesc = Props.gizmoDesc.Translate(),
                 icon = ContentFinder<Texture2D>.Get(Props.gizmoIconPath, false) ?? TexCommand.OpenLinkedQuestTex,
                 action = OpenFlyoverSelectionUI
             };
 
-            if (Props.requiresPower)
+            CompPowerTrader powerComp = parent.GetComp<CompPowerTrader>();
+            if (Props.requiresPower && (powerComp == null || !powerComp.PowerOn))
             {
-                CompPowerTrader powerComp = parent.GetComp<CompPowerTrader>();
-                if (powerComp != null && !powerComp.PowerOn)
-                {
-                    tradeGizmo.Disable("NoPower".Translate());
-                }
+                tradeGizmo.Disable("NoPower".Translate());
             }
-
-            if (!GetAvailableTradeFlyovers().Any())
+            else if (!GetAvailableTradeFlyovers().Any())
             {
                 tradeGizmo.Disable("DD_NoTradeFlyoversAvailable".Translate());
             }
@@ -50,9 +46,9 @@ namespace DivineDiurganate
                 return result;
             }
 
-            foreach (Thing thing in parent.Map.listerThings.AllThings)
+            foreach (FlyOver flyOver in parent.Map.listerThings.GetThingsOfType<FlyOver>())
             {
-                if (thing is FlyOver flyOver && !flyOver.Destroyed)
+                if (!flyOver.Destroyed)
                 {
                     CompFlyoverTrader traderComp = flyOver.GetComp<CompFlyoverTrader>();
                     if (traderComp == null || !traderComp.CanTradeNow)

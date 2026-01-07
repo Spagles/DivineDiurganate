@@ -72,6 +72,11 @@ namespace DivineDiurganate
             {
                 soldPrisoners = new List<Pawn>();
             }
+
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                soldPrisoners.RemoveAll(pawn => pawn == null);
+            }
         }
 
         private bool CanCurrentlyTrade()
@@ -140,6 +145,10 @@ namespace DivineDiurganate
         {
             Thing thing = toGive.SplitOff(countToGive);
             thing.PreTraded(TradeAction.PlayerSells, playerNegotiator, this);
+            if (thing is Pawn pawn && pawn.RaceProps.Humanlike)
+            {
+                soldPrisoners.Add(pawn);
+            }
             things.TryAdd(thing, false);
         }
 
@@ -147,6 +156,10 @@ namespace DivineDiurganate
         {
             Thing thing = toGive.SplitOff(countToGive);
             thing.PreTraded(TradeAction.PlayerBuys, playerNegotiator, this);
+            if (thing is Pawn pawn)
+            {
+                soldPrisoners.Remove(pawn);
+            }
             TradeUtility.SpawnDropPod(DropCellFinder.TradeDropSpot(parent.Map), parent.Map, thing);
         }
 

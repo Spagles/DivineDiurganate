@@ -7,8 +7,8 @@ namespace DivineDiurganate
         public float maxTradeRange = 0f;
         public bool requiresPower = true;
         public string gizmoIconPath = "UI/Commands/Trade";
-        public string gizmoLabel = "Trade with Flyover";
-        public string gizmoDesc = "Select a flyover trader to initiate trade.";
+        public string gizmoLabel = "DD_GizmoTradeWithFlyoverLabel";
+        public string gizmoDesc = "DD_GizmoTradeWithFlyoverDesc";
 
         public CompProperties_TradeTerminal()
         {
