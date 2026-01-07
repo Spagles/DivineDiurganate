@@ -59,4 +59,11 @@
 
   <DD_TargetDoesNotNeedHealing>目标不需要治疗</DD_TargetDoesNotNeedHealing>
   <DD_HolyHealing_GayRevelation>{0} 变成女同了！</DD_HolyHealing_GayRevelation>
+  <DD_SelectTradeFlyover>选择飞跃商人</DD_SelectTradeFlyover>
+  <DD_Select>选择</DD_Select>
+  <DD_FlyoverProgress>进度：{0}%</DD_FlyoverProgress>
+  <DD_NoTradeFlyoversAvailable>没有可交易的飞跃</DD_NoTradeFlyoversAvailable>
+  <DD_NoNegotiatorAvailable>没有可用的谈判者</DD_NoNegotiatorAvailable>
+  <DD_FlyoverNoLongerAvailable>飞跃已无法交易</DD_FlyoverNoLongerAvailable>
+  <DD_TradeFlyoversAvailable>可交易飞跃：{0}</DD_TradeFlyoversAvailable>
 </LanguageData>
