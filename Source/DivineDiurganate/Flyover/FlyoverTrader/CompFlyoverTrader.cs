@@ -41,7 +41,6 @@ namespace DivineDiurganate
         public float TradePriceImprovementOffsetForPlayer => 0f;
         public Faction Faction => (parent as FlyOver)?.faction ?? parent.Faction;
         public TradeCurrency TradeCurrency => TraderKind?.tradeCurrency ?? TradeCurrency.Silver;
-        public IThingHolder ParentHolder => parent.Map;
 
         public CompFlyoverTrader()
         {

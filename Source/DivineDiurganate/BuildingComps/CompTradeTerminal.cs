@@ -21,7 +21,7 @@ namespace DivineDiurganate
             {
                 defaultLabel = Props.gizmoLabel,
                 defaultDesc = Props.gizmoDesc,
-                icon = ContentFinder<Texture2D>.Get(Props.gizmoIconPath, false) ?? TexCommand.Trade,
+                icon = ContentFinder<Texture2D>.Get(Props.gizmoIconPath, false) ?? TexCommand.OpenLinkedQuestTex,
                 action = OpenFlyoverSelectionUI
             };
 
@@ -85,7 +85,7 @@ namespace DivineDiurganate
                 return;
             }
 
-            Pawn negotiator = TradeUtility.FindBestNegotiator(parent.Map);
+            Pawn negotiator = FindBestNegotiator();
             if (negotiator == null)
             {
                 Messages.Message("DD_NoNegotiatorAvailable".Translate(), MessageTypeDefOf.RejectInput);
@@ -107,6 +107,33 @@ namespace DivineDiurganate
             }
 
             Find.WindowStack.Add(new Dialog_Trade(negotiator, traderComp));
+        }
+
+        private Pawn FindBestNegotiator()
+        {
+            if (parent.Map == null)
+            {
+                return null;
+            }
+
+            Pawn bestPawn = null;
+            float bestScore = float.MinValue;
+            foreach (Pawn pawn in parent.Map.mapPawns.FreeColonistsSpawned)
+            {
+                if (pawn.Dead || pawn.Downed || !pawn.health.capacities.CapableOf(PawnCapacityDefOf.Talking))
+                {
+                    continue;
+                }
+
+                float score = pawn.GetStatValue(StatDefOf.TradePriceImprovement);
+                if (score > bestScore)
+                {
+                    bestScore = score;
+                    bestPawn = pawn;
+                }
+            }
+
+            return bestPawn;
         }
 
         public override string CompInspectStringExtra()
