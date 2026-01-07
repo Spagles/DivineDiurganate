@@ -64,18 +64,20 @@
         
         <cooldownTicks>1800</cooldownTicks>
         <useLimit>1</useLimit>
+        
+        <isOberonAirShipGenerator>true</isOberonAirShipGenerator>
 
         <label>Call Oberon Airship</label>
         <description>Send a signal to the Oberon Airship near the route, instructing it to proceed to the orbit above the colony.</description>
       </li>
       <li Class="DivineDiurganate.CompProperties_OberonAirShipController">
         <stayDurationRange>
-          <min>2</min>
-          <max>5</max>
+          <min>0.2</min>
+          <max>0.2</max>
         </stayDurationRange>
         <intervalRange>
-          <min>30</min>
-          <max>45</max>
+          <min>0.2</min>
+          <max>0.2</max>
         </intervalRange>
         <letterLabel>Oberon AirShip has arrived</letterLabel>
         <letterText>The Oberon AirShip has entered the vicinity and will remain for {0} days. It will return in approximately {1} days.</letterText>
