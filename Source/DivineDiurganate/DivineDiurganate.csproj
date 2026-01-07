@@ -81,6 +81,8 @@
     <Compile Include="Ability\DestroyOwnBodyPart\CompProperties_AbilityDestroyOwnBodyPart.cs" />
     <Compile Include="BuildingComps\FlyOverGenerator\CompFlyOverGenerator.cs" />
     <Compile Include="BuildingComps\FlyOverGenerator\CompProperties_FlyOverGenerator.cs" />
+    <Compile Include="BuildingComps\OberonAirShipController\CompOberonAirShipController.cs" />
+    <Compile Include="BuildingComps\OberonAirShipController\WorldComp_OberonAirShipManager.cs" />
     <Compile Include="EventSystem\CompOpenCustomUI.cs" />
     <Compile Include="EventSystem\Condition\ConditionBase.cs" />
     <Compile Include="EventSystem\Condition\Condition_FlagExists.cs" />
