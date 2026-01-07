@@ -12,6 +12,8 @@ namespace DivineDiurganate
         public static JobDef DD_ForceEjectPilot;
         public static JobDef DD_CarryToMech;
         public static JobDef DD_Holy_TendTarget;
+        public static JobDef DD_CallFlyOver;
+        
         static DD_JobDefOf()
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(DD_JobDefOf));
@@ -36,6 +38,16 @@ namespace DivineDiurganate
         static DD_PreceptDefOf()
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(DD_PreceptDefOf));
+        }
+    }
+    [DefOf]
+    public static class DD_SoundDefOf
+    {
+        public static SoundDef DD_Holy_Heal_Sustainer;
+
+        static DD_SoundDefOf()
+        {
+            DefOfHelper.EnsureInitializedInCtor(typeof(DD_SoundDefOf));
         }
     }
 }

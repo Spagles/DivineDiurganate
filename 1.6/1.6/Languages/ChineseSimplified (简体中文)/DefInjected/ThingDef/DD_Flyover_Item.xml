@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: 轻型副炮炮弹 -->
+  <DD_70MM_Cannon_Skyfaller.label>70mm炮弹</DD_70MM_Cannon_Skyfaller.label>
+  
+  <!-- EN: 机炮子弹 -->
+  <DD_Automatic_Cannon_Skyfaller.label>机炮子弹</DD_Automatic_Cannon_Skyfaller.label>
+  
+  <!-- EN: Oberon -->
+  <DD_Flyover_AirShip.label>欧伯龙号重型飞空艇</DD_Flyover_AirShip.label>
+  <!-- EN: Using {0} at aircraft position -->
+  <DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-0.instantCastMessage>TODO</DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-0.instantCastMessage>
+  <!-- EN: Select target for {0} -->
+  <DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-0.singlePointSelectMessage>TODO</DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-0.singlePointSelectMessage>
+  <!-- EN: Using {0} at aircraft position -->
+  <DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-1.instantCastMessage>TODO</DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-1.instantCastMessage>
+  <!-- EN: Select target for {0} -->
+  <DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-1.singlePointSelectMessage>TODO</DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-1.singlePointSelectMessage>
+  <!-- EN: Select target for {0} -->
+  <DD_Flyover_AirShip.comps.CompFlyOverSkill_SkyfallerDrop.singlePointSelectMessage>TODO</DD_Flyover_AirShip.comps.CompFlyOverSkill_SkyfallerDrop.singlePointSelectMessage>
+  <!-- EN: Select first point for {0} -->
+  <DD_Flyover_AirShip.comps.CompFlyOverSkill_SkyfallerDrop.twoPointsFirstPointMessage>TODO</DD_Flyover_AirShip.comps.CompFlyOverSkill_SkyfallerDrop.twoPointsFirstPointMessage>
+  <!-- EN: Select second point for {0} -->
+  <DD_Flyover_AirShip.comps.CompFlyOverSkill_SkyfallerDrop.twoPointsSecondPointMessage>TODO</DD_Flyover_AirShip.comps.CompFlyOverSkill_SkyfallerDrop.twoPointsSecondPointMessage>
+  
+  <!-- EN: 航弹 -->
+  <DD_Heavy_Air_bomb_Skyfaller.label>重型航弹</DD_Heavy_Air_bomb_Skyfaller.label>
+  
+</LanguageData>

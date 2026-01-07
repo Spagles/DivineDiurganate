@@ -1,11 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
   
-  <!-- EN: Airship Console -->
-  <DD_Airship_CommsConsole.label>飞艇呼叫台</DD_Airship_CommsConsole.label>
-  <!-- EN: Allows radio contact with other factions and orbital traders. -->
-  <DD_Airship_CommsConsole.description>用于联络双尾教国的飞空艇舰队的特殊呼叫台。</DD_Airship_CommsConsole.description>
-  
   <!-- EN: DHM69-Scythe -->
   <DD_DHM69_Scythe_Building.label>DHM69-镰刀</DD_DHM69_Scythe_Building.label>
   <!-- EN: Magnificent large walking mech, armed with a pair of formidable Scythes and a machine gun turret, the cult of Diurganate use this mech as a spearhead unit to break through the heretic fortified front. -->

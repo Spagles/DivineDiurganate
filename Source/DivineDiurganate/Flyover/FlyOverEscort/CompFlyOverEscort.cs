@@ -144,11 +144,6 @@ namespace DivineDiurganate
                 if (successfulSpawns >= escortsToSpawn)
                     break;
             }
-            
-            if (successfulSpawns < escortsToSpawn)
-            {
-                WulaLog.Debug($"Spawned {successfulSpawns}/{escortsToSpawn} escorts (some positions were too close to existing escorts)");
-            }
         }
 
         // 修改：分别检查与主飞行物和伴飞物的安全距离
@@ -210,7 +205,6 @@ namespace DivineDiurganate
                 ThingDef escortDef = SelectEscortDef();
                 if (escortDef == null)
                 {
-                    WulaLog.Debug("FlyOver Escort: No valid escort def found");
                     return null;
                 }
 
@@ -220,7 +214,6 @@ namespace DivineDiurganate
                 
                 if (!escortStart.InBounds(mainFlyOver.Map) || !escortEnd.InBounds(mainFlyOver.Map))
                 {
-                    WulaLog.Debug("FlyOver Escort: Escort start or end position out of bounds");
                     return null;
                 }
 
@@ -247,7 +240,7 @@ namespace DivineDiurganate
             }
             catch (System.Exception ex)
             {
-                WulaLog.Debug($"Error creating FlyOver escort: {ex}");
+                Log.Error($"Error creating FlyOver escort: {ex}");
                 return null;
             }
         }

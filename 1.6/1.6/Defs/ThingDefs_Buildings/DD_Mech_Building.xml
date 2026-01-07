@@ -134,6 +134,7 @@
       </li>
     </comps>
   </ThingDef>
+<<<<<<< HEAD
 
 
   <ThingDef ParentName="BuildingBase">
@@ -215,4 +216,6 @@
     </researchPrerequisites>
     <tickerType>Normal</tickerType>
   </ThingDef>
+=======
+>>>>>>> gitea/main
 </Defs>

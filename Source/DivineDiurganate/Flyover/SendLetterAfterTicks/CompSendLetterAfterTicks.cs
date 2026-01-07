@@ -43,7 +43,6 @@ namespace DivineDiurganate
                 // 检查是否有有效的信件内容
                 if (Props.letterLabel.NullOrEmpty() && Props.letterText.NullOrEmpty())
                 {
-                    WulaLog.Debug($"CompSendLetterAfterTicks: No letter content defined for {parent.def.defName}");
                     return;
                 }
 
@@ -62,12 +61,10 @@ namespace DivineDiurganate
                 Find.LetterStack.ReceiveLetter(letter);
 
                 letterSent = true;
-
-                WulaLog.Debug($"Letter sent from {parent.def.defName} after {ticksPassed} ticks");
             }
             catch (System.Exception ex)
             {
-                WulaLog.Debug($"Error sending letter from {parent.def.defName}: {ex}");
+                Log.Error($"Error sending letter from {parent.def.defName}: {ex}");
             }
         }
 

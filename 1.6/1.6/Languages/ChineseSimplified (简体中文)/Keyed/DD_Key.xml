@@ -59,6 +59,7 @@
 
   <DD_TargetDoesNotNeedHealing>目标不需要治疗</DD_TargetDoesNotNeedHealing>
   <DD_HolyHealing_GayRevelation>{0} 变成女同了！</DD_HolyHealing_GayRevelation>
+<<<<<<< HEAD
   <DD_SelectTradeFlyover>选择飞跃商人</DD_SelectTradeFlyover>
   <DD_Select>选择</DD_Select>
   <DD_FlyoverProgress>进度：{0}%</DD_FlyoverProgress>
@@ -69,3 +70,100 @@
   <DD_FlyoverNoLongerAvailable>飞跃已无法交易</DD_FlyoverNoLongerAvailable>
   <DD_TradeFlyoversAvailable>可交易飞跃：{0}</DD_TradeFlyoversAvailable>
 </LanguageData>
+=======
+
+  <DD_Flyover_NoAircraft>无待命的飞行器</DD_Flyover_NoAircraft>
+  <DD_Flyover_Icon>图标</DD_Flyover_Icon>
+  <DD_Flyover_SkillSlot>{0}</DD_Flyover_SkillSlot>
+  <DD_Flyover_Dock>停靠</DD_Flyover_Dock>
+  <DD_Flyover_Deploy>部署</DD_Flyover_Deploy>
+  <DD_Flyover_Dock_Tooltip>停靠tooltip</DD_Flyover_Dock_Tooltip>
+  <DD_Flyover_Deploy_Tooltip>部署tooltip</DD_Flyover_Deploy_Tooltip>
+  <DD_Flyover_Title>双尾教国飞行器</DD_Flyover_Title>
+  <DD_Flyover_Status_OnMap>已部署</DD_Flyover_Status_OnMap>
+  <DD_Flyover_Status_Standby>就绪</DD_Flyover_Status_Standby>
+  <DD_Flyover_Status_Deploying>部署中</DD_Flyover_Status_Deploying>
+  <DD_Flyover_Status_Destroyed>销毁</DD_Flyover_Status_Destroyed>
+  <DD_Flyover_Status_Unknown>未知</DD_Flyover_Status_Unknown>
+  <DD_Flyover_SkillSlotEmpty>无行动</DD_Flyover_SkillSlotEmpty>
+  <DD_Flyover_SkillSlot>行动</DD_Flyover_SkillSlot>
+  <DD_Flyover_Cooldown>冷却中</DD_Flyover_Cooldown>
+  <DD_Flyover_Uses>弹药使用</DD_Flyover_Uses>
+
+  <DD_FlyoverSkillUnavailable>行动不可用</DD_FlyoverSkillUnavailable>
+  <DD_FlyoverSkillMaxLimit>行动已经达到使用上限（{0} / {1}）</DD_FlyoverSkillMaxLimit>
+  <DD_FlyoverSkillCooldown>行动仍在冷却（{0}秒）</DD_FlyoverSkillCooldown>
+  <DD_FlyoverSkillZeroCooldown>该行动无冷却时间</DD_FlyoverSkillZeroCooldown>
+  <DD_FlyoverSkillReady>准备就绪</DD_FlyoverSkillReady>
+  <DD_FlyoverSkillCooldown>行动冷却时间：{0}秒</DD_FlyoverSkillCooldown>
+  <DD_FlyoverSkillNoMap>不位于地图内</DD_FlyoverSkillNoMap>
+  <DD_FlyoverSkilPointNotInBounds>选择的点必须位于地图边界内</DD_FlyoverSkilPointNotInBounds>
+  <DD_FlyoverSkilPointsDifferent>两个点必须不在同一单元格</DD_FlyoverSkilPointsDifferent>
+    
+  <DD_FlyoverSkillFailed>行动执行失败</DD_FlyoverSkillFailed>
+  <DD_FlyoverSkillNoAircraftData>未找到飞行器数据</DD_FlyoverSkillNoAircraftData>
+  <DD_FlyoverSkillAircraftDestroyed>飞行器已被摧毁</DD_FlyoverSkillAircraftDestroyed>
+  <DD_FlyoverSkillCannotUseOnMap>飞行器在地图上时不能使用此行动</DD_FlyoverSkillCannotUseOnMap>
+  <DD_FlyoverSkillCannotUseStandby>飞行器待命时不能使用此行动</DD_FlyoverSkillCannotUseStandby>
+
+  <DD_FlyoverSkillSkyfallerWarmup>{0} 准备中，剩余时间：{1}</DD_FlyoverSkillSkyfallerWarmup>
+  <DD_FlyoverSkillSkyfallerDropped>已投放 {0}</DD_FlyoverSkillSkyfallerDropped>
+  <DD_FlyoverSkillNoSkyfaller>未定义Skyfaller</DD_FlyoverSkillNoSkyfaller>
+  <DD_FlyoverSkillSpawnFailed>生成失败</DD_FlyoverSkillSpawnFailed>
+  <DD_FlyoverSkillWarmingUp>准备中：{0}</DD_FlyoverSkillWarmingUp>
+  <DD_FlyoverSkillSkyfallerDesc>投放一个 {0}</DD_FlyoverSkillSkyfallerDesc>
+  <DD_FlyoverSkillSkyfallerGeneric>投放一个Skyfaller</DD_FlyoverSkillSkyfallerGeneric>
+
+  <DD_FlyoverSkillBombardmentSelectPoints>选择两个点以定义轰炸区域和方向</DD_FlyoverSkillBombardmentSelectPoints>
+  <DD_FlyoverSkillBombardment>轰炸</DD_FlyoverSkillBombardment>
+  <DD_FlyoverSkillBombardmentDescription>呼叫一次炮击轰炸。选择两个点来定义轰炸区域和方向。</DD_FlyoverSkillBombardmentDescription>
+
+  <DD_Flyover_Land>降落</DD_Flyover_Land>
+  <DD_Flyover_Land_Tooltip>让 {0} 降落</DD_Flyover_Land_Tooltip>
+  <DD_Flyover_Landing>{0} 正在降落</DD_Flyover_Landing>
+  <DD_Flyover_ReEnter>重新入场</DD_Flyover_ReEnter>
+  <DD_Flyover_ReEnter_Tooltip>让 {0} 重新进入地图</DD_Flyover_ReEnter_Tooltip>
+  <DD_Flyover_SelectFirstPoint>选择进入方向</DD_Flyover_SelectFirstPoint>
+  <DD_Flyover_SelectSecondPoint>选择航线</DD_Flyover_SelectSecondPoint>
+  <DD_Flyover_PointOutOfBounds>选择的点必须在地图边界内</DD_Flyover_PointOutOfBounds>
+  <DD_Flyover_PointsSame>两个点不能相同</DD_Flyover_PointsSame>
+  <DD_Flyover_FailedCalculatePath>无法计算飞行路径</DD_Flyover_FailedCalculatePath>
+  <DD_Flyover_ReEnterSuccess>{0} 重新入场成功</DD_Flyover_ReEnterSuccess>
+  <DD_Flyover_FailedCreate>创建飞行器失败</DD_Flyover_FailedCreate>
+  <DD_Flyover_NoMap>当前没有地图</DD_Flyover_NoMap>
+  <DD_Flyover_Docking>{0} 正在停靠</DD_Flyover_Docking>
+  <DD_Flyover_Deploying>{0} 正在部署</DD_Flyover_Deploying>
+  <DD_Flyover_Destroyed>已销毁</DD_Flyover_Destroyed>
+  <DD_Flyover_Icon>图标</DD_Flyover_Icon>
+  <DD_Flyover_NoAvailablePawn>附近没有合适的未征召殖民者</DD_Flyover_NoAvailablePawn>
+  <DD_Flyover_CancelCallJob>取消呼叫</DD_Flyover_CancelCallJob>
+  <DD_Flyover_CancelCallJobDesc>取消当前的任务，结束飞行器呼叫</DD_Flyover_CancelCallJobDesc>
+
+  <DD_Flyover_Status_InAir>飞行中</DD_Flyover_Status_InAir>
+  <DD_Flyover_Status_Standby>待命</DD_Flyover_Status_Standby>
+  <DD_Flyover_Status_Deploying>部署中</DD_Flyover_Status_Deploying>
+  <DD_Flyover_Status_Destroyed>已销毁</DD_Flyover_Status_Destroyed>
+  <DD_Flyover_Status_Unknown>未知</DD_Flyover_Status_Unknown>
+  <!-- 航线信息相关 -->
+  <DD_FlightPath_TwoPointsExtended_DisplayName>两点延长线航线</DD_FlightPath_TwoPointsExtended_DisplayName>
+  <DD_FlightPath_TwoPointsExtended_Description>通过将两个选定的点延伸到地图边界来创建飞行路径</DD_FlightPath_TwoPointsExtended_Description>
+  <DD_FlightPath_Direct_DisplayName>直接航线</DD_FlightPath_Direct_DisplayName>
+  <DD_FlightPath_Direct_Description>直接指定起点和终点</DD_FlightPath_Direct_Description>
+  <DD_FlightPath_PointsDifferent>两个点必须不同</DD_FlightPath_PointsDifferent>
+  <DD_FlightPath_StartEndDifferent>起点和终点必须不同</DD_FlightPath_StartEndDifferent>
+
+  <DD_FlyoverSkill_SinglePointSelectMessage>为 {0} 选择目标</DD_FlyoverSkill_SinglePointSelectMessage>
+  <DD_FlyoverSkill_TwoPointsFirstMessage>为 {0} 选择第一个点</DD_FlyoverSkill_TwoPointsFirstMessage>
+  <DD_FlyoverSkill_TwoPointsSecondMessage>为 {0} 选择第二个点</DD_FlyoverSkill_TwoPointsSecondMessage>
+  <DD_FlyoverSkill_InstantCastMessage>在飞机位置使用 {0}</DD_FlyoverSkill_InstantCastMessage>
+
+  <DD_FlyoverSkill_Seconds>{0}秒</DD_FlyoverSkill_Seconds>
+  <DD_FlyoverSkill_TicksToSeconds>{0}</DD_FlyoverSkill_TicksToSeconds>
+  
+  <!-- 飞机呼叫工作相关 -->
+  <DD_CallFlyOver>呼叫飞行器</DD_CallFlyOver>
+  <DD_Flyover_FailedAssignJob>分配呼叫工作失败</DD_Flyover_FailedAssignJob>
+  <DD_Flyover_PawnAssigned>{0} 开始呼叫</DD_Flyover_PawnAssigned>
+  <DD_Flyover_OnCooldown>正在冷却，剩余{0}秒</DD_Flyover_OnCooldown>
+</LanguageData>
+>>>>>>> gitea/main

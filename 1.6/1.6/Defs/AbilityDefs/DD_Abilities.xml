@@ -4,7 +4,7 @@
     <defName>DD_Suicide_Attack</defName>
     <label>Sacrifice</label>
     <description>Ah, what a wonderful day, what a wonderful day! Witness me, live, die, live again, until I am embraced by HIM, witness!!!</description>
-    <iconPath>UI/Commands/LaunchEMPPulse</iconPath>
+    <iconPath>DivineDiurganate/UI/Abilities/DD_Suicide_Attack</iconPath>
     <aiCanUse>true</aiCanUse>
     <ai_SearchAOEForTargets>true</ai_SearchAOEForTargets>
     <!-- <targetRequired>False</targetRequired> -->
@@ -39,7 +39,7 @@
     <defName>DD_Harpoon_Gun_Launch_Harpoon</defName>
     <label>Launch Harpoon</label>
     <description>Using the pneumatic launcher, launch a powerful Harpoon – but before reloading, the weapon can only be used as a close combat weapon.</description>
-    <iconPath>UI/Abilities/PiercingSpine</iconPath>
+    <iconPath>DivineDiurganate/Mote/DD_Spear_Rifle_Bullet</iconPath>
     <displayOrder>200</displayOrder>
     <aiCanUse>true</aiCanUse>
     <cooldownTicksRange>1800</cooldownTicksRange>
@@ -76,14 +76,16 @@
   <AbilityDef>
     <defName>DD_Maple_Sugar_Heal</defName>
     <label>Holy Heal</label>
-    <description>Move to target , pray to the holy Twin-Tail to heal their wounds.</description>
-    <iconPath>UI/Abilities/PiercingSpine</iconPath>
+    <description>Move to target , pray to the holy Twin-Tail to heal their wounds . There should be no side effects.</description>
+    <iconPath>DivineDiurganate/UI/Abilities/DD_Maple_Sugar_Heal</iconPath>
     <displayOrder>200</displayOrder>
     <aiCanUse>true</aiCanUse>
     <cooldownTicksRange>1</cooldownTicksRange>
+    <displayGizmoWhileUndrafted>true</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>false</disableGizmoWhileUndrafted>
     <verbProperties>
       <verbClass>Verb_CastAbility</verbClass>
-      <range>34.9</range>
+      <range>4.9</range>
       <warmupTime>0</warmupTime>
       <targetParams>
         <onlyTargetColonistsOrPrisonersOrSlaves>true</onlyTargetColonistsOrPrisonersOrSlaves>

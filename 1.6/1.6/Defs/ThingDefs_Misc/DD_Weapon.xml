@@ -303,7 +303,6 @@
         <burstShotCount>1</burstShotCount>
         <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
         <soundCast>Shot_Revolver</soundCast>
-        <canGoWild>false</canGoWild>
       </li>
     </verbs>
     <costList>
@@ -456,14 +455,13 @@
         <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
-        <warmupTime>3</warmupTime>
+        <warmupTime>5</warmupTime>
         <defaultProjectile>DD_AM_Heavy_Lance_Bullet</defaultProjectile>
         <range>38.9</range>
         <minRange>2.9</minRange>
         <burstShotCount>1</burstShotCount>
         <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
         <soundCast>DD_AM_Heavy_Lance_FireSound</soundCast>
-        <canGoWild>false</canGoWild>
       </li>
     </verbs>
     <costList>
@@ -539,8 +537,8 @@
   <!-- sp -->
   <ThingDef ParentName="BaseHumanMakeableGun">
     <defName>DD_Maple_Sugar_Heavy_Lance</defName>
-    <label>Maple Sugar's Heavy Lance</label>
-    <description>一把被枫糖自行修改过的反机甲长枪，拆除了反机甲炮弹的发射结构，安装了一门圣焰喷射器，因此这把武器比制式的反机甲长枪要轻的同时也更适合对付人群。</description>
+    <label>Sacred Flame Heavy Lance</label>
+    <description>A modified heavy lance by Maple Sugar, with the anti-mech shell launch structure removed and a holy flame injector installed, makes this weapon lighter and more suitable for dealing with crowds compared to the standard anti-mech heavy lance.</description>
     <tickerType>Normal</tickerType>
     <techLevel>Industrial</techLevel>
     <graphicData>
@@ -551,10 +549,8 @@
     </graphicData>
     <soundInteract>Interact_Rifle</soundInteract>
     <uiIconScale>0.7</uiIconScale>
-    <costStuffCount>80</costStuffCount>
-    <stuffCategories>
-      <li>Metallic</li>
-    </stuffCategories>
+		<costStuffCount>0</costStuffCount>
+    <stuffCategories Inherit="False"/>
     <recipeMaker>
       <!-- <recipeUsers Inherit="False" /> -->
 			<researchPrerequisite>FlechetteBullet</researchPrerequisite>

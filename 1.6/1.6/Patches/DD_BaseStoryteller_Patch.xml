@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+  <!-- <Operation Class="PatchOperationAdd">
+    <xpath>Defs/StorytellerDef[@Name="BaseStoryteller"]/comps</xpath>
+    <value>
+      <li Class="WulaFallenEmpire.StorytellerCompProperties_ImportantQuestWithFactionFilter">
+        <fireAfterDaysPassed>1</fireAfterDaysPassed>
+        <questIncident>WULA_GiveQuest_Intro_Spy</questIncident>
+        <questDef>WULA_Intro_Spy</questDef>
+        <useFactionFilter>true</useFactionFilter>
+        <defaultBehavior>Allow</defaultBehavior>
+        <factionTypeBlacklist>
+          <li>WULA_Awakened_Synth</li>
+        </factionTypeBlacklist>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+      </li>
+    </value>
+  </Operation> -->
+</Patch>

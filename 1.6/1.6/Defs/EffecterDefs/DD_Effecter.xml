@@ -284,7 +284,7 @@
     <rotateTowardsMoveDirection>true</rotateTowardsMoveDirection>
     <randomGraphics>
       <li>
-        <texPath>DivineDiurganate/Mote/DD_Mote_Melee_Stab</texPath>
+        <texPath>DivineDiurganate/Mote/DD_Melee_Stab</texPath>
         <shaderType>MoteGlow</shaderType>
         <renderInstanced>true</renderInstanced>
         <graphicClass>Graphic_Fleck</graphicClass>

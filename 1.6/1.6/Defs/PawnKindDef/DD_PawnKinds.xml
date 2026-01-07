@@ -127,6 +127,30 @@
 	</PawnKindDef>
   
   <!-- 3000-5000 -->
+	<PawnKindDef ParentName="RKBasePawnKind">
+		<defName>DD_Ratkin_Pilot</defName>
+		<label>Diurganate Pilot</label>
+		<combatPower>100</combatPower>
+		<backstoryFiltersOverride>
+			<li>
+				<categories>
+					<li>RatkinStory</li>
+				</categories>
+			</li>
+		</backstoryFiltersOverride>
+		<apparelRequired>
+			<li>DD_Beliver_Dress</li>
+		</apparelRequired>
+		<apparelMoney>0~0</apparelMoney>
+		<apparelTags>
+			<li>RK_Worker</li>
+		</apparelTags>
+    <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
+    <weaponMoney>300~600</weaponMoney>
+		<weaponTags>
+			<li>DD_RatkinClergy_Weapon</li>
+		</weaponTags>
+	</PawnKindDef>
 	<PawnKindDef>
 		<defName>DD_S3_DHM86_Knell_Mech</defName>
 		<label>DHM86-Knell</label>
@@ -348,7 +372,6 @@
       <Gay>0</Gay>
       <Beauty>1</Beauty>
     </forcedTraits>
-    <weaponStuffOverride>Plasteel</weaponStuffOverride>
     <ignoreIdeoApparelColors>true</ignoreIdeoApparelColors>
     <initialWillRange>0~0</initialWillRange>
     <initialResistanceRange>0~2</initialResistanceRange>
@@ -402,18 +425,22 @@
   <FacialAnimation.EyeballTypeDef MayRequire="Nals.FacialAnimation">
 	  <defName>DD_Maple_Sugar_Eyeball</defName>
 	  <texPath>DivineDiurganate/Eyes/Maple_Sugar</texPath>
-	  <!-- <altMaskPath>Things/Pawn/Ratkin/Eyes/Common</altMaskPath> -->
+	  <altMaskPath>Things/Pawn/FA-Experimentals/Eyes/Common</altMaskPath>
     <raceName>Ratkin</raceName>
 	  <shader>Map/CutoutSkinOverlay</shader>
-    <minColor>RGB(1,1,1)</minColor>
-    <maxColor>RGB(1,1,1)</maxColor>
+    <minColor>(0.99,0.99,0.99,1)</minColor>
+    <maxColor>(1,1,1,1)</maxColor>
     <probability>0.0001</probability>
   </FacialAnimation.EyeballTypeDef>
 
 	<PawnKindDef ParentName="RKBasePawnKind">
-		<defName>DD_Ratkin_Pilot</defName>
-		<label>Diurganate Pilot</label>
-		<combatPower>100</combatPower>
+		<defName>DD_Ratkin_Nun_Without_Weapon</defName>
+		<label>Diurganate Nun</label>
+		<combatPower>1</combatPower>
+    <maxPerGroup>1</maxPerGroup>
+    <fixedAdultBackstories>
+      <li>DD_Ratkin_Sister</li>
+    </fixedAdultBackstories>
 		<backstoryFiltersOverride>
 			<li>
 				<categories>
@@ -421,17 +448,12 @@
 				</categories>
 			</li>
 		</backstoryFiltersOverride>
+		<apparelMoney>0</apparelMoney>
+    <weaponMoney>0</weaponMoney>
 		<apparelRequired>
-			<li>DD_Beliver_Dress</li>
+			<li>DD_Nun_Dress</li>
+			<li>DD_NunVeil</li>
 		</apparelRequired>
-		<apparelMoney>0~0</apparelMoney>
-		<apparelTags>
-			<li>RK_Worker</li>
-		</apparelTags>
     <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
-    <weaponMoney>300~600</weaponMoney>
-		<weaponTags>
-			<li>DD_RatkinClergy_Weapon</li>
-		</weaponTags>
 	</PawnKindDef>
 </Defs>

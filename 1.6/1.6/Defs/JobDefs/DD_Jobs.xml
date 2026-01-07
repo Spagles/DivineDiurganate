@@ -75,5 +75,13 @@
     <driverClass>DivineDiurganate.JobDriver_TendTargetFollow</driverClass>
     <reportString>Tending TargetA.</reportString>
     <suspendable>false</suspendable>
+    <neverShowWeapon>true</neverShowWeapon>
+  </JobDef>
+  <JobDef>
+    <defName>DD_CallFlyOver</defName>
+    <driverClass>DivineDiurganate.JobDriver_CallFlyOver</driverClass>
+    <reportString>Calling Aircraft.</reportString>
+    <suspendable>false</suspendable>
+    <neverShowWeapon>true</neverShowWeapon>
   </JobDef>
 </Defs>
