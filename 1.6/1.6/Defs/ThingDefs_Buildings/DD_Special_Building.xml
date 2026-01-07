@@ -68,7 +68,7 @@
         <label>Call Oberon Airship</label>
         <description>Send a signal to the Oberon Airship near the route, instructing it to proceed to the orbit above the colony.</description>
       </li>
-      <li Class="DivineDiurganate.CompOberonAirShipController">
+      <li Class="DivineDiurganate.CompProperties_OberonAirShipController">
         <stayDurationRange>
           <min>2</min>
           <max>5</max>
