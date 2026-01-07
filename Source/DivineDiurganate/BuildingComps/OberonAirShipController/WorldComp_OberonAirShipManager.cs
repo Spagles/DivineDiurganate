@@ -55,8 +55,6 @@ namespace DivineDiurganate
             intervalDays = intervalRange.RandomInRange;
             nextArrivalTick = Find.TickManager.TicksGame + intervalDays * 60000;
             
-            Log.Message($"WorldComp_OberonAirShipManager: 已初始化，将在 {intervalDays} 天后抵达");
-            
             return true;
         }
 
@@ -127,8 +125,6 @@ namespace DivineDiurganate
             stayDurationDays = stayDurationRange.RandomInRange;
             departureTick = Find.TickManager.TicksGame + stayDurationDays * 60000;
             
-            Log.Message($"OberonAirShip 开始抵达，将停留 {stayDurationDays} 天");
-            
             // 更新所有相关的 FlyOverGenerator
             RefreshFlyOverGenerators();
             
@@ -141,7 +137,6 @@ namespace DivineDiurganate
         private void Depart()
         {
             currentState = AirShipState.Departing;
-            Log.Message("OberonAirShip 开始离开");
             
             // 更新所有相关的 FlyOverGenerator
             RefreshFlyOverGenerators();

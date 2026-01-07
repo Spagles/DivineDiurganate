@@ -67,8 +67,6 @@ namespace DivineDiurganate
             if (manager.TryInitializeController(this))
             {
                 isInitialized = true;
-                Log.Message($"CompOberonAirShipController: 控制器已初始化于建筑 {parent.LabelCap}");
-                
                 // 传递配置给管理器
                 manager.SetControllerConfig(
                     Props.stayDurationRange,
@@ -76,10 +74,6 @@ namespace DivineDiurganate
                     Props.letterLabel,
                     Props.letterText
                 );
-            }
-            else
-            {
-                Log.Message($"CompOberonAirShipController: 已有控制器存在，此控制器不初始化");
             }
         }
 
@@ -95,8 +89,6 @@ namespace DivineDiurganate
             // 记录日志
             if (newState == AirShipState.Nearby)
             {
-                Log.Message($"OberonAirShip 已抵达殖民地附近，将停留 {stayDurationDays} 天");
-                
                 // 发送信件通知
                 if (ShouldSendLetter())
                 {
@@ -105,8 +97,6 @@ namespace DivineDiurganate
             }
             else if (newState == AirShipState.Absent)
             {
-                Log.Message($"OberonAirShip 已离开，将在 {intervalDays} 天后返回");
-                
                 // 计算下一次抵达时间
                 stayDurationDays = Props.stayDurationRange.RandomInRange;
                 intervalDays = Props.intervalRange.RandomInRange;
@@ -153,8 +143,6 @@ namespace DivineDiurganate
                 
                 Find.LetterStack.ReceiveLetter(cachedLetter);
                 lastLetterTick = Find.TickManager.TicksGame;
-                
-                Log.Message($"OberonAirShip: 已发送抵达通知信件");
             }
             catch (Exception ex)
             {
