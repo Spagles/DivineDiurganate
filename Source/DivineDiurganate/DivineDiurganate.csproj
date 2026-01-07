@@ -158,6 +158,8 @@
     <Compile Include="ScenPart\ScenPart_InstantHediffOnGameStart.cs" />
     <Compile Include="ScenPart\ScenPart_RandomFireAtStart.cs" />
     <Compile Include="ScenPart\ScenPart_SpawnCorpsesNearStart.cs" />
+    <Compile Include="StoryTeller\StorytellerCompProperties_MemeRoleTrigger.cs" />
+    <Compile Include="StoryTeller\StorytellerComp_MemeRoleTrigger.cs" />
     <Compile Include="Thing_Comp\BuildingSpawnPawn\CompBuildToPawn.cs" />
     <Compile Include="Thing_Comp\BuildingSpawnPawn\CompProperties_BuildToPawn.cs" />
     <Compile Include="Thing_Comp\GiveHediffOnShot\CompAndPatch_GiveHediffOnShot.cs" />
