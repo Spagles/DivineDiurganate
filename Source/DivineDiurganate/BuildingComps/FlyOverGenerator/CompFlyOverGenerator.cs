@@ -18,100 +18,17 @@ namespace DivineDiurganate
 
         // 在 CompFlyOverGenerator 类中添加以下字段和方法
         // 在类顶部添加字段
-        private bool isOberonAirShipGenerator = false;
-        private bool oberonAirShipNearby = false;
         // 在 Initialize 方法中添加
         public override void Initialize(CompProperties props)
         {
             base.Initialize(props);
             useCount = 0;
-
-            // 检查是否是 OberonAirShip 生成器
-            var genProps = props as CompProperties_FlyOverGenerator;
-            if (genProps != null)
-            {
-                isOberonAirShipGenerator = genProps.isOberonAirShipGenerator;
-                if (isOberonAirShipGenerator)
-                {
-                    // 初始化时检查 OberonAirShip 状态
-                    CheckOberonAirShipState();
-                }
-            }
         }
-        /// <summary>
-        /// 检查 OberonAirShip 状态
-        /// </summary>
-        private void CheckOberonAirShipState()
-        {
-            if (!isOberonAirShipGenerator) return;
-
-            var manager = Find.World.GetComponent<WorldComp_OberonAirShipManager>();
-            if (manager != null)
-            {
-                oberonAirShipNearby = manager.IsOberonAirShipNearby;
-
-                // 如果 OberonAirShip 在附近，恢复使用次数
-                if (oberonAirShipNearby && useCount <= 0)
-                {
-                    useCount = 1;
-                    Log.Message($"CompFlyOverGenerator: OberonAirShip 在附近，恢复使用次数为 1");
-                }
-                else if (!oberonAirShipNearby)
-                {
-                    // OberonAirShip 不在附近，禁止使用
-                    useCount = 0;
-                }
-            }
-        }
-        /// <summary>
-        /// 通知 OberonAirShip 状态变化
-        /// </summary>
-        public void NotifyOberonAirShipStateChanged(bool isNearby)
-        {
-            if (!isOberonAirShipGenerator) return;
-
-            oberonAirShipNearby = isNearby;
-
-            if (isNearby)
-            {
-                // OberonAirShip 抵达，恢复使用次数（不超过1）
-                if (useCount <= 0)
-                {
-                    useCount = 1;
-                    Log.Message($"CompFlyOverGenerator: OberonAirShip 抵达，使用次数恢复为 1");
-                }
-            }
-            else
-            {
-                // OberonAirShip 离开，禁用生成器
-                useCount = 0;
-                Log.Message($"CompFlyOverGenerator: OberonAirShip 离开，禁用生成器");
-            }
-        }
-        /// <summary>
         /// 修改 CanActivateNow 方法，添加 OberonAirShip 检查
         /// </summary>
         private bool CanActivateNow(out string reason)
         {
             reason = null;
-
-            // 如果是 OberonAirShip 生成器，检查 OberonAirShip 状态
-            if (isOberonAirShipGenerator)
-            {
-                if (!oberonAirShipNearby)
-                {
-                    reason = "DD_OberonAirShip_NotNearby".Translate();
-                    return false;
-                }
-
-                if (useCount <= 0)
-                {
-                    reason = "DD_OberonAirShip_NoCharges".Translate();
-                    return false;
-                }
-            }
-
-            // 原有的检查逻辑...
             if (Find.TickManager.TicksGame < lastUseTick + Props.cooldownTicks)
             {
                 int remainingTicks = lastUseTick + Props.cooldownTicks - Find.TickManager.TicksGame;
@@ -146,14 +63,6 @@ namespace DivineDiurganate
         public override void CompTick()
         {
             base.CompTick();
-
-            // 如果是 OberonAirShip 生成器，定期检查状态
-            if (isOberonAirShipGenerator && Find.TickManager.TicksGame % 6000 == 0) // 每10游戏分钟检查一次
-            {
-                CheckOberonAirShipState();
-            }
-
-            // 原有的更新逻辑...
             if (callJobState == CallJobState.InProgress)
             {
                 UpdateCallJob();
@@ -171,32 +80,14 @@ namespace DivineDiurganate
         {
             lastUseTick = Find.TickManager.TicksGame;
 
-            if (isOberonAirShipGenerator)
-            {
-                // OberonAirShip 生成器每次使用后归零
-                useCount = 0;
-
-                // 等待下一次 OberonAirShip 抵达才能恢复
-                Log.Message($"CompFlyOverGenerator: OberonAirShip 生成器使用次数已归零，等待下次抵达");
-            }
-            else
-            {
-                useCount++;
-            }
+            useCount++;
         }
         public override void PostExposeData()
         {
             base.PostExposeData();
-
-            // 新增字段的序列化
-            Scribe_Values.Look(ref isOberonAirShipGenerator, "isOberonAirShipGenerator", false);
-            Scribe_Values.Look(ref oberonAirShipNearby, "oberonAirShipNearby", false);
-
-            // 原有的序列化...
             Scribe_Values.Look(ref lastUseTick, "lastUseTick", -99999);
             Scribe_Values.Look(ref useCount, "useCount", 0);
             Scribe_Values.Look(ref callJobState, "callJobState", CallJobState.None);
-            // ... 其他字段
         }
         /// <summary>
         /// 修改 Gizmo 描述，显示 OberonAirShip 状态
@@ -225,23 +116,9 @@ namespace DivineDiurganate
         {
             string desc = Props.description;
 
-            if (isOberonAirShipGenerator)
+            if (Props.useLimit > 0)
             {
-                var manager = Find.World.GetComponent<WorldComp_OberonAirShipManager>();
-                if (manager != null)
-                {
-                    string status = manager.GetStatusDescription();
-                    desc += $"\n\n{"DD_OberonAirShip_Status".Translate()}: {status}";
-                }
-
-                desc += $"\n{"DD_OberonAirShip_Charges".Translate()}: {useCount}/1";
-            }
-            else
-            {
-                if (Props.useLimit > 0)
-                {
-                    desc += $"\n{"DD_Flyover_Uses".Translate()}: {useCount}/{Props.useLimit}";
-                }
+                desc += $"\n{"DD_Flyover_Uses".Translate()}: {useCount}/{Props.useLimit}";
             }
 
             return desc;

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
     <AssemblyName>DivineDiurganate</AssemblyName>
@@ -6,6 +6,7 @@
     <LangVersion>11.0</LangVersion>
     <Deterministic>true</Deterministic>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
@@ -50,8 +51,6 @@
     <Compile Include="Ability\DestroyOwnBodyPart\CompProperties_AbilityDestroyOwnBodyPart.cs" />
     <Compile Include="BuildingComps\FlyOverGenerator\CompFlyOverGenerator.cs" />
     <Compile Include="BuildingComps\FlyOverGenerator\CompProperties_FlyOverGenerator.cs" />
-    <Compile Include="BuildingComps\OberonAirShipController\CompOberonAirShipController.cs" />
-    <Compile Include="BuildingComps\OberonAirShipController\WorldComp_OberonAirShipManager.cs" />
     <Compile Include="EventSystem\CompOpenCustomUI.cs" />
     <Compile Include="EventSystem\Condition\ConditionBase.cs" />
     <Compile Include="EventSystem\Condition\Condition_FlagExists.cs" />
@@ -160,8 +159,6 @@
     <Compile Remove="Flyover\BlockedByFlyOverFacility\CompAbilityEffect_BlockedByFlyOverFacility.cs" />
     <Compile Remove="Flyover\DestroyFlyOverByFacilities\CompProperties_DestroyFlyOverByFacilities.cs" />
     <Compile Remove="Flyover\FlyOverDropPod\CompProperties_FlyOverDropPod.cs" />
-    <Compile Remove="Flyover\FlyOverEscort\CompFlyOverEscort.cs" />
-    <Compile Remove="Flyover\FlyOverEscort\CompProperties_FlyOverEscort.cs" />
     <Compile Remove="Flyover\FlyOverFacilities\CompAbilityEffect_RequireFlyOverFacility.cs" />
     <Compile Remove="Flyover\FlyOverFacilities\CompFlyOverFacilities.cs" />
     <Compile Remove="Flyover\GlobalFlyOverCooldown\CompAbilityEffect_GlobalFlyOverCooldown.cs" />
