@@ -189,7 +189,7 @@
       <li Class="CompProperties_Flickable"/>
       <li Class="CompProperties_Breakdownable"/>
       <li Class="DivineDiurganate.CompProperties_FlyOverGenerator">
-        <flyOverDef>DD_FlyOver_Basic</flyOverDef>
+        <flyOverDef>DD_FlyOver_Trader</flyOverDef>
         
         <defaultSpeed>1.5</defaultSpeed>
         <defaultAltitude>15</defaultAltitude>
@@ -200,6 +200,11 @@
         
         <cooldownTicks>1800</cooldownTicks>
         <useLimit>-1</useLimit>
+      </li>
+      <li Class="DivineDiurganate.CompProperties_TradeTerminal">
+        <requiresPower>true</requiresPower>
+        <maxTradeRange>0</maxTradeRange>
+        <gizmoIconPath>UI/Commands/LaunchReport</gizmoIconPath>
       </li>
     </comps>
     <placeWorkers>
