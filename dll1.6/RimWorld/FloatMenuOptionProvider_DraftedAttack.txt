@@ -1,0 +1,141 @@
+using System;
+using System.Collections.Generic;
+using Verse;
+
+namespace RimWorld;
+
+public class FloatMenuOptionProvider_DraftedAttack : FloatMenuOptionProvider
+{
+	private static readonly List<Pawn> tmpPawns = new List<Pawn>();
+
+	protected override bool Drafted => true;
+
+	protected override bool Undrafted => false;
+
+	protected override bool Multiselect => true;
+
+	protected override bool MechanoidCanDo => true;
+
+	protected override FloatMenuOption GetSingleOptionFor(Thing clickedThing, FloatMenuContext context)
+	{
+		if (!CanTarget(clickedThing))
+		{
+			return null;
+		}
+		tmpPawns.Clear();
+		bool flag = clickedThing.HostileTo(Faction.OfPlayer);
+		FloatMenuOption floatMenuOption = (context.IsMultiselect ? GetMultiselectAttackOption(clickedThing, context) : GetSingleSelectAttackOption(clickedThing, context));
+		if (floatMenuOption == null)
+		{
+			return null;
+		}
+		if (!floatMenuOption.Disabled)
+		{
+			floatMenuOption.Priority = (flag ? MenuOptionPriority.AttackEnemy : MenuOptionPriority.VeryLow);
+			floatMenuOption.autoTakeable = flag || (clickedThing.def.building?.quickTargetable ?? false);
+			floatMenuOption.autoTakeablePriority = 40f;
+		}
+		return floatMenuOption;
+	}
+
+	private static bool CanTarget(Thing clickedThing)
+	{
+		if (clickedThing.def.noRightClickDraftAttack && clickedThing.HostileTo(Faction.OfPlayer))
+		{
+			return false;
+		}
+		if (clickedThing.def.IsNonDeconstructibleAttackableBuilding)
+		{
+			return true;
+		}
+		BuildingProperties building = clickedThing.def.building;
+		if (building != null && building.quickTargetable)
+		{
+			return true;
+		}
+		if (!clickedThing.def.destroyable)
+		{
+			return false;
+		}
+		if (clickedThing.HostileTo(Faction.OfPlayer))
+		{
+			return true;
+		}
+		if (clickedThing is Pawn p && p.NonHumanlikeOrWildMan())
+		{
+			return true;
+		}
+		return false;
+	}
+
+	private FloatMenuOption GetMultiselectAttackOption(Thing clickedThing, FloatMenuContext context)
+	{
+		string label = null;
+		foreach (Pawn validSelectedPawn in context.ValidSelectedPawns)
+		{
+			if (GetAttackAction(validSelectedPawn, clickedThing, out label, out var _) != null)
+			{
+				tmpPawns.Add(validSelectedPawn);
+			}
+		}
+		if (tmpPawns.Count == 0)
+		{
+			return null;
+		}
+		FleckDef fleck = (FloatMenuUtility.UseRangedAttack(tmpPawns[0]) ? FleckDefOf.FeedbackShoot : FleckDefOf.FeedbackMelee);
+		return new FloatMenuOption(label ?? ((string)"Attack".Translate(clickedThing.Label, clickedThing)), delegate
+		{
+			foreach (Pawn tmpPawn in tmpPawns)
+			{
+				FleckMaker.Static(clickedThing.DrawPos, clickedThing.Map, fleck);
+				GetAttackAction(tmpPawn, clickedThing, out var _, out var _)();
+			}
+		}, MenuOptionPriority.AttackEnemy);
+	}
+
+	private static FloatMenuOption GetSingleSelectAttackOption(Thing clickedThing, FloatMenuContext context)
+	{
+		string label;
+		string failStr;
+		Action action = GetAttackAction(context.FirstSelectedPawn, clickedThing, out label, out failStr);
+		FleckDef fleck = (FloatMenuUtility.UseRangedAttack(context.FirstSelectedPawn) ? FleckDefOf.FeedbackShoot : FleckDefOf.FeedbackMelee);
+		if (action == null)
+		{
+			if (!failStr.NullOrEmpty())
+			{
+				return new FloatMenuOption((label ?? ((string)"Attack".Translate(clickedThing.Label, clickedThing))) + ": " + failStr, null);
+			}
+			return null;
+		}
+		return new FloatMenuOption(label ?? ((string)"Attack".Translate(clickedThing.Label, clickedThing)), delegate
+		{
+			FleckMaker.Static(clickedThing.DrawPos, clickedThing.Map, fleck);
+			action();
+		}, MenuOptionPriority.AttackEnemy);
+	}
+
+	private static Action GetAttackAction(Pawn pawn, Thing target, out string label, out string failStr)
+	{
+		failStr = null;
+		label = "Attack".Translate(target.Label, target);
+		if (ModsConfig.BiotechActive && pawn.IsColonyMech && !MechanitorUtility.InMechanitorCommandRange(pawn, target))
+		{
+			failStr = "OutOfCommandRange".Translate();
+			return null;
+		}
+		if (FloatMenuUtility.UseRangedAttack(pawn))
+		{
+			label = "FireAt".Translate(target.Label, target);
+			return FloatMenuUtility.GetRangedAttackAction(pawn, target, out failStr);
+		}
+		if (target is Pawn { Downed: not false })
+		{
+			label = "MeleeAttackToDeath".Translate(target.Label, target);
+		}
+		else
+		{
+			label = "MeleeAttack".Translate(target.Label, target);
+		}
+		return FloatMenuUtility.GetMeleeAttackAction(pawn, target, out failStr);
+	}
+}

@@ -1,0 +1,34 @@
+using System.Collections.Generic;
+using RimWorld;
+
+namespace Verse;
+
+public class PawnRenderNode_AnimalPart_Body : PawnRenderNode_AnimalPart
+{
+	public PawnRenderNode_AnimalPart_Body(Pawn pawn, PawnRenderNodeProperties props, PawnRenderTree tree)
+		: base(pawn, props, tree)
+	{
+	}
+
+	protected override IEnumerable<(GraphicStateDef state, Graphic graphic)> StateGraphicsFor(Pawn pawn)
+	{
+		foreach (var item in base.StateGraphicsFor(pawn))
+		{
+			yield return item;
+		}
+		PawnKindLifeStage curKindLifeStage = pawn.ageTracker.CurKindLifeStage;
+		if (curKindLifeStage.swimmingGraphicData != null)
+		{
+			Graphic graphic = curKindLifeStage.swimmingGraphicData.Graphic;
+			if (pawn.gender == Gender.Female && curKindLifeStage.femaleSwimmingGraphicData != null)
+			{
+				graphic = curKindLifeStage.femaleSwimmingGraphicData.Graphic;
+			}
+			if (pawn.TryGetAlternate(out var ag, out var _))
+			{
+				graphic = ag.GetSwimmingGraphic(graphic);
+			}
+			yield return (state: GraphicStateDefOf.Swimming, graphic: graphic);
+		}
+	}
+}

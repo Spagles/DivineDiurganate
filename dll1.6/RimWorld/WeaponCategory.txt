@@ -1,0 +1,21 @@
+namespace RimWorld;
+
+public enum WeaponCategory
+{
+	BladeLink,
+	Ranged,
+	BulletFiring,
+	Bow,
+	Rifle,
+	Sighted,
+	Scoped,
+	Shotgun,
+	BurstFire,
+	LowStoppingPower,
+	Gun,
+	PelletFiring,
+	PulseCharge,
+	Pistol,
+	BeamWeapon,
+	Attachable
+}

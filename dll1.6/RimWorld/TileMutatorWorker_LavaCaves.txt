@@ -1,0 +1,43 @@
+using Verse;
+
+namespace RimWorld;
+
+public class TileMutatorWorker_LavaCaves : TileMutatorWorker_Caves
+{
+	private const float LavaPocketChancePerCell = 0.005f;
+
+	private static readonly IntRange LavaPocketSizeRange = new IntRange(15, 30);
+
+	private static readonly IntRange CooledLavaPocketSizeRange = new IntRange(75, 100);
+
+	public TileMutatorWorker_LavaCaves(TileMutatorDef def)
+		: base(def)
+	{
+	}
+
+	public override void GeneratePostTerrain(Map map)
+	{
+		if (!ModsConfig.OdysseyActive)
+		{
+			return;
+		}
+		MapGenFloatGrid caves = MapGenerator.Caves;
+		base.GeneratePostTerrain(map);
+		foreach (IntVec3 allCell in map.AllCells)
+		{
+			if (caves[allCell] <= 0f || allCell.GetTerrain(map).IsWater || !Rand.Chance(0.005f))
+			{
+				continue;
+			}
+			foreach (IntVec3 item in GridShapeMaker.IrregularLump(allCell, map, CooledLavaPocketSizeRange.RandomInRange + 1))
+			{
+				item.GetEdifice(map)?.Destroy();
+				map.terrainGrid.SetTerrain(item, TerrainDefOf.CooledLava);
+			}
+			foreach (IntVec3 item2 in GridShapeMaker.IrregularLump(allCell, map, LavaPocketSizeRange.RandomInRange))
+			{
+				map.terrainGrid.SetTerrain(item2, TerrainDefOf.LavaDeep);
+			}
+		}
+	}
+}

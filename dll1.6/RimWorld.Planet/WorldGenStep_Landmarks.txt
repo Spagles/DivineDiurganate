@@ -1,0 +1,73 @@
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using Verse;
+
+namespace RimWorld.Planet;
+
+public class WorldGenStep_Landmarks : WorldGenStep
+{
+	private const float LandmarkDensity = 0.0022222223f;
+
+	private static readonly Dictionary<LandmarkDef, HashSet<int>> landmarkCandidates = new Dictionary<LandmarkDef, HashSet<int>>();
+
+	public override int SeedPart => 471293987;
+
+	public override void GenerateFresh(string seed, PlanetLayer layer)
+	{
+		if (!ModsConfig.OdysseyActive)
+		{
+			return;
+		}
+		using (ProfilerBlock.Scope("Generate Landmarks"))
+		{
+			float num = 0.0022222223f * Find.World.info.landmarkDensity.GetScaleFactor();
+			int num2 = Mathf.RoundToInt((float)layer.TilesCount * num);
+			int num3 = 0;
+			List<LandmarkDef> allDefsListForReading = DefDatabase<LandmarkDef>.AllDefsListForReading;
+			List<int> list = Enumerable.Range(0, layer.TilesCount - 1).ToList();
+			list.Shuffle();
+			HashSet<int> hashSet = new HashSet<int>();
+			foreach (LandmarkDef item in allDefsListForReading)
+			{
+				if (!item.EverValid())
+				{
+					continue;
+				}
+				landmarkCandidates[item] = new HashSet<int>();
+				foreach (int item2 in list)
+				{
+					if (!hashSet.Contains(item2))
+					{
+						if (item.IsValidTile(new PlanetTile(item2, layer), layer, canUseCache: true))
+						{
+							landmarkCandidates[item].Add(item2);
+							hashSet.Add(item2);
+						}
+						if (landmarkCandidates[item].Count >= num2)
+						{
+							break;
+						}
+					}
+				}
+			}
+			LandmarkDef.ClearCache();
+			int num4 = num2 * 2;
+			while (num3 < num2 && num4 > 0)
+			{
+				num4--;
+				LandmarkDef landmarkDef = allDefsListForReading.RandomElementByWeight((LandmarkDef landmark) => landmark.commonality);
+				if (landmarkCandidates.ContainsKey(landmarkDef))
+				{
+					int num5 = landmarkCandidates[landmarkDef].FirstOrFallback(-1);
+					if (num5 != -1)
+					{
+						landmarkCandidates[landmarkDef].Remove(num5);
+						num3++;
+						Find.World.landmarks.AddLandmark(landmarkDef, new PlanetTile(num5, layer), layer);
+					}
+				}
+			}
+		}
+	}
+}
