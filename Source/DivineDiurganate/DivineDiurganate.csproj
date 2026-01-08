@@ -349,6 +349,10 @@
     <Compile Include="EventSystem\QuestNode\QuestNode_EventLetter.cs" />
     <Compile Include="EventSystem\QuestNode\QuestNode_Root_EventLetter.cs" />
     <Compile Include="EventSystem\QuestNode\QuestNode_WriteToEventVariablesWithAdd.cs" />
+    <Compile Include="FaithSystem\Comp_FaithHolder.cs" />
+    <Compile Include="FaithSystem\FaithUtility.cs" />
+    <Compile Include="FaithSystem\Gizmo_FaithStatus.cs" />
+    <Compile Include="FaithSystem\WorldComp_FaithSystem.cs" />
     <Compile Include="Flyover\FlyoverData.cs" />
     <Compile Include="Flyover\FlyOverEscort\CompFlyOverEscort.cs" />
     <Compile Include="Flyover\FlyOverEscort\CompProperties_FlyOverEscort.cs" />

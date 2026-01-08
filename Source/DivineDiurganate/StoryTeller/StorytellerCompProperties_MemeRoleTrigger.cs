@@ -29,9 +29,6 @@ namespace DivineDiurganate
         public List<FactionDef> allowedFactions;        // 允许的派系列表（可选）
         public bool debugLogging = false;               // 启用调试日志
 
-        // 冷却和状态跟踪
-        private int lastTriggeredTick = -1;             // 上次触发时间（ticks）
-
         public StorytellerCompProperties_MemeRoleTrigger()
         {
             compClass = typeof(StorytellerComp_MemeRoleTrigger);
