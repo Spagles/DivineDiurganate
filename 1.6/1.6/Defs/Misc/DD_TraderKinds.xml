@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- ============================================ -->
+  <!-- TraderKindDef: 飞行商人类型 -->
+  <!-- ============================================ -->
+  <TraderKindDef>
+    <defName>DD_FlyoverTrader_Airship</defName>
+    <label>airship trader</label>
+    <commonality>1</commonality>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>500~2000</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentIndustrial</thingDef>
+        <countRange>5~20</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Steel</thingDef>
+        <countRange>100~300</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Plasteel</thingDef>
+        <countRange>20~50</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Gold</thingDef>
+        <countRange>10~30</countRange>
+      </li>
+    </stockGenerators>
+  </TraderKindDef>
+
+</Defs>

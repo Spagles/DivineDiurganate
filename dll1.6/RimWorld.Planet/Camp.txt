@@ -1,0 +1,43 @@
+using UnityEngine;
+using Verse;
+
+namespace RimWorld.Planet;
+
+public class Camp : MapParent
+{
+	private Material cachedMat;
+
+	public override bool CanReformFoggedEnemies => true;
+
+	public override Material Material
+	{
+		get
+		{
+			if (cachedMat == null)
+			{
+				cachedMat = MaterialPool.MatFrom(color: (base.Faction == null) ? Color.white : base.Faction.Color, texPath: def.texture, shader: ShaderDatabase.WorldOverlayTransparentLit, renderQueue: 3550);
+			}
+			return cachedMat;
+		}
+	}
+
+	public override bool ShouldRemoveMapNow(out bool alsoRemoveWorldObject)
+	{
+		if (!base.Map.mapPawns.AnyPawnBlockingMapRemoval)
+		{
+			alsoRemoveWorldObject = true;
+			return true;
+		}
+		alsoRemoveWorldObject = false;
+		return false;
+	}
+
+	public override void Notify_MyMapRemoved(Map map)
+	{
+		base.Notify_MyMapRemoved(map);
+		WorldObject worldObject = WorldObjectMaker.MakeWorldObject(WorldObjectDefOf.AbandonedCamp);
+		worldObject.Tile = base.Tile;
+		worldObject.SetFaction(base.Faction);
+		Find.WorldObjects.Add(worldObject);
+	}
+}

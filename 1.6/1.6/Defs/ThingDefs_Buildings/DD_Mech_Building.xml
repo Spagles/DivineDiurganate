@@ -134,4 +134,88 @@
       </li>
     </comps>
   </ThingDef>
+<<<<<<< HEAD
+
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>DD_Airship_CommsConsole</defName>
+    <label>Airship Console</label>
+    <description>Allows radio contact with other factions and orbital traders.</description>
+    <!-- <thingClass>Building_CommsConsole</thingClass> -->
+    <graphicData>
+      <texPath>Things/Building/Misc/CommsConsole</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(5,4)</drawSize>
+      <damageData>
+        <rect>(0,0,3,1.8)</rect>
+        <cornerBL>Damage/Corner</cornerBL>
+        <cornerBR>Damage/Corner</cornerBR>
+      </damageData>
+      <shadowData>
+        <volume>(3,0.5,2)</volume>
+      </shadowData>
+    </graphicData>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <pathCost>50</pathCost>
+    <blockWind>true</blockWind>
+    <castEdgeShadows>false</castEdgeShadows>
+    <fillPercent>0.5</fillPercent>
+    <canOverlapZones>false</canOverlapZones>
+    <statBases>
+      <MaxHitPoints>250</MaxHitPoints>
+      <WorkToBuild>2200</WorkToBuild>
+      <Flammability>0.6</Flammability>
+    </statBases>
+    <size>(3,2)</size>
+    <building>
+      <destroySound>BuildingDestroyed_Metal_Big</destroySound>
+    </building>
+    <costList>
+      <Steel>120</Steel>
+      <ComponentIndustrial>4</ComponentIndustrial>
+    </costList>
+    <defaultPlacingRot>South</defaultPlacingRot>
+    <interactionCellOffset>(0,0,2)</interactionCellOffset>
+    <hasInteractionCell>true</hasInteractionCell>
+    <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+    <designationCategory>Misc</designationCategory>
+    <uiOrder>2100</uiOrder>
+    <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <shortCircuitInRain>true</shortCircuitInRain>
+        <basePowerConsumption>200</basePowerConsumption>
+      </li>
+      <li Class="CompProperties_Flickable"/>
+      <li Class="CompProperties_Breakdownable"/>
+      <li Class="DivineDiurganate.CompProperties_FlyOverGenerator">
+        <flyOverDef>DD_FlyOver_Trader</flyOverDef>
+        
+        <defaultSpeed>1.5</defaultSpeed>
+        <defaultAltitude>15</defaultAltitude>
+        
+        <spawnContents>false</spawnContents>
+        <!-- <contentThingDef>Medicine</contentThingDef>
+        <contentCount>10</contentCount> -->
+        
+        <cooldownTicks>1800</cooldownTicks>
+        <useLimit>-1</useLimit>
+      </li>
+      <li Class="DivineDiurganate.CompProperties_TradeTerminal">
+        <requiresPower>true</requiresPower>
+        <maxTradeRange>0</maxTradeRange>
+        <gizmoIconPath>UI/Commands/LaunchReport</gizmoIconPath>
+      </li>
+    </comps>
+    <placeWorkers>
+      <li>PlaceWorker_PreventInteractionSpotOverlap</li>
+    </placeWorkers>
+    <researchPrerequisites>
+      <li>MicroelectronicsBasics</li>
+    </researchPrerequisites>
+    <tickerType>Normal</tickerType>
+  </ThingDef>
+=======
+>>>>>>> gitea/main
 </Defs>

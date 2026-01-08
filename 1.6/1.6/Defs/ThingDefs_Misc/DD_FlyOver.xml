@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- ============================================ -->
+  <!-- 基础FlyOver抽象定义 -->
+  <!-- ============================================ -->
+  <ThingDef Name="DD_FlyOverBase" Abstract="True">
+    <thingClass>DivineDiurganate.FlyOver</thingClass>
+    <category>Ethereal</category>
+    <tickerType>Normal</tickerType>
+    <drawerType>RealtimeOnly</drawerType>
+    <altitudeLayer>MetaOverlays</altitudeLayer>
+    <useHitPoints>false</useHitPoints>
+    <selectable>false</selectable>
+    <seeThroughFog>true</seeThroughFog>
+    <drawOffscreen>true</drawOffscreen>
+    <alwaysHaulable>false</alwaysHaulable>
+    <castEdgeShadows>false</castEdgeShadows>
+    <staticSunShadowHeight>0</staticSunShadowHeight>
+    <skyfaller>
+      <shadow>Things/Projectile/Bullet_Small</shadow>
+      <shadowSize>(0, 0)</shadowSize>
+      <motesPerCell>0</motesPerCell>
+    </skyfaller>
+  </ThingDef>
+
+  <!-- ============================================ -->
+  <!-- 基础FlyOver (无功能，仅飞越) -->
+  <!-- ============================================ -->
+  <ThingDef ParentName="DD_FlyOverBase">
+    <defName>DD_FlyOver_Basic</defName>
+    <label>flyover aircraft</label>
+    <description>An aircraft flying over the map.</description>
+    <graphicData>
+      <texPath>Things/Special/Shuttle</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+      <drawSize>(6,6)</drawSize>
+      <color>(200,200,200,120)</color>
+    </graphicData>
+  </ThingDef>
+
+  <!-- ============================================ -->
+  <!-- 可交易的FlyOver -->
+  <!-- ============================================ -->
+  <ThingDef ParentName="DD_FlyOverBase">
+    <defName>DD_FlyOver_Trader</defName>
+    <label>trade flyover</label>
+    <description>A merchant aircraft flying over the map. You can trade with it.</description>
+    <altitudeLayer>Skyfaller</altitudeLayer>
+    <selectable>true</selectable>
+    <graphicData>
+      <texPath>Things/Special/Shuttle</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(4,4)</drawSize>
+    </graphicData>
+    <comps>
+      <li Class="DivineDiurganate.CompProperties_FlyoverTrader">
+        <traderKindDef>DD_FlyoverTrader_Airship</traderKindDef>
+        <canTradeWhileMoving>true</canTradeWhileMoving>
+        <minProgressToTrade>0.1</minProgressToTrade>
+        <maxProgressToTrade>0.9</maxProgressToTrade>
+      </li>
+    </comps>
+  </ThingDef>
+
+</Defs>

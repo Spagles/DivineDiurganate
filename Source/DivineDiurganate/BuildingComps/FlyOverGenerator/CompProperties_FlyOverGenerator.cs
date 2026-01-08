@@ -31,9 +31,6 @@ namespace DivineDiurganate
         
         // 使用次数限制（-1为无限）
         public int useLimit = -1;
-        
-        // 新增：是否是 OberonAirShip 生成器
-        public bool isOberonAirShipGenerator = false;
 
         public string label = "FlyOverGeneratorLabel";
         public string description = "FlyOverGeneratorDescription";
