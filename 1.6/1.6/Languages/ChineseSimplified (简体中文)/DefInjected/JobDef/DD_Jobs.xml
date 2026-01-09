@@ -2,7 +2,7 @@
 <LanguageData>
   
   <!-- EN: Calling Aircraft. -->
-  <DD_CallFlyOver.reportString>TODO</DD_CallFlyOver.reportString>
+  <DD_CallFlyOver.reportString>呼叫飞行器。</DD_CallFlyOver.reportString>
   
   <!-- EN: carrying TargetA to TargetB. -->
   <DD_CarryToMech.reportString>携带 TargetA 到 TargetB</DD_CarryToMech.reportString>

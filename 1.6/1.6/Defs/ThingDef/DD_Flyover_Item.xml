@@ -97,8 +97,8 @@
         <iconPath>DivineDiurganate/UI/Commands/DD_Oberon_Airship_Icon</iconPath>
       </li>
       <li Class="DivineDiurganate.CompProperties_FlyOverSkill_Bombardment">
-        <skillName>机炮扫射</skillName>
-        <description>欧伯龙号调动其下挂的各个炮艇舱室，以渐近火力扫射殖民地所选的区域。</description>
+        <skillName>Machine Gun Strafing</skillName>
+        <description>The Oberon deployed its various gunboat compartments and strafed the selected area of the colony with gradual firepower.</description>
         <iconPath>DivineDiurganate/UI/Abilities/DD_Automatic_Cannon_Ability</iconPath>
         <cooldownTicks>300</cooldownTicks>
         <maxUses>3</maxUses>
@@ -125,8 +125,8 @@
         <twoPointsSecondPointMessage>选择扫射方向</twoPointsSecondPointMessage>
       </li>
       <li Class="DivineDiurganate.CompProperties_FlyOverSkill_Bombardment">
-        <skillName>70mm火炮弹幕</skillName>
-        <description>欧伯龙号调动主舱室的三门70mm火炮，以渐近火力轰炸殖民地所选的区域。</description>
+        <skillName>70mm Artillery Barrage</skillName>
+        <description>The Oberon deployed its 70mm guns from the main cabin to bombard the selected area of the colony with gradual firepower.</description>
         <iconPath>DivineDiurganate/UI/Abilities/DD_70MM_Cannon_Ability</iconPath>
         <cooldownTicks>1200</cooldownTicks>
         <maxUses>2</maxUses>
@@ -153,8 +153,8 @@
         <twoPointsSecondPointMessage>选择轰炸方向</twoPointsSecondPointMessage>
       </li>
       <li Class="DivineDiurganate.CompProperties_FlyOverSkill_SkyfallerDrop">
-        <skillName>航弹投掷</skillName>
-        <description>从欧伯龙号的航弹发射架上投掷一枚航弹</description>
+        <skillName>Bomb Dropping</skillName>
+        <description>Throw a bomb from the bomb rack of the Oberon.</description>
         <iconPath>DivineDiurganate/UI/Abilities/DD_Heavy_Air_bomb_Ability</iconPath>
         <cooldownTicks>120</cooldownTicks>
         <maxUses>6</maxUses>
@@ -164,7 +164,7 @@
         
         <!-- 立即释放配置 -->
         <instantCast>true</instantCast>
-        <instantCastMessage>一枚航弹已经投放！</instantCastMessage>
+        <instantCastMessage>A bomb has been dropped!</instantCastMessage>
         
         <!-- Skyfaller配置 -->
         <skyfallerDef>DD_Heavy_Air_bomb_Skyfaller</skyfallerDef>
@@ -176,6 +176,13 @@
         
         <!-- 时间参数 -->
         <warmupTicks>30</warmupTicks>
+      </li>
+      <li Class="DivineDiurganate.CompProperties_FlyoverTrader">
+        <traderKindDef>DD_FlyoverTrader_Airship</traderKindDef>
+        <tradeDurationTicks>999999</tradeDurationTicks>
+        <canTradeWhileMoving>true</canTradeWhileMoving>
+        <minProgressToTrade>0</minProgressToTrade>
+        <maxProgressToTrade>1</maxProgressToTrade>
       </li>
     </comps>
   </ThingDef>

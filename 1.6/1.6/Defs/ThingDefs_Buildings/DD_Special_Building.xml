@@ -62,10 +62,17 @@
         <!-- <contentThingDef>Medicine</contentThingDef>
         <contentCount>10</contentCount> -->
         
-        <cooldownTicks>1800</cooldownTicks>
+        <cooldownTicks>420000</cooldownTicks>
         <useLimit>1</useLimit>
         <label>Call Oberon Airship</label>
         <description>Send a signal to the Oberon Airship near the route, instructing it to proceed to the orbit above the colony.</description>
+      </li>
+      <li Class="DivineDiurganate.CompProperties_TradeTerminal">
+        <maxTradeRange>99999</maxTradeRange>
+        <requiresPower>true</requiresPower>
+        <gizmoIconPath>UI/Commands/Trade</gizmoIconPath>
+        <gizmoLabel>Airship Trade</gizmoLabel>
+        <gizmoDesc>Initiate trade with the airships over the colonies. The trade rules are the same as those for orbital trade ships. You need to prepare an orbital trade beacon to send supplies.</gizmoDesc>
       </li>
     </comps>
     <placeWorkers>

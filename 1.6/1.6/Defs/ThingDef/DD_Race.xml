@@ -438,7 +438,7 @@
 
       <!-- 圣化镀层的数值，伤害*穿甲率低于此数值将被直接抵挡 -->
       <!-- value of the Sanctified Armour, damage * armor piercing rate below which will be directly resisted -->
-      <DD_MechArmor>4</DD_MechArmor>
+      <DD_MechArmor>3</DD_MechArmor>
     </statBases>
     <race>
       <body>DD_Race_DHM69_Scythe_Body</body>
@@ -652,7 +652,7 @@
 		</lifeStages>
 	</PawnKindDef>
 
-  <ThingDef ParentName="DD_MechPawnBase">
+  <ThingDef ParentName="DD_MechPawnBase"> 
     <defName>DD_DHM70_Rampart_Mech</defName>
     <label>DHM70-Rampart</label>
     <description>The Divine Diurganate's terrifying giant mechs possess incredibly thick armor and are equipped with a pair of rapid-fire cannons that require standing still to fire, as well as multiple self-defense machine guns, enabling them to engage enemies at various distances.</description>
@@ -666,7 +666,7 @@
 
       <!-- 圣化镀层的数值，伤害*穿甲率低于此数值将被直接抵挡 -->
       <!-- value of the Sanctified Armour, damage * armor piercing rate below which will be directly resisted -->
-      <DD_MechArmor>3</DD_MechArmor>
+      <DD_MechArmor>2</DD_MechArmor>
     </statBases>
     <race>
       <body>DD_Race_DHM69_Scythe_Body</body>
@@ -863,7 +863,7 @@
 		<forceDeathOnDowned>false</forceDeathOnDowned>
 		<forceNoDeathNotification>false</forceNoDeathNotification>
     <collidesWithPawns>false</collidesWithPawns>
-		<combatPower>400</combatPower>
+		<combatPower>800</combatPower>
     <weaponTags>
       <li>DD_DHM70_Rampart_Mech_Weapon</li>
     </weaponTags>
@@ -872,6 +872,32 @@
 			<li>
 				<bodyGraphicData>
 					<texPath>DivineDiurganate/Things/DD_DHM70_Rampart/Naked_Thin</texPath>
+					<drawSize>6.5</drawSize>
+					<shadowData>
+						<volume>(2 ,2, 0.8)</volume>
+						<offset>(0,0,-0.15)</offset>
+					</shadowData>
+				</bodyGraphicData>
+			</li>
+		</lifeStages>
+	</PawnKindDef>
+	<PawnKindDef>
+		<defName>DD_DHM70_Rampart_Mech_Prototype</defName>
+		<label>DHM70-Rampart Prototype</label>
+		<race>DD_DHM70_Rampart_Mech</race>
+		<defaultFactionType>PlayerColony</defaultFactionType>
+		<forceDeathOnDowned>false</forceDeathOnDowned>
+		<forceNoDeathNotification>false</forceNoDeathNotification>
+    <collidesWithPawns>false</collidesWithPawns>
+		<combatPower>900</combatPower>
+    <weaponTags>
+      <li>DD_DHM70_Rampart_Mech_Weapon</li>
+    </weaponTags>
+    <weaponMoney>99999~99999</weaponMoney>
+		<lifeStages>
+			<li>
+				<bodyGraphicData>
+					<texPath>DivineDiurganate/Things/DD_DHM70_Rampart/Prototype</texPath>
 					<drawSize>6.5</drawSize>
 					<shadowData>
 						<volume>(2 ,2, 0.8)</volume>

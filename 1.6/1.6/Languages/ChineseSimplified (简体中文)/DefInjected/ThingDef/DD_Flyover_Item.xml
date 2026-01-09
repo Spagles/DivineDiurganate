@@ -1,30 +1,26 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
   
-  <!-- EN: 轻型副炮炮弹 -->
+  <!-- EN: 70mm Shell -->
   <DD_70MM_Cannon_Skyfaller.label>70mm炮弹</DD_70MM_Cannon_Skyfaller.label>
   
-  <!-- EN: 机炮子弹 -->
+  <!-- EN: Automatic Cannon Bullet -->
   <DD_Automatic_Cannon_Skyfaller.label>机炮子弹</DD_Automatic_Cannon_Skyfaller.label>
   
   <!-- EN: Oberon -->
   <DD_Flyover_AirShip.label>欧伯龙号重型飞空艇</DD_Flyover_AirShip.label>
-  <!-- EN: Using {0} at aircraft position -->
-  <DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-0.instantCastMessage>TODO</DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-0.instantCastMessage>
-  <!-- EN: Select target for {0} -->
-  <DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-0.singlePointSelectMessage>TODO</DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-0.singlePointSelectMessage>
-  <!-- EN: Using {0} at aircraft position -->
-  <DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-1.instantCastMessage>TODO</DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-1.instantCastMessage>
-  <!-- EN: Select target for {0} -->
-  <DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-1.singlePointSelectMessage>TODO</DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-1.singlePointSelectMessage>
-  <!-- EN: Select target for {0} -->
-  <DD_Flyover_AirShip.comps.CompFlyOverSkill_SkyfallerDrop.singlePointSelectMessage>TODO</DD_Flyover_AirShip.comps.CompFlyOverSkill_SkyfallerDrop.singlePointSelectMessage>
-  <!-- EN: Select first point for {0} -->
-  <DD_Flyover_AirShip.comps.CompFlyOverSkill_SkyfallerDrop.twoPointsFirstPointMessage>TODO</DD_Flyover_AirShip.comps.CompFlyOverSkill_SkyfallerDrop.twoPointsFirstPointMessage>
-  <!-- EN: Select second point for {0} -->
-  <DD_Flyover_AirShip.comps.CompFlyOverSkill_SkyfallerDrop.twoPointsSecondPointMessage>TODO</DD_Flyover_AirShip.comps.CompFlyOverSkill_SkyfallerDrop.twoPointsSecondPointMessage>
+  <DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-0.skillName>机炮扫射</DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-0.skillName>
+  <DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-0.description>欧伯龙号调动其下挂的各个炮艇舱室，以渐近火力扫射殖民地所选的区域。</DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-0.description>
+  <DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-1.skillName>70mm火炮弹幕</DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-0.skillName>
+  <DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-1.description>欧伯龙号调动主舱室的70mm火炮，以渐近火力轰炸殖民地所选的区域。</DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-0.description>
+  <DD_Flyover_AirShip.comps.CompFlyOverSkill_SkyfallerDrop.skillName>航弹投掷</DD_Flyover_AirShip.comps.CompFlyOverSkill_SkyfallerDrop.skillName>
+  <DD_Flyover_AirShip.comps.CompFlyOverSkill_SkyfallerDrop.description>从欧伯龙号的航弹发射架上投掷一枚航弹</DD_Flyover_AirShip.comps.CompFlyOverSkill_SkyfallerDrop.description>
+  <DD_Flyover_AirShip.comps.CompFlyOverSkill_SkyfallerDrop.instantCastMessage>一枚航弹已经投放！</DD_Flyover_AirShip.comps.CompFlyOverSkill_SkyfallerDrop.instantCastMessage>
   
-  <!-- EN: 航弹 -->
+  <!-- EN: 双尾教国战机（伴飞） -->
+  <DD_Flyover_Striker_Escort.label>TODO</DD_Flyover_Striker_Escort.label>
+  
+  <!-- EN: Heavy Air bomb -->
   <DD_Heavy_Air_bomb_Skyfaller.label>重型航弹</DD_Heavy_Air_bomb_Skyfaller.label>
   
 </LanguageData>

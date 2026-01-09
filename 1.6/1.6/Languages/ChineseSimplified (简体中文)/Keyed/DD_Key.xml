@@ -59,18 +59,16 @@
 
   <DD_TargetDoesNotNeedHealing>目标不需要治疗</DD_TargetDoesNotNeedHealing>
   <DD_HolyHealing_GayRevelation>{0} 变成女同了！</DD_HolyHealing_GayRevelation>
-<<<<<<< HEAD
   <DD_SelectTradeFlyover>选择飞跃商人</DD_SelectTradeFlyover>
   <DD_Select>选择</DD_Select>
   <DD_FlyoverProgress>进度：{0}%</DD_FlyoverProgress>
-  <DD_GizmoTradeWithFlyoverLabel>与飞跃商人交易</DD_GizmoTradeWithFlyoverLabel>
-  <DD_GizmoTradeWithFlyoverDesc>选择一个飞跃商人开始交易。</DD_GizmoTradeWithFlyoverDesc>
-  <DD_NoTradeFlyoversAvailable>没有可交易的飞跃</DD_NoTradeFlyoversAvailable>
+
+  <DD_GizmoTradeWithFlyoverLabel>与飞艇交易</DD_GizmoTradeWithFlyoverLabel>
+  <DD_GizmoTradeWithFlyoverDesc>选择一个飞艇开始交易。</DD_GizmoTradeWithFlyoverDesc>
+  <DD_NoTradeFlyoversAvailable>没有可交易的飞艇</DD_NoTradeFlyoversAvailable>
   <DD_NoNegotiatorAvailable>没有可用的谈判者</DD_NoNegotiatorAvailable>
-  <DD_FlyoverNoLongerAvailable>飞跃已无法交易</DD_FlyoverNoLongerAvailable>
-  <DD_TradeFlyoversAvailable>可交易飞跃：{0}</DD_TradeFlyoversAvailable>
-</LanguageData>
-=======
+  <DD_FlyoverNoLongerAvailable>飞艇已无法交易</DD_FlyoverNoLongerAvailable>
+  <DD_TradeFlyoversAvailable>可交易飞艇：{0}</DD_TradeFlyoversAvailable>
 
   <DD_Flyover_NoAircraft>无待命的飞行器</DD_Flyover_NoAircraft>
   <DD_Flyover_Icon>图标</DD_Flyover_Icon>
@@ -166,4 +164,3 @@
   <DD_Flyover_PawnAssigned>{0} 开始呼叫</DD_Flyover_PawnAssigned>
   <DD_Flyover_OnCooldown>正在冷却，剩余{0}秒</DD_Flyover_OnCooldown>
 </LanguageData>
->>>>>>> gitea/main

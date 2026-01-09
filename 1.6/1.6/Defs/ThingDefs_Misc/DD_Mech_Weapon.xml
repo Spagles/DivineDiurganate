@@ -227,7 +227,7 @@
         <verbClass>DivineDiurganate.Verb_ShootWithOffset</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
-        <warmupTime>3</warmupTime>
+        <warmupTime>1</warmupTime>
         <defaultProjectile>DD_DHM70_Rampart_Mech_Weapon_Bullet</defaultProjectile>
         <range>38.9</range>
         <burstShotCount>1</burstShotCount>
@@ -253,12 +253,8 @@
       <!-- This specifies the mech whose weapon this is. Other mechs and non-mech pawns cannot pick up this weapon -->
       <li Class="DivineDiurganate.CompProperties_MechOnlyWeapon">
         <allowedMechRaces>
-          <li>DD_DHM86_Knell_Mech</li>
+          <li>DD_DHM70_Rampart_Mech</li>
         </allowedMechRaces>
-      </li>
-      <li Class="DivineDiurganate.CompProperties_GiveHediffOnShot">
-        <hediffDef>DD_Weapon_Deployed_Long</hediffDef>
-        <severityToAdd>1</severityToAdd>
       </li>
       <li Class="DivineDiurganate.CompProperties_ShootOffsetCounter"/>
     </comps>
@@ -269,13 +265,13 @@
     <thingClass>DivineDiurganate.Projectile_PenetratingBullet</thingClass>
     <modExtensions>
       <li Class="DivineDiurganate.PenetratingBullet_Extension">
-        <maxHits>1</maxHits>        <!-- 无限穿透 -->
-        <damageFalloff>0</damageFalloff>        <!-- 无伤害衰减 -->
-        <preventFriendlyFire>true</preventFriendlyFire>        <!-- 是否阻止友方火力 -->
+        <maxHits>1</maxHits>
+        <damageFalloff>0</damageFalloff>
+        <preventFriendlyFire>true</preventFriendlyFire>
         <tailFleckDef>DD_Black_Smoke_Tail</tailFleckDef>
         <fleckDelayTicks>4</fleckDelayTicks>
 
-        <impactEffecter>DD_Harpoon_Bullet_Hit_Effecter</impactEffecter>
+        <impactEffecter>DD_Huge_Bullet_Hit_Effecter</impactEffecter>
 
         <!-- 爆炸参数 -->
         <enableExplosion>true</enableExplosion>

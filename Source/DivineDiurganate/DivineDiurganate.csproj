@@ -333,6 +333,8 @@
     <Compile Include="Ability\DestroyOwnBodyPart\CompProperties_AbilityDestroyOwnBodyPart.cs" />
     <Compile Include="BuildingComps\FlyOverGenerator\CompFlyOverGenerator.cs" />
     <Compile Include="BuildingComps\FlyOverGenerator\CompProperties_FlyOverGenerator.cs" />
+    <Compile Include="BuildingComps\TradeTerminal\CompProperties_TradeTerminal.cs" />
+    <Compile Include="BuildingComps\TradeTerminal\CompTradeTerminal.cs" />
     <Compile Include="EventSystem\CompOpenCustomUI.cs" />
     <Compile Include="EventSystem\Condition\ConditionBase.cs" />
     <Compile Include="EventSystem\Condition\Condition_FlagExists.cs" />
@@ -364,6 +366,8 @@
     <Compile Include="Flyover\FlyoverSkill\FlyOverSkill_Bombardment\CompProperties_FlyOverSkill_Bombardment.cs" />
     <Compile Include="Flyover\FlyoverSkill\FlyOverSkill_SkyfallerDrop\CompFlyOverSkill_SkyfallerDrop.cs" />
     <Compile Include="Flyover\FlyoverSkill\FlyOverSkill_SkyfallerDrop\CompProperties_FlyOverSkill_SkyfallerDrop.cs" />
+    <Compile Include="Flyover\FlyoverTrader\CompFlyoverTrader.cs" />
+    <Compile Include="Flyover\FlyoverTrader\CompProperties_FlyoverTrader.cs" />
     <Compile Include="Flyover\SendLetterAfterTicks\CompProperties_SendLetterAfterTicks.cs" />
     <Compile Include="Flyover\SendLetterAfterTicks\CompSendLetterAfterTicks.cs" />
     <Compile Include="Flyover\ThingclassFlyOver.cs" />
@@ -420,6 +424,7 @@
     <Compile Include="Thing_Comp\MechSpecificWeapon\CompMechSpecificWeapon.cs" />
     <Compile Include="Thing_Comp\PlaySoundOnSpawn\CompPlaySoundOnSpawn.cs" />
     <Compile Include="Thing_Comp\PlaySoundOnSpawn\CompProperties_PlaySoundOnSpawn.cs" />
+    <Compile Include="UI\Window_SelectTradeFlyover.cs" />
     <Compile Include="Verb\MeleeAttack_Cleave\CompCleave.cs" />
     <Compile Include="Verb\MeleeAttack_Cleave\Verb_MeleeAttack_Cleave.cs" />
     <Compile Include="Verb\ShootFireSpew\VerbProperties_FireSpew.cs" />

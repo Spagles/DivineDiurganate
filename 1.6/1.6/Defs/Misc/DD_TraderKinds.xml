@@ -6,7 +6,7 @@
   <!-- ============================================ -->
   <TraderKindDef>
     <defName>DD_FlyoverTrader_Airship</defName>
-    <label>airship trader</label>
+    <label>Oberon Airship Trader</label>
     <commonality>1</commonality>
     <stockGenerators>
       <li Class="StockGenerator_SingleDef">

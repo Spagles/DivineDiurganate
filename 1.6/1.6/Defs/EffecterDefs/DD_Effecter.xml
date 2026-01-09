@@ -48,6 +48,54 @@
     <offsetTowardsTarget>0.25~0.25</offsetTowardsTarget>
     <positionRadius>0.1</positionRadius>
   </EffecterDef>
+  <EffecterDef>
+    <defName>DD_Huge_Bullet_Hit_Effecter</defName>
+    <children>
+      <li>
+        <subEffecterClass>SubEffecter_SprayerTriggered</subEffecterClass>
+        <positionRadius>0.1</positionRadius>
+        <moteDef>DD_Mote_halo</moteDef>
+        <burstCount>1~1</burstCount>
+        <speed>0.4~0.8</speed>
+        <scale>0.05~0.05</scale>
+        <spawnLocType>OnSource</spawnLocType>
+        <color>(255,255,255)</color>
+      </li>
+      <li>
+        <subEffecterClass>SubEffecter_SprayerTriggered</subEffecterClass>
+        <positionRadius>0.02</positionRadius>
+        <moteDef>DD_Mote_halo</moteDef>
+        <burstCount>1~1</burstCount>
+        <speed>0.3~0.4</speed>
+        <rotationRate>5~10</rotationRate>
+        <scale>0.1~0.2</scale>
+        <spawnLocType>OnSource</spawnLocType>
+        <color>(255,255,255)</color>
+      </li>
+      <li>
+        <subEffecterClass>SubEffecter_SprayerTriggered</subEffecterClass>
+        <moteDef>DD_Spark_Mote</moteDef>
+        <burstCount>5~8</burstCount>
+        <scale>0.4~0.8</scale>
+        <speed>20~40</speed>
+        <angle>135~225</angle>
+        <positionRadius>0.01</positionRadius>
+        <spawnLocType>OnSource</spawnLocType>
+      </li>
+      <li>
+        <subEffecterClass>SubEffecter_SprayerTriggered</subEffecterClass>
+        <moteDef>DD_Spark_Mote</moteDef>
+        <burstCount>6~12</burstCount>
+        <scale>0.4~0.8</scale>
+        <speed>10~20</speed>
+        <angle>135~225</angle>
+        <positionRadius>0.01</positionRadius>
+        <spawnLocType>OnSource</spawnLocType>
+      </li>
+    </children>
+    <offsetTowardsTarget>0.25~0.25</offsetTowardsTarget>
+    <positionRadius>0.1</positionRadius>
+  </EffecterDef>
   <ThingDef ParentName="MoteBase">
     <defName>DD_Spark_Mote</defName>
     <graphicData>
