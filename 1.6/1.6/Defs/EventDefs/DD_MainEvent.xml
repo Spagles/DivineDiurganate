@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <DivineDiurganate.EventDef>
+    <defName>DD_UI_Test_1</defName>
+    <label>测试事件</label>
+    <portraitPath>DivineDiurganate/Event/Portraits/DD_Michelle_1</portraitPath>
+    <characterName>米鼠儿</characterName>
+    <descriptions>
+      <li>测试。</li>
+    </descriptions>
+    <options>
+      <li>
+        <label>再见</label>
+        <useCustomColors>false</useCustomColors>
+        <optionEffects>
+          <li>
+            <effects>
+              <li Class="DivineDiurganate.Effect_CloseDialog" />
+            </effects>
+          </li>
+        </optionEffects>
+      </li>
+    </options>
+  </DivineDiurganate.EventDef>
+</Defs>

@@ -28,8 +28,8 @@ namespace DivineDiurganate
         }
 
         // 新增：自定义按钮样式设置
-        public static readonly Color CustomButtonNormalColor = new Color(0.5f, 0.2f, 0.2f, 1f);
-        public static readonly Color CustomButtonHoverColor = new Color(0.6f, 0.3f, 0.3f, 1f);
+        public static readonly Color CustomButtonNormalColor = new Color(0.3f, 0.3f, 0.3f, 1f);
+        public static readonly Color CustomButtonHoverColor = new Color(0.6f, 0.5f, 0.5f, 1f);
         public static readonly Color CustomButtonDisabledColor = new Color(0.15f, 0.15f, 0.15f, 0.6f);
 
         public static readonly Color CustomButtonTextNormalColor = new Color(0.9f, 0.9f, 0.9f, 1f);

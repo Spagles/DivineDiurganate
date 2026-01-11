@@ -7,7 +7,7 @@
     <!-- 主窗口设置 -->
     <showMainWindow>false</showMainWindow>
     <useDefaultBackground>false</useDefaultBackground>
-    <customBackgroundImagePath>Wula/Events/tile_large_bg</customBackgroundImagePath>
+    <customBackgroundImagePath>DivineDiurganate/Event/tile_large_bg</customBackgroundImagePath>
     <!-- <backgroundImagePath>Wula/Events/Portraits/PIA</backgroundImagePath> -->
     
     <windowSize>(600,900)</windowSize>

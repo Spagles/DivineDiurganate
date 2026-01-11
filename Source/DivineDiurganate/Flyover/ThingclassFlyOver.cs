@@ -831,7 +831,7 @@ namespace DivineDiurganate
             bool useApproachAnimation = true, float approachDuration = 1.0f, float approachOffsetDistance = 3f,
             bool? useFadeEffects = null, bool? useFadeIn = null, bool? useFadeOut = null,
             bool useDepartureAnimation = true, float departureDuration = 1.0f, float departureOffsetDistance = 3f,
-            float maxStayTime = 0f) // 新增参数
+            float maxStayTime = 0f ,Faction faction = null) // 新增参数
         {
             FlyOver flyOver = (FlyOver)ThingMaker.MakeThing(flyOverDef);
             flyOver.startPosition = start;
@@ -860,7 +860,11 @@ namespace DivineDiurganate
             if (useFadeOut.HasValue) flyOver.useFadeOut = useFadeOut.Value;
 
             // 简化派系设置
-            if (casterPawn != null && casterPawn.Faction != null)
+            if (faction != null)
+            {
+                flyOver.faction = faction;
+            }
+            if (faction == null && casterPawn != null && casterPawn.Faction != null)
             {
                 flyOver.faction = casterPawn.Faction;
             }

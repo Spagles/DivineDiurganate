@@ -62,8 +62,9 @@
         <!-- <contentThingDef>Medicine</contentThingDef>
         <contentCount>10</contentCount> -->
         
-        <cooldownTicks>420000</cooldownTicks>
-        <useLimit>1</useLimit>
+        <!-- <cooldownTicks>420000</cooldownTicks> -->
+        <cooldownTicks>10</cooldownTicks>
+        <useLimit>-1</useLimit>
         <label>Call Oberon Airship</label>
         <description>Send a signal to the Oberon Airship near the route, instructing it to proceed to the orbit above the colony.</description>
       </li>

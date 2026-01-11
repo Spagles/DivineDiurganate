@@ -11,8 +11,8 @@
   <DD_Flyover_AirShip.label>欧伯龙号重型飞空艇</DD_Flyover_AirShip.label>
   <DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-0.skillName>机炮扫射</DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-0.skillName>
   <DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-0.description>欧伯龙号调动其下挂的各个炮艇舱室，以渐近火力扫射殖民地所选的区域。</DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-0.description>
-  <DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-1.skillName>70mm火炮弹幕</DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-0.skillName>
-  <DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-1.description>欧伯龙号调动主舱室的70mm火炮，以渐近火力轰炸殖民地所选的区域。</DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-0.description>
+  <DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-1.skillName>70mm火炮弹幕</DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-1.skillName>
+  <DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-1.description>欧伯龙号调动主舱室的70mm火炮，以渐近火力轰炸殖民地所选的区域。</DD_Flyover_AirShip.comps.CompFlyOverSkill_Bombardment-1.description>
   <DD_Flyover_AirShip.comps.CompFlyOverSkill_SkyfallerDrop.skillName>航弹投掷</DD_Flyover_AirShip.comps.CompFlyOverSkill_SkyfallerDrop.skillName>
   <DD_Flyover_AirShip.comps.CompFlyOverSkill_SkyfallerDrop.description>从欧伯龙号的航弹发射架上投掷一枚航弹</DD_Flyover_AirShip.comps.CompFlyOverSkill_SkyfallerDrop.description>
   <DD_Flyover_AirShip.comps.CompFlyOverSkill_SkyfallerDrop.instantCastMessage>一枚航弹已经投放！</DD_Flyover_AirShip.comps.CompFlyOverSkill_SkyfallerDrop.instantCastMessage>
