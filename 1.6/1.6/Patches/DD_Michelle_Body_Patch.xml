@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+    <!--给米鼠儿把鼠棍换成大雷替换-->
+    <Operation Class="PatchOperationSequence">
+        <operations>
+            <li Class="PatchOperationReplace">
+                <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin"]/alienRace/graphicPaths/body</xpath>
+                <value>
+                    <body>
+                        <path>Things/Ratkin/Bodies/BodiesNaked_Thin</path>
+                        <extendedGraphics>
+                            <Age For="HumanlikeAdult">
+                                <path>Things/Ratkin/Bodies/BodiesNaked_Thin</path>
+                                <extendedGraphics>
+                                    <Backstory For="DD_MeowMeow_Knight">Wula/Things/WulaSpecies/Bodies/Naked_Thin</Backstory>
+                                </extendedGraphics>
+                            </Age>
+                            <Age For="HumanlikeTeenager">
+                                <path>Things/Ratkin/Bodies/BodiesNaked_Thin</path>
+                                <extendedGraphics>
+                                    <Backstory For="DD_MeowMeow_Knight">Wula/Things/WulaSpecies/Bodies/Naked_Thin</Backstory>
+                                </extendedGraphics>
+                            </Age>
+                            <Age For="HumanlikePreTeenager">
+                                <path>Things/Ratkin/Bodies/BodiesNaked_Thin</path>
+                                <extendedGraphics>
+                                    <Backstory For="DD_MeowMeow_Knight">Wula/Things/WulaSpecies/Bodies/Naked_Thin</Backstory>
+                                </extendedGraphics>
+                            </Age>
+                            <Age For="HumanlikeBaby">Things/Ratkin/Bodies/BodiesNaked_Baby</Age>
+                            <Age For="HumanlikeChild">Things/Ratkin/Bodies/BodiesNaked_Child</Age>
+                        </extendedGraphics>
+                    </body>
+                </value>
+            </li>
+        </operations>
+    </Operation>
+
+</Patch>
