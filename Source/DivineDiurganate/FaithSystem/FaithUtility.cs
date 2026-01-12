@@ -62,7 +62,60 @@ namespace DivineDiurganate
             return faithSystem.FaithPercent;
         }
         
-        // ==================== 新增：信仰值操作方法 ====================
+        // ==================== 新增：祈愿值相关方法 ====================
+        
+        /// <summary>
+        /// 获取祈愿值（如果pawn是领袖）
+        /// </summary>
+        public static float? GetWishValue(Pawn pawn)
+        {
+            if (!IsFaithLeader(pawn))
+                return null;
+                
+            var faithSystem = WorldComp_FaithSystem.Instance;
+            return faithSystem?.CurrentWish;
+        }
+        
+        /// <summary>
+        /// 获取祈愿值上限（如果pawn是领袖）
+        /// </summary>
+        public static float? GetMaxWishValue(Pawn pawn)
+        {
+            if (!IsFaithLeader(pawn))
+                return null;
+                
+            var faithSystem = WorldComp_FaithSystem.Instance;
+            return faithSystem?.MaxWish;
+        }
+        
+        /// <summary>
+        /// 获取祈愿值百分比（如果pawn是领袖）
+        /// </summary>
+        public static float? GetWishPercent(Pawn pawn)
+        {
+            if (!IsFaithLeader(pawn))
+                return null;
+                
+            var faithSystem = WorldComp_FaithSystem.Instance;
+            if (faithSystem == null)
+                return null;
+                
+            return faithSystem.WishPercent;
+        }
+        
+        /// <summary>
+        /// 获取祈愿值恢复速率（如果pawn是领袖）
+        /// </summary>
+        public static float? GetWishRecoveryRate(Pawn pawn)
+        {
+            if (!IsFaithLeader(pawn))
+                return null;
+                
+            var faithSystem = WorldComp_FaithSystem.Instance;
+            return faithSystem?.WishRecoveryRate;
+        }
+        
+        // ==================== 信仰值操作方法 ====================
         
         /// <summary>
         /// 按数量增加信仰值
@@ -165,7 +218,110 @@ namespace DivineDiurganate
             return true;
         }
         
-        // ==================== 新增：检查方法 ====================
+        // ==================== 新增：祈愿值操作方法 ====================
+        
+        /// <summary>
+        /// 按数量增加祈愿值
+        /// </summary>
+        public static bool AddWish(float amount, string reason = "")
+        {
+            var faithSystem = WorldComp_FaithSystem.Instance;
+            if (faithSystem == null || !faithSystem.IsActive)
+                return false;
+                
+            faithSystem.AddWish(amount, reason);
+            return true;
+        }
+        
+        /// <summary>
+        /// 按比例增加祈愿值
+        /// </summary>
+        public static bool AddWishByPercent(float percent, string reason = "")
+        {
+            var faithSystem = WorldComp_FaithSystem.Instance;
+            if (faithSystem == null || !faithSystem.IsActive)
+                return false;
+                
+            faithSystem.AddWishByPercent(percent, reason);
+            return true;
+        }
+        
+        /// <summary>
+        /// 检查是否有足够的祈愿值
+        /// </summary>
+        public static bool HasEnoughWish(float requiredAmount)
+        {
+            var faithSystem = WorldComp_FaithSystem.Instance;
+            if (faithSystem == null || !faithSystem.IsActive)
+                return false;
+                
+            return faithSystem.CurrentWish >= requiredAmount;
+        }
+        
+        /// <summary>
+        /// 按数量消耗祈愿值
+        /// </summary>
+        public static bool TryConsumeWish(float amount, string reason = "")
+        {
+            var faithSystem = WorldComp_FaithSystem.Instance;
+            if (faithSystem == null || !faithSystem.IsActive)
+                return false;
+                
+            return faithSystem.TryConsumeWish(amount, reason);
+        }
+        
+        /// <summary>
+        /// 按比例消耗祈愿值
+        /// </summary>
+        public static bool TryConsumeWishByPercent(float percent, string reason = "")
+        {
+            var faithSystem = WorldComp_FaithSystem.Instance;
+            if (faithSystem == null || !faithSystem.IsActive)
+                return false;
+                
+            return faithSystem.TryConsumeWishByPercent(percent, reason);
+        }
+        
+        /// <summary>
+        /// 设置祈愿值
+        /// </summary>
+        public static bool SetWish(float value, string reason = "")
+        {
+            var faithSystem = WorldComp_FaithSystem.Instance;
+            if (faithSystem == null || !faithSystem.IsActive)
+                return false;
+                
+            faithSystem.SetWish(value, reason);
+            return true;
+        }
+        
+        /// <summary>
+        /// 按比例设置祈愿值
+        /// </summary>
+        public static bool SetWishByPercent(float percent, string reason = "")
+        {
+            var faithSystem = WorldComp_FaithSystem.Instance;
+            if (faithSystem == null || !faithSystem.IsActive)
+                return false;
+                
+            faithSystem.SetWishByPercent(percent, reason);
+            return true;
+        }
+        
+        /// <summary>
+        /// 填充祈愿值到上限
+        /// </summary>
+        public static bool FillWishToFull(string reason = "")
+        {
+            var faithSystem = WorldComp_FaithSystem.Instance;
+            if (faithSystem == null || !faithSystem.IsActive)
+                return false;
+                
+            faithSystem.FillWishToFull(reason);
+            return true;
+        }
+        
+        // ==================== 检查方法 ====================
         
         /// <summary>
         /// 检查是否有足够百分比的信仰值
@@ -180,6 +336,18 @@ namespace DivineDiurganate
         }
         
         /// <summary>
+        /// 检查是否有足够百分比的祈愿值
+        /// </summary>
+        public static bool HasEnoughWishPercent(float percent)
+        {
+            var faithSystem = WorldComp_FaithSystem.Instance;
+            if (faithSystem == null || !faithSystem.IsActive)
+                return false;
+                
+            return faithSystem.HasEnoughWishPercent(percent);
+        }
+        
+        /// <summary>
         /// 获取可用信仰值百分比
         /// </summary>
         public static float GetAvailableFaithPercent()
@@ -189,6 +357,18 @@ namespace DivineDiurganate
                 return 0f;
                 
             return faithSystem.GetAvailableFaithPercent();
+        }
+        
+        /// <summary>
+        /// 获取可用祈愿值百分比
+        /// </summary>
+        public static float GetAvailableWishPercent()
+        {
+            var faithSystem = WorldComp_FaithSystem.Instance;
+            if (faithSystem == null || !faithSystem.IsActive)
+                return 0f;
+                
+            return faithSystem.GetAvailableWishPercent();
         }
         
         /// <summary>
@@ -216,6 +396,30 @@ namespace DivineDiurganate
         }
         
         /// <summary>
+        /// 获取剩余祈愿值容量
+        /// </summary>
+        public static float GetRemainingWishCapacity()
+        {
+            var faithSystem = WorldComp_FaithSystem.Instance;
+            if (faithSystem == null || !faithSystem.IsActive)
+                return 0f;
+                
+            return faithSystem.GetRemainingWishCapacity();
+        }
+        
+        /// <summary>
+        /// 获取剩余祈愿值容量百分比
+        /// </summary>
+        public static float GetRemainingWishCapacityPercent()
+        {
+            var faithSystem = WorldComp_FaithSystem.Instance;
+            if (faithSystem == null || !faithSystem.IsActive)
+                return 0f;
+                
+            return faithSystem.GetRemainingWishCapacityPercent();
+        }
+        
+        /// <summary>
         /// 获取信仰系统状态描述
         /// </summary>
         public static string GetFaithSystemStatus()
@@ -227,7 +431,7 @@ namespace DivineDiurganate
             if (!faithSystem.IsActive)
                 return "Faith System: Inactive";
                 
-            return $"Faith System: Active\nLeader: {faithSystem.CurrentLeader?.NameShortColored ?? "None"}\nFaith: {faithSystem.CurrentFaith:F0}/{faithSystem.MaxFaith:F0} ({faithSystem.FaithPercent:P1})\nFollowers: {faithSystem.FollowerCount}";
+            return $"Faith System: Active\nLeader: {faithSystem.CurrentLeader?.NameShortColored ?? "None"}\nFaith: {faithSystem.CurrentFaith:F0}/{faithSystem.MaxFaith:F0} ({faithSystem.FaithPercent:P1})\nWish: {faithSystem.CurrentWish:F0}/{faithSystem.MaxWish:F0} ({faithSystem.WishPercent:P1})\nWish Recovery: {faithSystem.WishRecoveryRate:F1}/day\nFollowers: {faithSystem.FollowerCount}";
         }
         
         /// <summary>

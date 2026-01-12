@@ -417,6 +417,8 @@
     <Compile Include="ScenPart\ScenPart_InstantHediffOnGameStart.cs" />
     <Compile Include="ScenPart\ScenPart_RandomFireAtStart.cs" />
     <Compile Include="ScenPart\ScenPart_SpawnCorpsesNearStart.cs" />
+    <Compile Include="StoryTeller\InitialMemeTrigger\StorytellerComp_InitialMemeTrigger.cs" />
+    <Compile Include="StoryTeller\InitialMemeTrigger\StorytellerCompProperties_InitialMemeTrigger.cs" />
     <Compile Include="StoryTeller\StorytellerCompProperties_MemeRoleTrigger.cs" />
     <Compile Include="StoryTeller\StorytellerComp_MemeRoleTrigger.cs" />
     <Compile Include="Thing_Comp\BuildingSpawnPawn\CompBuildToPawn.cs" />
