@@ -163,4 +163,54 @@
   <DD_Flyover_FailedAssignJob>分配呼叫工作失败</DD_Flyover_FailedAssignJob>
   <DD_Flyover_PawnAssigned>{0} 开始呼叫</DD_Flyover_PawnAssigned>
   <DD_Flyover_OnCooldown>正在冷却，剩余{0}</DD_Flyover_OnCooldown>
+  <DD_Gizmo_Title>信仰系统</DD_Gizmo_Title>
+  <DD_Gizmo_RecoveryRate>+{0}/天</DD_Gizmo_RecoveryRate>
+  
+  <!-- 基础工具提示 -->
+  <DD_Gizmo_BaseTitle>信仰与祈愿系统</DD_Gizmo_BaseTitle>
+  <DD_Gizmo_HoverHint>将鼠标悬停在每个条上查看详细信息。</DD_Gizmo_HoverHint>
+  <DD_Gizmo_FaithDesc>信仰：追随者的长期虔诚</DD_Gizmo_FaithDesc>
+  <DD_Gizmo_WishDesc>祈愿：每日恢复的短期狂热</DD_Gizmo_WishDesc>
+  <DD_Gizmo_CurrentLeader>当前领袖：{0}</DD_Gizmo_CurrentLeader>
+  
+  <!-- 调试信息 -->
+  <DD_Gizmo_DebugHeader>--- 调试信息 ---</DD_Gizmo_DebugHeader>
+  <DD_Gizmo_DebugSystemActive>系统激活：{0}</DD_Gizmo_DebugSystemActive>
+  <DD_Gizmo_DebugFollowers>信徒数量：{0}</DD_Gizmo_DebugFollowers>
+  
+  <!-- 信仰条悬浮提示 -->
+  <DD_FaithTooltip_Title>信仰</DD_FaithTooltip_Title>
+  <DD_FaithTooltip_Current>当前：{0} / {1}</DD_FaithTooltip_Current>
+  <DD_FaithTooltip_Percent>百分比：{0}</DD_FaithTooltip_Percent>
+  <DD_FaithTooltip_Factors>影响因素：</DD_FaithTooltip_Factors>
+  <DD_FaithTooltip_Followers>• 信徒：{0}</DD_FaithTooltip_Followers>
+  <DD_FaithTooltip_FollowerCapacity>    - 每个信徒最大信仰值：100</DD_FaithTooltip_FollowerCapacity>
+  <DD_FaithTooltip_TotalCapacity>    - 总容量：{0}</DD_FaithTooltip_TotalCapacity>
+  <DD_FaithTooltip_Leader>• 领袖：{0}</DD_FaithTooltip_Leader>
+  <DD_FaithTooltip_Health>    - 健康度：{0}</DD_FaithTooltip_Health>
+  <DD_FaithTooltip_Mood>    - 心情：{0}</DD_FaithTooltip_Mood>
+  <DD_FaithTooltip_MoodPenalty>      (心情惩罚可能生效)</DD_FaithTooltip_MoodPenalty>
+  <DD_FaithTooltip_Description>描述：</DD_FaithTooltip_Description>
+  <DD_FaithTooltip_DescriptionText>信仰代表追随者的集体信仰和虔诚。它可以用于执行强大的仪式和增强殖民地活动。</DD_FaithTooltip_DescriptionText>
+  
+  <!-- 祈愿条悬浮提示 -->
+  <DD_WishTooltip_Title>祈愿</DD_WishTooltip_Title>
+  <DD_WishTooltip_Current>当前：{0} / {1}</DD_WishTooltip_Current>
+  <DD_WishTooltip_Percent>百分比：{0}</DD_WishTooltip_Percent>
+  <DD_WishTooltip_Recovery>恢复速率：{0}/天</DD_WishTooltip_Recovery>
+  <DD_WishTooltip_Factors>影响因素：</DD_WishTooltip_Factors>
+  <DD_WishTooltip_Capacity>• 容量：{0}</DD_WishTooltip_Capacity>
+  <DD_WishTooltip_CapacityExplanation>    - 等于剩余信仰容量</DD_WishTooltip_CapacityExplanation>
+  <DD_WishTooltip_MaxFaith>    - 最大信仰值：{0}</DD_WishTooltip_MaxFaith>
+  <DD_WishTooltip_CurrentFaith>    - 当前信仰值：{0}</DD_WishTooltip_CurrentFaith>
+  <DD_WishTooltip_RecoveryRate>• 恢复速率：{0}/天</DD_WishTooltip_RecoveryRate>
+  <DD_WishTooltip_BaseRate>    - 基础速率：10.0/天</DD_WishTooltip_BaseRate>
+  <DD_WishTooltip_HealthPenalty>    - 健康惩罚：{0} × 2</DD_WishTooltip_HealthPenalty>
+  <DD_WishTooltip_MoodPenalty>    - 心情惩罚：×0.5</DD_WishTooltip_MoodPenalty>
+  <DD_WishTooltip_MoodBonus>    - 心情加成：×1.5</DD_WishTooltip_MoodBonus>
+  <DD_WishTooltip_FollowersBonus>    - 信徒加成：+{0} × 0.5</DD_WishTooltip_FollowersBonus>
+  <DD_WishTooltip_TimeToFull>    - 充满时间：{0} 小时</DD_WishTooltip_TimeToFull>
+  <DD_WishTooltip_Description>描述：</DD_WishTooltip_Description>
+  <DD_WishTooltip_DescriptionText>祈愿代表追随者的瞬时狂热和即时虔诚。它随时间自然恢复，可用于快速、暂时的祝福。祈愿容量受剩余信仰容量限制。</DD_WishTooltip_DescriptionText>
+
 </LanguageData>
