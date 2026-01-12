@@ -370,4 +370,29 @@
       </li> -->
     </children>
   </EffecterDef>
+
+  <ThingDef ParentName="MoteBase">
+    <defName>DD_Mote_Penetrating_Beam</defName>
+    <thingClass>MoteDualAttached</thingClass>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>0.1</fadeInTime>
+      <fadeOutTime>0.1</fadeOutTime>
+      <solidTime>0.1</solidTime>
+      <rotateTowardsTarget>True</rotateTowardsTarget>
+      <scaleToConnectTargets>True</scaleToConnectTargets>
+    </mote>
+    <drawOffscreen>true</drawOffscreen>
+    <graphicData>
+      <texPath>Things/Projectile/ChargeLanceShot</texPath>
+      <graphicClass>Graphic_MoteWithAgeSecs</graphicClass>
+      <color>(255, 255, 255, 255)</color>
+      <shaderType>MoteBeam</shaderType>
+      <shaderParameters>
+        <_ScrollSpeedA>0</_ScrollSpeedA>
+        <_ScrollSpeedB>0</_ScrollSpeedB>
+        <_Intensity>2</_Intensity>
+      </shaderParameters>
+    </graphicData>
+  </ThingDef>
 </Defs>
