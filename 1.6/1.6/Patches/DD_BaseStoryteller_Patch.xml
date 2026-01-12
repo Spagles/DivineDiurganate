@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Patch>
-  <!-- <Operation Class="PatchOperationAdd">
+  <Operation Class="PatchOperationAdd">
     <xpath>Defs/StorytellerDef[@Name="BaseStoryteller"]/comps</xpath>
     <value>
-      <li Class="WulaFallenEmpire.StorytellerCompProperties_ImportantQuestWithFactionFilter">
-        <fireAfterDaysPassed>1</fireAfterDaysPassed>
-        <questIncident>WULA_GiveQuest_Intro_Spy</questIncident>
-        <questDef>WULA_Intro_Spy</questDef>
-        <useFactionFilter>true</useFactionFilter>
-        <defaultBehavior>Allow</defaultBehavior>
-        <factionTypeBlacklist>
-          <li>WULA_Awakened_Synth</li>
-        </factionTypeBlacklist>
-        <allowedTargetTags>
-          <li>Map_PlayerHome</li>
-        </allowedTargetTags>
+      <li Class="DivineDiurganate.StorytellerCompProperties_InitialMemeTrigger">
+        <memeToCheck>DD_law_Meme</memeToCheck>
+        <!-- <incidentIfHasMeme>DD_GiveQuest_Intro_MemeCheck</incidentIfHasMeme> -->
+        <incidentIfNoMeme>DD_GiveQuest_Intro_MemeCheck</incidentIfNoMeme>
+        
+        <!-- 时间配置 -->
+        <fireAfterDaysPassed>0.0001</fireAfterDaysPassed>
+        <checkIntervalDays>0.0001</checkIntervalDays>
+        <onlyOncePerGame>true</onlyOncePerGame>
+        
+        <!-- 调试 -->
+        <debugLogging>false</debugLogging>
       </li>
     </value>
-  </Operation> -->
+  </Operation>
 </Patch>

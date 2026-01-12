@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <IncidentDef>
+    <defName>DD_GiveQuest_Intro_MemeCheck</defName>
+    <category>GiveQuest</category>
+    <label>双尾教介绍</label>
+    <targetTags>
+      <li>Map_PlayerHome</li>
+    </targetTags>
+    <questScriptDef>DD_Intro_MemeCheck</questScriptDef>
+    <workerClass>IncidentWorker_GiveQuest</workerClass>
+    <baseChance>0</baseChance>
+  </IncidentDef>
+  <QuestScriptDef>
+    <defName>DD_Intro_MemeCheck</defName>
+    <rootSelectionWeight>0</rootSelectionWeight>
+    <autoAccept>true</autoAccept>
+    <sendAvailableLetter>true</sendAvailableLetter>
+    <defaultChallengeRating>1</defaultChallengeRating>    <!-- 挑战等级（星级） -->
+    <defaultCharity>false</defaultCharity>    <!-- 是否仁善 -->
+    <isRootSpecial>true</isRootSpecial>    <!-- 特殊任务 -->
+    <!-- 命名规则 -->
+    <questNameRules>
+      <rulesStrings>
+        <li>questName->DD_Intro_MemeCheck_questName</li>
+      </rulesStrings>
+    </questNameRules>
+    <questDescriptionRules>
+      <include>
+        <li>QuestHospitalityCommon</li>
+      </include>
+      <rulesStrings>
+        <li>questDescription->DD_Intro_MemeCheck_questDescription</li>
+      </rulesStrings>
+    </questDescriptionRules>
+
+    <!-- 运行规则 -->
+    <root Class="QuestNode_Sequence">
+      <nodes>
+        <li Class="QuestNode_Delay">
+          <delayTicks>60</delayTicks>
+          <!-- <delayTicks>360</delayTicks> -->
+          <node Class="QuestNode_Sequence">
+            <nodes>
+              <li Class="QuestNode_SendSignals">
+                <outSignals>UI_Start</outSignals>
+              </li>
+              <li Class="DivineDiurganate.QuestNode_EventLetter">
+                <inSignal>UI_Start</inSignal>
+                <eventDefName>DD_Intro_MemeCheck_UI_1</eventDefName>
+              </li>
+              <li Class="QuestNode_End">
+                <outcome>Success</outcome>
+                <sendStandardLetter>false</sendStandardLetter>
+              </li>
+            </nodes>
+          </node>
+        </li>
+      </nodes>
+    </root>
+  </QuestScriptDef>
+  <DivineDiurganate.EventDef>
+    <defName>DD_Intro_MemeCheck_UI_1</defName>
+    <label>事件</label>
+    <portraitPath>DivineDiurganate/Event/Portraits/DD_Michelle_1</portraitPath>
+    <characterName>米鼠儿</characterName>
+    <descriptions>
+      <li>Ciallo～，很抱歉打扰你立刻享受游戏——我只是想告诉你，如果你不选择包含双尾教戒律的文化进行游戏，你将几乎无法游玩双尾教国的大部分内容。\n\n当然，如果你本来就不打算以玩家视角游玩mod内容，可以直接无视这条警告。</li>
+    </descriptions>
+    <options>
+      <li>
+        <label>我已知悉</label>
+        <useCustomColors>false</useCustomColors>
+        <optionEffects>
+          <li>
+            <effects>
+              <li Class="DivineDiurganate.Effect_CloseDialog" />
+            </effects>
+          </li>
+        </optionEffects>
+      </li>
+    </options>
+  </DivineDiurganate.EventDef>
+</Defs>
