@@ -52,22 +52,5 @@ namespace DivineDiurganate
         }
     }
     
-    /// <summary>
-    /// Harmony补丁 - 在Pawn绘制后绘制护盾
-    /// </summary>
-    [HarmonyPatch(typeof(Pawn), "DrawAt")]
-    public static class Patch_AdaptiveShield_DrawShield
-    {
-        public static void Postfix(Pawn __instance, Vector3 drawLoc, bool flip)
-        {
-            if (__instance == null || !__instance.Spawned || __instance.Dead)
-                return;
-                
-            var shieldComp = Patch_AdaptiveShield_PreApplyDamage.GetAdaptiveShieldHediff(__instance);
-            if (shieldComp != null)
-            {
-                shieldComp.DrawShield();
-            }
-        }
-    }
+
 }
