@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Defs>
+  <AlienRace.AlienBackstoryDef ParentName="BaseRatkinBackStory">
+    <defName>DD_Ratkin_Sister</defName>
+    <slot>Adulthood</slot>
+    <title>Diurganate Sister</title>
+    <titleShort>Sister</titleShort>
+    <description>[PAWN_nameDef] is a nun from the Divine Diurganate. Compared to the followers of various folk religions in the Ratkin Kingdom, the followers of the Diurganate are more radical, thus [PAWN_pronoun] is different from the nuns active in other Rat Kingdoms. As the leader of the Diurganate's small group of followers, [PAWN_pronoun] always inspires nearby followers with [PAWN_possessive] passionate spirit and leads them in striving for common goals—whether it's building colonies, holding prayer gatherings, or judging the unbelievers.</description>
+    <bodyTypeGlobal>Thin</bodyTypeGlobal>
+    <bodyTypeMale>Thin</bodyTypeMale>
+    <bodyTypeFemale>Thin</bodyTypeFemale>
+    <skillGains>
+      <Melee>1</Melee>
+      <Medicine>4</Medicine>
+      <Social>4</Social>
+      <Artistic>2</Artistic>
+    </skillGains>
+
+    <!-- <workDisables>
+      <li>Violent</li>
+    </workDisables> -->
+
+    <requiredWorkTags>Violent</requiredWorkTags>
+
+    <forcedTraitsChance Inherit="False">
+      <li>
+        <defName Degree="2">Beauty</defName>
+        <chance>100</chance>
+      </li>
+      <li>
+        <defName Degree="0">Faith</defName>
+        <chance>100</chance>
+      </li>
+    </forcedTraitsChance>
+
+    <spawnCategories>
+      <li>RatkinStory</li>
+      <li>RatkinNoble</li>
+      <!-- <li>RatkinPriest</li> -->
+      <li>RatkinKingdom</li>
+      <!-- <li>RatkinNonViolence</li> -->
+      <!-- <li>RatkinFarm</li>
+      <li>RatkinThief</li> -->
+      <!-- <li>RatkinUneducated</li> -->
+      <!-- <li>RatkinEliteDefender</li>
+      <li>RatkinServant</li> -->
+      <li>RatkinSoldier</li>
+      <li>RatkinDefender</li>
+      <!-- <li>RatkinGuardener</li> -->
+      <!-- <li>RatkinKnight</li> -->
+      <!-- <li>RatkinKnightCommander</li> -->
+      <li>DD_RatkinDisciple</li>
+      <li>DD_RatkinClergy</li>
+    </spawnCategories>
+    <passions>
+      <Medicine>2</Medicine>
+    </passions>
+  </AlienRace.AlienBackstoryDef>
+
+  <!-- sp -->
+  <AlienRace.AlienBackstoryDef ParentName="BaseRatkinBackStory">
+    <defName>DD_Ratkin_Adopted_Child</defName>
+    <slot>Adulthood</slot>
+    <title>Adopted Ratkin Child</title>
+    <titleShort>Adopted Child</titleShort>
+    <description>[PAWN_nameDef] was an adopted child. On a stormy night, a rat couple found [PAWN_nameDef] abandoned by the roadside. Despite being local celebrities and already having a daughter, and despite [PAWN_pronoun] is not being ratkin, they adopted [PAWN_nameDef]—an act considered a defilement of their pure faith by the fanatical and xenophobic Diurganate Community. To survive in the Diurganate's xenophobic environment, the couple provided him with lifelike fake ears and a fake tail, and sent their daughter outside to protect [PAWN_pronoun]. The child who should have died in the stormy night finally found a warm home.</description>
+    <bodyTypeGlobal>Thin</bodyTypeGlobal>
+    <bodyTypeMale>Thin</bodyTypeMale>
+		<bodyTypeFemale>Thin</bodyTypeFemale>
+     <skillGains>
+      <Melee>1</Melee>
+      <Medicine>4</Medicine>
+      <Social>4</Social>
+			<Artistic>2</Artistic>
+    </skillGains>
+
+		<!-- <workDisables>
+			<li>Violent</li>
+		</workDisables> -->
+
+    <requiredWorkTags>Violent</requiredWorkTags>
+
+		<forcedTraitsChance Inherit="False">
+      <li>
+        <defName Degree="2">Beauty</defName>
+        <chance>100</chance>
+      </li>
+      <li>
+        <defName Degree="0">Faith</defName>
+        <chance>100</chance>
+      </li>
+		</forcedTraitsChance>
+
+    <spawnCategories>
+			<li>RatkinStory</li>
+			<li>RatkinNoble</li>
+			<!-- <li>RatkinPriest</li> -->
+			<li>RatkinKingdom</li>
+			<!-- <li>RatkinNonViolence</li> -->
+			<!-- <li>RatkinFarm</li>
+			<li>RatkinThief</li> -->
+			<!-- <li>RatkinUneducated</li> -->
+			<!-- <li>RatkinEliteDefender</li>
+			<li>RatkinServant</li> -->
+			<li>RatkinSoldier</li>
+			<li>RatkinDefender</li>
+			<!-- <li>RatkinGuardener</li> -->
+			<!-- <li>RatkinKnight</li> -->
+			<!-- <li>RatkinKnightCommander</li> -->
+			<li>DD_RatkinDisciple</li>
+			<li>DD_RatkinClergy</li>
+    </spawnCategories>
+    <passions>
+      <Medicine>2</Medicine>
+    </passions>
+  </AlienRace.AlienBackstoryDef>
+  <AlienRace.AlienBackstoryDef ParentName="BaseRatkinBackStory">
+    <defName>DD_Ratkin_Nobel_Child</defName>
+    <slot>Adulthood</slot>
+    <title>Ratkin Nobel Child</title>
+    <titleShort>Nobel Child</titleShort>
+    <description>[PAWN_nameDef] is a descendant of a prestigious ratkin family. From a young age, [PAWN_nameDef] received an elite education from the church in preparation for taking over the family business. [PAWN_possessive] spent [PAWN_pronoun] childhood immersed in scriptures and elaborate prayers. One day, [PAWN_possessive]'s parents brought home a child without ears or a tail. [PAWN_nameDef] quickly accepted her and loved her like a younger sister.</description>
+    <bodyTypeGlobal>Thin</bodyTypeGlobal>
+    <bodyTypeMale>Thin</bodyTypeMale>
+		<bodyTypeFemale>Thin</bodyTypeFemale>
+     <skillGains>
+      <Melee>1</Melee>
+      <Medicine>4</Medicine>
+      <Social>4</Social>
+			<Artistic>2</Artistic>
+    </skillGains>
+
+		<!-- <workDisables>
+			<li>Violent</li>
+		</workDisables> -->
+
+    <requiredWorkTags>Violent</requiredWorkTags>
+
+		<forcedTraitsChance Inherit="False">
+      <li>
+        <defName Degree="2">Beauty</defName>
+        <chance>100</chance>
+      </li>
+      <li>
+        <defName Degree="0">Faith</defName>
+        <chance>100</chance>
+      </li>
+		</forcedTraitsChance>
+
+    <spawnCategories>
+			<li>RatkinStory</li>
+			<li>RatkinNoble</li>
+			<!-- <li>RatkinPriest</li> -->
+			<li>RatkinKingdom</li>
+			<!-- <li>RatkinNonViolence</li> -->
+			<!-- <li>RatkinFarm</li>
+			<li>RatkinThief</li> -->
+			<!-- <li>RatkinUneducated</li> -->
+			<!-- <li>RatkinEliteDefender</li>
+			<li>RatkinServant</li> -->
+			<li>RatkinSoldier</li>
+			<li>RatkinDefender</li>
+			<!-- <li>RatkinGuardener</li> -->
+			<!-- <li>RatkinKnight</li> -->
+			<!-- <li>RatkinKnightCommander</li> -->
+			<li>DD_RatkinDisciple</li>
+			<li>DD_RatkinClergy</li>
+    </spawnCategories>
+    <passions>
+      <Medicine>2</Medicine>
+    </passions>
+  </AlienRace.AlienBackstoryDef>
+
+  <AlienRace.AlienBackstoryDef ParentName="BaseRatkinBackStory">
+    <defName>DD_Ratkin_Exiled_Exorcist</defName>
+    <slot>Adulthood</slot>
+    <title>Exiled Exorcist</title>
+    <titleShort>Exorcist</titleShort>
+    <description>Upon reaching adulthood, [PAWN_nameDef] became an exorcist for the Twin-Tail community enforcer authorized by the Catholic Church, responsible for eliminating evil and maintaining order in the church and surrounding area. [PAWN_pronoun] was always dedicated and deeply loved by the congregation, until one day, during a fight with thugs, [PAWN_possessive] accidentally lost hairpin. Those once praising and admiring gazes instantly turned sinister and vicious, cursing this alien who had deceived the ratkins. Ultimately, the church's public trial declared [PAWN_nameDef] exiled from the community. Without anger or protest, [PAWN_pronoun] silently left the home which had once protected.</description>
+    <bodyTypeGlobal>Thin</bodyTypeGlobal>
+    <bodyTypeMale>Thin</bodyTypeMale>
+		<bodyTypeFemale>Thin</bodyTypeFemale>
+     <skillGains>
+      <Shooting>4</Shooting>
+      <Medicine>2</Medicine>
+      <Social>2</Social>
+			<Artistic>2</Artistic>
+    </skillGains>
+    <requiredWorkTags>Violent</requiredWorkTags>
+
+		<forcedTraitsChance Inherit="False">
+      <li>
+        <defName Degree="2">Beauty</defName>
+        <chance>100</chance>
+      </li>
+      <li>
+        <defName Degree="0">Faith</defName>
+        <chance>100</chance>
+      </li>
+		</forcedTraitsChance>
+
+    <passions>
+      <Shooting>2</Shooting>
+    </passions>
+
+    <shuffleable>false</shuffleable>
+  </AlienRace.AlienBackstoryDef>
+  <AlienRace.AlienBackstoryDef ParentName="BaseRatkinBackStory">
+    <defName>DD_Ratkin_Idol_Sister</defName>
+    <slot>Adulthood</slot>
+    <title>Idol Sister</title>
+    <titleShort>Sister</titleShort>
+    <description>Upon reaching adulthood, [PAWN_nameDef] became a nun. Disliking the monotonous, mechanical preaching of traditional nuns, [PAWN_nameDef] chose to become an idol, touring the communities of the Twin-Tail, spreading the gospel through song. Young ratkins from far and wide flocked to this novel form of preaching, and [PAWN_possessive] tours were never short of audiences. However, when [PAWN_nameDef] returned home in triumph, [PAWN_pronoun] discovered the entire community had been destroyed. Because the community had banished its exorcist sheriff, some malicious rats and other races colluded to bring forbidden addictive substances into the community. No one stood up to stop it; their former faith was ruthlessly trampled, their parents were murdered by a frenzied mob, and the community had become a haven for addicts. Disappointed, [PAWN_nameDef] left home, embarking once more on [PAWN_possessive] preaching journey, and searching for [PAWN_possessive] lost sister.</description>
+    <bodyTypeGlobal>Thin</bodyTypeGlobal>
+    <bodyTypeMale>Thin</bodyTypeMale>
+		<bodyTypeFemale>Thin</bodyTypeFemale>
+     <skillGains>
+      <Melee>1</Melee>
+      <Medicine>4</Medicine>
+      <Social>4</Social>
+			<Artistic>2</Artistic>
+    </skillGains>
+
+		<!-- <workDisables>
+			<li>Violent</li>
+		</workDisables> -->
+
+    <requiredWorkTags>Violent</requiredWorkTags>
+
+		<forcedTraitsChance Inherit="False">
+      <li>
+        <defName Degree="2">Beauty</defName>
+        <chance>100</chance>
+      </li>
+      <li>
+        <defName Degree="0">Faith</defName>
+        <chance>100</chance>
+      </li>
+		</forcedTraitsChance>
+
+    <spawnCategories>
+			<li>RatkinStory</li>
+			<li>RatkinNoble</li>
+			<!-- <li>RatkinPriest</li> -->
+			<li>RatkinKingdom</li>
+			<!-- <li>RatkinNonViolence</li> -->
+			<!-- <li>RatkinFarm</li>
+			<li>RatkinThief</li> -->
+			<!-- <li>RatkinUneducated</li> -->
+			<!-- <li>RatkinEliteDefender</li>
+			<li>RatkinServant</li> -->
+			<li>RatkinSoldier</li>
+			<li>RatkinDefender</li>
+			<!-- <li>RatkinGuardener</li> -->
+			<!-- <li>RatkinKnight</li> -->
+			<!-- <li>RatkinKnightCommander</li> -->
+			<li>DD_RatkinDisciple</li>
+			<li>DD_RatkinClergy</li>
+    </spawnCategories>
+    <passions>
+      <Medicine>2</Medicine>
+    </passions>
+  </AlienRace.AlienBackstoryDef>
+</Defs>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: 事件 -->
+  <DD_Intro_MemeCheck_UI_1.label>事件</DD_Intro_MemeCheck_UI_1.label>
+  <!-- EN: 米鼠儿 -->
+  <DD_Intro_MemeCheck_UI_1.characterName>枫糖</DD_Intro_MemeCheck_UI_1.characterName>
+  <!-- EN: Ciallo～，很抱歉打扰你立刻享受游戏——我只是想告诉你，如果你不选择包含双尾教戒律的文化进行游戏，你将几乎无法游玩双尾教国的大部分内容。\n\n当然，如果你本来就不打算以玩家视角游玩mod内容，可以直接无视这条警告。 -->
+  <DD_Intro_MemeCheck_UI_1.descriptions.0>很抱歉打扰你立刻享受游戏——我只是想告诉你，如果你不选择包含双尾教戒律的文化进行游戏，你将几乎无法游玩双尾教国的大部分内容。\n\n当然，如果你本来就不打算以玩家视角游玩mod内容，可以直接无视这条警告。</DD_Intro_MemeCheck_UI_1.descriptions.0>
+  <!-- EN: 我已知悉 -->
+  <DD_Intro_MemeCheck_UI_1.options.0.label>我已知悉</DD_Intro_MemeCheck_UI_1.options.0.label>
+  
+</LanguageData>

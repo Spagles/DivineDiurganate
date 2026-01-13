@@ -27,6 +27,16 @@
   <!-- EN: Pistol Bullet -->
   <DD_Axe_Pistol_Bullet.label>手枪子弹</DD_Axe_Pistol_Bullet.label>
   
+  <!-- EN: 十字机枪 -->
+  <DD_Beam_Machinegun.label>十字机枪</DD_Beam_Machinegun.label>
+  <!-- EN: 象征着圣双尾鼠毁灭权柄的双尾教廷武器，只进行了少量的投产，它需要一点时间预热，然后就能迸发大量穿透性的光束烧穿面前的敌人——教廷对这种武器的运作方式严格保密，因此鼠鼠们完全不知道这个镶嵌着几块石头的烧火棍是怎么杀伤敌军的。 -->
+  <DD_Beam_Machinegun.description>象征着圣双尾鼠毁灭权柄的双尾教廷武器，只进行了少量的投产，它需要一点时间预热，然后就能迸发大量穿透性的光束烧穿面前的敌人——教廷对这种武器的运作方式严格保密，因此鼠鼠们完全不知道这个镶嵌着几块石头的烧火棍是怎么杀伤敌军的。</DD_Beam_Machinegun.description>
+  <!-- EN: 十字机枪 -->
+  <DD_Beam_Machinegun.verbs.Verb_ShootWithOffset.label>十字机枪</DD_Beam_Machinegun.verbs.Verb_ShootWithOffset.label>
+  
+  <!-- EN: 穿透光束 -->
+  <DD_Beam_Machinegun_Bullet.label>穿透光束</DD_Beam_Machinegun_Bullet.label>
+  
   <!-- EN: Exorcism Burner -->
   <DD_Fire_Shotgun.label>退魔圣焰</DD_Fire_Shotgun.label>
   <!-- EN: A shotgun filled with brass cast blessed incendiary bullet, enough for close range enemies to experience what "physical exorcism" is. -->

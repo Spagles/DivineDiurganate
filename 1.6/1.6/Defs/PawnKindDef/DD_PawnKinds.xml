@@ -32,6 +32,8 @@
 			</li>
 		</backstoryFiltersOverride>
 		<apparelMoney>0</apparelMoney>
+		<minGenerationAge>21</minGenerationAge>
+		<maxGenerationAge>30</maxGenerationAge>
 		<apparelTags>
 			<li>RK_Murderer</li>
 			<li>RK_Worker</li>
@@ -63,6 +65,8 @@
 			</li>
 		</backstoryFiltersOverride>
 		<apparelMoney>0</apparelMoney>
+		<minGenerationAge>21</minGenerationAge>
+		<maxGenerationAge>30</maxGenerationAge>
 		<weaponMoney>300~1200</weaponMoney>
 		<apparelRequired>
 			<li>DD_Nun_Dress</li>
@@ -89,6 +93,8 @@
 		</backstoryFiltersOverride>
 		<apparelMoney>0</apparelMoney>
 		<weaponMoney>1500~2500</weaponMoney>
+		<minGenerationAge>21</minGenerationAge>
+		<maxGenerationAge>30</maxGenerationAge>
 		<apparelRequired>
 			<li>DD_Crusaders_Uniform</li>
 			<li>DD_Crusaders_Helmet</li>
@@ -103,6 +109,8 @@
 		<label>Diurganate Nun</label>
 		<combatPower>1</combatPower>
 		<maxPerGroup>3</maxPerGroup>
+		<minGenerationAge>21</minGenerationAge>
+		<maxGenerationAge>30</maxGenerationAge>
 		<fixedAdultBackstories>
 			<li>DD_Ratkin_Sister</li>
 		</fixedAdultBackstories>
@@ -147,6 +155,8 @@
 		</apparelTags>
 		<apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
 		<weaponMoney>300~600</weaponMoney>
+		<minGenerationAge>21</minGenerationAge>
+		<maxGenerationAge>30</maxGenerationAge>
 		<weaponTags>
 			<li>DD_RatkinClergy_Weapon</li>
 		</weaponTags>
@@ -181,6 +191,8 @@
 		<defName>DD_Ratkin_Heavy_Crusader</defName>
 		<label>Diurganate Heavy Crusader</label>
 		<combatPower>340</combatPower>
+		<minGenerationAge>21</minGenerationAge>
+		<maxGenerationAge>30</maxGenerationAge>
 		<backstoryFiltersOverride>
 			<li>
 				<categories>
@@ -319,17 +331,17 @@
 		<fixedGender>Female</fixedGender>
 		<defaultFactionDef>PlayerColony</defaultFactionDef>
 		<combatPower>55</combatPower>
-		<minGenerationAge>20</minGenerationAge>
+		<minGenerationAge>21</minGenerationAge>
 		<maxGenerationAge>22</maxGenerationAge>
 		<isFighter>true</isFighter>
 		<chemicalAddictionChance>0</chemicalAddictionChance>
 		<!-- <backstoryCryptosleepCommonality>0.05</backstoryCryptosleepCommonality> -->
 		<nameMaker>DD_Maple_Sugar_NameMaker</nameMaker>
 		<fixedChildBackstories>
-			<li>Ratkin_Orphan</li>
+			<li>DD_Ratkin_Nobel_Child</li>
 		</fixedChildBackstories>
 		<fixedAdultBackstories>
-			<li>DD_Ratkin_Sister</li>
+			<li>DD_Ratkin_Idol_Sister</li>
 		</fixedAdultBackstories>
 		<xenotypeSet>
 			<xenotypeChances>
@@ -339,10 +351,6 @@
 		</xenotypeSet>
 		<forcedHair>DD_Maple_Sugar_Hair</forcedHair>
 		<forcedHairColor>(1,1,1,1)</forcedHairColor>
-		<requiredWorkTags>
-			<li>Violent</li>
-			<li>Caring</li>
-		</requiredWorkTags>
 		<invNutrition>10.0</invNutrition>
 		<inventoryOptions>
 			<subOptionsChooseOne>
@@ -434,10 +442,113 @@
 	</FacialAnimation.EyeballTypeDef>
 
 	<PawnKindDef ParentName="RKBasePawnKind">
+		<defName>DD_Michelle</defName>
+		<label>Michelle</label>
+		<fixedGender>Female</fixedGender>
+		<defaultFactionDef>PlayerColony</defaultFactionDef>
+		<combatPower>55</combatPower>
+		<minGenerationAge>19</minGenerationAge>
+		<maxGenerationAge>20</maxGenerationAge>
+		<isFighter>true</isFighter>
+		<chemicalAddictionChance>0</chemicalAddictionChance>
+		<!-- <backstoryCryptosleepCommonality>0.05</backstoryCryptosleepCommonality> -->
+		<nameMaker>DD_Michelle_NameMaker</nameMaker>
+		<fixedChildBackstories>
+			<li>DD_Ratkin_Adopted_Child</li>
+		</fixedChildBackstories>
+		<fixedAdultBackstories>
+			<li>DD_Ratkin_Exiled_Exorcist</li>
+		</fixedAdultBackstories>
+		<xenotypeSet>
+			<xenotypeChances>
+				<Baseliner>1</Baseliner>
+				<Ratkin_HouseMouse MayRequire="EoralMilk.RatkinGeneExpanded">9999</Ratkin_HouseMouse>
+			</xenotypeChances>
+		</xenotypeSet>
+		<forcedHair>RK_twin6</forcedHair>
+		<forcedHairColor>(203,180,147,255)</forcedHairColor>
+		<invNutrition>10.0</invNutrition>
+		<inventoryOptions>
+			<subOptionsChooseOne>
+				<li>
+					<thingDef>MedicineIndustrial</thingDef>
+					<countRange>5</countRange>
+				</li>
+			</subOptionsChooseOne>
+		</inventoryOptions>
+		<gearHealthRange>1~1</gearHealthRange>
+		<itemQuality>Good</itemQuality>
+		<weaponMoney>99999~99999</weaponMoney>
+		<apparelRequired>
+			<li>DD_Nun_Dress</li>
+			<li>DD_NunVeil</li>
+		</apparelRequired>
+		<weaponTags>
+			<li>DD_Michelle_Weapon</li>
+		</weaponTags>
+		<apparelTags>
+			<li>IndustrialBasic</li>
+			<li>IndustrialAdvanced</li>
+		</apparelTags>
+		<forcedTraits>
+			<Nerves>2</Nerves>
+      <Nimble>0</Nimble>
+		</forcedTraits>
+		<ignoreIdeoApparelColors>true</ignoreIdeoApparelColors>
+		<initialWillRange>0~0</initialWillRange>
+		<initialResistanceRange>0~2</initialResistanceRange>
+		<humanPregnancyChance>0</humanPregnancyChance>
+
+		<modExtensions>
+			<li Class="DivineDiurganate.HeadTypeExtension">
+				<!-- 设置头部类型 -->
+				<forcedHeadTypeDef>DD_Michelle_Head</forcedHeadTypeDef>
+			</li>
+			<li Class="DivineDiurganate.PawnKindExtension_EyeballOverride">
+				<eyeballTypeDefNames>
+					<li>DD_Michelle_Eyeball</li>					<!-- 直接指定Def名称 -->
+				</eyeballTypeDefNames>
+			</li>
+		</modExtensions>
+	</PawnKindDef>
+	<RulePackDef>
+		<defName>DD_Michelle_NameMaker</defName>
+		<include>
+			<li>RatkinKingdomNameUtility</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+				<li>r_name->[DD_Michelle_FirstName] '[DD_Michelle_nickName]' [DD_Michelle_LastName]</li>
+				<li>DD_Michelle_nickName->Michelle</li>
+				<li>DD_Michelle_FirstName->Michelle</li>
+				<li>DD_Michelle_LastName->Ariel</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+	<HeadTypeDef ParentName="AverageBase">
+		<defName>DD_Michelle_Head</defName>
+		<graphicPath>DivineDiurganate/Head/DD_Michelle_Head</graphicPath>
+		<gender>None</gender>
+		<randomChosen>false</randomChosen>
+	</HeadTypeDef>
+	<FacialAnimation.EyeballTypeDef MayRequire="Nals.FacialAnimation">
+		<defName>DD_Michelle_Eyeball</defName>
+		<texPath>DivineDiurganate/Eyes/Michelle</texPath>
+		<altMaskPath>Things/Pawn/FA-Experimentals/Eyes/Common</altMaskPath>
+		<raceName>Ratkin</raceName>
+		<shader>Map/CutoutSkinOverlay</shader>
+		<minColor>(0.99,0.99,0.99,1)</minColor>
+		<maxColor>(1,1,1,1)</maxColor>
+		<probability>0.0001</probability>
+	</FacialAnimation.EyeballTypeDef>
+
+	<PawnKindDef ParentName="RKBasePawnKind">
 		<defName>DD_Ratkin_Nun_Without_Weapon</defName>
 		<label>Diurganate Nun</label>
 		<combatPower>1</combatPower>
 		<maxPerGroup>1</maxPerGroup>
+		<minGenerationAge>21</minGenerationAge>
+		<maxGenerationAge>30</maxGenerationAge>
 		<fixedAdultBackstories>
 			<li>DD_Ratkin_Sister</li>
 		</fixedAdultBackstories>
@@ -455,85 +566,5 @@
 			<li>DD_NunVeil</li>
 		</apparelRequired>
 		<apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
-	</PawnKindDef>
-
-	<PawnKindDef ParentName="RKBasePawnKind">
-		<defName>DD_Michelle</defName>
-		<label>Michelle</label>
-		<fixedGender>Female</fixedGender>
-		<defaultFactionDef>PlayerColony</defaultFactionDef>
-		<combatPower>55</combatPower>
-		<minGenerationAge>20</minGenerationAge>
-		<maxGenerationAge>22</maxGenerationAge>
-		<isFighter>true</isFighter>
-		<chemicalAddictionChance>0</chemicalAddictionChance>
-		<!-- <backstoryCryptosleepCommonality>0.05</backstoryCryptosleepCommonality> -->
-		<nameMaker>DD_Michelle_NameMaker</nameMaker>
-		<fixedChildBackstories>
-			<li>Ratkin_Noble</li>
-		</fixedChildBackstories>
-		<fixedAdultBackstories>
-			<li>DD_MeowMeow_Knight</li>
-		</fixedAdultBackstories>
-		<xenotypeSet>
-			<xenotypeChances>
-				<Baseliner>1</Baseliner>
-				<Ratkin_HouseMouse MayRequire="EoralMilk.RatkinGeneExpanded">9999</Ratkin_HouseMouse>
-			</xenotypeChances>
-		</xenotypeSet>
-		<forcedHair>DD_Maple_Sugar_Hair</forcedHair>
-		<forcedHairColor>(1,1,1,1)</forcedHairColor>
-		<requiredWorkTags>
-			<li>Violent</li>
-			<li>Caring</li>
-		</requiredWorkTags>
-		<invNutrition>10.0</invNutrition>
-		<inventoryOptions>
-			<subOptionsChooseOne>
-				<li>
-					<thingDef>MedicineIndustrial</thingDef>
-					<countRange>5</countRange>
-				</li>
-			</subOptionsChooseOne>
-		</inventoryOptions>
-		<gearHealthRange>1~1</gearHealthRange>
-		<itemQuality>Good</itemQuality>
-		<weaponMoney>99999~99999</weaponMoney>
-		<apparelRequired>
-			<li>DD_Nun_Dress</li>
-			<li>DD_NunVeil</li>
-			<li>DD_Maple_Sugar_PackLoudspeaker</li>
-		</apparelRequired>
-		<weaponTags>
-			<li>DD_Maple_Sugar_Weapon</li>
-		</weaponTags>
-		<apparelTags>
-			<li>IndustrialBasic</li>
-			<li>IndustrialAdvanced</li>
-		</apparelTags>
-		<forcedTraits>
-			<Bloodlust>0</Bloodlust>
-			<Gay>0</Gay>
-			<Beauty>1</Beauty>
-		</forcedTraits>
-		<ignoreIdeoApparelColors>true</ignoreIdeoApparelColors>
-		<initialWillRange>0~0</initialWillRange>
-		<initialResistanceRange>0~2</initialResistanceRange>
-		<humanPregnancyChance>0</humanPregnancyChance>
-		<abilities>
-			<li>DD_Maple_Sugar_Heal</li>
-		</abilities>
-
-		<modExtensions>
-			<li Class="DivineDiurganate.HeadTypeExtension">
-				<!-- 设置头部类型 -->
-				<forcedHeadTypeDef>DD_Maple_Sugar_Head</forcedHeadTypeDef>
-			</li>
-			<li Class="DivineDiurganate.PawnKindExtension_EyeballOverride">
-				<eyeballTypeDefNames>
-					<li>DD_Maple_Sugar_Eyeball</li>					<!-- 直接指定Def名称 -->
-				</eyeballTypeDefNames>
-			</li>
-		</modExtensions>
 	</PawnKindDef>
 </Defs>

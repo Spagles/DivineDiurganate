@@ -315,6 +315,7 @@
 			<li>RK_RangeWeapon</li>
 			<li>RK_Murderer</li>
 			<li>DD_RatkinClergy_Weapon</li>
+			<li>DD_Michelle_Weapon</li>
 		</weaponTags>
     <generateCommonality>0.01</generateCommonality>
     <tradeability>None</tradeability>
@@ -535,8 +536,8 @@
   </ThingDef>
   <ThingDef ParentName="BaseHumanMakeableGun">
     <defName>DD_Beam_Machinegun</defName>
-    <label>十字机枪</label>
-    <description>象征着圣双尾鼠毁灭权柄的双尾教廷武器，只进行了少量的投产，它需要一点时间预热，然后就能迸发大量穿透性的光束烧穿面前的敌人——教廷对这种武器的运作方式严格保密，因此鼠鼠们完全不知道这个镶嵌着几块石头的烧火棍是怎么杀伤敌军的。</description>
+    <label>Cross Machinegun</label>
+    <description>The Divine Diurganate weapon, symbolizing the destruction of authority by the Holy Twin-tail, has only been produced in small quantities. It needs a little time to warm up before it can emit a powerful beam of penetrating light to burn through the enemies in front of it. The Catholic Church strictly keeps secret the operation method of this weapon, so the ratkins have no idea how this firestick embedded with several stones can kill and injure enemy troops.</description>
     <techLevel>Industrial</techLevel>
 		<weaponTags Inherit="false">
 			<li>RK_4TierWeapon</li>
@@ -600,7 +601,7 @@
   </ThingDef>
   <ThingDef ParentName="BaseBullet">
     <defName>DD_Beam_Machinegun_Bullet</defName>
-    <label>穿透光束</label>
+    <label>Penetrating Beam</label>
     <thingClass>DivineDiurganate.Projectile_PenetratingBullet</thingClass>
     <modExtensions>
       <li Class="DivineDiurganate.PenetratingBullet_Extension">
