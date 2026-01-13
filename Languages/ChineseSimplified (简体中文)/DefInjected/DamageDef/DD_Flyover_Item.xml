@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: Automatic Cannon Shoot -->
+  <DD_Automatic_Cannon_Damage.label>自动炮射击</DD_Automatic_Cannon_Damage.label>
+  <!-- EN: {0} has died in an explosion. -->
+  <DD_Automatic_Cannon_Damage.deathMessage>{0} 死于爆炸。</DD_Automatic_Cannon_Damage.deathMessage>
+  
+</LanguageData>

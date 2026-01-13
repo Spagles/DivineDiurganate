@@ -315,6 +315,7 @@
 			<li>RK_RangeWeapon</li>
 			<li>RK_Murderer</li>
 			<li>DD_RatkinClergy_Weapon</li>
+			<li>DD_Michelle_Weapon</li>
 		</weaponTags>
     <generateCommonality>0.01</generateCommonality>
     <tradeability>None</tradeability>

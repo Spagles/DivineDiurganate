@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: Anti-Mech Heavy Lance -->
+  <DD_AM_Heavy_Lance.label>反机甲长枪</DD_AM_Heavy_Lance.label>
+  <!-- EN: This heavy weapon combines an anti-mecha cannon and a spear, enabling it to effectively engage heavy armor targets at any range. However, it requires deployment before firing and demands exceptional skill from the user. -->
+  <DD_AM_Heavy_Lance.description>这款重型武器集反机甲炮和长矛于一体，能够有效地打击任何距离内的重甲目标。然而，在发射前需要对其进行部署，并且使用者需要具备高超的技巧。</DD_AM_Heavy_Lance.description>
+  <!-- EN: Lance Stab -->
+  <DD_AM_Heavy_Lance.tools.Lance_Stab.label>长枪穿刺</DD_AM_Heavy_Lance.tools.Lance_Stab.label>
+  <!-- EN: Anti-Mech Heavy Lance -->
+  <DD_AM_Heavy_Lance.verbs.Verb_Shoot.label>反机甲长枪</DD_AM_Heavy_Lance.verbs.Verb_Shoot.label>
+  
+  <!-- EN: Anti-Mech Shell -->
+  <DD_AM_Heavy_Lance_Bullet.label>反机甲炮弹</DD_AM_Heavy_Lance_Bullet.label>
+  
+  <!-- EN: Diurganate Axe Pistol -->
+  <DD_Axe_Pistol.label>双尾斧头手枪</DD_Axe_Pistol.label>
+  <!-- EN: The basic self-defense weapon used by the followers and clergy of the Diurganate has an axe blade fixed to the front of the barrel, allowing it to be used as an axe in close combat. -->
+  <DD_Axe_Pistol.description>双尾教廷的信徒和神职人员所使用的基础防身武器，枪管前端固定了斧刃，使其可以在近身战斗中当斧头使用。</DD_Axe_Pistol.description>
+  <!-- EN: Gunstock -->
+  <DD_Axe_Pistol.tools.Gunstock.label>枪托</DD_Axe_Pistol.tools.Gunstock.label>
+  <!-- EN: Axe Blade -->
+  <DD_Axe_Pistol.tools.Axe_Blade.label>斧刃</DD_Axe_Pistol.tools.Axe_Blade.label>
+  <!-- EN: Diurganate Axe Pistol -->
+  <DD_Axe_Pistol.verbs.Verb_Shoot.label>双尾斧头手枪</DD_Axe_Pistol.verbs.Verb_Shoot.label>
+  
+  <!-- EN: Pistol Bullet -->
+  <DD_Axe_Pistol_Bullet.label>手枪子弹</DD_Axe_Pistol_Bullet.label>
+  
+  <!-- EN: 十字机枪 -->
+  <DD_Beam_Machinegun.label>TODO</DD_Beam_Machinegun.label>
+  <!-- EN: 象征着圣双尾鼠毁灭权柄的双尾教廷武器，只进行了少量的投产，它需要一点时间预热，然后就能迸发大量穿透性的光束烧穿面前的敌人——教廷对这种武器的运作方式严格保密，因此鼠鼠们完全不知道这个镶嵌着几块石头的烧火棍是怎么杀伤敌军的。 -->
+  <DD_Beam_Machinegun.description>TODO</DD_Beam_Machinegun.description>
+  <!-- EN: 十字机枪 -->
+  <DD_Beam_Machinegun.verbs.Verb_ShootWithOffset.label>TODO</DD_Beam_Machinegun.verbs.Verb_ShootWithOffset.label>
+  
+  <!-- EN: 穿透光束 -->
+  <DD_Beam_Machinegun_Bullet.label>TODO</DD_Beam_Machinegun_Bullet.label>
+  
+  <!-- EN: Exorcism Burner -->
+  <DD_Fire_Shotgun.label>退魔圣焰</DD_Fire_Shotgun.label>
+  <!-- EN: A shotgun filled with brass cast blessed incendiary bullet, enough for close range enemies to experience what "physical exorcism" is. -->
+  <DD_Fire_Shotgun.description>一把霰弹枪，里面装填了以黄铜浇筑的受祝龙息弹，足以让近距离的敌人体验一下什么叫“物理驱魔”。</DD_Fire_Shotgun.description>
+  <!-- EN: Exorcism Burner -->
+  <DD_Fire_Shotgun.verbs.Verb_ShootFireSpew.label>退魔圣焰</DD_Fire_Shotgun.verbs.Verb_ShootFireSpew.label>
+  
+  <!-- EN: Diurganate Harpoon Gun -->
+  <DD_Harpoon_Gun.label>气动鱼叉枪</DD_Harpoon_Gun.label>
+  <!-- EN: The weapon designed by the believers of Diurganate is not very efficient in its pneumatic system for launching harpoons, but at least it is relatively easy to wield as a spear. -->
+  <DD_Harpoon_Gun.description>双尾教国的信众们自行设计的武器，发射鱼叉的气动系统不怎么高效，但是至少作为一柄长矛挥起来还算顺手。</DD_Harpoon_Gun.description>
+  <!-- EN: bayonet -->
+  <DD_Harpoon_Gun.tools.bayonet.label>戳刺</DD_Harpoon_Gun.tools.bayonet.label>
+  
+  <!-- UNUSED -->
+  <DD_Harpoon_Gun.verbs.Verb_Shoot.label>气动鱼叉枪</DD_Harpoon_Gun.verbs.Verb_Shoot.label>
+  
+  <!-- EN: Sacred Flame Heavy Lance -->
+  <DD_Maple_Sugar_Heavy_Lance.label>圣焰长枪</DD_Maple_Sugar_Heavy_Lance.label>
+  <!-- EN: A modified heavy lance by Maple Sugar, with the anti-mech shell launch structure removed and a holy flame injector installed, makes this weapon lighter and more suitable for dealing with crowds compared to the standard anti-mech heavy lance. -->
+  <DD_Maple_Sugar_Heavy_Lance.description>一把被枫糖自行修改过的反机甲长枪，拆除了反机甲炮弹的发射结构，安装了一门圣焰喷射器，因此这把武器比制式的反机甲长枪要轻的同时也更适合对付人群。</DD_Maple_Sugar_Heavy_Lance.description>
+  <!-- EN: Lance Stab -->
+  <DD_Maple_Sugar_Heavy_Lance.tools.Lance_Stab.label>长枪穿刺</DD_Maple_Sugar_Heavy_Lance.tools.Lance_Stab.label>
+  <!-- EN: Sacred Flame Heavy Lance -->
+  <DD_Maple_Sugar_Heavy_Lance.verbs.Verb_ShootFireSpew.label>枫糖的长枪</DD_Maple_Sugar_Heavy_Lance.verbs.Verb_ShootFireSpew.label>
+  
+  <!-- EN: Crusader Spear Machinegun -->
+  <DD_Spear_Machinegun.label>鱼叉机枪</DD_Spear_Machinegun.label>
+  <!-- EN: The class support firepower of Diurganate Crusader requires some time to set up before firing, but after completing the setup, it can fire continuously, projecting a large number of harpoons onto the enemy's face. -->
+  <DD_Spear_Machinegun.description>双尾教国护教军的班级支援火力，在开火前需要一点时间进行架设，但是在完成架设后可以连续开火，将大量的鱼叉投射到敌人脸上。</DD_Spear_Machinegun.description>
+  <!-- EN: Crusader Spear Machinegun -->
+  <DD_Spear_Machinegun.verbs.Verb_Shoot.label>鱼叉机枪</DD_Spear_Machinegun.verbs.Verb_Shoot.label>
+  
+  <!-- EN: Spear -->
+  <DD_Spear_Machinegun_Bullet.label>鱼叉</DD_Spear_Machinegun_Bullet.label>
+  
+  <!-- EN: Crescent Axe Spear Rifle -->
+  <DD_Spear_Rifle.label>新月斧鱼叉步枪</DD_Spear_Rifle.label>
+  <!-- EN: The standard weapon of Diurganate Crusader, equipped with a complete loading mechanism to continuously fire high damage harpoons from a distance. It also has a crescent axe blade attached, capable of splitting close range opponents into two pieces. -->
+  <DD_Spear_Rifle.description>双尾教国护教军的制式武器，拥有完整的装填机构以实现在远距离上持续发射高伤害的鱼叉。它同时还下挂了新月斧刃，足以将近身的对手劈成两段。</DD_Spear_Rifle.description>
+  <!-- EN: Axe Blade -->
+  <DD_Spear_Rifle.tools.Axe_Blade.label>斧刃</DD_Spear_Rifle.tools.Axe_Blade.label>
+  <!-- EN: Crescent Axe Spear Rifle -->
+  <DD_Spear_Rifle.verbs.Verb_Shoot.label>新月斧鱼叉步枪</DD_Spear_Rifle.verbs.Verb_Shoot.label>
+  
+  <!-- EN: Spear -->
+  <DD_Spear_Rifle_Bullet.label>鱼叉</DD_Spear_Rifle_Bullet.label>
+  
+</LanguageData>

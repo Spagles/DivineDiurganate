@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: Airship Communication Station -->
+  <DD_Airship_CommsConsole.label>飞空艇通讯台</DD_Airship_CommsConsole.label>
+  <!-- EN: The communication station, used for communicate with the Oberon, a heavy airship owned by Diurganate. -->
+  <DD_Airship_CommsConsole.description>一台用于联系双尾教廷的重型飞空艇——欧伯龙号的通讯台。</DD_Airship_CommsConsole.description>
+  <!-- EN: Call Oberon Airship -->
+  <DD_Airship_CommsConsole.comps.CompFlyOverGenerator.label>呼叫欧伯龙号飞空艇</DD_Airship_CommsConsole.comps.CompFlyOverGenerator.label>
+  <!-- EN: Send a signal to the Oberon Airship near the route, instructing it to proceed to the orbit above the colony. -->
+  <DD_Airship_CommsConsole.comps.CompFlyOverGenerator.description>向附近的欧伯龙号飞空艇发送信号，让其前往殖民地上空的轨道。</DD_Airship_CommsConsole.comps.CompFlyOverGenerator.description>
+  <!-- EN: Initiate trade with the airships over the colonies. The trade rules are the same as those for orbital trade ships. You need to prepare an orbital trade beacon to send supplies. -->
+  <DD_Airship_CommsConsole.comps.CompTradeTerminal.gizmoDesc>和殖民地上空的飞空艇发起贸易。贸易规则和与轨道商船贸易相同，你需要准备一个轨道贸易信标以发送物资。</DD_Airship_CommsConsole.comps.CompTradeTerminal.gizmoDesc>
+  <!-- EN: Airship Trade -->
+  <DD_Airship_CommsConsole.comps.CompTradeTerminal.gizmoLabel>发起飞艇贸易</DD_Airship_CommsConsole.comps.CompTradeTerminal.gizmoLabel>
+  
+</LanguageData>

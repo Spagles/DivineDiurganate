@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: Core Engine -->
+  <DD_Core_Bodypart.label>核心发动机</DD_Core_Bodypart.label>
+  
+  <!-- EN: Gyroscope -->
+  <DD_Gyroscope_Bodypart.label>陀螺仪</DD_Gyroscope_Bodypart.label>
+  
+  <!-- EN: Armor Plate -->
+  <DD_Outer_Armor_Bodypart.label>外装甲板</DD_Outer_Armor_Bodypart.label>
+  
+</LanguageData>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: Maple Sugar Join -->
+  <DD_Maple_Sugar_Join.label>枫糖在此！</DD_Maple_Sugar_Join.label>
+  <!-- EN: Maple Sugar's here! -->
+  <DD_Maple_Sugar_Join.letterLabel>枫糖在此！</DD_Maple_Sugar_Join.letterLabel>
+  <!-- EN: It seems that the colony is falling into crisis, and a petite figure appears on the horizon - just as the followers of the Two-Tail have always said, the angelic idol Sister [PAWN_kind] will always appear in the ratkin colony that is about to fall, bringing salvation from the Two-Tail to all beings! -->
+  <DD_Maple_Sugar_Join.letterText>看起来殖民地正在陷入危机，一个娇小的身影出现在地平线上——就像双尾鼠信徒们口口相传的那样，天使一般的偶像修女 [PAWN_kind] 总会出现在即将沦陷的鼠族殖民地，并将来自双尾鼠的救赎带给众生！</DD_Maple_Sugar_Join.letterText>
+  
+</LanguageData>

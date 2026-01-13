@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN:
+    <li>r_name->[DD_Maple_Sugar_FirstName] '[DD_Maple_Sugar_nickName]' [DD_Maple_Sugar_LastName]</li>
+    <li>DD_Maple_Sugar_nickName->MapleSugar</li>
+    <li>DD_Maple_Sugar_FirstName->Flavia</li>
+    <li>DD_Maple_Sugar_LastName->Whitemane</li>
+  -->
+  <DD_Maple_Sugar_NameMaker.rulePack.rulesStrings>
+    <li>r_name->[DD_Maple_Sugar_FirstName] '[DD_Maple_Sugar_nickName]' [DD_Maple_Sugar_LastName]</li>
+    <li>DD_Maple_Sugar_nickName->枫糖</li>
+    <li>DD_Maple_Sugar_FirstName->芙拉薇娅</li>
+    <li>DD_Maple_Sugar_LastName->白鬃</li>
+  </DD_Maple_Sugar_NameMaker.rulePack.rulesStrings>
+  
+  <!-- EN:
+    <li>r_name->[DD_Michelle_FirstName] '[DD_Michelle_nickName]' [DD_Michelle_LastName]</li>
+    <li>DD_Michelle_nickName->Micelle</li>
+    <li>DD_Michelle_FirstName->Michelle</li>
+    <li>DD_Michelle_LastName->Ariel</li>
+  -->
+  <DD_Michelle_NameMaker.rulePack.rulesStrings>
+    <li>r_name->[DD_Michelle_FirstName] '[DD_Michelle_nickName]' [DD_Michelle_LastName]</li>
+    <li>DD_Michelle_nickName->米鼠儿</li>
+    <li>DD_Michelle_FirstName->米鼠儿</li>
+    <li>DD_Michelle_LastName->亚莉尔</li>
+  </DD_Michelle_NameMaker.rulePack.rulesStrings>
+  
+</LanguageData>

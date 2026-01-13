@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: Depending on the quality of the ritual, participants will receive an additional 4 days of mood and combat ability boosts. -->
+  <DD_Moralist_PrewarSpeech_EndEffect.description>根据仪式质量，参加者将获得4天的额外心情和战斗能力增强。</DD_Moralist_PrewarSpeech_EndEffect.description>
+  <!-- EN: Social level of {PAWN_labelShort} -->
+  <DD_Moralist_PrewarSpeech_EndEffect.comps.0.label>{PAWN_labelShort} 的社交等级</DD_Moralist_PrewarSpeech_EndEffect.comps.0.label>
+  <!-- EN: Social level of Moralist -->
+  <DD_Moralist_PrewarSpeech_EndEffect.comps.0.labelAbstract>传教士的社交等级</DD_Moralist_PrewarSpeech_EndEffect.comps.0.labelAbstract>
+  <!-- EN: Number of Participant -->
+  <DD_Moralist_PrewarSpeech_EndEffect.comps.1.label>与会者数量</DD_Moralist_PrewarSpeech_EndEffect.comps.1.label>
+  <!-- EN: Room appearance -->
+  <DD_Moralist_PrewarSpeech_EndEffect.comps.2.label>房间观感</DD_Moralist_PrewarSpeech_EndEffect.comps.2.label>
+  <!-- EN: Terrible -->
+  <DD_Moralist_PrewarSpeech_EndEffect.outcomeChances.0.label>糟糕的</DD_Moralist_PrewarSpeech_EndEffect.outcomeChances.0.label>
+  <!-- EN: Uninspiring -->
+  <DD_Moralist_PrewarSpeech_EndEffect.outcomeChances.1.label>平平无奇的</DD_Moralist_PrewarSpeech_EndEffect.outcomeChances.1.label>
+  <!-- EN: Encouraging -->
+  <DD_Moralist_PrewarSpeech_EndEffect.outcomeChances.2.label>鼓舞人心的</DD_Moralist_PrewarSpeech_EndEffect.outcomeChances.2.label>
+  <!-- EN: Inspirational -->
+  <DD_Moralist_PrewarSpeech_EndEffect.outcomeChances.3.label>令人兴奋的</DD_Moralist_PrewarSpeech_EndEffect.outcomeChances.3.label>
+  
+</LanguageData>

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: No driver -->
+  <DD_MechNoPilot.label>无驾驶员</DD_MechNoPilot.label>
+  <!-- EN: No driver -->
+  <DD_MechNoPilot.baseInspectLine>无驾驶员</DD_MechNoPilot.baseInspectLine>
+  
+</LanguageData>

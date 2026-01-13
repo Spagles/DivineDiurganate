@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: Prototype -->
+  <DD_MechPrototype.label>原型机</DD_MechPrototype.label>
+  <!-- EN: This is a prototype of a mecha from the Diurganate. Compared to the mass-produced version, it is more powerful in combat, but also more expensive. -->
+  <DD_MechPrototype.description>这是一台圣双尾教国的机甲的原型机，相比起量产版本，它们的战斗力更加强悍，但是也更加昂贵。</DD_MechPrototype.description>
+  
+  <!-- EN: Shutdown -->
+  <DD_MechShutdown.label>停机</DD_MechShutdown.label>
+  <!-- EN: This mech has stopped due to insufficient fuel, need to assign a colonist to refuel it to restore its operational capability. -->
+  <DD_MechShutdown.description>这台机甲因为没有燃料已经停机，需要一名殖民者重新为其补充燃料以重新启动它。</DD_MechShutdown.description>
+  <!-- EN: This mech has stopped due to insufficient fuel. -->
+  <DD_MechShutdown.descriptionShort>这台机甲因为没有燃料已经停机</DD_MechShutdown.descriptionShort>
+  
+  <!-- EN: Diurganate Nun Dress -->
+  <DD_Nun_Draw_Hediff.label>双尾修女服</DD_Nun_Draw_Hediff.label>
+  <!-- EN: The uniforms worn by the nuns who serve the Holy Two-Tail are designed with battlefield practicality in mind, compared to the uniforms of ordinary ratkin Sister Dress, and are therefore more defensive—though they are still ultimately a cloth, not armor. -->
+  <DD_Nun_Draw_Hediff.description>侍奉圣双尾鼠的修女们所着的制服，比起普通的鼠族修女制服，它更多地考虑到在战场上的实用性，因此防御力更高——尽管如此，它们最终仍是一件衣服，而不是盔甲。</DD_Nun_Draw_Hediff.description>
+  
+  <!-- EN: Bomb -->
+  <DD_Suicide_Bomb_Hediff.label>炸弹</DD_Suicide_Bomb_Hediff.label>
+  <!-- EN: This colonist had a bomb hidden! -->
+  <DD_Suicide_Bomb_Hediff.description>这位殖民者的身上藏了一枚炸弹！</DD_Suicide_Bomb_Hediff.description>
+  
+  <!-- EN: Weapon Deployed -->
+  <DD_Weapon_Deployed.label>武器部署</DD_Weapon_Deployed.label>
+  <!-- EN: Part of the weapons in Diurganate Army cannot fire before being deployed -->
+  <DD_Weapon_Deployed.description>某些双尾教国的武器需要部署后才能开火</DD_Weapon_Deployed.description>
+  <!-- EN: Finish -->
+  <DD_Weapon_Deployed.stages.Finish.label>完成</DD_Weapon_Deployed.stages.Finish.label>
+  
+  <!-- EN: Weapon Deployed -->
+  <DD_Weapon_Deployed_Long.label>武器部署</DD_Weapon_Deployed_Long.label>
+  <!-- EN: Part of the weapons in Diurganate Army cannot fire before being deployed -->
+  <DD_Weapon_Deployed_Long.description>某些双尾教国的武器需要部署后才能开火</DD_Weapon_Deployed_Long.description>
+  <!-- EN: Finish -->
+  <DD_Weapon_Deployed_Long.stages.Finish.label>完成</DD_Weapon_Deployed_Long.stages.Finish.label>
+  
+</LanguageData>

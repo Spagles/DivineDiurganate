@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: [PAWN_nameDef]是一名被收养的孩子。在某个风雨交加的夜晚，一对鼠族夫妇在路边看到了被遗弃的[PAWN_nameDef]，尽管她们是当地名流并且已经有一位女儿，[PAWN_pronoun]也不是鼠族，但是她们依然收养了[PAWN_nameDef]——对于狂热排外的双尾教国，这种行为是对信仰纯粹的玷污。为了在双尾教国的排外环境下生活，这对夫妇为其准备了栩栩如生的假耳朵和假尾巴，并让自己的女儿在外面保护[PAWN_possessive]，那个本该在风雨夜中死去的孩子，最终得到了一个温暖的家。 -->
+  <DD_Ratkin_Adopted_Child.description>TODO</DD_Ratkin_Adopted_Child.description>
+  <!-- EN: Adopted Ratkin Child -->
+  <DD_Ratkin_Adopted_Child.title>TODO</DD_Ratkin_Adopted_Child.title>
+  <!-- EN: Adopted Child -->
+  <DD_Ratkin_Adopted_Child.titleShort>TODO</DD_Ratkin_Adopted_Child.titleShort>
+  
+  <!-- EN: 成年后，[PAWN_nameDef]成为了一名双尾教国的驱魔人——教廷授权的社区执法者，负责除暴安良，维持教堂和周边地区的秩序。[PAWN_pronoun]一直尽心尽责，深受教众的爱戴，直到有一天，[PAWN_possessive]耳朵发卡在与暴徒的打斗中不慎掉落，那些曾经夸耀和赞美的目光立刻变得阴狠毒辣，并诅咒这个欺骗鼠众的异族。\n\n最终，教堂的公开裁判宣布将[PAWN_nameDef]从社区中放逐出去，没有愤怒也没有抗议，[PAWN_pronoun]一声不响的离开了这个自己曾经守护的家园。 -->
+  <DD_Ratkin_Exiled_Exorcist.description>TODO</DD_Ratkin_Exiled_Exorcist.description>
+  <!-- EN: Exiled Exorcist -->
+  <DD_Ratkin_Exiled_Exorcist.title>TODO</DD_Ratkin_Exiled_Exorcist.title>
+  <!-- EN: Exorcist -->
+  <DD_Ratkin_Exiled_Exorcist.titleShort>TODO</DD_Ratkin_Exiled_Exorcist.titleShort>
+  
+  <!-- EN: 成年后，[PAWN_nameDef]成为了一名修女。[PAWN_nameDef]不喜欢像那些传统修女一样一成不变地机械地布道，而是选择当一名偶像，在双尾教国的社区中巡回出演，以歌声向教众们传播福音。十里八乡的年轻鼠鼠们对这种新奇的布道趋之若鹜，她的巡回布道从不缺少观众。\n\n但是，当[PAWN_nameDef]功成名就回到家乡时，才知道整个社区已经毁灭了，由于社区放逐了自己的驱魔人治安官，一些不怀好意的鼠族和异族沆瀣一气，将被禁止的成瘾品带进了社区中。没有人站出来阻止，曾经的信仰被无情践踏，自己的父母被疯狂的人群残害，这个社区就这样变成了瘾君子聚集地。[PAWN_nameDef]失望地离开了家园，再次踏上了布道的旅途，并寻找自己失散的妹妹。 -->
+  <DD_Ratkin_Idol_Sister.description>TODO</DD_Ratkin_Idol_Sister.description>
+  <!-- EN: Idol Sister -->
+  <DD_Ratkin_Idol_Sister.title>TODO</DD_Ratkin_Idol_Sister.title>
+  <!-- EN: Sister -->
+  <DD_Ratkin_Idol_Sister.titleShort>TODO</DD_Ratkin_Idol_Sister.titleShort>
+  
+  <!-- EN: [PAWN_nameDef]是一个鼠族名流家族的后代，从小便接受教会的精英教育，以在长大后接管家族的产业，[PAWN_possessive]童年是在经书的海洋和繁杂的祷文中度过的。有一天，[PAWN_possessive]父母带回来一个没有耳朵也没有尾巴的孩子，[PAWN_nameDef]很快接受了她，并把她当成自己的妹妹一样爱护。 -->
+  <DD_Ratkin_Nobel_Child.description>TODO</DD_Ratkin_Nobel_Child.description>
+  <!-- EN: Ratkin Nobel Child -->
+  <DD_Ratkin_Nobel_Child.title>TODO</DD_Ratkin_Nobel_Child.title>
+  <!-- EN: Nobel Child -->
+  <DD_Ratkin_Nobel_Child.titleShort>TODO</DD_Ratkin_Nobel_Child.titleShort>
+  
+  <!-- EN: [PAWN_nameDef] is a nun from the Divine Diurganate. Compared to the followers of various folk religions in the Ratkin Kingdom, the followers of the Diurganate are more radical, thus [PAWN_pronoun] is different from the nuns active in other Rat Kingdoms. As the leader of the Diurganate's small group of followers, [PAWN_pronoun] always inspires nearby followers with her passionate spirit and leads them in striving for common goals—whether it's building colonies, holding prayer gatherings, or judging the unbelievers. -->
+  <DD_Ratkin_Sister.description>[PAWN_nameDef] 是双尾教国的一名修女。与鼠族王国中各种民间宗教的信徒相比，圣双尾教的信徒更为激进，因此 [PAWN_pronoun] 与其他鼠族王国的修女有所不同。作为神圣双尾教信徒的领袖，[PAWN_pronoun] 总是以她充满激情的精神激励着周围的信徒，并带领他们为共同的目标而奋斗——无论是建立殖民地、聚众祈祷，还是审判异端。</DD_Ratkin_Sister.description>
+  <!-- EN: Diurganate Sister -->
+  <DD_Ratkin_Sister.title>圣双尾教修女</DD_Ratkin_Sister.title>
+  <!-- EN: Sister -->
+  <DD_Ratkin_Sister.titleShort>双尾修女</DD_Ratkin_Sister.titleShort>
+  
+</LanguageData>
