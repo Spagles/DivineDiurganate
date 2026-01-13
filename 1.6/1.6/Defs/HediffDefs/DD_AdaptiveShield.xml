@@ -31,12 +31,6 @@
         <!-- 关闭时重置阈值 -->
         <resetThresholdOnDeactivate>true</resetThresholdOnDeactivate>
         
-        <!-- 护盾贴图路径 -->
-        <shieldTexturePath>Apparel/RK_HeavyShield_Big</shieldTexturePath>
-        
-        <!-- 护盾绘制大小 -->
-        <shieldDrawSize>1</shieldDrawSize>
-        
         <!-- 是否显示激活消息 -->
         <showActivationMessage>true</showActivationMessage>
         
@@ -48,6 +42,42 @@
         <thresholdDecayPerSecond>1</thresholdDecayPerSecond>
       </li>
     </comps>
+    
+    <renderNodeProperties>
+      <li>
+        <debugLabel>AdaptiveShield</debugLabel>
+        <workerClass>DivineDiurganate.PawnRenderNodeWorker_AdaptiveShield</workerClass>
+        <texPath>Apparel/RK_HeavyShield_Big</texPath>
+        <graphicClass>Graphic_Multi</graphicClass>
+        <shaderTypeDef>Cutout</shaderTypeDef>
+        <parentTagDef>Body</parentTagDef>
+        <drawSize>1</drawSize>
+        <baseLayer>0</baseLayer>
+        <drawData>
+          <dataNorth>
+            <layer>-50</layer>
+            <offset>(0, 0, -0.1)</offset>
+          </dataNorth>
+          <dataSouth>
+            <!-- 提高层级以遮挡头部 -->
+            <layer>100</layer>
+            <offset>(0, 0, -0.1)</offset>
+          </dataSouth>
+          <dataEast>
+            <!-- 向右：盾在左手（内侧），被身体遮挡 -->
+            <layer>-50</layer>
+            <offset>(0.2, 0, 0)</offset>
+          </dataEast>
+          <dataWest>
+            <!-- 向左：盾在左手（外侧），遮挡身体和头部 -->
+            <layer>100</layer>
+            <offset>(-0.2, 0, 0)</offset>
+            <flip>true</flip>
+          </dataWest>
+        </drawData>
+      </li>
+    </renderNodeProperties>
+
     <stages>
       <li>
         <label>active</label>

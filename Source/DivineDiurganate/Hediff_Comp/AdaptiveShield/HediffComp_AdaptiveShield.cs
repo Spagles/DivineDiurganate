@@ -20,9 +20,6 @@ namespace DivineDiurganate
         // 格挡次数统计
         private int blockCount = 0;
         
-        // 护盾图形
-        private Graphic shieldGraphic;
-        
         // 上次穿透时间（用于衰减计时）
         private int lastPenetrationTick = -99999;
         
@@ -48,7 +45,6 @@ namespace DivineDiurganate
             base.CompPostMake();
             // 初始化伤害阈值
             currentDamageThreshold = Props.baseDamageThreshold;
-            InitShieldGraphic();
         }
         
         public override void CompExposeData()
@@ -88,7 +84,6 @@ namespace DivineDiurganate
         public override void CompPostPostAdd(DamageInfo? dinfo)
         {
             base.CompPostPostAdd(dinfo);
-            InitShieldGraphic();
             
             // 激活时显示消息
             if (Props.showActivationMessage && Pawn != null && Pawn.Spawned)
@@ -109,21 +104,7 @@ namespace DivineDiurganate
             }
         }
         
-        private void InitShieldGraphic()
-        {
-            if (!Props.shieldTexturePath.NullOrEmpty())
-            {
-                LongEventHandler.ExecuteWhenFinished(() =>
-                {
-                    // 使用 Graphic_Multi 支持多方向贴图
-                    shieldGraphic = GraphicDatabase.Get<Graphic_Multi>(
-                        Props.shieldTexturePath, 
-                        ShaderDatabase.Cutout, 
-                        new Vector2(Props.shieldDrawSize, Props.shieldDrawSize), 
-                        Color.white);
-                });
-            }
-        }
+
 
         /// <summary>
         /// 尝试格挡伤害 - 核心方法
@@ -249,56 +230,7 @@ namespace DivineDiurganate
             }
         }
         
-        /// <summary>
-        /// 绘制护盾 - 由Harmony补丁调用
-        /// 使用与衣服相同的绘制方式，根据朝向选择对应材质
-        /// </summary>
-        public void DrawShield()
-        {
-            if (Pawn == null || !Pawn.Spawned || Pawn.Dead)
-                return;
-                
-            if (shieldGraphic == null)
-                return;
-            
-            Vector3 drawPos = Pawn.DrawPos;
-            Rot4 rotation = Pawn.Rotation;
-            
-            // 根据朝向获取对应的材质和位置偏移
-            Material mat;
-            Vector3 offset;
-            float angle = 0f;
-            
-            switch (rotation.AsInt)
-            {
-                case 0: // North - 面向上
-                    mat = shieldGraphic.MatNorth;
-                    offset = new Vector3(0f, 0.1f, 0.2f);
-                    break;
-                case 1: // East - 面向右
-                    mat = shieldGraphic.MatEast;
-                    offset = new Vector3(0.2f, 0.1f, 0f);
-                    break;
-                case 2: // South - 面向下
-                    mat = shieldGraphic.MatSouth;
-                    offset = new Vector3(0f, 0.1f, -0.1f);
-                    break;
-                case 3: // West - 面向左
-                    mat = shieldGraphic.MatWest;
-                    offset = new Vector3(-0.2f, 0.1f, 0f);
-                    break;
-                default:
-                    mat = shieldGraphic.MatSouth;
-                    offset = Vector3.zero;
-                    break;
-            }
-            
-            drawPos += offset;
-            
-            // 绘制护盾
-            Mesh mesh = MeshPool.plane10;
-            Graphics.DrawMesh(mesh, drawPos, Quaternion.AngleAxis(angle, Vector3.up), mat, 0);
-        }
+
         
         public override string CompTipStringExtra
         {
@@ -342,15 +274,7 @@ namespace DivineDiurganate
         /// </summary>
         public bool resetThresholdOnDeactivate = true;
         
-        /// <summary>
-        /// 护盾贴图路径
-        /// </summary>
-        public string shieldTexturePath;
-        
-        /// <summary>
-        /// 护盾绘制大小
-        /// </summary>
-        public float shieldDrawSize = 1.5f;
+
         
         /// <summary>
         /// 格挡音效
