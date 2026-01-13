@@ -10,3 +10,7 @@ obj/
 # OS files
 .DS_Store
 Thumbs.db
+
+# RimWorld reference files
+Data/
+dll1.6/

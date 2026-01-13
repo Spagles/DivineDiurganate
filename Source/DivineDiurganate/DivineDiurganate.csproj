@@ -6,7 +6,7 @@
     <LangVersion>11.0</LangVersion>
     <Deterministic>true</Deterministic>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
@@ -23,7 +23,14 @@
     <Optimize>true</Optimize>
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
-
+  <ItemGroup>
+    <Compile Remove="Flyover\GroundStrafing\CompGroundStrafing.cs" />
+    <Compile Remove="Flyover\SectorSurveillance\CompSectorSurveillance.cs" />
+    <Compile Remove="Flyover\SendLetterAfterTicks\CompProperties_SendLetterAfterTicks.cs" />
+    <Compile Remove="Flyover\SendLetterAfterTicks\CompSendLetterAfterTicks.cs" />
+    <Compile Remove="Flyover\ShipArtillery\CompProperties_ShipArtillery.cs" />
+    <Compile Remove="Flyover\ShipArtillery\CompShipArtillery.cs" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4633" />
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net48" Version="1.0.3" PrivateAssets="all" />
@@ -328,144 +335,146 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Ability\CompAbilityEffect_StartHealingJob.cs" />
-    <Compile Include="Ability\DestroyOwnBodyPart\CompAbilityEffect_DestroyOwnBodyPart.cs" />
-    <Compile Include="Ability\DestroyOwnBodyPart\CompProperties_AbilityDestroyOwnBodyPart.cs" />
-    <Compile Include="BuildingComps\FlyOverGenerator\CompFlyOverGenerator.cs" />
-    <Compile Include="BuildingComps\FlyOverGenerator\CompProperties_FlyOverGenerator.cs" />
-    <Compile Include="BuildingComps\TradeTerminal\CompProperties_TradeTerminal.cs" />
-    <Compile Include="BuildingComps\TradeTerminal\CompTradeTerminal.cs" />
-    <Compile Include="EventSystem\CompOpenCustomUI.cs" />
-    <Compile Include="EventSystem\Condition\ConditionBase.cs" />
-    <Compile Include="EventSystem\Condition\Condition_FlagExists.cs" />
-    <Compile Include="EventSystem\DebugActions.cs" />
-    <Compile Include="EventSystem\DelayedActionManager.cs" />
-    <Compile Include="EventSystem\Dialog_CustomDisplay.cs" />
-    <Compile Include="EventSystem\Dialog_ManageEventVariables.cs" />
-    <Compile Include="EventSystem\Effect\EffectBase.cs" />
-    <Compile Include="EventSystem\Effect\Effect_SetTimedFlag.cs" />
-    <Compile Include="EventSystem\EventDef.cs" />
-    <Compile Include="EventSystem\EventUIButtonConfigDef.cs" />
-    <Compile Include="EventSystem\EventUIConfigDef.cs" />
-    <Compile Include="EventSystem\EventVariableManager.cs" />
-    <Compile Include="EventSystem\QuestNode\QuestNode_EventLetter.cs" />
-    <Compile Include="EventSystem\QuestNode\QuestNode_Root_EventLetter.cs" />
-    <Compile Include="EventSystem\QuestNode\QuestNode_WriteToEventVariablesWithAdd.cs" />
-    <Compile Include="FaithSystem\Comp_FaithHolder.cs" />
-    <Compile Include="FaithSystem\FaithUtility.cs" />
-    <Compile Include="FaithSystem\Gizmo_FaithStatus.cs" />
-    <Compile Include="FaithSystem\WorldComp_FaithSystem.cs" />
-    <Compile Include="Flyover\FlyoverData.cs" />
-    <Compile Include="Flyover\FlyOverEscort\CompFlyOverEscort.cs" />
-    <Compile Include="Flyover\FlyOverEscort\CompProperties_FlyOverEscort.cs" />
-    <Compile Include="Flyover\FlyoverManaged\CompFlyoverManaged.cs" />
-    <Compile Include="Flyover\FlyoverManaged\CompProperties_FlyoverManaged.cs" />
-    <Compile Include="Flyover\FlyoverSkill\FlyOverSkillBase\CompFlyOverSkillBase.cs" />
-    <Compile Include="Flyover\FlyoverSkill\FlyOverSkillBase\CompProperties_FlyOverSkillBase.cs" />
-    <Compile Include="Flyover\FlyoverSkill\FlyOverSkill_Bombardment\CompFlyOverSkill_Bombardment.cs" />
-    <Compile Include="Flyover\FlyoverSkill\FlyOverSkill_Bombardment\CompProperties_FlyOverSkill_Bombardment.cs" />
-    <Compile Include="Flyover\FlyoverSkill\FlyOverSkill_SkyfallerDrop\CompFlyOverSkill_SkyfallerDrop.cs" />
-    <Compile Include="Flyover\FlyoverSkill\FlyOverSkill_SkyfallerDrop\CompProperties_FlyOverSkill_SkyfallerDrop.cs" />
-    <Compile Include="Flyover\FlyoverTrader\CompFlyoverTrader.cs" />
-    <Compile Include="Flyover\FlyoverTrader\CompProperties_FlyoverTrader.cs" />
-    <Compile Include="Flyover\SendLetterAfterTicks\CompProperties_SendLetterAfterTicks.cs" />
-    <Compile Include="Flyover\SendLetterAfterTicks\CompSendLetterAfterTicks.cs" />
-    <Compile Include="Flyover\ThingclassFlyOver.cs" />
-    <Compile Include="Flyover\Window_FlyoverUI.cs" />
-    <Compile Include="Flyover\WorldComp_FlyoverManager.cs" />
-    <Compile Include="HarmonyPatches\Extension\FixedIdentityExtension.cs" />
-    <Compile Include="HarmonyPatches\Extension\PawnKindExtension_EyeballOverride.cs" />
-    <Compile Include="HarmonyPatches\Patche_SkillSystem.cs" />
-    <Compile Include="HarmonyPatches\Patch_ColonistBarMech.cs" />
-    <Compile Include="HarmonyPatches\Patch_FacialAnimationEyeball.cs" />
-    <Compile Include="HarmonyPatches\Patch_GeneratePawn_HeadType.cs" />
-    <Compile Include="HarmonyPatches\Patch_MechSpecificWeapon.cs" />
-    <Compile Include="HarmonyPatches\Patch_RomanceFix.cs" />
-    <Compile Include="HarmonyPatches\Patch_TakeDamage.cs" />
-    <Compile Include="DDMod.cs" />
-    <Compile Include="HarmonyPatches\Patch_DDmechunit.cs" />
-    <Compile Include="DD_DefOf.cs" />
-    <Compile Include="Hediff_Comp\IdeoRoleHediff\CompProperties_IdeoRoleHediff.cs" />
-    <Compile Include="Hediff_Comp\IdeoRoleHediff\Comp_IdeoRoleHediff.cs" />
-    <Compile Include="Hediff_Comp\IdeoRoleHediff\GameComponent_IdeoRoleHediffUpdater.cs" />
-    <Compile Include="Hediff_Comp\IdeoRoleHediff\IdeoRoleHediffManager.cs" />
-    <Compile Include="Hediff_Comp\SyncedWithMech\HediffCompProperties_SyncedWithMech.cs" />
-    <Compile Include="ITab\ITab_MechSkills.cs" />
-    <Compile Include="MentalState\MentalState_MechNoPilot.cs" />
-    <Compile Include="Pawn\DDmechunit.cs" />
-    <Compile Include="Pawn_Comps\DefaultPilotEntry\CompMechDefaultPilot.cs" />
-    <Compile Include="Pawn_Comps\DefaultPilotEntry\CompProperties_MechDefaultPilot.cs" />
-    <Compile Include="Pawn_Comps\HediffGiverByKind\CompHediffGiverByKind.cs" />
-    <Compile Include="Pawn_Comps\HediffGiverByKind\CompProperties_HediffGiverByKind.cs" />
-    <Compile Include="Pawn_Comps\MechFuel\CompMechFuel.cs" />
-    <Compile Include="Pawn_Comps\MechFuel\CompProperties_MechFuel.cs" />
-    <Compile Include="Pawn_Comps\MechFuel\Gizmo_MechFuelStatus.cs" />
-    <Compile Include="Pawn_Comps\MechInherentWeapon\CompMechInherentWeapon.cs" />
-    <Compile Include="Pawn_Comps\MechInherentWeapon\CompProperties_MechInherentWeapon.cs" />
-    <Compile Include="Pawn_Comps\MechMovementSound\CompMechMovementSound.cs" />
-    <Compile Include="Pawn_Comps\MechMovementSound\CompProperties_MechMovementSound.cs" />
-    <Compile Include="Pawn_Comps\MechPilotHolder\CompMechPilotHolder.cs" />
-    <Compile Include="Pawn_Comps\MechRepairable\CompMechRepairable.cs" />
-    <Compile Include="Pawn_Comps\MechSelfDestruct\CompMechSelfDestruct.cs" />
-    <Compile Include="Pawn_Comps\MechSelfDestruct\CompProperties_MechSelfDestruct.cs" />
-    <Compile Include="Pawn_Comps\MechSkillInheritance\CompMechSkillInheritance.cs" />
-    <Compile Include="Pawn_Comps\MoteEmitterNorthward\CompMoteEmitterNorthward.cs" />
-    <Compile Include="Pawn_Comps\MultiTurretGun\CompMultiTurretGun.cs" />
-    <Compile Include="Projectile\Projectile_PenetratingBeam.cs" />
-    <Compile Include="Projectile\Projectile_PenetratingBullet.cs" />
-    <Compile Include="Ritual\RitualOutcomeComp_ApplyHediffToParticipants.cs" />
-    <Compile Include="ScenPart\ScenPart_InstantHediffOnGameStart.cs" />
-    <Compile Include="ScenPart\ScenPart_RandomFireAtStart.cs" />
-    <Compile Include="ScenPart\ScenPart_SpawnCorpsesNearStart.cs" />
-    <Compile Include="StoryTeller\InitialMemeTrigger\StorytellerComp_InitialMemeTrigger.cs" />
-    <Compile Include="StoryTeller\InitialMemeTrigger\StorytellerCompProperties_InitialMemeTrigger.cs" />
-    <Compile Include="StoryTeller\StorytellerCompProperties_MemeRoleTrigger.cs" />
-    <Compile Include="StoryTeller\StorytellerComp_MemeRoleTrigger.cs" />
-    <Compile Include="Thing_Comp\BuildingSpawnPawn\CompBuildToPawn.cs" />
-    <Compile Include="Thing_Comp\BuildingSpawnPawn\CompProperties_BuildToPawn.cs" />
-    <Compile Include="Thing_Comp\GiveHediffOnShot\CompAndPatch_GiveHediffOnShot.cs" />
-    <Compile Include="Thing_Comp\MechSpecificWeapon\CompMechSpecificWeapon.cs" />
-    <Compile Include="Thing_Comp\PlaySoundOnSpawn\CompPlaySoundOnSpawn.cs" />
-    <Compile Include="Thing_Comp\PlaySoundOnSpawn\CompProperties_PlaySoundOnSpawn.cs" />
-    <Compile Include="UI\Window_SelectTradeFlyover.cs" />
-    <Compile Include="Verb\MeleeAttack_Cleave\CompCleave.cs" />
-    <Compile Include="Verb\MeleeAttack_Cleave\Verb_MeleeAttack_Cleave.cs" />
-    <Compile Include="Verb\ShootFireSpew\VerbProperties_FireSpew.cs" />
-    <Compile Include="Verb\ShootFireSpew\Verb_ShootFireSpew.cs" />
-    <Compile Include="Verb\Verb_ShootWithOffset.cs" />
-    <Compile Include="Work\EnterMech\FloatMenuOptionProvider_EnterMech.cs" />
-    <Compile Include="Work\EnterMech\JobDriver_EnterMech.cs" />
-    <Compile Include="Work\EnterMech\WorkGiver_EnterMech.cs" />
-    <Compile Include="Work\ForceEjectPilot\FloatMenuOptionProvider_ForceEjectPilot.cs" />
-    <Compile Include="Work\ForceEjectPilot\JobDriver_ForceEjectPilot.cs" />
-    <Compile Include="Work\JobDriver_CallFlyOver.cs" />
-    <Compile Include="Work\JobDriver_CarryToMech.cs" />
-    <Compile Include="Work\JobDriver_TendTarget.cs" />
-    <Compile Include="Work\RefuelMech\JobDriver_RefuelMech.cs" />
-    <Compile Include="Work\RefuelMech\WorkGiver_RefuelMech.cs" />
-    <Compile Include="Work\RepairMech\JobDriver_RepairMech.cs" />
-    <Compile Include="Work\RepairMech\WorkGiver_RepairMech.cs" />
-    <Compile Include="Work\JobGiver_NoPilot.cs" />
-    <Compile Include="Work\ThinkNode_ConditionalMechHasPilot.cs" />
-    <Compile Remove="Flyover\AbilitySpawnFlyOver\CompAbilityEffect_SpawnFlyOver.cs" />
-    <Compile Remove="Flyover\AbilitySpawnFlyOver\CompProperties_AbilitySpawnFlyOver.cs" />
-    <Compile Remove="Flyover\AircraftHangar\CompAbilityEffect_AircraftStrike.cs" />
-    <Compile Remove="Flyover\AircraftHangar\CompAircraftHangar.cs" />
-    <Compile Remove="Flyover\AircraftHangar\WorldComponent_AircraftManager.cs" />
-    <Compile Remove="Flyover\BlockedByFlyOverFacility\CompAbilityEffect_BlockedByFlyOverFacility.cs" />
-    <Compile Remove="Flyover\DestroyFlyOverByFacilities\CompProperties_DestroyFlyOverByFacilities.cs" />
-    <Compile Remove="Flyover\FlyOverDropPod\CompProperties_FlyOverDropPod.cs" />
-    <Compile Remove="Flyover\FlyOverFacilities\CompAbilityEffect_RequireFlyOverFacility.cs" />
-    <Compile Remove="Flyover\FlyOverFacilities\CompFlyOverFacilities.cs" />
-    <Compile Remove="Flyover\GlobalFlyOverCooldown\CompAbilityEffect_GlobalFlyOverCooldown.cs" />
-    <Compile Remove="Flyover\GlobalFlyOverCooldown\CompFlyOverCooldown.cs" />
-    <Compile Remove="Flyover\GroundStrafing\CompGroundStrafing.cs" />
-    <Compile Remove="Flyover\SectorSurveillance\CompSectorSurveillance.cs" />
-    <Compile Remove="Flyover\SendLetterAfterTicks\CompProperties_SendLetterAfterTicks.cs" />
-    <Compile Remove="Flyover\SendLetterAfterTicks\CompSendLetterAfterTicks.cs" />
-    <Compile Remove="Flyover\ShipArtillery\CompProperties_ShipArtillery.cs" />
-    <Compile Remove="Flyover\ShipArtillery\CompShipArtillery.cs" />
-    <Compile Remove="Pawn_Comps\MechArmor\CompMechArmor.cs" />
-    <Compile Remove="Ritual\RitualBehaviorWorker_ExorcistSpeech.cs" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
   </ItemGroup>
 </Project>
+
+

@@ -61,7 +61,7 @@
   <!-- sp -->
   <AlienRace.AlienBackstoryDef ParentName="BaseRatkinBackStory">
     <defName>DD_Ratkin_Adopted_Child</defName>
-    <slot>Adulthood</slot>
+    <slot>Childhood</slot>
     <title>Adopted Ratkin Child</title>
     <titleShort>Adopted Child</titleShort>
     <description>[PAWN_nameDef] was an adopted child. On a stormy night, a rat couple found [PAWN_nameDef] abandoned by the roadside. Despite being local celebrities and already having a daughter, and despite [PAWN_pronoun] is not being ratkin, they adopted [PAWN_nameDef]—an act considered a defilement of their pure faith by the fanatical and xenophobic Diurganate Community. To survive in the Diurganate's xenophobic environment, the couple provided him with lifelike fake ears and a fake tail, and sent their daughter outside to protect [PAWN_pronoun]. The child who should have died in the stormy night finally found a warm home.</description>
@@ -117,7 +117,7 @@
   </AlienRace.AlienBackstoryDef>
   <AlienRace.AlienBackstoryDef ParentName="BaseRatkinBackStory">
     <defName>DD_Ratkin_Nobel_Child</defName>
-    <slot>Adulthood</slot>
+    <slot>Childhood</slot>
     <title>Ratkin Nobel Child</title>
     <titleShort>Nobel Child</titleShort>
     <description>[PAWN_nameDef] is a descendant of a prestigious ratkin family. From a young age, [PAWN_nameDef] received an elite education from the church in preparation for taking over the family business. [PAWN_possessive] spent [PAWN_pronoun] childhood immersed in scriptures and elaborate prayers. One day, [PAWN_possessive]'s parents brought home a child without ears or a tail. [PAWN_nameDef] quickly accepted her and loved her like a younger sister.</description>

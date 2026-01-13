@@ -258,29 +258,35 @@ namespace DivineDiurganate
             // 尝试获取Hediff的图标
             Texture2D icon = null;
             
-            // 优先使用spritePath
-            if (!hediff.spritePath.NullOrEmpty())
-            {
-                icon = ContentFinder<Texture2D>.Get(hediff.spritePath, false);
-            }
+            // 根据Hediff是好是坏选择不同的默认图标
+            string iconPath = hediff.isBad 
+                ? "UI/Icons/Medical/Plague" 
+                : "UI/Icons/Medical/BandageIcon";
             
-            // 如果没有图标，使用默认的Hediff图标
+            icon = ContentFinder<Texture2D>.Get(iconPath, false);
+            
+            // 如果还是没有，尝试其他备选图标
             if (icon == null)
             {
-                icon = ContentFinder<Texture2D>.Get("UI/Icons/Medical/Plague", false);
+                icon = ContentFinder<Texture2D>.Get("UI/Icons/Medical/Vaccinate", false);
             }
             
-            // 如果还是没有，绘制一个简单的占位符
+            // 如果找到图标则绘制
             if (icon != null)
             {
                 GUI.DrawTexture(rect, icon);
             }
             else
             {
-                Widgets.DrawBoxSolid(rect, new Color(0.3f, 0.3f, 0.35f));
+                // 绘制一个带颜色的占位符
+                Color placeholderColor = hediff.isBad 
+                    ? new Color(0.5f, 0.2f, 0.2f) 
+                    : new Color(0.2f, 0.5f, 0.3f);
+                Widgets.DrawBoxSolid(rect, placeholderColor);
                 Text.Anchor = TextAnchor.MiddleCenter;
                 Text.Font = GameFont.Medium;
-                Widgets.Label(rect, "?");
+                GUI.color = Color.white;
+                Widgets.Label(rect, hediff.LabelCap.ToString().Substring(0, 1).ToUpper());
             }
         }
         
