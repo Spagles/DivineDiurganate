@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN:
+    <li>questDescription->DD_Intro_MemeCheck_questDescription</li>
+  -->
+  <DD_Intro_MemeCheck.questDescriptionRules.rulesStrings>DD_Intro_MemeCheck_questDescription</DD_Intro_MemeCheck.questDescriptionRules.rulesStrings>
+  <!-- EN:
+    <li>questName->DD_Intro_MemeCheck_questName</li>
+  -->
+  <DD_Intro_MemeCheck.questNameRules.rulesStrings>DD_Intro_MemeCheck_questName</DD_Intro_MemeCheck.questNameRules.rulesStrings>
+  <!-- EN: DD_Intro_MemeCheck_UI_1 -->
+  <DD_Intro_MemeCheck.root.nodes.Delay.node.nodes.EventLetter.eventDefName.slateRef>DD_Intro_MemeCheck_UI_1</DD_Intro_MemeCheck.root.nodes.Delay.node.nodes.EventLetter.eventDefName.slateRef>
+  
+</LanguageData>

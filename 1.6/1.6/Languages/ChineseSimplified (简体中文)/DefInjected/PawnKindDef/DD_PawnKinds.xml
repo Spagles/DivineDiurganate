@@ -4,6 +4,9 @@
   <!-- EN: Maple Sugar -->
   <DD_Maple_Sugar.label>枫糖</DD_Maple_Sugar.label>
   
+  <!-- EN: Michelle -->
+  <DD_Michelle.label>米鼠儿</DD_Michelle.label>
+  
   <!-- EN: Diurganate Crusader -->
   <DD_Ratkin_Crusader.label>双尾护教军</DD_Ratkin_Crusader.label>
   
@@ -11,7 +14,7 @@
   <DD_Ratkin_Heavy_Crusader.label>双尾重装护教军</DD_Ratkin_Heavy_Crusader.label>
   
   <!-- EN: Diurganate Nun -->
-  <DD_Ratkin_Nun_Without_Weapon.label>TODO</DD_Ratkin_Nun_Without_Weapon.label>
+  <DD_Ratkin_Nun_Without_Weapon.label>双尾修女</DD_Ratkin_Nun_Without_Weapon.label>
   
   <!-- EN: Diurganate Pilot -->
   <DD_Ratkin_Pilot.label>双尾机师</DD_Ratkin_Pilot.label>
