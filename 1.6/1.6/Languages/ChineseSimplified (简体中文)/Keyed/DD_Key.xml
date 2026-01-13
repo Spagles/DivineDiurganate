@@ -223,4 +223,16 @@
   <DD_HediffGacha_NeedPawnTarget>需要选择一个目标角色</DD_HediffGacha_NeedPawnTarget>
   <DD_HediffGacha_EmptyPool>Hediff池为空，无法使用此技能</DD_HediffGacha_EmptyPool>
 
+  <!-- 自适应护盾系统 -->
+  <DD_Shield_Activated>护盾激活</DD_Shield_Activated>
+  <DD_Shield_Blocked>格挡 {0} 伤害</DD_Shield_Blocked>
+  <DD_Shield_Penetrated>穿透！({0}>{1}) 阈值提升至 {2}</DD_Shield_Penetrated>
+  <DD_Shield_Status>伤害阈值: {0}\n格挡次数: {1}\n穿透次数: {2}</DD_Shield_Status>
+  <DD_Shield_ActivatedMessage>{0} 激活了自适应护盾</DD_Shield_ActivatedMessage>
+  <DD_Shield_DeactivatedMessage>{0} 关闭了自适应护盾</DD_Shield_DeactivatedMessage>
+  <DD_Shield_NoHediffConfigured>技能配置错误：未指定护盾Hediff</DD_Shield_NoHediffConfigured>
+  <DD_Shield_CurrentState>护盾状态: {0}</DD_Shield_CurrentState>
+  <DD_Shield_On>开启</DD_Shield_On>
+  <DD_Shield_Off>关闭</DD_Shield_Off>
+
 </LanguageData>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+  <!-- DD_AdaptiveShield.xml -->
+  <DD_ToggleAdaptiveShield.label>切换自适应护盾</DD_ToggleAdaptiveShield.label>
+  <DD_ToggleAdaptiveShield.description>激活或关闭自适应护盾。护盾激活时，可以格挡正面伤害低于阈值的攻击。被穿透后，护盾会自适应并提高阈值以抵御未来的同等攻击。</DD_ToggleAdaptiveShield.description>
+  
+  <!-- DD_Abilities.xml - Hediff抽卡技能 -->
+  <DD_Holy_Blessing_Gacha.label>神圣祝福</DD_Holy_Blessing_Gacha.label>
+  <DD_Holy_Blessing_Gacha.description>向圣双尾祈祷，为目标赐予随机祝福。虔诚的信徒将从神选定的三种神圣祝福中获得其一。</DD_Holy_Blessing_Gacha.description>
+</LanguageData>

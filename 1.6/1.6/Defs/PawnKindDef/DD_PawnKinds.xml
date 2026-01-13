@@ -498,6 +498,9 @@
 		<initialWillRange>0~0</initialWillRange>
 		<initialResistanceRange>0~2</initialResistanceRange>
 		<humanPregnancyChance>0</humanPregnancyChance>
+		<abilities>
+			<li>DD_ToggleAdaptiveShield</li>
+		</abilities>
 
 		<modExtensions>
 			<li Class="DivineDiurganate.HeadTypeExtension">

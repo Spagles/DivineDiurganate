@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <!-- =========================================== -->
+  <!-- 自适应护盾系统 -->
+  <!-- =========================================== -->
+
+  <!-- 护盾激活状态的Hediff -->
+  <HediffDef>
+    <defName>DD_AdaptiveShield_Active</defName>
+    <label>Adaptive Shield</label>
+    <description>An advanced energy shield that blocks frontal attacks. Damage below the threshold is completely absorbed. When penetrated, the shield adapts and increases its threshold.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.4, 0.8, 1.0)</defaultLabelColor>
+    <isBad>false</isBad>
+    <initialSeverity>1.0</initialSeverity>
+    <maxSeverity>1.0</maxSeverity>
+    <comps>
+      <li Class="DivineDiurganate.HediffCompProperties_AdaptiveShield">
+        <!-- 基础伤害阈值 -->
+        <baseDamageThreshold>20</baseDamageThreshold>
+        
+        <!-- 最大阈值（0表示无上限） -->
+        <maxDamageThreshold>50</maxDamageThreshold>
+        
+        <!-- 每次穿透后阈值增加量 -->
+        <thresholdIncreaseOnPenetration>2</thresholdIncreaseOnPenetration>
+        
+        <!-- 格挡角度（正面±70度） -->
+        <blockAngle>70</blockAngle>
+        
+        <!-- 关闭时重置阈值 -->
+        <resetThresholdOnDeactivate>true</resetThresholdOnDeactivate>
+        
+        <!-- 护盾贴图路径 -->
+        <shieldTexturePath>Apparel/RK_HeavyShield_Big</shieldTexturePath>
+        
+        <!-- 护盾绘制大小 -->
+        <shieldDrawSize>1</shieldDrawSize>
+        
+        <!-- 是否显示激活消息 -->
+        <showActivationMessage>true</showActivationMessage>
+        
+        <!-- 阈值衰减延迟（穿透后多少tick开始衰减）-->
+        <!-- 2500tick ≈ 42秒（游戏内约1小时） -->
+        <thresholdDecayDelay>2500</thresholdDecayDelay>
+        
+        <!-- 每秒阈值衰减量 -->
+        <thresholdDecayPerSecond>1</thresholdDecayPerSecond>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>active</label>
+        <becomeVisible>true</becomeVisible>
+        <!-- 可选：护盾激活时的属性修改 -->
+        <!-- <statOffsets>
+          <MoveSpeed>-0.2</MoveSpeed>
+        </statOffsets> -->
+      </li>
+    </stages>
+  </HediffDef>
+
+</Defs>

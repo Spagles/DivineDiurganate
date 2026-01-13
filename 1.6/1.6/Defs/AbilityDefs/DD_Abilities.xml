@@ -176,4 +176,33 @@
     </comps>
   </AbilityDef>
 
+  <!-- 切换护盾的技能 -->
+  <AbilityDef>
+    <defName>DD_ToggleAdaptiveShield</defName>
+    <label>Toggle Adaptive Shield</label>
+    <description>Activate or deactivate the Adaptive Shield. When active, the shield blocks frontal attacks with damage below the threshold. Attacks that penetrate the shield will cause it to adapt, increasing the threshold for future attacks.</description>
+    <iconPath>DivineDiurganate/UI/Abilities/DD_AdaptiveShield</iconPath>
+    <displayOrder>300</displayOrder>
+    <aiCanUse>false</aiCanUse>
+    <cooldownTicksRange>60</cooldownTicksRange> <!-- 1秒冷却 -->
+    <displayGizmoWhileUndrafted>true</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>false</disableGizmoWhileUndrafted>
+    <targetRequired>false</targetRequired>
+    <verbProperties>
+      <verbClass>Verb_CastAbility</verbClass>
+      <warmupTime>0</warmupTime>
+      <range>0</range>
+      <targetParams>
+        <canTargetSelf>true</canTargetSelf>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="DivineDiurganate.CompProperties_AbilityToggleAdaptiveShield">
+        <shieldHediffDef>DD_AdaptiveShield_Active</shieldHediffDef>
+        <activateMessage>DD_Shield_ActivatedMessage</activateMessage>
+        <deactivateMessage>DD_Shield_DeactivatedMessage</deactivateMessage>
+      </li>
+    </comps>
+  </AbilityDef>
+
 </Defs>

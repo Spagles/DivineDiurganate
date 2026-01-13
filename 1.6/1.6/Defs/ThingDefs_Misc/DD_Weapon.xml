@@ -294,7 +294,7 @@
     </statBases>
     <verbs>
       <li>
-        <verbClass>Verb_Shoot</verbClass>
+        <verbClass>DivineDiurganate.Verb_ShootShotgun</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
         <warmupTime>0.1</warmupTime>
@@ -348,6 +348,19 @@
       <shaderType>MoteGlow</shaderType>
       <color>(194,117,67)</color>
     </graphicData>
+    <thingClass>DivineDiurganate.Projectile_PenetratingBullet</thingClass>
+    <modExtensions>
+      <li Class="DivineDiurganate.PenetratingBullet_Extension">
+        <maxHits>1</maxHits>        <!-- 无限穿透 -->
+        <damageFalloff>0</damageFalloff>        <!-- 无伤害衰减 -->
+        <preventFriendlyFire>true</preventFriendlyFire>        <!-- 是否阻止友方火力 -->
+
+        <enableExplosion>false</enableExplosion>
+      </li>
+      <li Class="DivineDiurganate.ShotgunExtension">
+        <pelletCount>3</pelletCount>
+      </li>
+    </modExtensions>
     <projectile>
       <damageDef>Bullet</damageDef>
       <damageAmountBase>10</damageAmountBase>

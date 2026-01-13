@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+  <!-- DD_AdaptiveShield.xml -->
+  <DD_AdaptiveShield_Active.label>自适应护盾</DD_AdaptiveShield_Active.label>
+  <DD_AdaptiveShield_Active.description>一种先进的能量护盾，可以格挡正面攻击。低于阈值的伤害会被完全吸收。当护盾被穿透时，它会自适应并提高伤害阈值。</DD_AdaptiveShield_Active.description>
+  <DD_AdaptiveShield_Active.stages.0.label>激活</DD_AdaptiveShield_Active.stages.0.label>
+</LanguageData>

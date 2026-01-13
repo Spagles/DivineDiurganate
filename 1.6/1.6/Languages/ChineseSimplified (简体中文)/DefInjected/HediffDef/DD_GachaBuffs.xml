@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+  <!-- DD_GachaBuffs.xml - Hediff抽卡Buff池 -->
+  <DD_GachaBuff_Strength.label>力量祝福</DD_GachaBuff_Strength.label>
+  <DD_GachaBuff_Strength.description>圣双尾的祝福赐予你强大的力量。</DD_GachaBuff_Strength.description>
+  <DD_GachaBuff_Strength.stages.0.label>增强</DD_GachaBuff_Strength.stages.0.label>
+  
+  <DD_GachaBuff_Agility.label>敏捷祝福</DD_GachaBuff_Agility.label>
+  <DD_GachaBuff_Agility.description>圣双尾的祝福使你迅捷如风。</DD_GachaBuff_Agility.description>
+  <DD_GachaBuff_Agility.stages.0.label>迅捷</DD_GachaBuff_Agility.stages.0.label>
+  
+  <DD_GachaBuff_Fortitude.label>坚韧祝福</DD_GachaBuff_Fortitude.label>
+  <DD_GachaBuff_Fortitude.description>圣双尾的祝福保护你免受伤害。</DD_GachaBuff_Fortitude.description>
+  <DD_GachaBuff_Fortitude.stages.0.label>守护</DD_GachaBuff_Fortitude.stages.0.label>
+  
+  <DD_GachaBuff_Wisdom.label>智慧祝福</DD_GachaBuff_Wisdom.label>
+  <DD_GachaBuff_Wisdom.description>圣双尾的祝福启迪你的心智。</DD_GachaBuff_Wisdom.description>
+  <DD_GachaBuff_Wisdom.stages.0.label>启迪</DD_GachaBuff_Wisdom.stages.0.label>
+  
+  <DD_GachaBuff_Vitality.label>生命祝福</DD_GachaBuff_Vitality.label>
+  <DD_GachaBuff_Vitality.description>圣双尾的祝福加速你的自然恢复。</DD_GachaBuff_Vitality.description>
+  <DD_GachaBuff_Vitality.stages.0.label>活力</DD_GachaBuff_Vitality.stages.0.label>
+  
+  <DD_GachaBuff_Fortune.label>幸运祝福</DD_GachaBuff_Fortune.label>
+  <DD_GachaBuff_Fortune.description>圣双尾的祝福使幸运降临于你。</DD_GachaBuff_Fortune.description>
+  <DD_GachaBuff_Fortune.stages.0.label>幸运</DD_GachaBuff_Fortune.stages.0.label>
+</LanguageData>
