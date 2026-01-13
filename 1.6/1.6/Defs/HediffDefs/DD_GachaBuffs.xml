@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <!-- =========================================== -->
+  <!-- 示例：Hediff抽卡系统的Buff池 -->
+  <!-- 这些Hediff将作为抽卡池供玩家三选一 -->
+  <!-- =========================================== -->
+
+  <!-- Buff 1: 力量祝福 - 增加近战伤害 -->
+  <HediffDef>
+    <defName>DD_GachaBuff_Strength</defName>
+    <label>Strength Blessing</label>
+    <description>The blessing of the Holy Twin-Tail grants you tremendous strength.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.8, 0.5, 0.3)</defaultLabelColor>
+    <isBad>false</isBad>
+    <initialSeverity>1.0</initialSeverity>
+    <maxSeverity>1.0</maxSeverity>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>60000</disappearsAfterTicks> <!-- 1天 -->
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>empowered</label>
+        <becomeVisible>true</becomeVisible>
+        <statOffsets>
+          <MeleeDamageFactor>0.5</MeleeDamageFactor>
+        </statOffsets>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- Buff 2: 敏捷祝福 - 增加移动速度 -->
+  <HediffDef>
+    <defName>DD_GachaBuff_Agility</defName>
+    <label>Agility Blessing</label>
+    <description>The blessing of the Holy Twin-Tail makes you swift as the wind.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.3, 0.7, 0.9)</defaultLabelColor>
+    <isBad>false</isBad>
+    <initialSeverity>1.0</initialSeverity>
+    <maxSeverity>1.0</maxSeverity>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>60000</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>swift</label>
+        <becomeVisible>true</becomeVisible>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <postFactor>1.3</postFactor>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- Buff 3: 坚韧祝福 - 减少受到的伤害 -->
+  <HediffDef>
+    <defName>DD_GachaBuff_Fortitude</defName>
+    <label>Fortitude Blessing</label>
+    <description>The blessing of the Holy Twin-Tail protects you from harm.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.6, 0.6, 0.3)</defaultLabelColor>
+    <isBad>false</isBad>
+    <initialSeverity>1.0</initialSeverity>
+    <maxSeverity>1.0</maxSeverity>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>60000</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>protected</label>
+        <becomeVisible>true</becomeVisible>
+        <statOffsets>
+          <ArmorRating_Sharp>0.2</ArmorRating_Sharp>
+          <ArmorRating_Blunt>0.2</ArmorRating_Blunt>
+        </statOffsets>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- Buff 4: 智慧祝福 - 增加工作速度和学习速度 -->
+  <HediffDef>
+    <defName>DD_GachaBuff_Wisdom</defName>
+    <label>Wisdom Blessing</label>
+    <description>The blessing of the Holy Twin-Tail enlightens your mind.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.9, 0.85, 0.4)</defaultLabelColor>
+    <isBad>false</isBad>
+    <initialSeverity>1.0</initialSeverity>
+    <maxSeverity>1.0</maxSeverity>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>60000</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>enlightened</label>
+        <becomeVisible>true</becomeVisible>
+        <statOffsets>
+          <GlobalLearningFactor>0.3</GlobalLearningFactor>
+          <WorkSpeedGlobal>0.2</WorkSpeedGlobal>
+        </statOffsets>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- Buff 5: 生命祝福 - 增加恢复速度 -->
+  <HediffDef>
+    <defName>DD_GachaBuff_Vitality</defName>
+    <label>Vitality Blessing</label>
+    <description>The blessing of the Holy Twin-Tail accelerates your natural healing.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.4, 0.9, 0.5)</defaultLabelColor>
+    <isBad>false</isBad>
+    <initialSeverity>1.0</initialSeverity>
+    <maxSeverity>1.0</maxSeverity>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>60000</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>vital</label>
+        <becomeVisible>true</becomeVisible>
+        <naturalHealingFactor>2.0</naturalHealingFactor>
+        <statOffsets>
+          <ImmunityGainSpeed>0.3</ImmunityGainSpeed>
+        </statOffsets>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- Buff 6: 幸运祝福 - 增加收益 -->
+  <HediffDef>
+    <defName>DD_GachaBuff_Fortune</defName>
+    <label>Fortune Blessing</label>
+    <description>The blessing of the Holy Twin-Tail makes fortune smile upon you.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.9, 0.8, 0.1)</defaultLabelColor>
+    <isBad>false</isBad>
+    <initialSeverity>1.0</initialSeverity>
+    <maxSeverity>1.0</maxSeverity>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>60000</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>fortunate</label>
+        <becomeVisible>true</becomeVisible>
+        <statOffsets>
+          <TradePriceImprovement>0.1</TradePriceImprovement>
+          <HuntingStealth>0.3</HuntingStealth>
+        </statOffsets>
+      </li>
+    </stages>
+  </HediffDef>
+
+</Defs>

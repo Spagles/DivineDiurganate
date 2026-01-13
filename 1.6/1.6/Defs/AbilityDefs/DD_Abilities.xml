@@ -95,4 +95,85 @@
       <li Class="DivineDiurganate.CompProperties_AbilityStartHealingJob"/>
     </comps>
   </AbilityDef>
+
+  <!-- =========================================== -->
+  <!-- Hediff抽卡技能示例 -->
+  <!-- 使用 CompAbilityEffect_HediffGacha 组件 -->
+  <!-- =========================================== -->
+  <AbilityDef>
+    <defName>DD_Holy_Blessing_Gacha</defName>
+    <label>Holy Blessing</label>
+    <description>Pray to the Holy Twin-Tail to bestow a random blessing upon the target. The faithful will receive one of three possible divine blessings chosen by the gods.</description>
+    <iconPath>DivineDiurganate/UI/Abilities/DD_Maple_Sugar_Heal</iconPath>
+    <displayOrder>210</displayOrder>
+    <aiCanUse>false</aiCanUse>
+    <cooldownTicksRange>30000</cooldownTicksRange> <!-- 半天冷却 -->
+    <displayGizmoWhileUndrafted>true</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>false</disableGizmoWhileUndrafted>
+    <verbProperties>
+      <verbClass>Verb_CastAbility</verbClass>
+      <range>9.9</range>
+      <warmupTime>1.5</warmupTime>
+      <targetParams>
+        <canTargetSelf>true</canTargetSelf>
+        <canTargetPawns>true</canTargetPawns>
+        <canTargetBuildings>false</canTargetBuildings>
+        <canTargetAnimals>true</canTargetAnimals>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <!-- Hediff抽卡组件配置 -->
+      <li Class="DivineDiurganate.CompProperties_AbilityHediffGacha">
+        <!-- Hediff池配置 - 每个条目包含hediff和权重 -->
+        <hediffPool>
+          <li>
+            <hediff>DD_GachaBuff_Strength</hediff>
+            <weight>1.0</weight>
+          </li>
+          <li>
+            <hediff>DD_GachaBuff_Agility</hediff>
+            <weight>1.0</weight>
+          </li>
+          <li>
+            <hediff>DD_GachaBuff_Fortitude</hediff>
+            <weight>1.0</weight>
+          </li>
+          <li>
+            <hediff>DD_GachaBuff_Wisdom</hediff>
+            <weight>0.8</weight>  <!-- 权重较低，出现概率稍低 -->
+          </li>
+          <li>
+            <hediff>DD_GachaBuff_Vitality</hediff>
+            <weight>0.8</weight>
+          </li>
+          <li>
+            <hediff>DD_GachaBuff_Fortune</hediff>
+            <weight>0.6</weight>  <!-- 稀有祝福，权重最低 -->
+          </li>
+        </hediffPool>
+        
+        <!-- 每次抽取的选项数量（三选一） -->
+        <choiceCount>3</choiceCount>
+        
+        <!-- 使用权重进行随机抽取 -->
+        <useWeights>true</useWeights>
+        
+        <!-- 不允许同一次抽取出现重复选项 -->
+        <allowDuplicates>false</allowDuplicates>
+        
+        <!-- 窗口标题翻译键 -->
+        <windowTitle>DD_HediffGacha_Title</windowTitle>
+        
+        <!-- 不允许取消选择（必须选一个） -->
+        <allowCancel>false</allowCancel>
+        
+        <!-- 显示选择结果消息 -->
+        <showSelectionMessage>true</showSelectionMessage>
+        
+        <!-- 如果目标已有该Hediff则替换 -->
+        <replaceExisting>true</replaceExisting>
+      </li>
+    </comps>
+  </AbilityDef>
+
 </Defs>

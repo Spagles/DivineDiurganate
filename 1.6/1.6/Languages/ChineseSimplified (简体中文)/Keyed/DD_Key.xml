@@ -213,4 +213,14 @@
   <DD_WishTooltip_Description>描述：</DD_WishTooltip_Description>
   <DD_WishTooltip_DescriptionText>祈愿代表追随者的瞬时狂热和即时虔诚。它随时间自然恢复，可用于快速、暂时的祝福。祈愿容量受剩余信仰容量限制。</DD_WishTooltip_DescriptionText>
 
+  <!-- Hediff抽卡系统 -->
+  <DD_HediffGacha_Title>选择一个效果</DD_HediffGacha_Title>
+  <DD_HediffGacha_TargetInfo>目标：{0}</DD_HediffGacha_TargetInfo>
+  <DD_HediffGacha_Select>选择</DD_HediffGacha_Select>
+  <DD_HediffGacha_Selected>{0} 获得了 {1}</DD_HediffGacha_Selected>
+  <DD_HediffGacha_Hint>点击卡片下方的按钮选择一个效果</DD_HediffGacha_Hint>
+  <DD_HediffGacha_HintWithCancel>点击卡片下方的按钮选择一个效果，或按ESC取消</DD_HediffGacha_HintWithCancel>
+  <DD_HediffGacha_NeedPawnTarget>需要选择一个目标角色</DD_HediffGacha_NeedPawnTarget>
+  <DD_HediffGacha_EmptyPool>Hediff池为空，无法使用此技能</DD_HediffGacha_EmptyPool>
+
 </LanguageData>
