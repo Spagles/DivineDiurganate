@@ -339,4 +339,21 @@
       </li>
     </subSounds>
   </SoundDef>
+  <SoundDef>
+    <defName>DD_Axe_Shotgun_FireSound</defName>
+    <context>MapOnly</context>
+    <maxSimultaneous>1</maxSimultaneous>
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>DivineDiurganate/DD_Axe_Shotgun_FireSound</clipPath>
+          </li>
+        </grains>
+        <volumeRange>65</volumeRange>
+        <pitchRange>0.9~1.1</pitchRange>
+        <onCamera>True</onCamera>
+      </li>
+    </subSounds>
+  </SoundDef>
 </Defs>

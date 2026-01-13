@@ -20,8 +20,11 @@ namespace DivineDiurganate
         // 格挡次数统计
         private int blockCount = 0;
         
-        // 护盾图形
-        private Graphic shieldGraphic;
+        // 护盾本体图形
+        private Graphic baseGraphic;
+        
+        // 护盾发光图形（使用MoteGlow着色器）
+        private Graphic glowGraphic;
         
         // 上次穿透时间（用于衰减计时）
         private int lastPenetrationTick = -99999;
@@ -48,7 +51,7 @@ namespace DivineDiurganate
             base.CompPostMake();
             // 初始化伤害阈值
             currentDamageThreshold = Props.baseDamageThreshold;
-            InitShieldGraphic();
+            InitShieldGraphics();
         }
         
         public override void CompExposeData()
@@ -88,7 +91,7 @@ namespace DivineDiurganate
         public override void CompPostPostAdd(DamageInfo? dinfo)
         {
             base.CompPostPostAdd(dinfo);
-            InitShieldGraphic();
+            InitShieldGraphics();
             
             // 激活时显示消息
             if (Props.showActivationMessage && Pawn != null && Pawn.Spawned)
@@ -109,20 +112,30 @@ namespace DivineDiurganate
             }
         }
         
-        private void InitShieldGraphic()
+        private void InitShieldGraphics()
         {
-            if (!Props.shieldTexturePath.NullOrEmpty())
+            LongEventHandler.ExecuteWhenFinished(() =>
             {
-                LongEventHandler.ExecuteWhenFinished(() =>
+                // 初始化本体贴图（使用Cutout着色器）
+                if (!Props.baseTexturePath.NullOrEmpty())
                 {
-                    // 使用 Graphic_Multi 支持多方向贴图
-                    shieldGraphic = GraphicDatabase.Get<Graphic_Multi>(
-                        Props.shieldTexturePath, 
+                    baseGraphic = GraphicDatabase.Get<Graphic_Multi>(
+                        Props.baseTexturePath, 
                         ShaderDatabase.Cutout, 
-                        new Vector2(Props.shieldDrawSize, Props.shieldDrawSize), 
-                        Color.white);
-                });
-            }
+                        new Vector2(Props.baseDrawSize, Props.baseDrawSize), 
+                        Props.baseColor);
+                }
+                
+                // 初始化护盾贴图（使用MoteGlow着色器）
+                if (!Props.glowTexturePath.NullOrEmpty())
+                {
+                    glowGraphic = GraphicDatabase.Get<Graphic_Multi>(
+                        Props.glowTexturePath, 
+                        ShaderDatabase.MoteGlow, 
+                        new Vector2(Props.glowDrawSize, Props.glowDrawSize), 
+                        Props.glowColor);
+                }
+            });
         }
 
         /// <summary>
@@ -250,54 +263,105 @@ namespace DivineDiurganate
         }
         
         /// <summary>
+        /// 获取指定朝向的偏移
+        /// </summary>
+        private Vector3 GetOffsetForRotation(Rot4 rotation)
+        {
+            switch (rotation.AsInt)
+            {
+                case 0: // North - 面向上
+                    return Props.drawOffsetNorth;
+                case 1: // East - 面向右
+                    return Props.drawOffsetEast;
+                case 2: // South - 面向下
+                    return Props.drawOffsetSouth;
+                case 3: // West - 面向左
+                    return Props.drawOffsetWest;
+                default:
+                    return Props.drawOffsetSouth;
+            }
+        }
+        
+        /// <summary>
         /// 绘制护盾 - 由Harmony补丁调用
-        /// 使用与衣服相同的绘制方式，根据朝向选择对应材质
+        /// 先绘制本体贴图，再绘制护盾发光贴图
         /// </summary>
         public void DrawShield()
         {
             if (Pawn == null || !Pawn.Spawned || Pawn.Dead)
                 return;
-                
-            if (shieldGraphic == null)
-                return;
             
             Vector3 drawPos = Pawn.DrawPos;
             Rot4 rotation = Pawn.Rotation;
             
-            // 根据朝向获取对应的材质和位置偏移
-            Material mat;
-            Vector3 offset;
-            float angle = 0f;
+            // 获取该朝向的偏移
+            Vector3 offset = GetOffsetForRotation(rotation);
+            
+            // 计算最终绘制位置
+            drawPos += offset;
+            
+            // 绘制本体贴图
+            if (baseGraphic != null)
+            {
+                Material baseMat = GetMaterialForRotation(baseGraphic, rotation);
+                if (baseMat != null)
+                {
+                    // 创建缩放矩阵
+                    float baseScale = Props.baseDrawSize / 10f; // MeshPool.plane10的大小是10x10
+                    Matrix4x4 matrix = Matrix4x4.TRS(drawPos, Quaternion.identity, new Vector3(baseScale, 1f, baseScale));
+                    
+                    // 绘制本体
+                    Graphics.DrawMesh(MeshPool.plane10, matrix, baseMat, 0);
+                }
+            }
+            
+            // 绘制护盾发光贴图
+            if (glowGraphic != null)
+            {
+                Material glowMat = GetMaterialForRotation(glowGraphic, rotation);
+                if (glowMat != null)
+                {
+                    // 创建缩放矩阵
+                    float glowScale = Props.glowDrawSize / 10f; // MeshPool.plane10的大小是10x10
+                    
+                    // 护盾贴图稍微提高一点，避免z-fighting
+                    Vector3 glowPos = drawPos + new Vector3(0f, 0.01f, 0f);
+                    Matrix4x4 matrix = Matrix4x4.TRS(glowPos, Quaternion.identity, new Vector3(glowScale, 1f, glowScale));
+                    
+                    // 绘制护盾发光层
+                    Graphics.DrawMesh(MeshPool.plane10, matrix, glowMat, 0);
+                    
+                    // 为MoteGlow着色器设置颜色强度
+                    if (glowMat.HasProperty("_Color"))
+                    {
+                        Color glowColor = Props.glowColor;
+                        glowMat.SetColor("_Color", glowColor);
+                    }
+                }
+            }
+        }
+        
+        /// <summary>
+        /// 根据朝向获取对应的材质
+        /// </summary>
+        private Material GetMaterialForRotation(Graphic graphic, Rot4 rotation)
+        {
+            if (graphic == null)
+                return null;
             
             switch (rotation.AsInt)
             {
-                case 0: // North - 面向上
-                    mat = shieldGraphic.MatNorth;
-                    offset = new Vector3(0f, 0.1f, 0.2f);
-                    break;
-                case 1: // East - 面向右
-                    mat = shieldGraphic.MatEast;
-                    offset = new Vector3(0.2f, 0.1f, 0f);
-                    break;
-                case 2: // South - 面向下
-                    mat = shieldGraphic.MatSouth;
-                    offset = new Vector3(0f, 0.1f, -0.1f);
-                    break;
-                case 3: // West - 面向左
-                    mat = shieldGraphic.MatWest;
-                    offset = new Vector3(-0.2f, 0.1f, 0f);
-                    break;
+                case 0: // North
+                    return graphic.MatNorth;
+                case 1: // East
+                    return graphic.MatEast;
+                case 2: // South
+                    return graphic.MatSouth;
+                case 3: // West
+                    return graphic.MatWest;
                 default:
-                    mat = shieldGraphic.MatSouth;
-                    offset = Vector3.zero;
-                    break;
+                    return graphic.MatSouth;
             }
-            
-            drawPos += offset;
-            
-            // 绘制护盾
-            Mesh mesh = MeshPool.plane10;
-            Graphics.DrawMesh(mesh, drawPos, Quaternion.AngleAxis(angle, Vector3.up), mat, 0);
         }
         
         public override string CompTipStringExtra
@@ -343,14 +407,54 @@ namespace DivineDiurganate
         public bool resetThresholdOnDeactivate = true;
         
         /// <summary>
-        /// 护盾贴图路径
+        /// 本体贴图路径
         /// </summary>
-        public string shieldTexturePath;
+        public string baseTexturePath;
         
         /// <summary>
-        /// 护盾绘制大小
+        /// 本体贴图绘制大小
         /// </summary>
-        public float shieldDrawSize = 1.5f;
+        public float baseDrawSize = 1.5f;
+        
+        /// <summary>
+        /// 本体贴图颜色
+        /// </summary>
+        public Color baseColor = Color.white;
+        
+        /// <summary>
+        /// 护盾发光贴图路径（使用MoteGlow着色器）
+        /// </summary>
+        public string glowTexturePath;
+        
+        /// <summary>
+        /// 护盾发光贴图绘制大小
+        /// </summary>
+        public float glowDrawSize = 1.6f; // 稍微比本体大一点，形成发光边缘效果
+        
+        /// <summary>
+        /// 护盾发光颜色
+        /// </summary>
+        public Color glowColor = new Color(0.2f, 0.6f, 1f, 0.8f); // 默认蓝色发光
+        
+        /// <summary>
+        /// 面朝北时的渲染偏移
+        /// </summary>
+        public Vector3 drawOffsetNorth = new Vector3(0f, 0.1f, 0.2f);
+        
+        /// <summary>
+        /// 面朝东时的渲染偏移
+        /// </summary>
+        public Vector3 drawOffsetEast = new Vector3(0.2f, 0.1f, 0f);
+        
+        /// <summary>
+        /// 面朝南时的渲染偏移
+        /// </summary>
+        public Vector3 drawOffsetSouth = new Vector3(0f, 0.1f, -0.1f);
+        
+        /// <summary>
+        /// 面朝西时的渲染偏移
+        /// </summary>
+        public Vector3 drawOffsetWest = new Vector3(-0.2f, 0.1f, 0f);
         
         /// <summary>
         /// 格挡音效

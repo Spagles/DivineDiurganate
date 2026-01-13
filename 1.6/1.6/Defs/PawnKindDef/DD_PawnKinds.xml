@@ -447,8 +447,8 @@
 		<fixedGender>Female</fixedGender>
 		<defaultFactionDef>PlayerColony</defaultFactionDef>
 		<combatPower>55</combatPower>
-		<minGenerationAge>19</minGenerationAge>
-		<maxGenerationAge>20</maxGenerationAge>
+		<minGenerationAge>20</minGenerationAge>
+		<maxGenerationAge>21</maxGenerationAge>
 		<isFighter>true</isFighter>
 		<chemicalAddictionChance>0</chemicalAddictionChance>
 		<!-- <backstoryCryptosleepCommonality>0.05</backstoryCryptosleepCommonality> -->
@@ -480,16 +480,12 @@
 		<itemQuality>Good</itemQuality>
 		<weaponMoney>99999~99999</weaponMoney>
 		<apparelRequired>
-			<li>DD_Nun_Dress</li>
-			<li>DD_NunVeil</li>
+			<li>DD_Exorcist_Cloth</li>
+			<li>DD_Exorcist_Hat</li>
 		</apparelRequired>
 		<weaponTags>
 			<li>DD_Michelle_Weapon</li>
 		</weaponTags>
-		<apparelTags>
-			<li>IndustrialBasic</li>
-			<li>IndustrialAdvanced</li>
-		</apparelTags>
 		<forcedTraits>
 			<Nerves>2</Nerves>
       <Nimble>0</Nimble>
@@ -499,7 +495,7 @@
 		<initialResistanceRange>0~2</initialResistanceRange>
 		<humanPregnancyChance>0</humanPregnancyChance>
 		<abilities>
-			<li>DD_ToggleAdaptiveShield</li>
+			<li>DD_Light_The_Lantern</li>
 		</abilities>
 
 		<modExtensions>

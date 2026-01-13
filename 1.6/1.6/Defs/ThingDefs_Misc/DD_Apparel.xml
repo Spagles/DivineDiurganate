@@ -297,6 +297,103 @@
     </comps>
 	</ThingDef>
 	<ThingDef ParentName="DD_ApparelMakeableBase">
+		<defName>DD_Exorcist_Cloth</defName>
+		<label>米鼠儿的制服</label>
+    <description>米鼠儿在担任社区驱魔人时候的制服，是她的养母为她设计的，她在背井离乡后依然穿着这件衣服——但是对于长大成人的米鼠儿来说，这件衣服的胸围实在是太小了···</description>
+    <graphicData>
+			<texPath>DivineDiurganate/Apparel/DD_Exorcist_Cloth</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>  
+		</graphicData>
+    <useHitPoints>false</useHitPoints>
+		<costStuffCount>0</costStuffCount>
+    <stuffCategories Inherit="False"/>
+		<techLevel>Industrial</techLevel>
+	  <smeltable>false</smeltable>
+		<statBases>
+			<WorkToMake>25000</WorkToMake>
+			<Mass>3</Mass>
+			<Flammability>0</Flammability>
+			<EquipDelay>1</EquipDelay>
+      <DeteriorationRate>0</DeteriorationRate>
+      <ArmorRating_Blunt>0.8</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.8</ArmorRating_Sharp>
+      <ArmorRating_Heat>1.25</ArmorRating_Heat>
+			<Insulation_Cold>25</Insulation_Cold>
+			<Insulation_Heat>10</Insulation_Heat>
+		</statBases>
+		<apparel>
+			<bodyPartGroups>
+				<li>Neck</li>
+				<li>Torso</li>
+				<li>Shoulders</li>
+				<li>Arms</li>
+				<li>Legs</li>
+			</bodyPartGroups>
+			<wornGraphicPath>DivineDiurganate/Apparel/DD_Exorcist_Cloth</wornGraphicPath>
+			<layers>
+        <li>Middle</li>
+			</layers>
+      <tags Inherit="False"/>
+      <canBeDesiredForIdeo>false</canBeDesiredForIdeo>
+      <canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
+      <canBeGeneratedToSatisfyToxicEnvironmentResistance>false</canBeGeneratedToSatisfyToxicEnvironmentResistance>
+      <useWornGraphicMask>true</useWornGraphicMask>
+		</apparel>
+    <colorGenerator Class="ColorGenerator_Options">
+      <options>
+        <li>
+          <weight>10</weight>
+          <only>(1,1,1,1)</only>
+        </li>
+      </options>
+    </colorGenerator>
+    <recipeMaker Inherit="False" IsNull="True"/>
+	</ThingDef>
+	<ThingDef ParentName="DD_HatMakeableBase">
+		<defName>DD_Exorcist_Hat</defName>
+		<label>米鼠儿的帽子</label>
+    <description>米鼠儿的帽子，颇有一种游侠的风范。</description>
+    <graphicData>
+			<texPath>DivineDiurganate/Apparel/DD_Exorcist_Hat</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+	  <smeltable>false</smeltable>
+    <useHitPoints>false</useHitPoints>
+		<costStuffCount>0</costStuffCount>
+    <stuffCategories Inherit="False"/>
+		<statBases>
+			<WorkToMake>15000</WorkToMake>
+			<Mass>0.1</Mass>
+			<Flammability>0</Flammability>
+      <DeteriorationRate>0</DeteriorationRate>
+			<EquipDelay>0.5</EquipDelay>
+      <ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+      <ArmorRating_Heat>0.75</ArmorRating_Heat>
+			<Insulation_Cold>5</Insulation_Cold>
+			<Insulation_Heat>5</Insulation_Heat>
+		</statBases>
+		<apparel>
+      <renderSkipFlags>
+        <li>None</li>
+      </renderSkipFlags>
+      <parentTagDef>ApparelHead</parentTagDef>
+      <useDeflectMetalEffect>true</useDeflectMetalEffect>
+      <countsAsClothingForNudity>false</countsAsClothingForNudity>
+			<bodyPartGroups>
+				<li>UpperHead</li>
+			</bodyPartGroups>
+			<wornGraphicPath>DivineDiurganate/Apparel/DD_Exorcist_Hat</wornGraphicPath>
+			<layers>
+				<li>Overhead</li>
+			</layers>
+      <tags Inherit="False"/>
+		</apparel>
+    <recipeMaker Inherit="False" IsNull="True"/>
+	</ThingDef>
+	<ThingDef ParentName="DD_ApparelMakeableBase">
 		<defName>DD_Crusaders_Uniform</defName>
 		<label>Diurganate Crusader Uniform</label>
     <description>The uniform of the Diurganate Crusader, with a built-in set of alloy plate armour that would resist firing, and a warm coat on the outside to move in the high-altitude, cold environment of Diurganate Airship.</description>

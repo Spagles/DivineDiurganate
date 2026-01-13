@@ -4,7 +4,7 @@
   <!-- EN: [PAWN_nameDef]是一名被收养的孩子。在某个风雨交加的夜晚，一对鼠族夫妇在路边看到了被遗弃的[PAWN_nameDef]，尽管她们是当地名流并且已经有一位女儿，[PAWN_pronoun]也不是鼠族，但是她们依然收养了[PAWN_nameDef]——对于狂热排外的双尾教国，这种行为是对信仰纯粹的玷污。为了在双尾教国的排外环境下生活，这对夫妇为其准备了栩栩如生的假耳朵和假尾巴，并让自己的女儿在外面保护[PAWN_possessive]，那个本该在风雨夜中死去的孩子，最终得到了一个温暖的家。 -->
   <DD_Ratkin_Adopted_Child.description>[PAWN_nameDef]是一名被收养的孩子。在某个风雨交加的夜晚，一对鼠族夫妇在路边看到了被遗弃的[PAWN_nameDef]，尽管她们是当地名流并且已经有一位女儿，[PAWN_pronoun]也不是鼠族，但是她们依然收养了[PAWN_nameDef]——对于狂热排外的双尾教国，这种行为是对信仰纯粹的玷污。为了在双尾教国的排外环境下生活，这对夫妇为其准备了栩栩如生的假耳朵和假尾巴，并让自己的女儿在外面保护[PAWN_possessive]，那个本该在风雨夜中死去的孩子，最终得到了一个温暖的家。</DD_Ratkin_Adopted_Child.description>
   <!-- EN: Adopted Ratkin Child -->
-  <DD_Ratkin_Adopted_Child.title>被遗弃的孩子</DD_Ratkin_Adopted_Child.title>
+  <DD_Ratkin_Adopted_Child.title>弃子</DD_Ratkin_Adopted_Child.title>
   <!-- EN: Adopted Child -->
   <DD_Ratkin_Adopted_Child.titleShort>弃子</DD_Ratkin_Adopted_Child.titleShort>
   

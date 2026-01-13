@@ -178,19 +178,19 @@
 
   <!-- 切换护盾的技能 -->
   <AbilityDef>
-    <defName>DD_ToggleAdaptiveShield</defName>
-    <label>Toggle Adaptive Shield</label>
-    <description>Activate or deactivate the Adaptive Shield. When active, the shield blocks frontal attacks with damage below the threshold. Attacks that penetrate the shield will cause it to adapt, increasing the threshold for future attacks.</description>
-    <iconPath>DivineDiurganate/UI/Abilities/DD_AdaptiveShield</iconPath>
+    <defName>DD_Light_The_Lantern</defName>
+    <label>提灯护盾</label>
+    <description>点燃米鼠儿随身携带的提灯，这盏提灯散发的光芒会汇聚为一面若隐若现的盾牌，可以抵挡来自前方的伤害。灯油是有限的，它只能保护米鼠儿一段时间，然后就会熄灭，需要重新充能。</description>
+    <iconPath>DivineDiurganate/UI/Abilities/DD_Light_The_Lantern</iconPath>
     <displayOrder>300</displayOrder>
     <aiCanUse>false</aiCanUse>
-    <cooldownTicksRange>60</cooldownTicksRange> <!-- 1秒冷却 -->
+    <cooldownTicksRange>6000</cooldownTicksRange> <!-- 1秒冷却 -->
     <displayGizmoWhileUndrafted>true</displayGizmoWhileUndrafted>
     <disableGizmoWhileUndrafted>false</disableGizmoWhileUndrafted>
     <targetRequired>false</targetRequired>
     <verbProperties>
       <verbClass>Verb_CastAbility</verbClass>
-      <warmupTime>0</warmupTime>
+      <warmupTime>3</warmupTime>
       <range>0</range>
       <targetParams>
         <canTargetSelf>true</canTargetSelf>
@@ -198,11 +198,10 @@
     </verbProperties>
     <comps>
       <li Class="DivineDiurganate.CompProperties_AbilityToggleAdaptiveShield">
-        <shieldHediffDef>DD_AdaptiveShield_Active</shieldHediffDef>
-        <activateMessage>DD_Shield_ActivatedMessage</activateMessage>
-        <deactivateMessage>DD_Shield_DeactivatedMessage</deactivateMessage>
+        <shieldHediffDef>DD_Lantern_Shield_Active</shieldHediffDef>
+        <activateMessage>DD_Lantern_Shield_ActivatedMessage</activateMessage>
+        <deactivateMessage>DD_Lantern_Shield_DeactivatedMessage</deactivateMessage>
       </li>
     </comps>
   </AbilityDef>
-
 </Defs>

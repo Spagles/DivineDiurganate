@@ -294,7 +294,7 @@
     </statBases>
     <verbs>
       <li>
-        <verbClass>DivineDiurganate.Verb_ShootShotgun</verbClass>
+        <verbClass>Verb_Shoot</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
         <warmupTime>0.1</warmupTime>
@@ -315,7 +315,6 @@
 			<li>RK_RangeWeapon</li>
 			<li>RK_Murderer</li>
 			<li>DD_RatkinClergy_Weapon</li>
-			<li>DD_Michelle_Weapon</li>
 		</weaponTags>
     <generateCommonality>0.01</generateCommonality>
     <tradeability>None</tradeability>
@@ -356,9 +355,6 @@
         <preventFriendlyFire>true</preventFriendlyFire>        <!-- 是否阻止友方火力 -->
 
         <enableExplosion>false</enableExplosion>
-      </li>
-      <li Class="DivineDiurganate.ShotgunExtension">
-        <pelletCount>3</pelletCount>
       </li>
     </modExtensions>
     <projectile>
@@ -645,9 +641,109 @@
 
   <!-- sp -->
   <ThingDef ParentName="BaseHumanMakeableGun">
+    <defName>DD_Axe_Shotgun</defName>
+    <label>Diurganate Axe Shotgun</label>
+    <description>一把加装了斧刃的杠杆霰弹枪，由心灵手巧的米鼠儿自行改装。除了可以发射在近距离上造成大量伤口的霰弹外，它还能被当成一把近战武器与对手搏杀。</description>
+    <tickerType>Normal</tickerType>
+    <techLevel>Industrial</techLevel>
+    <graphicData>
+      <texPath>DivineDiurganate/Weapon/DD_Axe_Shotgun</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>0.75</drawSize>
+    </graphicData>
+    <soundInteract>Interact_Rifle</soundInteract>
+    <uiIconScale>1.25</uiIconScale>
+		<costStuffCount>0</costStuffCount>
+    <stuffCategories Inherit="False"/>
+    <recipeMaker>
+      <!-- <recipeUsers Inherit="False" /> -->
+			<researchPrerequisite>MicroOptical</researchPrerequisite>
+      <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
+    </recipeMaker>
+    <statBases>
+      <WorkToMake>5000</WorkToMake>
+      <Mass>1.4</Mass>
+      <AccuracyTouch>0.9</AccuracyTouch>
+      <AccuracyShort>0.65</AccuracyShort>
+      <AccuracyMedium>0.45</AccuracyMedium>
+      <AccuracyLong>0.2</AccuracyLong>
+      <RangedWeapon_Cooldown>1.75</RangedWeapon_Cooldown>
+    </statBases>
+    <verbs>
+      <li>
+        <verbClass>DivineDiurganate.Verb_ShootShotgun</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+        <warmupTime>0.1</warmupTime>
+        <defaultProjectile>DD_Axe_Shotgun_Bullet</defaultProjectile>
+        <range>20.9</range>
+        <burstShotCount>1</burstShotCount>
+        <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+        <soundCast>DD_Axe_Shotgun_FireSound</soundCast>
+      </li>
+    </verbs>
+    <costList>
+      <Steel>30</Steel>
+      <ComponentIndustrial>2</ComponentIndustrial>
+    </costList>
+		<weaponTags Inherit="false">
+			<li>DD_Michelle_Weapon</li>
+		</weaponTags>
+    <generateCommonality>0.01</generateCommonality>
+    <tradeability>None</tradeability>
+    <thingSetMakerTags Inherit="False" />
+    <tools Inherit="False">
+      <li>
+        <label>Gunstock</label>
+        <capacities>
+          <li>Poke</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>2</cooldownTime>
+      </li>
+      <li>
+        <label>Axe Blade</label>
+        <capacities>
+          <li>Cut</li>
+        </capacities>
+        <power>15</power>
+        <cooldownTime>2</cooldownTime>
+      </li>
+    </tools>
+  </ThingDef>
+  <ThingDef ParentName="BaseBullet">
+    <defName>DD_Axe_Shotgun_Bullet</defName>
+    <label>Shotgun Bullet</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>MoteGlow</shaderType>
+      <color>(194,117,67)</color>
+    </graphicData>
+    <thingClass>DivineDiurganate.Projectile_PenetratingBullet</thingClass>
+    <modExtensions>
+      <li Class="DivineDiurganate.PenetratingBullet_Extension">
+        <maxHits>1</maxHits>        <!-- 无限穿透 -->
+        <damageFalloff>0</damageFalloff>        <!-- 无伤害衰减 -->
+        <preventFriendlyFire>true</preventFriendlyFire>        <!-- 是否阻止友方火力 -->
+
+        <enableExplosion>false</enableExplosion>
+      </li>
+      <li Class="DivineDiurganate.ShotgunExtension">
+        <pelletCount>6</pelletCount>
+      </li>
+    </modExtensions>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>6</damageAmountBase>
+      <stoppingPower>2</stoppingPower>
+      <speed>45</speed>
+    </projectile>
+  </ThingDef>
+  <ThingDef ParentName="BaseHumanMakeableGun">
     <defName>DD_Maple_Sugar_Heavy_Lance</defName>
     <label>Sacred Flame Heavy Lance</label>
-    <description>A modified heavy lance by Maple Sugar, with the anti-mech shell launch structure removed and a holy flame injector installed, makes this weapon lighter and more suitable for dealing with crowds compared to the standard anti-mech heavy lance.</description>
+    <description>A modified heavy lance, with the anti-mech shell launch structure removed and a holy flame injector installed, makes this weapon lighter and more suitable for dealing with crowds compared to the standard anti-mech heavy lance.</description>
     <tickerType>Normal</tickerType>
     <techLevel>Industrial</techLevel>
     <graphicData>

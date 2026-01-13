@@ -6,21 +6,25 @@
 
   <!-- 护盾激活状态的Hediff -->
   <HediffDef>
-    <defName>DD_AdaptiveShield_Active</defName>
-    <label>Adaptive Shield</label>
-    <description>An advanced energy shield that blocks frontal attacks. Damage below the threshold is completely absorbed. When penetrated, the shield adapts and increases its threshold.</description>
+    <defName>DD_Lantern_Shield_Active</defName>
+    <label>提灯护盾</label>
+    <description>米鼠儿随身携带的提灯可以支起一面若隐若现的护盾，以抵挡面向方向袭来的射弹和近战挥砍。一旦灯中熏香烧尽，护盾就会消失。</description>
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(0.4, 0.8, 1.0)</defaultLabelColor>
     <isBad>false</isBad>
     <initialSeverity>1.0</initialSeverity>
     <maxSeverity>1.0</maxSeverity>
     <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>6000</disappearsAfterTicks> <!-- 24 hours -->
+        <showRemainingTime>true</showRemainingTime>
+      </li>
       <li Class="DivineDiurganate.HediffCompProperties_AdaptiveShield">
         <!-- 基础伤害阈值 -->
-        <baseDamageThreshold>20</baseDamageThreshold>
+        <baseDamageThreshold>5</baseDamageThreshold>
         
         <!-- 最大阈值（0表示无上限） -->
-        <maxDamageThreshold>50</maxDamageThreshold>
+        <maxDamageThreshold>0</maxDamageThreshold>
         
         <!-- 每次穿透后阈值增加量 -->
         <thresholdIncreaseOnPenetration>2</thresholdIncreaseOnPenetration>
@@ -32,17 +36,25 @@
         <resetThresholdOnDeactivate>true</resetThresholdOnDeactivate>
         
         <!-- 护盾贴图路径 -->
-        <shieldTexturePath>Apparel/RK_HeavyShield_Big</shieldTexturePath>
+        <baseTexturePath>DivineDiurganate/Apparel/DD_Lantern_Shield</baseTexturePath>
+        <baseDrawSize>15</baseDrawSize>
+        <baseColor>(1,1,1,1)</baseColor>
+        <glowTexturePath>DivineDiurganate/Apparel/DD_Lantern_Shield_Light</glowTexturePath>
+        <glowDrawSize>15</glowDrawSize>
+        <glowColor>(1,1,1,0.5)</glowColor>
         
-        <!-- 护盾绘制大小 -->
-        <shieldDrawSize>1</shieldDrawSize>
+        <!-- 四个方向的渲染偏移 -->
+        <drawOffsetNorth>(0,-5,0)</drawOffsetNorth>
+        <drawOffsetEast>(0,-5,0)</drawOffsetEast>
+        <drawOffsetSouth>(0,5,0)</drawOffsetSouth>
+        <drawOffsetWest>(0,5,0)</drawOffsetWest>
         
         <!-- 是否显示激活消息 -->
         <showActivationMessage>true</showActivationMessage>
         
         <!-- 阈值衰减延迟（穿透后多少tick开始衰减）-->
         <!-- 2500tick ≈ 42秒（游戏内约1小时） -->
-        <thresholdDecayDelay>2500</thresholdDecayDelay>
+        <thresholdDecayDelay>1200</thresholdDecayDelay>
         
         <!-- 每秒阈值衰减量 -->
         <thresholdDecayPerSecond>1</thresholdDecayPerSecond>
