@@ -21,6 +21,16 @@
   <!-- EN: The uniform of the Diurganate Crusader, with a built-in set of alloy plate armour that would resist firing, and a warm coat on the outside to move in the high-altitude, cold environment of Diurganate Airship. -->
   <DD_Crusaders_Uniform.description>双尾护教军的制服，内嵌了一套可以抵御射击的合金板甲，外表覆以保暖的大衣，以在双尾教廷飞空艇的高空低温环境下活动。</DD_Crusaders_Uniform.description>
   
+  <!-- EN: 米鼠儿的制服 -->
+  <DD_Exorcist_Cloth.label>米鼠儿的制服</DD_Exorcist_Cloth.label>
+  <!-- EN: 米鼠儿在担任社区驱魔人时候的制服，是她的养母为她设计的，她在背井离乡后依然穿着这件衣服——但是对于长大成人的米鼠儿来说，这件衣服的胸围实在是太小了··· -->
+  <DD_Exorcist_Cloth.description>TODO</DD_Exorcist_Cloth.description>
+  
+  <!-- EN: 米鼠儿的帽子 -->
+  <DD_Exorcist_Hat.label>米鼠儿的帽子</DD_Exorcist_Hat.label>
+  <!-- EN: 米鼠儿的帽子，颇有一种游侠的风范。 -->
+  <DD_Exorcist_Hat.description>米鼠儿的帽子，颇有一种游侠的风范。</DD_Exorcist_Hat.description>
+  
   <!-- EN: Loudspeaker pack -->
   <DD_Maple_Sugar_PackLoudspeaker.label>诵经音箱</DD_Maple_Sugar_PackLoudspeaker.label>
   <!-- EN: The small audio device that Maple Sugar carries, resembling a schoolbag, covered with scriptures. -->

@@ -298,8 +298,8 @@
 	</ThingDef>
 	<ThingDef ParentName="DD_ApparelMakeableBase">
 		<defName>DD_Exorcist_Cloth</defName>
-		<label>米鼠儿的制服</label>
-    <description>米鼠儿在担任社区驱魔人时候的制服，是她的养母为她设计的，她在背井离乡后依然穿着这件衣服——但是对于长大成人的米鼠儿来说，这件衣服的胸围实在是太小了···</description>
+		<label>Michelle's uniform</label>
+    <description>The uniform that Michelle wore when she was a community exorcist was designed by her foster mother. She continued to wear this clothes even after leaving her hometown - but for the grown-up Michelle, the bust size of this clothes was too small</description>
     <graphicData>
 			<texPath>DivineDiurganate/Apparel/DD_Exorcist_Cloth</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -352,8 +352,8 @@
 	</ThingDef>
 	<ThingDef ParentName="DD_HatMakeableBase">
 		<defName>DD_Exorcist_Hat</defName>
-		<label>米鼠儿的帽子</label>
-    <description>米鼠儿的帽子，颇有一种游侠的风范。</description>
+		<label>Michelle's Hat</label>
+    <description>Michelle's hat, which has a rather chivalrous air about it.</description>
     <graphicData>
 			<texPath>DivineDiurganate/Apparel/DD_Exorcist_Hat</texPath>
 			<graphicClass>Graphic_Single</graphicClass>

@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
   
-  <!-- EN: 事件 -->
+  <!-- EN: Event -->
   <DD_Intro_MemeCheck_UI_1.label>事件</DD_Intro_MemeCheck_UI_1.label>
-  <!-- EN: 米鼠儿 -->
+  <!-- EN: Maple Sugar -->
   <DD_Intro_MemeCheck_UI_1.characterName>枫糖</DD_Intro_MemeCheck_UI_1.characterName>
-  <!-- EN: Ciallo～，很抱歉打扰你立刻享受游戏——我只是想告诉你，如果你不选择包含双尾教戒律的文化进行游戏，你将几乎无法游玩双尾教国的大部分内容。\n\n当然，如果你本来就不打算以玩家视角游玩mod内容，可以直接无视这条警告。 -->
+  <!-- EN: I apologize for interrupting your immediate enjoyment of the game—I just wanted to let you know that if you don't choose the meme of Diurganate, you will find it nearly impossible to experience most of Diurganate's content. Of course, if you don't plan to play the mod content from a player's perspective anyway, you can ignore this warning. -->
   <DD_Intro_MemeCheck_UI_1.descriptions.0>很抱歉打扰你立刻享受游戏——我只是想告诉你，如果你不选择包含双尾教戒律的文化进行游戏，你将几乎无法游玩双尾教国的大部分内容。\n\n当然，如果你本来就不打算以玩家视角游玩mod内容，可以直接无视这条警告。</DD_Intro_MemeCheck_UI_1.descriptions.0>
-  <!-- EN: 我已知悉 -->
+  <!-- EN: I Know -->
   <DD_Intro_MemeCheck_UI_1.options.0.label>我已知悉</DD_Intro_MemeCheck_UI_1.options.0.label>
   
 </LanguageData>

@@ -179,8 +179,8 @@
   <!-- 切换护盾的技能 -->
   <AbilityDef>
     <defName>DD_Light_The_Lantern</defName>
-    <label>提灯护盾</label>
-    <description>点燃米鼠儿随身携带的提灯，这盏提灯散发的光芒会汇聚为一面若隐若现的盾牌，可以抵挡来自前方的伤害。灯油是有限的，它只能保护米鼠儿一段时间，然后就会熄灭，需要重新充能。</description>
+    <label>Lantern Shield</label>
+    <description>Light up the lantern carried by Michelle. The light emitted by this lantern will converge into a faintly visible shield, which can block incoming damage. The lamp oil is limited, and it can only protect Michelle for a while before it goes out, requiring it to be re-lit.</description>
     <iconPath>DivineDiurganate/UI/Abilities/DD_Light_The_Lantern</iconPath>
     <displayOrder>300</displayOrder>
     <aiCanUse>false</aiCanUse>

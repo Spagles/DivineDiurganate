@@ -207,8 +207,8 @@
 
   <HediffDef>
     <defName>DD_Lantern_Shield_Active</defName>
-    <label>提灯护盾</label>
-    <description>米鼠儿随身携带的提灯可以支起一面若隐若现的护盾，以抵挡面向方向袭来的射弹和近战挥砍。一旦灯中熏香烧尽，护盾就会消失。</description>
+    <label>Lantern Shield</label>
+    <description>The lantern carried by Michelle can erect a faintly visible shield to block incoming projectiles and melee slashes from the front. Once the incense in the lantern burns out, the shield will disappear.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(0.4, 0.8, 1.0)</defaultLabelColor>
     <isBad>false</isBad>
@@ -216,26 +216,16 @@
     <maxSeverity>1.0</maxSeverity>
     <comps>
       <li Class="HediffCompProperties_Disappears">
-        <disappearsAfterTicks>6000</disappearsAfterTicks> <!-- 24 hours -->
+        <disappearsAfterTicks>6000</disappearsAfterTicks>
         <showRemainingTime>true</showRemainingTime>
       </li>
       <li Class="DivineDiurganate.HediffCompProperties_AdaptiveShield">
-        <!-- 基础伤害阈值 -->
-        <baseDamageThreshold>5</baseDamageThreshold>
+        <baseDamageThreshold>9999</baseDamageThreshold>
+        <maxDamageThreshold>9999</maxDamageThreshold>
+        <thresholdIncreaseOnPenetration>0</thresholdIncreaseOnPenetration>
+        <blockAngle>45</blockAngle>
+
         
-        <!-- 最大阈值（0表示无上限） -->
-        <maxDamageThreshold>0</maxDamageThreshold>
-        
-        <!-- 每次穿透后阈值增加量 -->
-        <thresholdIncreaseOnPenetration>2</thresholdIncreaseOnPenetration>
-        
-        <!-- 格挡角度（正面±70度） -->
-        <blockAngle>70</blockAngle>
-        
-        <!-- 关闭时重置阈值 -->
-        <resetThresholdOnDeactivate>true</resetThresholdOnDeactivate>
-        
-        <!-- 护盾贴图路径 -->
         <baseTexturePath>DivineDiurganate/Apparel/DD_Lantern_Shield</baseTexturePath>
         <baseDrawSize>15</baseDrawSize>
         <baseColor>(1,1,1,1)</baseColor>
@@ -243,23 +233,52 @@
         <glowDrawSize>15</glowDrawSize>
         <glowColor>(1,1,1,0.5)</glowColor>
         
-        <!-- 四个方向的渲染偏移 -->
         <drawOffsetNorth>(0,-5,0)</drawOffsetNorth>
         <drawOffsetEast>(0,-5,0)</drawOffsetEast>
         <drawOffsetSouth>(0,5,0)</drawOffsetSouth>
         <drawOffsetWest>(0,5,0)</drawOffsetWest>
         
-        <!-- 是否显示激活消息 -->
         <showActivationMessage>true</showActivationMessage>
-        
-        <!-- 阈值衰减延迟（穿透后多少tick开始衰减）-->
-        <!-- 2500tick ≈ 42秒（游戏内约1小时） -->
+        <resetThresholdOnDeactivate>true</resetThresholdOnDeactivate>
+
         <thresholdDecayDelay>1200</thresholdDecayDelay>
-        
-        <!-- 每秒阈值衰减量 -->
-        <thresholdDecayPerSecond>1</thresholdDecayPerSecond>
+        <thresholdDecayPerSecond>0</thresholdDecayPerSecond>
       </li>
     </comps>
+
+    <renderNodeProperties>
+      <li>
+        <debugLabel>AdaptiveShield</debugLabel>
+        <workerClass>DivineDiurganate.PawnRenderNodeWorker_AdaptiveShield</workerClass>
+        <texPath>DivineDiurganate/Apparel/DD_Lantern_Shield</texPath>
+        <shaderTypeDef>Cutout</shaderTypeDef>
+        <parentTagDef>Body</parentTagDef>
+        <drawSize>1</drawSize>
+        <baseLayer>0</baseLayer>
+        <drawData>
+          <dataNorth>
+            <layer>-50</layer>
+            <offset>(0, 0, -0.1)</offset>
+          </dataNorth>
+          <dataSouth>
+            <!-- 提高层级以遮挡头部 -->
+            <layer>100</layer>
+            <offset>(0, 0, -0.1)</offset>
+          </dataSouth>
+          <dataEast>
+            <!-- 向右：盾在左手（内侧），被身体遮挡 -->
+            <layer>-50</layer>
+            <offset>(0.2, 0, 0)</offset>
+          </dataEast>
+          <dataWest>
+            <!-- 向左：盾在左手（外侧），遮挡身体和头部 -->
+            <layer>100</layer>
+            <offset>(-0.2, 0, 0)</offset>
+            <flip>true</flip>
+          </dataWest>
+        </drawData>
+      </li>
+    </renderNodeProperties>
 
     <stages>
       <li>

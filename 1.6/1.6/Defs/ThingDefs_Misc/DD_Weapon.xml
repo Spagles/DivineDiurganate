@@ -643,7 +643,7 @@
   <ThingDef ParentName="BaseHumanMakeableGun">
     <defName>DD_Axe_Shotgun</defName>
     <label>Diurganate Axe Shotgun</label>
-    <description>一把加装了斧刃的杠杆霰弹枪，由心灵手巧的米鼠儿自行改装。除了可以发射在近距离上造成大量伤口的霰弹外，它还能被当成一把近战武器与对手搏杀。</description>
+    <description>A lever-action shotgun equipped with an axe blade, custom-modified by the ingenious Michelle. Apart from firing shotgun pellets that can cause extensive damage at close range, it can also be used as a melee weapon to engage in combat with opponents.</description>
     <tickerType>Normal</tickerType>
     <techLevel>Industrial</techLevel>
     <graphicData>

@@ -27,14 +27,28 @@
   <!-- EN: Pistol Bullet -->
   <DD_Axe_Pistol_Bullet.label>手枪子弹</DD_Axe_Pistol_Bullet.label>
   
-  <!-- EN: 十字机枪 -->
+  <!-- EN: Diurganate Axe Shotgun -->
+  <DD_Axe_Shotgun.label>双尾斧头霰弹枪</DD_Axe_Shotgun.label>
+  <!-- EN: 一把加装了斧刃的杠杆霰弹枪，由心灵手巧的米鼠儿自行改装。除了可以发射在近距离上造成大量伤口的霰弹外，它还能被当成一把近战武器与对手搏杀。 -->
+  <DD_Axe_Shotgun.description>一把加装了斧刃的杠杆霰弹枪，由心灵手巧的米鼠儿自行改装。除了可以发射在近距离上造成大量伤口的霰弹外，它还能被当成一把近战武器与对手搏杀。</DD_Axe_Shotgun.description>
+  <!-- EN: Gunstock -->
+  <DD_Axe_Shotgun.tools.Gunstock.label>枪托</DD_Axe_Shotgun.tools.Gunstock.label>
+  <!-- EN: Axe Blade -->
+  <DD_Axe_Shotgun.tools.Axe_Blade.label>斧刃</DD_Axe_Shotgun.tools.Axe_Blade.label>
+  <!-- EN: Diurganate Axe Shotgun -->
+  <DD_Axe_Shotgun.verbs.Verb_ShootShotgun.label>双尾斧头霰弹枪</DD_Axe_Shotgun.verbs.Verb_ShootShotgun.label>
+  
+  <!-- EN: Shotgun Bullet -->
+  <DD_Axe_Shotgun_Bullet.label>霰弹</DD_Axe_Shotgun_Bullet.label>
+  
+  <!-- EN: Cross Machinegun -->
   <DD_Beam_Machinegun.label>十字机枪</DD_Beam_Machinegun.label>
-  <!-- EN: 象征着圣双尾鼠毁灭权柄的双尾教廷武器，只进行了少量的投产，它需要一点时间预热，然后就能迸发大量穿透性的光束烧穿面前的敌人——教廷对这种武器的运作方式严格保密，因此鼠鼠们完全不知道这个镶嵌着几块石头的烧火棍是怎么杀伤敌军的。 -->
+  <!-- EN: The Divine Diurganate weapon, symbolizing the destruction of authority by the Holy Twin-tail, has only been produced in small quantities. It needs a little time to warm up before it can emit a powerful beam of penetrating light to burn through the enemies in front of it. The Catholic Church strictly keeps secret the operation method of this weapon, so the ratkins have no idea how this firestick embedded with several stones can kill and injure enemy troops. -->
   <DD_Beam_Machinegun.description>象征着圣双尾鼠毁灭权柄的双尾教廷武器，只进行了少量的投产，它需要一点时间预热，然后就能迸发大量穿透性的光束烧穿面前的敌人——教廷对这种武器的运作方式严格保密，因此鼠鼠们完全不知道这个镶嵌着几块石头的烧火棍是怎么杀伤敌军的。</DD_Beam_Machinegun.description>
-  <!-- EN: 十字机枪 -->
+  <!-- EN: Cross Machinegun -->
   <DD_Beam_Machinegun.verbs.Verb_ShootWithOffset.label>十字机枪</DD_Beam_Machinegun.verbs.Verb_ShootWithOffset.label>
   
-  <!-- EN: 穿透光束 -->
+  <!-- EN: Penetrating Beam -->
   <DD_Beam_Machinegun_Bullet.label>穿透光束</DD_Beam_Machinegun_Bullet.label>
   
   <!-- EN: Exorcism Burner -->
@@ -56,7 +70,7 @@
   
   <!-- EN: Sacred Flame Heavy Lance -->
   <DD_Maple_Sugar_Heavy_Lance.label>圣焰长枪</DD_Maple_Sugar_Heavy_Lance.label>
-  <!-- EN: A modified heavy lance by Maple Sugar, with the anti-mech shell launch structure removed and a holy flame injector installed, makes this weapon lighter and more suitable for dealing with crowds compared to the standard anti-mech heavy lance. -->
+  <!-- EN: A modified heavy lance, with the anti-mech shell launch structure removed and a holy flame injector installed, makes this weapon lighter and more suitable for dealing with crowds compared to the standard anti-mech heavy lance. -->
   <DD_Maple_Sugar_Heavy_Lance.description>一把修改过的反机甲长枪，拆除了反机甲炮弹的发射结构，安装了一门圣焰喷射器，因此这把武器比制式的反机甲长枪要轻的同时也更适合对付人群。</DD_Maple_Sugar_Heavy_Lance.description>
   <!-- EN: Lance Stab -->
   <DD_Maple_Sugar_Heavy_Lance.tools.Lance_Stab.label>长枪穿刺</DD_Maple_Sugar_Heavy_Lance.tools.Lance_Stab.label>

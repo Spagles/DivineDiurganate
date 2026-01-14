@@ -376,9 +376,7 @@
 			<li>IndustrialAdvanced</li>
 		</apparelTags>
 		<forcedTraits>
-			<Bloodlust>0</Bloodlust>
 			<Gay>0</Gay>
-			<Beauty>1</Beauty>
 		</forcedTraits>
 		<ignoreIdeoApparelColors>true</ignoreIdeoApparelColors>
 		<initialWillRange>0~0</initialWillRange>
@@ -398,6 +396,15 @@
 					<li>DD_Maple_Sugar_Eyeball</li>					<!-- 直接指定Def名称 -->
 				</eyeballTypeDefNames>
 			</li>
+      <li Class="DivineDiurganate.TraitFilterExtension">
+        <keepBackstoryTraits>true</keepBackstoryTraits>
+        <keepPawnKindTraits>true</keepPawnKindTraits>
+        <allowRandomTraits>false</allowRandomTraits>
+        <exceptions>
+          <!-- <li>Kind</li>
+          <li>Industrious</li> -->
+        </exceptions>
+      </li>
 		</modExtensions>
 	</PawnKindDef>
 	<HairDef>
@@ -486,10 +493,6 @@
 		<weaponTags>
 			<li>DD_Michelle_Weapon</li>
 		</weaponTags>
-		<forcedTraits>
-			<Nerves>2</Nerves>
-      <Nimble>0</Nimble>
-		</forcedTraits>
 		<ignoreIdeoApparelColors>true</ignoreIdeoApparelColors>
 		<initialWillRange>0~0</initialWillRange>
 		<initialResistanceRange>0~2</initialResistanceRange>
@@ -508,6 +511,15 @@
 					<li>DD_Michelle_Eyeball</li>					<!-- 直接指定Def名称 -->
 				</eyeballTypeDefNames>
 			</li>
+      <li Class="DivineDiurganate.TraitFilterExtension">
+        <keepBackstoryTraits>true</keepBackstoryTraits>
+        <keepPawnKindTraits>true</keepPawnKindTraits>
+        <allowRandomTraits>false</allowRandomTraits>
+        <exceptions>
+          <!-- <li>Kind</li>
+          <li>Industrious</li> -->
+        </exceptions>
+      </li>
 		</modExtensions>
 	</PawnKindDef>
 	<RulePackDef>

@@ -69,50 +69,19 @@
     <bodyTypeMale>Thin</bodyTypeMale>
 		<bodyTypeFemale>Thin</bodyTypeFemale>
      <skillGains>
-      <Melee>1</Melee>
-      <Medicine>4</Medicine>
-      <Social>4</Social>
-			<Artistic>2</Artistic>
+      <Crafting>3</Crafting>
+			<Construction>2</Construction>
     </skillGains>
 
-		<!-- <workDisables>
-			<li>Violent</li>
-		</workDisables> -->
+		<forcedTraits Inherit="False">
+      <NaturalMood>2</NaturalMood>
+		</forcedTraits>
 
     <requiredWorkTags>Violent</requiredWorkTags>
 
-		<forcedTraitsChance Inherit="False">
-      <li>
-        <defName Degree="2">Beauty</defName>
-        <chance>100</chance>
-      </li>
-      <li>
-        <defName Degree="0">Faith</defName>
-        <chance>100</chance>
-      </li>
-		</forcedTraitsChance>
-
-    <spawnCategories>
-			<li>RatkinStory</li>
-			<li>RatkinNoble</li>
-			<!-- <li>RatkinPriest</li> -->
-			<li>RatkinKingdom</li>
-			<!-- <li>RatkinNonViolence</li> -->
-			<!-- <li>RatkinFarm</li>
-			<li>RatkinThief</li> -->
-			<!-- <li>RatkinUneducated</li> -->
-			<!-- <li>RatkinEliteDefender</li>
-			<li>RatkinServant</li> -->
-			<li>RatkinSoldier</li>
-			<li>RatkinDefender</li>
-			<!-- <li>RatkinGuardener</li> -->
-			<!-- <li>RatkinKnight</li> -->
-			<!-- <li>RatkinKnightCommander</li> -->
-			<li>DD_RatkinDisciple</li>
-			<li>DD_RatkinClergy</li>
-    </spawnCategories>
     <passions>
-      <Medicine>2</Medicine>
+      <Crafting>2</Crafting>
+      <Construction>1</Construction>
     </passions>
   </AlienRace.AlienBackstoryDef>
   <AlienRace.AlienBackstoryDef ParentName="BaseRatkinBackStory">
@@ -124,12 +93,14 @@
     <bodyTypeGlobal>Thin</bodyTypeGlobal>
     <bodyTypeMale>Thin</bodyTypeMale>
 		<bodyTypeFemale>Thin</bodyTypeFemale>
-     <skillGains>
-      <Melee>1</Melee>
-      <Medicine>4</Medicine>
+    <skillGains>
       <Social>4</Social>
 			<Artistic>2</Artistic>
     </skillGains>
+
+		<forcedTraits Inherit="False">
+      <Beauty>2</Beauty>
+		</forcedTraits>
 
 		<!-- <workDisables>
 			<li>Violent</li>
@@ -137,38 +108,8 @@
 
     <requiredWorkTags>Violent</requiredWorkTags>
 
-		<forcedTraitsChance Inherit="False">
-      <li>
-        <defName Degree="2">Beauty</defName>
-        <chance>100</chance>
-      </li>
-      <li>
-        <defName Degree="0">Faith</defName>
-        <chance>100</chance>
-      </li>
-		</forcedTraitsChance>
-
-    <spawnCategories>
-			<li>RatkinStory</li>
-			<li>RatkinNoble</li>
-			<!-- <li>RatkinPriest</li> -->
-			<li>RatkinKingdom</li>
-			<!-- <li>RatkinNonViolence</li> -->
-			<!-- <li>RatkinFarm</li>
-			<li>RatkinThief</li> -->
-			<!-- <li>RatkinUneducated</li> -->
-			<!-- <li>RatkinEliteDefender</li>
-			<li>RatkinServant</li> -->
-			<li>RatkinSoldier</li>
-			<li>RatkinDefender</li>
-			<!-- <li>RatkinGuardener</li> -->
-			<!-- <li>RatkinKnight</li> -->
-			<!-- <li>RatkinKnightCommander</li> -->
-			<li>DD_RatkinDisciple</li>
-			<li>DD_RatkinClergy</li>
-    </spawnCategories>
     <passions>
-      <Medicine>2</Medicine>
+      <Social>2</Social>
     </passions>
   </AlienRace.AlienBackstoryDef>
 
@@ -182,25 +123,18 @@
     <bodyTypeMale>Thin</bodyTypeMale>
 		<bodyTypeFemale>Thin</bodyTypeFemale>
      <skillGains>
-      <Shooting>4</Shooting>
-      <Medicine>2</Medicine>
-      <Social>2</Social>
-			<Artistic>2</Artistic>
+      <Melee>3</Melee>
+      <Shooting>3</Shooting>
     </skillGains>
     <requiredWorkTags>Violent</requiredWorkTags>
 
-		<forcedTraitsChance Inherit="False">
-      <li>
-        <defName Degree="2">Beauty</defName>
-        <chance>100</chance>
-      </li>
-      <li>
-        <defName Degree="0">Faith</defName>
-        <chance>100</chance>
-      </li>
-		</forcedTraitsChance>
+		<forcedTraits Inherit="False">
+      <SpeedOffset>2</SpeedOffset>
+      <ShootingAccuracy>-1</ShootingAccuracy>
+		</forcedTraits>
 
     <passions>
+      <Melee>1</Melee>
       <Shooting>2</Shooting>
     </passions>
 
@@ -215,11 +149,10 @@
     <bodyTypeGlobal>Thin</bodyTypeGlobal>
     <bodyTypeMale>Thin</bodyTypeMale>
 		<bodyTypeFemale>Thin</bodyTypeFemale>
-     <skillGains>
+    <skillGains>
       <Melee>1</Melee>
       <Medicine>4</Medicine>
-      <Social>4</Social>
-			<Artistic>2</Artistic>
+      <Social>2</Social>
     </skillGains>
 
 		<!-- <workDisables>
@@ -228,37 +161,14 @@
 
     <requiredWorkTags>Violent</requiredWorkTags>
 
-		<forcedTraitsChance Inherit="False">
-      <li>
-        <defName Degree="2">Beauty</defName>
-        <chance>100</chance>
-      </li>
-      <li>
-        <defName Degree="0">Faith</defName>
-        <chance>100</chance>
-      </li>
-		</forcedTraitsChance>
-
-    <spawnCategories>
-			<li>RatkinStory</li>
-			<li>RatkinNoble</li>
-			<!-- <li>RatkinPriest</li> -->
-			<li>RatkinKingdom</li>
-			<!-- <li>RatkinNonViolence</li> -->
-			<!-- <li>RatkinFarm</li>
-			<li>RatkinThief</li> -->
-			<!-- <li>RatkinUneducated</li> -->
-			<!-- <li>RatkinEliteDefender</li>
-			<li>RatkinServant</li> -->
-			<li>RatkinSoldier</li>
-			<li>RatkinDefender</li>
-			<!-- <li>RatkinGuardener</li> -->
-			<!-- <li>RatkinKnight</li> -->
-			<!-- <li>RatkinKnightCommander</li> -->
-			<li>DD_RatkinDisciple</li>
-			<li>DD_RatkinClergy</li>
-    </spawnCategories>
+		<forcedTraits Inherit="False">
+      <Faith>0</Faith>
+      <DrugDesire>-1</DrugDesire>
+		</forcedTraits>
+    
     <passions>
+      <Melee>1</Melee>
+      <Shooting>1</Shooting>
       <Medicine>2</Medicine>
     </passions>
   </AlienRace.AlienBackstoryDef>
