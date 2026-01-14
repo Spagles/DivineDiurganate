@@ -48,20 +48,26 @@
     </building>
     <comps>
       <li Class="DivineDiurganate.CompProperties_MapTeleporter">
-        <areaSize>(13, 13)</areaSize>
-        <warmupTicks>120</warmupTicks>
+        <areaSize>(13,13)</areaSize>
+        <warmupTicks>0</warmupTicks>
+        <daysPerDistance>0.1</daysPerDistance>
+        <checkCanBuildBase>true</checkCanBuildBase>
+        <warmupGameConditionDef>DD_Hell_Condition</warmupGameConditionDef> <!-- 在传送期间启动太阳耀斑 -->
+        <!-- <warmupSound>TeleporterWarmup</warmupSound>
+        <teleportSound>TeleporterActivate</teleportSound>
+        <requiredResearch>MapTeleportation</requiredResearch> -->
       </li>
     </comps>
   </ThingDef>
   <ThingDef ParentName="EtherealThingBase">
     <defName>DD_TeleportLandingMarker</defName>
     <label>Export Of Hell</label>
-    <description></description>
+    <description>Export Of Hell</description>
     <thingClass>DivineDiurganate.TeleportLandingMarker</thingClass>
     <graphicData>
-      <texPath>Things/Building/Misc/CommsConsole</texPath>
+      <texPath>Wula/Building/WULA_Dropping_Building_Cleanzone_Plus</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
-      <drawSize>(13,13)</drawSize>
+      <drawSize>(3,3)</drawSize>
       <damageData>
         <enabled>false</enabled>
       </damageData>

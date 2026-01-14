@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <GameConditionDef>
+    <defName>DD_Hell_Condition</defName>
+    <conditionClass>GameCondition_ForceWeather</conditionClass>
+    <label>地狱深潜</label>
+    <description>殖民地正在穿越地狱，地狱的投影将映照进现实。</description>
+    <letterDef>NegativeEvent</letterDef>
+    <canBePermanent>false</canBePermanent>
+    <weatherDef>DD_Hell_Weather</weatherDef> <!-- Initial -->
+    <natural>false</natural>
+  </GameConditionDef>
+  <WeatherDef>
+    <defName>DD_Hell_Weather</defName>
+    <label>地狱</label>
+    <isBad>false</isBad> <!-- Don't want to use this for forced weather quests since it's so much harder than other isBad weathers; it becomes imbalanced -->
+    <description>硫磺、火焰与腐臭的气息——地狱是现实世界的镜像，当双尾教国的信众们向地狱深潜神龛祈唤时，地狱便会短暂地进入现世。\n\n在地狱深潜神龛庇护范围外的所有土地将遭受地狱焚风的灼烧，从深渊中诞生的地狱军团会不断地进攻殖民地，直到深潜结束离开地狱。</description>
+    <temperatureRange>-9999~-9999</temperatureRange>
+    <windSpeedFactor>5</windSpeedFactor>
+    <windSpeedOffset>1.25</windSpeedOffset>
+    <favorability>VeryBad</favorability>
+    <perceivePriority>9999</perceivePriority>
+    <durationRange>999999999~999999999</durationRange>
+    <preventSkygaze>true</preventSkygaze>
+    <preventsShuttleLaunch>true</preventsShuttleLaunch>
+    <ambientSounds>
+      <li>Ambient_Wind_Storm</li>
+    </ambientSounds>
+    <commonalityRainfallFactor>
+      <points>
+        <li>(0, 0)</li>
+        <li>(9999, 0)</li>
+      </points>
+    </commonalityRainfallFactor>  
+    <eventMakers>
+      <li>
+        <averageInterval>60</averageInterval>
+        <eventClass>DivineDiurganate.WeatherEvent_HellfireStorm</eventClass>
+      </li>
+      <li>
+        <averageInterval>1500</averageInterval>
+        <eventClass>DivineDiurganate.WeatherEvent_SulfurMeteorShower</eventClass>
+      </li>
+    </eventMakers>
+    <!-- Colors are Overcast -->
+    <skyColorsDay>
+      <sky>(0.8,0.3,0.2)</sky>
+      <shadow>(0.6,0.7,0.3)</shadow>
+      <overlay>(0.6,0.7,0.3)</overlay>
+      <saturation>0.9</saturation>
+    </skyColorsDay>
+    <skyColorsDusk>
+      <sky>(0.8,0.3,0.2)</sky>
+      <shadow>(0.6,0.7,0.3)</shadow>
+      <overlay>(0.6,0.7,0.3)</overlay>
+      <saturation>0.9</saturation>
+    </skyColorsDusk>
+    <skyColorsNightEdge>
+      <sky>(0.8,0.3,0.2)</sky>
+      <shadow>(0.6,0.7,0.3)</shadow>
+      <overlay>(0.6,0.7,0.3)</overlay>
+      <saturation>0.9</saturation>
+    </skyColorsNightEdge>
+    <skyColorsNightMid>
+      <sky>(0.8,0.3,0.2)</sky>
+      <shadow>(0.6,0.7,0.3)</shadow>
+      <overlay>(0.6,0.7,0.3)</overlay>
+      <saturation>0.9</saturation>
+    </skyColorsNightMid>
+  </WeatherDef>
+</Defs>

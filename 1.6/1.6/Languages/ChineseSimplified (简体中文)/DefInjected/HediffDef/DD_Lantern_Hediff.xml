@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: Lantern Shield -->
+  <DD_Lantern_Shield_Active.label>提灯护盾</DD_Lantern_Shield_Active.label>
+  <!-- EN: The lantern carried by Michelle can erect a faintly visible shield to block incoming projectiles and melee slashes from the front. Once the incense in the lantern burns out, the shield will disappear. -->
+  <DD_Lantern_Shield_Active.description>米鼠儿随身携带的提灯可以支起一面若隐若现的护盾，以抵挡面向方向袭来的射弹和近战挥砍。一旦灯中熏香烧尽，护盾就会消失。</DD_Lantern_Shield_Active.description>
+  <!-- EN: active -->
+  <DD_Lantern_Shield_Active.stages.active.label>点燃</DD_Lantern_Shield_Active.stages.active.label>
+  
+  <!-- EN: Lantern Shield -->
+  <DD_Lantern_Shield_Active_Extrabuff.label>提灯护盾</DD_Lantern_Shield_Active_Extrabuff.label>
+  <!-- EN: The lantern carried by Michelle can erect a faintly visible shield to block incoming projectiles and melee slashes from the front. Once the incense in the lantern burns out, the shield will disappear. -->
+  <DD_Lantern_Shield_Active_Extrabuff.description>米鼠儿随身携带的提灯可以支起一面若隐若现的护盾，以抵挡面向方向袭来的射弹和近战挥砍。一旦灯中熏香烧尽，护盾就会消失。</DD_Lantern_Shield_Active_Extrabuff.description>
+  <!-- EN: active -->
+  <DD_Lantern_Shield_Active_Extrabuff.stages.active.label>点燃</DD_Lantern_Shield_Active_Extrabuff.stages.active.label>
+  
+  <!-- EN: Lantern Shield -->
+  <DD_Lantern_Shield_Active_Longer.label>提灯护盾</DD_Lantern_Shield_Active_Longer.label>
+  <!-- EN: The lantern carried by Michelle can erect a faintly visible shield to block incoming projectiles and melee slashes from the front. Once the incense in the lantern burns out, the shield will disappear. -->
+  <DD_Lantern_Shield_Active_Longer.description>米鼠儿随身携带的提灯可以支起一面若隐若现的护盾，以抵挡面向方向袭来的射弹和近战挥砍。一旦灯中熏香烧尽，护盾就会消失。</DD_Lantern_Shield_Active_Longer.description>
+  <!-- EN: active -->
+  <DD_Lantern_Shield_Active_Longer.stages.active.label>点燃</DD_Lantern_Shield_Active_Longer.stages.active.label>
+  
+  <!-- EN: Lantern Shield -->
+  <DD_Lantern_Shield_Active_Wider.label>提灯护盾</DD_Lantern_Shield_Active_Wider.label>
+  <!-- EN: The lantern carried by Michelle can erect a faintly visible shield to block incoming projectiles and melee slashes from the front. Once the incense in the lantern burns out, the shield will disappear. -->
+  <DD_Lantern_Shield_Active_Wider.description>米鼠儿随身携带的提灯可以支起一面若隐若现的护盾，以抵挡面向方向袭来的射弹和近战挥砍。一旦灯中熏香烧尽，护盾就会消失。</DD_Lantern_Shield_Active_Wider.description>
+  <!-- EN: active -->
+  <DD_Lantern_Shield_Active_Wider.stages.active.label>点燃</DD_Lantern_Shield_Active_Wider.stages.active.label>
+  
+  <!-- EN: Lantern Shield -->
+  <DD_Lantern_Shield_Adv_Extrabuff.label>提灯护盾（圣光）</DD_Lantern_Shield_Adv_Extrabuff.label>
+  <!-- EN: The lantern carried by Michelle can erect a faintly visible shield to block incoming projectiles and melee slashes from the front. Once the incense in the lantern burns out, the shield will disappear. -->
+  <DD_Lantern_Shield_Adv_Extrabuff.description>改造过的提灯护盾散发的光芒可以使附近的队友获得庇佑，并驱散范围内的地狱军团身上的不死诅咒。</DD_Lantern_Shield_Adv_Extrabuff.description>
+  
+  <!-- EN: Lantern Shield -->
+  <DD_Lantern_Shield_Adv_Longer.label>提灯护盾（长明）</DD_Lantern_Shield_Adv_Longer.label>
+  <!-- EN: The lantern carried by Michelle can erect a faintly visible shield to block incoming projectiles and melee slashes from the front. Once the incense in the lantern burns out, the shield will disappear. -->
+  <DD_Lantern_Shield_Adv_Longer.description>换装可以支持更长时间燃烧的灯油，并且这种灯油很快就能点燃，即使在战场上也一样。</DD_Lantern_Shield_Adv_Longer.description>
+  
+  <!-- EN: Lantern Shield -->
+  <DD_Lantern_Shield_Adv_Wider.label>提灯护盾（坚壁）</DD_Lantern_Shield_Adv_Wider.label>
+  <!-- EN: The lantern carried by Michelle can erect a faintly visible shield to block incoming projectiles and melee slashes from the front. Once the incense in the lantern burns out, the shield will disappear. -->
+  <DD_Lantern_Shield_Adv_Wider.description>为提灯加装额外的散光器，产生的圣盾可以抵御更大面积袭来的火力。</DD_Lantern_Shield_Adv_Wider.description>
+  
+  <!-- EN: Lantern Shield -->
+  <DD_Lantern_Shield_Base.label>提灯护盾</DD_Lantern_Shield_Base.label>
+  <!-- EN: The lantern carried by Michelle can erect a faintly visible shield to block incoming projectiles and melee slashes from the front. Once the incense in the lantern burns out, the shield will disappear. -->
+  <DD_Lantern_Shield_Base.description>米鼠儿随身携带的提灯可以支起一面若隐若现的护盾，以抵挡面向方向袭来的射弹和近战挥砍。一旦灯中熏香烧尽，护盾就会消失。</DD_Lantern_Shield_Base.description>
+  
+</LanguageData>

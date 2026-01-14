@@ -50,4 +50,14 @@ namespace DivineDiurganate
             DefOfHelper.EnsureInitializedInCtor(typeof(DD_SoundDefOf));
         }
     }
+    [DefOf]
+    public static class DD_ThingDefOf
+    {
+        public static ThingDef DD_SulfurMeteor;
+
+        static DD_ThingDefOf()
+        {
+            DefOfHelper.EnsureInitializedInCtor(typeof(DD_ThingDefOf));
+        }
+    }
 }

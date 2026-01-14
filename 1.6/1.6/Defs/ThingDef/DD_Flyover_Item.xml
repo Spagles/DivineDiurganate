@@ -372,4 +372,52 @@
       </li>
     </comps>
   </ThingDef>
+
+  <ThingDef ParentName="SkyfallerBase">
+    <defName>DD_SulfurMeteor</defName>
+    <label>Sulfur Meteor</label>
+    <size>(1, 1)</size>
+    <graphicData>
+      <texPath>Things/Skyfaller/Meteorite</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>Transparent</shaderType>
+      <drawSize>(10, 10)</drawSize>
+    </graphicData>
+    <skyfaller>
+      <movementType>Accelerate</movementType>
+      <shadow>Things/Skyfaller/SkyfallerShadowDropPod</shadow>
+      <shadowSize>(3, 3)</shadowSize>
+      <anticipationSound>DropPod_Fall</anticipationSound>
+      <anticipationSoundTicks>100</anticipationSoundTicks>
+      <impactSound>Explosion_Bomb</impactSound>
+      <moteSpawnTime>0.05</moteSpawnTime>
+      <motesPerCell>1</motesPerCell>
+      <cameraShake>1</cameraShake>
+      <explosionRadius>7</explosionRadius>
+      <explosionDamage>DD_SulfurMeteor_Explosive</explosionDamage>
+      <explosionDamageFactor>1</explosionDamageFactor>
+      <rotateGraphicTowardsDirection>true</rotateGraphicTowardsDirection>
+      <speed>1.2</speed>
+    </skyfaller>
+    <comps>
+      <!-- <li Class="DivineDiurganate.CompProperties_PlaySoundOnSpawn">
+        <sound>DD_Heavy_Air_bomb_Fire_Sound</sound>
+      </li> -->
+    </comps>
+  </ThingDef>
+  <DamageDef ParentName="Bomb">
+    <defName>DD_SulfurMeteor_Explosive</defName>
+    <label>Sulfur Meteor Explosive</label>
+    <workerClass>DivineDiurganate.DamageWorker_ExplosionWithTerrain</workerClass>
+    <defaultDamage>20</defaultDamage>
+    <defaultStoppingPower>2.0</defaultStoppingPower>
+    <defaultArmorPenetration>1.30</defaultArmorPenetration>
+    <explosionCenterEffecter>DD_GiantBomb_Explosion</explosionCenterEffecter>
+
+    <modExtensions>
+      <li Class="DivineDiurganate.DamageDefExtension_TerrainCover">
+        <terrainToSpawn>LavaShallow</terrainToSpawn>
+      </li>
+    </modExtensions>
+  </DamageDef>
 </Defs>

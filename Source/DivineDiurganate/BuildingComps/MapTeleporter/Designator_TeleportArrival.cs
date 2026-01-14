@@ -3,6 +3,7 @@ using System.Linq;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using RimWorld.Planet;
 
 namespace DivineDiurganate
 {
@@ -15,8 +16,8 @@ namespace DivineDiurganate
         private IntVec3 sourceCenter;
         private List<IntVec3> relativeCells;
 
-        public override string Label => "WULA_SelectArrivalPoint".Translate();
-        public override string Desc => "WULA_SelectArrivalPointDesc".Translate();
+        public override string Label => "选择传送到达点";
+        public override string Desc => "在地图上选择一个位置作为传送到达点";
 
         public Designator_TeleportArrival(CompMapTeleporter teleporter, Map targetMap, TeleportLandingMarker marker = null)
         {
@@ -34,25 +35,35 @@ namespace DivineDiurganate
 
         public override AcceptanceReport CanDesignateCell(IntVec3 loc)
         {
-            if (!loc.InBounds(targetMap)) return false;
+            if (!loc.InBounds(targetMap)) return "位置超出地图边界";
+            
+            // 检查biome是否允许建立基地
+            if (teleporter.Props.checkCanBuildBase)
+            {
+                Tile tile = Find.WorldGrid[targetMap.Tile];
+                if (tile.PrimaryBiome == null || !tile.PrimaryBiome.canBuildBase)
+                {
+                    return $"此地图类型 '{tile.PrimaryBiome?.label ?? "未知"}' 不允许建立基地";
+                }
+            }
             
             // Check all cells in the group shape
             foreach (IntVec3 offset in relativeCells)
             {
                 IntVec3 cell = loc + offset;
                 
-                if (!cell.InBounds(targetMap)) return "WULA_OutOfBounds".Translate();
+                if (!cell.InBounds(targetMap)) return "部分区域超出地图边界";
                 
                 // Check map edge
                 if (cell.InNoBuildEdgeArea(targetMap))
                 {
-                    return "WULA_InNoBuildArea".Translate();
+                    return "位置过于靠近地图边缘";
                 }
                 
                 // Check fog
                 if (cell.Fogged(targetMap))
                 {
-                    return "WULA_BlockedByFog".Translate();
+                    return "位置被战争迷雾覆盖";
                 }
                 
                 // Check for indestructible buildings
@@ -63,7 +74,7 @@ namespace DivineDiurganate
                     {
                         if (!t.def.destroyable)
                         {
-                            return "WULA_BlockedByIndestructible".Translate(t.Label);
+                            return $"位置被不可摧毁的建筑 '{t.Label}' 阻挡";
                         }
                     }
                 }
@@ -72,7 +83,7 @@ namespace DivineDiurganate
                 TerrainDef terrain = cell.GetTerrain(targetMap);
                 if (terrain.passability == Traversability.Impassable && !terrain.IsWater)
                 {
-                     return "WULA_TerrainImpassable".Translate();
+                     return "地形不可通行";
                 }
             }
 

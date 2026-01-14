@@ -234,4 +234,7 @@
   <DD_Shield_CurrentState>护盾状态: {0}</DD_Shield_CurrentState>
   <DD_Shield_On>开启</DD_Shield_On>
   <DD_Shield_Off>关闭</DD_Shield_Off>
+
+  <DD_MyCustomGacha_Title>提灯改造</DD_MyCustomGacha_Title>
+  <DD_Upgrade_Lantern_Selected>提灯改造完成！</DD_Upgrade_Lantern_Selected>
 </LanguageData>

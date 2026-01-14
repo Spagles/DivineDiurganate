@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-  <HediffDef Name="DD_Lantern_Shield_Hediff_Base" Abstract="True">
-    <label>Lantern Shield</label>
-    <description>The lantern carried by Michelle can erect a faintly visible shield to block incoming projectiles and melee slashes from the front. Once the incense in the lantern burns out, the shield will disappear.</description>
-    <hediffClass>HediffWithComps</hediffClass>
+  <HediffDef Name="DD_Lantern_Shield_Hediff_Base" Abstract="True"><hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(0.4, 0.8, 1.0)</defaultLabelColor>
     <isBad>false</isBad>
     <initialSeverity>1.0</initialSeverity>
@@ -25,6 +22,8 @@
   </HediffDef>
   <HediffDef ParentName="DD_Lantern_Shield_Hediff_Base">
     <defName>DD_Lantern_Shield_Base</defName>
+    <label>Lantern Shield</label>
+    <description>The lantern carried by Michelle can erect a faintly visible shield to block incoming projectiles and melee slashes from the front. Once the incense in the lantern burns out, the shield will disappear.</description>
 
     <comps>
       <li Class="HediffCompProperties_RemoveIfOtherHediff">
@@ -44,6 +43,8 @@
   </HediffDef>
   <HediffDef ParentName="DD_Lantern_Shield_Hediff_Base">
     <defName>DD_Lantern_Shield_Adv_Wider</defName>
+    <label>Lantern Shield</label>
+    <description>Install an additional diffuser for the lantern, creating a holy shield that can withstand incoming firepower from a larger area.</description>
 
     <comps>
       <li Class="HediffCompProperties_GiveAbility">
@@ -55,6 +56,8 @@
   </HediffDef>
   <HediffDef ParentName="DD_Lantern_Shield_Hediff_Base">
     <defName>DD_Lantern_Shield_Adv_Longer</defName>
+    <label>Lantern Shield</label>
+    <description>Replaced the lamp oil with one that can support a longer burning time, and this new oil ignites quickly, even on the battlefield.</description>
 
     <comps>
       <li Class="HediffCompProperties_GiveAbility">
@@ -66,6 +69,8 @@
   </HediffDef>
   <HediffDef ParentName="DD_Lantern_Shield_Hediff_Base">
     <defName>DD_Lantern_Shield_Adv_Extrabuff</defName>
+    <label>Lantern Shield</label>
+    <description>The light it emits can provide protection to nearby teammates and dispel the undead curse from the Hell Legion within its range.</description>
 
     <comps>
       <li Class="HediffCompProperties_GiveAbility">
@@ -157,10 +162,9 @@
       <li>
         <label>active</label>
         <becomeVisible>true</becomeVisible>
-        <!-- 可选：护盾激活时的属性修改 -->
-        <!-- <statOffsets>
-          <MoveSpeed>-0.2</MoveSpeed>
-        </statOffsets> -->
+        <statFactors>
+          <Flammability>0</Flammability>
+        </statFactors>
       </li>
     </stages>
 
@@ -180,10 +184,11 @@
         <baseDamageThreshold>9999</baseDamageThreshold>
         <maxDamageThreshold>9999</maxDamageThreshold>
         <thresholdIncreaseOnPenetration>0</thresholdIncreaseOnPenetration>
-        <blockAngle>45</blockAngle>
+        <blockAngle>75</blockAngle>
         
         <showActivationMessage>true</showActivationMessage>
         <resetThresholdOnDeactivate>true</resetThresholdOnDeactivate>
+        <blockEffecter>Interceptor_BlockedProjectile</blockEffecter>
 
         <thresholdDecayDelay>1200</thresholdDecayDelay>
         <thresholdDecayPerSecond>0</thresholdDecayPerSecond>
@@ -198,9 +203,9 @@
         <label>active</label>
         <becomeVisible>true</becomeVisible>
         <!-- 可选：护盾激活时的属性修改 -->
-        <!-- <statOffsets>
-          <MoveSpeed>-0.2</MoveSpeed>
-        </statOffsets> -->
+        <statFactors>
+          <Flammability>0</Flammability>
+        </statFactors>
       </li>
     </stages>
 
@@ -213,10 +218,11 @@
         <baseDamageThreshold>9999</baseDamageThreshold>
         <maxDamageThreshold>9999</maxDamageThreshold>
         <thresholdIncreaseOnPenetration>0</thresholdIncreaseOnPenetration>
-        <blockAngle>70</blockAngle>
+        <blockAngle>90</blockAngle>
         
         <showActivationMessage>true</showActivationMessage>
         <resetThresholdOnDeactivate>true</resetThresholdOnDeactivate>
+        <blockEffecter>Interceptor_BlockedProjectile</blockEffecter>
 
         <thresholdDecayDelay>1200</thresholdDecayDelay>
         <thresholdDecayPerSecond>0</thresholdDecayPerSecond>
@@ -231,25 +237,26 @@
         <label>active</label>
         <becomeVisible>true</becomeVisible>
         <!-- 可选：护盾激活时的属性修改 -->
-        <!-- <statOffsets>
-          <MoveSpeed>-0.2</MoveSpeed>
-        </statOffsets> -->
+        <statFactors>
+          <Flammability>0</Flammability>
+        </statFactors>
       </li>
     </stages>
 
     <comps>
       <li Class="HediffCompProperties_Disappears">
-        <disappearsAfterTicks>12000</disappearsAfterTicks>
+        <disappearsAfterTicks>18000</disappearsAfterTicks>
         <showRemainingTime>true</showRemainingTime>
       </li>
       <li Class="DivineDiurganate.HediffCompProperties_AdaptiveShield">
         <baseDamageThreshold>9999</baseDamageThreshold>
         <maxDamageThreshold>9999</maxDamageThreshold>
         <thresholdIncreaseOnPenetration>0</thresholdIncreaseOnPenetration>
-        <blockAngle>35</blockAngle>
+        <blockAngle>75</blockAngle>
         
         <showActivationMessage>true</showActivationMessage>
         <resetThresholdOnDeactivate>true</resetThresholdOnDeactivate>
+        <blockEffecter>Interceptor_BlockedProjectile</blockEffecter>
 
         <thresholdDecayDelay>1200</thresholdDecayDelay>
         <thresholdDecayPerSecond>0</thresholdDecayPerSecond>
@@ -270,6 +277,7 @@
         </statOffsets>
         <statFactors>
           <RestFallRateFactor>0</RestFallRateFactor>
+          <Flammability>0</Flammability>
         </statFactors>
       </li>
     </stages>
@@ -283,10 +291,12 @@
         <baseDamageThreshold>9999</baseDamageThreshold>
         <maxDamageThreshold>9999</maxDamageThreshold>
         <thresholdIncreaseOnPenetration>0</thresholdIncreaseOnPenetration>
-        <blockAngle>45</blockAngle>
+        <blockAngle>75</blockAngle>
         
         <showActivationMessage>true</showActivationMessage>
         <resetThresholdOnDeactivate>true</resetThresholdOnDeactivate>
+
+        <blockEffecter>Interceptor_BlockedProjectile</blockEffecter>
 
         <thresholdDecayDelay>1200</thresholdDecayDelay>
         <thresholdDecayPerSecond>0</thresholdDecayPerSecond>

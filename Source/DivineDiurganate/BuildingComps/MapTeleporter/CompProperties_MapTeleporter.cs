@@ -7,11 +7,20 @@ namespace DivineDiurganate
     {
         public IntVec2 areaSize = new IntVec2(13, 13);
         public int warmupTicks = 120;
+        public float daysPerDistance = 0.25f; // 每单位距离需要的天数
         public EffecterDef warmupEffecter;
         public SoundDef warmupSound;
         public SoundDef teleportSound;
-        
         public ResearchProjectDef requiredResearch;
+        
+        // 是否检查目标地图的canBuildBase
+        public bool checkCanBuildBase = true;
+        
+        // 传送期间的游戏条件
+        public GameConditionDef warmupGameConditionDef;
+        public int worldRange = 0; // 影响范围（0表示只影响本地图）
+        public bool hideSource = true; // 隐藏来源
+        public bool preventConditionStacking = true; // 防止条件堆叠
         
         public CompProperties_MapTeleporter()
         {

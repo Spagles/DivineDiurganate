@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: Lantern Shield -->
+  <DD_Light_The_Lantern.label>提灯护盾</DD_Light_The_Lantern.label>
+  <!-- EN: Light up the lantern carried by Michelle. The light emitted by this lantern will converge into a faintly visible shield, which can block incoming damage. The lamp oil is limited, and it can only protect Michelle for a while before it goes out, requiring it to be re-lit. -->
+  <DD_Light_The_Lantern.description>点燃米鼠儿随身携带的提灯，这盏提灯散发的光芒会汇聚为一面若隐若现的盾牌，可以完全抵挡来自前方的攻击。灯油是有限的，它只能保护米鼠儿一段时间，然后就会熄灭，需要重新点燃。</DD_Light_The_Lantern.description>
+  
+  <!-- EN: Lantern Shield -->
+  <DD_Light_The_Lantern_Extrabuff.label>提灯护盾</DD_Light_The_Lantern_Extrabuff.label>
+  <!-- EN: Light up the lantern carried by Michelle. -->
+  <DD_Light_The_Lantern_Extrabuff.description>点燃米鼠儿随身携带的提灯，这盏提灯散发的光芒会汇聚为一面若隐若现的盾牌，可以完全抵挡来自前方的攻击。灯油是有限的，它只能保护米鼠儿一段时间，然后就会熄灭，需要重新点燃。\n\n它已经被改造过，其散发的光芒可以使附近的队友获得庇佑，并驱散范围内的地狱军团身上的不死诅咒。</DD_Light_The_Lantern_Extrabuff.description>
+  
+  <!-- EN: Lantern Shield -->
+  <DD_Light_The_Lantern_Longer.label>提灯护盾</DD_Light_The_Lantern_Longer.label>
+  <!-- EN: Light up the lantern carried by Michelle. -->
+  <DD_Light_The_Lantern_Longer.description>点燃米鼠儿随身携带的提灯，这盏提灯散发的光芒会汇聚为一面若隐若现的盾牌，可以完全抵挡来自前方的攻击。灯油是有限的，它只能保护米鼠儿一段时间，然后就会熄灭，需要重新点燃。\n\n米鼠儿为其换装了可以支持更长时间燃烧的灯油，并且这种灯油很快就能点燃，即使在战场上也一样。</DD_Light_The_Lantern_Longer.description>
+  
+  <!-- EN: Lantern Shield -->
+  <DD_Light_The_Lantern_Wider.label>提灯护盾</DD_Light_The_Lantern_Wider.label>
+  <!-- EN: Light up the lantern carried by Michelle. -->
+  <DD_Light_The_Lantern_Wider.description>点燃米鼠儿随身携带的提灯，这盏提灯散发的光芒会汇聚为一面若隐若现的盾牌，可以完全抵挡来自前方的攻击。灯油是有限的，它只能保护米鼠儿一段时间，然后就会熄灭，需要重新点燃。\n\n米鼠儿为提灯加装了额外的散光器，产生的圣盾可以抵御更大面积袭来的火力。</DD_Light_The_Lantern_Wider.description>
+  
+  <!-- EN: Upgrade Lantern -->
+  <DD_Upgrade_Lantern.label>升级提灯护盾</DD_Upgrade_Lantern.label>
+  <!-- EN: Upgrade Lantern -->
+  <DD_Upgrade_Lantern.description>米鼠儿改装提灯，使其获得额外的效果。</DD_Upgrade_Lantern.description>
+</LanguageData>

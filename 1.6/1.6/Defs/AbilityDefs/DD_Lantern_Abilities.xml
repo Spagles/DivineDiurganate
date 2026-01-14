@@ -3,7 +3,7 @@
   <AbilityDef>
     <defName>DD_Upgrade_Lantern</defName>
     <label>Upgrade Lantern</label>
-    <description>Upgrade Lantern</description>
+    <description>Modified the lantern, giving it additional effects.</description>
     <iconPath>DivineDiurganate/UI/Abilities/DD_Maple_Sugar_Heal</iconPath>
     <displayOrder>210</displayOrder>
     <aiCanUse>false</aiCanUse>
@@ -26,8 +26,8 @@
           <li>
             <hediff>DD_Lantern_Shield_Adv_Wider</hediff>
             <weight>1</weight>
-            <descriptionOverride>A dangerous disease that can be fatal if untreated.</descriptionOverride>
-            <iconPath>UI/Icons/Custom/Plague_Red</iconPath>
+            <!-- <descriptionOverride>A dangerous disease that can be fatal if untreated.</descriptionOverride> -->
+            <iconPath>DivineDiurganate/UI/Abilities/DD_Lantern_Shield_Adv_Wider</iconPath>
             <iconColor>(1, 1, 1, 1)</iconColor>
             <iconScale>1</iconScale>
             <iconBackgroundColor>(1, 1, 1, 0)</iconBackgroundColor>
@@ -35,8 +35,8 @@
           <li>
             <hediff>DD_Lantern_Shield_Adv_Longer</hediff>
             <weight>1</weight>
-            <descriptionOverride>A dangerous disease that can be fatal if untreated.</descriptionOverride>
-            <iconPath>UI/Icons/Custom/Plague_Red</iconPath>
+            <!-- <descriptionOverride>A dangerous disease that can be fatal if untreated.</descriptionOverride> -->
+            <iconPath>DivineDiurganate/UI/Abilities/DD_Lantern_Shield_Adv_Longer</iconPath>
             <iconColor>(1, 1, 1, 1)</iconColor>
             <iconScale>1</iconScale>
             <iconBackgroundColor>(1, 1, 1, 0)</iconBackgroundColor>
@@ -44,8 +44,8 @@
           <li>            
             <hediff>DD_Lantern_Shield_Adv_Extrabuff</hediff>
             <weight>1</weight>
-            <descriptionOverride>A dangerous disease that can be fatal if untreated.</descriptionOverride>
-            <iconPath>UI/Icons/Custom/Plague_Red</iconPath>
+            <!-- <descriptionOverride>A dangerous disease that can be fatal if untreated.</descriptionOverride> -->
+            <iconPath>DivineDiurganate/UI/Abilities/DD_Lantern_Shield_Adv_Extrabuff</iconPath>
             <iconColor>(1, 1, 1, 1)</iconColor>
             <iconScale>1</iconScale>
             <iconBackgroundColor>(1, 1, 1, 0)</iconBackgroundColor>
@@ -58,7 +58,7 @@
         <windowTitle>DD_MyCustomGacha_Title</windowTitle>
         <allowCancel>true</allowCancel>
         <showSelectionMessage>true</showSelectionMessage>
-        <selectionMessageKey>DD_MyCustomGacha_Selected</selectionMessageKey>
+        <selectionMessageKey>DD_Upgrade_Lantern_Selected</selectionMessageKey>
         
         <!-- 自定义卡片颜色 -->
         <cardDefaultBackground>(0.1, 0.1, 0.12, 1)</cardDefaultBackground>
@@ -103,8 +103,8 @@
   </AbilityDef>
   <AbilityDef ParentName="DD_Light_The_Lantern_Base">
     <defName>DD_Light_The_Lantern_Wider</defName>
-    <description>Light up the lantern carried by Michelle.</description>
-    <iconPath>DivineDiurganate/UI/Abilities/DD_Light_The_Lantern</iconPath>
+    <description>Light up the lantern carried by Michelle. The light emitted by this lantern will converge into a faintly visible shield, which can block incoming damage. The lamp oil is limited, and it can only protect Michelle for a while before it goes out, requiring it to be re-lit.\n\nIt has been modified, and the light it emits can provide protection to nearby teammates and dispel the undead curse from the Hell Legion within its range.</description>
+    <iconPath>DivineDiurganate/UI/Abilities/DD_Light_The_Lantern_Wider</iconPath>
     <cooldownTicksRange>6000</cooldownTicksRange> <!-- 1秒冷却 -->
     <verbProperties>
       <warmupTime>3</warmupTime>
@@ -119,8 +119,8 @@
   </AbilityDef>
   <AbilityDef ParentName="DD_Light_The_Lantern_Base">
     <defName>DD_Light_The_Lantern_Longer</defName>
-    <description>Light up the lantern carried by Michelle.</description>
-    <iconPath>DivineDiurganate/UI/Abilities/DD_Light_The_Lantern</iconPath>
+    <description>Light up the lantern carried by Michelle. The light emitted by this lantern will converge into a faintly visible shield, which can block incoming damage. The lamp oil is limited, and it can only protect Michelle for a while before it goes out, requiring it to be re-lit.\n\nMichelle has replaced the lamp oil with one that can support a longer burning time, and this new oil ignites quickly, even on the battlefield.</description>
+    <iconPath>DivineDiurganate/UI/Abilities/DD_Light_The_Lantern_Longer</iconPath>
     <cooldownTicksRange>12000</cooldownTicksRange> <!-- 1秒冷却 -->
     <verbProperties>
       <warmupTime>0.75</warmupTime>
@@ -135,8 +135,8 @@
   </AbilityDef>
   <AbilityDef ParentName="DD_Light_The_Lantern_Base">
     <defName>DD_Light_The_Lantern_Extrabuff</defName>
-    <description>Light up the lantern carried by Michelle.</description>
-    <iconPath>DivineDiurganate/UI/Abilities/DD_Light_The_Lantern</iconPath>
+    <description>Light up the lantern carried by Michelle. The light emitted by this lantern will converge into a faintly visible shield, which can block incoming damage. The lamp oil is limited, and it can only protect Michelle for a while before it goes out, requiring it to be re-lit.\n\nMichelle has installed an additional diffuser for the lantern, creating a holy shield that can withstand incoming firepower from a larger area.</description>
+    <iconPath>DivineDiurganate/UI/Abilities/DD_Light_The_Lantern_Extrabuff</iconPath>
     <cooldownTicksRange>7500</cooldownTicksRange>
     <verbProperties>
       <warmupTime>3</warmupTime>

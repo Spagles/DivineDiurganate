@@ -27,16 +27,16 @@
   <!-- EN: Pistol Bullet -->
   <DD_Axe_Pistol_Bullet.label>手枪子弹</DD_Axe_Pistol_Bullet.label>
   
+  <!-- EN: Diurganate Sliver Shotgun -->
+  <DD_Axe_Shotgun.label>银弹霰弹枪</DD_Axe_Shotgun.label>
+  <!-- EN: A lever-action shotgun, custom-modified by the ingenious Michelle. Apart from firing shotgun pellets that can cause extensive damage at close range, it can also be used as a melee weapon to engage in combat with opponents. -->
+  <DD_Axe_Shotgun.description>一把杠杆霰弹枪，由心灵手巧的米鼠儿自行改装。除了可以发射在近距离上造成伤口和眩晕的银霰弹外，它还能被当成一把近战武器与对手搏杀。</DD_Axe_Shotgun.description>
   <!-- EN: Diurganate Axe Shotgun -->
-  <DD_Axe_Shotgun.label>双尾斧头霰弹枪</DD_Axe_Shotgun.label>
-  <!-- EN: 一把加装了斧刃的杠杆霰弹枪，由心灵手巧的米鼠儿自行改装。除了可以发射在近距离上造成大量伤口的霰弹外，它还能被当成一把近战武器与对手搏杀。 -->
-  <DD_Axe_Shotgun.description>一把加装了斧刃的杠杆霰弹枪，由心灵手巧的米鼠儿自行改装。除了可以发射在近距离上造成大量伤口的霰弹外，它还能被当成一把近战武器与对手搏杀。</DD_Axe_Shotgun.description>
-  <!-- EN: Gunstock -->
+  <DD_Axe_Shotgun.verbs.Verb_ShootShotgun.label>银弹霰弹枪</DD_Axe_Shotgun.verbs.Verb_ShootShotgun.label>
+  
+  <!-- UNUSED -->
   <DD_Axe_Shotgun.tools.Gunstock.label>枪托</DD_Axe_Shotgun.tools.Gunstock.label>
-  <!-- EN: Axe Blade -->
   <DD_Axe_Shotgun.tools.Axe_Blade.label>斧刃</DD_Axe_Shotgun.tools.Axe_Blade.label>
-  <!-- EN: Diurganate Axe Shotgun -->
-  <DD_Axe_Shotgun.verbs.Verb_ShootShotgun.label>双尾斧头霰弹枪</DD_Axe_Shotgun.verbs.Verb_ShootShotgun.label>
   
   <!-- EN: Shotgun Bullet -->
   <DD_Axe_Shotgun_Bullet.label>霰弹</DD_Axe_Shotgun_Bullet.label>

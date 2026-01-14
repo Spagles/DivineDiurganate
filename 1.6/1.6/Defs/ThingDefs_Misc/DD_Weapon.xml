@@ -642,8 +642,8 @@
   <!-- sp -->
   <ThingDef ParentName="BaseHumanMakeableGun">
     <defName>DD_Axe_Shotgun</defName>
-    <label>Diurganate Axe Shotgun</label>
-    <description>A lever-action shotgun equipped with an axe blade, custom-modified by the ingenious Michelle. Apart from firing shotgun pellets that can cause extensive damage at close range, it can also be used as a melee weapon to engage in combat with opponents.</description>
+    <label>Sliver Levered Shotgun</label>
+    <description>A levered shotgun, custom-modified by the ingenious Michelle. Apart from firing silver shotgun pellets that cause wounds and stun at close range, it can also be used as a melee weapon to engage in combat with opponents.</description>
     <tickerType>Normal</tickerType>
     <techLevel>Industrial</techLevel>
     <graphicData>
@@ -694,24 +694,6 @@
     <generateCommonality>0.01</generateCommonality>
     <tradeability>None</tradeability>
     <thingSetMakerTags Inherit="False" />
-    <tools Inherit="False">
-      <li>
-        <label>Gunstock</label>
-        <capacities>
-          <li>Poke</li>
-        </capacities>
-        <power>9</power>
-        <cooldownTime>2</cooldownTime>
-      </li>
-      <li>
-        <label>Axe Blade</label>
-        <capacities>
-          <li>Cut</li>
-        </capacities>
-        <power>15</power>
-        <cooldownTime>2</cooldownTime>
-      </li>
-    </tools>
   </ThingDef>
   <ThingDef ParentName="BaseBullet">
     <defName>DD_Axe_Shotgun_Bullet</defName>
@@ -737,7 +719,7 @@
     </modExtensions>
     <projectile>
       <damageDef>DD_SilverBullet</damageDef>
-      <damageAmountBase>6</damageAmountBase>
+      <damageAmountBase>7</damageAmountBase>
       <stoppingPower>2</stoppingPower>
       <speed>45</speed>
     </projectile>

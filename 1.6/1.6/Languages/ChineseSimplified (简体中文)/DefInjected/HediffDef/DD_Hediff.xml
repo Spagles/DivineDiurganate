@@ -1,13 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
   
-  <!-- EN: 提灯护盾 -->
-  <DD_Lantern_Shield_Active.label>提灯护盾</DD_Lantern_Shield_Active.label>
-  <!-- EN: 米鼠儿随身携带的提灯可以支起一面若隐若现的护盾，以抵挡面向方向袭来的射弹和近战挥砍。一旦灯中熏香烧尽，护盾就会消失。 -->
-  <DD_Lantern_Shield_Active.description>米鼠儿随身携带的提灯可以支起一面若隐若现的护盾，以抵挡面向方向袭来的射弹和近战挥砍。一旦灯中熏香烧尽，护盾就会消失。</DD_Lantern_Shield_Active.description>
-  <!-- EN: active -->
-  <DD_Lantern_Shield_Active.stages.active.label>点燃</DD_Lantern_Shield_Active.stages.active.label>
-  
   <!-- EN: Prototype -->
   <DD_MechPrototype.label>原型机</DD_MechPrototype.label>
   <!-- EN: This is a prototype of a mecha from the Diurganate. Compared to the mass-produced version, it is more powerful in combat, but also more expensive. -->

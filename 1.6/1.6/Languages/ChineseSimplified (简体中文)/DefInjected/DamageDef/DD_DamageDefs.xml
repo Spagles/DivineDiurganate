@@ -1,6 +1,9 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-  <!-- DD_DamageDefs.xml -->
+  
+  <!-- EN: silver bullet -->
   <DD_SilverBullet.label>银弹</DD_SilverBullet.label>
+  <!-- EN: {0} has been shot to death by a silver bullet. -->
   <DD_SilverBullet.deathMessage>{0}被银弹射杀了。</DD_SilverBullet.deathMessage>
+  
 </LanguageData>
