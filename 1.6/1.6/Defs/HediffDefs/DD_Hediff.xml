@@ -224,19 +224,6 @@
         <maxDamageThreshold>9999</maxDamageThreshold>
         <thresholdIncreaseOnPenetration>0</thresholdIncreaseOnPenetration>
         <blockAngle>45</blockAngle>
-
-        
-        <baseTexturePath>DivineDiurganate/Apparel/DD_Lantern_Shield</baseTexturePath>
-        <baseDrawSize>15</baseDrawSize>
-        <baseColor>(1,1,1,1)</baseColor>
-        <glowTexturePath>DivineDiurganate/Apparel/DD_Lantern_Shield_Light</glowTexturePath>
-        <glowDrawSize>15</glowDrawSize>
-        <glowColor>(1,1,1,0.5)</glowColor>
-        
-        <drawOffsetNorth>(0,-5,0)</drawOffsetNorth>
-        <drawOffsetEast>(0,-5,0)</drawOffsetEast>
-        <drawOffsetSouth>(0,5,0)</drawOffsetSouth>
-        <drawOffsetWest>(0,5,0)</drawOffsetWest>
         
         <showActivationMessage>true</showActivationMessage>
         <resetThresholdOnDeactivate>true</resetThresholdOnDeactivate>
@@ -263,17 +250,48 @@
           <dataSouth>
             <!-- 提高层级以遮挡头部 -->
             <layer>100</layer>
-            <offset>(0, 0, -0.1)</offset>
+            <offset>(0, 0, 0)</offset>
           </dataSouth>
           <dataEast>
             <!-- 向右：盾在左手（内侧），被身体遮挡 -->
             <layer>-50</layer>
-            <offset>(0.2, 0, 0)</offset>
+            <offset>(0, 0, 0)</offset>
           </dataEast>
           <dataWest>
             <!-- 向左：盾在左手（外侧），遮挡身体和头部 -->
             <layer>100</layer>
-            <offset>(-0.2, 0, 0)</offset>
+            <offset>(0, 0, 0)</offset>
+            <flip>true</flip>
+          </dataWest>
+        </drawData>
+      </li>
+      <li>
+        <debugLabel>AdaptiveShieldLight</debugLabel>
+        <workerClass>DivineDiurganate.PawnRenderNodeWorker_AdaptiveShield</workerClass>
+        <texPath>DivineDiurganate/Apparel/DD_Lantern_Shield_Light</texPath>
+        <shaderTypeDef>MoteGlow</shaderTypeDef>
+        <parentTagDef>Body</parentTagDef>
+        <drawSize>1</drawSize>
+        <baseLayer>0</baseLayer>
+        <drawData>
+          <dataNorth>
+            <layer>-50</layer>
+            <offset>(0, 0, -0.1)</offset>
+          </dataNorth>
+          <dataSouth>
+            <!-- 提高层级以遮挡头部 -->
+            <layer>100</layer>
+            <offset>(0, 0, 0)</offset>
+          </dataSouth>
+          <dataEast>
+            <!-- 向右：盾在左手（内侧），被身体遮挡 -->
+            <layer>-50</layer>
+            <offset>(0, 0, 0)</offset>
+          </dataEast>
+          <dataWest>
+            <!-- 向左：盾在左手（外侧），遮挡身体和头部 -->
+            <layer>100</layer>
+            <offset>(0, 0, 0)</offset>
             <flip>true</flip>
           </dataWest>
         </drawData>

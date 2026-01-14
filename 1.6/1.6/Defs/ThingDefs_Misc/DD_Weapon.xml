@@ -654,6 +654,8 @@
     <soundInteract>Interact_Rifle</soundInteract>
     <uiIconScale>1.25</uiIconScale>
 		<costStuffCount>0</costStuffCount>
+    <relicChance>0</relicChance>
+    <genericMarketSellable>false</genericMarketSellable>
     <stuffCategories Inherit="False"/>
     <recipeMaker>
       <!-- <recipeUsers Inherit="False" /> -->
@@ -746,6 +748,8 @@
     <description>A modified heavy lance, with the anti-mech shell launch structure removed and a holy flame injector installed, makes this weapon lighter and more suitable for dealing with crowds compared to the standard anti-mech heavy lance.</description>
     <tickerType>Normal</tickerType>
     <techLevel>Industrial</techLevel>
+    <relicChance>0</relicChance>
+    <genericMarketSellable>false</genericMarketSellable>
     <graphicData>
       <texPath>DivineDiurganate/Weapon/DD_Maple_Sugar_Heavy_Lance</texPath>
       <graphicClass>Graphic_Single</graphicClass>
