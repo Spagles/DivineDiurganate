@@ -13,8 +13,8 @@ namespace DivineDiurganate
     /// </summary>
     public class Window_HediffSelection : Window
     {
-        // 选项列表
-        private readonly List<HediffDef> hediffOptions;
+        // 选项列表（现在使用HediffPoolEntry）
+        private readonly List<HediffPoolEntry> hediffEntries;
         
         // 目标Pawn（用于显示）
         private readonly Pawn targetPawn;
@@ -28,12 +28,18 @@ namespace DivineDiurganate
         // 是否允许取消
         private readonly bool allowCancel;
         
+        // 属性引用（用于获取卡片颜色配置）
+        private CompProperties_AbilityHediffGacha props;
+        
         // 动画相关
         private float openAnimProgress = 0f;
         private const float OpenAnimDuration = 0.3f;
         
         // 悬停的选项索引
         private int hoveredIndex = -1;
+        
+        // 图标缓存
+        private Dictionary<string, Texture2D> iconCache = new Dictionary<string, Texture2D>();
         
         // 卡片尺寸和布局
         private const float CardWidth = 200f;
@@ -46,24 +52,27 @@ namespace DivineDiurganate
         {
             get
             {
-                float totalWidth = hediffOptions.Count * CardWidth + (hediffOptions.Count - 1) * CardSpacing + 60f;
+                int count = hediffEntries != null ? hediffEntries.Count : 0;
+                float totalWidth = count * CardWidth + (count - 1) * CardSpacing + 60f;
                 float totalHeight = TitleHeight + CardHeight + BottomPadding + 40f;
                 return new Vector2(Mathf.Max(totalWidth, 500f), totalHeight);
             }
         }
 
         public Window_HediffSelection(
-            List<HediffDef> options, 
+            List<HediffPoolEntry> entries, 
             Pawn target, 
             Action<HediffDef> selectCallback,
             string title = "DD_HediffGacha_Title",
-            bool canCancel = false)
+            bool canCancel = false,
+            CompProperties_AbilityHediffGacha properties = null)
         {
-            hediffOptions = options ?? new List<HediffDef>();
+            hediffEntries = entries ?? new List<HediffPoolEntry>();
             targetPawn = target;
             onSelect = selectCallback;
             titleKey = title;
             allowCancel = canCancel;
+            props = properties;
             
             // 窗口设置
             doCloseButton = false;
@@ -137,14 +146,15 @@ namespace DivineDiurganate
         
         private void DrawHediffCards(Rect inRect)
         {
-            if (hediffOptions.NullOrEmpty())
+            if (hediffEntries.NullOrEmpty())
                 return;
                 
-            float totalCardsWidth = hediffOptions.Count * CardWidth + (hediffOptions.Count - 1) * CardSpacing;
+            int count = hediffEntries.Count;
+            float totalCardsWidth = count * CardWidth + (count - 1) * CardSpacing;
             float startX = (inRect.width - totalCardsWidth) / 2f;
             float cardY = TitleHeight + 15f;
             
-            for (int i = 0; i < hediffOptions.Count; i++)
+            for (int i = 0; i < count; i++)
             {
                 float cardX = startX + i * (CardWidth + CardSpacing);
                 
@@ -158,14 +168,17 @@ namespace DivineDiurganate
                 // 设置透明度
                 GUI.color = new Color(1f, 1f, 1f, cardAnimProgress);
                 
-                DrawHediffCard(cardRect, hediffOptions[i], i);
+                DrawHediffCard(cardRect, hediffEntries[i], i);
                 
                 GUI.color = Color.white;
             }
         }
         
-        private void DrawHediffCard(Rect rect, HediffDef hediff, int index)
+        private void DrawHediffCard(Rect rect, HediffPoolEntry entry, int index)
         {
+            if (entry?.hediff == null)
+                return;
+                
             bool isHovered = Mouse.IsOver(rect);
             
             // 悬停效果
@@ -179,12 +192,26 @@ namespace DivineDiurganate
                 hoveredIndex = -1;
             }
             
-            // 绘制卡片背景
-            Color bgColor = isHovered ? new Color(0.25f, 0.25f, 0.3f) : new Color(0.15f, 0.15f, 0.18f);
+            // 绘制卡片背景（使用自定义颜色或默认颜色）
+            Color bgColor;
+            if (entry.iconHasBackground && entry.iconBackgroundColor.HasValue)
+            {
+                bgColor = entry.iconBackgroundColor.Value;
+            }
+            else
+            {
+                bgColor = isHovered 
+                    ? (props != null ? props.cardHoverBackground : new Color(0.25f, 0.25f, 0.3f))
+                    : (props != null ? props.cardDefaultBackground : new Color(0.15f, 0.15f, 0.18f));
+            }
+            
             Widgets.DrawBoxSolid(rect, bgColor);
             
-            // 绘制边框
-            Color borderColor = isHovered ? new Color(0.8f, 0.7f, 0.4f) : new Color(0.4f, 0.4f, 0.4f);
+            // 绘制边框（使用自定义颜色或默认颜色）
+            Color borderColor = isHovered 
+                ? (props != null ? props.cardHoverBorder : new Color(0.8f, 0.7f, 0.4f))
+                : (props != null ? props.cardDefaultBorder : new Color(0.4f, 0.4f, 0.4f));
+            
             Widgets.DrawBox(rect, 2, Texture2D.whiteTexture);
             GUI.color = borderColor;
             Widgets.DrawBox(rect, 2);
@@ -196,15 +223,28 @@ namespace DivineDiurganate
             
             // 绘制Hediff图标
             Rect iconRect = new Rect(rect.x + (rect.width - 64f) / 2f, currentY, 64f, 64f);
-            DrawHediffIcon(iconRect, hediff);
-            currentY += 70f;
+            
+            // 应用图标缩放
+            if (entry.iconScale != 1.0f && entry.iconScale > 0)
+            {
+                float scaledSize = 64f * entry.iconScale;
+                iconRect = new Rect(
+                    rect.x + (rect.width - scaledSize) / 2f, 
+                    currentY, 
+                    scaledSize, 
+                    scaledSize
+                );
+            }
+            
+            DrawHediffIcon(iconRect, entry);
+            currentY += (entry.iconScale != 1.0f ? 64f * entry.iconScale : 64f) + 10f;
             
             // 绘制Hediff名称
             Text.Font = GameFont.Medium;
             Text.Anchor = TextAnchor.MiddleCenter;
             
             Rect nameRect = new Rect(rect.x + padding, currentY, contentWidth, 30f);
-            string hediffName = hediff.LabelCap;
+            string hediffName = entry.hediff.LabelCap;
             Widgets.Label(nameRect, hediffName);
             currentY += 35f;
             
@@ -212,14 +252,17 @@ namespace DivineDiurganate
             Widgets.DrawLineHorizontal(rect.x + padding, currentY, contentWidth);
             currentY += 10f;
             
-            // 绘制Hediff描述
+            // 绘制Hediff描述（优先使用自定义描述）
             Text.Font = GameFont.Tiny;
             Text.Anchor = TextAnchor.UpperCenter;
             
             float descHeight = CardHeight - (currentY - rect.y) - 50f;
             Rect descRect = new Rect(rect.x + padding, currentY, contentWidth, descHeight);
             
-            string description = hediff.Description;
+            string description = !string.IsNullOrEmpty(entry.descriptionOverride) 
+                ? entry.descriptionOverride 
+                : entry.hediff.Description;
+            
             if (description.Length > 200)
             {
                 description = description.Substring(0, 197) + "...";
@@ -239,7 +282,7 @@ namespace DivineDiurganate
             if (Widgets.ButtonText(buttonRect, "DD_HediffGacha_Select".Translate()))
             {
                 SoundDefOf.Click.PlayOneShotOnCamera();
-                SelectHediff(hediff);
+                SelectHediff(entry.hediff);
             }
             
             Text.Anchor = TextAnchor.UpperLeft;
@@ -248,45 +291,93 @@ namespace DivineDiurganate
             // 悬停时显示完整工具提示
             if (isHovered)
             {
-                string tooltip = hediff.LabelCap + "\n\n" + hediff.Description;
+                string tooltip = entry.hediff.LabelCap + "\n\n" + 
+                               (!string.IsNullOrEmpty(entry.descriptionOverride) 
+                                    ? entry.descriptionOverride 
+                                    : entry.hediff.Description);
                 TooltipHandler.TipRegion(rect, tooltip);
             }
         }
         
-        private void DrawHediffIcon(Rect rect, HediffDef hediff)
+        private void DrawHediffIcon(Rect rect, HediffPoolEntry entry)
         {
-            // 尝试获取Hediff的图标
+            if (entry == null || entry.hediff == null)
+                return;
+            
             Texture2D icon = null;
             
-            // 根据Hediff是好是坏选择不同的默认图标
-            string iconPath = hediff.isBad 
-                ? "UI/Icons/Medical/Plague" 
-                : "UI/Icons/Medical/BandageIcon";
-            
-            icon = ContentFinder<Texture2D>.Get(iconPath, false);
-            
-            // 如果还是没有，尝试其他备选图标
-            if (icon == null)
+            // 1. 首先尝试使用自定义图标路径
+            if (!string.IsNullOrEmpty(entry.iconPath))
             {
-                icon = ContentFinder<Texture2D>.Get("UI/Icons/Medical/Vaccinate", false);
+                // 检查缓存
+                if (!iconCache.TryGetValue(entry.iconPath, out icon))
+                {
+                    icon = ContentFinder<Texture2D>.Get(entry.iconPath, false);
+                    if (icon != null)
+                    {
+                        iconCache[entry.iconPath] = icon;
+                    }
+                }
             }
             
-            // 如果找到图标则绘制
+            // 3. 如果还是没有，根据Hediff是好是坏选择不同的默认图标
+            if (icon == null)
+            {
+                string iconPath = entry.hediff.isBad 
+                    ? "UI/Icons/Medical/Plague" 
+                    : "UI/Icons/Medical/BandageIcon";
+                
+                if (!iconCache.TryGetValue(iconPath, out icon))
+                {
+                    icon = ContentFinder<Texture2D>.Get(iconPath, false);
+                    if (icon != null)
+                    {
+                        iconCache[iconPath] = icon;
+                    }
+                }
+            }
+            
+            // 4. 如果还是没有，尝试其他备选图标
+            if (icon == null)
+            {
+                string fallbackPath = "UI/Icons/Medical/Vaccinate";
+                if (!iconCache.TryGetValue(fallbackPath, out icon))
+                {
+                    icon = ContentFinder<Texture2D>.Get(fallbackPath, false);
+                    if (icon != null)
+                    {
+                        iconCache[fallbackPath] = icon;
+                    }
+                }
+            }
+            
+            // 绘制图标
             if (icon != null)
             {
+                // 应用自定义颜色（如果有）
+                GUI.color = entry.iconColor.HasValue ? entry.iconColor.Value : Color.white;
                 GUI.DrawTexture(rect, icon);
+                GUI.color = Color.white;
             }
             else
             {
                 // 绘制一个带颜色的占位符
-                Color placeholderColor = hediff.isBad 
+                Color placeholderColor = entry.hediff.isBad 
                     ? new Color(0.5f, 0.2f, 0.2f) 
                     : new Color(0.2f, 0.5f, 0.3f);
+                
+                // 使用自定义颜色（如果有）
+                if (entry.iconColor.HasValue)
+                {
+                    placeholderColor = entry.iconColor.Value;
+                }
+                
                 Widgets.DrawBoxSolid(rect, placeholderColor);
                 Text.Anchor = TextAnchor.MiddleCenter;
                 Text.Font = GameFont.Medium;
                 GUI.color = Color.white;
-                Widgets.Label(rect, hediff.LabelCap.ToString().Substring(0, 1).ToUpper());
+                Widgets.Label(rect, entry.hediff.LabelCap.ToString().Substring(0, 1).ToUpper());
+                Text.Anchor = TextAnchor.UpperLeft;
             }
         }
         
@@ -327,6 +418,8 @@ namespace DivineDiurganate
         public override void PreClose()
         {
             base.PreClose();
+            // 清理图标缓存
+            iconCache.Clear();
         }
     }
 }

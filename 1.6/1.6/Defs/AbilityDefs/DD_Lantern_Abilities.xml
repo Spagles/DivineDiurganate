@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <AbilityDef>
+    <defName>DD_Upgrade_Lantern</defName>
+    <label>Upgrade Lantern</label>
+    <description>Upgrade Lantern</description>
+    <iconPath>DivineDiurganate/UI/Abilities/DD_Maple_Sugar_Heal</iconPath>
+    <displayOrder>210</displayOrder>
+    <aiCanUse>false</aiCanUse>
+    <targetRequired>false</targetRequired>
+    <cooldownTicksRange>1</cooldownTicksRange> <!-- 半天冷却 -->
+    <displayGizmoWhileUndrafted>true</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>false</disableGizmoWhileUndrafted>
+    <verbProperties>
+      <verbClass>Verb_CastAbility</verbClass>
+      <warmupTime>0</warmupTime>
+      <range>0</range>
+      <targetParams>
+        <canTargetSelf>true</canTargetSelf>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="DivineDiurganate.CompProperties_AbilityHediffGacha">
+        <hediffPool>
+          <!-- 自定义图标的Hediff -->
+          <li>
+            <hediff>DD_Lantern_Shield_Adv_Wider</hediff>
+            <weight>1</weight>
+            <descriptionOverride>A dangerous disease that can be fatal if untreated.</descriptionOverride>
+            <iconPath>UI/Icons/Custom/Plague_Red</iconPath>
+            <iconColor>(1, 1, 1, 1)</iconColor>
+            <iconScale>1</iconScale>
+            <iconBackgroundColor>(1, 1, 1, 0)</iconBackgroundColor>
+          </li>
+          <li>
+            <hediff>DD_Lantern_Shield_Adv_Longer</hediff>
+            <weight>1</weight>
+            <descriptionOverride>A dangerous disease that can be fatal if untreated.</descriptionOverride>
+            <iconPath>UI/Icons/Custom/Plague_Red</iconPath>
+            <iconColor>(1, 1, 1, 1)</iconColor>
+            <iconScale>1</iconScale>
+            <iconBackgroundColor>(1, 1, 1, 0)</iconBackgroundColor>
+          </li>
+          <li>            
+            <hediff>DD_Lantern_Shield_Adv_Extrabuff</hediff>
+            <weight>1</weight>
+            <descriptionOverride>A dangerous disease that can be fatal if untreated.</descriptionOverride>
+            <iconPath>UI/Icons/Custom/Plague_Red</iconPath>
+            <iconColor>(1, 1, 1, 1)</iconColor>
+            <iconScale>1</iconScale>
+            <iconBackgroundColor>(1, 1, 1, 0)</iconBackgroundColor>
+          </li>
+        </hediffPool>
+        
+        <choiceCount>3</choiceCount>
+        <useWeights>true</useWeights>
+        <allowDuplicates>false</allowDuplicates>
+        <windowTitle>DD_MyCustomGacha_Title</windowTitle>
+        <allowCancel>true</allowCancel>
+        <showSelectionMessage>true</showSelectionMessage>
+        <selectionMessageKey>DD_MyCustomGacha_Selected</selectionMessageKey>
+        
+        <!-- 自定义卡片颜色 -->
+        <cardDefaultBackground>(0.1, 0.1, 0.12, 1)</cardDefaultBackground>
+        <cardHoverBackground>(0.2, 0.2, 0.25, 1)</cardHoverBackground>
+        <cardDefaultBorder>(0.3, 0.3, 0.35, 1)</cardDefaultBorder>
+        <cardHoverBorder>(0.9, 0.8, 0.5, 1)</cardHoverBorder>
+      </li>
+    </comps>
+  </AbilityDef>
+
+  <AbilityDef Name="DD_Light_The_Lantern_Base" Abstract="True">
+    <label>Lantern Shield</label>
+    <displayOrder>300</displayOrder>
+    <aiCanUse>false</aiCanUse>
+    <displayGizmoWhileUndrafted>true</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>false</disableGizmoWhileUndrafted>
+    <targetRequired>false</targetRequired>
+    <verbProperties>
+      <verbClass>Verb_CastAbility</verbClass>
+      <warmupTime>3</warmupTime>
+      <range>0</range>
+      <targetParams>
+        <canTargetSelf>true</canTargetSelf>
+      </targetParams>
+    </verbProperties>
+  </AbilityDef>
+  <AbilityDef ParentName="DD_Light_The_Lantern_Base">
+    <defName>DD_Light_The_Lantern</defName>
+    <description>Light up the lantern carried by Michelle. The light emitted by this lantern will converge into a faintly visible shield, which can block incoming damage. The lamp oil is limited, and it can only protect Michelle for a while before it goes out, requiring it to be re-lit.</description>
+    <iconPath>DivineDiurganate/UI/Abilities/DD_Light_The_Lantern</iconPath>
+    <cooldownTicksRange>6000</cooldownTicksRange> <!-- 1秒冷却 -->
+    <verbProperties>
+      <warmupTime>3</warmupTime>
+    </verbProperties>
+    <comps>
+      <li Class="DivineDiurganate.CompProperties_AbilityToggleAdaptiveShield">
+        <shieldHediffDef>DD_Lantern_Shield_Active</shieldHediffDef>
+        <activateMessage>DD_Lantern_Shield_ActivatedMessage</activateMessage>
+        <deactivateMessage>DD_Lantern_Shield_DeactivatedMessage</deactivateMessage>
+      </li>
+    </comps>
+  </AbilityDef>
+  <AbilityDef ParentName="DD_Light_The_Lantern_Base">
+    <defName>DD_Light_The_Lantern_Wider</defName>
+    <description>Light up the lantern carried by Michelle.</description>
+    <iconPath>DivineDiurganate/UI/Abilities/DD_Light_The_Lantern</iconPath>
+    <cooldownTicksRange>6000</cooldownTicksRange> <!-- 1秒冷却 -->
+    <verbProperties>
+      <warmupTime>3</warmupTime>
+    </verbProperties>
+    <comps>
+      <li Class="DivineDiurganate.CompProperties_AbilityToggleAdaptiveShield">
+        <shieldHediffDef>DD_Lantern_Shield_Active_Wider</shieldHediffDef>
+        <activateMessage>DD_Lantern_Shield_ActivatedMessage</activateMessage>
+        <deactivateMessage>DD_Lantern_Shield_DeactivatedMessage</deactivateMessage>
+      </li>
+    </comps>
+  </AbilityDef>
+  <AbilityDef ParentName="DD_Light_The_Lantern_Base">
+    <defName>DD_Light_The_Lantern_Longer</defName>
+    <description>Light up the lantern carried by Michelle.</description>
+    <iconPath>DivineDiurganate/UI/Abilities/DD_Light_The_Lantern</iconPath>
+    <cooldownTicksRange>12000</cooldownTicksRange> <!-- 1秒冷却 -->
+    <verbProperties>
+      <warmupTime>0.75</warmupTime>
+    </verbProperties>
+    <comps>
+      <li Class="DivineDiurganate.CompProperties_AbilityToggleAdaptiveShield">
+        <shieldHediffDef>DD_Lantern_Shield_Active_Longer</shieldHediffDef>
+        <activateMessage>DD_Lantern_Shield_ActivatedMessage</activateMessage>
+        <deactivateMessage>DD_Lantern_Shield_DeactivatedMessage</deactivateMessage>
+      </li>
+    </comps>
+  </AbilityDef>
+  <AbilityDef ParentName="DD_Light_The_Lantern_Base">
+    <defName>DD_Light_The_Lantern_Extrabuff</defName>
+    <description>Light up the lantern carried by Michelle.</description>
+    <iconPath>DivineDiurganate/UI/Abilities/DD_Light_The_Lantern</iconPath>
+    <cooldownTicksRange>7500</cooldownTicksRange>
+    <verbProperties>
+      <warmupTime>3</warmupTime>
+    </verbProperties>
+    <comps>
+      <li Class="DivineDiurganate.CompProperties_AbilityToggleAdaptiveShield">
+        <shieldHediffDef>DD_Lantern_Shield_Active_Extrabuff</shieldHediffDef>
+        <activateMessage>DD_Lantern_Shield_ActivatedMessage</activateMessage>
+        <deactivateMessage>DD_Lantern_Shield_DeactivatedMessage</deactivateMessage>
+      </li>
+    </comps>
+  </AbilityDef>
+</Defs>

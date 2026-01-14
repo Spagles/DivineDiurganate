@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <HediffDef Name="DD_Lantern_Shield_Hediff_Base" Abstract="True">
+    <label>Lantern Shield</label>
+    <description>The lantern carried by Michelle can erect a faintly visible shield to block incoming projectiles and melee slashes from the front. Once the incense in the lantern burns out, the shield will disappear.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.4, 0.8, 1.0)</defaultLabelColor>
+    <isBad>false</isBad>
+    <initialSeverity>1.0</initialSeverity>
+    <maxSeverity>1.0</maxSeverity>
+
+    <stages>
+      <li>
+        <becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+
+    <!-- <comps>
+      <li Class="HediffCompProperties_GiveAbility">
+        <abilityDefs>
+          <li>DD_Light_The_Lantern</li>
+        </abilityDefs>
+      </li>
+    </comps> -->
+  </HediffDef>
+  <HediffDef ParentName="DD_Lantern_Shield_Hediff_Base">
+    <defName>DD_Lantern_Shield_Base</defName>
+
+    <comps>
+      <li Class="HediffCompProperties_RemoveIfOtherHediff">
+        <hediffs>
+          <li>DD_Lantern_Shield_Adv_Wider</li>
+          <li>DD_Lantern_Shield_Adv_Longer</li>
+          <li>DD_Lantern_Shield_Adv_Extrabuff</li>
+        </hediffs>
+      </li>
+      <li Class="HediffCompProperties_GiveAbility">
+        <abilityDefs>
+          <li>DD_Light_The_Lantern</li>
+          <li>DD_Upgrade_Lantern</li>
+        </abilityDefs>
+      </li>
+    </comps>
+  </HediffDef>
+  <HediffDef ParentName="DD_Lantern_Shield_Hediff_Base">
+    <defName>DD_Lantern_Shield_Adv_Wider</defName>
+
+    <comps>
+      <li Class="HediffCompProperties_GiveAbility">
+        <abilityDefs>
+          <li>DD_Light_The_Lantern_Wider</li>
+        </abilityDefs>
+      </li>
+    </comps>
+  </HediffDef>
+  <HediffDef ParentName="DD_Lantern_Shield_Hediff_Base">
+    <defName>DD_Lantern_Shield_Adv_Longer</defName>
+
+    <comps>
+      <li Class="HediffCompProperties_GiveAbility">
+        <abilityDefs>
+          <li>DD_Light_The_Lantern_Longer</li>
+        </abilityDefs>
+      </li>
+    </comps>
+  </HediffDef>
+  <HediffDef ParentName="DD_Lantern_Shield_Hediff_Base">
+    <defName>DD_Lantern_Shield_Adv_Extrabuff</defName>
+
+    <comps>
+      <li Class="HediffCompProperties_GiveAbility">
+        <abilityDefs>
+          <li>DD_Light_The_Lantern_Extrabuff</li>
+        </abilityDefs>
+      </li>
+    </comps>
+  </HediffDef>
+
+  <HediffDef Name="DD_Lantern_Shield_Active_Base" Abstract="True">
+    <label>Lantern Shield</label>
+    <description>The lantern carried by Michelle can erect a faintly visible shield to block incoming projectiles and melee slashes from the front. Once the incense in the lantern burns out, the shield will disappear.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.4, 0.8, 1.0)</defaultLabelColor>
+    <isBad>false</isBad>
+    <initialSeverity>1.0</initialSeverity>
+    <maxSeverity>1.0</maxSeverity>
+
+    <renderNodeProperties>
+      <li>
+        <debugLabel>AdaptiveShield</debugLabel>
+        <workerClass>DivineDiurganate.PawnRenderNodeWorker_AdaptiveShield</workerClass>
+        <texPath>DivineDiurganate/Apparel/DD_Lantern_Shield</texPath>
+        <shaderTypeDef>Cutout</shaderTypeDef>
+        <parentTagDef>Body</parentTagDef>
+        <drawSize>1</drawSize>
+        <baseLayer>0</baseLayer>
+        <drawData>
+          <dataNorth>
+            <layer>-50</layer>
+            <offset>(0, 0, -0.1)</offset>
+          </dataNorth>
+          <dataSouth>
+            <!-- 提高层级以遮挡头部 -->
+            <layer>100</layer>
+            <offset>(0, 0, 0)</offset>
+          </dataSouth>
+          <dataEast>
+            <!-- 向右：盾在左手（内侧），被身体遮挡 -->
+            <layer>-50</layer>
+            <offset>(0, 0, 0)</offset>
+          </dataEast>
+          <dataWest>
+            <!-- 向左：盾在左手（外侧），遮挡身体和头部 -->
+            <layer>100</layer>
+            <offset>(0, 0, 0)</offset>
+            <flip>true</flip>
+          </dataWest>
+        </drawData>
+      </li>
+      <li>
+        <debugLabel>AdaptiveShieldLight</debugLabel>
+        <workerClass>DivineDiurganate.PawnRenderNodeWorker_AdaptiveShield</workerClass>
+        <texPath>DivineDiurganate/Apparel/DD_Lantern_Shield_Light</texPath>
+        <shaderTypeDef>MoteGlow</shaderTypeDef>
+        <parentTagDef>Body</parentTagDef>
+        <drawSize>1</drawSize>
+        <baseLayer>0</baseLayer>
+        <drawData>
+          <dataNorth>
+            <layer>-50</layer>
+            <offset>(0, 0, -0.1)</offset>
+          </dataNorth>
+          <dataSouth>
+            <!-- 提高层级以遮挡头部 -->
+            <layer>100</layer>
+            <offset>(0, 0, 0)</offset>
+          </dataSouth>
+          <dataEast>
+            <!-- 向右：盾在左手（内侧），被身体遮挡 -->
+            <layer>-50</layer>
+            <offset>(0, 0, 0)</offset>
+          </dataEast>
+          <dataWest>
+            <!-- 向左：盾在左手（外侧），遮挡身体和头部 -->
+            <layer>100</layer>
+            <offset>(0, 0, 0)</offset>
+            <flip>true</flip>
+          </dataWest>
+        </drawData>
+      </li>
+    </renderNodeProperties>
+  </HediffDef>
+  <HediffDef ParentName="DD_Lantern_Shield_Active_Base">
+    <defName>DD_Lantern_Shield_Active</defName>
+
+    <stages>
+      <li>
+        <label>active</label>
+        <becomeVisible>true</becomeVisible>
+        <!-- 可选：护盾激活时的属性修改 -->
+        <!-- <statOffsets>
+          <MoveSpeed>-0.2</MoveSpeed>
+        </statOffsets> -->
+      </li>
+    </stages>
+
+    <comps>
+      <li Class="HediffCompProperties_RemoveIfOtherHediff">
+        <hediffs>
+          <li>DD_Lantern_Shield_Adv_Wider</li>
+          <li>DD_Lantern_Shield_Adv_Longer</li>
+          <li>DD_Lantern_Shield_Adv_Extrabuff</li>
+        </hediffs>
+      </li>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>6000</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+      <li Class="DivineDiurganate.HediffCompProperties_AdaptiveShield">
+        <baseDamageThreshold>9999</baseDamageThreshold>
+        <maxDamageThreshold>9999</maxDamageThreshold>
+        <thresholdIncreaseOnPenetration>0</thresholdIncreaseOnPenetration>
+        <blockAngle>45</blockAngle>
+        
+        <showActivationMessage>true</showActivationMessage>
+        <resetThresholdOnDeactivate>true</resetThresholdOnDeactivate>
+
+        <thresholdDecayDelay>1200</thresholdDecayDelay>
+        <thresholdDecayPerSecond>0</thresholdDecayPerSecond>
+      </li>
+    </comps>
+  </HediffDef>
+  <HediffDef ParentName="DD_Lantern_Shield_Active_Base">
+    <defName>DD_Lantern_Shield_Active_Wider</defName>
+
+    <stages>
+      <li>
+        <label>active</label>
+        <becomeVisible>true</becomeVisible>
+        <!-- 可选：护盾激活时的属性修改 -->
+        <!-- <statOffsets>
+          <MoveSpeed>-0.2</MoveSpeed>
+        </statOffsets> -->
+      </li>
+    </stages>
+
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>5000</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+      <li Class="DivineDiurganate.HediffCompProperties_AdaptiveShield">
+        <baseDamageThreshold>9999</baseDamageThreshold>
+        <maxDamageThreshold>9999</maxDamageThreshold>
+        <thresholdIncreaseOnPenetration>0</thresholdIncreaseOnPenetration>
+        <blockAngle>70</blockAngle>
+        
+        <showActivationMessage>true</showActivationMessage>
+        <resetThresholdOnDeactivate>true</resetThresholdOnDeactivate>
+
+        <thresholdDecayDelay>1200</thresholdDecayDelay>
+        <thresholdDecayPerSecond>0</thresholdDecayPerSecond>
+      </li>
+    </comps>
+  </HediffDef>
+  <HediffDef ParentName="DD_Lantern_Shield_Active_Base">
+    <defName>DD_Lantern_Shield_Active_Longer</defName>
+
+    <stages>
+      <li>
+        <label>active</label>
+        <becomeVisible>true</becomeVisible>
+        <!-- 可选：护盾激活时的属性修改 -->
+        <!-- <statOffsets>
+          <MoveSpeed>-0.2</MoveSpeed>
+        </statOffsets> -->
+      </li>
+    </stages>
+
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>12000</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+      <li Class="DivineDiurganate.HediffCompProperties_AdaptiveShield">
+        <baseDamageThreshold>9999</baseDamageThreshold>
+        <maxDamageThreshold>9999</maxDamageThreshold>
+        <thresholdIncreaseOnPenetration>0</thresholdIncreaseOnPenetration>
+        <blockAngle>35</blockAngle>
+        
+        <showActivationMessage>true</showActivationMessage>
+        <resetThresholdOnDeactivate>true</resetThresholdOnDeactivate>
+
+        <thresholdDecayDelay>1200</thresholdDecayDelay>
+        <thresholdDecayPerSecond>0</thresholdDecayPerSecond>
+      </li>
+    </comps>
+  </HediffDef>
+  <HediffDef ParentName="DD_Lantern_Shield_Active_Base">
+    <defName>DD_Lantern_Shield_Active_Extrabuff</defName>
+
+    <stages>
+      <li>
+        <label>active</label>
+        <becomeVisible>true</becomeVisible>
+        <statOffsets>
+          <MoveSpeed>2</MoveSpeed>
+          <ShootingAccuracyPawn>5</ShootingAccuracyPawn>
+          <MeleeHitChance>4</MeleeHitChance>
+        </statOffsets>
+        <statFactors>
+          <RestFallRateFactor>0</RestFallRateFactor>
+        </statFactors>
+      </li>
+    </stages>
+
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>7500</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+      <li Class="DivineDiurganate.HediffCompProperties_AdaptiveShield">
+        <baseDamageThreshold>9999</baseDamageThreshold>
+        <maxDamageThreshold>9999</maxDamageThreshold>
+        <thresholdIncreaseOnPenetration>0</thresholdIncreaseOnPenetration>
+        <blockAngle>45</blockAngle>
+        
+        <showActivationMessage>true</showActivationMessage>
+        <resetThresholdOnDeactivate>true</resetThresholdOnDeactivate>
+
+        <thresholdDecayDelay>1200</thresholdDecayDelay>
+        <thresholdDecayPerSecond>0</thresholdDecayPerSecond>
+      </li>
+    </comps>
+  </HediffDef>
+</Defs>

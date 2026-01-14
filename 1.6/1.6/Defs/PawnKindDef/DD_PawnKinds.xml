@@ -493,13 +493,16 @@
 		<weaponTags>
 			<li>DD_Michelle_Weapon</li>
 		</weaponTags>
+    <startingHediffs>
+      <li>
+        <def>DD_Lantern_Shield_Base</def>
+        <severity>1</severity>
+      </li>
+    </startingHediffs>
 		<ignoreIdeoApparelColors>true</ignoreIdeoApparelColors>
 		<initialWillRange>0~0</initialWillRange>
 		<initialResistanceRange>0~2</initialResistanceRange>
 		<humanPregnancyChance>0</humanPregnancyChance>
-		<abilities>
-			<li>DD_Light_The_Lantern</li>
-		</abilities>
 
 		<modExtensions>
 			<li Class="DivineDiurganate.HeadTypeExtension">

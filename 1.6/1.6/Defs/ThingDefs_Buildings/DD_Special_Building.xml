@@ -1,6 +1,80 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
   <ThingDef ParentName="BuildingBase">
+    <defName>DD_HellDiveShrine</defName>
+    <label>Hell Dive Shrine</label>
+    <description>Hell Dive Shrine</description>
+    <preventDroppingThingsOn>true</preventDroppingThingsOn>
+		<altitudeLayer>Building</altitudeLayer>
+    <pathCost>50</pathCost>
+    <blockWind>true</blockWind>
+    <passability>PassThroughOnly</passability>
+    <fillPercent>1</fillPercent>
+    <size>(1,1)</size>
+    <drawHighlight>true</drawHighlight>
+    <tradeability>None</tradeability>
+    <highlightColor>(0.56, 0.62, 0.9)</highlightColor>
+    <rotatable>false</rotatable>
+    <graphicData>
+      <texPath>Things/Building/Misc/CommsConsole</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1,1)</drawSize>
+    </graphicData>
+    <costList>
+      <Steel>50</Steel>
+    </costList>
+    <statBases>
+      <MaxHitPoints>50</MaxHitPoints>
+      <Flammability>0.5</Flammability>
+      <WorkToBuild>1000</WorkToBuild>
+      <Mass>5</Mass>
+    </statBases>
+    <tickerType>Normal</tickerType>
+    <canOverlapZones>true</canOverlapZones>
+    <hasInteractionCell>false</hasInteractionCell>
+    <defaultPlacingRot>North</defaultPlacingRot>
+    <selectable>true</selectable>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+    <preventSkyfallersLandingOn>true</preventSkyfallersLandingOn>
+    <drawerType>RealtimeOnly</drawerType>
+    <repairEffect>ConstructMetal</repairEffect>
+    <forceDebugSpawnable>true</forceDebugSpawnable>
+    <designationCategory>Misc</designationCategory>
+    <building>
+      <destroySound>BuildingDestroyed_Metal_Big</destroySound>
+      <paintable>true</paintable>
+      <isInert>true</isInert>
+    </building>
+    <comps>
+      <li Class="DivineDiurganate.CompProperties_MapTeleporter">
+        <areaSize>(13, 13)</areaSize>
+        <warmupTicks>120</warmupTicks>
+      </li>
+    </comps>
+  </ThingDef>
+  <ThingDef ParentName="EtherealThingBase">
+    <defName>DD_TeleportLandingMarker</defName>
+    <label>Export Of Hell</label>
+    <description></description>
+    <thingClass>DivineDiurganate.TeleportLandingMarker</thingClass>
+    <graphicData>
+      <texPath>Things/Building/Misc/CommsConsole</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(13,13)</drawSize>
+      <damageData>
+        <enabled>false</enabled>
+      </damageData>
+    </graphicData>
+    <altitudeLayer>Building</altitudeLayer>
+    <rotatable>false</rotatable>
+    <selectable>true</selectable>
+    <hasCustomRectForSelector>true</hasCustomRectForSelector>
+    <drawerType>RealtimeOnly</drawerType>
+    <drawOffscreen>true</drawOffscreen>
+  </ThingDef>
+  
+  <ThingDef ParentName="BuildingBase">
     <defName>DD_Airship_CommsConsole</defName>
     <label>Airship Communication Station</label>
     <description>The communication station, used for communicate with the Oberon, a heavy airship owned by Diurganate.</description>
