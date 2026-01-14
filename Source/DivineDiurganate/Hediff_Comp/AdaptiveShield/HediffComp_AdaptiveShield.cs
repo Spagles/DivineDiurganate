@@ -147,10 +147,29 @@ namespace DivineDiurganate
         {
             if (Pawn == null || Pawn.Dead || Pawn.Downed)
                 return false;
+            
+            // 详细日志：记录所有伤害信息
+            string instigatorName = dinfo.Instigator?.LabelShort ?? "Unknown";
+            string weaponName = dinfo.Weapon?.label ?? "None";
+            Log.Message($"[AdaptiveShield] === 伤害检测 ===");
+            Log.Message($"[AdaptiveShield] 目标: {Pawn.LabelShort}");
+            Log.Message($"[AdaptiveShield] 攻击者: {instigatorName}");
+            Log.Message($"[AdaptiveShield] 伤害类型: {dinfo.Def?.defName ?? "Unknown"}");
+            Log.Message($"[AdaptiveShield] 伤害量: {dinfo.Amount}");
+            Log.Message($"[AdaptiveShield] 武器: {weaponName}");
+            Log.Message($"[AdaptiveShield] 伤害角度: {dinfo.Angle}");
+            Log.Message($"[AdaptiveShield] 防御者朝向: {Pawn.Rotation} ({Pawn.Rotation.AsAngle}度)");
+            Log.Message($"[AdaptiveShield] 当前阈值: {currentDamageThreshold}");
                 
             // 检查攻击是否来自正面
-            if (!IsAttackFromFront(dinfo))
+            bool isFromFront = IsAttackFromFront(dinfo);
+            Log.Message($"[AdaptiveShield] 来自正面: {isFromFront}");
+            
+            if (!isFromFront)
+            {
+                Log.Message($"[AdaptiveShield] 结果: 非正面攻击，不拦截");
                 return false;
+            }
                 
             float damageAmount = dinfo.Amount;
             
@@ -158,12 +177,14 @@ namespace DivineDiurganate
             if (damageAmount <= currentDamageThreshold)
             {
                 // 伤害被完全吸收
+                Log.Message($"[AdaptiveShield] 结果: 伤害({damageAmount}) <= 阈值({currentDamageThreshold})，完全格挡！");
                 OnDamageBlocked(dinfo);
                 return true;
             }
             else
             {
                 // 伤害穿透护盾
+                Log.Message($"[AdaptiveShield] 结果: 伤害({damageAmount}) > 阈值({currentDamageThreshold})，穿透！");
                 OnDamagePenetrated(dinfo);
                 return false;
             }
@@ -177,7 +198,10 @@ namespace DivineDiurganate
         {
             // 如果无法确定伤害角度（通常 Angle = -1 表示未知），全部视为可拦截
             if (dinfo.Angle < 0f)
+            {
+                Log.Message($"[AdaptiveShield] 角度检测: Angle={dinfo.Angle} < 0，视为正面");
                 return true;
+            }
             
             // 计算攻击者相对于防御者的角度
             float attackerAngle = dinfo.Angle + 180f;
@@ -193,8 +217,11 @@ namespace DivineDiurganate
             float angleDiff = Mathf.Abs(defenderAngle - attackerAngle);
             if (angleDiff > 180f)
                 angleDiff = 360f - angleDiff;
+            
+            bool result = angleDiff <= Props.blockAngle;
+            Log.Message($"[AdaptiveShield] 角度检测: 原始角度={dinfo.Angle}, 攻击来源角度={attackerAngle}, 防御者朝向={defenderAngle}, 角度差={angleDiff}, 格挡范围=±{Props.blockAngle}, 结果={result}");
                 
-            return angleDiff <= Props.blockAngle;
+            return result;
         }
         
         /// <summary>

@@ -223,7 +223,7 @@
         <baseDamageThreshold>9999</baseDamageThreshold>
         <maxDamageThreshold>9999</maxDamageThreshold>
         <thresholdIncreaseOnPenetration>0</thresholdIncreaseOnPenetration>
-        <blockAngle>45</blockAngle>
+        <blockAngle>140</blockAngle>
         
         <showActivationMessage>true</showActivationMessage>
         <resetThresholdOnDeactivate>true</resetThresholdOnDeactivate>
