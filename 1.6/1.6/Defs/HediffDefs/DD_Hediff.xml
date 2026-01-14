@@ -216,7 +216,7 @@
     <maxSeverity>1.0</maxSeverity>
     <comps>
       <li Class="HediffCompProperties_Disappears">
-        <disappearsAfterTicks>6000</disappearsAfterTicks>
+        <disappearsAfterTicks>18000</disappearsAfterTicks>
         <showRemainingTime>true</showRemainingTime>
       </li>
       <li Class="DivineDiurganate.HediffCompProperties_AdaptiveShield">

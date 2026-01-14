@@ -171,9 +171,14 @@ namespace DivineDiurganate
         
         /// <summary>
         /// 检查攻击是否来自正面（±blockAngle度范围）
+        /// 对于无法判断角度的伤害，全部拦截
         /// </summary>
         private bool IsAttackFromFront(DamageInfo dinfo)
         {
+            // 如果无法确定伤害角度（通常 Angle = -1 表示未知），全部视为可拦截
+            if (dinfo.Angle < 0f)
+                return true;
+            
             // 计算攻击者相对于防御者的角度
             float attackerAngle = dinfo.Angle + 180f;
             float defenderAngle = Pawn.Rotation.AsAngle;
