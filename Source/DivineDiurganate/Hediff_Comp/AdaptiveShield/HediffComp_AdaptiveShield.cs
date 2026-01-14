@@ -171,9 +171,14 @@ namespace DivineDiurganate
         
         /// <summary>
         /// 检查攻击是否来自正面（±blockAngle度范围）
+        /// 对于无法判断角度的伤害，全部拦截
         /// </summary>
         private bool IsAttackFromFront(DamageInfo dinfo)
         {
+            // 如果无法确定伤害角度（通常 Angle = -1 表示未知），全部视为可拦截
+            if (dinfo.Angle < 0f)
+                return true;
+            
             // 计算攻击者相对于防御者的角度
             float attackerAngle = dinfo.Angle + 180f;
             float defenderAngle = Pawn.Rotation.AsAngle;
@@ -217,11 +222,12 @@ namespace DivineDiurganate
                 {
                     Props.blockEffecter.Spawn().Trigger(Pawn, dinfo.Instigator ?? Pawn, -1);
                 }
-                else
+                else if (Props.blockSound == null)
                 {
-                    // 使用默认的金属偏转特效
+                    // 只有在没有设置blockSound时才使用默认特效（自带声音）
                     EffecterDefOf.Deflect_Metal.Spawn().Trigger(Pawn, dinfo.Instigator ?? Pawn, -1);
                 }
+                // 如果设置了blockSound但没设置blockEffecter，只播放声音，不播放默认特效
             }
         }
         

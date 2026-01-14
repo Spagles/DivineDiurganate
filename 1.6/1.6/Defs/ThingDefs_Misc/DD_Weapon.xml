@@ -720,7 +720,7 @@
       <texPath>Things/Projectile/Bullet_Small</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>MoteGlow</shaderType>
-      <color>(194,117,67)</color>
+      <color>(200,200,210)</color>
     </graphicData>
     <thingClass>DivineDiurganate.Projectile_PenetratingBullet</thingClass>
     <modExtensions>
@@ -736,7 +736,7 @@
       </li>
     </modExtensions>
     <projectile>
-      <damageDef>Bullet</damageDef>
+      <damageDef>DD_SilverBullet</damageDef>
       <damageAmountBase>6</damageAmountBase>
       <stoppingPower>2</stoppingPower>
       <speed>45</speed>

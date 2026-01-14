@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- =========================================== -->
+  <!-- 银弹伤害类型 - 造成普通子弹伤害+额外眩晕伤害 -->
+  <!-- =========================================== -->
+  <DamageDef ParentName="Bullet">
+    <defName>DD_SilverBullet</defName>
+    <label>silver bullet</label>
+    <deathMessage>{0} has been shot to death by a silver bullet.</deathMessage>
+    <workerClass>DivineDiurganate.DamageWorker_WithAdditionalDamages</workerClass>
+    <modExtensions>
+      <li Class="DivineDiurganate.AdditionalDamagesExtension">
+        <additionalDamages>
+          <li>
+            <!-- 额外造成2倍原伤害的眩晕 -->
+            <damageDef>Stun</damageDef>
+            <damageMultiplier>2</damageMultiplier>
+            <chance>1</chance>
+          </li>
+        </additionalDamages>
+      </li>
+    </modExtensions>
+  </DamageDef>
+
+</Defs>
