@@ -736,7 +736,7 @@
       </li>
     </modExtensions>
     <projectile>
-      <damageDef>Bullet</damageDef>
+      <damageDef>DD_SilverBullet</damageDef>
       <damageAmountBase>6</damageAmountBase>
       <stoppingPower>2</stoppingPower>
       <speed>45</speed>
