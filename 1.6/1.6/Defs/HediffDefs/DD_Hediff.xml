@@ -297,12 +297,14 @@
         </drawData>
       </li>
     </renderNodeProperties>
-
     <stages>
       <li>
         <label>active</label>
         <becomeVisible>true</becomeVisible>
         <!-- 可选：护盾激活时的属性修改 -->
+        <statFactors>
+          <Flammability>0</Flammability>
+        </statFactors>
         <!-- <statOffsets>
           <MoveSpeed>-0.2</MoveSpeed>
         </statOffsets> -->
