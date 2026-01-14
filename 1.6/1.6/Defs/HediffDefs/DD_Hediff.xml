@@ -230,6 +230,9 @@
 
         <thresholdDecayDelay>1200</thresholdDecayDelay>
         <thresholdDecayPerSecond>0</thresholdDecayPerSecond>
+        
+        <!-- 格挡特效 (自带声音) -->
+        <blockEffecter>Interceptor_BlockedProjectile</blockEffecter>
       </li>
     </comps>
 

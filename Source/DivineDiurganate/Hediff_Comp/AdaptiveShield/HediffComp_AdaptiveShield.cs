@@ -222,11 +222,12 @@ namespace DivineDiurganate
                 {
                     Props.blockEffecter.Spawn().Trigger(Pawn, dinfo.Instigator ?? Pawn, -1);
                 }
-                else
+                else if (Props.blockSound == null)
                 {
-                    // 使用默认的金属偏转特效
+                    // 只有在没有设置blockSound时才使用默认特效（自带声音）
                     EffecterDefOf.Deflect_Metal.Spawn().Trigger(Pawn, dinfo.Instigator ?? Pawn, -1);
                 }
+                // 如果设置了blockSound但没设置blockEffecter，只播放声音，不播放默认特效
             }
         }
         
