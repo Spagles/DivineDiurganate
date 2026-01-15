@@ -747,7 +747,7 @@
       </li>
       <!-- 弹丸数量配置 -->
       <li Class="DivineDiurganate.ShotgunExtension">
-        <pelletCount>6</pelletCount>        <!-- 8颗弹丸均匀分布 -->
+        <pelletCount>7</pelletCount>        <!-- 8颗弹丸均匀分布 -->
       </li>
       <!-- 穿透配置 -->
       <li Class="DivineDiurganate.SweepingBullet_Extension">

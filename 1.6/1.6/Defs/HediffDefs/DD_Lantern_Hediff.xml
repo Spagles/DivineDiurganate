@@ -164,6 +164,7 @@
         <becomeVisible>true</becomeVisible>
         <statFactors>
           <Flammability>0</Flammability>
+          <StaggerDurationFactor>0</StaggerDurationFactor>
         </statFactors>
       </li>
     </stages>
@@ -205,6 +206,7 @@
         <!-- 可选：护盾激活时的属性修改 -->
         <statFactors>
           <Flammability>0</Flammability>
+          <StaggerDurationFactor>0</StaggerDurationFactor>
         </statFactors>
       </li>
     </stages>
@@ -239,6 +241,7 @@
         <!-- 可选：护盾激活时的属性修改 -->
         <statFactors>
           <Flammability>0</Flammability>
+          <StaggerDurationFactor>0</StaggerDurationFactor>
         </statFactors>
       </li>
     </stages>
@@ -278,6 +281,7 @@
         <statFactors>
           <RestFallRateFactor>0</RestFallRateFactor>
           <Flammability>0</Flammability>
+          <StaggerDurationFactor>0</StaggerDurationFactor>  
         </statFactors>
       </li>
     </stages>
