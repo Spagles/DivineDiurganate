@@ -177,14 +177,14 @@
         </hediffs>
       </li>
       <li Class="HediffCompProperties_Disappears">
-        <disappearsAfterTicks>6000</disappearsAfterTicks>
+        <disappearsAfterTicks>9000</disappearsAfterTicks>
         <showRemainingTime>true</showRemainingTime>
       </li>
       <li Class="DivineDiurganate.HediffCompProperties_AdaptiveShield">
         <baseDamageThreshold>9999</baseDamageThreshold>
         <maxDamageThreshold>9999</maxDamageThreshold>
         <thresholdIncreaseOnPenetration>0</thresholdIncreaseOnPenetration>
-        <blockAngle>75</blockAngle>
+        <blockAngle>100</blockAngle>
         
         <showActivationMessage>true</showActivationMessage>
         <resetThresholdOnDeactivate>true</resetThresholdOnDeactivate>
@@ -211,14 +211,14 @@
 
     <comps>
       <li Class="HediffCompProperties_Disappears">
-        <disappearsAfterTicks>5000</disappearsAfterTicks>
+        <disappearsAfterTicks>9000</disappearsAfterTicks>
         <showRemainingTime>true</showRemainingTime>
       </li>
       <li Class="DivineDiurganate.HediffCompProperties_AdaptiveShield">
         <baseDamageThreshold>9999</baseDamageThreshold>
         <maxDamageThreshold>9999</maxDamageThreshold>
         <thresholdIncreaseOnPenetration>0</thresholdIncreaseOnPenetration>
-        <blockAngle>90</blockAngle>
+        <blockAngle>140</blockAngle>
         
         <showActivationMessage>true</showActivationMessage>
         <resetThresholdOnDeactivate>true</resetThresholdOnDeactivate>
@@ -252,7 +252,7 @@
         <baseDamageThreshold>9999</baseDamageThreshold>
         <maxDamageThreshold>9999</maxDamageThreshold>
         <thresholdIncreaseOnPenetration>0</thresholdIncreaseOnPenetration>
-        <blockAngle>75</blockAngle>
+        <blockAngle>100</blockAngle>
         
         <showActivationMessage>true</showActivationMessage>
         <resetThresholdOnDeactivate>true</resetThresholdOnDeactivate>
@@ -284,14 +284,14 @@
 
     <comps>
       <li Class="HediffCompProperties_Disappears">
-        <disappearsAfterTicks>7500</disappearsAfterTicks>
+        <disappearsAfterTicks>9000</disappearsAfterTicks>
         <showRemainingTime>true</showRemainingTime>
       </li>
       <li Class="DivineDiurganate.HediffCompProperties_AdaptiveShield">
         <baseDamageThreshold>9999</baseDamageThreshold>
         <maxDamageThreshold>9999</maxDamageThreshold>
         <thresholdIncreaseOnPenetration>0</thresholdIncreaseOnPenetration>
-        <blockAngle>75</blockAngle>
+        <blockAngle>100</blockAngle>
         
         <showActivationMessage>true</showActivationMessage>
         <resetThresholdOnDeactivate>true</resetThresholdOnDeactivate>
