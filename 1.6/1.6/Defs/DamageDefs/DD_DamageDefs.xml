@@ -15,7 +15,7 @@
           <li>
             <!-- 额外造成2倍原伤害的眩晕 -->
             <damageDef>Stun</damageDef>
-            <damageMultiplier>0.5</damageMultiplier>
+            <damageMultiplier>1</damageMultiplier>
             <chance>1</chance>
           </li>
         </additionalDamages>

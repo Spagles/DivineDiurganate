@@ -16,16 +16,16 @@
     <uiIconScale>0.7</uiIconScale>
     <recipeMaker>
       <!-- <recipeUsers Inherit="False" /> -->
-			<researchPrerequisite>MicroOptical</researchPrerequisite>
+      <researchPrerequisite>MicroOptical</researchPrerequisite>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
     </recipeMaker>
     <statBases>
       <WorkToMake>6000</WorkToMake>
       <Mass>2.5</Mass>
-			<AccuracyTouch>0.65</AccuracyTouch>
-			<AccuracyShort>0.85</AccuracyShort>
-			<AccuracyMedium>0.75</AccuracyMedium>
-			<AccuracyLong>0.65</AccuracyLong>
+      <AccuracyTouch>0.65</AccuracyTouch>
+      <AccuracyShort>0.85</AccuracyShort>
+      <AccuracyMedium>0.75</AccuracyMedium>
+      <AccuracyLong>0.65</AccuracyLong>
       <RangedWeapon_Cooldown>1.1</RangedWeapon_Cooldown>
     </statBases>
     <costStuffCount>30</costStuffCount>
@@ -36,39 +36,39 @@
       <Steel>30</Steel>
       <ComponentIndustrial>2</ComponentIndustrial>
     </costList>
-		<weaponTags Inherit="false">
-			<li>RK_1TierWeapon</li>
-			<li>RK_Rifle</li>
-			<li>RK_Weapon</li>
-			<li>RK_MeleeWeapon_Lance</li>
-			<li>RK_LightWeapon</li>
-			<li>DD_Skirmish_Weapon</li>
-		</weaponTags>
+    <weaponTags Inherit="false">
+      <li>RK_1TierWeapon</li>
+      <li>RK_Rifle</li>
+      <li>RK_Weapon</li>
+      <li>RK_MeleeWeapon_Lance</li>
+      <li>RK_LightWeapon</li>
+      <li>DD_Skirmish_Weapon</li>
+    </weaponTags>
     <generateCommonality>0.01</generateCommonality>
     <tradeability>None</tradeability>
     <thingSetMakerTags Inherit="False" />
-		<tools Inherit="False">
-			<li>
-				<label>bayonet</label>
-				<capacities>
-					<li>Cut</li>
-					<li>Stab</li>
-				</capacities>
-				<power>20</power>
-				<cooldownTime>2</cooldownTime>
-			</li>
-		</tools>
+    <tools Inherit="False">
+      <li>
+        <label>bayonet</label>
+        <capacities>
+          <li>Cut</li>
+          <li>Stab</li>
+        </capacities>
+        <power>20</power>
+        <cooldownTime>2</cooldownTime>
+      </li>
+    </tools>
     <comps>
       <li Class="CompProperties_EquippableAbility">
         <abilityDef>DD_Harpoon_Gun_Launch_Harpoon</abilityDef>
       </li>
-			<li Class="RatkinWeapons.CompProperties_Bayonet" MayRequire="bbb.ratkinweapon.morefailure">
-				<cooldown>1800</cooldown>
-				<radius>14.9</radius>
-				<label>RK.BayonetLabel</label>
-				<description>RK.BayonetDescription</description>
-				<icon>UI/Abilities/RK_Bayonet</icon>
-			</li>
+      <li Class="RatkinWeapons.CompProperties_Bayonet" MayRequire="bbb.ratkinweapon.morefailure">
+        <cooldown>1800</cooldown>
+        <radius>14.9</radius>
+        <label>RK.BayonetLabel</label>
+        <description>RK.BayonetDescription</description>
+        <icon>UI/Abilities/RK_Bayonet</icon>
+      </li>
     </comps>
   </ThingDef>
   <ThingDef ParentName="BaseHumanMakeableGun">
@@ -90,7 +90,7 @@
     </stuffCategories>
     <recipeMaker>
       <!-- <recipeUsers Inherit="False" /> -->
-			<researchPrerequisite>FlechetteBullet</researchPrerequisite>
+      <researchPrerequisite>FlechetteBullet</researchPrerequisite>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
     </recipeMaker>
     <statBases>
@@ -119,13 +119,13 @@
       <Steel>30</Steel>
       <ComponentIndustrial>2</ComponentIndustrial>
     </costList>
-		<weaponTags Inherit="false">
-			<li>RK_3TierWeapon</li>
-			<li>RK_Weapon</li>
-			<li>RK_RangeWeapon</li>
-			<li>DD_RatkinCrusader_Weapon</li>
-			<li>DD_RatkinClergy_Weapon</li>
-		</weaponTags>
+    <weaponTags Inherit="false">
+      <li>RK_3TierWeapon</li>
+      <li>RK_Weapon</li>
+      <li>RK_RangeWeapon</li>
+      <li>DD_RatkinCrusader_Weapon</li>
+      <li>DD_RatkinClergy_Weapon</li>
+    </weaponTags>
     <generateCommonality>1</generateCommonality>
     <tradeability>None</tradeability>
     <thingSetMakerTags Inherit="False" />
@@ -162,11 +162,11 @@
       <color>(194,117,67)</color> -->
     </graphicData>
     <projectile>
-			<damageDef>Bullet</damageDef>
-			<damageAmountBase>16</damageAmountBase>
-			<stoppingPower>5</stoppingPower>
-			<armorPenetrationBase>0.75</armorPenetrationBase>
-			<speed>75</speed>
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>16</damageAmountBase>
+      <stoppingPower>5</stoppingPower>
+      <armorPenetrationBase>0.75</armorPenetrationBase>
+      <speed>75</speed>
     </projectile>
   </ThingDef>
   <ThingDef ParentName="BaseHumanMakeableGun">
@@ -184,7 +184,7 @@
     <uiIconScale>0.7</uiIconScale>
     <recipeMaker>
       <!-- <recipeUsers Inherit="False" /> -->
-			<researchPrerequisite>FlechetteBullet</researchPrerequisite>
+      <researchPrerequisite>FlechetteBullet</researchPrerequisite>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
     </recipeMaker>
     <statBases>
@@ -213,12 +213,12 @@
       <Steel>30</Steel>
       <ComponentIndustrial>2</ComponentIndustrial>
     </costList>
-		<weaponTags Inherit="false">
-			<li>RK_3TierWeapon</li>
-			<li>RK_Weapon</li>
-			<li>RK_RangeWeapon</li>
-			<li>DD_RatkinCrusader_Heavy_Weapon</li>
-		</weaponTags>
+    <weaponTags Inherit="false">
+      <li>RK_3TierWeapon</li>
+      <li>RK_Weapon</li>
+      <li>RK_RangeWeapon</li>
+      <li>DD_RatkinCrusader_Heavy_Weapon</li>
+    </weaponTags>
     <generateCommonality>0.1</generateCommonality>
     <tradeability>None</tradeability>
     <thingSetMakerTags Inherit="False" />
@@ -252,11 +252,11 @@
       <color>(194,117,67)</color> -->
     </graphicData>
     <projectile>
-			<damageDef>Bullet</damageDef>
-			<damageAmountBase>7</damageAmountBase>
-			<stoppingPower>10</stoppingPower>
-			<armorPenetrationBase>0.65</armorPenetrationBase>
-			<speed>75</speed>
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>7</damageAmountBase>
+      <stoppingPower>10</stoppingPower>
+      <armorPenetrationBase>0.65</armorPenetrationBase>
+      <speed>75</speed>
     </projectile>
   </ThingDef>
 
@@ -280,7 +280,7 @@
     </stuffCategories>
     <recipeMaker>
       <!-- <recipeUsers Inherit="False" /> -->
-			<researchPrerequisite>MicroOptical</researchPrerequisite>
+      <researchPrerequisite>MicroOptical</researchPrerequisite>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
     </recipeMaker>
     <statBases>
@@ -309,13 +309,13 @@
       <Steel>30</Steel>
       <ComponentIndustrial>2</ComponentIndustrial>
     </costList>
-		<weaponTags Inherit="false">
-			<li>RK_2TierWeapon</li>
-			<li>RK_Weapon</li>
-			<li>RK_RangeWeapon</li>
-			<li>RK_Murderer</li>
-			<li>DD_RatkinClergy_Weapon</li>
-		</weaponTags>
+    <weaponTags Inherit="false">
+      <li>RK_2TierWeapon</li>
+      <li>RK_Weapon</li>
+      <li>RK_RangeWeapon</li>
+      <li>RK_Murderer</li>
+      <li>DD_RatkinClergy_Weapon</li>
+    </weaponTags>
     <generateCommonality>0.01</generateCommonality>
     <tradeability>None</tradeability>
     <thingSetMakerTags Inherit="False" />
@@ -378,16 +378,16 @@
     <soundInteract>Interact_Rifle</soundInteract>
     <recipeMaker>
       <recipeUsers Inherit="False" />
-			<researchPrerequisite>MechanicalWeapon</researchPrerequisite>
+      <researchPrerequisite>MechanicalWeapon</researchPrerequisite>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
     </recipeMaker>
     <statBases>
       <WorkToMake>7500</WorkToMake>
       <Mass>5</Mass>
-			<AccuracyTouch>0.65</AccuracyTouch>
-			<AccuracyShort>0.85</AccuracyShort>
-			<AccuracyMedium>0.75</AccuracyMedium>
-			<AccuracyLong>0.65</AccuracyLong>
+      <AccuracyTouch>0.65</AccuracyTouch>
+      <AccuracyShort>0.85</AccuracyShort>
+      <AccuracyMedium>0.75</AccuracyMedium>
+      <AccuracyLong>0.65</AccuracyLong>
       <RangedWeapon_Cooldown>1.1</RangedWeapon_Cooldown>
     </statBases>
     <verbs>
@@ -418,14 +418,14 @@
       <Steel>50</Steel>
       <ComponentIndustrial>4</ComponentIndustrial>
     </costList>
-		<weaponTags Inherit="false">
-			<li>RK_3TierWeapon</li>
-			<li>RK_Weapon</li>
-			<li>RK_RangeWeapon</li>
-			<li>DD_Weapon_T2</li>
-			<li>DD_RatkinClergy_Weapon</li>
-			<li>DD_RatkinCrusaders_Weapon</li>
-		</weaponTags>
+    <weaponTags Inherit="false">
+      <li>RK_3TierWeapon</li>
+      <li>RK_Weapon</li>
+      <li>RK_RangeWeapon</li>
+      <li>DD_Weapon_T2</li>
+      <li>DD_RatkinClergy_Weapon</li>
+      <li>DD_RatkinCrusaders_Weapon</li>
+    </weaponTags>
     <generateCommonality>0.01</generateCommonality>
   </ThingDef>
   <ThingDef ParentName="BaseHumanMakeableGun">
@@ -448,7 +448,7 @@
     </stuffCategories>
     <recipeMaker>
       <!-- <recipeUsers Inherit="False" /> -->
-			<researchPrerequisite>FlechetteBullet</researchPrerequisite>
+      <researchPrerequisite>FlechetteBullet</researchPrerequisite>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
     </recipeMaker>
     <statBases>
@@ -478,13 +478,13 @@
       <Steel>30</Steel>
       <ComponentIndustrial>2</ComponentIndustrial>
     </costList>
-		<weaponTags Inherit="false">
-			<li>RK_3TierWeapon</li>
-			<li>RK_Weapon</li>
-			<li>RK_RangeWeapon</li>
-			<li>DD_RatkinCrusader_Heavy_Weapon</li>
-			<li>DD_RatkinClergy_Weapon</li>
-		</weaponTags>
+    <weaponTags Inherit="false">
+      <li>RK_3TierWeapon</li>
+      <li>RK_Weapon</li>
+      <li>RK_RangeWeapon</li>
+      <li>DD_RatkinCrusader_Heavy_Weapon</li>
+      <li>DD_RatkinClergy_Weapon</li>
+    </weaponTags>
     <generateCommonality>0.01</generateCommonality>
     <tradeability>None</tradeability>
     <thingSetMakerTags Inherit="False" />
@@ -534,11 +534,11 @@
       <color>(194,117,67)</color>
     </graphicData>
     <projectile>
-			<damageDef>Bomb</damageDef>
-			<damageAmountBase>30</damageAmountBase>
-			<stoppingPower>5</stoppingPower>
-			<armorPenetrationBase>1.75</armorPenetrationBase>
-			<speed>65</speed>
+      <damageDef>Bomb</damageDef>
+      <damageAmountBase>30</damageAmountBase>
+      <stoppingPower>5</stoppingPower>
+      <armorPenetrationBase>1.75</armorPenetrationBase>
+      <speed>65</speed>
       <explosionRadius>1.9</explosionRadius>
       <screenShakeFactor>0.5</screenShakeFactor>
     </projectile>
@@ -548,12 +548,12 @@
     <label>Cross Machinegun</label>
     <description>The Divine Diurganate weapon, symbolizing the destruction of authority by the Holy Twin-tail, has only been produced in small quantities. It needs a little time to warm up before it can emit a powerful beam of penetrating light to burn through the enemies in front of it. The Catholic Church strictly keeps secret the operation method of this weapon, so the ratkins have no idea how this firestick embedded with several stones can kill and injure enemy troops.</description>
     <techLevel>Industrial</techLevel>
-		<weaponTags Inherit="false">
-			<li>RK_4TierWeapon</li>
-			<li>RK_Weapon</li>
-			<li>RK_RangeWeapon</li>
-			<li>DD_RatkinClergy_Weapon</li>
-		</weaponTags>
+    <weaponTags Inherit="false">
+      <li>RK_4TierWeapon</li>
+      <li>RK_Weapon</li>
+      <li>RK_RangeWeapon</li>
+      <li>DD_RatkinClergy_Weapon</li>
+    </weaponTags>
     <!-- <techLevel>Spacer</techLevel> -->
     <graphicData>
       <texPath>DivineDiurganate/Weapon/DD_Beam_Machinegun</texPath>
@@ -563,7 +563,7 @@
     <soundInteract>Interact_ChargeRifle</soundInteract>
     <recipeMaker>
       <!-- <recipeUsers Inherit="False" /> -->
-			<researchPrerequisite>FlechetteBullet</researchPrerequisite>
+      <researchPrerequisite>FlechetteBullet</researchPrerequisite>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
     </recipeMaker>
     <costList>
@@ -653,13 +653,13 @@
     </graphicData>
     <soundInteract>Interact_Rifle</soundInteract>
     <uiIconScale>1.25</uiIconScale>
-		<costStuffCount>0</costStuffCount>
+    <costStuffCount>0</costStuffCount>
     <relicChance>0</relicChance>
     <genericMarketSellable>false</genericMarketSellable>
     <stuffCategories Inherit="False"/>
     <recipeMaker>
       <!-- <recipeUsers Inherit="False" /> -->
-			<researchPrerequisite>MicroOptical</researchPrerequisite>
+      <researchPrerequisite>MicroOptical</researchPrerequisite>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
     </recipeMaker>
     <statBases>
@@ -673,7 +673,7 @@
     </statBases>
     <verbs>
       <li>
-        <verbClass>DivineDiurganate.Verb_ShootShotgun</verbClass>
+        <verbClass>DivineDiurganate.Verb_ShootShotgunFan</verbClass>
         <hasStandardCommand>true</hasStandardCommand>
         <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
         <warmupTime>0.1</warmupTime>
@@ -688,12 +688,47 @@
       <Steel>30</Steel>
       <ComponentIndustrial>2</ComponentIndustrial>
     </costList>
-		<weaponTags Inherit="false">
-			<li>DD_Michelle_Weapon</li>
-		</weaponTags>
+    <weaponTags Inherit="false">
+      <li>DD_Michelle_Weapon</li>
+    </weaponTags>
     <generateCommonality>0.01</generateCommonality>
     <tradeability>None</tradeability>
     <thingSetMakerTags Inherit="False" />
+    <!-- 近战工具 - 枪口挂载战斧 -->
+    <tools>
+      <!-- 战斧刃部劈砍 -->
+      <li>
+        <label>axe blade</label>
+        <capacities>
+          <li>Cut</li>
+        </capacities>
+        <power>22</power>
+        <extraMeleeDamages>
+					<li>
+						<def>Stun</def>
+						<amount>22</amount>
+					</li>
+				</extraMeleeDamages>
+        <cooldownTime>2.2</cooldownTime>
+        <armorPenetration>0.5</armorPenetration>
+      </li>
+      <!-- 战斧钝击 -->
+      <li>
+        <label>axe head</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>18</power>
+        <extraMeleeDamages>
+					<li>
+						<def>Stun</def>
+						<amount>18</amount>
+					</li>
+				</extraMeleeDamages>
+        <cooldownTime>2.0</cooldownTime>
+        <armorPenetration>0.5</armorPenetration>
+      </li>
+    </tools>
   </ThingDef>
   <ThingDef ParentName="BaseBullet">
     <defName>DD_Axe_Shotgun_Bullet</defName>
@@ -704,17 +739,21 @@
       <shaderType>MoteGlow</shaderType>
       <color>(200,200,210)</color>
     </graphicData>
-    <thingClass>DivineDiurganate.Projectile_PenetratingBullet</thingClass>
+    <thingClass>DivineDiurganate.Projectile_SweepingBullet</thingClass>
     <modExtensions>
-      <li Class="DivineDiurganate.PenetratingBullet_Extension">
-        <maxHits>1</maxHits>        <!-- 无限穿透 -->
-        <damageFalloff>0</damageFalloff>        <!-- 无伤害衰减 -->
-        <preventFriendlyFire>true</preventFriendlyFire>        <!-- 是否阻止友方火力 -->
-
-        <enableExplosion>false</enableExplosion>
+      <!-- 扇形配置 -->
+      <li Class="DivineDiurganate.ShotgunFanExtension">
+        <fanAngle>30</fanAngle>        <!-- 扇形展开角度 -->
       </li>
+      <!-- 弹丸数量配置 -->
       <li Class="DivineDiurganate.ShotgunExtension">
-        <pelletCount>6</pelletCount>
+        <pelletCount>6</pelletCount>        <!-- 8颗弹丸均匀分布 -->
+      </li>
+      <!-- 穿透配置 -->
+      <li Class="DivineDiurganate.SweepingBullet_Extension">
+        <preventFriendlyFire>true</preventFriendlyFire>
+        <damageFalloff>0</damageFalloff>        <!-- 无衰减 -->
+        <penetrateBuildings>false</penetrateBuildings>        <!-- 撞墙停止 -->
       </li>
     </modExtensions>
     <projectile>
@@ -740,11 +779,11 @@
     </graphicData>
     <soundInteract>Interact_Rifle</soundInteract>
     <uiIconScale>0.7</uiIconScale>
-		<costStuffCount>0</costStuffCount>
+    <costStuffCount>0</costStuffCount>
     <stuffCategories Inherit="False"/>
     <recipeMaker>
       <!-- <recipeUsers Inherit="False" /> -->
-			<researchPrerequisite>FlechetteBullet</researchPrerequisite>
+      <researchPrerequisite>FlechetteBullet</researchPrerequisite>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
     </recipeMaker>
     <statBases>
@@ -784,9 +823,9 @@
       <Steel>30</Steel>
       <ComponentIndustrial>2</ComponentIndustrial>
     </costList>
-		<weaponTags Inherit="false">
-			<li>DD_Maple_Sugar_Weapon</li>
-		</weaponTags>
+    <weaponTags Inherit="false">
+      <li>DD_Maple_Sugar_Weapon</li>
+    </weaponTags>
     <generateCommonality>0.01</generateCommonality>
     <tradeability>None</tradeability>
     <thingSetMakerTags Inherit="False" />
