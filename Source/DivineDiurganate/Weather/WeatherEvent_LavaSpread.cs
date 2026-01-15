@@ -197,7 +197,6 @@ namespace DivineDiurganate
             {
                 if (sourceCells.Count == 0)
                 {
-                    Log.Warning("[DivineDiurganate] 没有找到岩浆单元格，无法执行蔓延");
                     return;
                 }
                 
@@ -399,7 +398,6 @@ namespace DivineDiurganate
                 // 检查是否在庇护区域内（再次确认）
                 if (WeatherShelterManager.IsCellSheltered(map, cell))
                 {
-                    Log.Warning($"[DivineDiurganate] 尝试在庇护区域内创建岩浆，已跳过: {cell}");
                     return;
                 }
                 

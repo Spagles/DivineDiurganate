@@ -237,6 +237,11 @@
     <comps>
       <li Class="HediffCompProperties_DisappearsOnDeath" />
       <li Class="DivineDiurganate.HediffCompProperties_Invulnerable" />
+      <li Class="HediffCompProperties_RemoveIfOtherHediff">
+        <hediffs>
+          <li>DD_Holy_Radiance</li>
+        </hediffs>
+      </li>
     </comps>
   </HediffDef>
 </Defs>

@@ -9,7 +9,7 @@ namespace DivineDiurganate
     /// 特殊Pawn扩展定义
     /// 用于标记一个PawnKindDef为特殊单例Pawn
     /// </summary>
-    public class UniquePawnExtension : DefModExtension
+    public class UniquePawnExtension : DefModExtension, IExposable
     {
         // 是否启用单例模式（每个PawnKindDef只能生成一个）
         public bool isSingleton = true;
@@ -43,6 +43,24 @@ namespace DivineDiurganate
         public LogLevel logLevel = LogLevel.Info;
         
         /// <summary>
+        /// 实现 IExposable 接口
+        /// </summary>
+        public void ExposeData()
+        {
+            Scribe_Values.Look(ref isSingleton, "isSingleton", true);
+            Scribe_Values.Look(ref destroyDuplicates, "destroyDuplicates", true);
+            Scribe_Values.Look(ref singletonScope, "singletonScope", UniquePawnScope.Map);
+            Scribe_Collections.Look(ref fixedRelations, "fixedRelations", LookMode.Deep);
+            Scribe_Collections.Look(ref autoRelations, "autoRelations", LookMode.Deep);
+            Scribe_Collections.Look(ref relationsToKeep, "relationsToKeep", LookMode.Def);
+            Scribe_Values.Look(ref clearExistingRelations, "clearExistingRelations", true);
+            Scribe_Values.Look(ref removeOnDeath, "removeOnDeath", true);
+            Scribe_Values.Look(ref showSpawnMessage, "showSpawnMessage", true);
+            Scribe_Values.Look(ref spawnMessageKey, "spawnMessageKey", "DD_UniquePawnSpawned");
+            Scribe_Values.Look(ref logLevel, "logLevel", LogLevel.Info);
+        }
+        
+        /// <summary>
         /// 获取关系定义的唯一键
         /// </summary>
         public string GetRelationKey(PawnRelationDef relationDef)
@@ -54,7 +72,7 @@ namespace DivineDiurganate
     /// <summary>
     /// 固定关系定义
     /// </summary>
-    public class FixedRelation
+    public class FixedRelation : IExposable
     {
         // 关系目标PawnKindDef
         public PawnKindDef targetPawnKind;
@@ -65,20 +83,26 @@ namespace DivineDiurganate
         // 关系方向（源->目标，目标->源，双向）
         public RelationDirection direction = RelationDirection.Bidirectional;
         
-        // 关系强度（0-1）
-        public float relationStrength = 0.5f;
-        
         // 是否必须存在（如果不存在，则记录为待建立关系）
         public bool required = true;
         
         // 当目标Pawn生成时自动建立关系
         public bool autoEstablish = true;
+        
+        public void ExposeData()
+        {
+            Scribe_Defs.Look(ref targetPawnKind, "targetPawnKind");
+            Scribe_Defs.Look(ref relationDef, "relationDef");
+            Scribe_Values.Look(ref direction, "direction", RelationDirection.Bidirectional);
+            Scribe_Values.Look(ref required, "required", true);
+            Scribe_Values.Look(ref autoEstablish, "autoEstablish", true);
+        }
     }
     
     /// <summary>
     /// 自动关系定义
     /// </summary>
-    public class AutoRelation
+    public class AutoRelation : IExposable
     {
         // 目标PawnKindDef（如果为空，则针对所有Pawn）
         public PawnKindDef targetPawnKind;
@@ -97,12 +121,22 @@ namespace DivineDiurganate
         
         // 最大关系数量（-1表示无限制）
         public int maxRelations = -1;
+        
+        public void ExposeData()
+        {
+            Scribe_Defs.Look(ref targetPawnKind, "targetPawnKind");
+            Scribe_Defs.Look(ref relationDef, "relationDef");
+            Scribe_Deep.Look(ref filter, "filter");
+            Scribe_Values.Look(ref direction, "direction", RelationDirection.Bidirectional);
+            Scribe_Values.Look(ref relationStrength, "relationStrength", 0.5f);
+            Scribe_Values.Look(ref maxRelations, "maxRelations", -1);
+        }
     }
     
     /// <summary>
     /// 关系筛选器
     /// </summary>
-    public class RelationFilter
+    public class RelationFilter : IExposable
     {
         // 性别限制
         public Gender gender = Gender.None;
@@ -118,6 +152,15 @@ namespace DivineDiurganate
         
         // 需要特定背景故事
         public List<BackstoryDef> requiredBackstories = new List<BackstoryDef>();
+        
+        public void ExposeData()
+        {
+            Scribe_Values.Look(ref gender, "gender", Gender.None);
+            Scribe_Values.Look(ref minAge, "minAge", 0);
+            Scribe_Values.Look(ref maxAge, "maxAge", 999);
+            Scribe_Collections.Look(ref requiredTraits, "requiredTraits", LookMode.Def);
+            Scribe_Collections.Look(ref requiredBackstories, "requiredBackstories", LookMode.Def);
+        }
         
         /// <summary>
         /// 检查Pawn是否符合条件

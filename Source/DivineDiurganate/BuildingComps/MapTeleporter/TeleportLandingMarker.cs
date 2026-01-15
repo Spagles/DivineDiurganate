@@ -41,7 +41,7 @@ namespace DivineDiurganate
             {
                 defaultLabel = "DD_ConfirmTeleport".Translate(),
                 defaultDesc = "DD_ConfirmTeleportDesc".Translate(),
-                icon = ContentFinder<Texture2D>.Get("UI/Commands/LaunchShip"),
+                icon = ContentFinder<Texture2D>.Get("DivineDiurganate/UI/Commands/DD_HellTeleporter_TeleStart"),
                 action = Confirm
             };
 

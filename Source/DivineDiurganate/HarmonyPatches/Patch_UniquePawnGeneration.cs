@@ -1,6 +1,7 @@
 using HarmonyLib;
 using RimWorld;
 using Verse;
+using RimWorld.Planet;
 
 namespace DivineDiurganate
 {
@@ -23,7 +24,6 @@ namespace DivineDiurganate
             
             // 根据范围检查是否已存在
             bool alreadyExists = false;
-            Pawn existingPawn = null;
             
             switch (extension.singletonScope)
             {
@@ -31,10 +31,11 @@ namespace DivineDiurganate
                     // 检查当前请求的地图
                     if (request.Context == PawnGenerationContext.NonPlayer && request.Tile >= 0)
                     {
-                        var map = Find.World.worldObjects.FindMap(request.Tile);
-                        if (map != null)
+                        // 通过地图父对象查找地图
+                        MapParent mapParent = Find.WorldObjects.MapParentAt(request.Tile);
+                        if (mapParent != null && mapParent.HasMap)
                         {
-                            alreadyExists = manager.CheckPawnExistsInMap(request.KindDef, map);
+                            alreadyExists = manager.CheckPawnExistsInMap(request.KindDef, mapParent.Map);
                         }
                     }
                     break;

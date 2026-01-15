@@ -42,7 +42,7 @@ namespace DivineDiurganate
         
         public bool IsWarmingUp => isWarmingUp;
         
-        private List<CompMapTeleporter> GroupMembers
+        public List<CompMapTeleporter> GroupMembers
         {
             get
             {
@@ -116,7 +116,7 @@ namespace DivineDiurganate
             return cells.Select(c => c - center).ToList();
         }
 
-        private CompMapTeleporter Leader
+        public CompMapTeleporter Leader
         {
             get
             {
@@ -213,7 +213,7 @@ namespace DivineDiurganate
             if (isWarmingUp)
             {
                 float daysLeft = (float)warmupTicksLeft / 60000f; // 60000 ticks = 1天
-                sb.AppendLine($"DD_HellTeleporter_Daysleft".Translate(daysLeft));
+                sb.AppendLine($"DD_HellTeleporter_Daysleft".Translate(daysLeft.ToString("F2")));
             }
             
             string baseStr = base.CompInspectStringExtra();
@@ -245,7 +245,9 @@ namespace DivineDiurganate
                 float progress = 1f - (float)warmupTicksLeft / totalWarmupTicks;
                 float daysLeft = (float)warmupTicksLeft / 60000f; // 60000 ticks = 1天
                 
-                string desc = $"DD_HellTeleporter_TeleCancelDesc".Translate(Mathf.RoundToInt(progress * 100), daysLeft);
+                string desc = $"DD_HellTeleporter_TeleCancelDesc".Translate(
+                    Mathf.RoundToInt(progress * 100), 
+                    daysLeft.ToString("F2"));
 
                 if (gameConditionStarted && Props.warmupGameConditionDef != null)
                 {
@@ -278,7 +280,7 @@ namespace DivineDiurganate
                 {
                     defaultLabel = "DD_HellTeleporter_TeleStart".Translate(),
                     defaultDesc = GetDescription(),
-                    icon = ContentFinder<Texture2D>.Get("UI/Commands/LaunchShip"),
+                    icon = ContentFinder<Texture2D>.Get("DivineDiurganate/UI/Commands/DD_HellTeleporter_TeleStart"),
                     action = StartTargeting,
                     disabledReason = reason
                 };
@@ -306,8 +308,8 @@ namespace DivineDiurganate
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.AppendLine("DD_HellTeleporter_TeleStartBaseDesc".Translate());
-            sb.AppendLine($"DD_HellTeleporter_TeleStartBaseDesc".Translate(Props.areaSize.x, Props.areaSize.z));
-            sb.AppendLine($"DD_HellTeleporter_TeleStartTime".Translate(Props.daysPerDistance));
+            sb.AppendLine($"DD_HellTeleporter_TeleStartArea".Translate(Props.areaSize.x, Props.areaSize.z));
+            sb.AppendLine($"DD_HellTeleporter_TeleStartTime".Translate(Props.daysPerDistance.ToString("F2")));
             
             if (Props.requiredResearch != null)
             {
@@ -436,7 +438,9 @@ namespace DivineDiurganate
             
             // 显示预热开始信息（以天为单位）
             float totalDays = (float)totalWarmupTicks / 60000f;
-            string message = $"DD_HellTeleporter_WarmingMessage".Translate(distance,totalDays);
+            string message = $"DD_HellTeleporter_WarmingMessage".Translate(
+                distance.ToString("F1"), 
+                totalDays.ToString("F2"));
             
             Messages.Message(message, parent, MessageTypeDefOf.NeutralEvent);
             

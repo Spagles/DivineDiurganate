@@ -47,6 +47,14 @@ namespace DivineDiurganate
         // 地狱天气检查间隔
         private int hellWeatherCheckInterval = 120; // 每2秒检查一次
         private int nextHellWeatherCheckTick = 0;
+        
+        // 冷却岩浆和灭火的计时器
+        private int lavaCoolingTimer = 0;
+        private int fireExtinguishTimer = 0;
+        
+        // 地形定义缓存
+        private static TerrainDef cachedLavaShallowDef;
+        private static TerrainDef cachedCooledLavaDef;
 
         /// <summary>
         /// 是否受庇护
@@ -77,6 +85,30 @@ namespace DivineDiurganate
                 cachedHellWeatherDef = DefDatabase<WeatherDef>.GetNamedSilentFail("DD_Hell_Weather");
             }
             return cachedHellWeatherDef;
+        }
+        
+        /// <summary>
+        /// 获取浅岩浆地形定义
+        /// </summary>
+        public static TerrainDef GetLavaShallowDef()
+        {
+            if (cachedLavaShallowDef == null)
+            {
+                cachedLavaShallowDef = DefDatabase<TerrainDef>.GetNamedSilentFail("LavaShallow");
+            }
+            return cachedLavaShallowDef;
+        }
+        
+        /// <summary>
+        /// 获取冷却岩浆地形定义
+        /// </summary>
+        public static TerrainDef GetCooledLavaDef()
+        {
+            if (cachedCooledLavaDef == null)
+            {
+                cachedCooledLavaDef = DefDatabase<TerrainDef>.GetNamedSilentFail("CooledLava");
+            }
+            return cachedCooledLavaDef;
         }
 
         /// <summary>
@@ -130,6 +162,10 @@ namespace DivineDiurganate
             
             // 设置地狱天气检查时间
             nextHellWeatherCheckTick = Find.TickManager.TicksGame + Rand.Range(0, hellWeatherCheckInterval);
+            
+            // 初始化计时器
+            lavaCoolingTimer = Rand.Range(0, 120); // 随机偏移以避免所有庇护所同时处理
+            fireExtinguishTimer = Rand.Range(0, 60);
             
             initialized = true;
         }
@@ -274,11 +310,6 @@ namespace DivineDiurganate
                 {
                     hellWeatherEffecter = Props.hellWeatherEffecter.SpawnAttached(parent, parent.MapHeld);
                 }
-                else
-                {
-                    // 如果没有定义效果器，使用默认效果
-                    Log.Warning($"[DivineDiurganate] {parent.LabelCap} 没有定义地狱天气效果器");
-                }
             }
             catch (Exception ex)
             {
@@ -327,52 +358,6 @@ namespace DivineDiurganate
         }
 
         /// <summary>
-        /// 绘制额外选择覆盖
-        /// </summary>
-        public override void PostDrawExtraSelectionOverlays()
-        {
-            base.PostDrawExtraSelectionOverlays();
-            
-            // 绘制庇护区域边缘
-            GenDraw.DrawFieldEdges(ShelterCells.ToList(), Props.shelterColor);
-            
-            // 如果在地狱天气下，额外绘制警告边界
-            if (IsHellWeather && IsSheltered)
-            {
-                DrawHellWeatherWarning();
-            }
-        }
-
-        /// <summary>
-        /// 绘制地狱天气警告
-        /// </summary>
-        private void DrawHellWeatherWarning()
-        {
-            try
-            {
-                // 绘制闪烁的红色边界
-                float pulse = Mathf.Sin(Find.TickManager.TicksGame * 0.05f) * 0.5f + 0.5f;
-                Color warningColor = Color.Lerp(Color.red, Color.yellow, pulse);
-                
-                // 绘制外部边界
-                CellRect outerRect = ShelterRect.ExpandedBy(1);
-                GenDraw.DrawFieldEdges(outerRect.Cells.ToList(), warningColor * 0.7f);
-                
-                // 绘制中心点闪烁
-                if (Find.TickManager.TicksGame % 40 < 20)
-                {
-                    Vector3 centerPos = parent.TrueCenter();
-                    centerPos.y = AltitudeLayer.MoteOverhead.AltitudeFor();
-                    GenDraw.DrawCircleOutline(centerPos, 2.5f * pulse, SimpleColor.Red);
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error($"[DivineDiurganate] 绘制地狱天气警告时出错: {ex}");
-            }
-        }
-
-        /// <summary>
         /// 组件每Tick更新
         /// </summary>
         public override void CompTick()
@@ -394,6 +379,172 @@ namespace DivineDiurganate
             
             // 更新地狱天气效果器
             UpdateHellWeatherEffecterTick();
+            
+            // 检查庇护所是否激活
+            if (!IsSheltered || parent.Map == null)
+                return;
+            
+            // 更新计时器
+            lavaCoolingTimer++;
+            fireExtinguishTimer++;
+            
+            // 每120帧冷却岩浆（2秒）
+            if (lavaCoolingTimer >= 120)
+            {
+                CoolLavaInShelterArea();
+                lavaCoolingTimer = 0;
+            }
+            
+            // 每60帧熄灭火焰（1秒）
+            if (fireExtinguishTimer >= 60)
+            {
+                ExtinguishFiresInShelterArea();
+                fireExtinguishTimer = 0;
+            }
+        }
+        
+        /// <summary>
+        /// 冷却庇护区域内的岩浆
+        /// </summary>
+        private void CoolLavaInShelterArea()
+        {
+            try
+            {
+                TerrainDef lavaShallowDef = GetLavaShallowDef();
+                TerrainDef cooledLavaDef = GetCooledLavaDef();
+                
+                if (lavaShallowDef == null || cooledLavaDef == null)
+                    return;
+                
+                Map map = parent.Map;
+                var cells = ShelterCells;
+                
+                // 获取所有浅岩浆单元格
+                foreach (var cell in cells)
+                {
+                    if (!cell.InBounds(map))
+                        continue;
+                    
+                    // 检查当前地形是否为浅岩浆
+                    TerrainDef currentTerrain = map.terrainGrid.TerrainAt(cell);
+                    if (currentTerrain == lavaShallowDef)
+                    {
+                        // 转换为冷却岩浆
+                        map.terrainGrid.SetTerrain(cell, cooledLavaDef);
+                        
+                        // 可选：添加冷却效果粒子
+                        if (Rand.Chance(0.1f) && Props.coolingEffecter != null)
+                        {
+                            Effecter effecter = Props.coolingEffecter.Spawn();
+                            effecter.Trigger(new TargetInfo(cell, map), TargetInfo.Invalid);
+                            effecter.Cleanup();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"[DivineDiurganate] 冷却岩浆时出错: {ex}");
+            }
+        }
+        
+        /// <summary>
+        /// 熄灭庇护区域内的火焰
+        /// </summary>
+        private void ExtinguishFiresInShelterArea()
+        {
+            try
+            {
+                Map map = parent.Map;
+                var cells = ShelterCells.ToList(); // 创建单元格列表的副本
+                
+                // 遍历庇护区域内的所有单元格
+                foreach (var cell in cells)
+                {
+                    if (!cell.InBounds(map))
+                        continue;
+                    
+                    // 安全获取单元格上的所有物品（创建副本）
+                    List<Thing> things = map.thingGrid.ThingsListAt(cell).ToList();
+                    
+                    // 先收集所有要处理的火焰和燃烧物品
+                    var firesToExtinguish = new List<Fire>();
+                    var burningThings = new List<Thing>();
+                    
+                    foreach (Thing thing in things)
+                    {
+                        if (thing is Fire fire && !fire.Destroyed)
+                        {
+                            firesToExtinguish.Add(fire);
+                        }
+                        else if (thing.IsBurning())
+                        {
+                            burningThings.Add(thing);
+                        }
+                    }
+                    
+                    // 处理所有火焰
+                    foreach (Fire fire in firesToExtinguish)
+                    {
+                        try
+                        {
+                            if (fire.Destroyed)
+                                continue;
+                                
+                            // 使用与灭火动作相同的方式熄灭火焰：造成大量灭火伤害
+                            fire.TakeDamage(new DamageInfo(DamageDefOf.Extinguish, 999f, 999f, -1f, null, null, null, DamageInfo.SourceCategory.ThingOrUnknown));
+                            
+                            // 如果火焰仍然存在，强制销毁
+                            if (!fire.Destroyed)
+                            {
+                                fire.Destroy();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Log.Warning($"[DivineDiurganate] 处理火焰时出错: {ex}");
+                        }
+                    }
+                    
+                    // 处理所有燃烧物品
+                    foreach (Thing thing in burningThings)
+                    {
+                        try
+                        {
+                            if (thing.Destroyed)
+                                continue;
+                                
+                            // 对燃烧的物品应用灭火伤害
+                            thing.TakeDamage(new DamageInfo(DamageDefOf.Extinguish, 32f, 32f, -1f, null, null, null, DamageInfo.SourceCategory.ThingOrUnknown));
+                        }
+                        catch (Exception ex)
+                        {
+                            Log.Warning($"[DivineDiurganate] 处理燃烧物品时出错: {ex}");
+                        }
+                    }
+                    
+                    // 可选：添加熄灭效果粒子
+                    if ((firesToExtinguish.Count > 0 || burningThings.Count > 0) && 
+                        Rand.Chance(0.05f) && 
+                        Props.fireExtinguishEffecter != null)
+                    {
+                        try
+                        {
+                            Effecter effecter = Props.fireExtinguishEffecter.Spawn();
+                            effecter.Trigger(new TargetInfo(cell, map), TargetInfo.Invalid);
+                            effecter.Cleanup();
+                        }
+                        catch (Exception ex)
+                        {
+                            Log.Warning($"[DivineDiurganate] 创建灭火效果时出错: {ex}");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"[DivineDiurganate] 熄灭火焰时出错: {ex}");
+            }
         }
 
         /// <summary>
@@ -460,9 +611,9 @@ namespace DivineDiurganate
             // 显示庇护区域
             Command_Action showAreaCmd = new Command_Action
             {
-                defaultLabel = "DD_ShowWeatherShelter",
-                defaultDesc = "DD_ShowWeatherShelter_Desc",
-                icon = ContentFinder<Texture2D>.Get("UI/Commands/SelectAll"),
+                defaultLabel = "DD_ShowWeatherShelter".Translate(),
+                defaultDesc = "DD_ShowWeatherShelter_Desc".Translate(),
+                icon = ContentFinder<Texture2D>.Get("DivineDiurganate/UI/Commands/DD_ShowWeatherShelter"),
                 action = () =>
                 {
                     // 临时高亮显示庇护区域
@@ -533,6 +684,12 @@ namespace DivineDiurganate
         
         // 地狱天气效果半径
         public float hellWeatherEffectRadius = 15f;
+        
+        // 新增：冷却岩浆效果器
+        public EffecterDef coolingEffecter;
+        
+        // 新增：灭火效果器
+        public EffecterDef fireExtinguishEffecter;
 
         public CompProperties_WeatherShelter()
         {

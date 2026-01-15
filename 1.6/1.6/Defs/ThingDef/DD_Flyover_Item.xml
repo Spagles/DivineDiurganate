@@ -409,7 +409,7 @@
     <defName>DD_SulfurMeteor_Explosive</defName>
     <label>Sulfur Meteor Explosive</label>
     <workerClass>DivineDiurganate.DamageWorker_ExplosionWithTerrain</workerClass>
-    <defaultDamage>20</defaultDamage>
+    <defaultDamage>5</defaultDamage>
     <defaultStoppingPower>2.0</defaultStoppingPower>
     <defaultArmorPenetration>1.30</defaultArmorPenetration>
     <explosionCenterEffecter>DD_GiantBomb_Explosion</explosionCenterEffecter>

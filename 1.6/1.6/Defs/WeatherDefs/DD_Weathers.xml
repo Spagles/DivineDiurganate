@@ -38,15 +38,15 @@
         <eventClass>DivineDiurganate.WeatherEvent_HellfireStorm</eventClass>
       </li>
       <li>
-        <averageInterval>1500</averageInterval>
+        <averageInterval>4500</averageInterval>
         <eventClass>DivineDiurganate.WeatherEvent_SulfurMeteorShower</eventClass>
       </li>
       <li>
-        <averageInterval>4500</averageInterval>
+        <averageInterval>60000</averageInterval>
         <eventClass>DivineDiurganate.WeatherEvent_HellLegionRaid</eventClass>
       </li>
       <li>
-        <averageInterval>120</averageInterval>
+        <averageInterval>210</averageInterval>
         <eventClass>DivineDiurganate.WeatherEvent_LavaSpread</eventClass>
       </li>
     </eventMakers>

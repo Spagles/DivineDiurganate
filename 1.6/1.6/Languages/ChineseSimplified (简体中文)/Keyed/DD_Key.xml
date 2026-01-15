@@ -241,10 +241,10 @@
   <DD_Upgrade_Lantern_Selected>提灯改造完成！</DD_Upgrade_Lantern_Selected>
 
   <DD_ShowWeatherShelter>显示庇护区域</DD_ShowWeatherShelter>
-  <DD_ShowWeatherShelter_Desc>高亮显示当前庇护区域，受到庇护的区域不会被地狱的火焰、岩浆、陨石吞噬，地狱军团也不能直接出现在庇护区域内。</DD_ShowWeatherShelter_Desc>
+  <DD_ShowWeatherShelter_Desc>高亮显示当前庇护区域，当启动地狱深潜时，受到庇护的区域不会被地狱的火焰、岩浆、陨石吞噬，地狱军团也不能直接出现在庇护区域内。</DD_ShowWeatherShelter_Desc>
 
   <DD_HellTeleporter_Willfinish>深潜即将完成... ({0} %)</DD_HellTeleporter_Willfinish>
-  <DD_HellTeleporter_Daysleft>深潜剩余时间: {{0}}天</DD_HellTeleporter_Daysleft>
+  <DD_HellTeleporter_Daysleft>深潜剩余时间: {0}天</DD_HellTeleporter_Daysleft>
   <DD_HellTeleporter_TeleCancelDesc>取消正在进行的深潜。注意：即使强行从地狱中脱离，其造成的影响依然会持续一段时间！\n进度: {0}%\n剩余时间: {1}天</DD_HellTeleporter_TeleCancelDesc>
   <DD_HellTeleporter_TeleCancelStatue>当前状态: {0}</DD_HellTeleporter_TeleCancelStatue>
   <DD_HellTeleporter_TeleCancel>取消地狱深潜</DD_HellTeleporter_TeleCancel>

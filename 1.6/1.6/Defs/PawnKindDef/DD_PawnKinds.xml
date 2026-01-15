@@ -319,6 +319,32 @@
 		</lifeStages>
 	</PawnKindDef>
 
+	<PawnKindDef ParentName="RKBasePawnKind">
+		<defName>DD_Ratkin_Nun_Without_Weapon</defName>
+		<label>Diurganate Nun</label>
+		<combatPower>1</combatPower>
+		<maxPerGroup>1</maxPerGroup>
+		<minGenerationAge>21</minGenerationAge>
+		<maxGenerationAge>30</maxGenerationAge>
+		<fixedAdultBackstories>
+			<li>DD_Ratkin_Sister</li>
+		</fixedAdultBackstories>
+		<backstoryFiltersOverride>
+			<li>
+				<categories>
+					<li>RatkinStory</li>
+				</categories>
+			</li>
+		</backstoryFiltersOverride>
+		<apparelMoney>0</apparelMoney>
+		<weaponMoney>0</weaponMoney>
+		<apparelRequired>
+			<li>DD_Nun_Dress</li>
+			<li>DD_NunVeil</li>
+		</apparelRequired>
+		<apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
+	</PawnKindDef>
+
   <!-- HL -->
 	<PawnKindDef ParentName="RKBasePawnKind">
 		<defName>DD_Ratkin_HellLegion_Heretic</defName>
@@ -420,6 +446,26 @@
 		</abilities>
 
 		<modExtensions>
+      <li Class="DivineDiurganate.UniquePawnExtension">
+        <isSingleton>true</isSingleton>
+        <destroyDuplicates>true</destroyDuplicates>
+        <singletonScope>World</singletonScope>
+        <clearExistingRelations>true</clearExistingRelations>
+        <removeOnDeath>false</removeOnDeath>
+        <showSpawnMessage>false</showSpawnMessage>
+        <logLevel>Info</logLevel>
+        
+        <!-- 固定关系 -->
+        <fixedRelations>
+          <li>
+            <targetPawnKind>DD_Michelle</targetPawnKind>
+            <relationDef>DD_Sibling</relationDef>
+            <direction>Bidirectional</direction>
+            <required>true</required>
+            <autoEstablish>true</autoEstablish>
+          </li>
+        </fixedRelations>
+      </li>
 			<li Class="DivineDiurganate.HeadTypeExtension">
 				<!-- 设置头部类型 -->
 				<forcedHeadTypeDef>DD_Maple_Sugar_Head</forcedHeadTypeDef>
@@ -543,54 +589,20 @@
         <destroyDuplicates>true</destroyDuplicates>
         <singletonScope>World</singletonScope>
         <clearExistingRelations>true</clearExistingRelations>
-        <removeOnDeath>true</removeOnDeath>
-        <showSpawnMessage>true</showSpawnMessage>
+        <removeOnDeath>false</removeOnDeath>
+        <showSpawnMessage>false</showSpawnMessage>
         <logLevel>Info</logLevel>
         
         <!-- 固定关系 -->
         <fixedRelations>
           <li>
-            <targetPawnKind>DD_Special_UniqueCompanion</targetPawnKind>
-            <relationDef>Spouse</relationDef>
+            <targetPawnKind>DD_Maple_Sugar</targetPawnKind>
+            <relationDef>DD_Sibling</relationDef>
             <direction>Bidirectional</direction>
-            <relationStrength>1.0</relationStrength>
             <required>true</required>
             <autoEstablish>true</autoEstablish>
           </li>
-          <li>
-            <targetPawnKind>DD_NPC_King</targetPawnKind>
-            <relationDef>Rival</relationDef>
-            <direction>Bidirectional</direction>
-            <relationStrength>0.8</relationStrength>
-            <required>false</required>
-            <autoEstablish>true</autoEstablish>
-          </li>
         </fixedRelations>
-        
-        <!-- 自动关系 -->
-        <autoRelations>
-          <li>
-            <targetPawnKind>Human</targetPawnKind>
-            <relationDef>Friend</relationDef>
-            <filter>
-              <minAge>20</minAge>
-              <maxAge>40</maxAge>
-              <requiredTraits>
-                <li>TraitDefOf.Kind</li>
-              </requiredTraits>
-            </filter>
-            <direction>Bidirectional</direction>
-            <relationStrength>0.6</relationStrength>
-            <maxRelations>3</maxRelations>
-          </li>
-        </autoRelations>
-        
-        <!-- 需要保留的关系类型 -->
-        <relationsToKeep>
-          <li>Spouse</li>
-          <li>Child</li>
-          <li>Parent</li>
-        </relationsToKeep>
       </li>
 			<li Class="DivineDiurganate.HeadTypeExtension">
 				<!-- 设置头部类型 -->
@@ -642,30 +654,27 @@
 		<maxColor>(1,1,1,1)</maxColor>
 		<probability>0.0001</probability>
 	</FacialAnimation.EyeballTypeDef>
-
-	<PawnKindDef ParentName="RKBasePawnKind">
-		<defName>DD_Ratkin_Nun_Without_Weapon</defName>
-		<label>Diurganate Nun</label>
-		<combatPower>1</combatPower>
-		<maxPerGroup>1</maxPerGroup>
-		<minGenerationAge>21</minGenerationAge>
-		<maxGenerationAge>30</maxGenerationAge>
-		<fixedAdultBackstories>
-			<li>DD_Ratkin_Sister</li>
-		</fixedAdultBackstories>
-		<backstoryFiltersOverride>
-			<li>
-				<categories>
-					<li>RatkinStory</li>
-				</categories>
-			</li>
-		</backstoryFiltersOverride>
-		<apparelMoney>0</apparelMoney>
-		<weaponMoney>0</weaponMoney>
-		<apparelRequired>
-			<li>DD_Nun_Dress</li>
-			<li>DD_NunVeil</li>
-		</apparelRequired>
-		<apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
-	</PawnKindDef>
+  
+  <PawnRelationDef>
+    <defName>DD_Sibling</defName>
+    <label>brother</label>
+    <labelFemale>sister</labelFemale>
+    <importance>185</importance>
+    <diedThought>MyBrotherDied</diedThought>
+    <diedThoughtFemale>MySisterDied</diedThoughtFemale>
+    <killedThought>KilledMyBrother</killedThought>
+    <killedThoughtFemale>KilledMySister</killedThoughtFemale>
+    <lostThought>MyBrotherLost</lostThought>
+    <lostThoughtFemale>MySisterLost</lostThoughtFemale>
+    <soldThoughts>
+      <li>SoldMyLovedOne</li>
+    </soldThoughts>
+    <opinionOffset>20</opinionOffset>
+    <generationChanceFactor>0.4</generationChanceFactor>
+    <romanceChanceFactor>0.03</romanceChanceFactor>
+    <incestOpinionOffset>-15</incestOpinionOffset>
+    <inbredChanceOnChild>0.8</inbredChanceOnChild>
+    <!-- <implied>true</implied> -->
+    <familyByBloodRelation>true</familyByBloodRelation>
+  </PawnRelationDef>
 </Defs>

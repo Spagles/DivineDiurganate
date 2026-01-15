@@ -301,6 +301,64 @@
         <thresholdDecayDelay>1200</thresholdDecayDelay>
         <thresholdDecayPerSecond>0</thresholdDecayPerSecond>
       </li>
+      <li Class="DivineDiurganate.HediffCompProperties_GiveHediffsInRangeToPawnKind">
+        <range>15</range>
+        <hediff>DD_Holy_Radiance</hediff>
+        <mote>Mote_PsychicLinkLine</mote>
+        <hideMoteWhenNotDrafted>false</hideMoteWhenNotDrafted>
+        <defaultSeverity>0.5</defaultSeverity>
+        <onlyPawnsInSameFaction>false</onlyPawnsInSameFaction>
+        <useDefaultForOtherPawnKinds>true</useDefaultForOtherPawnKinds>
+        
+        <!-- 配置不同PawnKindDef的严重性 -->
+        <pawnKindSeverities>
+          <li>
+            <pawnKindDef>DD_Ratkin_HellLegion_Heretic</pawnKindDef>
+            <severity>1.5</severity>
+          </li>
+        </pawnKindSeverities>
+        
+        <targetingParameters>
+          <canTargetAnimals>true</canTargetAnimals>
+          <canTargetHumans>true</canTargetHumans>
+          <canTargetMechs>true</canTargetMechs>
+        </targetingParameters>
+      </li>
+    </comps>
+  </HediffDef>
+  <HediffDef>
+    <defName>DD_Holy_Radiance</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>Holy Radiance</label>
+    <description>双尾鼠的圣光照耀在这个生物身上，它可以增强活物和机械族，并驱散地狱军团的不洁力量，使其可以受到普通武器的伤害。</description>
+    <!-- <initialSeverity>0.5</initialSeverity> -->
+    <minSeverity>0.01</minSeverity>
+    <maxSeverity>1</maxSeverity>
+    <alwaysShowSeverity>false</alwaysShowSeverity>
+    <isBad>true</isBad>
+    <duplicationAllowed>true</duplicationAllowed>
+    <stages>
+      <li>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <postFactor>0.5</postFactor>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>1</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <postFactor>1.1</postFactor>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+
+    <comps>
+      <li Class="HediffCompProperties_Disappears"/>
     </comps>
   </HediffDef>
 </Defs>

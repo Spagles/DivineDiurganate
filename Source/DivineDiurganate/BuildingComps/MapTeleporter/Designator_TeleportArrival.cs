@@ -171,6 +171,13 @@ namespace DivineDiurganate
                 if (t == null || t.Destroyed) continue;
                 if (t.Graphic == null) continue;
                 
+                // 检查图形类型，如果是Graphic_RandomRotated则跳过
+                var graphicType = t.Graphic.GetType();
+                if (graphicType.Name.Contains("Graphic_RandomRotated") || graphicType.Name.Contains("Graphic_Cluster"))
+                {
+                    continue; // 跳过可能导致问题的图形类型
+                }
+                
                 IntVec3 relativePos = t.Position - sourceCenter;
                 IntVec3 drawPos = mouseCell + relativePos;
                 
@@ -178,13 +185,67 @@ namespace DivineDiurganate
                 {
                     try
                     {
-                        GhostUtility.GhostGraphicFor(t.Graphic, t.def, Color.white).DrawFromDef(drawPos.ToVector3ShiftedWithAltitude(AltitudeLayer.Blueprint), t.Rotation, t.def);
+                        // 安全地尝试获取幽灵图形
+                        var ghostGraphic = GetSafeGhostGraphic(t.Graphic, t.def, Color.white);
+                        if (ghostGraphic != null)
+                        {
+                            ghostGraphic.DrawFromDef(drawPos.ToVector3ShiftedWithAltitude(AltitudeLayer.Blueprint), t.Rotation, t.def);
+                        }
+                        else
+                        {
+                            // 如果无法获取幽灵图形，使用简单的方框代替
+                            GenDraw.DrawFieldEdges(new List<IntVec3> { drawPos }, Color.white);
+                        }
                     }
                     catch
                     {
-                        // Ignore drawing errors to prevent UI crash
+                        // 忽略绘图错误，显示简单的占位符
+                        GenDraw.DrawFieldEdges(new List<IntVec3> { drawPos }, Color.yellow);
                     }
                 }
+            }
+        }
+        
+        /// <summary>
+        /// 安全地获取幽灵图形，避免Graphic_RandomRotated等类型的错误
+        /// </summary>
+        private Graphic GetSafeGhostGraphic(Graphic graphic, ThingDef thingDef, Color color)
+        {
+            try
+            {
+                // 首先尝试正常的获取方法
+                return GhostUtility.GhostGraphicFor(graphic, thingDef, color);
+            }
+            catch (System.ArgumentException ex)
+            {
+                // 如果出现参数错误，尝试使用简化的图形
+                Log.Warning($"[DivineDiurganate] 无法为物体 {thingDef.defName} 创建幽灵图形: {ex.Message}");
+                
+                // 尝试使用蓝图图形作为替代
+                if (thingDef.graphicData != null)
+                {
+                    try
+                    {
+                        // 使用基础的Graphic_Single作为替代
+                        var simpleGraphic = GraphicDatabase.Get<Graphic_Single>(
+                            thingDef.graphicData.texPath, 
+                            ShaderDatabase.Transparent, 
+                            thingDef.graphicData.drawSize, 
+                            color);
+                        return simpleGraphic;
+                    }
+                    catch
+                    {
+                        // 如果这也失败了，返回null
+                        return null;
+                    }
+                }
+                return null;
+            }
+            catch
+            {
+                // 其他异常，返回null
+                return null;
             }
         }
     }

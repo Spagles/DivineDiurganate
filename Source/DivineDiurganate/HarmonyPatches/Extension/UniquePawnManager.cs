@@ -26,7 +26,7 @@ namespace DivineDiurganate
         private List<LogEntry> logEntries = new List<LogEntry>();
         private const int MAX_LOG_ENTRIES = 100;
         
-        public UniquePawnManager(Game game)
+        public UniquePawnManager(Game game) : base()
         {
             instance = this;
         }
@@ -202,8 +202,7 @@ namespace DivineDiurganate
             
             // 建立关系
             return EstablishRelation(pendingRelation.sourcePawn, targetPawn, 
-                pendingRelation.relationDef, pendingRelation.direction, 
-                pendingRelation.relationStrength);
+                pendingRelation.relationDef, pendingRelation.direction);
         }
         
         /// <summary>
@@ -321,14 +320,62 @@ namespace DivineDiurganate
             switch (scope)
             {
                 case UniquePawnScope.Map:
-                    return $"{baseKey}_{pawn.Map?.uniqueID ?? 0}";
+                    // 使用地图的索引作为标识
+                    return $"{baseKey}_{pawn.Map?.Index ?? 0}";
                 case UniquePawnScope.World:
                     return baseKey;
                 case UniquePawnScope.Archive:
-                    return $"{baseKey}_{Current.Game?.uniqueID ?? 0}";
+                    // 使用存档的唯一标识
+                    return $"{baseKey}_{Current.Game?.GetHashCode() ?? 0}";
                 default:
                     return baseKey;
             }
+        }
+        
+        /// <summary>
+        /// 检查地图中是否存在指定类型的Pawn
+        /// </summary>
+        public bool CheckPawnExistsInMap(PawnKindDef pawnKindDef, Map map)
+        {
+            if (pawnKindDef == null || map == null)
+                return false;
+            
+            string baseKey = pawnKindDef.defName;
+            string key = $"{baseKey}_{map.Index}";
+            
+            return pawnRecords.ContainsKey(key) && 
+                   pawnRecords[key]?.pawn != null && 
+                   IsPawnValid(pawnRecords[key].pawn);
+        }
+        
+        /// <summary>
+        /// 检查世界中是否存在指定类型的Pawn
+        /// </summary>
+        public bool CheckPawnExistsInWorld(PawnKindDef pawnKindDef)
+        {
+            if (pawnKindDef == null)
+                return false;
+            
+            string baseKey = pawnKindDef.defName;
+            
+            foreach (var record in pawnRecords.Values)
+            {
+                if (record.pawnKindDef == pawnKindDef && record.pawn != null && IsPawnValid(record.pawn))
+                {
+                    return true;
+                }
+            }
+            
+            return false;
+        }
+        
+        /// <summary>
+        /// 检查存档中是否存在指定类型的Pawn
+        /// </summary>
+        public bool CheckPawnExistsInArchive(PawnKindDef pawnKindDef)
+        {
+            // 与CheckPawnExistsInWorld相同，因为管理器只管理当前存档
+            return CheckPawnExistsInWorld(pawnKindDef);
         }
         
         /// <summary>
@@ -429,7 +476,7 @@ namespace DivineDiurganate
                         // 建立与第一个找到的目标Pawn的关系
                         var targetPawn = targetPawns.First();
                         EstablishRelation(pawn, targetPawn, fixedRelation.relationDef, 
-                            fixedRelation.direction, fixedRelation.relationStrength);
+                            fixedRelation.direction);
                     }
                     else
                     {
@@ -442,7 +489,6 @@ namespace DivineDiurganate
                                 targetPawnKind = fixedRelation.targetPawnKind,
                                 relationDef = fixedRelation.relationDef,
                                 direction = fixedRelation.direction,
-                                relationStrength = fixedRelation.relationStrength
                             };
                             
                             pendingRelations.Add(pending);
@@ -487,7 +533,7 @@ namespace DivineDiurganate
                     foreach (var candidatePawn in candidatePawns)
                     {
                         EstablishRelation(pawn, candidatePawn, autoRelation.relationDef, 
-                            autoRelation.direction, autoRelation.relationStrength);
+                            autoRelation.direction);
                     }
                 }
                 catch (Exception ex)
@@ -549,7 +595,7 @@ namespace DivineDiurganate
         /// 建立关系
         /// </summary>
         private bool EstablishRelation(Pawn sourcePawn, Pawn targetPawn, 
-            PawnRelationDef relationDef, RelationDirection direction, float strength)
+            PawnRelationDef relationDef, RelationDirection direction)
         {
             if (sourcePawn == null || targetPawn == null || relationDef == null)
                 return false;
@@ -572,9 +618,6 @@ namespace DivineDiurganate
                         break;
                 }
                 
-                // 设置关系强度（如果支持）
-                SetRelationStrength(sourcePawn, targetPawn, relationDef, strength);
-                
                 LogMessage($"已建立关系: {sourcePawn.LabelShort} <-> {targetPawn.LabelShort} ({relationDef.label})", 
                     LogLevel.Info);
                 
@@ -585,16 +628,6 @@ namespace DivineDiurganate
                 LogMessage($"建立关系时出错: {ex}", LogLevel.Error);
                 return false;
             }
-        }
-        
-        /// <summary>
-        /// 设置关系强度
-        /// </summary>
-        private void SetRelationStrength(Pawn pawn1, Pawn pawn2, PawnRelationDef relationDef, float strength)
-        {
-            // 注意：RimWorld原生不支持直接设置关系强度
-            // 这里可以扩展或使用自定义系统
-            // 目前作为占位符
         }
         
         /// <summary>
