@@ -204,4 +204,39 @@
       </li>
     </stages>
   </HediffDef>
+
+  <HediffDef>
+    <defName>DD_HellLegion_Base_Hediff</defName>
+    <label>Hell Legion</label>
+    <description>Hell Legion</description>
+    <defaultLabelColor>(0.8, 0.2, 0.2)</defaultLabelColor>
+    <hediffClass>HediffWithComps</hediffClass>
+    <stages>
+      <li>
+        <becomeVisible>true</becomeVisible>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_DisappearsOnDeath" />
+    </comps>
+  </HediffDef>
+  <HediffDef>
+    <defName>DD_HellLegion_Undeath_Hediff</defName>
+    <label>Undeath</label>
+    <description>Undeath</description>
+    <defaultLabelColor>(0.8, 0.2, 0.2)</defaultLabelColor>
+    <hediffClass>HediffWithComps</hediffClass>
+    <stages>
+      <li>
+        <becomeVisible>true</becomeVisible>
+        <statFactors>
+          <Flammability>0</Flammability>
+        </statFactors>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_DisappearsOnDeath" />
+      <li Class="DivineDiurganate.HediffCompProperties_Invulnerable" />
+    </comps>
+  </HediffDef>
 </Defs>

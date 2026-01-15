@@ -41,6 +41,14 @@
         <averageInterval>1500</averageInterval>
         <eventClass>DivineDiurganate.WeatherEvent_SulfurMeteorShower</eventClass>
       </li>
+      <li>
+        <averageInterval>4500</averageInterval>
+        <eventClass>DivineDiurganate.WeatherEvent_HellLegionRaid</eventClass>
+      </li>
+      <li>
+        <averageInterval>120</averageInterval>
+        <eventClass>DivineDiurganate.WeatherEvent_LavaSpread</eventClass>
+      </li>
     </eventMakers>
     <!-- Colors are Overcast -->
     <skyColorsDay>

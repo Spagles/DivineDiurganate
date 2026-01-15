@@ -22,6 +22,9 @@ namespace DivineDiurganate
         
         // 保存传送前的地图引用
         private Map sourceMapToClose = null;
+        
+        // 保存源地图的TileID，用于后续转换生物群系
+        private int sourceMapTileId = -1;
 
         // 游戏条件组件
         private CompGameConditionTeleporter gameConditionComp;
@@ -132,6 +135,7 @@ namespace DivineDiurganate
             Scribe_TargetInfo.Look(ref target, "target");
             Scribe_References.Look(ref activeMarker, "activeMarker");
             Scribe_Values.Look(ref gameConditionStarted, "gameConditionStarted", false);
+            Scribe_Values.Look(ref sourceMapTileId, "sourceMapTileId", -1);
         }
 
         public override void Initialize(CompProperties props)
@@ -410,8 +414,6 @@ namespace DivineDiurganate
                     return true;
                 }
             }
-
-            Messages.Message("地图生成失败", MessageTypeDefOf.RejectInput);
             return false;
         }
 
@@ -427,6 +429,9 @@ namespace DivineDiurganate
             Map sourceMap = parent.Map;
             int sourceTile = sourceMap.Tile;
             int targetTile = target.Tile;
+            
+            // 保存源地图的TileID，用于后续转换生物群系
+            sourceMapTileId = sourceTile;
             
             // 计算世界地图上的距离
             float distance = Find.WorldGrid.ApproxDistanceInTiles(sourceTile, targetTile);
@@ -478,9 +483,6 @@ namespace DivineDiurganate
                 
                 parent.Map.gameConditionManager.RegisterCondition(gameCondition);
                 gameConditionStarted = true;
-                
-                Messages.Message($"{Props.warmupGameConditionDef.label} 已激活，将持续到传送完成", 
-                    parent, MessageTypeDefOf.NeutralEvent);
             }
         }
         
@@ -568,7 +570,10 @@ namespace DivineDiurganate
             // 执行传送
             TeleportContents(targetMap, targetCell);
             
-            // 传送完成后强制关闭源地图
+            // 传送完成后转换旧地图生物群系
+            ConvertSourceMapBiomeToHell();
+            
+            // 强制关闭源地图
             ForceCloseSourceMap();
         }
         
@@ -724,9 +729,6 @@ namespace DivineDiurganate
             // 7. 逐个传送殖民者（避免ideo职位问题）
             if (colonistPawnsToTeleport.Count > 0)
             {
-                Messages.Message($"开始传送殖民者... 共{colonistPawnsToTeleport.Count}名", 
-                    new TargetInfo(targetCenter, targetMap, false), MessageTypeDefOf.NeutralEvent);
-                
                 foreach (var data in colonistPawnsToTeleport)
                 {
                     if (data.thing == null || data.thing.Destroyed) continue;
@@ -748,16 +750,10 @@ namespace DivineDiurganate
                         
                         GenSpawn.Spawn(colonist, newPos, targetMap, colonist.Rotation);
                         colonist.PostSwapMap();
-                        
-                        // 显示单个殖民者传送成功消息
-                        Messages.Message($"{colonistName} 已成功传送", 
-                            new TargetInfo(targetCenter, targetMap, false), MessageTypeDefOf.PositiveEvent);
                     }
                     catch (Exception ex)
                     {
                         Log.Error($"传送殖民者 {data.thing?.LabelShortCap ?? "未知"} 时出错: {ex}");
-                        Messages.Message($"传送殖民者 {data.thing?.LabelShortCap ?? "未知"} 失败", 
-                            new TargetInfo(targetCenter, targetMap, false), MessageTypeDefOf.NegativeEvent);
                     }
                 }
             }
@@ -772,8 +768,92 @@ namespace DivineDiurganate
             // 9. 完成
             CameraJumper.TryJump(targetCenter, targetMap);
             Props.teleportSound?.PlayOneShot(new TargetInfo(targetCenter, targetMap, false));
-            Messages.Message($"传送成功完成!\n传送殖民者: {colonistPawnsToTeleport.Count}名\n传送其他物体: {otherThingsToTeleport.Count}个", 
-                new TargetInfo(targetCenter, targetMap, false), MessageTypeDefOf.PositiveEvent);
+        }
+
+        /// <summary>
+        /// 转换源地图的生物群系为地狱生物群系
+        /// </summary>
+        private void ConvertSourceMapBiomeToHell()
+        {
+            try
+            {
+                // 获取地狱生物群系定义
+                BiomeDef hellBiome = DefDatabase<BiomeDef>.GetNamedSilentFail("DD_Hell_Biome");
+                if (hellBiome == null)
+                {
+                    Log.Error("[DivineDiurganate] 找不到地狱生物群系定义: DD_Hell_Biome");
+                    return;
+                }
+
+                // 获取源地图的Tile
+                if (sourceMapTileId < 0 && sourceMapToClose != null)
+                {
+                    sourceMapTileId = sourceMapToClose.Tile;
+                }
+                
+                if (sourceMapTileId < 0)
+                {
+                    Log.Warning("[DivineDiurganate] 无法获取源地图的TileID");
+                    return;
+                }
+
+                // 获取世界网格
+                WorldGrid worldGrid = Find.WorldGrid;
+                if (worldGrid == null)
+                {
+                    Log.Error("[DivineDiurganate] 无法获取世界网格");
+                    return;
+                }
+
+                // 获取Tile
+                if (sourceMapTileId >= worldGrid.TilesCount)
+                {
+                    Log.Error($"[DivineDiurganate] 无效的TileID: {sourceMapTileId}");
+                    return;
+                }
+
+                Tile tile = worldGrid[sourceMapTileId];
+                if (tile == null)
+                {
+                    Log.Error($"[DivineDiurganate] 无法获取Tile: {sourceMapTileId}");
+                    return;
+                }
+
+                // 保存原始生物群系（可选）
+                BiomeDef originalBiome = tile.PrimaryBiome;
+                
+                // 转换生物群系为地狱
+                tile.PrimaryBiome = hellBiome;
+                
+                // 记录转换
+                string originalName = originalBiome?.label ?? "未知";
+
+                // 创建转换特效（可选）
+                CreateBiomeConversionEffects(sourceMapTileId);
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"[DivineDiurganate] 转换生物群系时出错: {ex}");
+            }
+        }
+        
+        /// <summary>
+        /// 创建生物群系转换特效
+        /// </summary>
+        private void CreateBiomeConversionEffects(int tileId)
+        {
+            try
+            {
+                // 在世界地图上显示转换特效
+                Vector3 tilePos = Find.WorldGrid.GetTileCenter(tileId);
+
+                // 播放声音
+                SoundDefOf.PsychicPulseGlobal.PlayOneShotOnCamera();
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"[DivineDiurganate] 创建生物群系转换特效时出错: {ex}");
+            }
         }
 
         /// <summary>
@@ -783,7 +863,7 @@ namespace DivineDiurganate
         {
             if (sourceMapToClose == null)
             {
-                Log.Warning("尝试关闭源地图，但sourceMapToClose为null");
+                Log.Warning("[DivineDiurganate] 尝试关闭源地图，但sourceMapToClose为null");
                 return;
             }
             
@@ -801,16 +881,8 @@ namespace DivineDiurganate
                     CameraJumper.TryHideWorld();
                 }
                 
-                // 显示关闭消息
-                Messages.Message("源地图已强制关闭", MessageTypeDefOf.NeutralEvent);
-                
                 // 清理引用
                 sourceMapToClose = null;
-            }
-            else
-            {
-                // 如果没有找到MapParent，尝试其他方式关闭地图
-                Messages.Message("源地图关闭失败（未找到MapParent）", MessageTypeDefOf.NegativeEvent);
             }
         }
     }

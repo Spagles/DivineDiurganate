@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <BiomeDef>
+    <defName>DD_Hell_Biome</defName>
+    <label>地狱</label>
+    <description>因为某种禁忌的仪式而被带到现实的地狱的投影。这片地区只剩火焰、硫磺和来自深渊的腐臭，无法通过。</description>
+    <generatesNaturally>false</generatesNaturally>
+    <animalDensity>0</animalDensity>
+    <plantDensity>0</plantDensity>
+    <wildAnimalsCanWanderInto>false</wildAnimalsCanWanderInto>
+    <isExtremeBiome>true</isExtremeBiome>
+    <constantOutdoorTemperature>300</constantOutdoorTemperature>
+    <baseWeatherCommonalities>
+      <DD_Hell_Weather>1</DD_Hell_Weather>
+    </baseWeatherCommonalities>
+    <canBuildBase>false</canBuildBase>
+    <allowRoads>false</allowRoads>
+    <allowRivers>false</allowRivers>
+    <hasVirtualPlants>false</hasVirtualPlants>
+    <texture>DivineDiurganate/Biomes/DD_Hell_Biome</texture>
+    <impassable>true</impassable>
+    <isBackgroundBiome>true</isBackgroundBiome>
+  </BiomeDef>
+</Defs>

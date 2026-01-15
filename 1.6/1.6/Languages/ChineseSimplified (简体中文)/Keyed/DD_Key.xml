@@ -40,6 +40,8 @@
   <DD_MechNoSkill>无技能等级</DD_MechNoSkill>
   <DD_BlockByMechArmor>伤害抵挡</DD_BlockByMechArmor>
   <DD_Operational>正常</DD_Operational>
+
+  <DD_ImmuneToDamage>伤害免疫！</DD_ImmuneToDamage>
   
   <DD_EnterMech>进入 {0}</DD_EnterMech>
   <DD_MechFull>机甲驾驶员位置已满</DD_MechFull>

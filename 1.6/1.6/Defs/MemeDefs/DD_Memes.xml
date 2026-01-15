@@ -57,22 +57,22 @@
     <descriptionMaker>
       <rules>
         <rulesStrings>
-          <li>Creation (tag=meme_DD_law) ->[deity0_name] forged the [memberNameSingular] clan from primitive filth, bestowed upon them holy oil and sulfur fire, and made all things on earth the fuel of God's machinery. </li>
-          <li>Episode (uses=1, tag=meme_DD_law) ->When the home of [mberNamePlural] is invaded by wild beasts, [deity0_name] sends down a revelation to teach them to forge the first steam powered mecha and use their mechanical giant feet to conquer the chaotic outside world. </li>
-          <li>The first settlers of intro (tag=meme_DD_law) ->[place_name] encountered a violent [Animal] group. [deity0_name] Sent the divine machinery into the world and purified this land with holy fireworks. </li>
-          <li>Conflict (tag=meme_DD_law) ->Heretic leader [foeLeader] actually advocates for equal sharing of resources with [Animal]. [deity0_name] roared in the casting temple, watching as [memberNamePlural] was forced to waste precious holy oil on "animal rights". </li>
-          <li>FounderJoin (tag=meme_DD_law) ->The great priest [FounderName] established the first cast temple in [place_name]. The ritual of purifying beasts with holy oil, demonstrating to believers the blessing of mechanical creation. </li>
-          <li>The flame purification of victory (tag=meme_DD_law) ->[founderName] allowed the [foeSoldiers] of [foeLeader] to witness the truth. They danced with [mberNameParallel] in the flames of burning holy oil, and exiled [foeLeader] to the undeveloped wilderness, allowing him to survive like a wild beast. </li>
-          <li>Setup (tag=meme_DD_law) ->[groundName] established a colony on a barbaric planet, imposing industrial order on every inch of land with the shadows of chimneys and the rhythm of gears. </li>
-          <li>Story (uses=1, tag=meme_DD_law) ->Once, [footerName] saw an [Animal] growling at an icon. On the spot, the God's machinery was manipulated to crush it into powder. </li>
-          <li>Lesson Intro (tag=meme_DD_law) ->I visited an efficient fuel refinery, where the machinery operates in a regular manner and black smoke rises into the sky. Next to it is a 'nature reserve', chaotic and dirty. This clearly proves that:</li>
-          <li>Lesson (tag=meme_DD_law) ->Only the mechanical will of God can give meaning and order to the universe</li>
-          <li>Lesson (tag=meme_DD_law) ->Nature is a dirty collection of disorderly waste, holy oil and gears are the solution</li>
-          <li>If the universe is a arena of survival of the fittest, then we have already won the ultimate victory with steel and fire. </li>
-          <li>ArchistBasis (tag=meme_DD_law) ->The mechanical family does have powerful computing power, but their core processors are just a poor imitation of the divine machinery cast by the Saint Double tailed Mouse. </li>
+          <li>Creation(tag=meme_DD_law) ->[deity0_name] forged the [memberNameSingular] clan from primitive filth, bestowed upon them holy oil and sulfur fire, and made all things on earth the fuel of God's machinery. </li>
+          <li>Episode(uses=1, tag=meme_DD_law) ->When the home of [mberNamePlural] is invaded by wild beasts, [deity0_name] sends down a revelation to teach them to forge the first steam powered mecha and use their mechanical giant feet to conquer the chaotic outside world. </li>
+          <li>The first settlers of intro(tag=meme_DD_law) ->[place_name] encountered a violent [Animal] group. [deity0_name] Sent the divine machinery into the world and purified this land with holy fireworks. </li>
+          <li>Conflict(tag=meme_DD_law) ->Heretic leader [foeLeader] actually advocates for equal sharing of resources with [Animal]. [deity0_name] roared in the casting temple, watching as [memberNamePlural] was forced to waste precious holy oil on "animal rights". </li>
+          <li>FounderJoin(tag=meme_DD_law) ->The great priest [FounderName] established the first cast temple in [place_name]. The ritual of purifying beasts with holy oil, demonstrating to believers the blessing of mechanical creation. </li>
+          <li>The flame purification of victory(tag=meme_DD_law) ->[founderName] allowed the [foeSoldiers] of [foeLeader] to witness the truth. They danced with [mberNameParallel] in the flames of burning holy oil, and exiled [foeLeader] to the undeveloped wilderness, allowing him to survive like a wild beast. </li>
+          <li>Setup(tag=meme_DD_law) ->[groundName] established a colony on a barbaric planet, imposing industrial order on every inch of land with the shadows of chimneys and the rhythm of gears. </li>
+          <li>Story(uses=1, tag=meme_DD_law) ->Once, [footerName] saw an [Animal] growling at an icon. On the spot, the God's machinery was manipulated to crush it into powder. </li>
+          <li>Lesson Intro(tag=meme_DD_law) ->I visited an efficient fuel refinery, where the machinery operates in a regular manner and black smoke rises into the sky. Next to it is a 'nature reserve', chaotic and dirty. This clearly proves that:</li>
+          <li>Lesson(tag=meme_DD_law) ->Only the mechanical will of God can give meaning and order to the universe</li>
+          <li>Lesson(tag=meme_DD_law) ->Nature is a dirty collection of disorderly waste, holy oil and gears are the solution</li>
+          <li>lessonReinforcement(tag=meme_DD_law) ->If the universe is a arena of survival of the fittest, then we have already won the ultimate victory with steel and fire. </li>
+          <li>ArchistBasis(tag=meme_DD_law) ->The mechanical family does have powerful computing power, but their core processors are just a poor imitation of the divine machinery cast by the Saint Double tailed Mouse. </li>
           <li>archistFact(tag=meme_DD_law)     ->[memberNameSingular] They are the creators and drivers of machinery, and the mechanical race is just waiting for abandoned objects to be reprogrammed. </li>
           <li>archistProphecy(tag=meme_DD_law) ->[inTheEnd]， By observing the priests blessed by the Saint Double tailed Mouse, the mechanical race will eventually understand their sole purpose of existence: to become the loyal cogwheel of the Saint Double tailed Mouse. </li>
-          <li>AnimastFact (tag=meme_DD_law) ->Beasts in nature are just raw materials waiting to be recycled, yearning for "sublimation" through divine machinery and industrial furnaces. </li>
+          <li>AnimastFact(tag=meme_DD_law) ->Beasts in nature are just raw materials waiting to be recycled, yearning for "sublimation" through divine machinery and industrial furnaces. </li>
         </rulesStrings>
       </rules>
     </descriptionMaker>

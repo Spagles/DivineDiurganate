@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-	<!-- 0-1000 -->
+  <!-- DD -->
 	<PawnKindDef ParentName="RKBasePawnKind">
 		<defName>DD_Ratkin_Suicider</defName>
 		<label>Diurganate Martyr</label>
@@ -79,7 +79,6 @@
 		</weaponTags>
 	</PawnKindDef>
 
-	<!-- 1000-3000 -->
 	<PawnKindDef ParentName="RKBasePawnKind">
 		<defName>DD_Ratkin_Crusader</defName>
 		<label>Diurganate Crusader</label>
@@ -134,7 +133,6 @@
 		</weaponTags>
 	</PawnKindDef>
 
-	<!-- 3000-5000 -->
 	<PawnKindDef ParentName="RKBasePawnKind">
 		<defName>DD_Ratkin_Pilot</defName>
 		<label>Diurganate Pilot</label>
@@ -213,7 +211,6 @@
 		</weaponTags>
 	</PawnKindDef>
 
-	<!-- 5000-7000 -->
 	<PawnKindDef>
 		<defName>DD_S4_DHM86_Knell_Mech</defName>
 		<label>DHM86-Knell</label>
@@ -240,7 +237,6 @@
 		</lifeStages>
 	</PawnKindDef>
 
-	<!-- 6000-8000 -->
 	<PawnKindDef>
 		<defName>DD_S5_DHM69_Scythe_Mech</defName>
 		<label>DHM69-Scythe</label>
@@ -269,7 +265,6 @@
 		</lifeStages>
 	</PawnKindDef>
 
-	<!-- 6000-8000 -->
 	<PawnKindDef>
 		<defName>DD_S6_DHM69_Scythe_Mech</defName>
 		<label>DHM69-Scythe</label>
@@ -322,6 +317,44 @@
 				</bodyGraphicData>
 			</li>
 		</lifeStages>
+	</PawnKindDef>
+
+  <!-- HL -->
+	<PawnKindDef ParentName="RKBasePawnKind">
+		<defName>DD_Ratkin_HellLegion_Heretic</defName>
+		<label>HellLegion Heretic</label>
+		<combatPower>40</combatPower>
+    <overrideDeathOnDownedChance>1</overrideDeathOnDownedChance>
+    <forceDeathOnDowned>true</forceDeathOnDowned>
+    <isFighter>true</isFighter>
+    <startingHediffs>
+      <li>
+        <def>DD_HellLegion_Base_Hediff</def>
+        <severity>1</severity>
+      </li>
+      <li>
+        <def>DD_HellLegion_Undeath_Hediff</def>
+        <severity>1</severity>
+      </li>
+    </startingHediffs>
+		<backstoryFiltersOverride>
+			<li>
+				<categories>
+					<li>RatkinStory</li>
+				</categories>
+			</li>
+		</backstoryFiltersOverride>
+		<weaponMoney>250~500</weaponMoney>
+		<apparelMoney>120~350</apparelMoney>
+		<weaponTags>
+			<li>DD_Skirmish_Weapon</li>
+			<li>RK_1TierRange</li>
+			<li>RK_Defender</li>
+		</weaponTags>
+		<apparelTags>
+			<li>RK_Murderer</li>
+			<li>RK_Worker</li>
+		</apparelTags>
 	</PawnKindDef>
 
 	<!-- sp -->

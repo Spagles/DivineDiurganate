@@ -22,6 +22,9 @@ namespace DivineDiurganate
         public bool hideSource = true; // 隐藏来源
         public bool preventConditionStacking = true; // 防止条件堆叠
         
+        // 是否在传送后转换源地图生物群系为地狱
+        public bool convertSourceBiomeToHell = true;
+
         public CompProperties_MapTeleporter()
         {
             compClass = typeof(CompMapTeleporter);

@@ -47,12 +47,17 @@
       <isInert>true</isInert>
     </building>
     <comps>
+      <li Class="DivineDiurganate.CompProperties_GameConditionTeleporter">
+        <conditionDef>DD_Hell_Condition</conditionDef>
+        <worldRange>0</worldRange>
+        <hideSource>false</hideSource>
+        <preventConditionStacking>true</preventConditionStacking>
+      </li>
       <li Class="DivineDiurganate.CompProperties_MapTeleporter">
         <areaSize>(13,13)</areaSize>
         <warmupTicks>0</warmupTicks>
         <daysPerDistance>0.1</daysPerDistance>
         <checkCanBuildBase>true</checkCanBuildBase>
-        <warmupGameConditionDef>DD_Hell_Condition</warmupGameConditionDef> <!-- 在传送期间启动太阳耀斑 -->
         <!-- <warmupSound>TeleporterWarmup</warmupSound>
         <teleportSound>TeleporterActivate</teleportSound>
         <requiredResearch>MapTeleportation</requiredResearch> -->
