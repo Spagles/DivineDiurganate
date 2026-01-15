@@ -426,21 +426,56 @@ namespace DivineDiurganate
             // 计算世界地图上的距离
             float distance = Find.WorldGrid.ApproxDistanceInTiles(sourceTile, targetTile);
             
-            // 计算总预热时间 = 基础时间 + 距离 × 单位距离所需天数 × 每天tick数
-            // 1天 = 60000 ticks
-            totalWarmupTicks = Props.warmupTicks + Mathf.RoundToInt(distance * Props.daysPerDistance * 60000f);
+            // 计算基础预热时间
+            int baseWarmupTicks = Props.warmupTicks;
+            
+            // 计算基于距离的预热时间
+            int distanceWarmupTicks = Mathf.RoundToInt(distance * Props.daysPerDistance * 60000f);
+            
+            // 计算总预热时间（无限制情况下）
+            int unlimitedTotalTicks = baseWarmupTicks + distanceWarmupTicks;
+            
+            // 转换为天数（用于显示和比较）
+            float unlimitedTotalDays = (float)unlimitedTotalTicks / 60000f;
+            
+            // 应用最大时间限制
+            int finalTotalTicks;
+            if (Props.useMaxTeleportDays && Props.maxTeleportDays > 0)
+            {
+                // 计算最大允许的ticks
+                int maxAllowedTicks = Mathf.RoundToInt(Props.maxTeleportDays * 60000f);
+                
+                // 如果计算出的时间超过最大时间，则使用最大时间
+                if (unlimitedTotalTicks > maxAllowedTicks)
+                {
+                    finalTotalTicks = maxAllowedTicks;
+                }
+                else
+                {
+                    finalTotalTicks = unlimitedTotalTicks;
+                }
+            }
+            else
+            {
+                // 没有最大时间限制
+                finalTotalTicks = unlimitedTotalTicks;
+            }
+            
+            totalWarmupTicks = finalTotalTicks;
             warmupTicksLeft = totalWarmupTicks;
             
             isWarmingUp = true;
+            
+            // 计算最终总天数（用于显示）
+            float finalTotalDays = (float)finalTotalTicks / 60000f;
             
             // 启动游戏条件（如果有配置）
             StartGameCondition();
             
             // 显示预热开始信息（以天为单位）
-            float totalDays = (float)totalWarmupTicks / 60000f;
             string message = $"DD_HellTeleporter_WarmingMessage".Translate(
                 distance.ToString("F1"), 
-                totalDays.ToString("F2"));
+                finalTotalDays.ToString("F2"));
             
             Messages.Message(message, parent, MessageTypeDefOf.NeutralEvent);
             

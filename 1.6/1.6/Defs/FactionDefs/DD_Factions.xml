@@ -207,7 +207,7 @@
         <li>(0, 0)</li>
       </points>
     </raidCommonalityFromPointsCurve>
-    <humanlikeFaction>false</humanlikeFaction>
+    <!-- <humanlikeFaction>false</humanlikeFaction> -->
     <hidden>true</hidden>
     <displayInFactionSelection>false</displayInFactionSelection>
     <autoFlee>false</autoFlee>

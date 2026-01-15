@@ -430,6 +430,7 @@ namespace DivineDiurganate
                     if (currentTerrain == lavaShallowDef)
                     {
                         // 转换为冷却岩浆
+                        map.terrainGrid.RemoveTempTerrain(cell, false, true);
                         map.terrainGrid.SetTerrain(cell, cooledLavaDef);
                         
                         // 可选：添加冷却效果粒子

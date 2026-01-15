@@ -38,7 +38,7 @@
         <eventClass>DivineDiurganate.WeatherEvent_HellfireStorm</eventClass>
       </li>
       <li>
-        <averageInterval>4500</averageInterval>
+        <averageInterval>12500</averageInterval>
         <eventClass>DivineDiurganate.WeatherEvent_SulfurMeteorShower</eventClass>
       </li>
       <li>
@@ -46,7 +46,7 @@
         <eventClass>DivineDiurganate.WeatherEvent_HellLegionRaid</eventClass>
       </li>
       <li>
-        <averageInterval>210</averageInterval>
+        <averageInterval>600</averageInterval>
         <eventClass>DivineDiurganate.WeatherEvent_LavaSpread</eventClass>
       </li>
     </eventMakers>

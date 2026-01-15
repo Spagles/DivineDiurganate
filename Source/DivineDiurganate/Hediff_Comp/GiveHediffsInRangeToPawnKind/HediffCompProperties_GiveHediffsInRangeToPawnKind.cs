@@ -20,6 +20,12 @@ namespace DivineDiurganate
         // 是否对不在列表中的PawnKindDef使用默认严重性
         public bool useDefaultForOtherPawnKinds = true;
         
+        // 新增：检查间隔（ticks）
+        public int checkIntervalTicks = 10; // 默认每10 ticks检查一次
+        
+        // 新增：Hediff持续时间（ticks），用于设置消失时间
+        public int hediffDurationTicks = 120; // 默认120 ticks
+        
         // 缓存字典，用于快速查找
         private Dictionary<PawnKindDef, float> pawnKindSeverityDict = null;
 
