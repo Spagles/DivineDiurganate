@@ -8,6 +8,11 @@ namespace DivineDiurganate
         public IntVec2 areaSize = new IntVec2(13, 13);
         public int warmupTicks = 120;
         public float daysPerDistance = 0.25f; // 每单位距离需要的天数
+        
+        // 新增：最大传送天数限制
+        public float maxTeleportDays = 0f; // 0表示无限制
+        public bool useMaxTeleportDays = false; // 是否启用最大时间限制
+        
         public EffecterDef warmupEffecter;
         public SoundDef warmupSound;
         public SoundDef teleportSound;
