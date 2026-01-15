@@ -62,6 +62,17 @@
         <teleportSound>TeleporterActivate</teleportSound>
         <requiredResearch>MapTeleportation</requiredResearch> -->
       </li>
+      <li Class="DivineDiurganate.CompProperties_WeatherShelter">
+        <shelterSize>(13,13)</shelterSize>
+        <shelterColor>(0,0,0,0)</shelterColor>
+        <requiresPower>false</requiresPower>
+        <minPowerToShelter>0</minPowerToShelter>
+        <minHitPointsForShelter>0</minHitPointsForShelter>
+        
+        <!-- <activeEffecter></activeEffecter>
+        <shelterActiveSound></shelterActiveSound>
+        <shelterDeactivateSound></shelterDeactivateSound> -->
+      </li>
     </comps>
   </ThingDef>
   <ThingDef ParentName="EtherealThingBase">

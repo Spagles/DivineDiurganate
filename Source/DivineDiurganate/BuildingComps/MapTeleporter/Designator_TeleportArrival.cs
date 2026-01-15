@@ -16,8 +16,8 @@ namespace DivineDiurganate
         private IntVec3 sourceCenter;
         private List<IntVec3> relativeCells;
 
-        public override string Label => "选择传送到达点";
-        public override string Desc => "在地图上选择一个位置作为传送到达点";
+        public override string Label => "Designator_TeleportLabel".Translate(); 
+        public override string Desc => "Designator_TeleportDesc".Translate();
 
         public Designator_TeleportArrival(CompMapTeleporter teleporter, Map targetMap, TeleportLandingMarker marker = null)
         {
@@ -35,7 +35,7 @@ namespace DivineDiurganate
 
         public override AcceptanceReport CanDesignateCell(IntVec3 loc)
         {
-            if (!loc.InBounds(targetMap)) return "位置超出地图边界";
+            if (!loc.InBounds(targetMap)) return "Designator_TeleportOutofRange".Translate();
             
             // 检查biome是否允许建立基地
             if (teleporter.Props.checkCanBuildBase)
@@ -43,7 +43,7 @@ namespace DivineDiurganate
                 Tile tile = Find.WorldGrid[targetMap.Tile];
                 if (tile.PrimaryBiome == null || !tile.PrimaryBiome.canBuildBase)
                 {
-                    return $"此地图类型 '{tile.PrimaryBiome?.label ?? "未知"}' 不允许建立基地";
+                    return $"DD_HellTeleporter_NotAllowBase".Translate();
                 }
             }
             
@@ -52,18 +52,18 @@ namespace DivineDiurganate
             {
                 IntVec3 cell = loc + offset;
                 
-                if (!cell.InBounds(targetMap)) return "部分区域超出地图边界";
+                if (!cell.InBounds(targetMap)) return "Designator_TeleportOutofRange".Translate();
                 
                 // Check map edge
                 if (cell.InNoBuildEdgeArea(targetMap))
                 {
-                    return "位置过于靠近地图边缘";
+                    return "Designator_TeleportCloseToRange".Translate();
                 }
                 
                 // Check fog
                 if (cell.Fogged(targetMap))
                 {
-                    return "位置被战争迷雾覆盖";
+                    return "Designator_TeleportFogCoverd".Translate();
                 }
                 
                 // Check for indestructible buildings
@@ -74,7 +74,7 @@ namespace DivineDiurganate
                     {
                         if (!t.def.destroyable)
                         {
-                            return $"位置被不可摧毁的建筑 '{t.Label}' 阻挡";
+                            return $"Designator_TeleportBlockByBuilding".Translate(t.Label);
                         }
                     }
                 }
@@ -83,7 +83,7 @@ namespace DivineDiurganate
                 TerrainDef terrain = cell.GetTerrain(targetMap);
                 if (terrain.passability == Traversability.Impassable && !terrain.IsWater)
                 {
-                     return "地形不可通行";
+                     return "Designator_TeleportImpassable".Translate();
                 }
             }
 

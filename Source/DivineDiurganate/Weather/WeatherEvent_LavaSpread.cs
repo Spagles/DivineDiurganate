@@ -48,7 +48,7 @@ namespace DivineDiurganate
             // 初始化岩浆地形定义
             InitializeLavaDef();
             
-            // 查找地图上现有的浅层岩浆单元格
+            // 查找地图上现有的浅层岩浆单元格（避开庇护区域）
             FindExistingLavaCells(map);
         }
         
@@ -73,7 +73,7 @@ namespace DivineDiurganate
         }
 
         /// <summary>
-        /// 查找地图上现有的浅层岩浆单元格
+        /// 查找地图上现有的浅层岩浆单元格（避开庇护区域）
         /// </summary>
         private void FindExistingLavaCells(Map map)
         {
@@ -81,7 +81,7 @@ namespace DivineDiurganate
             {
                 sourceCells.Clear();
                 
-                // 遍历整个地图，查找所有LavaShallow地形
+                // 遍历整个地图，查找所有LavaShallow地形（排除庇护区域内的）
                 for (int x = 0; x < map.Size.x; x++)
                 {
                     for (int z = 0; z < map.Size.z; z++)
@@ -91,11 +91,16 @@ namespace DivineDiurganate
                         
                         if (terrain == LavaShallowDef)
                         {
-                            sourceCells.Add(cell);
+                            // 检查是否在庇护区域内
+                            if (!WeatherShelterManager.IsCellSheltered(map, cell))
+                            {
+                                sourceCells.Add(cell);
+                            }
                         }
                     }
                 }
-                // 如果找不到足够的岩浆单元格，可以创建一些
+                
+                // 如果找不到足够的岩浆单元格，可以创建一些（避开庇护区域）
                 if (sourceCells.Count == 0 && map != null)
                 {
                     CreateInitialLavaCells(map);
@@ -108,16 +113,18 @@ namespace DivineDiurganate
         }
 
         /// <summary>
-        /// 创建初始的岩浆单元格（如果地图上没有）
+        /// 创建初始的岩浆单元格（如果地图上没有，避开庇护区域）
         /// </summary>
         private void CreateInitialLavaCells(Map map)
         {
             try
             {
-                // 在地图中心周围创建10个岩浆单元格
+                // 在地图中心周围创建10个岩浆单元格，避开庇护区域
                 IntVec3 center = map.Center;
+                int createdCells = 0;
+                int maxAttempts = 100;
                 
-                for (int i = 0; i < 10; i++)
+                for (int attempt = 0; attempt < maxAttempts && createdCells < 10; attempt++)
                 {
                     // 随机选择一个中心周围的单元格
                     IntVec3 cell = center + new IntVec3(
@@ -128,9 +135,22 @@ namespace DivineDiurganate
                     
                     if (cell.InBounds(map))
                     {
+                        // 检查是否在庇护区域内
+                        if (WeatherShelterManager.IsCellSheltered(map, cell))
+                        {
+                            continue; // 跳过庇护区域内的单元格
+                        }
+                        
+                        // 检查是否已经是岩浆
+                        if (map.terrainGrid.TerrainAt(cell) == LavaShallowDef)
+                        {
+                            continue; // 跳过已经是岩浆的单元格
+                        }
+                        
                         // 设置地形为岩浆
                         map.terrainGrid.SetTerrain(cell, LavaShallowDef);
                         sourceCells.Add(cell);
+                        createdCells++;
                         
                         // 显示效果
                         if (showVisualEffects)
@@ -138,6 +158,11 @@ namespace DivineDiurganate
                             CreateLavaEffect(cell, map, 1.5f);
                         }
                     }
+                }
+                
+                if (createdCells < 10)
+                {
+                    Log.Warning($"[DivineDiurganate] 只创建了 {createdCells} 个岩浆单元格，而不是10个（可能因为庇护区域限制）");
                 }
             }
             catch (Exception ex)
@@ -157,7 +182,7 @@ namespace DivineDiurganate
             // 选择10个随机的岩浆单元格作为蔓延源
             SelectRandomSourceCells();
             
-            // 计算蔓延的目标单元格
+            // 计算蔓延的目标单元格（避开庇护区域）
             CalculateSpreadCells();
             
             spreadExecuted = true;
@@ -195,7 +220,7 @@ namespace DivineDiurganate
         }
 
         /// <summary>
-        /// 计算蔓延的目标单元格
+        /// 计算蔓延的目标单元格（避开庇护区域）
         /// </summary>
         private void CalculateSpreadCells()
         {
@@ -219,6 +244,12 @@ namespace DivineDiurganate
                             // 检查单元格是否在地图范围内
                             if (!neighborCell.InBounds(map))
                                 continue;
+                            
+                            // 检查单元格是否在庇护区域内
+                            if (WeatherShelterManager.IsCellSheltered(map, neighborCell))
+                            {
+                                continue; // 跳过庇护区域内的单元格
+                            }
                             
                             // 检查单元格是否已经是岩浆
                             TerrainDef currentTerrain = map.terrainGrid.TerrainAt(neighborCell);
@@ -364,6 +395,13 @@ namespace DivineDiurganate
             {
                 if (!cell.InBounds(map))
                     return;
+                
+                // 检查是否在庇护区域内（再次确认）
+                if (WeatherShelterManager.IsCellSheltered(map, cell))
+                {
+                    Log.Warning($"[DivineDiurganate] 尝试在庇护区域内创建岩浆，已跳过: {cell}");
+                    return;
+                }
                 
                 // 摧毁单元格上的可摧毁物体
                 DestroyThingsAtCell(cell);
@@ -552,8 +590,8 @@ namespace DivineDiurganate
                     return;
             }
             
-            // 计算地图上现有的岩浆单元格数量
-            int lavaCellCount = CountLavaCells(map);
+            // 计算地图上现有的岩浆单元格数量（不包括庇护区域内的）
+            int lavaCellCount = CountNonShelteredLavaCells(map);
             if (lavaCellCount < minLavaCells)
                 return;
             
@@ -570,9 +608,9 @@ namespace DivineDiurganate
         }
         
         /// <summary>
-        /// 计算地图上的岩浆单元格数量
+        /// 计算地图上的非庇护区域岩浆单元格数量
         /// </summary>
-        private int CountLavaCells(Map map)
+        private int CountNonShelteredLavaCells(Map map)
         {
             try
             {
@@ -587,7 +625,11 @@ namespace DivineDiurganate
                     IntVec3 randomCell = CellFinder.RandomCell(map);
                     if (map.terrainGrid.TerrainAt(randomCell) == lavaDef)
                     {
-                        count++;
+                        // 检查是否在庇护区域内
+                        if (!WeatherShelterManager.IsCellSheltered(map, randomCell))
+                        {
+                            count++;
+                        }
                     }
                 }
                 
@@ -617,8 +659,6 @@ namespace DivineDiurganate
                 
                 // 触发事件
                 weatherEvent.FireEvent();
-                
-                Log.Message($"[DivineDiurganate] 岩浆蔓延天气事件在 {map} 触发");
             }
             catch (Exception ex)
             {

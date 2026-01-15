@@ -54,8 +54,8 @@ namespace DivineDiurganate
         
         private void SpawnMeteor()
         {
-            // 寻找合适的召唤位置
-            IntVec3 targetCell = CellFinder.RandomCell(map);
+            // 寻找合适的召唤位置（避开庇护区域）
+            IntVec3 targetCell = FindNonShelteredMeteorCell();
             
             if (!targetCell.IsValid || !targetCell.InBounds(map))
                 return;
@@ -87,6 +87,68 @@ namespace DivineDiurganate
             }
         }
         
+        /// <summary>
+        /// 寻找不在庇护区域内的陨石落点
+        /// </summary>
+        private IntVec3 FindNonShelteredMeteorCell()
+        {
+            // 尝试多次寻找不在庇护区域内的单元格
+            for (int attempt = 0; attempt < 20; attempt++)
+            {
+                IntVec3 candidate = CellFinder.RandomCell(map);
+                
+                if (!WeatherShelterManager.IsCellSheltered(map, candidate))
+                {
+                    return candidate;
+                }
+            }
+            
+            // 如果找不到非庇护单元格，尝试地图边缘
+            for (int attempt = 0; attempt < 10; attempt++)
+            {
+                IntVec3 candidate = GetRandomEdgeCell(map);
+                
+                if (!WeatherShelterManager.IsCellSheltered(map, candidate))
+                {
+                    return candidate;
+                }
+            }
+            
+            // 如果所有尝试都失败，返回随机单元格（即使可能在庇护区域内）
+            Log.Warning("[DivineDiurganate] 无法找到不在庇护区域内的陨石落点");
+            return CellFinder.RandomCell(map);
+        }
+        
+        /// <summary>
+        /// 获取随机边缘单元格
+        /// </summary>
+        private IntVec3 GetRandomEdgeCell(Map map)
+        {
+            int edgeDistance = 10;
+            int x = Rand.Range(edgeDistance, map.Size.x - edgeDistance);
+            int z = Rand.Range(edgeDistance, map.Size.z - edgeDistance);
+            
+            // 随机选择边缘
+            if (Rand.Value > 0.5f)
+            {
+                // 左边或右边
+                if (Rand.Value > 0.5f)
+                    x = edgeDistance; // 左边
+                else
+                    x = map.Size.x - edgeDistance - 1; // 右边
+            }
+            else
+            {
+                // 上边或下边
+                if (Rand.Value > 0.5f)
+                    z = edgeDistance; // 下边
+                else
+                    z = map.Size.z - edgeDistance - 1; // 上边
+            }
+            
+            return new IntVec3(x, 0, z);
+        }
+        
         public static void TriggerMeteorShower(Map map, int maxMeteors = 8, int duration = 900)
         {
             WeatherEvent_SulfurMeteorShower meteorEvent = 
@@ -99,6 +161,16 @@ namespace DivineDiurganate
         {
             if (!targetCell.InBounds(map))
                 return;
+                
+            // 检查目标单元格是否在庇护区域内
+            if (WeatherShelterManager.IsCellSheltered(map, targetCell))
+            {
+                Log.Warning($"[DivineDiurganate] 尝试在庇护区域内召唤陨石，已阻止: {targetCell}");
+                
+                // 显示庇护保护效果
+                MoteMaker.ThrowText(targetCell.ToVector3Shifted(), map, "庇护保护", Color.cyan, 2.0f);
+                return;
+            }
                 
             ThingDef meteorSkyfallerDef = DefDatabase<ThingDef>.GetNamedSilentFail(METEOR_SKYFALLER_DEF_NAME);
             

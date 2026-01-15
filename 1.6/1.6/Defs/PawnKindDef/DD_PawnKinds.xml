@@ -538,6 +538,60 @@
 		<humanPregnancyChance>0</humanPregnancyChance>
 
 		<modExtensions>
+      <li Class="DivineDiurganate.UniquePawnExtension">
+        <isSingleton>true</isSingleton>
+        <destroyDuplicates>true</destroyDuplicates>
+        <singletonScope>World</singletonScope>
+        <clearExistingRelations>true</clearExistingRelations>
+        <removeOnDeath>true</removeOnDeath>
+        <showSpawnMessage>true</showSpawnMessage>
+        <logLevel>Info</logLevel>
+        
+        <!-- 固定关系 -->
+        <fixedRelations>
+          <li>
+            <targetPawnKind>DD_Special_UniqueCompanion</targetPawnKind>
+            <relationDef>Spouse</relationDef>
+            <direction>Bidirectional</direction>
+            <relationStrength>1.0</relationStrength>
+            <required>true</required>
+            <autoEstablish>true</autoEstablish>
+          </li>
+          <li>
+            <targetPawnKind>DD_NPC_King</targetPawnKind>
+            <relationDef>Rival</relationDef>
+            <direction>Bidirectional</direction>
+            <relationStrength>0.8</relationStrength>
+            <required>false</required>
+            <autoEstablish>true</autoEstablish>
+          </li>
+        </fixedRelations>
+        
+        <!-- 自动关系 -->
+        <autoRelations>
+          <li>
+            <targetPawnKind>Human</targetPawnKind>
+            <relationDef>Friend</relationDef>
+            <filter>
+              <minAge>20</minAge>
+              <maxAge>40</maxAge>
+              <requiredTraits>
+                <li>TraitDefOf.Kind</li>
+              </requiredTraits>
+            </filter>
+            <direction>Bidirectional</direction>
+            <relationStrength>0.6</relationStrength>
+            <maxRelations>3</maxRelations>
+          </li>
+        </autoRelations>
+        
+        <!-- 需要保留的关系类型 -->
+        <relationsToKeep>
+          <li>Spouse</li>
+          <li>Child</li>
+          <li>Parent</li>
+        </relationsToKeep>
+      </li>
 			<li Class="DivineDiurganate.HeadTypeExtension">
 				<!-- 设置头部类型 -->
 				<forcedHeadTypeDef>DD_Michelle_Head</forcedHeadTypeDef>

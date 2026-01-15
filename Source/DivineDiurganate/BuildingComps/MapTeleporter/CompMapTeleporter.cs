@@ -191,7 +191,7 @@ namespace DivineDiurganate
                     float progress = 1f - (float)warmupTicksLeft / totalWarmupTicks;
                     if (progress > 0.9f)
                     {
-                        Messages.Message($"传送即将完成... ({Mathf.RoundToInt(progress * 100)}%)", 
+                        Messages.Message($"DD_HellTeleporter_Willfinish".Translate(Mathf.RoundToInt(progress * 100)), 
                             parent, MessageTypeDefOf.SilentInput);
                     }
                 }
@@ -213,13 +213,7 @@ namespace DivineDiurganate
             if (isWarmingUp)
             {
                 float daysLeft = (float)warmupTicksLeft / 60000f; // 60000 ticks = 1天
-                sb.AppendLine($"传送剩余时间: {daysLeft:F2}天");
-                
-                // 如果游戏条件已启动，显示相关信息
-                if (gameConditionStarted && Props.warmupGameConditionDef != null)
-                {
-                    sb.AppendLine($"状态: {Props.warmupGameConditionDef.label} 激活中");
-                }
+                sb.AppendLine($"DD_HellTeleporter_Daysleft".Translate(daysLeft));
             }
             
             string baseStr = base.CompInspectStringExtra();
@@ -251,16 +245,16 @@ namespace DivineDiurganate
                 float progress = 1f - (float)warmupTicksLeft / totalWarmupTicks;
                 float daysLeft = (float)warmupTicksLeft / 60000f; // 60000 ticks = 1天
                 
-                string desc = $"取消正在进行的传送。\n进度: {Mathf.RoundToInt(progress * 100)}%\n剩余时间: {daysLeft:F2}天";
-                
+                string desc = $"DD_HellTeleporter_TeleCancelDesc".Translate(Mathf.RoundToInt(progress * 100), daysLeft);
+
                 if (gameConditionStarted && Props.warmupGameConditionDef != null)
                 {
-                    desc += $"\n当前状态: {Props.warmupGameConditionDef.label}";
+                    desc += $"DD_HellTeleporter_TeleCancelStatue".Translate(Props.warmupGameConditionDef.label);
                 }
                 
                 Command_Action cancelCmd = new Command_Action
                 {
-                    defaultLabel = "取消传送",
+                    defaultLabel = "DD_HellTeleporter_TeleCancel".Translate(),
                     defaultDesc = desc,
                     icon = ContentFinder<Texture2D>.Get("UI/Designators/Cancel"),
                     action = CancelTeleport
@@ -271,8 +265,8 @@ namespace DivineDiurganate
             {
                 yield return new Command_Action
                 {
-                    defaultLabel = "取消传送",
-                    defaultDesc = "取消传送并移除标记",
+                    defaultLabel = "DD_HellTeleporter_TeleCancel".Translate(),
+                    defaultDesc = "DD_HellTeleporter_TeleCancelRemoveMark".Translate(),
                     icon = ContentFinder<Texture2D>.Get("UI/Designators/Cancel"),
                     action = CancelTeleport
                 };
@@ -282,7 +276,7 @@ namespace DivineDiurganate
                 string reason = GetDisabledReason();
                 Command_Action teleportCmd = new Command_Action
                 {
-                    defaultLabel = "启动传送",
+                    defaultLabel = "DD_HellTeleporter_TeleStart".Translate(),
                     defaultDesc = GetDescription(),
                     icon = ContentFinder<Texture2D>.Get("UI/Commands/LaunchShip"),
                     action = StartTargeting,
@@ -302,7 +296,7 @@ namespace DivineDiurganate
         {
             if (Props.requiredResearch != null && !Props.requiredResearch.IsFinished)
             {
-                return $"需要研究: {Props.requiredResearch.label}";
+                return $"DD_HellTeleporter_TeleStartNeedResearch".Translate(Props.requiredResearch.label);
             }
             
             return null;
@@ -311,24 +305,18 @@ namespace DivineDiurganate
         private string GetDescription()
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
-            sb.AppendLine("传送选定区域内的所有物体到目标地图。");
-            sb.AppendLine($"传送面积: {Props.areaSize.x}x{Props.areaSize.z} 格");
-            sb.AppendLine($"基础预热时间: {Props.warmupTicks} ticks");
-            sb.AppendLine($"距离系数: {Props.daysPerDistance} 天/单位距离");
-            
-            if (Props.warmupGameConditionDef != null)
-            {
-                sb.AppendLine().AppendLine($"传送期间效果: {Props.warmupGameConditionDef.label}");
-            }
+            sb.AppendLine("DD_HellTeleporter_TeleStartBaseDesc".Translate());
+            sb.AppendLine($"DD_HellTeleporter_TeleStartBaseDesc".Translate(Props.areaSize.x, Props.areaSize.z));
+            sb.AppendLine($"DD_HellTeleporter_TeleStartTime".Translate(Props.daysPerDistance));
             
             if (Props.requiredResearch != null)
             {
-                sb.AppendLine().AppendLine($"需要研究: {Props.requiredResearch.label}");
+                sb.AppendLine().AppendLine($"DD_HellTeleporter_TeleStartNeedResearch".Translate(Props.requiredResearch.label));
             }
             
             if (Props.checkCanBuildBase)
             {
-                sb.AppendLine().AppendLine("只能传送到可以建立基地的地图类型");
+                sb.AppendLine().AppendLine("DD_HellTeleporter_TeleStartOnlyCanBuildBase".Translate());
             }
             
             return sb.ToString();
@@ -345,7 +333,7 @@ namespace DivineDiurganate
         {
             if (!targetInfo.IsValid)
             {
-                Messages.Message("无效的目标", MessageTypeDefOf.RejectInput);
+                Messages.Message("DD_HellTeleporter_NotVaildTile".Translate(), MessageTypeDefOf.RejectInput);
                 return false;
             }
 
@@ -355,7 +343,7 @@ namespace DivineDiurganate
                 Tile tile = Find.WorldGrid[targetInfo.Tile];
                 if (tile.PrimaryBiome == null || !tile.PrimaryBiome.canBuildBase)
                 {
-                    Messages.Message($"目标地图类型 '{tile.PrimaryBiome?.label ?? "未知"}' 不允许建立基地",
+                    Messages.Message($"DD_HellTeleporter_NotAllowBase".Translate(tile.PrimaryBiome?.label ?? "未知"),
                         MessageTypeDefOf.RejectInput);
                     return false;
                 }
@@ -377,14 +365,14 @@ namespace DivineDiurganate
                     }
                     else
                     {
-                        Messages.Message("无法在该位置建立基地", MessageTypeDefOf.RejectInput);
+                        Messages.Message("DD_HellTeleporter_NotAllowBase".Translate(), MessageTypeDefOf.RejectInput);
                         return false;
                     }
                 }
                 catch (Exception ex)
                 {
                     Log.Error($"建立新基地时出错: {ex}");
-                    Messages.Message("无法在该位置建立基地", MessageTypeDefOf.RejectInput);
+                    Messages.Message("DD_HellTeleporter_NotAllowBase".Translate(), MessageTypeDefOf.RejectInput);
                     return false;
                 }
             }
@@ -448,12 +436,7 @@ namespace DivineDiurganate
             
             // 显示预热开始信息（以天为单位）
             float totalDays = (float)totalWarmupTicks / 60000f;
-            string message = $"传送预热开始...\n距离: {distance:F1} 格\n预计时间: {totalDays:F2} 天";
-            
-            if (gameConditionStarted && Props.warmupGameConditionDef != null)
-            {
-                message += $"\n传送期间: {Props.warmupGameConditionDef.label} 激活";
-            }
+            string message = $"DD_HellTeleporter_WarmingMessage".Translate(distance,totalDays);
             
             Messages.Message(message, parent, MessageTypeDefOf.NeutralEvent);
             
@@ -523,15 +506,13 @@ namespace DivineDiurganate
                 activeMarker.Destroy();
                 activeMarker = null;
             }
-            
-            Messages.Message("传送已取消", parent, MessageTypeDefOf.NeutralEvent);
         }
 
         private void TryTeleport()
         {
             if (!target.IsValid)
             {
-                Messages.Message("无效的传送目标", parent, MessageTypeDefOf.RejectInput);
+                Messages.Message("DD_HellTeleporter_NotVaildTarget".Translate(), parent, MessageTypeDefOf.RejectInput);
                 CancelTeleport();
                 return;
             }
@@ -544,7 +525,7 @@ namespace DivineDiurganate
                 targetMap = GetOrGenerateTargetMap(target.Tile);
                 if (targetMap == null)
                 {
-                    Messages.Message("无法生成目标地图", parent, MessageTypeDefOf.RejectInput);
+                    Messages.Message("DD_HellTeleporter_SpawnMapFail".Translate(), parent, MessageTypeDefOf.RejectInput);
                     CancelTeleport();
                     return;
                 }
@@ -557,7 +538,7 @@ namespace DivineDiurganate
                 Tile tile = Find.WorldGrid[targetMap.Tile];
                 if (tile.PrimaryBiome == null || !tile.PrimaryBiome.canBuildBase)
                 {
-                    Messages.Message($"目标地图类型 '{tile.PrimaryBiome?.label ?? "未知"}' 不允许建立基地", 
+                    Messages.Message($"DD_HellTeleporter_NotAllowBase".Translate(), 
                         parent, MessageTypeDefOf.RejectInput);
                     CancelTeleport();
                     return;

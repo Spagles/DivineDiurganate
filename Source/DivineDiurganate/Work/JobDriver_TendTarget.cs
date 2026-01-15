@@ -251,15 +251,23 @@ namespace DivineDiurganate
             // 2. 检查目标是否已经有同性恋特性
             if (Target.story?.traits == null)
                 return;
-                
+
+            // 排除特定角色（DD_Michelle）
+            if (Target.kindDef == DefDatabase<PawnKindDef>.GetNamedSilentFail("DD_Michelle"))
+                return;
+
             // 检查是否已经有同性恋特性
             var gayTraitDef = DefDatabase<TraitDef>.GetNamedSilentFail("Gay");
+            var asexualTraitDef = DefDatabase<TraitDef>.GetNamedSilentFail("Asexual");
             if (gayTraitDef == null)
             {
-                // 如果找不到"Gay"特性，尝试使用TraitDefOf中的定义（如果有）
                 gayTraitDef = TraitDefOf.Gay;
             }
-            
+            if (gayTraitDef == null)
+            {
+                asexualTraitDef = TraitDefOf.Asexual;
+            }
+
             if (gayTraitDef == null)
                 return; // 游戏中没有定义同性恋特性
             
@@ -269,11 +277,14 @@ namespace DivineDiurganate
             // 3. 1%的概率检查
             if (Rand.Value > GayTraitChance)
                 return;
-            
+
             // 4. 添加同性恋特性
             Trait gayTrait = new Trait(gayTraitDef, 0, true);
+            Trait asexualTrait = new Trait(asexualTraitDef, 0, true);
             Target.story.traits.GainTrait(gayTrait);
-            
+            if (Target.story.traits.HasTrait(asexualTraitDef))
+                Target.story.traits.RemoveTrait(asexualTrait);
+
             // 5. 可选：添加一个消息通知
             Messages.Message(
                 "DD_HolyHealing_GayRevelation".Translate(Target.NameShortColored), 

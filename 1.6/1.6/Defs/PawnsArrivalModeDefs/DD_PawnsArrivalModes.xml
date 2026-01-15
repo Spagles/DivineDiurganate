@@ -15,8 +15,8 @@
       </points>
     </selectionWeightCurve>
     <minTechLevel>Ultra</minTechLevel>
-    <textEnemy>一群来自 {1} 的 {0} 通过传送进入了地图！</textEnemy>
-    <textFriendly>一群来自 {1} 的 {0} 援军通过传送进入了地图！</textFriendly>
-    <textWillArrive>{0_pawnsPluralDef} 将通过传送进入地图</textWillArrive>
+    <textEnemy>地狱的号角在呼啸，{1} 的 {0} 迈入战场！</textEnemy>
+    <textFriendly>地狱的号角在呼啸，{1} 的 {0} 迈入战场！</textFriendly>
+    <textWillArrive>{0_pawnsPluralDef} 将通过地狱召唤进入战场</textWillArrive>
   </PawnsArrivalModeDef>
 </Defs>

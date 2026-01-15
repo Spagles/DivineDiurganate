@@ -39,16 +39,16 @@ namespace DivineDiurganate
 
             yield return new Command_Action
             {
-                defaultLabel = "WULA_ConfirmTeleport".Translate(),
-                defaultDesc = "WULA_ConfirmTeleportDesc".Translate(),
+                defaultLabel = "DD_ConfirmTeleport".Translate(),
+                defaultDesc = "DD_ConfirmTeleportDesc".Translate(),
                 icon = ContentFinder<Texture2D>.Get("UI/Commands/LaunchShip"),
                 action = Confirm
             };
 
             yield return new Command_Action
             {
-                defaultLabel = "WULA_MoveMarker".Translate(),
-                defaultDesc = "WULA_MoveMarkerDesc".Translate(),
+                defaultLabel = "DD_MoveMarker".Translate(),
+                defaultDesc = "DD_MoveMarkerDesc".Translate(),
                 icon = ContentFinder<Texture2D>.Get("UI/Commands/Install"),
                 action = StartMove
             };

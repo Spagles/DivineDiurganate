@@ -304,15 +304,19 @@ namespace DivineDiurganate
                 Rand.Range(-0.3f, 0.3f)
             );
         }
-        
-        /// <summary>
-        /// 检查物品是否可以被点燃
-        /// </summary>
+
         private bool CanIgniteThing(Thing thing)
         {
             if (thing == null || thing.Destroyed)
                 return false;
-                
+
+            // 检查物品是否在庇护区域内
+            if (WeatherShelterManager.IsThingSheltered(thing, typeof(WeatherEvent_HellfireStorm)))
+            {
+                return false;
+            }
+
+            // 原来的检查逻辑...
             // 检查是否为重要的结构或核心建筑
             if (thing.def.category == ThingCategory.Building)
             {
@@ -320,38 +324,34 @@ namespace DivineDiurganate
                 if (thing.def.building != null && thing.def.building.isNaturalRock)
                     return false;
             }
-            
+
             // 检查物品是否可以被点燃
             if (!thing.FlammableNow)
                 return false;
-                
+
             // 检查物品是否已经在燃烧
             if (thing.GetAttachment(ThingDefOf.Fire) != null)
                 return false;
-                
+
             // 检查物品是否有防火特性
             if (thing.FireBulwark)
                 return false;
-                
+
             // 检查是否为Pawn
             if (thing is Pawn pawn)
             {
-                // 不点燃玩家控制的Pawn
-                //if (pawn.Faction == Faction.OfPlayer)
-                //    return false;
-                    
                 // 不点燃已倒地或死亡的Pawn
                 if (pawn.Downed || pawn.Dead)
                     return false;
-                    
+
                 // 检查Pawn是否可燃（非机械）
                 if (!pawn.RaceProps.IsFlesh)
                     return false;
             }
-            
+
             return true;
         }
-        
+
         /// <summary>
         /// 手动触发地狱焚风事件
         /// </summary>
