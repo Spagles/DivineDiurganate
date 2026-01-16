@@ -24,7 +24,7 @@
     <selectionWeight>0</selectionWeight>
     <summaryPriority>102</summaryPriority>
   </ScenPartDef>
-  <ScenarioDef ParentName="ScenarioBase">
+  <!-- <ScenarioDef ParentName="ScenarioBase">
     <defName>DD_Maple_Sugar_Scenario</defName>
     <label>被伏击的双尾教国运输队</label>
     <description>一支双尾教国的物资运输队被敌对势力袭击了，敌人抢走了这些可怜家伙的大部分物资并杀害了其中的多数人，留下几只可怜的鼠鼠在原地等死。万幸的是，冲天的火光吸引了恰巧路过的一名鼠族修女的注意···</description>
@@ -43,7 +43,6 @@
 					<def>PlayerPawnsArriveMethod</def>
 					<method>Standing</method>
 				</li>
-        <!-- Player pawns start with no possessions eg. extra drugs. -->
         <li Class="ScenPart_NoPossessions">
           <def>NoPossessions</def>
         </li>
@@ -122,12 +121,11 @@
 					<count>5</count>
 				</li>
 
-        <!-- 开局介绍事件 -->
         <li Class="ScenPart_CreateIncident">
           <def>CreateIncident</def>
           <incident>DD_Maple_Sugar_Join</incident>
         </li>
       </parts>
     </scenario>
-  </ScenarioDef>
+  </ScenarioDef> -->
 </Defs>

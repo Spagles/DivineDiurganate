@@ -3,7 +3,7 @@
   <StorytellerDef ParentName="BaseStoryteller">
     <defName>DD_Maple_Sugar</defName>
     <label>[Sister] Maple Sugar</label>
-    <description>Maple Sugar is a Ratkin Sister who serves the Holy Twin-Tail. She often carries a megaphone for chanting and wields an anti-mech heavy lance, by the name of the Holy Twin-Tail to save various devout communities from dire straits—although some rumors say she's a bloodthirsty beast on the battlefield, these are clearly just rumors. As the Holy Twin-Tail's representative on Rimworld, Maple Suger's narrative is always a mix of kindness and madness, with battles, caravans, and visitors appearing frequently; furthermore, when your colony is in danger, Maple Suger will appear in place of the Man in Black to rescue your colony.</description>
+    <description>Maple Sugar is a Ratkin Sister who serves the Holy Twin-Tail. She often carries a megaphone for chanting and wields an anti-mech heavy lance, by the name of the Holy Twin-Tail to save various devout communities from dire straits—although some rumors say she's a bloodthirsty beast on the battlefield, these are clearly just rumors. As the Holy Twin-Tail's representative on Rimworld, Maple Suger's narrative is always a mix of kindness and madness, with battles, caravans, and visitors appearing frequently.</description>
     <portraitLarge>DivineDiurganate/Storyteller/DD_Maple_Sugar</portraitLarge>
     <portraitTiny>DivineDiurganate/Storyteller/DD_Maple_Sugar_TINY</portraitTiny>
     <listOrder>20</listOrder>
@@ -187,10 +187,10 @@
         <numIncidentsRange>1</numIncidentsRange>
       </li>
       <!-- Triggered -->
-      <li Class="StorytellerCompProperties_Triggered">
+      <!-- <li Class="StorytellerCompProperties_Triggered">
         <incident>DD_Maple_Sugar_Join</incident>
         <delayTicks>180</delayTicks>
-      </li>
+      </li> -->
     </comps>
   </StorytellerDef>
 </Defs>

@@ -41,15 +41,11 @@ namespace DivineDiurganate
             {
                 archiveId = GenerateArchiveId();
             }
-            
-            LogMessage($"UniquePawnManager 初始化，存档ID: {archiveId}", LogLevel.Info);
         }
         
         public override void ExposeData()
         {
             base.ExposeData();
-            
-            LogMessage($"ExposeData 调用，模式: {Scribe.mode}", LogLevel.Debug);
             
             // 保存存档ID
             Scribe_Values.Look(ref archiveId, "archiveId", null);
@@ -108,13 +104,11 @@ namespace DivineDiurganate
                 if (pawnRecords == null)
                 {
                     pawnRecords = new Dictionary<string, PawnRecord>();
-                    LogMessage("pawnRecords 为null，重新初始化", LogLevel.Warning);
                 }
                 
                 if (pendingRelations == null)
                 {
                     pendingRelations = new List<PendingRelation>();
-                    LogMessage("pendingRelations 为null，重新初始化", LogLevel.Warning);
                 }
                 
                 if (logEntries == null)
@@ -124,9 +118,6 @@ namespace DivineDiurganate
                 
                 // 标记为需要重建索引
                 initializedAfterLoad = false;
-                
-                LogMessage($"加载完成，记录数: {pawnRecords?.Count ?? 0}, 待处理关系: {pendingRelations?.Count ?? 0}", 
-                    LogLevel.Info);
             }
         }
         
@@ -145,7 +136,6 @@ namespace DivineDiurganate
         public override void StartedNewGame()
         {
             base.StartedNewGame();
-            LogMessage("开始新游戏，重置管理器状态", LogLevel.Info);
             
             // 重置状态
             pawnRecords.Clear();
@@ -163,7 +153,6 @@ namespace DivineDiurganate
         public override void LoadedGame()
         {
             base.LoadedGame();
-            LogMessage("游戏加载完成，开始重建索引", LogLevel.Info);
             
             // 延迟重建，确保所有Pawn都已加载
             initializedAfterLoad = false;
@@ -177,8 +166,6 @@ namespace DivineDiurganate
             if (initializedAfterLoad)
                 return;
             
-            LogMessage("开始重建索引...", LogLevel.Info);
-            
             // 清理无效记录
             List<string> keysToRemove = new List<string>();
             int validCount = 0;
@@ -191,25 +178,12 @@ namespace DivineDiurganate
                 if (record.pawn == null && record.pawnID > 0)
                 {
                     record.pawn = FindPawnByThingID(record.pawnID);
-                    LogMessage($"重新查找Pawn: ID={record.pawnID}, 结果={(record.pawn != null ? "找到" : "未找到")}", 
-                        LogLevel.Debug);
                 }
                 
                 // 检查Pawn是否仍然有效
                 if (record.pawn == null || record.pawn.Destroyed || !PawnExistsInWorld(record.pawn))
                 {
                     keysToRemove.Add(kvp.Key);
-                    
-                    if (record.pawn != null)
-                    {
-                        LogMessage($"移除无效记录: {record.pawn.LabelCap} (ID={record.pawnID})", 
-                            LogLevel.Warning);
-                    }
-                    else
-                    {
-                        LogMessage($"移除无效记录: ID={record.pawnID}", 
-                            LogLevel.Warning);
-                    }
                 }
                 else
                 {
@@ -237,9 +211,6 @@ namespace DivineDiurganate
                 pr.sourcePawn == null || pr.sourcePawn.Destroyed || 
                 !PawnExistsInWorld(pr.sourcePawn) ||
                 (pr.targetPawnKind != null && !IsPawnKindValid(pr.targetPawnKind)));
-            
-            LogMessage($"重建完成: 有效记录 {validCount}/{pawnRecords.Count}, 清理待处理关系 {pendingBefore-pendingRelations.Count}", 
-                LogLevel.Info);
             
             initializedAfterLoad = true;
         }
@@ -370,14 +341,11 @@ namespace DivineDiurganate
                     if (TryEstablishPendingRelation(pendingRelation))
                     {
                         processed.Add(pendingRelation);
-                        
-                        LogMessage($"已建立待处理关系: {pendingRelation.sourcePawn?.LabelShort} -> {pendingRelation.targetPawnKind?.label}",
-                            LogLevel.Info);
                     }
                 }
                 catch (Exception ex)
                 {
-                    LogMessage($"处理待处理关系时出错: {ex}", LogLevel.Error);
+                    Log.Error($"处理待处理关系时出错: {ex}");
                 }
             }
             
@@ -477,11 +445,6 @@ namespace DivineDiurganate
             {
                 pawnRecords.Remove(key);
             }
-            
-            if (removed > 0)
-            {
-                LogMessage($"清理了 {removed} 个无效Pawn记录", LogLevel.Info);
-            }
         }
         
         /// <summary>
@@ -531,14 +494,12 @@ namespace DivineDiurganate
             // 确保已经初始化
             if (!initializedAfterLoad)
             {
-                LogMessage($"管理器未初始化，延迟注册Pawn: {pawn.LabelCap}", LogLevel.Warning);
                 return false;
             }
             
             string pawnKey = GetPawnKey(pawn, extension.singletonScope);
             if (pawnKey == null)
             {
-                LogMessage($"无法生成PawnKey: {pawn.LabelCap}", LogLevel.Error);
                 return false;
             }
             
@@ -570,9 +531,6 @@ namespace DivineDiurganate
             
             pawnRecords[pawnKey] = record;
             
-            LogMessage($"已注册特殊Pawn: {pawn.LabelCap} ({pawn.kindDef.label}), Key: {pawnKey}", 
-                extension.logLevel);
-            
             // 处理关系
             ProcessPawnRelations(pawn, extension);
             
@@ -597,9 +555,6 @@ namespace DivineDiurganate
                 {
                     newPawn.Destroy();
                 }
-                
-                LogMessage($"销毁重复的特殊Pawn: {newPawn.LabelCap} (已存在: {existingPawn.LabelCap})", 
-                    extension.logLevel);
                 
                 return false;
             }
@@ -680,7 +635,7 @@ namespace DivineDiurganate
             }
             catch (Exception ex)
             {
-                LogMessage($"处理Pawn关系时出错 ({pawn.LabelShort}): {ex}", LogLevel.Error);
+                Log.Error($"处理Pawn关系时出错 ({pawn.LabelShort}): {ex}");
             }
         }
         
@@ -703,9 +658,6 @@ namespace DivineDiurganate
                 if (!shouldKeep)
                 {
                     pawn.relations.RemoveDirectRelation(relation.def, relation.otherPawn);
-                    
-                    LogMessage($"移除关系: {pawn.LabelShort} 的 {relation.def.label} 关系",
-                        extension.logLevel);
                 }
             }
         }
@@ -770,15 +722,12 @@ namespace DivineDiurganate
                             };
                             
                             pendingRelations.Add(pending);
-                            
-                            LogMessage($"记录待处理关系: {pawn.LabelShort} -> {fixedRelation.targetPawnKind.label}",
-                                extension.logLevel);
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    LogMessage($"建立固定关系时出错: {ex}", LogLevel.Error);
+                    Log.Error($"建立固定关系时出错: {ex}");
                 }
             }
         }
@@ -816,7 +765,7 @@ namespace DivineDiurganate
                 }
                 catch (Exception ex)
                 {
-                    LogMessage($"建立自动关系时出错: {ex}", LogLevel.Error);
+                    Log.Error($"建立自动关系时出错: {ex}");
                 }
             }
         }
@@ -902,14 +851,11 @@ namespace DivineDiurganate
                         break;
                 }
                 
-                LogMessage($"已建立关系: {sourcePawn.LabelShort} <-> {targetPawn.LabelShort} ({relationDef.label})", 
-                    LogLevel.Info);
-                
                 return true;
             }
             catch (Exception ex)
             {
-                LogMessage($"建立关系时出错: {ex}", LogLevel.Error);
+                Log.Error($"建立关系时出错: {ex}");
                 return false;
             }
         }
@@ -972,42 +918,6 @@ namespace DivineDiurganate
             
             // 清理相关待处理关系
             pendingRelations.RemoveAll(pr => pr.sourcePawn == pawn);
-            
-            LogMessage($"移除Pawn记录: {pawn.LabelCap}", LogLevel.Info);
-        }
-        
-        /// <summary>
-        /// 记录日志消息
-        /// </summary>
-        public void LogMessage(string message, LogLevel level)
-        {
-            if (level == LogLevel.None)
-                return;
-            
-            var entry = new LogEntry
-            {
-                tick = Find.TickManager.TicksGame,
-                message = message,
-                level = level
-            };
-            
-            logEntries.Add(entry);
-            
-            // 控制台日志
-            switch (level)
-            {
-                case LogLevel.Error:
-                    Log.Error($"[UniquePawnManager] {message}");
-                    break;
-                case LogLevel.Warning:
-                    Log.Warning($"[UniquePawnManager] {message}");
-                    break;
-                case LogLevel.Info:
-                case LogLevel.Debug:
-                    if (Prefs.DevMode)
-                        Log.Message($"[UniquePawnManager] {message}");
-                    break;
-            }
         }
         
         /// <summary>

@@ -81,7 +81,7 @@
     <portraitPath>DivineDiurganate/Event/Portraits/DD_Michelle_1</portraitPath>
     <characterName>A Mysterious Ratkin</characterName>
     <descriptions>
-      <li>(A tiny Ratkin peeks out from near the colony)\n\nHello？</li>
+      <li><text>(A tiny Ratkin peeks out from near the colony)\n\nHello？</text></li>
     </descriptions>
     <conditionalDescriptions>
       <li>
@@ -221,7 +221,7 @@
     <portraitPath>DivineDiurganate/Event/Portraits/DD_Michelle_2</portraitPath>
     <characterName>Michelle</characterName>
     <descriptions>
-      <li>(Ratkin dusts herself off)\n\n Heyhey, sorry, I forgot to introduce myself. My name is Michelle Ariel. I used to be a community Exorcist, which could handle any bad guy. I also do some handicrafts. Look—(Ratkin pulls out a short-barreled shotgun from her waist and spins it around a couple of times)—this shotgun is one I modified myself.</li>
+      <li><text>(Ratkin dusts herself off)\n\n Heyhey, sorry, I forgot to introduce myself. My name is Michelle Ariel. I used to be a community Exorcist, which could handle any bad guy. I also do some handicrafts. Look—(Ratkin pulls out a short-barreled shotgun from her waist and spins it around a couple of times)—this shotgun is one I modified myself.</text></li>
     </descriptions>
     <options>
       <li>
@@ -274,7 +274,7 @@
     <portraitPath>DivineDiurganate/Event/Portraits/DD_Michelle_5</portraitPath>
     <characterName>Michelle</characterName>
     <descriptions>
-      <li>It's a long story, but the other rats in the community didn't seem to like me. They voted to banish me, even though I hadn't done anything.</li>
+      <li><text>It's a long story, but the other rats in the community didn't seem to like me. They voted to banish me, even though I hadn't done anything.</text></li>
     </descriptions>
     <options>
       <li>
@@ -313,7 +313,7 @@
     <portraitPath>DivineDiurganate/Event/Portraits/DD_Michelle_3</portraitPath>
     <characterName>Michelle</characterName>
     <descriptions>
-      <li>They're those petty thieves, reckless robbers and thieves, and those mechanical bugs that cut down anyone they see, plus the apostles of hell. Speaking of which, I just beat up that group of heretics, but they've already been banished, so they probably won't cause any trouble, right?</li>
+      <li><text>They're those petty thieves, reckless robbers and thieves, and those mechanical bugs that cut down anyone they see, plus the apostles of hell. Speaking of which, I just beat up that group of heretics, but they've already been banished, so they probably won't cause any trouble, right?</text></li>
     </descriptions>
     <options>
       <li>
@@ -352,7 +352,7 @@
     <portraitPath>DivineDiurganate/Event/Portraits/DD_Michelle_1</portraitPath>
     <characterName>Michelle</characterName>
     <descriptions>
-      <li>Uh, haven't you seen them? They're those undead that are covered in flames. If you don't dispel their curse, it's almost impossible to banish them. \n\n(Mouse takes a lantern from his waist) Like this—shock them with this glowing sacred object, and they'll scatter in all directions.</li>
+      <li><text>Uh, haven't you seen them? They're those undead that are covered in flames. If you don't dispel their curse, it's almost impossible to banish them. \n\n(Mouse takes a lantern from his waist) Like this—shock them with this glowing sacred object, and they'll scatter in all directions.</text></li>
     </descriptions>
     <options>
       <li>
@@ -391,7 +391,7 @@
     <portraitPath>DivineDiurganate/Event/Portraits/DD_Michelle_5</portraitPath>
     <characterName>Michelle</characterName>
     <descriptions>
-      <li>No, no! I'm both a fighter and a worker, I can definitely contribute to the colony! Besides, I've already banished those bad guys, they won't cause any harm.</li>
+      <li><text>No, no! I'm both a fighter and a worker, I can definitely contribute to the colony! Besides, I've already banished those bad guys, they won't cause any harm.</text></li>
     </descriptions>
     <options>
       <li>
@@ -430,7 +430,7 @@
     <portraitPath>DivineDiurganate/Event/Portraits/DD_Michelle_3</portraitPath>
     <characterName>Michelle</characterName>
     <descriptions>
-      <li>(The ratkin covered its chest) \n\n Hehe, this... is plump ratkin. You may not have heard of it, but this kind of ratkin really exists.</li>
+      <li><text>(The ratkin covered its chest) \n\n Hehe, this... is plump ratkin. You may not have heard of it, but this kind of ratkin really exists.</text></li>
     </descriptions>
     <options>
       <li>
@@ -455,7 +455,7 @@
     <portraitPath>DivineDiurganate/Event/Portraits/DD_Michelle_4</portraitPath>
     <characterName>Michelle</characterName>
     <descriptions>
-      <li>Thank you so much, you are all so kind!</li>
+      <li><text>Thank you so much, you are all so kind!</text></li>
     </descriptions>
     <immediateEffects>
       <li>
@@ -489,7 +489,7 @@
     <portraitPath>DivineDiurganate/Event/Portraits/DD_Maple_Sugar_2</portraitPath>
     <characterName>Maple Sugar</characterName>
     <descriptions>
-      <li>Hello, have you seen any ratkin in the vicinity?</li>
+      <li><text>Hello, have you seen any ratkin in the vicinity?</text></li>
     </descriptions>
     <conditionalDescriptions>
       <li>
@@ -569,7 +569,7 @@
     <portraitPath>DivineDiurganate/Event/Portraits/DD_Maple_Sugar_1</portraitPath>
     <characterName>Maple Sugar</characterName>
     <descriptions>
-      <li>I am Maple Sugar, a nun from the Two-Tailed Church. You may have heard me preach. I am looking for my sister. She was recently framed and exiled by some treacherous people in the community. I feel that she should have come to your colony.</li>
+      <li><text>I am Maple Sugar, a nun from the Two-Tailed Church. You may have heard me preach. I am looking for my sister. She was recently framed and exiled by some treacherous people in the community. I feel that she should have come to your colony.</text></li>
     </descriptions>
     <options>
       <li>
@@ -651,7 +651,7 @@
     <portraitPath>DivineDiurganate/Event/Portraits/DD_Maple_Sugar_4</portraitPath>
     <characterName>Maple Sugar</characterName>
     <descriptions>
-      <li>I saw the remains of an exiled Hell legion near your colony; only my sister's lantern bore such distinctive burn marks. If she had fought a group of heretics, she would likely have hidden somewhere to avoid being relentlessly hunted by Hell.</li>
+      <li><text>I saw the remains of an exiled Hell legion near your colony; only my sister's lantern bore such distinctive burn marks. If she had fought a group of heretics, she would likely have hidden somewhere to avoid being relentlessly hunted by Hell.</text></li>
     </descriptions>
     <options>
       <li>
@@ -690,7 +690,7 @@
     <portraitPath>DivineDiurganate/Event/Portraits/DD_Maple_Sugar_5</portraitPath>
     <characterName>Maple Sugar</characterName>
     <descriptions>
-      <li>They are the embodiment of killing and destruction, the eternal enemies of the followers of the Holy Twin-Tail, and are almost indestructible without the aid of sacred objects and prayer. But if their curse of immortality is dispelled, they are easily banished.</li>
+      <li><text>They are the embodiment of killing and destruction, the eternal enemies of the followers of the Holy Twin-Tail, and are almost indestructible without the aid of sacred objects and prayer. But if their curse of immortality is dispelled, they are easily banished.</text></li>
     </descriptions>
     <options>
       <li>
@@ -715,7 +715,7 @@
     <portraitPath>DivineDiurganate/Event/Portraits/DD_Maple_Sugar_5</portraitPath>
     <characterName>Maple Sugar</characterName>
     <descriptions>
-      <li>I am a servant of the Holy Twin-Tail. Unlike our kind, in order to demonstrate His authority on the battlefield, the Diurganate Sister must lead by example in slaying evil, not—(the ratkin licked its lips contemptuously)—hide in the back like our powerless colleagues.</li>
+      <li><text>I am a servant of the Holy Twin-Tail. Unlike our kind, in order to demonstrate His authority on the battlefield, the Diurganate Sister must lead by example in slaying evil, not—(the ratkin licked its lips contemptuously)—hide in the back like our powerless colleagues.</text></li>
     </descriptions>
     <options>
       <li>
@@ -740,7 +740,7 @@
     <portraitPath>DivineDiurganate/Event/Portraits/DD_Maple_Sugar_2</portraitPath>
     <characterName>Maple Sugar</characterName>
     <descriptions>
-      <li>That's great! Luckily she didn't go too far!</li>
+      <li><text>That's great! Luckily she didn't go too far!</text></li>
     </descriptions>
     <immediateEffects>
       <li>

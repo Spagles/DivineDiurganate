@@ -57,8 +57,6 @@ namespace DivineDiurganate
                 {
                     // 完全阻止生成
                     __result = null;
-                    manager.LogMessage($"阻止生成重复的特殊Pawn: {request.KindDef.label}", 
-                        extension.logLevel);
                     return false;
                 }
             }
@@ -113,8 +111,6 @@ namespace DivineDiurganate
                     {
                         pawn.Destroy();
                         __result = null;
-                        manager.LogMessage($"销毁重复的特殊Pawn: {pawn.LabelCap}", 
-                            extension.logLevel);
                     }
                     return;
                 }

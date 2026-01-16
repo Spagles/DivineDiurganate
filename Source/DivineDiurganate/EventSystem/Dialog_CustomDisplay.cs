@@ -70,14 +70,14 @@ namespace DivineDiurganate
             {
                 if (def.descriptionMode == DescriptionSelectionMode.Random)
                 {
-                    selectedDescription = def.descriptions.RandomElement();
+                    selectedDescription = def.descriptions.RandomElement().text;
                 }
                 else
                 {
                     string indexVarName = $"_seq_desc_index_{def.defName}";
                     int currentIndex = eventVarManager.GetVariable<int>(indexVarName, 0);
 
-                    selectedDescription = def.descriptions[currentIndex];
+                    selectedDescription = def.descriptions[currentIndex].text;
 
                     int nextIndex = (currentIndex + 1) % def.descriptions.Count;
                     eventVarManager.SetVariable(indexVarName, nextIndex);
