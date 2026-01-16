@@ -722,7 +722,7 @@
       <li Class="DivineDiurganate.MeleeWithShotExtension">
         <projectileDef>DD_Axe_Shotgun_Bullet</projectileDef>
         <pelletCount>7</pelletCount>
-        <fanAngle>30</fanAngle>
+        <fanAngle>15</fanAngle>
         <range>20.9</range>
         <preventFriendlyFire>true</preventFriendlyFire>
         <soundCast>DD_Axe_Shotgun_FireSound</soundCast>
@@ -743,7 +743,7 @@
     <modExtensions>
       <!-- 扇形配置 -->
       <li Class="DivineDiurganate.ShotgunFanExtension">
-        <fanAngle>30</fanAngle>        <!-- 扇形展开角度 -->
+        <fanAngle>20</fanAngle>        <!-- 扇形展开角度 -->
       </li>
       <!-- 弹丸数量配置 -->
       <li Class="DivineDiurganate.ShotgunExtension">

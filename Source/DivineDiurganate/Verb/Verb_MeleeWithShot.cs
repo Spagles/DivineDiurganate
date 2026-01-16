@@ -45,14 +45,15 @@ namespace DivineDiurganate
             Map map = casterPawn.Map;
             ThingDef projectileDef = ext.projectileDef;
 
-            // 获取扇形和弹丸配置
+            // 获取扇形和弹丸配置（可能为null）
             ShotgunFanExtension fanExt = ShotgunFanExtension.Get(projectileDef);
             ShotgunExtension shotgunExt = ShotgunExtension.Get(projectileDef);
 
-            int totalPellets = ext.pelletCount > 0 ? ext.pelletCount : shotgunExt.pelletCount;
+            // 优先使用MeleeWithShotExtension的配置，其次使用projectileDef的配置，最后使用默认值
+            int totalPellets = ext.pelletCount > 0 ? ext.pelletCount : (shotgunExt?.pelletCount ?? 1);
             if (totalPellets <= 0) totalPellets = 1;
 
-            float fanAngle = ext.fanAngle > 0 ? ext.fanAngle : fanExt.fanAngle;
+            float fanAngle = ext.fanAngle > 0 ? ext.fanAngle : (fanExt?.fanAngle ?? 30f);
 
             // 计算基准角度（从射手到目标）
             Vector3 casterPos = casterPawn.DrawPos;
