@@ -9,14 +9,14 @@
   <DD_Ratkin_Adopted_Child.titleShort>弃子</DD_Ratkin_Adopted_Child.titleShort>
   
   <!-- EN: Upon reaching adulthood, [PAWN_nameDef] became an exorcist for the Twin-Tail community enforcer authorized by the Catholic Church, responsible for eliminating evil and maintaining order in the church and surrounding area. [PAWN_pronoun] was always dedicated and deeply loved by the congregation, until one day, during a fight with thugs, [PAWN_possessive] accidentally lost hairpin. Those once praising and admiring gazes instantly turned sinister and vicious, cursing this alien who had deceived the ratkins. Ultimately, the church's public trial declared [PAWN_nameDef] exiled from the community. Without anger or protest, [PAWN_pronoun] silently left the home which had once protected. -->
-  <DD_Ratkin_Exiled_Exorcist.description>成年后，[PAWN_nameDef]成为了一名双尾教国的驱魔人——教廷授权的社区执法者，负责除暴安良，维持教堂和周边地区的秩序。[PAWN_pronoun]一直尽心尽责，深受教众的爱戴，直到有一天，[PAWN_possessive]耳朵发卡在与暴徒的打斗中不慎掉落，那些曾经夸耀和赞美的目光立刻变得阴狠毒辣，并诅咒这个欺骗鼠众的异族。\n\n最终，教堂的公开裁判宣布将[PAWN_nameDef]从社区中放逐出去，没有愤怒也没有抗议，[PAWN_pronoun]一声不响的离开了这个自己曾经守护的家园。</DD_Ratkin_Exiled_Exorcist.description>
+  <DD_Ratkin_Exiled_Exorcist.description>成年后，[PAWN_nameDef]成为了一名双尾教国的治安官——教廷授权的社区执法者，负责除暴安良，维持教堂和周边地区的秩序。[PAWN_pronoun]一直尽心尽责，深受教众的爱戴，直到有一天，[PAWN_possessive]耳朵发卡在与暴徒的打斗中不慎掉落，那些曾经夸耀和赞美的目光立刻变得阴狠毒辣，并诅咒这个欺骗鼠众的异族。\n\n最终，教堂的公开裁判宣布将[PAWN_nameDef]从社区中放逐出去，没有愤怒也没有抗议，[PAWN_pronoun]一声不响的离开了这个自己曾经守护的家园。</DD_Ratkin_Exiled_Exorcist.description>
   <!-- EN: Exiled Exorcist -->
-  <DD_Ratkin_Exiled_Exorcist.title>被放逐的驱魔人</DD_Ratkin_Exiled_Exorcist.title>
+  <DD_Ratkin_Exiled_Exorcist.title>被放逐的治安官</DD_Ratkin_Exiled_Exorcist.title>
   <!-- EN: Exorcist -->
-  <DD_Ratkin_Exiled_Exorcist.titleShort>驱魔人</DD_Ratkin_Exiled_Exorcist.titleShort>
+  <DD_Ratkin_Exiled_Exorcist.titleShort>治安官</DD_Ratkin_Exiled_Exorcist.titleShort>
   
   <!-- EN: Upon reaching adulthood, [PAWN_nameDef] became a nun. Disliking the monotonous, mechanical preaching of traditional nuns, [PAWN_nameDef] chose to become an idol, touring the communities of the Twin-Tail, spreading the gospel through song. Young ratkins from far and wide flocked to this novel form of preaching, and [PAWN_possessive] tours were never short of audiences. However, when [PAWN_nameDef] returned home in triumph, [PAWN_pronoun] discovered the entire community had been destroyed. Because the community had banished its exorcist sheriff, some malicious rats and other races colluded to bring forbidden addictive substances into the community. No one stood up to stop it; their former faith was ruthlessly trampled, their parents were murdered by a frenzied mob, and the community had become a haven for addicts. Disappointed, [PAWN_nameDef] left home, embarking once more on [PAWN_possessive] preaching journey, and searching for [PAWN_possessive] lost sister. -->
-  <DD_Ratkin_Idol_Sister.description>成年后，[PAWN_nameDef]成为了一名修女。[PAWN_nameDef]不喜欢像那些传统修女一样一成不变地机械地布道，而是选择当一名偶像，在双尾教国的社区中巡回出演，以歌声向教众们传播福音。十里八乡的年轻鼠鼠们对这种新奇的布道趋之若鹜，[PAWN_possessive]巡回布道从不缺少观众。\n\n但是，当[PAWN_nameDef]功成名就回到家乡时，才知道整个社区已经毁灭了，由于社区放逐了自己的驱魔人治安官，一些不怀好意的鼠族和异族沆瀣一气，将被禁止的成瘾品带进了社区中。没有人站出来阻止，曾经的信仰被无情践踏，自己的父母被疯狂的人群残害，这个社区就这样变成了瘾君子聚集地。[PAWN_nameDef]失望地离开了家园，再次踏上了布道的旅途，并寻找自己失散的妹妹。</DD_Ratkin_Idol_Sister.description>
+  <DD_Ratkin_Idol_Sister.description>成年后，[PAWN_nameDef]成为了一名修女。[PAWN_nameDef]不喜欢像那些传统修女一样一成不变地机械地布道，而是选择当一名偶像，在双尾教国的社区中巡回出演，以歌声向教众们传播福音。十里八乡的年轻鼠鼠们对这种新奇的布道趋之若鹜，[PAWN_possessive]巡回布道从不缺少观众。\n\n但是，当[PAWN_nameDef]功成名就回到家乡时，才知道整个社区已经毁灭了，由于社区放逐了自己的治安官，一些不怀好意的鼠族和异族沆瀣一气，将被禁止的成瘾品带进了社区中。没有人站出来阻止，曾经的信仰被无情践踏，自己的父母被疯狂的人群残害，这个社区就这样变成了瘾君子聚集地。[PAWN_nameDef]失望地离开了家园，再次踏上了布道的旅途，并寻找自己失散的妹妹。</DD_Ratkin_Idol_Sister.description>
   <!-- EN: Idol Sister -->
   <DD_Ratkin_Idol_Sister.title>偶像修女</DD_Ratkin_Idol_Sister.title>
   <!-- EN: Sister -->

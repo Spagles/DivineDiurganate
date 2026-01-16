@@ -77,10 +77,10 @@
   <DivineDiurganate.EventDef>
     <defName>DD_SP_Ratkin_Join_UI_1</defName>
     <label>Event</label>
-    <portraitPath>DivineDiurganate/Event/Portraits/DD_Michelle_4</portraitPath>
+    <portraitPath>DivineDiurganate/Event/Portraits/DD_Michelle_1</portraitPath>
     <characterName>Maple Sugar</characterName>
     <descriptions>
-      <li>（一只娇小的鼠鼠在殖民地附近探头探脑）</li>
+      <li>（一只娇小的鼠鼠在殖民地附近探头探脑）\n\n你们好？</li>
     </descriptions>
     <conditionalDescriptions>
       <li>
@@ -93,7 +93,7 @@
             <resultReverse>true</resultReverse> 
           </li>
         </conditions>
-        <text>（你不应该在这段剧情前获得米鼠儿，我现在不得不帮你跳过这段剧情）</text>
+        <text>\n\n（你不应该在这段剧情前获得米鼠儿，我现在不得不帮你跳过这段剧情）</text>
       </li>
       <li>
         <conditions>
@@ -105,12 +105,323 @@
             <resultReverse>false</resultReverse> 
           </li>
         </conditions>
-        <text></text>
+        <text>我是一名旅行者，恰好路过这边，请问你们这里还有空床吗？我刚刚和附近的坏家伙打了一架，想找个地方避避风头。</text>
       </li>
     </conditionalDescriptions>
     <options>
       <li>
-        <label>I Know</label>
+        <label>你是谁？</label>
+        <useCustomColors>false</useCustomColors>
+        <conditions>
+          <li Class="DivineDiurganate.Condition_UniquePawnExists">
+            <pawnKindDef>DD_Michelle</pawnKindDef>
+            <requireAlive>false</requireAlive>
+            <requireOnMap>false</requireOnMap>
+            <!-- 结果反转，如果为true，存在pawn会返回false -->
+            <resultReverse>true</resultReverse> 
+          </li>
+        </conditions>
+        <optionEffects>
+          <li>
+            <effects>
+              <li Class="DivineDiurganate.Effect_OpenCustomUI">
+                <defName>DD_SP_Ratkin_Join_UI_2</defName>
+              </li>
+              <li Class="DivineDiurganate.Effect_CloseDialog" />
+            </effects>
+          </li>
+        </optionEffects>
+      </li>
+      <li>
+        <label>你不会给我们惹麻烦吧</label>
+        <useCustomColors>false</useCustomColors>
+        <conditions>
+          <li Class="DivineDiurganate.Condition_UniquePawnExists">
+            <pawnKindDef>DD_Michelle</pawnKindDef>
+            <requireAlive>false</requireAlive>
+            <requireOnMap>false</requireOnMap>
+            <!-- 结果反转，如果为true，存在pawn会返回false -->
+            <resultReverse>true</resultReverse> 
+          </li>
+        </conditions>
+        <optionEffects>
+          <li>
+            <effects>
+              <li Class="DivineDiurganate.Effect_OpenCustomUI">
+                <defName>DD_SP_Ratkin_Join_UI_6</defName>
+              </li>
+              <li Class="DivineDiurganate.Effect_CloseDialog" />
+            </effects>
+          </li>
+        </optionEffects>
+      </li>
+      <li>
+        <label>我们这边刚好有一张床，欢迎！</label>
+        <useCustomColors>false</useCustomColors>
+        <conditions>
+          <li Class="DivineDiurganate.Condition_UniquePawnExists">
+            <pawnKindDef>DD_Michelle</pawnKindDef>
+            <requireAlive>false</requireAlive>
+            <requireOnMap>false</requireOnMap>
+            <!-- 结果反转，如果为true，存在pawn会返回false -->
+            <resultReverse>true</resultReverse> 
+          </li>
+        </conditions>
+        <optionEffects>
+          <li>
+            <effects>
+              <li Class="DivineDiurganate.Effect_OpenCustomUI">
+                <defName>Wula_Intro_NewColony_UI_3</defName>
+              </li>
+              <li Class="DivineDiurganate.Effect_CloseDialog" />
+            </effects>
+          </li>
+        </optionEffects>
+      </li>
+      <li>
+        <label>不行，我们殖民地满员了。</label>
+        <useCustomColors>false</useCustomColors>
+        <optionEffects>
+          <li>
+            <effects>
+              <li Class="DivineDiurganate.Effect_CloseDialog" />
+            </effects>
+          </li>
+        </optionEffects>
+      </li>
+    </options>
+  </DivineDiurganate.EventDef>
+  <DivineDiurganate.EventDef>
+    <defName>DD_SP_Ratkin_Join_UI_2</defName>
+    <label>Event</label>
+    <portraitPath>DivineDiurganate/Event/Portraits/DD_Michelle_2</portraitPath>
+    <characterName>Maple Sugar</characterName>
+    <descriptions>
+      <li>（鼠鼠拍了拍身上的尘土）\n\n欸哈哈，不好意思，忘记自我介绍了。我叫米鼠儿·亚莉尔，曾经是一名社区治安官，无论是怎样的坏家伙我都能应付。我还会做一些手工活，你看——（鼠鼠拔出自己腰间的短管霰弹枪转了两圈）——这把霰弹枪就是我自己改造的。</li>
+    </descriptions>
+    <options>
+      <li>
+        <label>为什么作为治安官，你却没在自己的辖区</label>
+        <useCustomColors>false</useCustomColors>
+        <optionEffects>
+          <li>
+            <effects>
+              <li Class="DivineDiurganate.Effect_OpenCustomUI">
+                <defName>DD_SP_Ratkin_Join_UI_3</defName>
+              </li>
+              <li Class="DivineDiurganate.Effect_CloseDialog" />
+            </effects>
+          </li>
+        </optionEffects>
+      </li>
+      <li>
+        <label>你说的坏家伙是什么？</label>
+        <useCustomColors>false</useCustomColors>
+        <optionEffects>
+          <li>
+            <effects>
+              <li Class="DivineDiurganate.Effect_OpenCustomUI">
+                <defName>DD_SP_Ratkin_Join_UI_4</defName>
+              </li>
+              <li Class="DivineDiurganate.Effect_CloseDialog" />
+            </effects>
+          </li>
+        </optionEffects>
+      </li>
+      <li>
+        <label>没什么要问的了···</label>
+        <useCustomColors>false</useCustomColors>
+        <optionEffects>
+          <li>
+            <effects>
+              <li Class="DivineDiurganate.Effect_OpenCustomUI">
+                <defName>Wula_Intro_NewColony_UI_1</defName>
+              </li>
+              <li Class="DivineDiurganate.Effect_CloseDialog" />
+            </effects>
+          </li>
+        </optionEffects>
+      </li>
+    </options>
+  </DivineDiurganate.EventDef>
+  <DivineDiurganate.EventDef>
+    <defName>DD_SP_Ratkin_Join_UI_3</defName>
+    <label>Event</label>
+    <portraitPath>DivineDiurganate/Event/Portraits/DD_Michelle_5</portraitPath>
+    <characterName>Maple Sugar</characterName>
+    <descriptions>
+      <li>说起来有些话长，社区里的其他鼠族似乎不太喜欢我，她们投票把我放逐了，虽然我什么也没做。</li>
+    </descriptions>
+    <options>
+      <li>
+        <label>问点别的···</label>
+        <useCustomColors>false</useCustomColors>
+        <optionEffects>
+          <li>
+            <effects>
+              <li Class="DivineDiurganate.Effect_OpenCustomUI">
+                <defName>DD_SP_Ratkin_Join_UI_2</defName>
+              </li>
+              <li Class="DivineDiurganate.Effect_CloseDialog" />
+            </effects>
+          </li>
+        </optionEffects>
+      </li>
+      <li>
+        <label>没什么要问的了···</label>
+        <useCustomColors>false</useCustomColors>
+        <optionEffects>
+          <li>
+            <effects>
+              <li Class="DivineDiurganate.Effect_OpenCustomUI">
+                <defName>Wula_Intro_NewColony_UI_1</defName>
+              </li>
+              <li Class="DivineDiurganate.Effect_CloseDialog" />
+            </effects>
+          </li>
+        </optionEffects>
+      </li>
+    </options>
+  </DivineDiurganate.EventDef>
+  <DivineDiurganate.EventDef>
+    <defName>DD_SP_Ratkin_Join_UI_4</defName>
+    <label>Event</label>
+    <portraitPath>DivineDiurganate/Event/Portraits/DD_Michelle_3</portraitPath>
+    <characterName>Maple Sugar</characterName>
+    <descriptions>
+      <li>就是那些小毛贼、不长眼的劫匪强盗和见人就砍的机械虫子之类的，然后还有地狱的使徒。说起来，我刚刚才揍了这群异教徒，不过它们已经被放逐了，大概不会造成什么后患吧？</li>
+    </descriptions>
+    <options>
+      <li>
+        <label>强盗和机械族我们知道，地狱使徒又是什么东西？</label>
+        <useCustomColors>false</useCustomColors>
+        <optionEffects>
+          <li>
+            <effects>
+              <li Class="DivineDiurganate.Effect_OpenCustomUI">
+                <defName>DD_SP_Ratkin_Join_UI_5</defName>
+              </li>
+              <li Class="DivineDiurganate.Effect_CloseDialog" />
+            </effects>
+          </li>
+        </optionEffects>
+      </li>
+      <li>
+        <label>没什么要问的了···</label>
+        <useCustomColors>false</useCustomColors>
+        <optionEffects>
+          <li>
+            <effects>
+              <li Class="DivineDiurganate.Effect_OpenCustomUI">
+                <defName>Wula_Intro_NewColony_UI_1</defName>
+              </li>
+              <li Class="DivineDiurganate.Effect_CloseDialog" />
+            </effects>
+          </li>
+        </optionEffects>
+      </li>
+    </options>
+  </DivineDiurganate.EventDef>
+  <DivineDiurganate.EventDef>
+    <defName>DD_SP_Ratkin_Join_UI_5</defName>
+    <label>Event</label>
+    <portraitPath>DivineDiurganate/Event/Portraits/DD_Michelle_1</portraitPath>
+    <characterName>Maple Sugar</characterName>
+    <descriptions>
+      <li>呃呃，你们没见过吗，就是那些浑身冒火的亡灵，如果不驱散它们的诅咒，就几乎没办法放逐它们。\n\n（鼠鼠取下腰间的提灯）就像这样——用这种发光圣物去晃它们，它们就会四处溃逃了。</li>
+    </descriptions>
+    <options>
+      <li>
+        <label>问点别的···</label>
+        <useCustomColors>false</useCustomColors>
+        <optionEffects>
+          <li>
+            <effects>
+              <li Class="DivineDiurganate.Effect_OpenCustomUI">
+                <defName>DD_SP_Ratkin_Join_UI_2</defName>
+              </li>
+              <li Class="DivineDiurganate.Effect_CloseDialog" />
+            </effects>
+          </li>
+        </optionEffects>
+      </li>
+      <li>
+        <label>没什么要问的了···</label>
+        <useCustomColors>false</useCustomColors>
+        <optionEffects>
+          <li>
+            <effects>
+              <li Class="DivineDiurganate.Effect_OpenCustomUI">
+                <defName>Wula_Intro_NewColony_UI_1</defName>
+              </li>
+              <li Class="DivineDiurganate.Effect_CloseDialog" />
+            </effects>
+          </li>
+        </optionEffects>
+      </li>
+    </options>
+  </DivineDiurganate.EventDef>
+  <DivineDiurganate.EventDef>
+    <defName>DD_SP_Ratkin_Join_UI_6</defName>
+    <label>Event</label>
+    <portraitPath>DivineDiurganate/Event/Portraits/DD_Michelle_5</portraitPath>
+    <characterName>Maple Sugar</characterName>
+    <descriptions>
+      <li>不会的不会的！我又能打又能干，肯定能为殖民地出一份力的！而且那些坏东西已经被我放逐了，不会造成什么危害的。</li>
+    </descriptions>
+    <options>
+      <li>
+        <label>坏东西？什么坏东西</label>
+        <useCustomColors>false</useCustomColors>
+        <optionEffects>
+          <li>
+            <effects>
+              <li Class="DivineDiurganate.Effect_OpenCustomUI">
+                <defName>DD_SP_Ratkin_Join_UI_5</defName>
+              </li>
+              <li Class="DivineDiurganate.Effect_CloseDialog" />
+            </effects>
+          </li>
+        </optionEffects>
+      </li>
+      <li>
+        <label>没什么要问的了···</label>
+        <useCustomColors>false</useCustomColors>
+        <optionEffects>
+          <li>
+            <effects>
+              <li Class="DivineDiurganate.Effect_OpenCustomUI">
+                <defName>Wula_Intro_NewColony_UI_1</defName>
+              </li>
+              <li Class="DivineDiurganate.Effect_CloseDialog" />
+            </effects>
+          </li>
+        </optionEffects>
+      </li>
+    </options>
+  </DivineDiurganate.EventDef>
+  <DivineDiurganate.EventDef>
+    <defName>DD_SP_Ratkin_Join_UI_7</defName>
+    <label>Event</label>
+    <portraitPath>DivineDiurganate/Event/Portraits/DD_Michelle_4</portraitPath>
+    <characterName>Maple Sugar</characterName>
+    <descriptions>
+      <li>太好了，你们人真好！</li>
+    </descriptions>
+    <immediateEffects>
+      <li>
+        <effects>
+          <li Class="DivineDiurganate.Effect_SpawnPawn">
+            <kindDef>DD_Michelle</kindDef>
+            <count>1</count>
+            <joinPlayerFaction>true</joinPlayerFaction>
+          </li>
+        </effects>
+      </li>
+    </immediateEffects>
+    <options>
+      <li>
+        <label>（米鼠儿加入了殖民地）</label>
         <useCustomColors>false</useCustomColors>
         <optionEffects>
           <li>
