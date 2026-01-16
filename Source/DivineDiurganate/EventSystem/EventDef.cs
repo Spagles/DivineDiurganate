@@ -15,17 +15,14 @@ namespace DivineDiurganate
     public class EventDef : Def
     {
         public string portraitPath;
-        [MustTranslate]
         public string characterName;
         
         // New system: list of descriptions
-        [MustTranslate]
         public List<string> descriptions;
         public DescriptionSelectionMode descriptionMode = DescriptionSelectionMode.Random;
         public bool hiddenWindow = false;
 
         // Backwards compatibility: old single description field
-        [MustTranslate]
         public new string description = null;
 
         public Vector2 windowSize = Vector2.zero;
@@ -39,7 +36,6 @@ namespace DivineDiurganate
         public Color? defaultOptionColor = null;
         public Color? defaultOptionTextColor = null;
 
-        [MustTranslate]
         public string aiSystemInstruction;
 
         public override void PostLoad()
