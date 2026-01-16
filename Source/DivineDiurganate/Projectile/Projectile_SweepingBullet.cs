@@ -91,30 +91,31 @@ namespace DivineDiurganate
             this.preventFriendlyFire = preventFriendlyFire || (Props?.preventFriendlyFire ?? true);
         }
 
-        protected override void Tick()
+        protected override void TickInterval(int delta)
         {
             Vector3 startPos = this.lastTickPosition;
-            base.Tick();
+
+            // 先检查撞墙，在base.TickInterval之前
+            Vector3 predictedPos = this.ExactPosition;
+            if (CheckWallCollision(predictedPos))
+            {
+                // 撞墙了，调用Impact销毁子弹
+                this.Impact(null);
+                return;
+            }
+
+            // 检查路径上的所有目标并造成伤害（在移动之前）
+            CheckPathForDamage(startPos, predictedPos);
+
+            // 调用原版逻辑（会移动弹丸）
+            base.TickInterval(delta);
 
             if (this.Destroyed) return;
 
             // 处理尾迹特效
             HandleFleckEffects();
 
-            Vector3 endPos = this.ExactPosition;
-
-            // 检查路径上的所有目标并造成伤害
-            CheckPathForDamage(startPos, endPos);
-
-            // 检查是否撞到墙壁或不可通过的建筑
-            if (CheckWallCollision(endPos))
-            {
-                // 撞墙了，调用原始Impact销毁子弹
-                this.Impact(null);
-                return;
-            }
-
-            this.lastTickPosition = endPos;
+            this.lastTickPosition = this.ExactPosition;
         }
 
         /// <summary>

@@ -669,7 +669,7 @@
       <AccuracyShort>0.65</AccuracyShort>
       <AccuracyMedium>0.45</AccuracyMedium>
       <AccuracyLong>0.2</AccuracyLong>
-      <RangedWeapon_Cooldown>1.75</RangedWeapon_Cooldown>
+      <RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
     </statBases>
     <verbs>
       <li>
@@ -694,39 +694,41 @@
     <generateCommonality>0.01</generateCommonality>
     <tradeability>None</tradeability>
     <thingSetMakerTags Inherit="False" />
-    <!-- 近战工具 - 枪口挂载战斧 -->
-    <!-- <tools>
+    <!-- 枪斗术近战（近战时自动开枪） -->
+    <tools>
+      <!-- 枪托撞击 + 射击 -->
       <li>
-        <label>axe blade</label>
+        <label>stock</label>
         <capacities>
-          <li>Cut</li>
+          <li>DD_BluntWithShot</li>
         </capacities>
-        <power>22</power>
-        <extraMeleeDamages>
-					<li>
-						<def>Stun</def>
-						<amount>22</amount>
-					</li>
-				</extraMeleeDamages>
-        <cooldownTime>2.2</cooldownTime>
-        <armorPenetration>0.5</armorPenetration>
+        <power>12</power>
+        <cooldownTime>1.5</cooldownTime>
+        <armorPenetration>0.15</armorPenetration>
       </li>
+      <!-- 枪管戳刺 + 射击 -->
       <li>
-        <label>axe head</label>
+        <label>barrel</label>
         <capacities>
-          <li>Blunt</li>
+          <li>DD_BluntWithShot</li>
         </capacities>
-        <power>18</power>
-        <extraMeleeDamages>
-					<li>
-						<def>Stun</def>
-						<amount>18</amount>
-					</li>
-				</extraMeleeDamages>
-        <cooldownTime>2.0</cooldownTime>
-        <armorPenetration>0.5</armorPenetration>
+        <power>10</power>
+        <cooldownTime>0.8</cooldownTime>
+        <armorPenetration>0.10</armorPenetration>
       </li>
-    </tools> -->
+    </tools>
+    <!-- 近战射击配置 -->
+    <modExtensions>
+      <li Class="DivineDiurganate.MeleeWithShotExtension">
+        <projectileDef>DD_Axe_Shotgun_Bullet</projectileDef>
+        <pelletCount>7</pelletCount>
+        <fanAngle>15</fanAngle>
+        <range>20.9</range>
+        <preventFriendlyFire>true</preventFriendlyFire>
+        <soundCast>DD_Axe_Shotgun_FireSound</soundCast>
+        <muzzleFlashScale>6</muzzleFlashScale>
+      </li>
+    </modExtensions>
   </ThingDef>
   <ThingDef ParentName="BaseBullet">
     <defName>DD_Axe_Shotgun_Bullet</defName>
@@ -741,11 +743,11 @@
     <modExtensions>
       <!-- 扇形配置 -->
       <li Class="DivineDiurganate.ShotgunFanExtension">
-        <fanAngle>30</fanAngle>        <!-- 扇形展开角度 -->
+        <fanAngle>20</fanAngle>        <!-- 扇形展开角度 -->
       </li>
       <!-- 弹丸数量配置 -->
       <li Class="DivineDiurganate.ShotgunExtension">
-        <pelletCount>6</pelletCount>        <!-- 8颗弹丸均匀分布 -->
+        <pelletCount>7</pelletCount>        <!-- 8颗弹丸均匀分布 -->
       </li>
       <!-- 穿透配置 -->
       <li Class="DivineDiurganate.SweepingBullet_Extension">
