@@ -197,10 +197,10 @@
 
   <FactionDef ParentName="FactionBase">
     <defName>DD_Hell_Legion</defName>
-    <label>地狱军团</label>
-    <fixedName>地狱军团</fixedName>
-    <pawnSingular>地狱军团</pawnSingular>
-    <pawnsPlural>地狱军团</pawnsPlural>
+    <label>Hell</label>
+    <fixedName>Hell</fixedName>
+    <pawnSingular>Hell Legion</pawnSingular>
+    <pawnsPlural>Hell Legions</pawnsPlural>
     <requiredCountAtGameStart>1</requiredCountAtGameStart>
     <raidCommonalityFromPointsCurve>
       <points>

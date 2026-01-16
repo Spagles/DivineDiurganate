@@ -1,6 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
   
+  <!-- EN: Holy Radiance -->
+  <DD_Holy_Radiance.label>圣光</DD_Holy_Radiance.label>
+  <!-- EN: 双尾鼠的圣光照耀在这个生物身上，它可以增强活物和机械族，并驱散地狱军团的不洁力量，使其可以受到普通武器的伤害。 -->
+  <DD_Holy_Radiance.description>双尾鼠的圣光照耀在这个生物身上，它可以增强活物和机械族，并驱散地狱军团的不洁力量，使其可以受到普通武器的伤害。</DD_Holy_Radiance.description>
+  
   <!-- EN: Lantern Shield -->
   <DD_Lantern_Shield_Active.label>提灯护盾</DD_Lantern_Shield_Active.label>
   <!-- EN: The lantern carried by Michelle can erect a faintly visible shield to block incoming projectiles and melee slashes from the front. Once the incense in the lantern burns out, the shield will disappear. -->
@@ -31,17 +36,17 @@
   
   <!-- EN: Lantern Shield -->
   <DD_Lantern_Shield_Adv_Extrabuff.label>提灯护盾（圣光）</DD_Lantern_Shield_Adv_Extrabuff.label>
-  <!-- EN: The lantern carried by Michelle can erect a faintly visible shield to block incoming projectiles and melee slashes from the front. Once the incense in the lantern burns out, the shield will disappear. -->
+  <!-- EN: The light it emits can provide protection to nearby teammates and dispel the undead curse from the Hell Legion within its range. -->
   <DD_Lantern_Shield_Adv_Extrabuff.description>改造过的提灯护盾散发的光芒可以使附近的队友获得庇佑，并驱散范围内的地狱军团身上的不死诅咒。</DD_Lantern_Shield_Adv_Extrabuff.description>
   
   <!-- EN: Lantern Shield -->
   <DD_Lantern_Shield_Adv_Longer.label>提灯护盾（长明）</DD_Lantern_Shield_Adv_Longer.label>
-  <!-- EN: The lantern carried by Michelle can erect a faintly visible shield to block incoming projectiles and melee slashes from the front. Once the incense in the lantern burns out, the shield will disappear. -->
+  <!-- EN: Replaced the lamp oil with one that can support a longer burning time, and this new oil ignites quickly, even on the battlefield. -->
   <DD_Lantern_Shield_Adv_Longer.description>换装可以支持更长时间燃烧的灯油，并且这种灯油很快就能点燃，即使在战场上也一样。</DD_Lantern_Shield_Adv_Longer.description>
   
   <!-- EN: Lantern Shield -->
   <DD_Lantern_Shield_Adv_Wider.label>提灯护盾（坚壁）</DD_Lantern_Shield_Adv_Wider.label>
-  <!-- EN: The lantern carried by Michelle can erect a faintly visible shield to block incoming projectiles and melee slashes from the front. Once the incense in the lantern burns out, the shield will disappear. -->
+  <!-- EN: Install an additional diffuser for the lantern, creating a holy shield that can withstand incoming firepower from a larger area. -->
   <DD_Lantern_Shield_Adv_Wider.description>为提灯加装额外的散光器，产生的圣盾可以抵御更大面积袭来的火力。</DD_Lantern_Shield_Adv_Wider.description>
   
   <!-- EN: Lantern Shield -->

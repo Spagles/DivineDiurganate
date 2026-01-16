@@ -299,7 +299,7 @@
 	<ThingDef ParentName="DD_ApparelMakeableBase">
 		<defName>DD_Exorcist_Cloth</defName>
 		<label>Michelle's uniform</label>
-    <description>The uniform that Michelle wore when she was a community exorcist was designed by her foster mother. She continued to wear this clothes even after leaving her hometown - but for the grown-up Michelle, the bust size of this clothes was too small</description>
+    <description>The uniform that Michelle wore when she was a community exorcist. She continued to wear this clothes even after leaving her hometown - but for the grown-up Michelle, the bust size of this clothes was too small</description>
     <graphicData>
 			<texPath>DivineDiurganate/Apparel/DD_Exorcist_Cloth</texPath>
 			<graphicClass>Graphic_Single</graphicClass>

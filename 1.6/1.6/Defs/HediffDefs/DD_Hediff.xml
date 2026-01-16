@@ -208,7 +208,7 @@
   <HediffDef>
     <defName>DD_HellLegion_Base_Hediff</defName>
     <label>Hell Legion</label>
-    <description>Hell Legion</description>
+    <description>The Infernal Legion are the undead born from the abyss, typically encountered only in colonies that have activated the Infernal Dive. They appear to be the undead transformed from some kind of rat race that suffered inhuman treatment and died. Once defeated, they will be forcibly dispersed.</description>
     <defaultLabelColor>(0.8, 0.2, 0.2)</defaultLabelColor>
     <hediffClass>HediffWithComps</hediffClass>
     <stages>
@@ -223,7 +223,7 @@
   <HediffDef>
     <defName>DD_HellLegion_Undeath_Hediff</defName>
     <label>Undeath</label>
-    <description>Undeath</description>
+    <description>The Hell Legion is invulnerable under normal circumstances. To break their protection, one must strike them with holy light or certain weapons imbued with blessings.</description>
     <defaultLabelColor>(0.8, 0.2, 0.2)</defaultLabelColor>
     <hediffClass>HediffWithComps</hediffClass>
     <stages>

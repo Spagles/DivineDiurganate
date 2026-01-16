@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: brother -->
+  <DD_Sibling.label>兄弟</DD_Sibling.label>
+  <!-- EN: sister -->
+  <DD_Sibling.labelFemale>姐妹</DD_Sibling.labelFemale>
+  
+</LanguageData>

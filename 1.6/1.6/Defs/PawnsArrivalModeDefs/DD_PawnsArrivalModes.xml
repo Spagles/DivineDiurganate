@@ -14,9 +14,9 @@
         <li>(999999, 0)</li>
       </points>
     </selectionWeightCurve>
-    <minTechLevel>Ultra</minTechLevel>
-    <textEnemy>地狱的号角在呼啸，{1} 的 {0} 迈入战场！</textEnemy>
-    <textFriendly>地狱的号角在呼啸，{1} 的 {0} 迈入战场！</textFriendly>
-    <textWillArrive>{0_pawnsPluralDef} 将通过地狱召唤进入战场</textWillArrive>
+    <minTechLevel>Animal</minTechLevel>
+    <textEnemy>The horns of hell are wailing, {0} of {1} are entering the battlefield!</textEnemy>
+    <textFriendly>The horns of hell are wailing, {0} of {1} are entering the battlefield!</textFriendly>
+    <textWillArrive>{0_pawnsPluralDef} will enter the battlefield through the summoning of hell</textWillArrive>
   </PawnsArrivalModeDef>
 </Defs>

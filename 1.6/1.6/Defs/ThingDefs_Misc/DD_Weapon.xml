@@ -695,8 +695,7 @@
     <tradeability>None</tradeability>
     <thingSetMakerTags Inherit="False" />
     <!-- 近战工具 - 枪口挂载战斧 -->
-    <tools>
-      <!-- 战斧刃部劈砍 -->
+    <!-- <tools>
       <li>
         <label>axe blade</label>
         <capacities>
@@ -712,7 +711,6 @@
         <cooldownTime>2.2</cooldownTime>
         <armorPenetration>0.5</armorPenetration>
       </li>
-      <!-- 战斧钝击 -->
       <li>
         <label>axe head</label>
         <capacities>
@@ -728,7 +726,7 @@
         <cooldownTime>2.0</cooldownTime>
         <armorPenetration>0.5</armorPenetration>
       </li>
-    </tools>
+    </tools> -->
   </ThingDef>
   <ThingDef ParentName="BaseBullet">
     <defName>DD_Axe_Shotgun_Bullet</defName>

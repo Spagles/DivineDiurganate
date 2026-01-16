@@ -6,4 +6,9 @@
   <!-- EN: {0} has died in an explosion. -->
   <DD_Automatic_Cannon_Damage.deathMessage>{0} 死于爆炸。</DD_Automatic_Cannon_Damage.deathMessage>
   
+  <!-- EN: Sulfur Meteor Explosive -->
+  <DD_SulfurMeteor_Explosive.label>硫磺陨石爆炸</DD_SulfurMeteor_Explosive.label>
+  <!-- EN: {0} has died in an explosion. -->
+  <DD_SulfurMeteor_Explosive.deathMessage>{0} 死于爆炸。</DD_SulfurMeteor_Explosive.deathMessage>
+  
 </LanguageData>
