@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- 自定义Tool能力：带射击的切割攻击 -->
+  <ToolCapacityDef>
+    <defName>DD_CutWithShot</defName>
+    <label>cut with shot</label>
+  </ToolCapacityDef>
+
+  <!-- 自定义Tool能力：带射击的钝击攻击 -->
+  <ToolCapacityDef>
+    <defName>DD_BluntWithShot</defName>
+    <label>blunt with shot</label>
+  </ToolCapacityDef>
+
+  <!-- 自定义Maneuver：切割+射击 -->
+  <ManeuverDef>
+    <defName>DD_CutWithShot</defName>
+    <requiredCapacity>DD_CutWithShot</requiredCapacity>
+    <verb>
+      <verbClass>DivineDiurganate.Verb_MeleeWithShot</verbClass>
+      <meleeDamageDef>Cut</meleeDamageDef>
+    </verb>
+    <logEntryDef>MeleeAttack</logEntryDef>
+    <combatLogRulesHit>Maneuver_Slash_MeleeHit</combatLogRulesHit>
+    <combatLogRulesDeflect>Maneuver_Slash_MeleeDeflect</combatLogRulesDeflect>
+    <combatLogRulesMiss>Maneuver_Slash_MeleeMiss</combatLogRulesMiss>
+    <combatLogRulesDodge>Maneuver_Slash_MeleeDodge</combatLogRulesDodge>
+  </ManeuverDef>
+
+  <!-- 自定义Maneuver：钝击+射击 -->
+  <ManeuverDef>
+    <defName>DD_BluntWithShot</defName>
+    <requiredCapacity>DD_BluntWithShot</requiredCapacity>
+    <verb>
+      <verbClass>DivineDiurganate.Verb_MeleeWithShot</verbClass>
+      <meleeDamageDef>Blunt</meleeDamageDef>
+    </verb>
+    <logEntryDef>MeleeAttack</logEntryDef>
+    <combatLogRulesHit>Maneuver_Smash_MeleeHit</combatLogRulesHit>
+    <combatLogRulesDeflect>Maneuver_Smash_MeleeDeflect</combatLogRulesDeflect>
+    <combatLogRulesMiss>Maneuver_Smash_MeleeMiss</combatLogRulesMiss>
+    <combatLogRulesDodge>Maneuver_Smash_MeleeDodge</combatLogRulesDodge>
+  </ManeuverDef>
+
+</Defs>
