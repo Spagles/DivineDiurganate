@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
   <IncidentDef>
-    <defName>DD_GiveQuest_Intro_MemeCheck</defName>
+    <defName>DD_GiveQuest_SP_Ratkin_Join</defName>
     <category>GiveQuest</category>
-    <label>Intro of Diurganate</label>
+    <label>一对鼠族姐妹</label>
     <targetTags>
       <li>Map_PlayerHome</li>
     </targetTags>
     <questScriptDef>DD_Intro_MemeCheck</questScriptDef>
     <workerClass>IncidentWorker_GiveQuest</workerClass>
     <baseChance>0</baseChance>
-    <minRefireDays>999999</minRefireDays>
   </IncidentDef>
   <QuestScriptDef>
-    <defName>DD_Intro_MemeCheck</defName>
+    <defName>DD_SP_Ratkin_Join</defName>
     <rootSelectionWeight>0</rootSelectionWeight>
     <autoAccept>true</autoAccept>
     <sendAvailableLetter>false</sendAvailableLetter>
@@ -24,7 +23,7 @@
     <!-- 命名规则 -->
     <questNameRules>
       <rulesStrings>
-        <li>questName->DD_Intro_MemeCheck_questName</li>
+        <li>questName->DD_SP_Ratkin_Join_questName</li>
       </rulesStrings>
     </questNameRules>
     <questDescriptionRules>
@@ -32,7 +31,7 @@
         <li>QuestHospitalityCommon</li>
       </include>
       <rulesStrings>
-        <li>questDescription->DD_Intro_MemeCheck_questDescription</li>
+        <li>questDescription->DD_SP_Ratkin_Join_questDescription</li>
       </rulesStrings>
     </questDescriptionRules>
 
@@ -45,11 +44,25 @@
           <node Class="QuestNode_Sequence">
             <nodes>
               <li Class="QuestNode_SendSignals">
-                <outSignals>UI_Start</outSignals>
+                <outSignals>UI1_Triggered</outSignals>
               </li>
               <li Class="DivineDiurganate.QuestNode_EventLetter">
-                <inSignal>UI_Start</inSignal>
-                <eventDefName>DD_Intro_MemeCheck_UI_1</eventDefName>
+                <inSignal>UI1_Triggered</inSignal>
+                <eventDefName>DD_SP_Ratkin_Join_UI_1</eventDefName>
+              </li>
+            </nodes>
+          </node>
+        </li>
+        <li Class="QuestNode_Delay">
+          <delayTicks>120000</delayTicks> <!--  2days -->
+          <node Class="QuestNode_Sequence">
+            <nodes>
+              <li Class="QuestNode_SendSignals">
+                <outSignals>UI2_Triggered</outSignals>
+              </li>
+              <li Class="DivineDiurganate.QuestNode_EventLetter">
+                <inSignal>UI2_Triggered</inSignal>
+                <eventDefName>DD_SP_Ratkin_Join_UI_10</eventDefName>
               </li>
               <li Class="QuestNode_End">
                 <outcome>Success</outcome>
@@ -62,13 +75,39 @@
     </root>
   </QuestScriptDef>
   <DivineDiurganate.EventDef>
-    <defName>DD_Intro_MemeCheck_UI_1</defName>
+    <defName>DD_SP_Ratkin_Join_UI_1</defName>
     <label>Event</label>
-    <portraitPath>DivineDiurganate/Event/Portraits/DD_Maple_Sugar_3</portraitPath>
+    <portraitPath>DivineDiurganate/Event/Portraits/DD_Michelle_4</portraitPath>
     <characterName>Maple Sugar</characterName>
     <descriptions>
-      <li>I apologize for interrupting your immediate enjoyment of the game—I just wanted to let you know that if you don't choose the meme of Diurganate, you will find it nearly impossible to experience most of Diurganate's content. Of course, if you don't plan to play the mod content from a player's perspective anyway, you can ignore this warning.</li>
+      <li>（一只娇小的鼠鼠在殖民地附近探头探脑）</li>
     </descriptions>
+    <conditionalDescriptions>
+      <li>
+        <conditions>
+          <li Class="DivineDiurganate.Condition_UniquePawnExists">
+            <pawnKindDef>DD_Michelle</pawnKindDef>
+            <requireAlive>false</requireAlive>
+            <requireOnMap>false</requireOnMap>
+            <!-- 结果反转，如果为true，存在pawn会返回false -->
+            <resultReverse>true</resultReverse> 
+          </li>
+        </conditions>
+        <text>（你不应该在这段剧情前获得米鼠儿，我现在不得不帮你跳过这段剧情）</text>
+      </li>
+      <li>
+        <conditions>
+          <li Class="DivineDiurganate.Condition_UniquePawnExists">
+            <pawnKindDef>DD_Michelle</pawnKindDef>
+            <requireAlive>false</requireAlive>
+            <requireOnMap>false</requireOnMap>
+            <!-- 结果反转，如果为true，存在pawn会返回false -->
+            <resultReverse>false</resultReverse> 
+          </li>
+        </conditions>
+        <text></text>
+      </li>
+    </conditionalDescriptions>
     <options>
       <li>
         <label>I Know</label>

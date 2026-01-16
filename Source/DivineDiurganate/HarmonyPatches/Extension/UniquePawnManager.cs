@@ -17,7 +17,7 @@ namespace DivineDiurganate
         public static UniquePawnManager Instance => instance;
         
         // 已生成的单例Pawn记录
-        private Dictionary<string, PawnRecord> pawnRecords = new Dictionary<string, PawnRecord>();
+        public Dictionary<string, PawnRecord> pawnRecords = new Dictionary<string, PawnRecord>();
         
         // 待建立的关系队列
         private List<PendingRelation> pendingRelations = new List<PendingRelation>();
