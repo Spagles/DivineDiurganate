@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: Event -->
+  <DD_SP_Ratkin_Join_UI_1.label>事件</DD_SP_Ratkin_Join_UI_1.label>
+  <DD_SP_Ratkin_Join_UI_1.characterName>一只神秘的鼠鼠</DD_SP_Ratkin_Join_UI_1.characterName>
+  <DD_SP_Ratkin_Join_UI_1.descriptions.0.text>（一只娇小的鼠鼠在殖民地附近探头探脑）\n\n哈喽？</DD_SP_Ratkin_Join_UI_1.descriptions.0.text>
+  <!-- EN: \n我是一名旅行者，恰好路过这边，请问你们这里还有空床吗？我刚刚和附近的坏家伙打了一架，想找个地方避避风头。 -->
+  <DD_SP_Ratkin_Join_UI_1.conditionalDescriptions.0.text>\n我是一名旅行者，恰好路过这边，请问你们这里还有空床吗？我刚刚和附近的坏家伙打了一架，想找个地方避避风头。</DD_SP_Ratkin_Join_UI_1.conditionalDescriptions.0.text>
+  <!-- EN: \n（你不应该在这段剧情前获得米鼠儿，我现在不得不帮你跳过这段剧情） -->
+  <DD_SP_Ratkin_Join_UI_1.conditionalDescriptions.1.text>\n（你不应该在这段剧情前获得米鼠儿，我现在不得不帮你跳过这段剧情）</DD_SP_Ratkin_Join_UI_1.conditionalDescriptions.1.text>
+  <!-- EN: 你是谁？ -->
+  <DD_SP_Ratkin_Join_UI_1.options.0.label>你是谁？</DD_SP_Ratkin_Join_UI_1.options.0.label>
+  <!-- EN: 你不会给我们惹麻烦吧 -->
+  <DD_SP_Ratkin_Join_UI_1.options.1.label>你不会给我们惹麻烦吧</DD_SP_Ratkin_Join_UI_1.options.1.label>
+  <!-- EN: 你是什么品种的鼠？ -->
+  <DD_SP_Ratkin_Join_UI_1.options.2.label>你是什么品种的鼠？</DD_SP_Ratkin_Join_UI_1.options.2.label>
+  <!-- EN: 我们这边刚好有一张床，欢迎！ -->
+  <DD_SP_Ratkin_Join_UI_1.options.3.label>我们这边刚好有一张床，欢迎！</DD_SP_Ratkin_Join_UI_1.options.3.label>
+  <!-- EN: 不行，我们殖民地满员了。 -->
+  <DD_SP_Ratkin_Join_UI_1.options.4.label>不行，我们殖民地满员了</DD_SP_Ratkin_Join_UI_1.options.4.label>
+  
+  <!-- EN: Event -->
+  <DD_SP_Ratkin_Join_UI_10.label>事件</DD_SP_Ratkin_Join_UI_10.label>
+  <!-- EN: Maple Sugar -->
+  <DD_SP_Ratkin_Join_UI_10.characterName>枫糖</DD_SP_Ratkin_Join_UI_10.characterName>
+  <DD_SP_Ratkin_Join_UI_10.descriptions.0.text>你们好，请问你们有在附近看到一只鼠族吗？</DD_SP_Ratkin_Join_UI_10.descriptions.0.text>
+  <!-- EN: \n大概比我高一些，右眼是青瞳，左眼是灰瞳，然后胸大概有这么大——（鼠鼠在胸前笔画了一下） -->
+  <DD_SP_Ratkin_Join_UI_10.conditionalDescriptions.0.text>\n大概比我高一些，右眼是青瞳，左眼是灰瞳，然后胸大概有这么大——（鼠鼠在胸前笔画了一下）</DD_SP_Ratkin_Join_UI_10.conditionalDescriptions.0.text>
+  <!-- EN: \n（你不应该在这段剧情前获得枫糖，我现在不得不帮你跳过这段剧情） -->
+  <DD_SP_Ratkin_Join_UI_10.conditionalDescriptions.1.text>\n（你不应该在这段剧情前获得枫糖，我现在不得不帮你跳过这段剧情）</DD_SP_Ratkin_Join_UI_10.conditionalDescriptions.1.text>
+  <!-- EN: 你找这只鼠族干嘛？ -->
+  <DD_SP_Ratkin_Join_UI_10.options.0.label>你找这只鼠族干嘛？</DD_SP_Ratkin_Join_UI_10.options.0.label>
+  <!-- EN: 你去别的地方找吧 -->
+  <DD_SP_Ratkin_Join_UI_10.options.1.label>你去别的地方找吧</DD_SP_Ratkin_Join_UI_10.options.1.label>
+  
+  <!-- EN: Event -->
+  <DD_SP_Ratkin_Join_UI_11.label>事件</DD_SP_Ratkin_Join_UI_11.label>
+  <!-- EN: Maple Sugar -->
+  <DD_SP_Ratkin_Join_UI_11.characterName>枫糖</DD_SP_Ratkin_Join_UI_11.characterName>
+  <DD_SP_Ratkin_Join_UI_11.descriptions.0.text>我是枫糖，一名双尾教的修女，可能你们听过我的布道？我在找我的妹妹，她前不久被社区里面一些背信弃义的小人陷害放逐了，我感觉她应该来过你们殖民地。</DD_SP_Ratkin_Join_UI_11.descriptions.0.text>
+  <!-- EN: 为什么会有这种感觉 -->
+  <DD_SP_Ratkin_Join_UI_11.options.0.label>为什么会有这种感觉</DD_SP_Ratkin_Join_UI_11.options.0.label>
+  <!-- EN: 你说你是一名鼠族修女？和印象中的修女有些不同 -->
+  <DD_SP_Ratkin_Join_UI_11.options.1.label>你说你是一名鼠族修女？和印象中的修女有些不同</DD_SP_Ratkin_Join_UI_11.options.1.label>
+  <!-- EN: 事实上，她刚刚加入了我们的殖民地 -->
+  <DD_SP_Ratkin_Join_UI_11.options.2.label>事实上，她刚刚加入了我们的殖民地</DD_SP_Ratkin_Join_UI_11.options.2.label>
+  <!-- EN: 你去别的地方找吧 -->
+  <DD_SP_Ratkin_Join_UI_11.options.3.label>你去别的地方找吧</DD_SP_Ratkin_Join_UI_11.options.3.label>
+  
+  <!-- EN: Event -->
+  <DD_SP_Ratkin_Join_UI_12.label>事件</DD_SP_Ratkin_Join_UI_12.label>
+  <!-- EN: Maple Sugar -->
+  <DD_SP_Ratkin_Join_UI_12.characterName>枫糖</DD_SP_Ratkin_Join_UI_12.characterName>
+  <DD_SP_Ratkin_Join_UI_12.descriptions.0.text>我在你们的殖民地附近看到了被放逐的地狱军团的残骸，只有我妹妹手里的提灯会烧出这种特殊的伤痕。如果她和一队异端交战过，为了避免被地狱持续追杀应该会找个地方藏起来。</DD_SP_Ratkin_Join_UI_12.descriptions.0.text>
+  <!-- EN: 地狱？异端？你在说什么？ -->
+  <DD_SP_Ratkin_Join_UI_12.options.0.label>地狱？异端？你在说什么？</DD_SP_Ratkin_Join_UI_12.options.0.label>
+  <!-- EN: 没什么要问的了··· -->
+  <DD_SP_Ratkin_Join_UI_12.options.1.label>没什么要问的了···</DD_SP_Ratkin_Join_UI_12.options.1.label>
+  
+  <!-- EN: Event -->
+  <DD_SP_Ratkin_Join_UI_13.label>事件</DD_SP_Ratkin_Join_UI_13.label>
+  <!-- EN: Maple Sugar -->
+  <DD_SP_Ratkin_Join_UI_13.characterName>枫糖</DD_SP_Ratkin_Join_UI_13.characterName>
+  <DD_SP_Ratkin_Join_UI_13.descriptions.0.text>它们是杀戮、毁灭的具象化，圣双尾鼠诸信徒的永恒敌人，如果没有圣器和祷告的协作，它们几乎坚不可摧。但是如果它们的不死诅咒消散了，就很容易被放逐。</DD_SP_Ratkin_Join_UI_13.descriptions.0.text>
+  <!-- EN: 没什么要问的了··· -->
+  <DD_SP_Ratkin_Join_UI_13.options.0.label>没什么要问的了···</DD_SP_Ratkin_Join_UI_13.options.0.label>
+  
+  <!-- EN: Event -->
+  <DD_SP_Ratkin_Join_UI_14.label>事件</DD_SP_Ratkin_Join_UI_14.label>
+  <!-- EN: Maple Sugar -->
+  <DD_SP_Ratkin_Join_UI_14.characterName>枫糖</DD_SP_Ratkin_Join_UI_14.characterName>
+  <DD_SP_Ratkin_Join_UI_14.descriptions.0.text>我是圣双尾鼠的仆人，和我们的同族不同，为了在战场上展现祂的权柄，双尾修女必须以身作则斩杀邪魔，而不是——（鼠鼠轻蔑地舔了舔嘴）——像我们那些手无缚鸡之力的同僚一样躲在后面。</DD_SP_Ratkin_Join_UI_14.descriptions.0.text>
+  <!-- EN: 没什么要问的了··· -->
+  <DD_SP_Ratkin_Join_UI_14.options.0.label>没什么要问的了···</DD_SP_Ratkin_Join_UI_14.options.0.label>
+  
+  <!-- EN: Event -->
+  <DD_SP_Ratkin_Join_UI_15.label>事件</DD_SP_Ratkin_Join_UI_15.label>
+  <!-- EN: Maple Sugar -->
+  <DD_SP_Ratkin_Join_UI_15.characterName>枫糖</DD_SP_Ratkin_Join_UI_15.characterName>
+  <DD_SP_Ratkin_Join_UI_15.descriptions.0.text>那可真是太好了，还好她没有走太远！</DD_SP_Ratkin_Join_UI_15.descriptions.0.text>
+  <!-- EN: （枫糖加入了殖民地） -->
+  <DD_SP_Ratkin_Join_UI_15.options.0.label>（枫糖加入了殖民地）</DD_SP_Ratkin_Join_UI_15.options.0.label>
+  
+  <!-- EN: Event -->
+  <DD_SP_Ratkin_Join_UI_2.label>事件</DD_SP_Ratkin_Join_UI_2.label>
+  <DD_SP_Ratkin_Join_UI_2.characterName>米鼠儿</DD_SP_Ratkin_Join_UI_2.characterName>
+  <DD_SP_Ratkin_Join_UI_2.descriptions.0.text>（鼠鼠拍了拍身上的尘土）\n\n欸哈哈，不好意思，忘记自我介绍了。我叫米鼠儿·亚莉尔，曾经是一名社区治安官，无论是怎样的坏家伙我都能应付。我还会做一些手工活，你看——（鼠鼠拔出自己腰间的短管霰弹枪转了两圈）——这把霰弹枪就是我自己改造的。</DD_SP_Ratkin_Join_UI_2.descriptions.0.text>
+  <!-- EN: 为什么作为治安官，你却没在自己的辖区 -->
+  <DD_SP_Ratkin_Join_UI_2.options.0.label>为什么作为治安官，你却没在自己的辖区</DD_SP_Ratkin_Join_UI_2.options.0.label>
+  <!-- EN: 你说的坏家伙是什么？ -->
+  <DD_SP_Ratkin_Join_UI_2.options.1.label>你说的坏家伙是什么？</DD_SP_Ratkin_Join_UI_2.options.1.label>
+  <!-- EN: 没什么要问的了··· -->
+  <DD_SP_Ratkin_Join_UI_2.options.2.label>没什么要问的了···</DD_SP_Ratkin_Join_UI_2.options.2.label>
+  
+  <!-- EN: Event -->
+  <DD_SP_Ratkin_Join_UI_3.label>事件</DD_SP_Ratkin_Join_UI_3.label>
+  <DD_SP_Ratkin_Join_UI_3.characterName>米鼠儿</DD_SP_Ratkin_Join_UI_3.characterName>
+  <DD_SP_Ratkin_Join_UI_3.descriptions.0.text>说起来有些话长，社区里的其他鼠族似乎不太喜欢我，她们投票把我放逐了，虽然我什么也没做。</DD_SP_Ratkin_Join_UI_3.descriptions.0.text>
+  <!-- EN: 问点别的··· -->
+  <DD_SP_Ratkin_Join_UI_3.options.0.label>问点别的···</DD_SP_Ratkin_Join_UI_3.options.0.label>
+  <!-- EN: 没什么要问的了··· -->
+  <DD_SP_Ratkin_Join_UI_3.options.1.label>没什么要问的了···</DD_SP_Ratkin_Join_UI_3.options.1.label>
+  
+  <!-- EN: Event -->
+  <DD_SP_Ratkin_Join_UI_4.label>事件</DD_SP_Ratkin_Join_UI_4.label>
+  <DD_SP_Ratkin_Join_UI_4.characterName>米鼠儿</DD_SP_Ratkin_Join_UI_4.characterName>
+  <DD_SP_Ratkin_Join_UI_4.descriptions.0.text>就是那些小毛贼、不长眼的劫匪强盗和见人就砍的机械虫子之类的，然后还有地狱的使徒。说起来，我刚刚才揍了这群异教徒，不过它们已经被放逐了，大概不会造成什么后患吧？</DD_SP_Ratkin_Join_UI_4.descriptions.0.text>
+  <!-- EN: 强盗和机械族我们知道，地狱使徒又是什么东西？ -->
+  <DD_SP_Ratkin_Join_UI_4.options.0.label>强盗和机械族我们知道，地狱使徒又是什么东西？</DD_SP_Ratkin_Join_UI_4.options.0.label>
+  <!-- EN: 没什么要问的了··· -->
+  <DD_SP_Ratkin_Join_UI_4.options.1.label>没什么要问的了···</DD_SP_Ratkin_Join_UI_4.options.1.label>
+  
+  <!-- EN: Event -->
+  <DD_SP_Ratkin_Join_UI_5.label>事件</DD_SP_Ratkin_Join_UI_5.label>
+  <DD_SP_Ratkin_Join_UI_5.characterName>米鼠儿</DD_SP_Ratkin_Join_UI_5.characterName>
+  <DD_SP_Ratkin_Join_UI_5.descriptions.0.text>呃呃，你们没见过吗，就是那些浑身冒火的亡灵，如果不驱散它们的诅咒，就几乎没办法放逐它们。\n\n（鼠鼠取下腰间的提灯）就像这样——用这种发光圣物去晃它们，它们就会四处溃逃了。</DD_SP_Ratkin_Join_UI_5.descriptions.0.text>
+  <!-- EN: 问点别的··· -->
+  <DD_SP_Ratkin_Join_UI_5.options.0.label>问点别的···</DD_SP_Ratkin_Join_UI_5.options.0.label>
+  <!-- EN: 没什么要问的了··· -->
+  <DD_SP_Ratkin_Join_UI_5.options.1.label>没什么要问的了···</DD_SP_Ratkin_Join_UI_5.options.1.label>
+  
+  <!-- EN: Event -->
+  <DD_SP_Ratkin_Join_UI_6.label>事件</DD_SP_Ratkin_Join_UI_6.label>
+  <DD_SP_Ratkin_Join_UI_6.characterName>米鼠儿</DD_SP_Ratkin_Join_UI_6.characterName>
+  <DD_SP_Ratkin_Join_UI_6.descriptions.0.text>不会的不会的！我又能打又能干，肯定能为殖民地出一份力的！而且那些坏东西已经被我放逐了，不会造成什么危害的。</DD_SP_Ratkin_Join_UI_6.descriptions.0.text>
+  <!-- EN: 坏东西？什么坏东西 -->
+  <DD_SP_Ratkin_Join_UI_6.options.0.label>坏东西？什么坏东西</DD_SP_Ratkin_Join_UI_6.options.0.label>
+  <!-- EN: 没什么要问的了··· -->
+  <DD_SP_Ratkin_Join_UI_6.options.1.label>没什么要问的了···</DD_SP_Ratkin_Join_UI_6.options.1.label>
+  
+  <!-- EN: Event -->
+  <DD_SP_Ratkin_Join_UI_7.label>事件</DD_SP_Ratkin_Join_UI_7.label>
+  <DD_SP_Ratkin_Join_UI_7.characterName>米鼠儿</DD_SP_Ratkin_Join_UI_7.characterName>
+  <DD_SP_Ratkin_Join_UI_7.descriptions.0.text>（鼠鼠挡了下自己的胸前）\n\n欸嘿嘿，这个···是硕鼠啦，你们可能没听过，但是这种鼠族是真实存在的。</DD_SP_Ratkin_Join_UI_7.descriptions.0.text>
+  <!-- EN: 没什么要问的了··· -->
+  <DD_SP_Ratkin_Join_UI_7.options.0.label>没什么要问的了···</DD_SP_Ratkin_Join_UI_7.options.0.label>
+  
+  <!-- EN: Event -->
+  <DD_SP_Ratkin_Join_UI_8.label>事件</DD_SP_Ratkin_Join_UI_8.label>
+  <DD_SP_Ratkin_Join_UI_8.characterName>米鼠儿</DD_SP_Ratkin_Join_UI_8.characterName>
+  <DD_SP_Ratkin_Join_UI_8.descriptions.0.text>谢谢你们，你们人真好！</DD_SP_Ratkin_Join_UI_8.descriptions.0.text>
+  <!-- EN: （米鼠儿加入了殖民地） -->
+  <DD_SP_Ratkin_Join_UI_8.options.0.label>（米鼠儿加入了殖民地）</DD_SP_Ratkin_Join_UI_8.options.0.label>
+  
+</LanguageData>

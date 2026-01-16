@@ -16,6 +16,14 @@
         <!-- 调试 -->
         <debugLogging>false</debugLogging>
       </li>
+      <li Class="StorytellerCompProperties_ImportantQuest">
+        <fireAfterDaysPassed>7</fireAfterDaysPassed>
+        <questIncident>DD_GiveQuest_SP_Ratkin_Join</questIncident>
+        <questDef>DD_SP_Ratkin_Join</questDef>
+        <allowedTargetTags>
+          <li>Map_PlayerHome</li>
+        </allowedTargetTags>
+      </li>
     </value>
   </Operation>
 </Patch>

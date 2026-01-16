@@ -16,17 +16,17 @@
   <!-- EN: Ratkins -->
   <DD_DivineDiurganate_Faction.pawnsPlural>鼠族</DD_DivineDiurganate_Faction.pawnsPlural>
   
-  <!-- EN: 地狱 -->
+  <!-- EN: Hell -->
   <DD_Hell_Legion.label>地狱</DD_Hell_Legion.label>
-  <!-- EN: 地狱 -->
+  <!-- EN: Hell -->
   <DD_Hell_Legion.fixedName>地狱</DD_Hell_Legion.fixedName>
   <!-- EN: leader -->
   <DD_Hell_Legion.leaderTitle>领袖</DD_Hell_Legion.leaderTitle>
   <!-- EN: {0} from {1} are attacking your {2}. -->
   <DD_Hell_Legion.messageDefendersAttacking>从 {1} 来的 {0} 正在攻击你的 {2}。</DD_Hell_Legion.messageDefendersAttacking>
-  <!-- EN: 地狱军团 -->
+  <!-- EN: Hell Legion -->
   <DD_Hell_Legion.pawnSingular>地狱军团</DD_Hell_Legion.pawnSingular>
-  <!-- EN: 地狱军团 -->
+  <!-- EN: Hell Legions -->
   <DD_Hell_Legion.pawnsPlural>地狱军团</DD_Hell_Legion.pawnsPlural>
   
 </LanguageData>

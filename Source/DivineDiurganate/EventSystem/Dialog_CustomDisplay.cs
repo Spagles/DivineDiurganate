@@ -70,14 +70,14 @@ namespace DivineDiurganate
             {
                 if (def.descriptionMode == DescriptionSelectionMode.Random)
                 {
-                    selectedDescription = def.descriptions.RandomElement().Translate();
+                    selectedDescription = def.descriptions.RandomElement();
                 }
                 else
                 {
                     string indexVarName = $"_seq_desc_index_{def.defName}";
                     int currentIndex = eventVarManager.GetVariable<int>(indexVarName, 0);
 
-                    selectedDescription = def.descriptions[currentIndex].Translate();
+                    selectedDescription = def.descriptions[currentIndex];
 
                     int nextIndex = (currentIndex + 1) % def.descriptions.Count;
                     eventVarManager.SetVariable(indexVarName, nextIndex);
@@ -133,7 +133,7 @@ namespace DivineDiurganate
                     string reason;
                     if (AreConditionsMet(condDesc.conditions, out reason))
                     {
-                        selectedDescription += "\n\n" + condDesc.text.Translate();
+                        selectedDescription += "\n\n" + condDesc.text;
                     }
                 }
             }
@@ -194,7 +194,7 @@ namespace DivineDiurganate
                 
                 Text.Anchor = TextAnchor.MiddleCenter;
                 Text.Font = Config.labelFont;
-                Widgets.Label(labelRect, def.label.Translate());
+                Widgets.Label(labelRect, def.label);
                 Text.Font = GameFont.Small;
                 Text.Anchor = TextAnchor.UpperLeft;
                 
@@ -216,7 +216,7 @@ namespace DivineDiurganate
                 
                 Text.Anchor = TextAnchor.MiddleCenter;
                 Text.Font = GameFont.Medium;
-                Widgets.Label(nameRect, def.characterName.Translate());
+                Widgets.Label(nameRect, def.characterName);
                 Text.Font = GameFont.Small;
                 Text.Anchor = TextAnchor.UpperLeft;
                 
@@ -345,12 +345,12 @@ namespace DivineDiurganate
                     if (option.useCustomColors)
                     {
                         // 使用选项自定义颜色
-                        DrawCustomButtonWithColors(optionRect, option.label.Translate(), option);
+                        DrawCustomButtonWithColors(optionRect, option.label, option);
                     }
                     else
                     {
                         // 使用默认自定义颜色
-                        DrawCustomButton(optionRect, option.label.Translate(), isEnabled: true);
+                        DrawCustomButton(optionRect, option.label, isEnabled: true);
                     }
                     // 添加点击处理
                     if (Widgets.ButtonInvisible(optionRect))
@@ -364,15 +364,15 @@ namespace DivineDiurganate
                     if (option.useCustomColors && option.disabledColor.HasValue)
                     {
                         // 使用选项自定义禁用颜色
-                        DrawCustomButtonWithColors(optionRect, option.label.Translate(), option, isEnabled: false);
+                        DrawCustomButtonWithColors(optionRect, option.label, option, isEnabled: false);
                     }
                     else
                     {
                         // 使用默认自定义禁用颜色
-                        DrawCustomButton(optionRect, option.label.Translate(), isEnabled: false);
+                        DrawCustomButton(optionRect, option.label, isEnabled: false);
                     }
                     // 添加禁用提示
-                    TooltipHandler.TipRegion(optionRect, GetDisabledReason(option, reason).Translate());
+                    TooltipHandler.TipRegion(optionRect, GetDisabledReason(option, reason));
                 }
             }
             finally
@@ -640,7 +640,7 @@ namespace DivineDiurganate
         {
             if (!option.disabledReason.NullOrEmpty())
             {
-                return option.disabledReason.Translate();
+                return option.disabledReason;
             }
             return reason;
         }

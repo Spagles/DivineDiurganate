@@ -40,7 +40,7 @@
     <root Class="QuestNode_Sequence">
       <nodes>
         <li Class="QuestNode_Delay">
-          <delayTicks>60</delayTicks>
+          <delayTicks>1</delayTicks>
           <!-- <delayTicks>360</delayTicks> -->
           <node Class="QuestNode_Sequence">
             <nodes>

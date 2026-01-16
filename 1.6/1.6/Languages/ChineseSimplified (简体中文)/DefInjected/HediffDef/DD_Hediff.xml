@@ -3,12 +3,12 @@
   
   <!-- EN: Hell Legion -->
   <DD_HellLegion_Base_Hediff.label>地狱军团</DD_HellLegion_Base_Hediff.label>
-  <!-- EN: Hell Legion -->
+  <!-- EN: The Infernal Legion are the undead born from the abyss, typically encountered only in colonies that have activated the Infernal Dive. They appear to be the undead transformed from some kind of rat race that suffered inhuman treatment and died. Once defeated, they will be forcibly dispersed. -->
   <DD_HellLegion_Base_Hediff.description>地狱军团是从深渊中诞生的不死者，一般来说只有启动地狱深潜的殖民地会遇到。它们似乎是某种遭受非人对待而死的鼠族所转化的亡灵，一旦被击倒就会强制消散。</DD_HellLegion_Base_Hediff.description>
   
   <!-- EN: Undeath -->
   <DD_HellLegion_Undeath_Hediff.label>不死诅咒</DD_HellLegion_Undeath_Hediff.label>
-  <!-- EN: Undeath -->
+  <!-- EN: The Hell Legion is invulnerable under normal circumstances. To break their protection, one must strike them with holy light or certain weapons imbued with blessings. -->
   <DD_HellLegion_Undeath_Hediff.description>地狱军团在常规情况下无法被伤害，使用圣光或某些具有赐福的武器对其进行打击以破除保护。</DD_HellLegion_Undeath_Hediff.description>
   
   <!-- EN: Prototype -->

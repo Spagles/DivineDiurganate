@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
   
-  <!-- EN: 地狱 -->
+  <!-- EN: Hell -->
   <DD_Hell_Biome.label>地狱</DD_Hell_Biome.label>
-  <!-- EN: 因为某种禁忌的仪式而被带到现实的地狱的投影。这片地区只剩火焰、硫磺和来自深渊的腐臭，无法通过。 -->
+  <!-- EN: Hell brought to the projection of the reality due to some taboo ritual. This area is filled with only flames, sulfur, and the putrid stench from the abyss, making it impassable. -->
   <DD_Hell_Biome.description>因为某种禁忌的仪式而被带到现实的地狱的投影。这片地区只剩火焰、硫磺和来自深渊的腐臭，无法通过。</DD_Hell_Biome.description>
   
 </LanguageData>

@@ -14,14 +14,14 @@
   <!-- EN: Airship Trade -->
   <DD_Airship_CommsConsole.comps.CompTradeTerminal.gizmoLabel>发起飞艇贸易</DD_Airship_CommsConsole.comps.CompTradeTerminal.gizmoLabel>
   
-  <!-- EN: 地狱深潜神龛 -->
+  <!-- EN: Hell Dive Shrine -->
   <DD_HellDiveShrine.label>地狱深潜神龛</DD_HellDiveShrine.label>
-  <!-- EN: 一个特殊的神龛，允许整个殖民地经由撕裂地狱位面形成通道，从而移动至其他地图。在移动过程中，地狱的投影将映射到现实，殖民地在传送期间需要抵御来自地狱的焚风、陨石、熔岩和地狱军团的进攻。 -->
+  <!-- EN: A special shrine allows the entire colony to form a passage through the torn Hell plane, thereby moving to other maps. During the movement, the projection of Hell will be mapped onto reality, and the colony needs to withstand the attacks of Hell's scorching winds, meteorites, lava, and Hell legion during the teleportation. -->
   <DD_HellDiveShrine.description>一个特殊的神龛，允许整个殖民地经由撕裂地狱位面形成通道，从而移动至其他地图。在移动过程中，地狱的投影将映射到现实，殖民地在传送期间需要抵御来自地狱的焚风、陨石、熔岩和地狱军团的进攻。</DD_HellDiveShrine.description>
   
-  <!-- EN: 地狱出口 -->
+  <!-- EN: Exit Of Hell -->
   <DD_TeleportLandingMarker.label>地狱出口</DD_TeleportLandingMarker.label>
-  <!-- EN: 当地狱深潜结束时，殖民地将从此处出现。 -->
+  <!-- EN: When the hell dive is over, the colony will emerge from this place. -->
   <DD_TeleportLandingMarker.description>当地狱深潜结束时，殖民地将从此处出现。</DD_TeleportLandingMarker.description>
   
 </LanguageData>

@@ -130,11 +130,14 @@
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
-		<costStuffCount>35</costStuffCount>
+		<costStuffCount>30</costStuffCount>
 		<stuffCategories>
 			<li>Leathery</li>
 			<li>Fabric</li>
 		</stuffCategories>
+    <costList>
+      <Cloth>20</Cloth>
+    </costList>
 		<techLevel>Industrial</techLevel>
 		<statBases>
 			<MaxHitPoints>100</MaxHitPoints>
@@ -195,6 +198,9 @@
 			<li>Leathery</li>
 			<li>Fabric</li>
 		</stuffCategories>
+    <costList>
+      <Cloth>30</Cloth>
+    </costList>
 		<techLevel>Industrial</techLevel>
 		<statBases>
 			<MaxHitPoints>150</MaxHitPoints>
@@ -256,6 +262,9 @@
 			<li>Leathery</li>
 			<li>Fabric</li>
 		</stuffCategories>
+    <costList>
+      <Cloth>10</Cloth>
+    </costList>
 		<statBases>
 			<MaxHitPoints>150</MaxHitPoints>
 			<WorkToMake>15000</WorkToMake>
@@ -307,6 +316,9 @@
 		</graphicData>
     <useHitPoints>false</useHitPoints>
 		<costStuffCount>0</costStuffCount>
+    <costList>
+      <Cloth>200</Cloth>
+    </costList>
     <stuffCategories Inherit="False"/>
 		<techLevel>Industrial</techLevel>
 	  <smeltable>false</smeltable>
@@ -363,6 +375,9 @@
     <useHitPoints>false</useHitPoints>
 		<costStuffCount>0</costStuffCount>
     <stuffCategories Inherit="False"/>
+    <costList>
+      <Cloth>50</Cloth>
+    </costList>
 		<statBases>
 			<WorkToMake>15000</WorkToMake>
 			<Mass>0.1</Mass>
@@ -406,6 +421,9 @@
     <stuffCategories Inherit="False">
       <li>Metallic</li>
     </stuffCategories>
+    <costList>
+      <Steel>80</Steel>
+    </costList>
 		<techLevel>Industrial</techLevel>
 		<statBases>
 			<MaxHitPoints>150</MaxHitPoints>
@@ -465,6 +483,9 @@
     <stuffCategories Inherit="False">
       <li>Metallic</li>
     </stuffCategories>
+    <costList>
+      <Steel>30</Steel>
+    </costList>
 		<statBases>
 			<MaxHitPoints>150</MaxHitPoints>
 			<WorkToMake>18000</WorkToMake>
@@ -518,6 +539,9 @@
 			<StuffEffectMultiplierInsulation_Heat>0.0</StuffEffectMultiplierInsulation_Heat>
       <EquipDelay>0.1</EquipDelay>
     </statBases>
+    <costList>
+      <Steel>100</Steel>
+    </costList>
 		<equippedStatOffsets>
 			<MeleeDodgeChance>-0.2</MeleeDodgeChance>
 			<MoveSpeed>-0.5</MoveSpeed>
