@@ -93,29 +93,31 @@ namespace DivineDiurganate
 
         protected override void TickInterval(int delta)
         {
-            Vector3 startPos = this.lastTickPosition;
+            // 保存移动前的位置
+            Vector3 startPos = this.ExactPosition;
 
-            // 先检查撞墙，在base.TickInterval之前
-            Vector3 predictedPos = this.ExactPosition;
-            if (CheckWallCollision(predictedPos))
-            {
-                // 撞墙了，调用Impact销毁子弹
-                this.Impact(null);
-                return;
-            }
-
-            // 检查路径上的所有目标并造成伤害（在移动之前）
-            CheckPathForDamage(startPos, predictedPos);
-
-            // 调用原版逻辑（会移动弹丸）
+            // 调用原版逻辑（会移动弹丸，可能触发Impact）
             base.TickInterval(delta);
 
             if (this.Destroyed) return;
 
+            // 获取移动后的位置
+            Vector3 endPos = this.ExactPosition;
+
+            // 检查路径上的所有目标并造成伤害
+            CheckPathForDamage(startPos, endPos);
+
+            // 检查是否撞到墙壁
+            if (CheckWallCollision(endPos))
+            {
+                this.Impact(null);
+                return;
+            }
+
             // 处理尾迹特效
             HandleFleckEffects();
 
-            this.lastTickPosition = this.ExactPosition;
+            this.lastTickPosition = endPos;
         }
 
         /// <summary>
@@ -282,7 +284,7 @@ namespace DivineDiurganate
         }
 
         /// <summary>
-        /// 重写Impact - 只有撞墙时才会被调用
+        /// 重写Impact - Pawn时造成伤害但继续飞行，墙壁时销毁
         /// </summary>
         protected override void Impact(Thing hitThing, bool blockedByShield = false)
         {
@@ -293,11 +295,15 @@ namespace DivineDiurganate
                 return;
             }
 
-            // 如果hitThing是Pawn，不要销毁子弹，继续飞行
+            // 如果hitThing是Pawn，造成伤害但不销毁子弹
             if (hitThing is Pawn pawn)
             {
-                // 已经在Tick的CheckPathForDamage中处理过伤害了
-                // 这里不做任何事，让子弹继续飞
+                // 检查是否已经伤害过这个目标
+                if (!alreadyDamaged.Contains(pawn) && ShouldDamagePawn(pawn))
+                {
+                    ApplyDamageToPawn(pawn);
+                }
+                // 不调用base.Impact，让子弹继续飞
                 return;
             }
 
