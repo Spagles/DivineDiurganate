@@ -349,7 +349,7 @@
 	<PawnKindDef ParentName="RKBasePawnKind">
 		<defName>DD_Ratkin_HellLegion_Heretic</defName>
 		<label>HellLegion Heretic</label>
-		<combatPower>40</combatPower>
+		<combatPower>300</combatPower>
     <overrideDeathOnDownedChance>1</overrideDeathOnDownedChance>
     <forceDeathOnDowned>true</forceDeathOnDowned>
     <isFighter>true</isFighter>
@@ -370,17 +370,15 @@
 				</categories>
 			</li>
 		</backstoryFiltersOverride>
-		<weaponMoney>250~500</weaponMoney>
-		<apparelMoney>120~350</apparelMoney>
+		<weaponMoney>99999~99999</weaponMoney>
+		<apparelMoney>0~0</apparelMoney>
 		<weaponTags>
-			<li>DD_Skirmish_Weapon</li>
-			<li>RK_1TierRange</li>
-			<li>RK_Defender</li>
+			<li>DD_Ratkin_Hell_Legion_Light_Weapon</li>
 		</weaponTags>
-		<apparelTags>
-			<li>RK_Murderer</li>
-			<li>RK_Worker</li>
-		</apparelTags>
+		<apparelRequired>
+			<li>DD_Heretic_Helmet</li>
+			<li>DD_Heretic_Armor</li>
+		</apparelRequired>
 	</PawnKindDef>
 
 	<!-- sp -->

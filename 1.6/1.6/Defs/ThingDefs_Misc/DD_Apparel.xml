@@ -519,6 +519,114 @@
 		</recipeMaker>
 	</ThingDef>
 
+  
+	<ThingDef ParentName="DD_ApparelMakeableBase">
+		<defName>DD_Heretic_Armor</defName>
+		<label>Heretic Armor</label>
+    <description>地狱军团所穿的基础护甲。</description>
+    <graphicData>
+			<texPath>DivineDiurganate/Apparel/DD_Heretic_Armor</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<costStuffCount>120</costStuffCount>
+    <stuffCategories Inherit="False">
+      <li>Metallic</li>
+    </stuffCategories>
+    <costList>
+      <Steel>80</Steel>
+    </costList>
+		<techLevel>Industrial</techLevel>
+		<statBases>
+			<MaxHitPoints>150</MaxHitPoints>
+			<WorkToMake>25000</WorkToMake>
+			<Mass>3</Mass>
+			<Flammability>1</Flammability>
+			<EquipDelay>1</EquipDelay>
+      <StuffEffectMultiplierArmor>0.9</StuffEffectMultiplierArmor>
+      <StuffEffectMultiplierInsulation_Cold>1.0</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0.20</StuffEffectMultiplierInsulation_Heat>
+		</statBases>
+		<equippedStatOffsets>
+      <MoveSpeed>-0.25</MoveSpeed>
+		</equippedStatOffsets>
+		<apparel>
+			<bodyPartGroups>
+				<li>Neck</li>
+				<li>Torso</li>
+				<li>Shoulders</li>
+				<li>Arms</li>
+				<li>Legs</li>
+			</bodyPartGroups>
+			<wornGraphicPath>DivineDiurganate/Apparel/DD_Heretic_Armor</wornGraphicPath>
+			<layers>
+        <li>Middle</li>
+			</layers>
+			<tags>
+				<li>DD_RatkinCrusaders</li>
+			</tags>
+      <canBeDesiredForIdeo>false</canBeDesiredForIdeo>
+      <canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
+      <canBeGeneratedToSatisfyToxicEnvironmentResistance>false</canBeGeneratedToSatisfyToxicEnvironmentResistance>
+      <useWornGraphicMask>true</useWornGraphicMask>
+		</apparel>
+    <colorGenerator Class="ColorGenerator_Options">
+      <options>
+        <li>
+          <weight>10</weight>
+          <only>(1,1,1,1)</only>
+        </li>
+      </options>
+    </colorGenerator>
+		<recipeMaker>
+			<researchPrerequisite>HighClassClothing</researchPrerequisite>
+		</recipeMaker>
+	</ThingDef>
+	<ThingDef ParentName="DD_HatMakeableBase">
+		<defName>DD_Heretic_Helmet</defName>
+		<label>Heretic Helmet</label>
+		<description>地狱军团所穿的头盔。</description>
+		<graphicData>
+			<texPath>DivineDiurganate/Apparel/DD_Heretic_Helmet</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<costStuffCount>60</costStuffCount>
+    <stuffCategories Inherit="False">
+      <li>Metallic</li>
+    </stuffCategories>
+    <costList>
+      <Steel>30</Steel>
+    </costList>
+		<statBases>
+			<MaxHitPoints>150</MaxHitPoints>
+			<WorkToMake>18000</WorkToMake>
+			<Mass>1</Mass>			
+			<StuffEffectMultiplierArmor>0.75</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0.75</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0.15</StuffEffectMultiplierInsulation_Heat>			
+			<EquipDelay>0.5</EquipDelay>
+		</statBases>
+		<apparel>
+      <useDeflectMetalEffect>true</useDeflectMetalEffect>
+      <countsAsClothingForNudity>false</countsAsClothingForNudity>
+			<bodyPartGroups>
+				<li>FullHead</li>
+				<!-- <li>Eyes</li> -->
+			</bodyPartGroups>
+			<wornGraphicPath>DivineDiurganate/Apparel/DD_Heretic_Helmet</wornGraphicPath>
+			<layers>
+				<li>Overhead</li>
+			</layers>
+			<tags>
+				<li>DD_RatkinCrusaders</li>
+			</tags>
+		</apparel>
+		<recipeMaker>
+			<researchPrerequisite>HighClassClothing</researchPrerequisite>
+		</recipeMaker>
+	</ThingDef>
+
   <ThingDef ParentName="DD_ApparelMakeableBase">
     <defName>DD_Crusaders_Shield</defName>
     <label>Crusader shield</label>
