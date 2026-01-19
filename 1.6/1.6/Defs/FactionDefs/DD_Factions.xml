@@ -2,8 +2,8 @@
 <Defs>
 	<FactionDef ParentName="FactionBase">
 		<defName>DD_DivineDiurganate_Faction</defName>
-		<label>Divine Diurganate</label>
-		<description>The Twin-Tailed Kingdom — also known as Divine Diurganate — is a theocratic ratkin kingdom founded by followers of the Holy Twin-Tail. While the nation has industrialized, its social structure remains largely religious, resulting in a landscape of billowing diesel mechs, spark-splattering factories, and ubiquitous shrines and icons. \n\nCompared to other industrialized ratkin kingdoms, the Divine Diurganate is far ahead. The Catholic Church has spearheaded the development of a series of large-scale equipment, mechs, and aircraft powered by diesel and internal combustion engines, establishing a technological advantage over other ratkin kingdoms. Due to religious fanaticism, the ratkins of this kingdom are not as peaceful and docile as their counterparts. They possess a tradition of extreme xenophobia and hostility towards other races and are obsessed with outward expansion and the assimilation of other ratkins.</description>
+		<label>Twin-Tail Cult</label>
+		<description>The Twin-Tail Cult, also known as Divine Diurganate, is a special organization established by the followers of the Ratkin God. They possess a quasi-national structure, with their main cities built on giant airships and their settlements on the ground existing in the form of religious orders. \n\nThe birth history of the Twin-Tail Cult is unknown, but its ultimate goal is only one: to purify the ratkin contaminated by the unclean forces of Hell. Although not a true nation, the Twin-Tail Cult has a higher degree of industrialization than the regular ratkin kingdom. As long as a ratkin kingdom is proven to have ties with Hell, their air fleet and meca clusters will physically carry out purification.</description>
 		<colorSpectrum>
 			<li>(0.6, 0.2, 0.2)</li>
 			<li>(0.6, 0.2, 0.2)</li>
@@ -19,7 +19,7 @@
 		<maxConfigurableAtWorldCreation>1</maxConfigurableAtWorldCreation>
 		<canMakeRandomly>true</canMakeRandomly>
 		<leaderTitle>pontiff</leaderTitle>
-    <fixedName>Divine Diurganate</fixedName>
+    <fixedName>Twin-Tail Cult</fixedName>
 		<settlementNameMaker>NamerSettlement_RatkinKingdom</settlementNameMaker>
 		<canSiege>true</canSiege>
 		<canStageAttacks>true</canStageAttacks>
@@ -208,7 +208,7 @@
       </points>
     </raidCommonalityFromPointsCurve>
     <!-- <humanlikeFaction>false</humanlikeFaction> -->
-    <hidden>true</hidden>
+    <hidden>false</hidden>
     <displayInFactionSelection>false</displayInFactionSelection>
     <autoFlee>false</autoFlee>
     <canUseAvoidGrid>false</canUseAvoidGrid>
