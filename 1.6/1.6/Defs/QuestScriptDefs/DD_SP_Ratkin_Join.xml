@@ -7,9 +7,10 @@
     <targetTags>
       <li>Map_PlayerHome</li>
     </targetTags>
-    <questScriptDef>DD_Intro_MemeCheck</questScriptDef>
+    <questScriptDef>DD_SP_Ratkin_Join</questScriptDef>
     <workerClass>IncidentWorker_GiveQuest</workerClass>
     <baseChance>0</baseChance>
+    <minRefireDays>999999</minRefireDays>
   </IncidentDef>
   <QuestScriptDef>
     <defName>DD_SP_Ratkin_Join</defName>
@@ -78,9 +79,9 @@
     <defName>DD_SP_Ratkin_Join_UI_1</defName>
     <label>Event</label>
     <portraitPath>DivineDiurganate/Event/Portraits/DD_Michelle_1</portraitPath>
-    <characterName>Maple Sugar</characterName>
+    <characterName>A Mysterious Ratkin</characterName>
     <descriptions>
-      <li>（一只娇小的鼠鼠在殖民地附近探头探脑）\n\n你们好？</li>
+      <li><text>(A tiny Ratkin peeks out from near the colony)\n\nHello？</text></li>
     </descriptions>
     <conditionalDescriptions>
       <li>
@@ -89,11 +90,11 @@
             <pawnKindDef>DD_Michelle</pawnKindDef>
             <requireAlive>false</requireAlive>
             <requireOnMap>false</requireOnMap>
-            <!-- 结果反转，如果为true，存在pawn会返回false -->
+            <!-- 结果反转，如果为true，则等于Condition_UniquePawnNotExists -->
             <resultReverse>true</resultReverse> 
           </li>
         </conditions>
-        <text>\n\n（你不应该在这段剧情前获得米鼠儿，我现在不得不帮你跳过这段剧情）</text>
+        <text>\nI'm a traveler passing through this area. Do you have any beds available? I just got into a fight with some bad guys nearby and need to find a place to lay low for a bit.</text>
       </li>
       <li>
         <conditions>
@@ -101,16 +102,16 @@
             <pawnKindDef>DD_Michelle</pawnKindDef>
             <requireAlive>false</requireAlive>
             <requireOnMap>false</requireOnMap>
-            <!-- 结果反转，如果为true，存在pawn会返回false -->
+            <!-- 结果反转，如果为true，则等于Condition_UniquePawnNotExists -->
             <resultReverse>false</resultReverse> 
           </li>
         </conditions>
-        <text>我是一名旅行者，恰好路过这边，请问你们这里还有空床吗？我刚刚和附近的坏家伙打了一架，想找个地方避避风头。</text>
+        <text>\n(You shouldn't have gotten Michelle before this part of the story; I have to help you skip this part now.)</text>
       </li>
     </conditionalDescriptions>
     <options>
       <li>
-        <label>你是谁？</label>
+        <label>Who are you?</label>
         <useCustomColors>false</useCustomColors>
         <conditions>
           <li Class="DivineDiurganate.Condition_UniquePawnExists">
@@ -133,7 +134,7 @@
         </optionEffects>
       </li>
       <li>
-        <label>你不会给我们惹麻烦吧</label>
+        <label>You won't cause us any trouble, will you?</label>
         <useCustomColors>false</useCustomColors>
         <conditions>
           <li Class="DivineDiurganate.Condition_UniquePawnExists">
@@ -156,7 +157,7 @@
         </optionEffects>
       </li>
       <li>
-        <label>我们这边刚好有一张床，欢迎！</label>
+        <label>What kind of ratkin are you?</label>
         <useCustomColors>false</useCustomColors>
         <conditions>
           <li Class="DivineDiurganate.Condition_UniquePawnExists">
@@ -171,7 +172,7 @@
           <li>
             <effects>
               <li Class="DivineDiurganate.Effect_OpenCustomUI">
-                <defName>Wula_Intro_NewColony_UI_3</defName>
+                <defName>DD_SP_Ratkin_Join_UI_7</defName>
               </li>
               <li Class="DivineDiurganate.Effect_CloseDialog" />
             </effects>
@@ -179,7 +180,30 @@
         </optionEffects>
       </li>
       <li>
-        <label>不行，我们殖民地满员了。</label>
+        <label>We happen to have a bed here, feel free to use it!</label>
+        <useCustomColors>false</useCustomColors>
+        <conditions>
+          <li Class="DivineDiurganate.Condition_UniquePawnExists">
+            <pawnKindDef>DD_Michelle</pawnKindDef>
+            <requireAlive>false</requireAlive>
+            <requireOnMap>false</requireOnMap>
+            <!-- 结果反转，如果为true，存在pawn会返回false -->
+            <resultReverse>true</resultReverse> 
+          </li>
+        </conditions>
+        <optionEffects>
+          <li>
+            <effects>
+              <li Class="DivineDiurganate.Effect_OpenCustomUI">
+                <defName>DD_SP_Ratkin_Join_UI_8</defName>
+              </li>
+              <li Class="DivineDiurganate.Effect_CloseDialog" />
+            </effects>
+          </li>
+        </optionEffects>
+      </li>
+      <li>
+        <label>No, our colony is full</label>
         <useCustomColors>false</useCustomColors>
         <optionEffects>
           <li>
@@ -195,13 +219,13 @@
     <defName>DD_SP_Ratkin_Join_UI_2</defName>
     <label>Event</label>
     <portraitPath>DivineDiurganate/Event/Portraits/DD_Michelle_2</portraitPath>
-    <characterName>Maple Sugar</characterName>
+    <characterName>Michelle</characterName>
     <descriptions>
-      <li>（鼠鼠拍了拍身上的尘土）\n\n欸哈哈，不好意思，忘记自我介绍了。我叫米鼠儿·亚莉尔，曾经是一名社区治安官，无论是怎样的坏家伙我都能应付。我还会做一些手工活，你看——（鼠鼠拔出自己腰间的短管霰弹枪转了两圈）——这把霰弹枪就是我自己改造的。</li>
+      <li><text>(Ratkin dusts herself off)\n\n Heyhey, sorry, I forgot to introduce myself. My name is Michelle Ariel. I used to be a community Exorcist, which could handle any bad guy. I also do some handicrafts. Look—(Ratkin pulls out a short-barreled shotgun from her waist and spins it around a couple of times)—this shotgun is one I modified myself.</text></li>
     </descriptions>
     <options>
       <li>
-        <label>为什么作为治安官，你却没在自己的辖区</label>
+        <label>Why, as a Exorcist, were you not in your jurisdiction?</label>
         <useCustomColors>false</useCustomColors>
         <optionEffects>
           <li>
@@ -215,7 +239,7 @@
         </optionEffects>
       </li>
       <li>
-        <label>你说的坏家伙是什么？</label>
+        <label>What kind of bad guy are you talking about?</label>
         <useCustomColors>false</useCustomColors>
         <optionEffects>
           <li>
@@ -229,13 +253,13 @@
         </optionEffects>
       </li>
       <li>
-        <label>没什么要问的了···</label>
+        <label>Nothing else to ask...</label>
         <useCustomColors>false</useCustomColors>
         <optionEffects>
           <li>
             <effects>
               <li Class="DivineDiurganate.Effect_OpenCustomUI">
-                <defName>Wula_Intro_NewColony_UI_1</defName>
+                <defName>DD_SP_Ratkin_Join_UI_1</defName>
               </li>
               <li Class="DivineDiurganate.Effect_CloseDialog" />
             </effects>
@@ -248,13 +272,13 @@
     <defName>DD_SP_Ratkin_Join_UI_3</defName>
     <label>Event</label>
     <portraitPath>DivineDiurganate/Event/Portraits/DD_Michelle_5</portraitPath>
-    <characterName>Maple Sugar</characterName>
+    <characterName>Michelle</characterName>
     <descriptions>
-      <li>说起来有些话长，社区里的其他鼠族似乎不太喜欢我，她们投票把我放逐了，虽然我什么也没做。</li>
+      <li><text>It's a long story, but the other rats in the community didn't seem to like me. They voted to banish me, even though I hadn't done anything.</text></li>
     </descriptions>
     <options>
       <li>
-        <label>问点别的···</label>
+        <label>Ask something else ...</label>
         <useCustomColors>false</useCustomColors>
         <optionEffects>
           <li>
@@ -268,13 +292,13 @@
         </optionEffects>
       </li>
       <li>
-        <label>没什么要问的了···</label>
+        <label>Nothing else to ask...</label>
         <useCustomColors>false</useCustomColors>
         <optionEffects>
           <li>
             <effects>
               <li Class="DivineDiurganate.Effect_OpenCustomUI">
-                <defName>Wula_Intro_NewColony_UI_1</defName>
+                <defName>DD_SP_Ratkin_Join_UI_1</defName>
               </li>
               <li Class="DivineDiurganate.Effect_CloseDialog" />
             </effects>
@@ -287,13 +311,13 @@
     <defName>DD_SP_Ratkin_Join_UI_4</defName>
     <label>Event</label>
     <portraitPath>DivineDiurganate/Event/Portraits/DD_Michelle_3</portraitPath>
-    <characterName>Maple Sugar</characterName>
+    <characterName>Michelle</characterName>
     <descriptions>
-      <li>就是那些小毛贼、不长眼的劫匪强盗和见人就砍的机械虫子之类的，然后还有地狱的使徒。说起来，我刚刚才揍了这群异教徒，不过它们已经被放逐了，大概不会造成什么后患吧？</li>
+      <li><text>They're those petty thieves, reckless robbers and thieves, and those mechanical bugs that cut down anyone they see, plus the apostles of hell. Speaking of which, I just beat up that group of heretics, but they've already been banished, so they probably won't cause any trouble, right?</text></li>
     </descriptions>
     <options>
       <li>
-        <label>强盗和机械族我们知道，地狱使徒又是什么东西？</label>
+        <label>We know about bandits and machines, but what are Hell Apostles?</label>
         <useCustomColors>false</useCustomColors>
         <optionEffects>
           <li>
@@ -307,13 +331,13 @@
         </optionEffects>
       </li>
       <li>
-        <label>没什么要问的了···</label>
+        <label>Nothing else to ask...</label>
         <useCustomColors>false</useCustomColors>
         <optionEffects>
           <li>
             <effects>
               <li Class="DivineDiurganate.Effect_OpenCustomUI">
-                <defName>Wula_Intro_NewColony_UI_1</defName>
+                <defName>DD_SP_Ratkin_Join_UI_1</defName>
               </li>
               <li Class="DivineDiurganate.Effect_CloseDialog" />
             </effects>
@@ -326,13 +350,13 @@
     <defName>DD_SP_Ratkin_Join_UI_5</defName>
     <label>Event</label>
     <portraitPath>DivineDiurganate/Event/Portraits/DD_Michelle_1</portraitPath>
-    <characterName>Maple Sugar</characterName>
+    <characterName>Michelle</characterName>
     <descriptions>
-      <li>呃呃，你们没见过吗，就是那些浑身冒火的亡灵，如果不驱散它们的诅咒，就几乎没办法放逐它们。\n\n（鼠鼠取下腰间的提灯）就像这样——用这种发光圣物去晃它们，它们就会四处溃逃了。</li>
+      <li><text>Uh, haven't you seen them? They're those undead that are covered in flames. If you don't dispel their curse, it's almost impossible to banish them. \n\n(Mouse takes a lantern from his waist) Like this—shock them with this glowing sacred object, and they'll scatter in all directions.</text></li>
     </descriptions>
     <options>
       <li>
-        <label>问点别的···</label>
+        <label>Ask something else ...</label>
         <useCustomColors>false</useCustomColors>
         <optionEffects>
           <li>
@@ -346,13 +370,13 @@
         </optionEffects>
       </li>
       <li>
-        <label>没什么要问的了···</label>
+        <label>Nothing else to ask...</label>
         <useCustomColors>false</useCustomColors>
         <optionEffects>
           <li>
             <effects>
               <li Class="DivineDiurganate.Effect_OpenCustomUI">
-                <defName>Wula_Intro_NewColony_UI_1</defName>
+                <defName>DD_SP_Ratkin_Join_UI_1</defName>
               </li>
               <li Class="DivineDiurganate.Effect_CloseDialog" />
             </effects>
@@ -365,13 +389,13 @@
     <defName>DD_SP_Ratkin_Join_UI_6</defName>
     <label>Event</label>
     <portraitPath>DivineDiurganate/Event/Portraits/DD_Michelle_5</portraitPath>
-    <characterName>Maple Sugar</characterName>
+    <characterName>Michelle</characterName>
     <descriptions>
-      <li>不会的不会的！我又能打又能干，肯定能为殖民地出一份力的！而且那些坏东西已经被我放逐了，不会造成什么危害的。</li>
+      <li><text>No, no! I'm both a fighter and a worker, I can definitely contribute to the colony! Besides, I've already banished those bad guys, they won't cause any harm.</text></li>
     </descriptions>
     <options>
       <li>
-        <label>坏东西？什么坏东西</label>
+        <label>Bad guys? What bad guys?</label>
         <useCustomColors>false</useCustomColors>
         <optionEffects>
           <li>
@@ -385,13 +409,13 @@
         </optionEffects>
       </li>
       <li>
-        <label>没什么要问的了···</label>
+        <label>Nothing else to ask...</label>
         <useCustomColors>false</useCustomColors>
         <optionEffects>
           <li>
             <effects>
               <li Class="DivineDiurganate.Effect_OpenCustomUI">
-                <defName>Wula_Intro_NewColony_UI_1</defName>
+                <defName>DD_SP_Ratkin_Join_UI_1</defName>
               </li>
               <li Class="DivineDiurganate.Effect_CloseDialog" />
             </effects>
@@ -403,10 +427,35 @@
   <DivineDiurganate.EventDef>
     <defName>DD_SP_Ratkin_Join_UI_7</defName>
     <label>Event</label>
-    <portraitPath>DivineDiurganate/Event/Portraits/DD_Michelle_4</portraitPath>
-    <characterName>Maple Sugar</characterName>
+    <portraitPath>DivineDiurganate/Event/Portraits/DD_Michelle_3</portraitPath>
+    <characterName>Michelle</characterName>
     <descriptions>
-      <li>太好了，你们人真好！</li>
+      <li><text>(The ratkin covered its chest) \n\n Hehe, this... is plump ratkin. You may not have heard of it, but this kind of ratkin really exists.</text></li>
+    </descriptions>
+    <options>
+      <li>
+        <label>Nothing else to ask...</label>
+        <useCustomColors>false</useCustomColors>
+        <optionEffects>
+          <li>
+            <effects>
+              <li Class="DivineDiurganate.Effect_OpenCustomUI">
+                <defName>DD_SP_Ratkin_Join_UI_1</defName>
+              </li>
+              <li Class="DivineDiurganate.Effect_CloseDialog" />
+            </effects>
+          </li>
+        </optionEffects>
+      </li>
+    </options>
+  </DivineDiurganate.EventDef>
+  <DivineDiurganate.EventDef>
+    <defName>DD_SP_Ratkin_Join_UI_8</defName>
+    <label>Event</label>
+    <portraitPath>DivineDiurganate/Event/Portraits/DD_Michelle_4</portraitPath>
+    <characterName>Michelle</characterName>
+    <descriptions>
+      <li><text>Thank you so much, you are all so kind!</text></li>
     </descriptions>
     <immediateEffects>
       <li>
@@ -421,7 +470,292 @@
     </immediateEffects>
     <options>
       <li>
-        <label>（米鼠儿加入了殖民地）</label>
+        <label>(Michelle Mouse joined the colony)</label>
+        <useCustomColors>false</useCustomColors>
+        <optionEffects>
+          <li>
+            <effects>
+              <li Class="DivineDiurganate.Effect_CloseDialog" />
+            </effects>
+          </li>
+        </optionEffects>
+      </li>
+    </options>
+  </DivineDiurganate.EventDef>
+
+  <DivineDiurganate.EventDef>
+    <defName>DD_SP_Ratkin_Join_UI_10</defName>
+    <label>Event</label>
+    <portraitPath>DivineDiurganate/Event/Portraits/DD_Maple_Sugar_2</portraitPath>
+    <characterName>Maple Sugar</characterName>
+    <descriptions>
+      <li><text>Hello, have you seen any ratkin in the vicinity?</text></li>
+    </descriptions>
+    <conditionalDescriptions>
+      <li>
+        <conditions>
+          <li Class="DivineDiurganate.Condition_UniquePawnExists">
+            <pawnKindDef>DD_Maple_Sugar</pawnKindDef>
+            <requireAlive>false</requireAlive>
+            <requireOnMap>false</requireOnMap>
+            <!-- 结果反转，如果为true，则等于Condition_UniquePawnNotExists -->
+            <resultReverse>true</resultReverse> 
+          </li>
+        </conditions>
+        <text>\nIt's a bit taller than me, with a blue right eye and a gray left eye, and its chest is about this big—(the ratkin gestures in front of its chest).</text>
+      </li>
+      <li>
+        <conditions>
+          <li Class="DivineDiurganate.Condition_UniquePawnExists">
+            <pawnKindDef>DD_Maple_Sugar</pawnKindDef>
+            <requireAlive>false</requireAlive>
+            <requireOnMap>false</requireOnMap>
+            <!-- 结果反转，如果为true，则等于Condition_UniquePawnNotExists -->
+            <resultReverse>false</resultReverse> 
+          </li>
+        </conditions>
+        <text>\n(You shouldn't have gotten the Maple Sugar before this part of the story; I have to help you skip it now.)</text>
+      </li>
+    </conditionalDescriptions>
+    <options>
+      <li>
+        <label>Why are you looking for this ratkin?</label>
+        <useCustomColors>false</useCustomColors>
+        <conditions>
+          <li Class="DivineDiurganate.Condition_UniquePawnExists">
+            <pawnKindDef>DD_Michelle</pawnKindDef>
+            <requireAlive>false</requireAlive>
+            <requireOnMap>false</requireOnMap>
+            <!-- 结果反转，如果为true，则等于Condition_UniquePawnNotExists -->
+            <resultReverse>false</resultReverse> 
+          </li>
+        </conditions>
+        <optionEffects>
+          <li>
+            <effects>
+              <li Class="DivineDiurganate.Effect_OpenCustomUI">
+                <defName>DD_SP_Ratkin_Join_UI_11</defName>
+              </li>
+              <li Class="DivineDiurganate.Effect_CloseDialog" />
+            </effects>
+          </li>
+        </optionEffects>
+      </li>
+      <li>
+        <label>Go look elsewhere</label>
+        <useCustomColors>false</useCustomColors>
+        <conditions>
+          <li Class="DivineDiurganate.Condition_UniquePawnExists">
+            <pawnKindDef>DD_Michelle</pawnKindDef>
+            <requireAlive>false</requireAlive>
+            <requireOnMap>false</requireOnMap>
+            <!-- 结果反转，如果为true，则等于Condition_UniquePawnNotExists -->
+            <resultReverse>true</resultReverse> 
+          </li>
+        </conditions>
+        <optionEffects>
+          <li>
+            <effects>
+              <li Class="DivineDiurganate.Effect_CloseDialog" />
+            </effects>
+          </li>
+        </optionEffects>
+      </li>
+    </options>
+  </DivineDiurganate.EventDef>
+  <DivineDiurganate.EventDef>
+    <defName>DD_SP_Ratkin_Join_UI_11</defName>
+    <label>Event</label>
+    <portraitPath>DivineDiurganate/Event/Portraits/DD_Maple_Sugar_1</portraitPath>
+    <characterName>Maple Sugar</characterName>
+    <descriptions>
+      <li><text>I am Maple Sugar, a nun from the Two-Tailed Church. You may have heard me preach. I am looking for my sister. She was recently framed and exiled by some treacherous people in the community. I feel that she should have come to your colony.</text></li>
+    </descriptions>
+    <options>
+      <li>
+        <label>Why do you have this feeling?</label>
+        <useCustomColors>false</useCustomColors>
+        <optionEffects>
+          <li>
+            <effects>
+              <li Class="DivineDiurganate.Effect_OpenCustomUI">
+                <defName>DD_SP_Ratkin_Join_UI_12</defName>
+              </li>
+              <li Class="DivineDiurganate.Effect_CloseDialog" />
+            </effects>
+          </li>
+        </optionEffects>
+      </li>
+      <li>
+        <label>You said you're a ratkin nun? That's a bit different from the nuns We've always imagined.</label>
+        <useCustomColors>false</useCustomColors>
+        <optionEffects>
+          <li>
+            <effects>
+              <li Class="DivineDiurganate.Effect_OpenCustomUI">
+                <defName>DD_SP_Ratkin_Join_UI_14</defName>
+              </li>
+              <li Class="DivineDiurganate.Effect_CloseDialog" />
+            </effects>
+          </li>
+        </optionEffects>
+      </li>
+      <li>
+        <label>In fact, she has just joined our colony</label>
+        <useCustomColors>false</useCustomColors>
+        <conditions>
+          <li Class="DivineDiurganate.Condition_UniquePawnExists">
+            <pawnKindDef>DD_Michelle</pawnKindDef>
+            <requireAlive>false</requireAlive>
+            <requireOnMap>false</requireOnMap>
+            <!-- 结果反转，如果为true，则等于Condition_UniquePawnNotExists -->
+            <resultReverse>false</resultReverse> 
+          </li>
+        </conditions>
+        <optionEffects>
+          <li>
+            <effects>
+              <li Class="DivineDiurganate.Effect_OpenCustomUI">
+                <defName>DD_SP_Ratkin_Join_UI_15</defName>
+              </li>
+              <li Class="DivineDiurganate.Effect_CloseDialog" />
+            </effects>
+          </li>
+        </optionEffects>
+      </li>
+      <li>
+        <label>Go look elsewhere</label>
+        <useCustomColors>false</useCustomColors>
+        <conditions>
+          <li Class="DivineDiurganate.Condition_UniquePawnExists">
+            <pawnKindDef>DD_Michelle</pawnKindDef>
+            <requireAlive>false</requireAlive>
+            <requireOnMap>false</requireOnMap>
+            <!-- 结果反转，如果为true，则等于Condition_UniquePawnNotExists -->
+            <resultReverse>true</resultReverse> 
+          </li>
+        </conditions>
+        <optionEffects>
+          <li>
+            <effects>
+              <li Class="DivineDiurganate.Effect_CloseDialog" />
+            </effects>
+          </li>
+        </optionEffects>
+      </li>
+    </options>
+  </DivineDiurganate.EventDef>
+  <DivineDiurganate.EventDef>
+    <defName>DD_SP_Ratkin_Join_UI_12</defName>
+    <label>Event</label>
+    <portraitPath>DivineDiurganate/Event/Portraits/DD_Maple_Sugar_4</portraitPath>
+    <characterName>Maple Sugar</characterName>
+    <descriptions>
+      <li><text>I saw the remains of an exiled Hell legion near your colony; only my sister's lantern bore such distinctive burn marks. If she had fought a group of heretics, she would likely have hidden somewhere to avoid being relentlessly hunted by Hell.</text></li>
+    </descriptions>
+    <options>
+      <li>
+        <label>Hell? Heresy? What are you talking about?</label>
+        <useCustomColors>false</useCustomColors>
+        <optionEffects>
+          <li>
+            <effects>
+              <li Class="DivineDiurganate.Effect_OpenCustomUI">
+                <defName>DD_SP_Ratkin_Join_UI_13</defName>
+              </li>
+              <li Class="DivineDiurganate.Effect_CloseDialog" />
+            </effects>
+          </li>
+        </optionEffects>
+      </li>
+      <li>
+        <label>Nothing else to ask...</label>
+        <useCustomColors>false</useCustomColors>
+        <optionEffects>
+          <li>
+            <effects>
+              <li Class="DivineDiurganate.Effect_OpenCustomUI">
+                <defName>DD_SP_Ratkin_Join_UI_11</defName>
+              </li>
+              <li Class="DivineDiurganate.Effect_CloseDialog" />
+            </effects>
+          </li>
+        </optionEffects>
+      </li>
+    </options>
+  </DivineDiurganate.EventDef>
+  <DivineDiurganate.EventDef>
+    <defName>DD_SP_Ratkin_Join_UI_13</defName>
+    <label>Event</label>
+    <portraitPath>DivineDiurganate/Event/Portraits/DD_Maple_Sugar_5</portraitPath>
+    <characterName>Maple Sugar</characterName>
+    <descriptions>
+      <li><text>They are the embodiment of killing and destruction, the eternal enemies of the followers of the Holy Twin-Tail, and are almost indestructible without the aid of sacred objects and prayer. But if their curse of immortality is dispelled, they are easily banished.</text></li>
+    </descriptions>
+    <options>
+      <li>
+        <label>Nothing else to ask...</label>
+        <useCustomColors>false</useCustomColors>
+        <optionEffects>
+          <li>
+            <effects>
+              <li Class="DivineDiurganate.Effect_OpenCustomUI">
+                <defName>DD_SP_Ratkin_Join_UI_11</defName>
+              </li>
+              <li Class="DivineDiurganate.Effect_CloseDialog" />
+            </effects>
+          </li>
+        </optionEffects>
+      </li>
+    </options>
+  </DivineDiurganate.EventDef>
+  <DivineDiurganate.EventDef>
+    <defName>DD_SP_Ratkin_Join_UI_14</defName>
+    <label>Event</label>
+    <portraitPath>DivineDiurganate/Event/Portraits/DD_Maple_Sugar_5</portraitPath>
+    <characterName>Maple Sugar</characterName>
+    <descriptions>
+      <li><text>I am a servant of the Holy Twin-Tail. Unlike our kind, in order to demonstrate His authority on the battlefield, the Diurganate Sister must lead by example in slaying evil, not—(the ratkin licked its lips contemptuously)—hide in the back like our powerless colleagues.</text></li>
+    </descriptions>
+    <options>
+      <li>
+        <label>Nothing else to ask...</label>
+        <useCustomColors>false</useCustomColors>
+        <optionEffects>
+          <li>
+            <effects>
+              <li Class="DivineDiurganate.Effect_OpenCustomUI">
+                <defName>DD_SP_Ratkin_Join_UI_11</defName>
+              </li>
+              <li Class="DivineDiurganate.Effect_CloseDialog" />
+            </effects>
+          </li>
+        </optionEffects>
+      </li>
+    </options>
+  </DivineDiurganate.EventDef>
+  <DivineDiurganate.EventDef>
+    <defName>DD_SP_Ratkin_Join_UI_15</defName>
+    <label>Event</label>
+    <portraitPath>DivineDiurganate/Event/Portraits/DD_Maple_Sugar_2</portraitPath>
+    <characterName>Maple Sugar</characterName>
+    <descriptions>
+      <li><text>That's great! Luckily she didn't go too far!</text></li>
+    </descriptions>
+    <immediateEffects>
+      <li>
+        <effects>
+          <li Class="DivineDiurganate.Effect_SpawnPawn">
+            <kindDef>DD_Maple_Sugar</kindDef>
+            <count>1</count>
+            <joinPlayerFaction>true</joinPlayerFaction>
+          </li>
+        </effects>
+      </li>
+    </immediateEffects>
+    <options>
+      <li>
+        <label>(Maple Sugar was added to the colonies)</label>
         <useCustomColors>false</useCustomColors>
         <optionEffects>
           <li>

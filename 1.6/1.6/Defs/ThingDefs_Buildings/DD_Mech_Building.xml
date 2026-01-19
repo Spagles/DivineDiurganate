@@ -27,9 +27,8 @@
     <costStuffCount>0</costStuffCount>
     <stuffCategories Inherit="False"/>
     <costList>
-      <Steel>500</Steel>
-      <Plasteel>250</Plasteel>
-      <ComponentIndustrial>16</ComponentIndustrial>
+      <Steel>250</Steel>
+      <ComponentIndustrial>6</ComponentIndustrial>
     </costList>
     <rotatable>false</rotatable>
     <building>
@@ -73,9 +72,10 @@
     <costStuffCount>0</costStuffCount>
     <stuffCategories Inherit="False"/>
     <costList>
-      <Steel>500</Steel>
-      <Plasteel>250</Plasteel>
-      <ComponentIndustrial>16</ComponentIndustrial>
+      <Steel>300</Steel>
+      <Plasteel>100</Plasteel>
+      <ComponentIndustrial>12</ComponentIndustrial>
+			<ComponentSpacer>1</ComponentSpacer>
     </costList>
     <rotatable>false</rotatable>
     <building>
@@ -117,9 +117,10 @@
     <costStuffCount>0</costStuffCount>
     <stuffCategories Inherit="False"/>
     <costList>
-      <Steel>700</Steel>
-      <Plasteel>450</Plasteel>
+      <Steel>500</Steel>
+      <Plasteel>250</Plasteel>
       <ComponentIndustrial>16</ComponentIndustrial>
+			<ComponentSpacer>2</ComponentSpacer>
     </costList>
     <rotatable>false</rotatable>
     <building>

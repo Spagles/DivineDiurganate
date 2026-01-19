@@ -40,7 +40,7 @@
     <root Class="QuestNode_Sequence">
       <nodes>
         <li Class="QuestNode_Delay">
-          <delayTicks>60</delayTicks>
+          <delayTicks>1</delayTicks>
           <!-- <delayTicks>360</delayTicks> -->
           <node Class="QuestNode_Sequence">
             <nodes>
@@ -67,7 +67,7 @@
     <portraitPath>DivineDiurganate/Event/Portraits/DD_Maple_Sugar_3</portraitPath>
     <characterName>Maple Sugar</characterName>
     <descriptions>
-      <li>I apologize for interrupting your immediate enjoyment of the game—I just wanted to let you know that if you don't choose the meme of Diurganate, you will find it nearly impossible to experience most of Diurganate's content. Of course, if you don't plan to play the mod content from a player's perspective anyway, you can ignore this warning.</li>
+      <li><text>I apologize for interrupting your immediate enjoyment of the game—I just wanted to let you know that if you don't choose the meme of Diurganate, you will find it nearly impossible to experience most of Diurganate's content. Of course, if you don't plan to play the mod content from a player's perspective anyway, you can ignore this warning.</text></li>
     </descriptions>
     <options>
       <li>

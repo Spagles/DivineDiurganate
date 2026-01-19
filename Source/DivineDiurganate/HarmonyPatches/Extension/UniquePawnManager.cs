@@ -22,63 +22,180 @@ namespace DivineDiurganate
         // 待建立的关系队列
         private List<PendingRelation> pendingRelations = new List<PendingRelation>();
         
+        // 存档ID，用于跨存档识别
+        private string archiveId = null;
+        
         // 日志记录
         private List<LogEntry> logEntries = new List<LogEntry>();
         private const int MAX_LOG_ENTRIES = 100;
         
+        // 加载完成后是否已经初始化
+        private bool initializedAfterLoad = false;
+        
         public UniquePawnManager(Game game) : base()
         {
             instance = this;
+            
+            // 生成存档唯一ID（如果还没有）
+            if (archiveId == null)
+            {
+                archiveId = GenerateArchiveId();
+            }
         }
         
         public override void ExposeData()
         {
             base.ExposeData();
             
-            // 保存Pawn记录
-            Scribe_Collections.Look(ref pawnRecords, "pawnRecords", LookMode.Value, LookMode.Deep);
+            // 保存存档ID
+            Scribe_Values.Look(ref archiveId, "archiveId", null);
+            
+            // 如果存档ID为空，重新生成
+            if (Scribe.mode == LoadSaveMode.PostLoadInit && archiveId == null)
+            {
+                archiveId = GenerateArchiveId();
+            }
+            
+            // 保存Pawn记录 - 使用自定义的保存方式
+            if (Scribe.mode == LoadSaveMode.Saving)
+            {
+                // 将字典转换为可保存的格式
+                List<string> keys = pawnRecords.Keys.ToList();
+                List<PawnRecord> values = pawnRecords.Values.ToList();
+                
+                Scribe_Collections.Look(ref keys, "pawnRecordKeys", LookMode.Value);
+                Scribe_Collections.Look(ref values, "pawnRecordValues", LookMode.Deep);
+            }
+            else if (Scribe.mode == LoadSaveMode.LoadingVars)
+            {
+                // 加载键值对
+                List<string> keys = null;
+                List<PawnRecord> values = null;
+                
+                Scribe_Collections.Look(ref keys, "pawnRecordKeys", LookMode.Value);
+                Scribe_Collections.Look(ref values, "pawnRecordValues", LookMode.Deep);
+                
+                // 重建字典
+                if (keys != null && values != null && keys.Count == values.Count)
+                {
+                    pawnRecords.Clear();
+                    for (int i = 0; i < keys.Count; i++)
+                    {
+                        if (!pawnRecords.ContainsKey(keys[i]))
+                        {
+                            pawnRecords[keys[i]] = values[i];
+                        }
+                    }
+                }
+            }
             
             // 保存待处理关系
             Scribe_Collections.Look(ref pendingRelations, "pendingRelations", LookMode.Deep);
             
-            // 如果加载时pawnRecords为null，重新初始化
-            if (Scribe.mode == LoadSaveMode.PostLoadInit && pawnRecords == null)
+            // 保存日志（可选）
+            if (Prefs.DevMode)
             {
-                pawnRecords = new Dictionary<string, PawnRecord>();
-                pendingRelations = new List<PendingRelation>();
+                Scribe_Collections.Look(ref logEntries, "logEntries", LookMode.Deep);
             }
             
-            // 重建索引（加载后）
+            // 如果加载时数据为空，重新初始化
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                RebuildIndices();
+                if (pawnRecords == null)
+                {
+                    pawnRecords = new Dictionary<string, PawnRecord>();
+                }
+                
+                if (pendingRelations == null)
+                {
+                    pendingRelations = new List<PendingRelation>();
+                }
+                
+                if (logEntries == null)
+                {
+                    logEntries = new List<LogEntry>();
+                }
+                
+                // 标记为需要重建索引
+                initializedAfterLoad = false;
             }
         }
         
         /// <summary>
-        /// 重建索引（加载存档后）
+        /// 生成存档唯一ID
+        /// </summary>
+        private string GenerateArchiveId()
+        {
+            // 使用游戏开始时间 + 随机数
+            return $"{DateTime.Now.Ticks}_{new System.Random().Next(100000, 999999)}";
+        }
+        
+        /// <summary>
+        /// 游戏组件启动后调用
+        /// </summary>
+        public override void StartedNewGame()
+        {
+            base.StartedNewGame();
+            
+            // 重置状态
+            pawnRecords.Clear();
+            pendingRelations.Clear();
+            logEntries.Clear();
+            initializedAfterLoad = true;
+            
+            // 重新生成存档ID
+            archiveId = GenerateArchiveId();
+        }
+        
+        /// <summary>
+        /// 游戏加载完成后调用
+        /// </summary>
+        public override void LoadedGame()
+        {
+            base.LoadedGame();
+            
+            // 延迟重建，确保所有Pawn都已加载
+            initializedAfterLoad = false;
+        }
+        
+        /// <summary>
+        /// 重建索引（确保在加载后执行）
         /// </summary>
         private void RebuildIndices()
         {
+            if (initializedAfterLoad)
+                return;
+            
             // 清理无效记录
             List<string> keysToRemove = new List<string>();
+            int validCount = 0;
             
             foreach (var kvp in pawnRecords)
             {
                 var record = kvp.Value;
                 
-                // 检查Pawn是否仍然存在
-                if (record.pawn == null || record.pawn.Destroyed || !record.pawn.Spawned)
+                // 尝试查找Pawn（如果引用丢失）
+                if (record.pawn == null && record.pawnID > 0)
                 {
-                    keysToRemove.Add(kvp.Key);
-                    continue;
+                    record.pawn = FindPawnByThingID(record.pawnID);
                 }
                 
-                // 更新记录的Pawn引用
-                record.pawn = FindPawnByThingID(record.pawnID);
-                if (record.pawn == null)
+                // 检查Pawn是否仍然有效
+                if (record.pawn == null || record.pawn.Destroyed || !PawnExistsInWorld(record.pawn))
                 {
                     keysToRemove.Add(kvp.Key);
+                }
+                else
+                {
+                    // 确保记录中的ID与Pawn的ID一致
+                    record.pawnID = record.pawn.thingIDNumber;
+                    validCount++;
+                    
+                    // 重新绑定Pawn死亡事件
+                    if (record.extension != null && record.extension.removeOnDeath)
+                    {
+                        EnsureDeathEventHandler(record.pawn);
+                    }
                 }
             }
             
@@ -89,9 +206,25 @@ namespace DivineDiurganate
             }
             
             // 清理无效的待处理关系
+            int pendingBefore = pendingRelations.Count;
             pendingRelations.RemoveAll(pr => 
-                !IsPawnValid(pr.sourcePawn) || 
+                pr.sourcePawn == null || pr.sourcePawn.Destroyed || 
+                !PawnExistsInWorld(pr.sourcePawn) ||
                 (pr.targetPawnKind != null && !IsPawnKindValid(pr.targetPawnKind)));
+            
+            initializedAfterLoad = true;
+        }
+        
+        /// <summary>
+        /// 确保Pawn死亡事件处理器已注册
+        /// </summary>
+        private void EnsureDeathEventHandler(Pawn pawn)
+        {
+            if (pawn == null)
+                return;
+            
+            // 使用Harmony补丁监听Pawn死亡事件
+            // 这里我们通过检查Pawn是否死亡来间接处理
         }
         
         /// <summary>
@@ -99,25 +232,56 @@ namespace DivineDiurganate
         /// </summary>
         private Pawn FindPawnByThingID(int thingID)
         {
-            if (Current.Game == null || Current.Game.Maps == null)
+            if (Current.Game == null)
                 return null;
             
-            foreach (var map in Current.Game.Maps)
+            // 在所有地图中查找
+            if (Current.Game.Maps != null)
             {
-                var pawn = map.mapPawns.AllPawns.FirstOrDefault(p => p.thingIDNumber == thingID);
-                if (pawn != null)
-                    return pawn;
+                foreach (var map in Current.Game.Maps)
+                {
+                    if (map != null && map.mapPawns != null)
+                    {
+                        var pawn = map.mapPawns.AllPawns.FirstOrDefault(p => p.thingIDNumber == thingID);
+                        if (pawn != null)
+                            return pawn;
+                    }
+                }
+            }
+            
+            // 在世界Pawn中查找
+            if (Find.WorldPawns != null)
+            {
+                foreach (var pawn in Find.WorldPawns.AllPawnsAliveOrDead)
+                {
+                    if (pawn.thingIDNumber == thingID)
+                        return pawn;
+                }
             }
             
             return null;
         }
         
         /// <summary>
-        /// 检查Pawn是否有效
+        /// 检查Pawn是否存在于世界中
         /// </summary>
-        private bool IsPawnValid(Pawn pawn)
+        private bool PawnExistsInWorld(Pawn pawn)
         {
-            return pawn != null && !pawn.Destroyed && pawn.Spawned;
+            if (pawn == null || pawn.Destroyed)
+                return false;
+            
+            // 检查是否在地图中
+            if (pawn.Map != null && pawn.Map.mapPawns != null)
+            {
+                if (pawn.Map.mapPawns.AllPawns.Contains(pawn))
+                    return true;
+            }
+            
+            // 检查是否在世界Pawn中
+            if (Find.WorldPawns != null && Find.WorldPawns.Contains(pawn))
+                return true;
+            
+            return false;
         }
         
         /// <summary>
@@ -125,7 +289,7 @@ namespace DivineDiurganate
         /// </summary>
         private bool IsPawnKindValid(PawnKindDef pawnKind)
         {
-            return pawnKind != null;
+            return pawnKind != null && !pawnKind.defName.NullOrEmpty();
         }
         
         /// <summary>
@@ -135,8 +299,14 @@ namespace DivineDiurganate
         {
             base.GameComponentTick();
             
+            // 加载后首次Tick，重建索引
+            if (!initializedAfterLoad && Find.TickManager.TicksGame > 10)
+            {
+                RebuildIndices();
+            }
+            
             // 每60Tick处理一次待处理关系
-            if (Find.TickManager.TicksGame % 60 == 0)
+            if (Find.TickManager.TicksGame % 60 == 0 && initializedAfterLoad)
             {
                 ProcessPendingRelations();
                 
@@ -144,6 +314,12 @@ namespace DivineDiurganate
                 if (Find.TickManager.TicksGame % 300 == 0)
                 {
                     CleanupOldLogs();
+                }
+                
+                // 定期检查Pawn有效性
+                if (Find.TickManager.TicksGame % 1200 == 0)
+                {
+                    CheckPawnValidity();
                 }
             }
         }
@@ -153,26 +329,23 @@ namespace DivineDiurganate
         /// </summary>
         private void ProcessPendingRelations()
         {
-            if (pendingRelations.Count == 0)
+            if (pendingRelations.Count == 0 || !initializedAfterLoad)
                 return;
             
             List<PendingRelation> processed = new List<PendingRelation>();
             
-            foreach (var pendingRelation in pendingRelations)
+            foreach (var pendingRelation in pendingRelations.ToList())
             {
                 try
                 {
                     if (TryEstablishPendingRelation(pendingRelation))
                     {
                         processed.Add(pendingRelation);
-                        
-                        LogMessage($"已建立待处理关系: {pendingRelation.sourcePawn?.LabelShort} -> {pendingRelation.targetPawnKind?.label}",
-                            LogLevel.Info);
                     }
                 }
                 catch (Exception ex)
                 {
-                    LogMessage($"处理待处理关系时出错: {ex}", LogLevel.Error);
+                    Log.Error($"处理待处理关系时出错: {ex}");
                 }
             }
             
@@ -217,16 +390,97 @@ namespace DivineDiurganate
             
             foreach (var map in Current.Game.Maps)
             {
-                foreach (var pawn in map.mapPawns.AllPawns)
+                if (map != null && map.mapPawns != null)
                 {
-                    if (pawn.kindDef == pawnKindDef && IsPawnValid(pawn))
+                    foreach (var pawn in map.mapPawns.AllPawns)
                     {
-                        result.Add(pawn);
+                        if (pawn != null && pawn.kindDef == pawnKindDef && IsPawnValid(pawn))
+                        {
+                            result.Add(pawn);
+                        }
                     }
                 }
             }
             
             return result;
+        }
+        
+        /// <summary>
+        /// 检查Pawn是否有效
+        /// </summary>
+        private bool IsPawnValid(Pawn pawn)
+        {
+            return pawn != null && !pawn.Destroyed && pawn.Spawned;
+        }
+        
+        /// <summary>
+        /// 检查Pawn有效性
+        /// </summary>
+        private void CheckPawnValidity()
+        {
+            int removed = 0;
+            List<string> keysToRemove = new List<string>();
+            
+            foreach (var kvp in pawnRecords)
+            {
+                var record = kvp.Value;
+                
+                // 如果Pawn已死亡且需要移除
+                if (record.pawn != null && record.pawn.Dead && 
+                    record.extension != null && record.extension.removeOnDeath)
+                {
+                    keysToRemove.Add(kvp.Key);
+                    removed++;
+                }
+                // 如果Pawn已不存在于世界中
+                else if (!PawnExistsInWorld(record.pawn))
+                {
+                    keysToRemove.Add(kvp.Key);
+                    removed++;
+                }
+            }
+            
+            // 移除无效记录
+            foreach (var key in keysToRemove)
+            {
+                pawnRecords.Remove(key);
+            }
+        }
+        
+        /// <summary>
+        /// 清理旧日志
+        /// </summary>
+        private void CleanupOldLogs()
+        {
+            if (logEntries.Count > MAX_LOG_ENTRIES)
+            {
+                logEntries = logEntries.Skip(logEntries.Count - MAX_LOG_ENTRIES).ToList();
+            }
+        }
+        
+        /// <summary>
+        /// 获取Pawn的唯一键
+        /// </summary>
+        private string GetPawnKey(Pawn pawn, UniquePawnScope scope)
+        {
+            if (pawn?.kindDef == null)
+                return null;
+            
+            string baseKey = pawn.kindDef.defName;
+            
+            switch (scope)
+            {
+                case UniquePawnScope.Map:
+                    // 使用地图的索引作为标识
+                    return $"{baseKey}_Map_{pawn.Map?.Index ?? 0}";
+                case UniquePawnScope.World:
+                    return $"{baseKey}_World";
+                case UniquePawnScope.Archive:
+                    // 使用存档的唯一标识
+                    return $"{baseKey}_Archive_{archiveId}";
+                default:
+                    return baseKey;
+            }
         }
         
         /// <summary>
@@ -237,19 +491,27 @@ namespace DivineDiurganate
             if (pawn == null || extension == null)
                 return false;
             
+            // 确保已经初始化
+            if (!initializedAfterLoad)
+            {
+                return false;
+            }
+            
+            string pawnKey = GetPawnKey(pawn, extension.singletonScope);
+            if (pawnKey == null)
+            {
+                return false;
+            }
+            
             // 检查是否已经是单例
             if (extension.isSingleton)
             {
-                string pawnKey = GetPawnKey(pawn, extension.singletonScope);
-                
                 // 检查是否已存在相同Key的Pawn
-                if (pawnRecords.ContainsKey(pawnKey))
+                if (pawnRecords.TryGetValue(pawnKey, out var existingRecord))
                 {
-                    var existingRecord = pawnRecords[pawnKey];
-                    
                     if (existingRecord.pawn != null && 
                         existingRecord.pawn != pawn && 
-                        IsPawnValid(existingRecord.pawn))
+                        PawnExistsInWorld(existingRecord.pawn))
                     {
                         // 处理重复生成
                         return HandleDuplicatePawn(pawn, existingRecord.pawn, extension);
@@ -267,8 +529,7 @@ namespace DivineDiurganate
                 spawnTime = Find.TickManager.TicksGame
             };
             
-            string key = GetPawnKey(pawn, extension.singletonScope);
-            pawnRecords[key] = record;
+            pawnRecords[pawnKey] = record;
             
             // 处理关系
             ProcessPawnRelations(pawn, extension);
@@ -278,9 +539,6 @@ namespace DivineDiurganate
             {
                 SendSpawnMessage(pawn, extension);
             }
-            
-            LogMessage($"已注册特殊Pawn: {pawn.LabelCap} ({pawn.kindDef.label})", 
-                extension.logLevel);
             
             return true;
         }
@@ -298,37 +556,12 @@ namespace DivineDiurganate
                     newPawn.Destroy();
                 }
                 
-                LogMessage($"销毁重复的特殊Pawn: {newPawn.LabelCap} (已存在: {existingPawn.LabelCap})", 
-                    extension.logLevel);
-                
                 return false;
             }
             else
             {
                 // 阻止生成（理论上不会执行到这里，因为生成已经被拦截）
                 return false;
-            }
-        }
-        
-        /// <summary>
-        /// 获取Pawn的唯一键
-        /// </summary>
-        private string GetPawnKey(Pawn pawn, UniquePawnScope scope)
-        {
-            string baseKey = pawn.kindDef.defName;
-            
-            switch (scope)
-            {
-                case UniquePawnScope.Map:
-                    // 使用地图的索引作为标识
-                    return $"{baseKey}_{pawn.Map?.Index ?? 0}";
-                case UniquePawnScope.World:
-                    return baseKey;
-                case UniquePawnScope.Archive:
-                    // 使用存档的唯一标识
-                    return $"{baseKey}_{Current.Game?.GetHashCode() ?? 0}";
-                default:
-                    return baseKey;
             }
         }
         
@@ -341,7 +574,7 @@ namespace DivineDiurganate
                 return false;
             
             string baseKey = pawnKindDef.defName;
-            string key = $"{baseKey}_{map.Index}";
+            string key = $"{baseKey}_Map_{map.Index}";
             
             return pawnRecords.ContainsKey(key) && 
                    pawnRecords[key]?.pawn != null && 
@@ -402,7 +635,7 @@ namespace DivineDiurganate
             }
             catch (Exception ex)
             {
-                LogMessage($"处理Pawn关系时出错 ({pawn.LabelShort}): {ex}", LogLevel.Error);
+                Log.Error($"处理Pawn关系时出错 ({pawn.LabelShort}): {ex}");
             }
         }
         
@@ -425,9 +658,6 @@ namespace DivineDiurganate
                 if (!shouldKeep)
                 {
                     pawn.relations.RemoveDirectRelation(relation.def, relation.otherPawn);
-                    
-                    LogMessage($"移除关系: {pawn.LabelShort} 的 {relation.def.label} 关系",
-                        extension.logLevel);
                 }
             }
         }
@@ -492,15 +722,12 @@ namespace DivineDiurganate
                             };
                             
                             pendingRelations.Add(pending);
-                            
-                            LogMessage($"记录待处理关系: {pawn.LabelShort} -> {fixedRelation.targetPawnKind.label}",
-                                extension.logLevel);
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    LogMessage($"建立固定关系时出错: {ex}", LogLevel.Error);
+                    Log.Error($"建立固定关系时出错: {ex}");
                 }
             }
         }
@@ -538,7 +765,7 @@ namespace DivineDiurganate
                 }
                 catch (Exception ex)
                 {
-                    LogMessage($"建立自动关系时出错: {ex}", LogLevel.Error);
+                    Log.Error($"建立自动关系时出错: {ex}");
                 }
             }
         }
@@ -555,8 +782,14 @@ namespace DivineDiurganate
             
             foreach (var map in Current.Game.Maps)
             {
+                if (map == null || map.mapPawns == null)
+                    continue;
+                    
                 foreach (var pawn in map.mapPawns.AllPawns)
                 {
+                    if (pawn == null)
+                        continue;
+                        
                     // 跳过自己
                     if (pawn == sourcePawn)
                         continue;
@@ -618,14 +851,11 @@ namespace DivineDiurganate
                         break;
                 }
                 
-                LogMessage($"已建立关系: {sourcePawn.LabelShort} <-> {targetPawn.LabelShort} ({relationDef.label})", 
-                    LogLevel.Info);
-                
                 return true;
             }
             catch (Exception ex)
             {
-                LogMessage($"建立关系时出错: {ex}", LogLevel.Error);
+                Log.Error($"建立关系时出错: {ex}");
                 return false;
             }
         }
@@ -688,53 +918,6 @@ namespace DivineDiurganate
             
             // 清理相关待处理关系
             pendingRelations.RemoveAll(pr => pr.sourcePawn == pawn);
-            
-            LogMessage($"移除Pawn记录: {pawn.LabelCap}", LogLevel.Info);
-        }
-        
-        /// <summary>
-        /// 记录日志消息
-        /// </summary>
-        public void LogMessage(string message, LogLevel level)
-        {
-            if (level == LogLevel.None)
-                return;
-            
-            var entry = new LogEntry
-            {
-                tick = Find.TickManager.TicksGame,
-                message = message,
-                level = level
-            };
-            
-            logEntries.Add(entry);
-            
-            // 控制台日志
-            switch (level)
-            {
-                case LogLevel.Error:
-                    Log.Error($"[UniquePawnManager] {message}");
-                    break;
-                case LogLevel.Warning:
-                    Log.Warning($"[UniquePawnManager] {message}");
-                    break;
-                case LogLevel.Info:
-                case LogLevel.Debug:
-                    if (Prefs.DevMode)
-                        Log.Message($"[UniquePawnManager] {message}");
-                    break;
-            }
-        }
-        
-        /// <summary>
-        /// 清理旧日志
-        /// </summary>
-        private void CleanupOldLogs()
-        {
-            if (logEntries.Count > MAX_LOG_ENTRIES)
-            {
-                logEntries = logEntries.Skip(logEntries.Count - MAX_LOG_ENTRIES).ToList();
-            }
         }
         
         /// <summary>
@@ -744,6 +927,8 @@ namespace DivineDiurganate
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.AppendLine("=== 特殊Pawn管理器统计 ===");
+            sb.AppendLine($"存档ID: {archiveId}");
+            sb.AppendLine($"初始化状态: {initializedAfterLoad}");
             sb.AppendLine($"已注册Pawn数量: {pawnRecords.Count}");
             sb.AppendLine($"待处理关系: {pendingRelations.Count}");
             sb.AppendLine($"日志条目: {logEntries.Count}");
@@ -754,6 +939,9 @@ namespace DivineDiurganate
             {
                 var record = kvp.Value;
                 sb.AppendLine($"  • {record.pawn?.LabelCap ?? "未知"} ({record.pawnKindDef?.label ?? "未知"})");
+                sb.AppendLine($"    键: {kvp.Key}");
+                sb.AppendLine($"    ID: {record.pawnID}");
+                sb.AppendLine($"    生成时间: {record.spawnTime}");
             }
             
             return sb.ToString();
@@ -765,7 +953,19 @@ namespace DivineDiurganate
     /// </summary>
     public class PawnRecord : IExposable
     {
-        public Pawn pawn;
+        [NonSerialized]
+        private Pawn _pawn;
+        public Pawn pawn 
+        { 
+            get => _pawn;
+            set 
+            { 
+                _pawn = value;
+                if (value != null)
+                    pawnID = value.thingIDNumber;
+            }
+        }
+        
         public int pawnID;
         public PawnKindDef pawnKindDef;
         public UniquePawnExtension extension;
@@ -774,12 +974,14 @@ namespace DivineDiurganate
         
         public void ExposeData()
         {
-            Scribe_References.Look(ref pawn, "pawn");
-            Scribe_Values.Look(ref pawnID, "pawnID");
+            Scribe_Values.Look(ref pawnID, "pawnID", 0);
             Scribe_Defs.Look(ref pawnKindDef, "pawnKindDef");
             Scribe_Deep.Look(ref extension, "extension");
-            Scribe_Values.Look(ref spawnTime, "spawnTime");
+            Scribe_Values.Look(ref spawnTime, "spawnTime", 0);
             Scribe_Collections.Look(ref establishedRelations, "establishedRelations", LookMode.Deep);
+            
+            // 注意：我们不保存pawn引用，因为它在加载时需要重新查找
+            // pawn引用会在加载后由管理器重建
         }
     }
     
@@ -812,5 +1014,12 @@ namespace DivineDiurganate
         public int tick;
         public string message;
         public LogLevel level;
+        
+        public void ExposeData()
+        {
+            Scribe_Values.Look(ref tick, "tick", 0);
+            Scribe_Values.Look(ref message, "message");
+            Scribe_Values.Look(ref level, "level");
+        }
     }
 }

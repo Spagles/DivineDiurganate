@@ -15,15 +15,14 @@ namespace DivineDiurganate
     public class EventDef : Def
     {
         public string portraitPath;
+        [MustTranslate]
         public string characterName;
-        
+
         // New system: list of descriptions
-        public List<string> descriptions;
+        [MustTranslate]
+        public List<Description> descriptions;
         public DescriptionSelectionMode descriptionMode = DescriptionSelectionMode.Random;
         public bool hiddenWindow = false;
-
-        // Backwards compatibility: old single description field
-        public new string description = null;
 
         public Vector2 windowSize = Vector2.zero;
 
@@ -47,10 +46,8 @@ namespace DivineDiurganate
             {
                 if (descriptions.NullOrEmpty())
                 {
-                    descriptions = new List<string>();
+                    descriptions = new List<Description>();
                 }
-                descriptions.Insert(0, description);
-                description = null; // Clear the old field to prevent confusion
             }
 #pragma warning restore 0618
             // If hiddenWindow is true, merge immediateEffects into dismissEffects at load time.
@@ -164,6 +161,12 @@ namespace DivineDiurganate
     public class ConditionalDescription
     {
         public List<ConditionBase> conditions;
+        [MustTranslate]
+        public string text;
+    }
+
+    public class Description
+    {
         [MustTranslate]
         public string text;
     }

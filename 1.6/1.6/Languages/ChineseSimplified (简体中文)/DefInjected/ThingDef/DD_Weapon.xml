@@ -31,6 +31,10 @@
   <DD_Axe_Shotgun.label>银弹霰弹枪</DD_Axe_Shotgun.label>
   <!-- EN: A levered shotgun, custom-modified by the ingenious Michelle. Apart from firing silver shotgun pellets that cause wounds and stun at close range, it can also be used as a melee weapon to engage in combat with opponents. -->
   <DD_Axe_Shotgun.description>一把杠杆霰弹枪，由心灵手巧的米鼠儿自行改装。除了可以发射在近距离上造成伤口和眩晕的银霰弹外，它还能被当成一把近战武器与对手搏杀。</DD_Axe_Shotgun.description>
+  <!-- EN: stock -->
+  <DD_Axe_Shotgun.tools.stock.label>TODO</DD_Axe_Shotgun.tools.stock.label>
+  <!-- EN: barrel -->
+  <DD_Axe_Shotgun.tools.barrel.label>TODO</DD_Axe_Shotgun.tools.barrel.label>
   <!-- EN: Sliver Levered Shotgun -->
   <DD_Axe_Shotgun.verbs.Verb_ShootShotgunFan.label>银弹霰弹枪</DD_Axe_Shotgun.verbs.Verb_ShootShotgunFan.label>
   
@@ -45,7 +49,7 @@
   <!-- EN: Cross Machinegun -->
   <DD_Beam_Machinegun.label>十字机枪</DD_Beam_Machinegun.label>
   <!-- EN: The Divine Diurganate weapon, symbolizing the destruction of authority by the Holy Twin-tail, has only been produced in small quantities. It needs a little time to warm up before it can emit a powerful beam of penetrating light to burn through the enemies in front of it. The Catholic Church strictly keeps secret the operation method of this weapon, so the ratkins have no idea how this firestick embedded with several stones can kill and injure enemy troops. -->
-  <DD_Beam_Machinegun.description>象征着圣双尾鼠毁灭权柄的双尾教廷武器，只进行了少量的投产，它需要一点时间预热，然后就能迸发大量穿透性的光束烧穿面前的敌人——教廷对这种武器的运作方式严格保密，因此鼠鼠们完全不知道这个镶嵌着几块石头的烧火棍是怎么杀伤敌军的。</DD_Beam_Machinegun.description>
+  <DD_Beam_Machinegun.description>象征着地狱毁灭欲望的异端武器，深渊熔炉的巅峰之作，它需要一点时间预热，然后就能迸发大量穿透性的光束烧穿面前的敌人。</DD_Beam_Machinegun.description>
   <!-- EN: Cross Machinegun -->
   <DD_Beam_Machinegun.verbs.Verb_ShootWithOffset.label>十字机枪</DD_Beam_Machinegun.verbs.Verb_ShootWithOffset.label>
   

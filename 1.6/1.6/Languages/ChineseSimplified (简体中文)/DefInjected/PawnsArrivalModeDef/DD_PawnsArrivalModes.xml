@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
   
-  <!-- EN: 地狱的号角在呼啸，{1} 的 {0} 迈入战场！ -->
+  <!-- EN: The horns of hell are wailing, {0} of {1} are entering the battlefield! -->
   <DD_Hell_EdgeTeleport.textEnemy>地狱的号角在呼啸，{1} 的 {0} 迈入战场！</DD_Hell_EdgeTeleport.textEnemy>
-  <!-- EN: 地狱的号角在呼啸，{1} 的 {0} 迈入战场！ -->
+  <!-- EN: The horns of hell are wailing, {0} of {1} are entering the battlefield! -->
   <DD_Hell_EdgeTeleport.textFriendly>地狱的号角在呼啸，{1} 的 {0} 迈入战场！</DD_Hell_EdgeTeleport.textFriendly>
-  <!-- EN: {0_pawnsPluralDef} 将通过地狱召唤进入战场 -->
+  <!-- EN: {0_pawnsPluralDef} will enter the battlefield through the summoning of hell -->
   <DD_Hell_EdgeTeleport.textWillArrive>{0_pawnsPluralDef} 将通过地狱召唤进入战场</DD_Hell_EdgeTeleport.textWillArrive>
   
 </LanguageData>

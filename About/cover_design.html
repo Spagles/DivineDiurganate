@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Lato:wght@400;700&display=swap');
+
+    body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #222; display: flex; align-items: center; justify-content: center; }
+    
+    #canvas {
+        position: relative;
+        /* We will set width/height via JS or just assume a standard mod preview size */
+        /* RimWorld previews are often 640x360, but can be anything. Use the image's intrinsic size? */
+        display: inline-block;
+        box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+    
+    #bg-img {
+        display: block;
+        max-width: 90vw;
+        max-height: 90vh;
+    }
+
+    .overlay {
+        position: absolute;
+        bottom: 5%;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        pointer-events: none;
+    }
+
+    .title-group {
+        display: inline-block;
+        padding: 10px 20px;
+        /* slightly dark background/gradient behind text for readability? */
+        background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));
+        width: 100%;
+    }
+
+    .subtitle {
+        font-family: 'Lato', sans-serif;
+        font-size: 1.5em; /* Relative to container base font size? */
+        font-weight: 700;
+        color: #f0f0f0;
+        text-shadow: 2px 2px 4px #000;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 5px;
+    }
+
+    .main-title {
+        font-family: 'Cinzel', serif;
+        font-size: 3em;
+        font-weight: 900;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        
+        /* Gold gradient effect */
+        background: linear-gradient(180deg, #fff 20%, #ffd700 80%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        
+        /* Strong drop shadow/outline to separate from background */
+        filter: drop-shadow(3px 3px 0px rgba(0,0,0,0.8));
+    }
+
+</style>
+</head>
+<body>
+    <div id="canvas">
+        <img id="bg-img" src="preview_source.png" onload="adjustScale()">
+        <div class="overlay">
+            <div class="title-group">
+                <div class="subtitle">Ratkin Extensions</div>
+                <div class="main-title">Divine Diurganate</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function adjustScale() {
+            // Adjust font sizes based on image width
+            const img = document.getElementById('bg-img');
+            const width = img.width;
+            const fontSize = width / 20; // 32px for 640px width
+            document.body.style.fontSize = fontSize + 'px';
+        }
+    </script>
+</body>
+</html>
