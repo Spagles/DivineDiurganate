@@ -106,7 +106,7 @@ public class CompFlyOverGenerator : ThingComp
 ## Important Rules
 
 ### Knowledge Base Usage
-When working on RimWorld modding, ALWAYS use `rimworld-knowledge-base` tool to:
+When working on RimWorld modding, ALWAYS use `rimworld-code-rag` tool (via MCP) to:
 - Search for correct class names, method signatures, and enum values
 - Verify game mechanics and API usage
 - Access decompiled RimWorld 1.6 source code
