@@ -597,12 +597,7 @@
 				</li>
 			</options>
 		</colorGenerator>
-		<recipeMaker>
-			<researchPrerequisites>
-				<li>HighClassClothing</li>
-				<li>DD_LV1_Clothing_Technology</li>
-			</researchPrerequisites>
-		</recipeMaker>
+		<recipeMaker Inherit="False" IsNull="True"/>
 	</ThingDef>
 	<ThingDef ParentName="DD_HatMakeableBase">
 		<defName>DD_Heretic_Helmet</defName>
@@ -644,12 +639,7 @@
 				<li>DD_RatkinCrusaders</li>
 			</tags>
 		</apparel>
-		<recipeMaker>
-			<researchPrerequisites>
-				<li>HighClassClothing</li>
-				<li>DD_LV1_Clothing_Technology</li>
-			</researchPrerequisites>
-		</recipeMaker>
+		<recipeMaker Inherit="False" IsNull="True"/>
 	</ThingDef>
 
 	<ThingDef ParentName="DD_ApparelMakeableBase">
