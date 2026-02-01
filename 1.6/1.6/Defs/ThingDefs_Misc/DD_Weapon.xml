@@ -16,7 +16,10 @@
     <uiIconScale>0.7</uiIconScale>
     <recipeMaker>
       <!-- <recipeUsers Inherit="False" /> -->
-      <researchPrerequisite>MicroOptical</researchPrerequisite>
+      <researchPrerequisites>
+        <li>MicroOptical</li>
+        <li>DD_LV1_Weapon_Technology</li>
+      </researchPrerequisites>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
     </recipeMaker>
     <statBases>
@@ -93,7 +96,10 @@
     </costList>
     <recipeMaker>
       <!-- <recipeUsers Inherit="False" /> -->
-      <researchPrerequisite>FlechetteBullet</researchPrerequisite>
+      <researchPrerequisites>
+        <li>FlechetteBullet</li>
+        <li>DD_LV1_Weapon_Technology</li>
+      </researchPrerequisites>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
     </recipeMaker>
     <statBases>
@@ -183,7 +189,10 @@
     <uiIconScale>0.7</uiIconScale>
     <recipeMaker>
       <!-- <recipeUsers Inherit="False" /> -->
-      <researchPrerequisite>FlechetteBullet</researchPrerequisite>
+      <researchPrerequisites>
+        <li>FlechetteBullet</li>
+        <li>DD_LV1_Weapon_Technology</li>
+      </researchPrerequisites>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
     </recipeMaker>
     <statBases>
@@ -283,7 +292,10 @@
     </costList>
     <recipeMaker>
       <!-- <recipeUsers Inherit="False" /> -->
-      <researchPrerequisite>MicroOptical</researchPrerequisite>
+      <researchPrerequisites>
+        <li>MicroOptical</li>
+        <li>DD_LV1_Weapon_Technology</li>
+      </researchPrerequisites>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
     </recipeMaker>
     <statBases>
@@ -381,7 +393,10 @@
     </costList>
     <recipeMaker>
       <recipeUsers Inherit="False" />
-      <researchPrerequisite>MechanicalWeapon</researchPrerequisite>
+      <researchPrerequisites>
+        <li>MechanicalWeapon</li>
+        <li>DD_LV1_Weapon_Technology</li>
+      </researchPrerequisites>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
     </recipeMaker>
     <statBases>
@@ -452,7 +467,10 @@
     </costList>
     <recipeMaker>
       <!-- <recipeUsers Inherit="False" /> -->
-      <researchPrerequisite>FlechetteBullet</researchPrerequisite>
+      <researchPrerequisites>
+        <li>FlechetteBullet</li>
+        <li>DD_LV1_Weapon_Technology</li>
+      </researchPrerequisites>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
     </recipeMaker>
     <statBases>
@@ -752,11 +770,7 @@
     <relicChance>0</relicChance>
     <genericMarketSellable>false</genericMarketSellable>
     <stuffCategories Inherit="False"/>
-    <recipeMaker>
-      <!-- <recipeUsers Inherit="False" /> -->
-      <researchPrerequisite>MicroOptical</researchPrerequisite>
-      <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
-    </recipeMaker>
+    <recipeMaker Inherit="False" IsNull="True"/>
     <statBases>
       <WorkToMake>5000</WorkToMake>
       <Mass>1.4</Mass>
@@ -876,11 +890,7 @@
     <uiIconScale>0.7</uiIconScale>
     <costStuffCount>0</costStuffCount>
     <stuffCategories Inherit="False"/>
-    <recipeMaker>
-      <!-- <recipeUsers Inherit="False" /> -->
-      <researchPrerequisite>FlechetteBullet</researchPrerequisite>
-      <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
-    </recipeMaker>
+    <recipeMaker Inherit="False" IsNull="True"/>
     <statBases>
       <WorkToMake>5000</WorkToMake>
       <Mass>6</Mass>

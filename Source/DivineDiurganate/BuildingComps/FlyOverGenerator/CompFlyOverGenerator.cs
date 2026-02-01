@@ -136,8 +136,8 @@ namespace DivineDiurganate
         private IntVec3 firstPoint;
         private IntVec3 secondPoint;
         
-        // 冷却和限制
-        private int lastUseTick = -99999;
+        // 冷却和限制 - 全局同步
+        private static int lastUseTick = -99999;
         private int useCount = 0;
         
         // 新增：呼叫任务状态

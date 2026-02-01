@@ -41,6 +41,9 @@
     <repairEffect>ConstructMetal</repairEffect>
     <forceDebugSpawnable>true</forceDebugSpawnable>
     <designationCategory>Misc</designationCategory>
+    <researchPrerequisites Inherit="False">
+      <li>DD_LV1_Hell_Technology</li>
+    </researchPrerequisites>
     <placeWorkers>
       <li>DivineDiurganate.PlaceWorker_TeleporterRange</li>
     </placeWorkers>
@@ -143,8 +146,8 @@
     <placeWorkers>
       <li>PlaceWorker_PreventInteractionSpotOverlap</li>
     </placeWorkers>
-    <researchPrerequisites>
-      <li>MicroelectronicsBasics</li>
+    <researchPrerequisites Inherit="False">
+      <li>DD_LV1_Airship_Technology</li>
     </researchPrerequisites>
     <tickerType>Normal</tickerType>
     <comps>

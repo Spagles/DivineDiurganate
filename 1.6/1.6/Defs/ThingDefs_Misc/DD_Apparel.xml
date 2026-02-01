@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <ThingDef Name="DD_ApparelMakeableBase" ParentName="ApparelMakeableBase" Abstract="True">
-    <stuffCategories>
-      <li>Fabric</li>
-    </stuffCategories>
+	<ThingDef Name="DD_ApparelMakeableBase" ParentName="ApparelMakeableBase" Abstract="True">
+		<stuffCategories>
+			<li>Fabric</li>
+		</stuffCategories>
 		<tradeTags>
 			<li>RK_Apparel</li>
 		</tradeTags>
 		<thingCategories>
 			<li>RK_Apparel</li>
 		</thingCategories>
-    <graphicData>
-      <graphicClass>Graphic_Single</graphicClass>
-      <shaderType>CutoutComplex</shaderType>
-    </graphicData>
-    <apparel>
-      <tags>
-			  <li>RK_Apparel</li>
-      </tags>
-      <canBeDesiredForIdeo>false</canBeDesiredForIdeo>
-      <canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
-      <canBeGeneratedToSatisfyToxicEnvironmentResistance>false</canBeGeneratedToSatisfyToxicEnvironmentResistance>
-      <useWornGraphicMask>true</useWornGraphicMask>
-    </apparel>
-    <colorGenerator Class="ColorGenerator_Options">
-      <options>
-        <li>
-          <weight>10</weight>
-          <only>(1,1,1,1)</only>
-        </li>
-      </options>
-    </colorGenerator>
-    <recipeMaker>
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+		</graphicData>
+		<apparel>
+			<tags>
+				<li>RK_Apparel</li>
+			</tags>
+			<canBeDesiredForIdeo>false</canBeDesiredForIdeo>
+			<canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
+			<canBeGeneratedToSatisfyToxicEnvironmentResistance>false</canBeGeneratedToSatisfyToxicEnvironmentResistance>
+			<useWornGraphicMask>true</useWornGraphicMask>
+		</apparel>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>(1,1,1,1)</only>
+				</li>
+			</options>
+		</colorGenerator>
+		<recipeMaker>
 			<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
-      <unfinishedThingDef>UnfinishedApparel</unfinishedThingDef>
-      <useIngredientsForColor>false</useIngredientsForColor>
+			<unfinishedThingDef>UnfinishedApparel</unfinishedThingDef>
+			<useIngredientsForColor>false</useIngredientsForColor>
 			<workSkill>Crafting</workSkill>
 			<effectWorking>Tailor</effectWorking>
 			<soundWorking>Recipe_Tailor</soundWorking>
@@ -42,15 +42,16 @@
 				<li>RK_ElectricTailoringBench</li>
 				<li>RK_HandTailoringBench</li>
 			</recipeUsers>
-    </recipeMaker>
-    <statBases>
-      <Mass>1</Mass>
-      <WorkToMake>7000</WorkToMake>
-      <StuffEffectMultiplierArmor>0.35</StuffEffectMultiplierArmor>
-      <StuffEffectMultiplierInsulation_Cold>1</StuffEffectMultiplierInsulation_Cold>
-      <StuffEffectMultiplierInsulation_Heat>1</StuffEffectMultiplierInsulation_Heat>
-    </statBases>
-  </ThingDef>
+			<researchPrerequisite>DD_LV1_Clothing_Technology</researchPrerequisite>
+		</recipeMaker>
+		<statBases>
+			<Mass>1</Mass>
+			<WorkToMake>7000</WorkToMake>
+			<StuffEffectMultiplierArmor>0.35</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>1</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>1</StuffEffectMultiplierInsulation_Heat>
+		</statBases>
+	</ThingDef>
 	<ThingDef Name="DD_HatMakeableBase" ParentName="DD_ApparelMakeableBase" Abstract="True">
 		<thingCategories>
 			<li>RK_Headgear</li>
@@ -68,14 +69,17 @@
 			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
 		<costStuffCount>0</costStuffCount>
-    <stuffCategories Inherit="False"/>
+		<stuffCategories Inherit="False"/>
 		<recipeMaker>
 			<unfinishedThingDef>UnfinishedArmor</unfinishedThingDef>
-			<researchPrerequisite>RatkinClothing</researchPrerequisite>
+			<researchPrerequisites>
+				<li>RatkinClothing</li>
+				<li>DD_LV1_Clothing_Technology</li>
+			</researchPrerequisites>
 			<recipeUsers Inherit="false">
 				<li>RK_FueledSmithy</li>
 				<li>RK_ElectricSmithy</li>
-			</recipeUsers>		
+			</recipeUsers>
 		</recipeMaker>
 		<costList>
 			<Steel>10</Steel>
@@ -96,36 +100,36 @@
 			</bodyPartGroups>
 			<wornGraphicPath>DivineDiurganate/Apparel/DD_Suicide_Bomb</wornGraphicPath>
 			<layers>
-        <li>Shell</li>
+				<li>Shell</li>
 			</layers>
 			<tags>
 				<li>DD_Suicide_Bomb</li>
 			</tags>
-      <canBeDesiredForIdeo>false</canBeDesiredForIdeo>
-      <canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
-      <canBeGeneratedToSatisfyToxicEnvironmentResistance>false</canBeGeneratedToSatisfyToxicEnvironmentResistance>
-      <useWornGraphicMask>true</useWornGraphicMask>
+			<canBeDesiredForIdeo>false</canBeDesiredForIdeo>
+			<canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
+			<canBeGeneratedToSatisfyToxicEnvironmentResistance>false</canBeGeneratedToSatisfyToxicEnvironmentResistance>
+			<useWornGraphicMask>true</useWornGraphicMask>
 		</apparel>
-    <colorGenerator Class="ColorGenerator_Options">
-      <options>
-        <li>
-          <weight>10</weight>
-          <only>(1,1,1,1)</only>
-        </li>
-      </options>
-    </colorGenerator>
-    <comps>
-      <li Class="CompProperties_CauseHediff_Apparel">
-        <hediff>DD_Suicide_Bomb_Hediff</hediff>
-      </li>
-    </comps>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>(1,1,1,1)</only>
+				</li>
+			</options>
+		</colorGenerator>
+		<comps>
+			<li Class="CompProperties_CauseHediff_Apparel">
+				<hediff>DD_Suicide_Bomb_Hediff</hediff>
+			</li>
+		</comps>
 	</ThingDef>
-  
+
 	<ThingDef ParentName="DD_ApparelMakeableBase">
 		<defName>DD_Beliver_Dress</defName>
 		<label>Diurganate Beliver Dress</label>
-    <description>The attire worn by the followers of Diurganate, predominantly black in color, serves to suppress their natural impulses.</description>
-    <graphicData>
+		<description>The attire worn by the followers of Diurganate, predominantly black in color, serves to suppress their natural impulses.</description>
+		<graphicData>
 			<texPath>DivineDiurganate/Apparel/DD_Beliver_Dress</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
@@ -135,9 +139,9 @@
 			<li>Leathery</li>
 			<li>Fabric</li>
 		</stuffCategories>
-    <costList>
-      <Cloth>20</Cloth>
-    </costList>
+		<costList>
+			<Cloth>20</Cloth>
+		</costList>
 		<techLevel>Industrial</techLevel>
 		<statBases>
 			<MaxHitPoints>100</MaxHitPoints>
@@ -145,12 +149,12 @@
 			<Mass>1</Mass>
 			<Flammability>1</Flammability>
 			<EquipDelay>1</EquipDelay>
-      <StuffEffectMultiplierArmor>0.2</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierArmor>0.2</StuffEffectMultiplierArmor>
 			<StuffEffectMultiplierInsulation_Cold>0.30</StuffEffectMultiplierInsulation_Cold>
 			<StuffEffectMultiplierInsulation_Heat>0.30</StuffEffectMultiplierInsulation_Heat>
 		</statBases>
 		<equippedStatOffsets>
-      <MentalBreakThreshold>-0.05</MentalBreakThreshold>
+			<MentalBreakThreshold>-0.05</MentalBreakThreshold>
 		</equippedStatOffsets>
 		<apparel>
 			<bodyPartGroups>
@@ -162,33 +166,36 @@
 			</bodyPartGroups>
 			<wornGraphicPath>DivineDiurganate/Apparel/DD_Beliver_Dress</wornGraphicPath>
 			<layers>
-        <li>Middle</li>
+				<li>Middle</li>
 			</layers>
 			<tags>
 				<li>DD_RatkinBeliver</li>
 			</tags>
-      <canBeDesiredForIdeo>false</canBeDesiredForIdeo>
-      <canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
-      <canBeGeneratedToSatisfyToxicEnvironmentResistance>false</canBeGeneratedToSatisfyToxicEnvironmentResistance>
-      <useWornGraphicMask>true</useWornGraphicMask>
+			<canBeDesiredForIdeo>false</canBeDesiredForIdeo>
+			<canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
+			<canBeGeneratedToSatisfyToxicEnvironmentResistance>false</canBeGeneratedToSatisfyToxicEnvironmentResistance>
+			<useWornGraphicMask>true</useWornGraphicMask>
 		</apparel>
-    <colorGenerator Class="ColorGenerator_Options">
-      <options>
-        <li>
-          <weight>10</weight>
-          <only>(1,1,1,1)</only>
-        </li>
-      </options>
-    </colorGenerator>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>(1,1,1,1)</only>
+				</li>
+			</options>
+		</colorGenerator>
 		<recipeMaker>
-			<researchPrerequisite>RatkinClothing</researchPrerequisite>
+			<researchPrerequisites>
+				<li>RatkinClothing</li>
+				<li>DD_LV1_Clothing_Technology</li>
+			</researchPrerequisites>
 		</recipeMaker>
 	</ThingDef>
 	<ThingDef ParentName="DD_ApparelMakeableBase">
 		<defName>DD_Nun_Dress</defName>
 		<label>Diurganate Nun Dress</label>
-    <description>The uniforms worn by the nuns who serve the Holy Two-Tail are designed with battlefield practicality in mind, compared to the uniforms of ordinary ratkin Sister Dress, and are therefore more defensive—though they are still ultimately a cloth, not armor.</description>
-    <graphicData>
+		<description>The uniforms worn by the nuns who serve the Holy Two-Tail are designed with battlefield practicality in mind, compared to the uniforms of ordinary ratkin Sister Dress, and are therefore more defensive—though they are still ultimately a cloth, not armor.</description>
+		<graphicData>
 			<texPath>DivineDiurganate/Apparel/DD_Nun_Dress</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
@@ -198,9 +205,9 @@
 			<li>Leathery</li>
 			<li>Fabric</li>
 		</stuffCategories>
-    <costList>
-      <Cloth>30</Cloth>
-    </costList>
+		<costList>
+			<Cloth>30</Cloth>
+		</costList>
 		<techLevel>Industrial</techLevel>
 		<statBases>
 			<MaxHitPoints>150</MaxHitPoints>
@@ -208,13 +215,13 @@
 			<Mass>3</Mass>
 			<Flammability>1</Flammability>
 			<EquipDelay>1</EquipDelay>
-      <StuffEffectMultiplierArmor>0.25</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierArmor>0.25</StuffEffectMultiplierArmor>
 			<StuffEffectMultiplierInsulation_Cold>0.40</StuffEffectMultiplierInsulation_Cold>
 			<StuffEffectMultiplierInsulation_Heat>0.40</StuffEffectMultiplierInsulation_Heat>
 		</statBases>
 		<equippedStatOffsets>
 			<MedicalTendQuality>0.25</MedicalTendQuality>
-      <MentalBreakThreshold>-0.1</MentalBreakThreshold>
+			<MentalBreakThreshold>-0.1</MentalBreakThreshold>
 		</equippedStatOffsets>
 		<apparel>
 			<bodyPartGroups>
@@ -226,33 +233,36 @@
 			</bodyPartGroups>
 			<wornGraphicPath>DivineDiurganate/Apparel/DD_Nun_Dress</wornGraphicPath>
 			<layers>
-        <li>Middle</li>
+				<li>Middle</li>
 			</layers>
 			<tags>
 				<li>DD_RatkinClergy</li>
 			</tags>
-      <canBeDesiredForIdeo>false</canBeDesiredForIdeo>
-      <canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
-      <canBeGeneratedToSatisfyToxicEnvironmentResistance>false</canBeGeneratedToSatisfyToxicEnvironmentResistance>
-      <useWornGraphicMask>true</useWornGraphicMask>
+			<canBeDesiredForIdeo>false</canBeDesiredForIdeo>
+			<canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
+			<canBeGeneratedToSatisfyToxicEnvironmentResistance>false</canBeGeneratedToSatisfyToxicEnvironmentResistance>
+			<useWornGraphicMask>true</useWornGraphicMask>
 		</apparel>
-    <colorGenerator Class="ColorGenerator_Options">
-      <options>
-        <li>
-          <weight>10</weight>
-          <only>(1,1,1,1)</only>
-        </li>
-      </options>
-    </colorGenerator>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>(1,1,1,1)</only>
+				</li>
+			</options>
+		</colorGenerator>
 		<recipeMaker>
-			<researchPrerequisite>HighClassClothing</researchPrerequisite>
+			<researchPrerequisites>
+				<li>HighClassClothing</li>
+				<li>DD_LV1_Clothing_Technology</li>
+			</researchPrerequisites>
 		</recipeMaker>
 	</ThingDef>
 	<ThingDef ParentName="DD_HatMakeableBase">
 		<defName>DD_NunVeil</defName>
 		<label>Diurganate Nun Veil</label>
-    <description>The uniforms worn by the nuns who serve the Holy Two-Tail are designed with battlefield practicality in mind, compared to the uniforms of ordinary ratkin Sister Dress, and are therefore more defensive—though they are still ultimately a cloth, not armor.</description>
-    <graphicData>
+		<description>The uniforms worn by the nuns who serve the Holy Two-Tail are designed with battlefield practicality in mind, compared to the uniforms of ordinary ratkin Sister Dress, and are therefore more defensive—though they are still ultimately a cloth, not armor.</description>
+		<graphicData>
 			<texPath>DivineDiurganate/Apparel/DD_NunVeil</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
@@ -262,29 +272,29 @@
 			<li>Leathery</li>
 			<li>Fabric</li>
 		</stuffCategories>
-    <costList>
-      <Cloth>10</Cloth>
-    </costList>
+		<costList>
+			<Cloth>10</Cloth>
+		</costList>
 		<statBases>
 			<MaxHitPoints>150</MaxHitPoints>
 			<WorkToMake>15000</WorkToMake>
 			<Mass>0.1</Mass>
 			<EquipDelay>0.5</EquipDelay>
-      <StuffEffectMultiplierArmor>0.2</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierArmor>0.2</StuffEffectMultiplierArmor>
 			<StuffEffectMultiplierInsulation_Cold>0.30</StuffEffectMultiplierInsulation_Cold>
 			<StuffEffectMultiplierInsulation_Heat>0.30</StuffEffectMultiplierInsulation_Heat>
 		</statBases>
 		<equippedStatOffsets>
 			<MedicalTendQuality>0.15</MedicalTendQuality>
-      <MentalBreakThreshold>-0.05</MentalBreakThreshold>
+			<MentalBreakThreshold>-0.05</MentalBreakThreshold>
 		</equippedStatOffsets>
 		<apparel>
-      <renderSkipFlags>
-        <li>None</li>
-      </renderSkipFlags>
-      <parentTagDef>ApparelHead</parentTagDef>
-      <useDeflectMetalEffect>true</useDeflectMetalEffect>
-      <countsAsClothingForNudity>false</countsAsClothingForNudity>
+			<renderSkipFlags>
+				<li>None</li>
+			</renderSkipFlags>
+			<parentTagDef>ApparelHead</parentTagDef>
+			<useDeflectMetalEffect>true</useDeflectMetalEffect>
+			<countsAsClothingForNudity>false</countsAsClothingForNudity>
 			<bodyPartGroups>
 				<li>UpperHead</li>
 			</bodyPartGroups>
@@ -297,40 +307,43 @@
 			</tags>
 		</apparel>
 		<recipeMaker>
-			<researchPrerequisite>HighClassClothing</researchPrerequisite>
+			<researchPrerequisites>
+				<li>HighClassClothing</li>
+				<li>DD_LV1_Clothing_Technology</li>
+			</researchPrerequisites>
 		</recipeMaker>
-    <comps>
-      <li Class="CompProperties_CauseHediff_Apparel">
-        <hediff>DD_Nun_Draw_Hediff</hediff>
-      </li>
-    </comps>
+		<comps>
+			<li Class="CompProperties_CauseHediff_Apparel">
+				<hediff>DD_Nun_Draw_Hediff</hediff>
+			</li>
+		</comps>
 	</ThingDef>
 	<ThingDef ParentName="DD_ApparelMakeableBase">
 		<defName>DD_Exorcist_Cloth</defName>
 		<label>Michelle's uniform</label>
-    <description>The uniform that Michelle wore when she was a community exorcist. She continued to wear this clothes even after leaving her hometown - but for the grown-up Michelle, the bust size of this clothes was too small</description>
-    <graphicData>
+		<description>The uniform that Michelle wore when she was a community exorcist. She continued to wear this clothes even after leaving her hometown - but for the grown-up Michelle, the bust size of this clothes was too small</description>
+		<graphicData>
 			<texPath>DivineDiurganate/Apparel/DD_Exorcist_Cloth</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>CutoutComplex</shaderType>  
+			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
-    <useHitPoints>false</useHitPoints>
+		<useHitPoints>false</useHitPoints>
 		<costStuffCount>0</costStuffCount>
-    <costList>
-      <Cloth>200</Cloth>
-    </costList>
-    <stuffCategories Inherit="False"/>
+		<costList>
+			<Cloth>200</Cloth>
+		</costList>
+		<stuffCategories Inherit="False"/>
 		<techLevel>Industrial</techLevel>
-	  <smeltable>false</smeltable>
+		<smeltable>false</smeltable>
 		<statBases>
 			<WorkToMake>25000</WorkToMake>
 			<Mass>3</Mass>
 			<Flammability>0</Flammability>
 			<EquipDelay>1</EquipDelay>
-      <DeteriorationRate>0</DeteriorationRate>
-      <ArmorRating_Blunt>0.8</ArmorRating_Blunt>
-      <ArmorRating_Sharp>0.8</ArmorRating_Sharp>
-      <ArmorRating_Heat>1.25</ArmorRating_Heat>
+			<DeteriorationRate>0</DeteriorationRate>
+			<ArmorRating_Blunt>0.8</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.8</ArmorRating_Sharp>
+			<ArmorRating_Heat>1.25</ArmorRating_Heat>
 			<Insulation_Cold>25</Insulation_Cold>
 			<Insulation_Heat>10</Insulation_Heat>
 		</statBases>
@@ -344,59 +357,59 @@
 			</bodyPartGroups>
 			<wornGraphicPath>DivineDiurganate/Apparel/DD_Exorcist_Cloth</wornGraphicPath>
 			<layers>
-        <li>Middle</li>
+				<li>Middle</li>
 			</layers>
-      <tags Inherit="False"/>
-      <canBeDesiredForIdeo>false</canBeDesiredForIdeo>
-      <canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
-      <canBeGeneratedToSatisfyToxicEnvironmentResistance>false</canBeGeneratedToSatisfyToxicEnvironmentResistance>
-      <useWornGraphicMask>true</useWornGraphicMask>
+			<tags Inherit="False"/>
+			<canBeDesiredForIdeo>false</canBeDesiredForIdeo>
+			<canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
+			<canBeGeneratedToSatisfyToxicEnvironmentResistance>false</canBeGeneratedToSatisfyToxicEnvironmentResistance>
+			<useWornGraphicMask>true</useWornGraphicMask>
 		</apparel>
-    <colorGenerator Class="ColorGenerator_Options">
-      <options>
-        <li>
-          <weight>10</weight>
-          <only>(1,1,1,1)</only>
-        </li>
-      </options>
-    </colorGenerator>
-    <recipeMaker Inherit="False" IsNull="True"/>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>(1,1,1,1)</only>
+				</li>
+			</options>
+		</colorGenerator>
+		<recipeMaker Inherit="False" IsNull="True"/>
 	</ThingDef>
 	<ThingDef ParentName="DD_HatMakeableBase">
 		<defName>DD_Exorcist_Hat</defName>
 		<label>Michelle's Hat</label>
-    <description>Michelle's hat, which has a rather chivalrous air about it.</description>
-    <graphicData>
+		<description>Michelle's hat, which has a rather chivalrous air about it.</description>
+		<graphicData>
 			<texPath>DivineDiurganate/Apparel/DD_Exorcist_Hat</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
-	  <smeltable>false</smeltable>
-    <useHitPoints>false</useHitPoints>
+		<smeltable>false</smeltable>
+		<useHitPoints>false</useHitPoints>
 		<costStuffCount>0</costStuffCount>
-    <stuffCategories Inherit="False"/>
-    <costList>
-      <Cloth>50</Cloth>
-    </costList>
+		<stuffCategories Inherit="False"/>
+		<costList>
+			<Cloth>50</Cloth>
+		</costList>
 		<statBases>
 			<WorkToMake>15000</WorkToMake>
 			<Mass>0.1</Mass>
 			<Flammability>0</Flammability>
-      <DeteriorationRate>0</DeteriorationRate>
+			<DeteriorationRate>0</DeteriorationRate>
 			<EquipDelay>0.5</EquipDelay>
-      <ArmorRating_Blunt>0.5</ArmorRating_Blunt>
-      <ArmorRating_Sharp>0.5</ArmorRating_Sharp>
-      <ArmorRating_Heat>0.75</ArmorRating_Heat>
+			<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+			<ArmorRating_Heat>0.75</ArmorRating_Heat>
 			<Insulation_Cold>5</Insulation_Cold>
 			<Insulation_Heat>5</Insulation_Heat>
 		</statBases>
 		<apparel>
-      <renderSkipFlags>
-        <li>None</li>
-      </renderSkipFlags>
-      <parentTagDef>ApparelHead</parentTagDef>
-      <useDeflectMetalEffect>true</useDeflectMetalEffect>
-      <countsAsClothingForNudity>false</countsAsClothingForNudity>
+			<renderSkipFlags>
+				<li>None</li>
+			</renderSkipFlags>
+			<parentTagDef>ApparelHead</parentTagDef>
+			<useDeflectMetalEffect>true</useDeflectMetalEffect>
+			<countsAsClothingForNudity>false</countsAsClothingForNudity>
 			<bodyPartGroups>
 				<li>UpperHead</li>
 			</bodyPartGroups>
@@ -404,26 +417,26 @@
 			<layers>
 				<li>Overhead</li>
 			</layers>
-      <tags Inherit="False"/>
+			<tags Inherit="False"/>
 		</apparel>
-    <recipeMaker Inherit="False" IsNull="True"/>
+		<recipeMaker Inherit="False" IsNull="True"/>
 	</ThingDef>
 	<ThingDef ParentName="DD_ApparelMakeableBase">
 		<defName>DD_Crusaders_Uniform</defName>
 		<label>Diurganate Crusader Uniform</label>
-    <description>The uniform of the Diurganate Crusader, with a built-in set of alloy plate armour that would resist firing, and a warm coat on the outside to move in the high-altitude, cold environment of Diurganate Airship.</description>
-    <graphicData>
+		<description>The uniform of the Diurganate Crusader, with a built-in set of alloy plate armour that would resist firing, and a warm coat on the outside to move in the high-altitude, cold environment of Diurganate Airship.</description>
+		<graphicData>
 			<texPath>DivineDiurganate/Apparel/DD_Crusaders_Uniform</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
 		<costStuffCount>120</costStuffCount>
-    <stuffCategories Inherit="False">
-      <li>Metallic</li>
-    </stuffCategories>
-    <costList>
-      <Steel>80</Steel>
-    </costList>
+		<stuffCategories Inherit="False">
+			<li>Metallic</li>
+		</stuffCategories>
+		<costList>
+			<Steel>80</Steel>
+		</costList>
 		<techLevel>Industrial</techLevel>
 		<statBases>
 			<MaxHitPoints>150</MaxHitPoints>
@@ -431,12 +444,12 @@
 			<Mass>3</Mass>
 			<Flammability>1</Flammability>
 			<EquipDelay>1</EquipDelay>
-      <StuffEffectMultiplierArmor>0.9</StuffEffectMultiplierArmor>
-      <StuffEffectMultiplierInsulation_Cold>1.0</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierArmor>0.9</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>1.0</StuffEffectMultiplierInsulation_Cold>
 			<StuffEffectMultiplierInsulation_Heat>0.20</StuffEffectMultiplierInsulation_Heat>
 		</statBases>
 		<equippedStatOffsets>
-      <MoveSpeed>-0.25</MoveSpeed>
+			<MoveSpeed>-0.25</MoveSpeed>
 		</equippedStatOffsets>
 		<apparel>
 			<bodyPartGroups>
@@ -448,26 +461,29 @@
 			</bodyPartGroups>
 			<wornGraphicPath>DivineDiurganate/Apparel/DD_Crusaders_Uniform</wornGraphicPath>
 			<layers>
-        <li>Middle</li>
+				<li>Middle</li>
 			</layers>
 			<tags>
 				<li>DD_RatkinCrusaders</li>
 			</tags>
-      <canBeDesiredForIdeo>false</canBeDesiredForIdeo>
-      <canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
-      <canBeGeneratedToSatisfyToxicEnvironmentResistance>false</canBeGeneratedToSatisfyToxicEnvironmentResistance>
-      <useWornGraphicMask>true</useWornGraphicMask>
+			<canBeDesiredForIdeo>false</canBeDesiredForIdeo>
+			<canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
+			<canBeGeneratedToSatisfyToxicEnvironmentResistance>false</canBeGeneratedToSatisfyToxicEnvironmentResistance>
+			<useWornGraphicMask>true</useWornGraphicMask>
 		</apparel>
-    <colorGenerator Class="ColorGenerator_Options">
-      <options>
-        <li>
-          <weight>10</weight>
-          <only>(1,1,1,1)</only>
-        </li>
-      </options>
-    </colorGenerator>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>(1,1,1,1)</only>
+				</li>
+			</options>
+		</colorGenerator>
 		<recipeMaker>
-			<researchPrerequisite>HighClassClothing</researchPrerequisite>
+			<researchPrerequisites>
+				<li>HighClassClothing</li>
+				<li>DD_LV1_Clothing_Technology</li>
+			</researchPrerequisites>
 		</recipeMaker>
 	</ThingDef>
 	<ThingDef ParentName="DD_HatMakeableBase">
@@ -480,28 +496,28 @@
 			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
 		<costStuffCount>60</costStuffCount>
-    <stuffCategories Inherit="False">
-      <li>Metallic</li>
-    </stuffCategories>
-    <costList>
-      <Steel>30</Steel>
-    </costList>
+		<stuffCategories Inherit="False">
+			<li>Metallic</li>
+		</stuffCategories>
+		<costList>
+			<Steel>30</Steel>
+		</costList>
 		<statBases>
 			<MaxHitPoints>150</MaxHitPoints>
 			<WorkToMake>18000</WorkToMake>
-			<Mass>1</Mass>			
+			<Mass>1</Mass>
 			<StuffEffectMultiplierArmor>0.75</StuffEffectMultiplierArmor>
 			<StuffEffectMultiplierInsulation_Cold>0.75</StuffEffectMultiplierInsulation_Cold>
-			<StuffEffectMultiplierInsulation_Heat>0.15</StuffEffectMultiplierInsulation_Heat>			
+			<StuffEffectMultiplierInsulation_Heat>0.15</StuffEffectMultiplierInsulation_Heat>
 			<EquipDelay>0.5</EquipDelay>
 		</statBases>
 		<apparel>
-      <renderSkipFlags>
-        <li>None</li>
-      </renderSkipFlags>
-      <parentTagDef>ApparelHead</parentTagDef>
-      <useDeflectMetalEffect>true</useDeflectMetalEffect>
-      <countsAsClothingForNudity>false</countsAsClothingForNudity>
+			<renderSkipFlags>
+				<li>None</li>
+			</renderSkipFlags>
+			<parentTagDef>ApparelHead</parentTagDef>
+			<useDeflectMetalEffect>true</useDeflectMetalEffect>
+			<countsAsClothingForNudity>false</countsAsClothingForNudity>
 			<bodyPartGroups>
 				<li>FullHead</li>
 				<!-- <li>Eyes</li> -->
@@ -515,27 +531,30 @@
 			</tags>
 		</apparel>
 		<recipeMaker>
-			<researchPrerequisite>HighClassClothing</researchPrerequisite>
+			<researchPrerequisites>
+				<li>HighClassClothing</li>
+				<li>DD_LV1_Clothing_Technology</li>
+			</researchPrerequisites>
 		</recipeMaker>
 	</ThingDef>
 
-  
+
 	<ThingDef ParentName="DD_ApparelMakeableBase">
 		<defName>DD_Heretic_Armor</defName>
 		<label>Heretic Armor</label>
-    <description>地狱军团所穿的基础护甲。</description>
-    <graphicData>
+		<description>地狱军团所穿的基础护甲。</description>
+		<graphicData>
 			<texPath>DivineDiurganate/Apparel/DD_Heretic_Armor</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
 		<costStuffCount>120</costStuffCount>
-    <stuffCategories Inherit="False">
-      <li>Metallic</li>
-    </stuffCategories>
-    <costList>
-      <Steel>80</Steel>
-    </costList>
+		<stuffCategories Inherit="False">
+			<li>Metallic</li>
+		</stuffCategories>
+		<costList>
+			<Steel>80</Steel>
+		</costList>
 		<techLevel>Industrial</techLevel>
 		<statBases>
 			<MaxHitPoints>150</MaxHitPoints>
@@ -543,12 +562,12 @@
 			<Mass>3</Mass>
 			<Flammability>1</Flammability>
 			<EquipDelay>1</EquipDelay>
-      <StuffEffectMultiplierArmor>0.9</StuffEffectMultiplierArmor>
-      <StuffEffectMultiplierInsulation_Cold>1.0</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierArmor>0.9</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>1.0</StuffEffectMultiplierInsulation_Cold>
 			<StuffEffectMultiplierInsulation_Heat>0.20</StuffEffectMultiplierInsulation_Heat>
 		</statBases>
 		<equippedStatOffsets>
-      <MoveSpeed>-0.25</MoveSpeed>
+			<MoveSpeed>-0.25</MoveSpeed>
 		</equippedStatOffsets>
 		<apparel>
 			<bodyPartGroups>
@@ -560,26 +579,29 @@
 			</bodyPartGroups>
 			<wornGraphicPath>DivineDiurganate/Apparel/DD_Heretic_Armor</wornGraphicPath>
 			<layers>
-        <li>Middle</li>
+				<li>Middle</li>
 			</layers>
 			<tags>
 				<li>DD_RatkinCrusaders</li>
 			</tags>
-      <canBeDesiredForIdeo>false</canBeDesiredForIdeo>
-      <canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
-      <canBeGeneratedToSatisfyToxicEnvironmentResistance>false</canBeGeneratedToSatisfyToxicEnvironmentResistance>
-      <useWornGraphicMask>true</useWornGraphicMask>
+			<canBeDesiredForIdeo>false</canBeDesiredForIdeo>
+			<canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
+			<canBeGeneratedToSatisfyToxicEnvironmentResistance>false</canBeGeneratedToSatisfyToxicEnvironmentResistance>
+			<useWornGraphicMask>true</useWornGraphicMask>
 		</apparel>
-    <colorGenerator Class="ColorGenerator_Options">
-      <options>
-        <li>
-          <weight>10</weight>
-          <only>(1,1,1,1)</only>
-        </li>
-      </options>
-    </colorGenerator>
+		<colorGenerator Class="ColorGenerator_Options">
+			<options>
+				<li>
+					<weight>10</weight>
+					<only>(1,1,1,1)</only>
+				</li>
+			</options>
+		</colorGenerator>
 		<recipeMaker>
-			<researchPrerequisite>HighClassClothing</researchPrerequisite>
+			<researchPrerequisites>
+				<li>HighClassClothing</li>
+				<li>DD_LV1_Clothing_Technology</li>
+			</researchPrerequisites>
 		</recipeMaker>
 	</ThingDef>
 	<ThingDef ParentName="DD_HatMakeableBase">
@@ -592,24 +614,24 @@
 			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
 		<costStuffCount>60</costStuffCount>
-    <stuffCategories Inherit="False">
-      <li>Metallic</li>
-    </stuffCategories>
-    <costList>
-      <Steel>30</Steel>
-    </costList>
+		<stuffCategories Inherit="False">
+			<li>Metallic</li>
+		</stuffCategories>
+		<costList>
+			<Steel>30</Steel>
+		</costList>
 		<statBases>
 			<MaxHitPoints>150</MaxHitPoints>
 			<WorkToMake>18000</WorkToMake>
-			<Mass>1</Mass>			
+			<Mass>1</Mass>
 			<StuffEffectMultiplierArmor>0.75</StuffEffectMultiplierArmor>
 			<StuffEffectMultiplierInsulation_Cold>0.75</StuffEffectMultiplierInsulation_Cold>
-			<StuffEffectMultiplierInsulation_Heat>0.15</StuffEffectMultiplierInsulation_Heat>			
+			<StuffEffectMultiplierInsulation_Heat>0.15</StuffEffectMultiplierInsulation_Heat>
 			<EquipDelay>0.5</EquipDelay>
 		</statBases>
 		<apparel>
-      <useDeflectMetalEffect>true</useDeflectMetalEffect>
-      <countsAsClothingForNudity>false</countsAsClothingForNudity>
+			<useDeflectMetalEffect>true</useDeflectMetalEffect>
+			<countsAsClothingForNudity>false</countsAsClothingForNudity>
 			<bodyPartGroups>
 				<li>FullHead</li>
 				<!-- <li>Eyes</li> -->
@@ -623,48 +645,54 @@
 			</tags>
 		</apparel>
 		<recipeMaker>
-			<researchPrerequisite>HighClassClothing</researchPrerequisite>
+			<researchPrerequisites>
+				<li>HighClassClothing</li>
+				<li>DD_LV1_Clothing_Technology</li>
+			</researchPrerequisites>
 		</recipeMaker>
 	</ThingDef>
 
-  <ThingDef ParentName="DD_ApparelMakeableBase">
-    <defName>DD_Crusaders_Shield</defName>
-    <label>Crusader shield</label>
-    <description>A medium-sized shield, designed specifically for the Crusaders of Divine Diurganate, which is lighter than a giant shield while maintaining almost no defensive capabilities.</description>
-    <recipeMaker>
-      <researchPrerequisite>HighClassClothing</researchPrerequisite>
-    </recipeMaker>
-    <graphicData>
-      <texPath>DivineDiurganate/Apparel/DD_Crusaders_Shield</texPath>
-    </graphicData>
-    <statBases>
-      <WorkToMake>5000</WorkToMake>
-      <MaxHitPoints>500</MaxHitPoints>
-      <Mass>7</Mass>
-      <Flammability>0</Flammability>
+	<ThingDef ParentName="DD_ApparelMakeableBase">
+		<defName>DD_Crusaders_Shield</defName>
+		<label>Crusader shield</label>
+		<description>A medium-sized shield, designed specifically for the Crusaders of Divine Diurganate, which is lighter than a giant shield while maintaining almost no defensive capabilities.</description>
+		<recipeMaker>
+			<researchPrerequisites>
+				<li>HighClassClothing</li>
+				<li>DD_LV1_Clothing_Technology</li>
+			</researchPrerequisites>
+		</recipeMaker>
+		<graphicData>
+			<texPath>DivineDiurganate/Apparel/DD_Crusaders_Shield</texPath>
+		</graphicData>
+		<statBases>
+			<WorkToMake>5000</WorkToMake>
+			<MaxHitPoints>500</MaxHitPoints>
+			<Mass>7</Mass>
+			<Flammability>0</Flammability>
 			<StuffEffectMultiplierArmor>0.9</StuffEffectMultiplierArmor>
 			<StuffEffectMultiplierInsulation_Cold>0.0</StuffEffectMultiplierInsulation_Cold>
 			<StuffEffectMultiplierInsulation_Heat>0.0</StuffEffectMultiplierInsulation_Heat>
-      <EquipDelay>0.1</EquipDelay>
-    </statBases>
-    <costList>
-      <Steel>100</Steel>
-    </costList>
+			<EquipDelay>0.1</EquipDelay>
+		</statBases>
+		<costList>
+			<Steel>100</Steel>
+		</costList>
 		<equippedStatOffsets>
 			<MeleeDodgeChance>-0.2</MeleeDodgeChance>
 			<MoveSpeed>-0.5</MoveSpeed>
 		</equippedStatOffsets>
 		<costStuffCount>120</costStuffCount>
-    <stuffCategories Inherit="False">
-      <li>Metallic</li>
-    </stuffCategories>
-    <apparel>
-      <renderSkipFlags>
-        <li>None</li>
-      </renderSkipFlags>
-      <tags>
-        <li>DD_RatkinCrusaders</li>
-      </tags>
+		<stuffCategories Inherit="False">
+			<li>Metallic</li>
+		</stuffCategories>
+		<apparel>
+			<renderSkipFlags>
+				<li>None</li>
+			</renderSkipFlags>
+			<tags>
+				<li>DD_RatkinCrusaders</li>
+			</tags>
 			<bodyPartGroups>
 				<li>Torso</li>
 				<li>Neck</li>
@@ -673,85 +701,85 @@
 				<li>Legs</li>
 				<li>FullHead</li>
 			</bodyPartGroups>
-      <wornGraphicPath>DivineDiurganate/Apparel/DD_Crusaders_Shield</wornGraphicPath>
+			<wornGraphicPath>DivineDiurganate/Apparel/DD_Crusaders_Shield</wornGraphicPath>
 			<layers>
 				<li>OuterClothing</li>
 			</layers>
-      <wornGraphicData>
-        <renderUtilityAsPack>true</renderUtilityAsPack>
-        <north>
-          <!-- <scale>(0.7,0.7)</scale> -->
-        </north>
-        <south>
-          <offset>(0,0)</offset>
-        </south>
-        <east>
-          <offset>(-0.1,0)</offset>
-        </east>
-        <west>
-          <offset>(0.1,0)</offset>
-        </west>
-      </wornGraphicData>
-      <useDeflectMetalEffect>true</useDeflectMetalEffect>
-      <canBeDesiredForIdeo>false</canBeDesiredForIdeo>
-      <canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
-      <canBeGeneratedToSatisfyToxicEnvironmentResistance>false</canBeGeneratedToSatisfyToxicEnvironmentResistance>
-      <useWornGraphicMask>true</useWornGraphicMask>
-    </apparel>
-  </ThingDef>
-  <ThingDef ParentName="DD_ApparelMakeableBase">
-    <defName>DD_Maple_Sugar_PackLoudspeaker</defName>
-    <label>Loudspeaker pack</label>
-    <description>The small audio device that Maple Sugar carries, resembling a schoolbag, covered with scriptures.</description>
-    <graphicData>
-      <texPath>DivineDiurganate/Apparel/DD_Maple_Sugar_PackLoudspeaker</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>(1,1)</drawSize>
-    </graphicData>
-    <useHitPoints>false</useHitPoints>
-    <thingCategories>
-      <li>ApparelUtility</li>
-    </thingCategories>
+			<wornGraphicData>
+				<renderUtilityAsPack>true</renderUtilityAsPack>
+				<north>
+					<!-- <scale>(0.7,0.7)</scale> -->
+				</north>
+				<south>
+					<offset>(0,0)</offset>
+				</south>
+				<east>
+					<offset>(-0.1,0)</offset>
+				</east>
+				<west>
+					<offset>(0.1,0)</offset>
+				</west>
+			</wornGraphicData>
+			<useDeflectMetalEffect>true</useDeflectMetalEffect>
+			<canBeDesiredForIdeo>false</canBeDesiredForIdeo>
+			<canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
+			<canBeGeneratedToSatisfyToxicEnvironmentResistance>false</canBeGeneratedToSatisfyToxicEnvironmentResistance>
+			<useWornGraphicMask>true</useWornGraphicMask>
+		</apparel>
+	</ThingDef>
+	<ThingDef ParentName="DD_ApparelMakeableBase">
+		<defName>DD_Maple_Sugar_PackLoudspeaker</defName>
+		<label>Loudspeaker pack</label>
+		<description>The small audio device that Maple Sugar carries, resembling a schoolbag, covered with scriptures.</description>
+		<graphicData>
+			<texPath>DivineDiurganate/Apparel/DD_Maple_Sugar_PackLoudspeaker</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(1,1)</drawSize>
+		</graphicData>
+		<useHitPoints>false</useHitPoints>
+		<thingCategories>
+			<li>ApparelUtility</li>
+		</thingCategories>
 		<costStuffCount>0</costStuffCount>
-    <stuffCategories Inherit="False"/>
-    <statBases>
-      <WorkToMake>5000</WorkToMake>
-      <MaxHitPoints>500</MaxHitPoints>
-      <Mass>1</Mass>
-      <Flammability>0</Flammability>
-      <DeteriorationRate>0</DeteriorationRate>
-      <EquipDelay>2</EquipDelay>
-    </statBases>
-    <recipeMaker Inherit="False"/>
-    <tickerType>Normal</tickerType>
-    <techLevel>Industrial</techLevel>
+		<stuffCategories Inherit="False"/>
+		<statBases>
+			<WorkToMake>5000</WorkToMake>
+			<MaxHitPoints>500</MaxHitPoints>
+			<Mass>1</Mass>
+			<Flammability>0</Flammability>
+			<DeteriorationRate>0</DeteriorationRate>
+			<EquipDelay>2</EquipDelay>
+		</statBases>
+		<recipeMaker Inherit="False"/>
+		<tickerType>Normal</tickerType>
+		<techLevel>Industrial</techLevel>
 		<equippedStatOffsets>
-      <SocialImpact>0.5</SocialImpact>
-      <NegotiationAbility>1</NegotiationAbility>
-      <TradePriceImprovement>1</TradePriceImprovement>
+			<SocialImpact>0.5</SocialImpact>
+			<NegotiationAbility>1</NegotiationAbility>
+			<TradePriceImprovement>1</TradePriceImprovement>
 		</equippedStatOffsets>
-    <costList>
-      <Steel>10</Steel>
-      <ComponentIndustrial>1</ComponentIndustrial>
-    </costList>
-    <apparel>
-      <countsAsClothingForNudity>false</countsAsClothingForNudity>
-      <scoreOffset>4</scoreOffset>
-      <careIfWornByCorpse>false</careIfWornByCorpse>
-      <careIfDamaged>false</careIfDamaged>
-      <wearPerDay>0</wearPerDay>
-      <tags Inherit="False"/>
-      <bodyPartGroups>
-        <li>Waist</li>
-      </bodyPartGroups>
-      <layers>
-        <li>Belt</li>
-      </layers>
-      <wornGraphicPath>DivineDiurganate/Apparel/DD_Maple_Sugar_PackLoudspeaker</wornGraphicPath>
-      <wornGraphicData>
-        <renderUtilityAsPack>true</renderUtilityAsPack>
-      </wornGraphicData>
-    </apparel>
-    <tradeTags Inherit="False"/>
-  </ThingDef>
+		<costList>
+			<Steel>10</Steel>
+			<ComponentIndustrial>1</ComponentIndustrial>
+		</costList>
+		<apparel>
+			<countsAsClothingForNudity>false</countsAsClothingForNudity>
+			<scoreOffset>4</scoreOffset>
+			<careIfWornByCorpse>false</careIfWornByCorpse>
+			<careIfDamaged>false</careIfDamaged>
+			<wearPerDay>0</wearPerDay>
+			<tags Inherit="False"/>
+			<bodyPartGroups>
+				<li>Waist</li>
+			</bodyPartGroups>
+			<layers>
+				<li>Belt</li>
+			</layers>
+			<wornGraphicPath>DivineDiurganate/Apparel/DD_Maple_Sugar_PackLoudspeaker</wornGraphicPath>
+			<wornGraphicData>
+				<renderUtilityAsPack>true</renderUtilityAsPack>
+			</wornGraphicData>
+		</apparel>
+		<tradeTags Inherit="False"/>
+	</ThingDef>
 </Defs>

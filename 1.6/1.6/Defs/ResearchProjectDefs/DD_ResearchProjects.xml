@@ -35,7 +35,7 @@
 
   <ResearchProjectDef ParentName="DD_techBase">
     <defName>DD_LV1_Weapon_Technology</defName>
-    <label>双尾武装</label>
+    <label>双尾轻工业武装</label>
     <description>双尾教国的鼠鼠们使用的各式各样的军械。</description>
     <baseCost>100</baseCost>
     <researchViewX>1.00</researchViewX>
@@ -47,7 +47,7 @@
 
   <ResearchProjectDef ParentName="DD_techBase">
     <defName>DD_LV1_Clothing_Technology</defName>
-    <label>双尾服装</label>
+    <label>双尾鼠族服装</label>
     <description>双尾教国的鼠鼠们所穿着的衣物。</description>
     <baseCost>100</baseCost>
     <researchViewX>1.00</researchViewX>
@@ -70,21 +70,9 @@
   </ResearchProjectDef>
 
   <ResearchProjectDef ParentName="DD_techBase">
-    <defName>DD_LV1_Airship_Technology</defName>
-    <label>双尾空艇协议</label>
-    <description>双尾教国的鼠鼠们所使用的空艇技术，与空艇进行通信。</description>
-    <baseCost>100</baseCost>
-    <researchViewX>1.00</researchViewX>
-    <researchViewY>4.20</researchViewY>
-    <prerequisites>
-      <li>DD_LV1_Base_Technology</li>
-    </prerequisites>
-  </ResearchProjectDef>
-
-  <ResearchProjectDef ParentName="DD_techBase">
     <defName>DD_LV1_Hell_Technology</defName>
-    <label>双尾地狱深潜协议</label>
-    <description>双尾教国的鼠鼠们与地狱深潜技术相关的协议。</description>
+    <label>双尾地狱深潜神龛</label>
+    <description>双尾教国的鼠鼠们研究如何潜入地狱净化异端。</description>
     <baseCost>100</baseCost>
     <researchViewX>1.00</researchViewX>
     <researchViewY>5.20</researchViewY>
