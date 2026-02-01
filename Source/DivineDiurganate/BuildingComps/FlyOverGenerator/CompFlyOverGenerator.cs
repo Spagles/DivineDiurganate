@@ -32,7 +32,7 @@ namespace DivineDiurganate
             if (Find.TickManager.TicksGame < FlyoverManager.lastUseTick + Props.cooldownTicks)
             {
                 int remainingTicks = FlyoverManager.lastUseTick + Props.cooldownTicks - Find.TickManager.TicksGame;
-                reason = $"DD_Flyover_OnCooldown".Translate(remainingTicks.ToStringSecondsFromTicks());
+                reason = $"DD_Flyover_OnCooldown".Translate(remainingTicks.ToStringTicksToPeriod());
                 return false;
             }
 
@@ -185,6 +185,32 @@ namespace DivineDiurganate
             {
                 yield return CreateCancelJobGizmo();
             }
+
+            // 开发者按钮：瞬间完成冷却
+            if (Prefs.DevMode)
+            {
+                yield return CreateDevResetCooldownGizmo();
+            }
+        }
+
+        /// <summary>
+        /// 创建开发者重置冷却时间的Gizmo
+        /// </summary>
+        private Gizmo CreateDevResetCooldownGizmo()
+        {
+            Command_Action gizmo = new Command_Action
+            {
+                defaultLabel = "DEV: 重置冷却",
+                defaultDesc = "瞬间完成所有建筑的冷却时间，允许立即再次使用",
+                icon = ContentFinder<Texture2D>.Get("UI/Commands/DevMode", false),
+                action = () =>
+                {
+                    FlyoverManager.lastUseTick = -99999;
+                    Messages.Message("冷却时间已重置！", MessageTypeDefOf.PositiveEvent);
+                }
+            };
+
+            return gizmo;
         }
 
         /// <summary>
@@ -786,6 +812,17 @@ namespace DivineDiurganate
         /// <summary>
         /// 获取剩余冷却时间（秒）
         /// </summary>
+        public string RemainingCooldownPeriod
+        {
+            get
+            {
+                if (FlyoverManager.lastUseTick <= 0) return "0";
+                int remainingTicks = FlyoverManager.lastUseTick + Props.cooldownTicks - Find.TickManager.TicksGame;
+                int positiveTicks = Mathf.Max(0, remainingTicks);
+                return positiveTicks.ToStringTicksToPeriod();
+            }
+        }
+
         public float RemainingCooldownSeconds
         {
             get
