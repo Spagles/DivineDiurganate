@@ -6,20 +6,19 @@ using Verse;
 namespace DivineDiurganate
 {
     /// <summary>
-    /// 战机UI窗口 - 展开状态
+    /// 战机UI窗口 - 支持展开/最小化切换的单一实例窗口
     /// </summary>
-    public class Window_FlyoverUI_Expanded : Window
+    public class Window_FlyoverUI : Window
     {
         private WorldComp_FlyoverManager manager;
         private Vector2 scrollPosition = Vector2.zero;
-        private float windowHeight = 300f; // 保持300px总高度
-        private float windowWidth = 500f;
+        private float expandedHeight = 300f; // 展开高度
+        private float expandedWidth = 500f; // 展开宽度
+
         // 布局参数 - 调整为更紧凑
         private float itemHeight = 105f;    // 从120px减少到105px
         private float itemMargin = 10f;     // 保持10px间距
         private float itemWidthPercent = 0.9f; // Item宽度占窗口的90%
-        // 新增：记录窗口位置状态
-        private static Vector2? lastWindowPosition = null;
         // 状态条颜色（基于状态）
         private Dictionary<FlyoverStatus, Color> statusColors = new Dictionary<FlyoverStatus, Color>()
         {
@@ -31,10 +30,11 @@ namespace DivineDiurganate
 
         // 自定义背景相关
         private static readonly Texture2D CustomBackground = ContentFinder<Texture2D>.Get("DivineDiurganate/Event/DD_Airship_Manager_Bg", false);
+        private static readonly Texture2D MinimizedIcon = ContentFinder<Texture2D>.Get("DivineDiurganate/UI/Commands/DD_AirShip_Manager_Icon", false);
 
-        public override Vector2 InitialSize => new Vector2(windowWidth, windowHeight);
+        public override Vector2 InitialSize => new Vector2(expandedWidth, expandedHeight);
 
-        public Window_FlyoverUI_Expanded(WorldComp_FlyoverManager manager, Vector2? position = null)
+        public Window_FlyoverUI(WorldComp_FlyoverManager manager, Vector2? position = null)
         {
             this.manager = manager;
             this.draggable = true;
@@ -50,36 +50,27 @@ namespace DivineDiurganate
 
             // 设置窗口初始位置
             float initialX, initialY;
-            // 如果传入了位置参数，使用该位置
             if (position.HasValue)
             {
                 initialX = position.Value.x;
                 initialY = position.Value.y;
             }
-            // 否则如果有上次记录的位置，使用上次的位置
-            else if (lastWindowPosition.HasValue)
-            {
-                initialX = lastWindowPosition.Value.x;
-                initialY = lastWindowPosition.Value.y;
-            }
-            // 否则使用默认位置（屏幕右上角）
             else
             {
-                initialX = UI.screenWidth - windowWidth - 20f;
+                initialX = UI.screenWidth - expandedWidth - 20f;
                 initialY = 100f;
             }
             // 确保窗口在屏幕内
-            initialX = Mathf.Clamp(initialX, 0f, UI.screenWidth - windowWidth);
-            initialY = Mathf.Clamp(initialY, 0f, UI.screenHeight - windowHeight);
-            this.windowRect = new Rect(initialX, initialY, windowWidth, windowHeight);
+            initialX = Mathf.Clamp(initialX, 0f, UI.screenWidth - expandedWidth);
+            initialY = Mathf.Clamp(initialY, 0f, UI.screenHeight - expandedHeight);
+            this.windowRect = new Rect(initialX, initialY, expandedWidth, expandedHeight);
         }
+
 
         public override void DoWindowContents(Rect inRect)
         {
             try
             {
-                // 更新记录的位置
-                lastWindowPosition = new Vector2(windowRect.x, windowRect.y);
                 // 绘制自定义背景
                 GUI.DrawTexture(inRect, CustomBackground);
                 // 先检查是否有待处理的重新入场请求
@@ -91,7 +82,7 @@ namespace DivineDiurganate
             }
             catch (System.Exception ex)
             {
-                Log.Error($"Error in FlyoverUI_Expanded: {ex}");
+                Log.Error($"Error in FlyoverUI: {ex}");
             }
         }
         // UI样式 - 调整为更简洁的颜色
@@ -112,15 +103,15 @@ namespace DivineDiurganate
             // 绘制标题栏 (50px)
             Rect titleRect = new Rect(inRect.x, inRect.y, inRect.width, 50f);
             DrawTitleBar(titleRect);
-            // 绘制缩小按钮
-            Rect minimizeButtonRect = new Rect(inRect.x + inRect.width - 30f, inRect.y + 10f, 30f, 30f);
-            if (Widgets.ButtonImageFitted(minimizeButtonRect, TexButton.Minus))
+            // 绘制关闭按钮
+            Rect closeButtonRect = new Rect(inRect.x + inRect.width - 30f, inRect.y + 10f, 30f, 30f);
+            if (Widgets.ButtonImageFitted(closeButtonRect, TexButton.CloseXSmall))
             {
-                OnMinimizeClicked();
+                OnCloseClicked();
                 return; // 窗口即将关闭，直接返回
             }
             // 滚动区域 (220px，标题栏下方10px间隔)
-            float scrollAreaWidth = windowWidth;
+            float scrollAreaWidth = expandedWidth;
             float scrollAreaHeight = 220f;
             Rect scrollRect = new Rect(
                 inRect.x,
@@ -491,18 +482,11 @@ namespace DivineDiurganate
         }
 
         /// <summary>
-        /// 缩小按钮点击事件
+        /// 关闭按钮点击事件
         /// </summary>
-        private void OnMinimizeClicked()
+        private void OnCloseClicked()
         {
-            // 获取当前窗口位置和大小
-            Vector2 currentPosition = new Vector2(windowRect.x, windowRect.y);
-
-            // 关闭当前窗口
-            this.Close();
-
-            // 打开缩小窗口，传递相同的位置
-            Find.WindowStack.Add(new Window_FlyoverUI_Minimized(manager, currentPosition));
+            Find.WindowStack.TryRemove(this);
         }
 
         /// <summary>
@@ -856,106 +840,6 @@ namespace DivineDiurganate
             base.PreClose();
             ResetReEnterSelection();
             pendingReEnterFlyover = null;
-        }
-    }
-
-    /// <summary>
-    /// 战机UI窗口 - 最小化状态（只显示放大按钮）
-    /// </summary>
-    public class Window_FlyoverUI_Minimized : Window
-    {
-        private WorldComp_FlyoverManager manager;
-        private Vector2 windowSize = new Vector2(60f, 60f);
-        private Texture2D minimizedIcon;
-        public Vector2 openPosition;
-
-        public override Vector2 InitialSize => windowSize;
-
-        public Window_FlyoverUI_Minimized(WorldComp_FlyoverManager manager, Vector2 position)
-        {
-            this.manager = manager;
-            this.openPosition = position; // 保存位置用于切换回展开状态
-            this.draggable = true;
-            this.doCloseX = false; // 最小化窗口没有关闭按钮
-            this.doWindowBackground = true; // 关闭默认背景绘制
-            this.absorbInputAroundWindow = false;
-            this.preventCameraMotion = false;
-            this.layer = WindowLayer.Dialog;
-            this.resizeable = false;
-            this.closeOnAccept = false;
-            this.closeOnCancel = false;
-            this.drawShadow = false;
-
-            // 设置窗口位置（使用传入的左上角位置）
-            this.windowRect = new Rect(
-                position.x,
-                position.y,
-                windowSize.x,
-                windowSize.y
-            );
-
-            // 加载图标
-            minimizedIcon = ContentFinder<Texture2D>.Get("DivineDiurganate/UI/Commands/DD_AirShip_Manager_Icon", false);
-        }
-
-        public override void DoWindowContents(Rect inRect)
-        {
-            try
-            {
-                // 绘制图标
-                if (minimizedIcon != null)
-                {
-                    // 扩大图标显示区域，去除周围的空白
-                    Rect iconRect = new Rect(
-                        inRect.x,
-                        inRect.y,
-                        inRect.width,
-                        inRect.height
-                    );
-
-                    GUI.color = new Color(1f, 1f, 1f, 0.8f);
-                    GUI.DrawTexture(iconRect, minimizedIcon);
-                    GUI.color = Color.white;
-                }
-                else
-                {
-                    // 显示默认文本
-                    Rect labelRect = new Rect(inRect.x, inRect.y, inRect.width, inRect.height);
-                    Text.Anchor = TextAnchor.MiddleCenter;
-                    GUI.color = new Color(1f, 1f, 1f, 0.8f);
-                    Text.Font = GameFont.Medium;
-                    Widgets.Label(labelRect, "AC");
-                    GUI.color = Color.white;
-                    Text.Font = GameFont.Small;
-                    Text.Anchor = TextAnchor.UpperLeft;
-                }
-
-                // 点击放大窗口
-                if (Widgets.ButtonInvisible(inRect))
-                {
-                    OnMaximizeClicked();
-                }
-            }
-            catch (System.Exception ex)
-            {
-                Log.Error($"Error in FlyoverUI_Minimized: {ex}");
-            }
-        }
-
-        /// <summary>
-        /// 放大按钮点击事件
-        /// </summary>
-        private void OnMaximizeClicked()
-        {
-            // 获取当前窗口位置（左上角）
-            Vector2 currentPosition = new Vector2(windowRect.x, windowRect.y);
-
-            // 关闭当前窗口
-            this.Close();
-
-            // 打开展开窗口，使用当前左上角位置
-            var expandedWindow = new Window_FlyoverUI_Expanded(manager, currentPosition);
-            Find.WindowStack.Add(expandedWindow);
         }
 
         /// <summary>

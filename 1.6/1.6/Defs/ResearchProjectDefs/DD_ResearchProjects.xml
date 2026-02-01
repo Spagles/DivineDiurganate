@@ -6,18 +6,90 @@
     <generalTitle>双尾教国的科技</generalTitle>
     <generalDescription>由双尾教国开发的一系列强大的战争机械。</generalDescription>
   </ResearchTabDef>
-  <ResearchProjectDef Abstract="True" Name="ARA_techBase">
+  <ResearchProjectDef Abstract="True" Name="DD_techBase">
     <techLevel>Industrial</techLevel>
     <requiresMechanitor>true</requiresMechanitor>
     <tab>DD_ResearchTab</tab>
   </ResearchProjectDef>
 
-  <ResearchProjectDef ParentName="ARA_techBase">
+  <ResearchProjectDef ParentName="DD_techBase">
     <defName>DD_LV1_Base_Technology</defName>
     <label>双尾教国授权-等级1</label>
     <description>双尾教国授权-等级1。</description>
     <baseCost>100</baseCost>
     <researchViewX>0.00</researchViewX>
     <researchViewY>3.20</researchViewY>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef ParentName="DD_techBase">
+    <defName>DD_LV1_Mech_Technology</defName>
+    <label>双尾战争巨械</label>
+    <description>双尾教国开发的一系列强大的战争机械。</description>
+    <baseCost>100</baseCost>
+    <researchViewX>1.00</researchViewX>
+    <researchViewY>2.20</researchViewY>
+    <prerequisites>
+      <li>DD_LV1_Base_Technology</li>
+    </prerequisites>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef ParentName="DD_techBase">
+    <defName>DD_LV1_Weapon_Technology</defName>
+    <label>双尾武装</label>
+    <description>双尾教国的鼠鼠们使用的各式各样的军械。</description>
+    <baseCost>100</baseCost>
+    <researchViewX>1.00</researchViewX>
+    <researchViewY>1.20</researchViewY>
+    <prerequisites>
+      <li>DD_LV1_Base_Technology</li>
+    </prerequisites>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef ParentName="DD_techBase">
+    <defName>DD_LV1_Clothing_Technology</defName>
+    <label>双尾服装</label>
+    <description>双尾教国的鼠鼠们所穿着的衣物。</description>
+    <baseCost>100</baseCost>
+    <researchViewX>1.00</researchViewX>
+    <researchViewY>0.20</researchViewY>
+    <prerequisites>
+      <li>DD_LV1_Base_Technology</li>
+    </prerequisites>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef ParentName="DD_techBase">
+    <defName>DD_LV1_Airship_Technology</defName>
+    <label>双尾空艇协议</label>
+    <description>双尾教国的鼠鼠们所使用的空艇技术，获得许可与双尾教国欧伯龙号空艇进行通信，以呼叫空艇进行近地支援和贸易。</description>
+    <baseCost>100</baseCost>
+    <researchViewX>1.00</researchViewX>
+    <researchViewY>4.20</researchViewY>
+    <prerequisites>
+      <li>DD_LV1_Base_Technology</li>
+    </prerequisites>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef ParentName="DD_techBase">
+    <defName>DD_LV1_Airship_Technology</defName>
+    <label>双尾空艇协议</label>
+    <description>双尾教国的鼠鼠们所使用的空艇技术，与空艇进行通信。</description>
+    <baseCost>100</baseCost>
+    <researchViewX>1.00</researchViewX>
+    <researchViewY>4.20</researchViewY>
+    <prerequisites>
+      <li>DD_LV1_Base_Technology</li>
+    </prerequisites>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef ParentName="DD_techBase">
+    <defName>DD_LV1_Hell_Technology</defName>
+    <label>双尾地狱深潜协议</label>
+    <description>双尾教国的鼠鼠们与地狱深潜技术相关的协议。</description>
+    <baseCost>100</baseCost>
+    <researchViewX>1.00</researchViewX>
+    <researchViewY>5.20</researchViewY>
+    <prerequisites>
+      <li>DD_LV1_Base_Technology</li>
+    </prerequisites>
   </ResearchProjectDef>
 </Defs>

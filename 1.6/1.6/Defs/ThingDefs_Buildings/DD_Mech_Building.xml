@@ -35,6 +35,9 @@
       <isInert>true</isInert>
     </building>
     <designationCategory>Misc</designationCategory>
+    <researchPrerequisites Inherit="False">
+      <li>DD_LV1_Mech_Technology</li>
+    </researchPrerequisites>
     <!-- 核心组件，用于在建造完成时销毁建筑以生成一个pawn -->
     <!-- Core comps, used to destroy the building upon completion to generate a pawn -->
     <comps>
@@ -82,6 +85,9 @@
       <isInert>true</isInert>
     </building>
     <designationCategory>Misc</designationCategory>
+    <researchPrerequisites Inherit="False">
+      <li>DD_LV1_Mech_Technology</li>
+    </researchPrerequisites>
     <comps>
       <li Class="DivineDiurganate.CompProperties_BuildToPawn">
         <pawnKindDef>DD_DHM69_Scythe_Mech</pawnKindDef>
@@ -127,6 +133,9 @@
       <isInert>true</isInert>
     </building>
     <designationCategory>Misc</designationCategory>
+    <researchPrerequisites Inherit="False">
+      <li>DD_LV1_Mech_Technology</li>
+    </researchPrerequisites>
     <comps>
       <li Class="DivineDiurganate.CompProperties_BuildToPawn">
         <pawnKindDef>DD_DHM70_Rampart_Mech</pawnKindDef>

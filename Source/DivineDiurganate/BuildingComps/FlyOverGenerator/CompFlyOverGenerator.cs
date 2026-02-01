@@ -172,14 +172,53 @@ namespace DivineDiurganate
             {
                 yield return gizmo;
             }
-            
+
             // 添加生成飞跃物体的Gizmo
             yield return CreateFlyOverGizmo();
-            
+
+            // 新增：打开飞行器管理面板的Gizmo
+            yield return CreateFlyoverManagerGizmo();
+
             // 新增：取消当前任务的Gizmo（如果有任务在进行）
             if (callJobState != CallJobState.None && callJobState != CallJobState.Completed && callJobState != CallJobState.Failed)
             {
                 yield return CreateCancelJobGizmo();
+            }
+        }
+
+        /// <summary>
+        /// 创建打开飞行器管理面板的Gizmo
+        /// </summary>
+        private Gizmo CreateFlyoverManagerGizmo()
+        {
+            Command_Action gizmo = new Command_Action
+            {
+                defaultLabel = "DD_Flyover_Manager".Translate(),
+                defaultDesc = "DD_Flyover_ManagerDesc".Translate(),
+                icon = ContentFinder<Texture2D>.Get("DivineDiurganate/UI/Commands/DD_AirShip_Manager_Icon", false),
+                action = () => OpenFlyoverManager()
+            };
+
+            return gizmo;
+        }
+
+        /// <summary>
+        /// 打开飞行器管理面板
+        /// </summary>
+        private void OpenFlyoverManager()
+        {
+            WorldComp_FlyoverManager manager = Find.World.GetComponent<WorldComp_FlyoverManager>();
+            if (manager != null)
+            {
+                // 检查面板是否已经打开
+                if (!Find.WindowStack.IsOpen(typeof(Window_FlyoverUI)))
+                {
+                    Find.WindowStack.Add(new Window_FlyoverUI(manager));
+                }
+            }
+            else
+            {
+                Log.Error("WorldComp_FlyoverManager not found!");
             }
         }
         

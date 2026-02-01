@@ -139,6 +139,9 @@
   <DD_Flyover_CancelCallJob>取消呼叫</DD_Flyover_CancelCallJob>
   <DD_Flyover_CancelCallJobDesc>取消当前的任务，结束飞行器呼叫</DD_Flyover_CancelCallJobDesc>
 
+  <DD_Flyover_Manager>飞行器管理</DD_Flyover_Manager>
+  <DD_Flyover_ManagerDesc>打开飞行器管理面板，查看和管理当前的飞行器</DD_Flyover_ManagerDesc>
+
   <DD_Flyover_Status_InAir>飞行中</DD_Flyover_Status_InAir>
   <DD_Flyover_Status_Standby>待命</DD_Flyover_Status_Standby>
   <DD_Flyover_Status_Deploying>部署中</DD_Flyover_Status_Deploying>

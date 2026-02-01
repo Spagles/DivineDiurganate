@@ -132,15 +132,14 @@ namespace DivineDiurganate
                 if (uiIsOpen) return;
 
                 // 检查是否已经有窗口打开
-                if (Find.WindowStack.IsOpen(typeof(Window_FlyoverUI_Expanded)) ||
-                    Find.WindowStack.IsOpen(typeof(Window_FlyoverUI_Minimized)))
+                if (Find.WindowStack.IsOpen(typeof(Window_FlyoverUI)))
                 {
                     uiIsOpen = true;
                     return;
                 }
 
                 // 直接打开展开的窗口，不指定位置（使用默认或上次记录的位置）
-                Window_FlyoverUI_Expanded expandedWindow = new Window_FlyoverUI_Expanded(this);
+                Window_FlyoverUI expandedWindow = new Window_FlyoverUI(this);
                 Find.WindowStack.Add(expandedWindow);
                 uiIsOpen = true;
             }
@@ -166,7 +165,7 @@ namespace DivineDiurganate
                 // 收集需要关闭的窗口
                 foreach (Window window in Find.WindowStack.Windows)
                 {
-                    if (window is Window_FlyoverUI_Expanded || window is Window_FlyoverUI_Minimized)
+                    if (window is Window_FlyoverUI)
                     {
                         windowsToClose.Add(window);
                     }
@@ -207,10 +206,11 @@ namespace DivineDiurganate
 
                 foreach (Window window in Find.WindowStack.Windows)
                 {
-                    if (window is Window_FlyoverUI_Expanded)
+                    if (window is Window_FlyoverUI)
+                    {
                         hasExpandedWindow = true;
-                    if (window is Window_FlyoverUI_Minimized)
-                        hasMinimizedWindow = true;
+                        hasMinimizedWindow = true; // 单一窗口实例同时处理两种状态
+                    }
                 }
 
                 // 如果UI状态为打开但没有对应窗口，纠正状态
