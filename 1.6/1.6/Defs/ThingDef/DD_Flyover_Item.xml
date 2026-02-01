@@ -101,7 +101,7 @@
         <description>The Oberon deployed its various gunboat compartments and strafed the selected area of the colony with gradual firepower.</description>
         <iconPath>DivineDiurganate/UI/Abilities/DD_Automatic_Cannon_Ability</iconPath>
         <cooldownTicks>300</cooldownTicks>
-        <maxUses>3</maxUses>
+        <maxUses>12</maxUses>
         <canUseWhenOnMap>true</canUseWhenOnMap>
         <canUseWhenStandby>true</canUseWhenStandby>
         <slotIndex>0</slotIndex>
@@ -129,7 +129,7 @@
         <description>The Oberon deployed its 70mm guns from the main cabin to bombard the selected area of the colony with gradual firepower.</description>
         <iconPath>DivineDiurganate/UI/Abilities/DD_70MM_Cannon_Ability</iconPath>
         <cooldownTicks>1200</cooldownTicks>
-        <maxUses>2</maxUses>
+        <maxUses>12</maxUses>
         <canUseWhenOnMap>true</canUseWhenOnMap>
         <canUseWhenStandby>true</canUseWhenStandby>
         <slotIndex>1</slotIndex>
@@ -157,7 +157,7 @@
         <description>Throw a bomb from the bomb rack of the Oberon.</description>
         <iconPath>DivineDiurganate/UI/Abilities/DD_Heavy_Air_bomb_Ability</iconPath>
         <cooldownTicks>120</cooldownTicks>
-        <maxUses>6</maxUses>
+        <maxUses>24</maxUses>
         <canUseWhenOnMap>true</canUseWhenOnMap>
         <canUseWhenStandby>false</canUseWhenStandby>
         <slotIndex>2</slotIndex>

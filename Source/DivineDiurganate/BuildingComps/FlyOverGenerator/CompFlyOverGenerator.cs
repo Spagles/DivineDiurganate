@@ -469,7 +469,7 @@ namespace DivineDiurganate
 
                 // 计算距离
                 float distance = pawn.Position.DistanceTo(parent.Position);
-                if (distance < bestDistance && distance <= MaxPawnDistance)
+                if (distance < bestDistance)
                 {
                     bestDistance = distance;
                     bestPawn = pawn;
