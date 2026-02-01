@@ -29,9 +29,9 @@ namespace DivineDiurganate
         private bool CanActivateNow(out string reason)
         {
             reason = null;
-            if (Find.TickManager.TicksGame < lastUseTick + Props.cooldownTicks)
+            if (Find.TickManager.TicksGame < FlyoverManager.lastUseTick + Props.cooldownTicks)
             {
-                int remainingTicks = lastUseTick + Props.cooldownTicks - Find.TickManager.TicksGame;
+                int remainingTicks = FlyoverManager.lastUseTick + Props.cooldownTicks - Find.TickManager.TicksGame;
                 reason = $"DD_Flyover_OnCooldown".Translate(remainingTicks.ToStringSecondsFromTicks());
                 return false;
             }
@@ -78,14 +78,13 @@ namespace DivineDiurganate
         /// </summary>
         private void RecordUse()
         {
-            lastUseTick = Find.TickManager.TicksGame;
+            FlyoverManager.lastUseTick = Find.TickManager.TicksGame;
 
             useCount++;
         }
         public override void PostExposeData()
         {
             base.PostExposeData();
-            Scribe_Values.Look(ref lastUseTick, "lastUseTick", -99999);
             Scribe_Values.Look(ref useCount, "useCount", 0);
             Scribe_Values.Look(ref callJobState, "callJobState", CallJobState.None);
         }
@@ -136,9 +135,11 @@ namespace DivineDiurganate
         private IntVec3 firstPoint;
         private IntVec3 secondPoint;
         
-        // 冷却和限制 - 全局同步
-        private static int lastUseTick = -99999;
+        // 冷却和限制 - 使用世界组件中的全局冷却时间
         private int useCount = 0;
+
+        // 获取全局冷却时间管理器
+        private WorldComp_FlyoverManager FlyoverManager => Find.World.GetComponent<WorldComp_FlyoverManager>();
         
         // 新增：呼叫任务状态
         private CallJobState callJobState = CallJobState.None;
@@ -789,8 +790,8 @@ namespace DivineDiurganate
         {
             get
             {
-                if (lastUseTick <= 0) return 0f;
-                int remainingTicks = lastUseTick + Props.cooldownTicks - Find.TickManager.TicksGame;
+                if (FlyoverManager.lastUseTick <= 0) return 0f;
+                int remainingTicks = FlyoverManager.lastUseTick + Props.cooldownTicks - Find.TickManager.TicksGame;
                 return Mathf.Max(0f, remainingTicks / 60f);
             }
         }
