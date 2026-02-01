@@ -842,6 +842,13 @@ namespace DivineDiurganate
             pendingReEnterFlyover = null;
         }
 
+        public override void PostClose()
+        {
+            base.PostClose();
+            // 通知管理器UI已关闭
+            manager.SetUIState(false);
+        }
+
         /// <summary>
         /// 确保窗口在屏幕内
         /// </summary>

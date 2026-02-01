@@ -68,6 +68,7 @@ namespace DivineDiurganate
                 UpdateCallJob();
             }
 
+            // 恢复自动寻找殖民者的逻辑，但使用消息冷却机制避免一直弹出
             if (callJobState == CallJobState.WaitingForPawn && Find.TickManager.TicksGame % 120 == 0)
             {
                 FindPawnForCallJob();
@@ -441,6 +442,10 @@ namespace DivineDiurganate
         /// <summary>
         /// 寻找殖民者进行呼叫工作
         /// </summary>
+        // 消息显示冷却时间（ticks）
+        private int lastMessageTick = -99999;
+        private const int messageCooldown = 600; // 10秒
+
         private void FindPawnForCallJob()
         {
             Map map = parent.Map;
@@ -449,11 +454,11 @@ namespace DivineDiurganate
                 callJobState = CallJobState.Failed;
                 return;
             }
-            
+
             // 寻找最近的可用殖民者
             Pawn bestPawn = null;
             float bestDistance = float.MaxValue;
-            
+
             foreach (Pawn pawn in map.mapPawns.FreeColonistsSpawned)
             {
                 // 检查殖民者是否可用（没有重要工作，不是伤员等）
@@ -461,7 +466,7 @@ namespace DivineDiurganate
                 {
                     continue;
                 }
-                
+
                 // 计算距离
                 float distance = pawn.Position.DistanceTo(parent.Position);
                 if (distance < bestDistance && distance <= MaxPawnDistance)
@@ -470,7 +475,7 @@ namespace DivineDiurganate
                     bestPawn = pawn;
                 }
             }
-            
+
             if (bestPawn != null)
             {
                 AssignPawnToJob(bestPawn);
@@ -479,8 +484,14 @@ namespace DivineDiurganate
             {
                 // 没有找到合适的殖民者
                 callJobState = CallJobState.WaitingForPawn;
-                Messages.Message("DD_Flyover_NoAvailablePawn".Translate(), 
-                    MessageTypeDefOf.NeutralEvent);
+
+                // 消息显示冷却机制
+                if (Find.TickManager.TicksGame - lastMessageTick > messageCooldown)
+                {
+                    Messages.Message("DD_Flyover_NoAvailablePawn".Translate(),
+                        MessageTypeDefOf.NeutralEvent);
+                    lastMessageTick = Find.TickManager.TicksGame;
+                }
             }
         }
 
@@ -552,10 +563,11 @@ namespace DivineDiurganate
             // 更新工作时间
             workTicksRemaining--;
             
-            // 工作完成
+            // 工作完成 - 不再直接调用 CompleteCallJob，因为 JobDriver_CallFlyOver 会处理
             if (workTicksRemaining <= 0)
             {
-                CompleteCallJob();
+                // 只需设置状态为完成，等待 JobDriver_CallFlyOver 来调用 CompleteCallJob
+                callJobState = CallJobState.Completed;
             }
         }
         

@@ -89,35 +89,38 @@ namespace DivineDiurganate
         }
 
         /// <summary>
-        /// 检查并更新UI状态
+        /// 设置UI状态
+        /// </summary>
+        public void SetUIState(bool isOpen)
+        {
+            uiIsOpen = isOpen;
+        }
+
+        /// <summary>
+        /// 检查并更新UI状态 - 不再自动开关UI，由用户手动控制
         /// </summary>
         private void CheckAndUpdateUIState()
         {
             try
             {
-                int activeCount = ActiveFlyoverCount;
+                // 只检查UI是否与状态变量同步，不自动打开或关闭
+                bool isWindowActuallyOpen = Find.WindowStack.IsOpen(typeof(Window_FlyoverUI));
 
-                if (activeCount > 0)
+                if (isWindowActuallyOpen && !uiIsOpen)
                 {
-                    // 有活跃战机，打开UI
-                    if (!uiIsOpen)
-                    {
-                        OpenUI();
-                    }
-                    else
-                    {
-                        // UI已经打开，确保它是最新的
-                        UpdateOpenUI();
-                    }
+                    // 窗口已经打开但状态变量未更新
+                    uiIsOpen = true;
                 }
-                //else
-                //{
-                //    // 没有活跃战机，关闭UI
-                //    if (uiIsOpen)
-                //    {
-                //        CloseUI();
-                //    }
-                //}
+                else if (!isWindowActuallyOpen && uiIsOpen)
+                {
+                    // 窗口已关闭但状态变量未更新
+                    uiIsOpen = false;
+                }
+                // 只在UI已打开时更新内容，不再自动开关
+                else if (uiIsOpen)
+                {
+                    UpdateOpenUI();
+                }
             }
             catch (System.Exception ex)
             {

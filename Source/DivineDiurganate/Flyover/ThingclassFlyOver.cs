@@ -468,21 +468,18 @@ namespace DivineDiurganate
                 // 停止音效
                 flightSoundPlaying?.End();
 
-                // 延迟销毁，避免在当前tick中触发其他事件
-                LongEventHandler.QueueLongEvent(() =>
+                // 直接销毁，不使用延迟，避免显示弹框
+                try
                 {
-                    try
+                    if (!this.Destroyed)
                     {
-                        if (!this.Destroyed)
-                        {
-                            this.Destroy();
-                        }
+                        this.Destroy();
                     }
-                    catch (System.Exception ex)
-                    {
-                        Log.Error($"Error destroying flyover: {ex}");
-                    }
-                }, "DestroyFlyover", false, null);
+                }
+                catch (System.Exception ex)
+                {
+                    Log.Error($"Error destroying flyover: {ex}");
+                }
             }
             catch (System.Exception ex)
             {
