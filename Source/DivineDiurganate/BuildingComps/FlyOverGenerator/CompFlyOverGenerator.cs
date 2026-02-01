@@ -186,8 +186,8 @@ namespace DivineDiurganate
                 yield return CreateCancelJobGizmo();
             }
 
-            // 开发者按钮：瞬间完成冷却
-            if (Prefs.DevMode)
+            // 开发者按钮：瞬间完成冷却（仅在上帝模式下显示）
+            if (DebugSettings.ShowDevGizmos)
             {
                 yield return CreateDevResetCooldownGizmo();
             }
