@@ -8,7 +8,7 @@
       <li>Map_PlayerHome</li>
     </targetTags>
     <questScriptDef>DD_SP_Ratkin_Join</questScriptDef>
-    <workerClass>IncidentWorker_GiveQuest</workerClass>
+    <workerClass>DivineDiurganate.IncidentWorker_GiveQuest_RatkinJoin</workerClass>
     <baseChance>0</baseChance>
     <minRefireDays>999999</minRefireDays>
   </IncidentDef>
