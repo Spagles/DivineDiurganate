@@ -588,17 +588,28 @@ namespace DivineDiurganate
         {
             if (pawnKindDef == null)
                 return false;
-            
-            string baseKey = pawnKindDef.defName;
-            
+
             foreach (var record in pawnRecords.Values)
             {
-                if (record.pawnKindDef == pawnKindDef && record.pawn != null && IsPawnValid(record.pawn))
+                if (record == null || record.pawnKindDef != pawnKindDef)
+                    continue;
+
+                if (record.pawn != null && !record.pawn.Destroyed && PawnExistsInWorld(record.pawn))
                 {
                     return true;
                 }
+
+                if (record.pawnID > 0)
+                {
+                    var foundPawn = FindPawnByThingID(record.pawnID);
+                    if (foundPawn != null && !foundPawn.Destroyed)
+                    {
+                        record.pawn = foundPawn;
+                        return true;
+                    }
+                }
             }
-            
+
             return false;
         }
         
@@ -914,6 +925,26 @@ namespace DivineDiurganate
                 return;
             
             string key = GetPawnKey(pawn, extension.singletonScope);
+            if (!pawnRecords.TryGetValue(key, out var record))
+                return;
+
+            // 只在销毁对象确实对应已登记记录时移除，避免重复Pawn销毁误删原记录。
+            bool isSamePawn = false;
+            if (record != null)
+            {
+                if (record.pawn != null)
+                {
+                    isSamePawn = ReferenceEquals(record.pawn, pawn) || record.pawn.thingIDNumber == pawn.thingIDNumber;
+                }
+                else if (record.pawnID > 0)
+                {
+                    isSamePawn = record.pawnID == pawn.thingIDNumber;
+                }
+            }
+
+            if (!isSamePawn)
+                return;
+
             pawnRecords.Remove(key);
             
             // 清理相关待处理关系

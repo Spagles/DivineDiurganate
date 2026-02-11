@@ -4,14 +4,14 @@
   <!-- EN:
     <li>questDescription->DD_SP_Ratkin_Join_questDescription</li>
   -->
-  <DD_SP_Ratkin_Join.questDescriptionRules.rulesStrings>TODO</DD_SP_Ratkin_Join.questDescriptionRules.rulesStrings>
+  <DD_SP_Ratkin_Join.questDescriptionRules.rulesStrings>questDescription->DD_SP_Ratkin_Join_questDescription</DD_SP_Ratkin_Join.questDescriptionRules.rulesStrings>
   <!-- EN:
     <li>questName->DD_SP_Ratkin_Join_questName</li>
   -->
-  <DD_SP_Ratkin_Join.questNameRules.rulesStrings>TODO</DD_SP_Ratkin_Join.questNameRules.rulesStrings>
+  <DD_SP_Ratkin_Join.questNameRules.rulesStrings>questName->DD_SP_Ratkin_Join_questName</DD_SP_Ratkin_Join.questNameRules.rulesStrings>
   <!-- EN: DD_SP_Ratkin_Join_UI_1 -->
-  <DD_SP_Ratkin_Join.root.nodes.Delay-0.node.nodes.EventLetter.eventDefName.slateRef>TODO</DD_SP_Ratkin_Join.root.nodes.Delay-0.node.nodes.EventLetter.eventDefName.slateRef>
+  <DD_SP_Ratkin_Join.root.nodes.Delay-0.node.nodes.EventLetter.eventDefName.slateRef>DD_SP_Ratkin_Join_UI_1</DD_SP_Ratkin_Join.root.nodes.Delay-0.node.nodes.EventLetter.eventDefName.slateRef>
   <!-- EN: DD_SP_Ratkin_Join_UI_10 -->
-  <DD_SP_Ratkin_Join.root.nodes.Delay-1.node.nodes.EventLetter.eventDefName.slateRef>TODO</DD_SP_Ratkin_Join.root.nodes.Delay-1.node.nodes.EventLetter.eventDefName.slateRef>
+  <DD_SP_Ratkin_Join.root.nodes.Delay-1.node.nodes.EventLetter.eventDefName.slateRef>DD_SP_Ratkin_Join_UI_10</DD_SP_Ratkin_Join.root.nodes.Delay-1.node.nodes.EventLetter.eventDefName.slateRef>
   
 </LanguageData>
