@@ -33,7 +33,7 @@
 		</backstoryFiltersOverride>
 		<apparelMoney>0</apparelMoney>
 		<minGenerationAge>21</minGenerationAge>
-		<maxGenerationAge>30</maxGenerationAge>
+		<maxGenerationAge>35</maxGenerationAge>
 		<apparelTags>
 			<li>RK_Murderer</li>
 			<li>RK_Worker</li>
@@ -66,7 +66,7 @@
 		</backstoryFiltersOverride>
 		<apparelMoney>0</apparelMoney>
 		<minGenerationAge>21</minGenerationAge>
-		<maxGenerationAge>30</maxGenerationAge>
+		<maxGenerationAge>35</maxGenerationAge>
 		<weaponMoney>300~1200</weaponMoney>
 		<apparelRequired>
 			<li>DD_Nun_Dress</li>
@@ -93,7 +93,7 @@
 		<apparelMoney>0</apparelMoney>
 		<weaponMoney>1500~2500</weaponMoney>
 		<minGenerationAge>21</minGenerationAge>
-		<maxGenerationAge>30</maxGenerationAge>
+		<maxGenerationAge>35</maxGenerationAge>
 		<apparelRequired>
 			<li>DD_Crusaders_Uniform</li>
 			<li>DD_Crusaders_Helmet</li>
@@ -109,7 +109,7 @@
 		<combatPower>1</combatPower>
 		<maxPerGroup>3</maxPerGroup>
 		<minGenerationAge>21</minGenerationAge>
-		<maxGenerationAge>30</maxGenerationAge>
+		<maxGenerationAge>35</maxGenerationAge>
 		<fixedAdultBackstories>
 			<li>DD_Ratkin_Sister</li>
 		</fixedAdultBackstories>
@@ -154,7 +154,7 @@
 		<apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
 		<weaponMoney>300~600</weaponMoney>
 		<minGenerationAge>21</minGenerationAge>
-		<maxGenerationAge>30</maxGenerationAge>
+		<maxGenerationAge>35</maxGenerationAge>
 		<weaponTags>
 			<li>DD_RatkinClergy_Weapon</li>
 		</weaponTags>
@@ -190,7 +190,7 @@
 		<label>Diurganate Heavy Crusader</label>
 		<combatPower>340</combatPower>
 		<minGenerationAge>21</minGenerationAge>
-		<maxGenerationAge>30</maxGenerationAge>
+		<maxGenerationAge>35</maxGenerationAge>
 		<backstoryFiltersOverride>
 			<li>
 				<categories>
@@ -325,7 +325,7 @@
 		<combatPower>1</combatPower>
 		<maxPerGroup>1</maxPerGroup>
 		<minGenerationAge>21</minGenerationAge>
-		<maxGenerationAge>30</maxGenerationAge>
+		<maxGenerationAge>35</maxGenerationAge>
 		<fixedAdultBackstories>
 			<li>DD_Ratkin_Sister</li>
 		</fixedAdultBackstories>
