@@ -54,7 +54,7 @@
         <!-- 脖子和头部 -->
         <li>
           <def>DD_Outer_Armor_Bodypart</def>
-          <coverage>0.99</coverage>
+          <coverage>0.71</coverage>
           <height>Top</height>
           <groups>
             <li>Torso</li>
@@ -142,7 +142,7 @@
         <!-- 脖子和头部 -->
         <li>
           <def>DD_Outer_Armor_Bodypart</def>
-          <coverage>0.99</coverage>
+          <coverage>0.47</coverage>
           <height>Top</height>
           <groups>
             <li>Torso</li>

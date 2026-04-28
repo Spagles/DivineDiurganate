@@ -30,10 +30,10 @@
 			<li>Offworld</li>
 		</backstoryCategories>
 		<caravanTraderKinds>
-			<li>Caravan_Ratkin_BulkGoods</li>
-			<li>Caravan_Ratkin_DressMerchant</li>
-			<li>Caravan_Ratkin_CombatSupplier</li>
-			<li>Caravan_Ratkin_Free_company</li>
+				<li>RK_TraderKind_KingdomBulkGoods</li>
+				<li>RK_TraderKind_KingdomDressMerchant</li>
+				<li>RK_TraderKind_KingdomCombatSupplier</li>
+				<li>RK_TraderKind_KingdomExotic</li>
 		</caravanTraderKinds>
 		<visitorTraderKinds>
 			<li>Visitor_Outlander_Standard</li>
@@ -191,7 +191,7 @@
 			</stuffCategoriesToAllow>
 		</apparelStuffFilter>
 		<allowedCultures>
-			<li>RatkiniaTraditionCulture</li>
+				<li>RK_Culture_Virtuard</li>
 		</allowedCultures>
 	</FactionDef>
 

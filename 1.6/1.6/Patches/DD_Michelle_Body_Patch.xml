@@ -7,28 +7,28 @@
         <xpath>Defs/AlienRace.ThingDef_AlienRace[defName="Ratkin"]/alienRace/graphicPaths/body</xpath>
         <value>
           <body>
-            <path>Things/Ratkin/Bodies/BodiesNaked_Thin</path>
+            <path>Things/Ratkin/Body/Thin/Naked_Thin</path>
             <extendedGraphics>
               <Age For="HumanlikeAdult">
-                <path>Things/Ratkin/Bodies/BodiesNaked_Thin</path>
+                <path>Things/Ratkin/Body/Thin/Naked_Thin</path>
                 <extendedGraphics>
                   <Backstory For="DD_Ratkin_Exiled_Exorcist">DivineDiurganate/Things/Michelle/Naked_Thin</Backstory>
                 </extendedGraphics>
               </Age>
               <Age For="HumanlikeTeenager">
-                <path>Things/Ratkin/Bodies/BodiesNaked_Thin</path>
+                <path>Things/Ratkin/Body/Thin/Naked_Thin</path>
                 <extendedGraphics>
                   <Backstory For="DD_Ratkin_Exiled_Exorcist">DivineDiurganate/Things/Michelle/Naked_Thin</Backstory>
                 </extendedGraphics>
               </Age>
               <Age For="HumanlikePreTeenager">
-                <path>Things/Ratkin/Bodies/BodiesNaked_Thin</path>
+                <path>Things/Ratkin/Body/Thin/Naked_Thin</path>
                 <extendedGraphics>
                   <Backstory For="DD_Ratkin_Exiled_Exorcist">DivineDiurganate/Things/Michelle/Naked_Thin</Backstory>
                 </extendedGraphics>
               </Age>
-              <Age For="HumanlikeBaby">Things/Ratkin/Bodies/BodiesNaked_Baby</Age>
-              <Age For="HumanlikeChild">Things/Ratkin/Bodies/BodiesNaked_Child</Age>
+              <Age For="HumanlikeBaby">Things/Ratkin/Body/Baby/Naked_Baby</Age>
+              <Age For="HumanlikeChild">Things/Ratkin/Body/Child/Naked_Child</Age>
             </extendedGraphics>
           </body>
         </value>

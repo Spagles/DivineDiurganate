@@ -4,7 +4,6 @@ using HarmonyLib;
 using RimWorld;
 using Verse;
 using System.Linq;
-using FacialAnimation;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -76,15 +75,8 @@ namespace DivineDiurganate
                     }
                 }
 
-                // 调试：列出所有FaceTypeDef
-                int count = 0;
-                foreach (var def in DefDatabase<FaceTypeDef>.AllDefs)
-                {
-                    count++;
-                }
-
                 // 检查我们的Def是否存在
-                var ourDef = DefDatabase<FaceTypeDef>.GetNamedSilentFail("DD_Maple_Sugar_Eyeball");
+                var ourDef = EyeballPatches.FindEyeballTypeDef("DD_Maple_Sugar_Eyeball");
                 if (ourDef != null)
                 {
 
@@ -471,30 +463,57 @@ namespace DivineDiurganate
         /// <summary>
         /// 查找眼球类型Def
         /// </summary>
-        private static FaceTypeDef FindEyeballTypeDef(string defName)
+        public static Def FindEyeballTypeDef(string defName)
         {
             try
             {
-                // 方法1：直接查找
-                var def = DefDatabase<FaceTypeDef>.GetNamedSilentFail(defName);
-                if (def != null)
-                    return def;
-
-                // 方法2：在所有Def中查找FaceTypeDef子类
-                foreach (var d in DefDatabase<Def>.AllDefs)
-                {
-                    if (d.defName == defName && d is FaceTypeDef faceTypeDef)
-                    {
-                        return faceTypeDef;
-                    }
-                }
-
-                return null;
+                return FindFacialAnimationDef(defName);
             }
             catch (Exception ex)
             {
                 Log.Error($"[DD] Error in FindEyeballTypeDef: {ex}");
                 return null;
+            }
+        }
+
+        private static Def FindFacialAnimationDef(string defName)
+        {
+            var facialAnimationDefTypes = GetFacialAnimationDefTypes();
+            if (facialAnimationDefTypes.Count == 0)
+            {
+                return null;
+            }
+
+            foreach (var def in DefDatabase<Def>.AllDefs)
+            {
+                if (def.defName != defName)
+                {
+                    continue;
+                }
+
+                Type defType = def.GetType();
+                if (facialAnimationDefTypes.Any(type => type.IsAssignableFrom(defType)))
+                {
+                    return def;
+                }
+            }
+
+            return null;
+        }
+
+        private static List<Type> GetFacialAnimationDefTypes()
+        {
+            var types = new List<Type>();
+            AddIfPresent(types, AccessTools.TypeByName("FacialAnimation.EyeballTypeDef"));
+            AddIfPresent(types, AccessTools.TypeByName("FacialAnimation.FaceTypeDef"));
+            return types;
+        }
+
+        private static void AddIfPresent(List<Type> types, Type type)
+        {
+            if (type != null && !types.Contains(type))
+            {
+                types.Add(type);
             }
         }
 
@@ -532,9 +551,14 @@ namespace DivineDiurganate
         {
             var type = comp.GetType();
 
-            // 检查类型名
-            if (type.FullName == "FacialAnimation.EyeballControllerComp")
+            var eyeballControllerType = AccessTools.TypeByName("FacialAnimation.EyeballControllerComp");
+            if (eyeballControllerType != null && eyeballControllerType.IsAssignableFrom(type))
+            {
                 return true;
+            }
+
+            var controllerBaseType = AccessTools.TypeByName("FacialAnimation.ControllerBaseComp`2");
+            var eyeballTypeDefType = AccessTools.TypeByName("FacialAnimation.EyeballTypeDef");
 
             // 检查基类
             var baseType = type.BaseType;
@@ -543,15 +567,17 @@ namespace DivineDiurganate
                 if (baseType.IsGenericType)
                 {
                     var genericTypeDef = baseType.GetGenericTypeDefinition();
-                    if (genericTypeDef.FullName == "FacialAnimation.ControllerBaseComp`2")
+                    if (controllerBaseType != null && genericTypeDef == controllerBaseType)
                     {
                         // 检查泛型参数
                         var genericArgs = baseType.GetGenericArguments();
-                        if (genericArgs.Length >= 1)
+                        if (genericArgs.Length >= 1 && eyeballTypeDefType != null)
                         {
                             var faceTypeArg = genericArgs[0];
-                            if (faceTypeArg.FullName == "FacialAnimation.EyeballTypeDef")
+                            if (eyeballTypeDefType.IsAssignableFrom(faceTypeArg))
+                            {
                                 return true;
+                            }
                         }
                     }
                 }

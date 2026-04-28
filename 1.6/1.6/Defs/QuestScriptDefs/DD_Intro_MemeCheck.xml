@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
+  <!--
   <IncidentDef>
     <defName>DD_GiveQuest_Intro_MemeCheck</defName>
     <category>GiveQuest</category>
@@ -17,11 +18,11 @@
     <rootSelectionWeight>0</rootSelectionWeight>
     <autoAccept>true</autoAccept>
     <sendAvailableLetter>false</sendAvailableLetter>
-    <defaultChallengeRating>1</defaultChallengeRating>    <!-- 挑战等级（星级） -->
-    <defaultCharity>false</defaultCharity>    <!-- 是否仁善 -->
-    <isRootSpecial>true</isRootSpecial>    <!-- 特殊任务 -->
+    <defaultChallengeRating>1</defaultChallengeRating>    [XML comment: 挑战等级（星级）]
+    <defaultCharity>false</defaultCharity>    [XML comment: 是否仁善]
+    <isRootSpecial>true</isRootSpecial>    [XML comment: 特殊任务]
     <hideOnCleanup>true</hideOnCleanup>
-    <!-- 命名规则 -->
+    [XML comment: 命名规则]
     <questNameRules>
       <rulesStrings>
         <li>questName->DD_Intro_MemeCheck_questName</li>
@@ -36,12 +37,12 @@
       </rulesStrings>
     </questDescriptionRules>
 
-    <!-- 运行规则 -->
+    [XML comment: 运行规则]
     <root Class="QuestNode_Sequence">
       <nodes>
         <li Class="QuestNode_Delay">
           <delayTicks>1</delayTicks>
-          <!-- <delayTicks>360</delayTicks> -->
+          [XML comment: <delayTicks>360</delayTicks>]
           <node Class="QuestNode_Sequence">
             <nodes>
               <li Class="QuestNode_SendSignals">
@@ -83,4 +84,5 @@
       </li>
     </options>
   </DivineDiurganate.EventDef>
+  -->
 </Defs>

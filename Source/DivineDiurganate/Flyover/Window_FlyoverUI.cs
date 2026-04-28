@@ -8,6 +8,7 @@ namespace DivineDiurganate
     /// <summary>
     /// 战机UI窗口 - 支持展开/最小化切换的单一实例窗口
     /// </summary>
+    [StaticConstructorOnStartup]
     public class Window_FlyoverUI : Window
     {
         private WorldComp_FlyoverManager manager;

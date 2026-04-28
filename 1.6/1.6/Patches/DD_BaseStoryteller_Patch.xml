@@ -3,19 +3,21 @@
   <Operation Class="PatchOperationAdd">
     <xpath>Defs/StorytellerDef[@Name="BaseStoryteller"]/comps</xpath>
     <value>
-      <li Class="DivineDiurganate.StorytellerCompProperties_InitialMemeTrigger">
-        <memeToCheck>DD_law_Meme</memeToCheck>
-        <!-- <incidentIfHasMeme>DD_GiveQuest_Intro_MemeCheck</incidentIfHasMeme> -->
-        <incidentIfNoMeme>DD_GiveQuest_Intro_MemeCheck</incidentIfNoMeme>
-        
-        <!-- 时间配置 -->
-        <fireAfterDaysPassed>0.0001</fireAfterDaysPassed>
-        <checkIntervalDays>0.0001</checkIntervalDays>
-        <onlyOncePerGame>true</onlyOncePerGame>
-        
-        <!-- 调试 -->
-        <debugLogging>false</debugLogging>
-      </li>
+	      <!--
+	      <li Class="DivineDiurganate.StorytellerCompProperties_InitialMemeTrigger">
+	        <memeToCheck>DD_law_Meme</memeToCheck>
+	        [XML comment: <incidentIfHasMeme>DD_GiveQuest_Intro_MemeCheck</incidentIfHasMeme>]
+	        <incidentIfNoMeme>DD_GiveQuest_Intro_MemeCheck</incidentIfNoMeme>
+	        
+	        [XML comment: 时间配置]
+	        <fireAfterDaysPassed>0.0001</fireAfterDaysPassed>
+	        <checkIntervalDays>0.0001</checkIntervalDays>
+	        <onlyOncePerGame>true</onlyOncePerGame>
+	        
+	        [XML comment: 调试]
+	        <debugLogging>false</debugLogging>
+	      </li>
+	      -->
       <li Class="StorytellerCompProperties_ImportantQuest">
         <fireAfterDaysPassed>7</fireAfterDaysPassed>
         <questIncident>DD_GiveQuest_SP_Ratkin_Join</questIncident>

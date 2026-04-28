@@ -73,7 +73,7 @@
 		<recipeMaker>
 			<unfinishedThingDef>UnfinishedArmor</unfinishedThingDef>
 			<researchPrerequisites>
-				<li>RatkinClothing</li>
+					<li>RK_Research_Tailoring</li>
 				<li>DD_LV1_Clothing_Technology</li>
 			</researchPrerequisites>
 			<recipeUsers Inherit="false">
@@ -186,7 +186,7 @@
 		</colorGenerator>
 		<recipeMaker>
 			<researchPrerequisites>
-				<li>RatkinClothing</li>
+					<li>RK_Research_Tailoring</li>
 				<li>DD_LV1_Clothing_Technology</li>
 			</researchPrerequisites>
 		</recipeMaker>
@@ -253,7 +253,7 @@
 		</colorGenerator>
 		<recipeMaker>
 			<researchPrerequisites>
-				<li>HighClassClothing</li>
+					<li>RK_Research_AdvancedApparel</li>
 				<li>DD_LV1_Clothing_Technology</li>
 			</researchPrerequisites>
 		</recipeMaker>
@@ -308,7 +308,7 @@
 		</apparel>
 		<recipeMaker>
 			<researchPrerequisites>
-				<li>HighClassClothing</li>
+					<li>RK_Research_AdvancedApparel</li>
 				<li>DD_LV1_Clothing_Technology</li>
 			</researchPrerequisites>
 		</recipeMaker>
@@ -481,7 +481,7 @@
 		</colorGenerator>
 		<recipeMaker>
 			<researchPrerequisites>
-				<li>HighClassClothing</li>
+					<li>RK_Research_AdvancedApparel</li>
 				<li>DD_LV1_Clothing_Technology</li>
 			</researchPrerequisites>
 		</recipeMaker>
@@ -532,7 +532,7 @@
 		</apparel>
 		<recipeMaker>
 			<researchPrerequisites>
-				<li>HighClassClothing</li>
+					<li>RK_Research_AdvancedApparel</li>
 				<li>DD_LV1_Clothing_Technology</li>
 			</researchPrerequisites>
 		</recipeMaker>
@@ -648,7 +648,7 @@
 		<description>A medium-sized shield, designed specifically for the Crusaders of Divine Diurganate, which is lighter than a giant shield while maintaining almost no defensive capabilities.</description>
 		<recipeMaker>
 			<researchPrerequisites>
-				<li>HighClassClothing</li>
+					<li>RK_Research_AdvancedApparel</li>
 				<li>DD_LV1_Clothing_Technology</li>
 			</researchPrerequisites>
 		</recipeMaker>

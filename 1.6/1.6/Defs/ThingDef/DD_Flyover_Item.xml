@@ -206,7 +206,7 @@
       <shadow>DivineDiurganate/Weapon/DD_Mech_Weapon_Empty</shadow>
       <shadowSize>(0, 0)</shadowSize>
       <motesPerCell>0</motesPerCell>
-      <floatingSound>FlyOver/Flying</floatingSound>
+      <floatingSound>DD_Airship_MovingSound</floatingSound>
       <!-- <impactSound>FlyOver/Landing</impactSound> -->
     </skyfaller>
     <modExtensions>

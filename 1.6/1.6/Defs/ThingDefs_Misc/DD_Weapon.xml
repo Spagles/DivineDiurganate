@@ -17,7 +17,7 @@
     <recipeMaker>
       <!-- <recipeUsers Inherit="False" /> -->
       <researchPrerequisites>
-        <li>MicroOptical</li>
+        <li>RK_Research_ObservationAndSurveying</li>
         <li>DD_LV1_Weapon_Technology</li>
       </researchPrerequisites>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
@@ -97,7 +97,7 @@
     <recipeMaker>
       <!-- <recipeUsers Inherit="False" /> -->
       <researchPrerequisites>
-        <li>FlechetteBullet</li>
+        <li>RK_Research_SeparationMechanics</li>
         <li>DD_LV1_Weapon_Technology</li>
       </researchPrerequisites>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
@@ -190,7 +190,7 @@
     <recipeMaker>
       <!-- <recipeUsers Inherit="False" /> -->
       <researchPrerequisites>
-        <li>FlechetteBullet</li>
+        <li>RK_Research_SeparationMechanics</li>
         <li>DD_LV1_Weapon_Technology</li>
       </researchPrerequisites>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
@@ -293,7 +293,7 @@
     <recipeMaker>
       <!-- <recipeUsers Inherit="False" /> -->
       <researchPrerequisites>
-        <li>MicroOptical</li>
+        <li>RK_Research_ObservationAndSurveying</li>
         <li>DD_LV1_Weapon_Technology</li>
       </researchPrerequisites>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
@@ -394,7 +394,7 @@
     <recipeMaker>
       <recipeUsers Inherit="False" />
       <researchPrerequisites>
-        <li>MechanicalWeapon</li>
+        <li>RK_Research_RatkinEngineering</li>
         <li>DD_LV1_Weapon_Technology</li>
       </researchPrerequisites>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
@@ -468,7 +468,7 @@
     <recipeMaker>
       <!-- <recipeUsers Inherit="False" /> -->
       <researchPrerequisites>
-        <li>FlechetteBullet</li>
+        <li>RK_Research_SeparationMechanics</li>
         <li>DD_LV1_Weapon_Technology</li>
       </researchPrerequisites>
       <unfinishedThingDef>UnfinishedWeapon</unfinishedThingDef>
