@@ -79,8 +79,11 @@ namespace DivineDiurganate
             }
             
             // 计算要生成的驾驶员数量
-            int maxPilots = Props.maxDefaultPilots > 0 ? 
-                Props.maxDefaultPilots : pilotHolder.Props.maxPilots;
+            int maxPilots = pilotHolder.Props.maxPilots;
+            if (Props.maxDefaultPilots > 0)
+            {
+                maxPilots = Mathf.Min(Props.maxDefaultPilots, maxPilots);
+            }
             int pilotsToSpawn = maxPilots - pilotHolder.CurrentPilotCount;
             
             if (pilotsToSpawn <= 0)
@@ -105,6 +108,11 @@ namespace DivineDiurganate
         // 尝试生成单个默认驾驶员
         private bool TrySpawnDefaultPilot(Pawn mech, CompMechPilotHolder pilotHolder)
         {
+            if (!pilotHolder.HasRoom)
+            {
+                return false;
+            }
+
             // 选择驾驶员类型
             var pilotKind = Props.SelectRandomPilotKind();
             if (pilotKind == null)

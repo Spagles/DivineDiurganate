@@ -274,4 +274,5 @@
   <DD_ConfirmTeleportDesc>锁定目标地点，开始发起地狱深潜</DD_ConfirmTeleportDesc>
   <DD_MoveMarker>移动标记</DD_MoveMarker>
   <DD_MoveMarkerDesc>移动标记，以重新设置传送目的地</DD_MoveMarkerDesc>
+  <DD_UniquePawnSpawned>{0} 已出现！</DD_UniquePawnSpawned>
 </LanguageData>

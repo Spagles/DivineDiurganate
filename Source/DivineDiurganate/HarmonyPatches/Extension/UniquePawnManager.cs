@@ -204,6 +204,8 @@ namespace DivineDiurganate
             {
                 pawnRecords.Remove(key);
             }
+
+            IndexExistingUniquePawns();
             
             // 清理无效的待处理关系
             int pendingBefore = pendingRelations.Count;
@@ -213,6 +215,43 @@ namespace DivineDiurganate
                 (pr.targetPawnKind != null && !IsPawnKindValid(pr.targetPawnKind)));
             
             initializedAfterLoad = true;
+        }
+
+        private void IndexExistingUniquePawns()
+        {
+            foreach (Pawn pawn in PawnsFinder.AllMapsAndWorld_Alive.ToList())
+            {
+                UniquePawnExtension extension = pawn?.kindDef?.GetModExtension<UniquePawnExtension>();
+                if (extension == null)
+                {
+                    continue;
+                }
+
+                string pawnKey = GetPawnKey(pawn, extension.singletonScope);
+                if (pawnKey == null)
+                {
+                    continue;
+                }
+
+                if (pawnRecords.TryGetValue(pawnKey, out PawnRecord existingRecord) &&
+                    existingRecord.pawn != pawn && RecordReservesSingleton(existingRecord))
+                {
+                    if (extension.destroyDuplicates && pawn.Spawned)
+                    {
+                        pawn.Destroy();
+                    }
+                    continue;
+                }
+
+                pawnRecords[pawnKey] = new PawnRecord
+                {
+                    pawn = pawn,
+                    pawnID = pawn.thingIDNumber,
+                    pawnKindDef = pawn.kindDef,
+                    extension = extension,
+                    spawnTime = Find.TickManager.TicksGame
+                };
+            }
         }
         
         /// <summary>
@@ -426,11 +465,13 @@ namespace DivineDiurganate
                 var record = kvp.Value;
                 
                 // 如果Pawn已死亡且需要移除
-                if (record.pawn != null && record.pawn.Dead && 
-                    record.extension != null && record.extension.removeOnDeath)
+                if (record.pawn != null && record.pawn.Dead)
                 {
-                    keysToRemove.Add(kvp.Key);
-                    removed++;
+                    if (record.extension != null && record.extension.removeOnDeath)
+                    {
+                        keysToRemove.Add(kvp.Key);
+                        removed++;
+                    }
                 }
                 // 如果Pawn已不存在于世界中
                 else if (!PawnExistsInWorld(record.pawn))
@@ -509,9 +550,7 @@ namespace DivineDiurganate
                 // 检查是否已存在相同Key的Pawn
                 if (pawnRecords.TryGetValue(pawnKey, out var existingRecord))
                 {
-                    if (existingRecord.pawn != null && 
-                        existingRecord.pawn != pawn && 
-                        PawnExistsInWorld(existingRecord.pawn))
+                    if (existingRecord.pawn != pawn && RecordReservesSingleton(existingRecord))
                     {
                         // 处理重复生成
                         return HandleDuplicatePawn(pawn, existingRecord.pawn, extension);
@@ -611,6 +650,21 @@ namespace DivineDiurganate
             }
 
             return false;
+        }
+
+        private bool RecordReservesSingleton(PawnRecord record)
+        {
+            if (record?.pawn == null || record.pawn.Destroyed)
+            {
+                return false;
+            }
+
+            if (record.pawn.Dead && record.extension?.removeOnDeath == false)
+            {
+                return true;
+            }
+
+            return PawnExistsInWorld(record.pawn);
         }
         
         /// <summary>
@@ -877,9 +931,12 @@ namespace DivineDiurganate
         private void SendSpawnMessage(Pawn pawn, UniquePawnExtension extension)
         {
             string messageKey = extension.spawnMessageKey;
-            string defaultMessage = $"{pawn.LabelCap} 已出现！";
-            
-            Messages.Message(defaultMessage, pawn, MessageTypeDefOf.PositiveEvent);
+            if (messageKey.NullOrEmpty())
+            {
+                messageKey = "DD_UniquePawnSpawned";
+            }
+
+            Messages.Message(messageKey.Translate(pawn.LabelCap), pawn, MessageTypeDefOf.PositiveEvent);
         }
         
         /// <summary>

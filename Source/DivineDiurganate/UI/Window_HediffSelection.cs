@@ -259,9 +259,7 @@ namespace DivineDiurganate
             float descHeight = CardHeight - (currentY - rect.y) - 50f;
             Rect descRect = new Rect(rect.x + padding, currentY, contentWidth, descHeight);
             
-            string description = !string.IsNullOrEmpty(entry.descriptionOverride) 
-                ? entry.descriptionOverride 
-                : entry.hediff.Description;
+            string description = GetEntryDescription(entry);
             
             if (description.Length > 200)
             {
@@ -291,12 +289,19 @@ namespace DivineDiurganate
             // 悬停时显示完整工具提示
             if (isHovered)
             {
-                string tooltip = entry.hediff.LabelCap + "\n\n" + 
-                               (!string.IsNullOrEmpty(entry.descriptionOverride) 
-                                    ? entry.descriptionOverride 
-                                    : entry.hediff.Description);
+                string tooltip = entry.hediff.LabelCap + "\n\n" + GetEntryDescription(entry);
                 TooltipHandler.TipRegion(rect, tooltip);
             }
+        }
+
+        private static string GetEntryDescription(HediffPoolEntry entry)
+        {
+            if (!entry.descriptionOverride.NullOrEmpty())
+            {
+                return entry.descriptionOverride.Translate();
+            }
+
+            return entry.hediff.Description;
         }
         
         private void DrawHediffIcon(Rect rect, HediffPoolEntry entry)

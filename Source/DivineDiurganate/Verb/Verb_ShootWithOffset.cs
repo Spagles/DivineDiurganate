@@ -159,10 +159,9 @@ namespace DivineDiurganate
             }
 
             Vector3 drawPos = caster.DrawPos;
+            PrepareShotCounter(equipmentSource);
             drawPos = ApplyProjectileOffset(drawPos, equipmentSource);
-            
-            // 更新射击计数
-            UpdateShotCounter(equipmentSource);
+            IncrementShotCounter(equipmentSource);
             
             Projectile projectile2 = (Projectile)GenSpawn.Spawn(projectile, resultingLine.Source, caster.Map);
             if (equipmentSource.TryGetComp(out CompUniqueWeapon comp))
@@ -268,8 +267,7 @@ namespace DivineDiurganate
             return true;
         }
 
-        // 更新射击计数器
-        private void UpdateShotCounter(Thing equipmentSource)
+        private void PrepareShotCounter(Thing equipmentSource)
         {
             if (equipmentSource == null) return;
             
@@ -281,10 +279,12 @@ namespace DivineDiurganate
                 {
                     counter.ResetShotCount();
                 }
-                
-                // 增加射击计数
-                counter.IncrementShotCount();
             }
+        }
+
+        private void IncrementShotCounter(Thing equipmentSource)
+        {
+            equipmentSource?.TryGetComp<CompShootOffsetCounter>()?.IncrementShotCount();
         }
 
         private Vector3 ApplyProjectileOffset(Vector3 originalDrawPos, Thing equipmentSource)

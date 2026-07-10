@@ -46,8 +46,8 @@ namespace DivineDiurganate
                     return;
                 }
 
-                string label = Props.letterLabel ?? "DefaultLetterLabel".Translate();
-                string text = Props.letterText ?? "DefaultLetterText".Translate();
+                string label = (Props.letterLabel ?? "DefaultLetterLabel").Translate();
+                string text = (Props.letterText ?? "DefaultLetterText").Translate();
 
                 // 创建信件
                 Letter letter = LetterMaker.MakeLetter(
@@ -82,7 +82,7 @@ namespace DivineDiurganate
                 int ticksRemaining = Props.ticksDelay - ticksPassed;
                 if (ticksRemaining > 0)
                 {
-                    return $"LetterInspection_TimeRemaining".Translate(ticksRemaining.ToStringTicksToPeriod());
+                    return "LetterInspection_TimeRemaining".Translate(ticksRemaining.ToStringTicksToPeriod());
                 }
             }
             return base.CompInspectStringExtra();

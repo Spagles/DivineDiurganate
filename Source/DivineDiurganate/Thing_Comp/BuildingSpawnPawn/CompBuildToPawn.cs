@@ -41,10 +41,13 @@ namespace DivineDiurganate
                             pawn.SetFaction(parent.Faction, null);
                             
                         GenSpawn.Spawn(pawn, parent.Position, parent.Map, WipeMode.Vanish);
+
+                        if (Props.initDrafted && pawn.Faction?.IsPlayer == true && pawn.drafter != null)
+                            pawn.drafter.Drafted = true;
                     }
-                    
-                    // 摧毁建筑
-                    parent.Destroy();
+
+                    if (Props.destroyBuilding)
+                        parent.Destroy();
                 }
                 
                 shouldSpawn = false;

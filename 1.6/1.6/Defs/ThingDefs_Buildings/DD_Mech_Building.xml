@@ -45,6 +45,7 @@
         <pawnKindDef>DD_DHM86_Knell_Mech</pawnKindDef>
         <spawnCount>1</spawnCount>
         <inheritFaction>true</inheritFaction>
+        <destroyBuilding>true</destroyBuilding>
       </li>
     </comps>
   </ThingDef>
@@ -93,6 +94,7 @@
         <pawnKindDef>DD_DHM69_Scythe_Mech</pawnKindDef>
         <spawnCount>1</spawnCount>
         <inheritFaction>true</inheritFaction>
+        <destroyBuilding>true</destroyBuilding>
       </li>
     </comps>
   </ThingDef>
@@ -141,6 +143,7 @@
         <pawnKindDef>DD_DHM70_Rampart_Mech</pawnKindDef>
         <spawnCount>1</spawnCount>
         <inheritFaction>true</inheritFaction>
+        <destroyBuilding>true</destroyBuilding>
       </li>
     </comps>
   </ThingDef>
