@@ -3,7 +3,6 @@ using System.Reflection;
 using HarmonyLib;
 using RimWorld;
 using Verse;
-using System.Linq;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -484,15 +483,10 @@ namespace DivineDiurganate
                 return null;
             }
 
-            foreach (var def in DefDatabase<Def>.AllDefs)
+            foreach (var defType in facialAnimationDefTypes)
             {
-                if (def.defName != defName)
-                {
-                    continue;
-                }
-
-                Type defType = def.GetType();
-                if (facialAnimationDefTypes.Any(type => type.IsAssignableFrom(defType)))
+                var def = GenDefDatabase.GetDefSilentFail(defType, defName);
+                if (def != null)
                 {
                     return def;
                 }
