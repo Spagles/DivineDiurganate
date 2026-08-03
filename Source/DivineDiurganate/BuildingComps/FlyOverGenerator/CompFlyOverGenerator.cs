@@ -207,7 +207,7 @@ namespace DivineDiurganate
                 action = () =>
                 {
                     Log.Message($"[DD] 重置冷却按钮被点击 - 当前 lastUseTick: {FlyoverManager.lastUseTick}");
-                    FlyoverManager.lastUseTick = -99999;
+                    FlyoverManager.lastUseTick = -9999999;
                     Log.Message($"[DD] 重置冷却按钮完成 - 新的 lastUseTick: {FlyoverManager.lastUseTick}");
                     Messages.Message("冷却时间已重置！", MessageTypeDefOf.PositiveEvent);
                 }
@@ -830,7 +830,7 @@ namespace DivineDiurganate
         {
             get
             {
-                if (FlyoverManager.lastUseTick <= 0) return "0";
+                if (FlyoverManager.lastUseTick < 0) return "0";
                 int remainingTicks = FlyoverManager.lastUseTick + Props.cooldownTicks - Find.TickManager.TicksGame;
                 int positiveTicks = Mathf.Max(0, remainingTicks);
                 return positiveTicks.ToStringTicksToPeriod();
