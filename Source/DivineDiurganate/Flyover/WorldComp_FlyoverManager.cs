@@ -15,7 +15,7 @@ namespace DivineDiurganate
         private List<FlyoverData> allFlyoverData = new List<FlyoverData>();
         private bool uiIsOpen = false;
         // 全局冷却时间跟踪（不同建筑共享，但会正确存档）
-        public int lastUseTick = -99999;
+        public int lastUseTick = -9999999;
 
         public WorldComp_FlyoverManager(World world) : base(world) { }
         public List<FlyoverData> AllFlyoverData => allFlyoverData;
