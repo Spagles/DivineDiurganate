@@ -224,18 +224,7 @@ namespace DivineDiurganate
                 return null;
             }
         }
-        [HarmonyPatch(typeof(FloatMenuOptionProvider_Romance), "GetSingleOptionFor")]
-        [HarmonyPrefix]
-        public static bool GetSingleOptionFor_Prefix(Pawn clickedPawn, ref FloatMenuOption __result)
-        {
-            if (clickedPawn is DDmechunit)
-            {
-                __result = null;
-                return false; // 跳过原始方法
-            }
-            return true; // 继续执行原始方法
         }
-    }
 
 
     [HarmonyPatch]
