@@ -17,19 +17,24 @@ namespace DivineDiurganate.HarmonyPatches
     public static class Thing_TakeDamage_Patch
     {
         // 缓存装甲值StatDef
-        private static readonly StatDef ArmorStatDef = StatDef.Named("DD_MechArmor");
+        private static StatDef armorStatDef;
+        private static StatDef ArmorStatDef => armorStatDef ??= StatDef.Named("DD_MechArmor");
         
         // 阻挡效果的MoteDef
-        private static readonly ThingDef BlockMoteDef = DefDatabase<ThingDef>.GetNamedSilentFail("Mote_Spark");
+        private static ThingDef blockMoteDef;
+        private static ThingDef BlockMoteDef => blockMoteDef ??= DefDatabase<ThingDef>.GetNamedSilentFail("Mote_Spark");
         
         // 阻挡音效
-        private static readonly SoundDef BlockSoundDef = DefDatabase<SoundDef>.GetNamedSilentFail("ArmorBlock");
+        private static SoundDef blockSoundDef;
+        private static SoundDef BlockSoundDef => blockSoundDef ??= DefDatabase<SoundDef>.GetNamedSilentFail("ArmorBlock");
         
         // 免疫效果的MoteDef
-        private static readonly ThingDef ImmuneMoteDef = DefDatabase<ThingDef>.GetNamedSilentFail("Mote_Immunity");
+        private static ThingDef immuneMoteDef;
+        private static ThingDef ImmuneMoteDef => immuneMoteDef ??= DefDatabase<ThingDef>.GetNamedSilentFail("Mote_Immunity");
         
         // 免疫音效
-        private static readonly SoundDef ImmuneSoundDef = DefDatabase<SoundDef>.GetNamedSilentFail("ImmuneSound");
+        private static SoundDef immuneSoundDef;
+        private static SoundDef ImmuneSoundDef => immuneSoundDef ??= DefDatabase<SoundDef>.GetNamedSilentFail("ImmuneSound");
         
         // 调试统计
         private static readonly Dictionary<Thing, DamageBlockStats> DebugStats = new Dictionary<Thing, DamageBlockStats>();
