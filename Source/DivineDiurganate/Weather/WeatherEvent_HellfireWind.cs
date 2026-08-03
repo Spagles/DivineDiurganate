@@ -39,7 +39,7 @@ namespace DivineDiurganate
         );
         
         // 地狱焚风音效
-        private static readonly SoundDef HellfireWindSound = SoundDef.Named("HellfireWind");
+        private static readonly SoundDef HellfireWindSound = SoundDef.NamedSilentFail("HellfireWind");
         
         // 区域大小（12x12）
         private const int AREA_SIZE = 12;
