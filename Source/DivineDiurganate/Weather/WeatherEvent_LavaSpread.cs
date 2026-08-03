@@ -13,7 +13,8 @@ namespace DivineDiurganate
     public class WeatherEvent_LavaSpread : WeatherEvent
     {
         // 岩浆地形定义
-        private static readonly TerrainDef LavaShallowDef = DefDatabase<TerrainDef>.GetNamedSilentFail("LavaShallow");
+        private static TerrainDef lavaShallowDef;
+        private static TerrainDef LavaShallowDef => lavaShallowDef ??= DefDatabase<TerrainDef>.GetNamedSilentFail("LavaShallow");
         
         // 事件是否已过期
         private bool expired = false;
